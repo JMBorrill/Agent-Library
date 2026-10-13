@@ -3,17 +3,79 @@
   "$id": "agent-library/ai-prompt-injection-review/tool-calls.schema.json",
   "title": "Proposed agent tool calls",
   "type": "object",
-  "required": ["calls"],
+  "required": [
+    "calls"
+  ],
   "properties": {
-    "calls": {"type": "array", "items": {
-      "type": "object", "required": ["call_id", "tool", "args", "provenance", "data_classification"],
-      "properties": {
-        "call_id": {"type": "string"},
-        "tool": {"type": "string"},
-        "args": {"type": "object"},
-        "provenance": {"type": "string", "description": "user|system|retrieved_content|tool_output; anything else is denied"},
-        "data_classification": {"type": "string", "description": "public|internal|confidential|personal|special_category"},
-        "expected_decision": {"enum": ["allow", "deny", "require_approval"]},
-        "note": {"type": "string"}}}}
+    "calls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "call_id",
+          "tool",
+          "args",
+          "provenance",
+          "data_classification"
+        ],
+        "properties": {
+          "call_id": {
+            "type": "string"
+          },
+          "tool": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "provenance": {
+            "type": "string",
+            "description": "user|system|retrieved_content|tool_output; anything else is denied"
+          },
+          "data_classification": {
+            "type": "string",
+            "description": "public|internal|confidential|personal|special_category"
+          },
+          "expected_decision": {
+            "enum": [
+              "allow",
+              "deny",
+              "require_approval"
+            ]
+          },
+          "note": {
+            "type": "string"
+          },
+          "turn_context_provenance": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "provenances present in the model's context when the call was proposed, assigned by the orchestrator"
+          },
+          "thread_recipients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "recipients of record for the thread (from the customer record, not the inbound sender)"
+          }
+        }
+      }
+    },
+    "turn_context_provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "batch-level: provenances in the model context for the turn; merged into every call"
+    },
+    "thread_recipients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "batch-level default recipients of record for the thread"
+    }
   }
 }

@@ -1,0 +1,58 @@
+{
+  "policy_id": "AIOPS-TOOL-POLICY-HARDENED",
+  "version": "1.1.0",
+  "description": "Synthetic hardened tool policy for an AI operations assistant on a small-business CRM (SMS and email threads): provenance tainting, recipient binding to the thread's customer of record, default-deny destinations and tool-derived data classification",
+  "allowed_tools": [
+    "search_kb",
+    "read_crm_record",
+    "draft_email",
+    "draft_sms",
+    "send_email",
+    "send_sms",
+    "http_get"
+  ],
+  "side_effecting_tools": [
+    "send_email",
+    "send_sms",
+    "http_get"
+  ],
+  "untrusted_provenance": [
+    "retrieved_content",
+    "tool_output"
+  ],
+  "forbidden_domains": [
+    "pastebin.com",
+    "webhook.site",
+    "ngrok.io",
+    "attacker.example"
+  ],
+  "allowed_egress_domains": [
+    "ourfirm.example",
+    "sms-gateway.invalid"
+  ],
+  "personal_data_classifications": [
+    "personal",
+    "special_category"
+  ],
+  "pii_egress_allowed_domains": [
+    "ourfirm.example",
+    "sms-gateway.invalid"
+  ],
+  "taint_side_effects": "deny",
+  "bind_recipient_to_thread": {
+    "send_sms": "to",
+    "send_email": ["to", "cc", "bcc"]
+  },
+  "default_deny_unlisted_destinations": true,
+  "allowed_destination_domains": [
+    "ourfirm.example",
+    "sms-gateway.invalid"
+  ],
+  "tool_classification": {
+    "read_crm_record": "personal",
+    "draft_email": "personal",
+    "draft_sms": "personal",
+    "send_email": "personal",
+    "send_sms": "personal"
+  }
+}

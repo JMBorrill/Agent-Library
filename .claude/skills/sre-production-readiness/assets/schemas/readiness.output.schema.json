@@ -3,14 +3,66 @@
   "$id": "agent-library/sre-production-readiness/readiness.output.schema.json",
   "title": "readiness_check.py --json output",
   "type": "object",
-  "required": ["findings", "summary", "passed"],
+  "required": [
+    "findings",
+    "summary",
+    "passed"
+  ],
   "properties": {
-    "passed": {"type": "boolean"},
-    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
-      "properties": {"severity": {"enum": ["error", "warning", "info"]},
-                     "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}}},
-    "summary": {"type": "object", "required": ["recommendation", "requires_human_signoff", "blocking_failures", "conditions"],
-      "properties": {"recommendation": {"enum": ["GO", "GO_WITH_CONDITIONS", "NO_GO"]},
-                     "requires_human_signoff": {"const": true}}}
+    "passed": {
+      "type": "boolean"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "rule",
+          "message"
+        ],
+        "properties": {
+          "severity": {
+            "enum": [
+              "error",
+              "warning",
+              "info"
+            ]
+          },
+          "rule": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "recommendation",
+        "requires_human_signoff",
+        "blocking_failures",
+        "conditions"
+      ],
+      "properties": {
+        "recommendation": {
+          "enum": [
+            "GO",
+            "GO_WITH_CONDITIONS",
+            "NO_GO"
+          ]
+        },
+        "requires_human_signoff": {
+          "const": true
+        },
+        "project_blocking_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
   }
 }

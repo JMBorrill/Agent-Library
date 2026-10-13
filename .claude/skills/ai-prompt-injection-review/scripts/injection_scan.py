@@ -15,6 +15,12 @@ Rules (rule id -> severity):
   data-egress-request (medium)  requests to send/forward/export data to an email address
   concealment (medium)          "do not tell the user/underwriter/anyone"
   addressed-to-ai (low)         text addressing an AI assistant/model directly
+  authority-bypass (medium)     a third party's authority claimed as already given ("the owner has
+                                already okayed this", "as lead underwriter I have cleared it") AND, in
+                                the same document, a verification bypass ("no need to check", "can skip")
+  bulk-personal-data-request (medium)  a send/text/email/export request for every/each/all clients'
+                                (customers', contacts'...) names, addresses, phone numbers, emails...
+  Each social-engineering signal alone is at most "review"; both together reach "flag".
 Verdict per document: flag (any high, or score >= 4), review (score >= 2), clean.
 
 Input: a text file (one document), or JSONL (--jsonl) with {"id", "text", optional "label":
@@ -68,6 +74,18 @@ PATTERNS: list[tuple[str, str, re.Pattern]] = [
     ("addressed-to-ai", "low", re.compile(
         r"\b(?:(?:dear|hey|attention|note to(?: the)?)\s+(?:ai|llm|assistant|chatbot|copilot|model)|(?:ai|llm) (?:assistant|agent|model)s?(?: reading this)?\s*[:,])", re.I)),
 ]
+AUTHORITY_CLAIM = re.compile(
+    r"\b(?:owner|manager|boss|director|supervisor|admin(?:istrator)?|underwriter|compliance|management|"
+    r"partner|head of \w+|team lead)\b[^.\n]{0,40}?\b(?:okayed|ok'?d|approved|authori[sz]ed|signed (?:this |it )?off|"
+    r"cleared|agreed)\b", re.I)
+VERIFICATION_BYPASS = re.compile(
+    r"\b(?:no need to|(?:do not|don'?t) need to|needn'?t|without)\s+(?:double-)?(?:check|confirm|verify|ask)(?:ing)?\b"
+    r"|\b(?:can|should|just|please)\s+skip\b", re.I)
+BULK_PERSONAL_DATA = re.compile(
+    r"\b(?:send|text|e-?mail|forward|share|export|list|give)\b[^.\n]{0,100}?"
+    r"\b(?:each|every|all(?: of)?(?: the| your| our)?)\s+(?:clients?|customers?|owners?|contacts?|applicants?|"
+    r"patients?|members?|users?)(?:'s|s'|\u2019s)?\b[^.\n]{0,40}?"
+    r"\b(?:names?|address(?:es)?|phone|mobile|numbers?|e-?mails?|dates? of birth|DOB|details|records?)\b", re.I)
 INVISIBLE = re.compile("[​-‏‪-‮⁠-⁤⁦-⁩﻿]")
 TAG_CHARS = re.compile("[\U000e0000-\U000e007f]")
 HTML_COMMENT = re.compile(r"<!--(.*?)-->", re.S)
@@ -107,6 +125,12 @@ def scan_text(text: str, min_b64: int = 40, _depth: int = 0) -> dict:
     # normalise: strip invisibles and tag chars, NFKC fold look-alikes, before pattern matching
     visible = unicodedata.normalize("NFKC", TAG_CHARS.sub("", INVISIBLE.sub("", text)))
     hits.extend(_pattern_hits(visible))
+    claim, bypass = AUTHORITY_CLAIM.search(visible), VERIFICATION_BYPASS.search(visible)
+    if claim and bypass:
+        hits.append(_hit("authority-bypass", "medium", f"{claim.group(0)} ... {bypass.group(0)}"))
+    bulk = BULK_PERSONAL_DATA.search(visible)
+    if bulk:
+        hits.append(_hit("bulk-personal-data-request", "medium", bulk.group(0)))
     if _depth == 0:
         for m in B64_RUN.finditer(visible):
             run = m.group(0)

@@ -3,18 +3,122 @@
   "$id": "agent-library/ai-prompt-injection-review/tool-decisions.output.schema.json",
   "title": "tool_policy_check.py --json output",
   "type": "object",
-  "required": ["decisions", "summary", "findings", "passed", "policy"],
+  "required": [
+    "decisions",
+    "summary",
+    "findings",
+    "passed",
+    "policy"
+  ],
   "properties": {
-    "passed": {"type": "boolean"},
-    "decisions": {"type": "array", "items": {
-      "type": "object", "required": ["call_id", "tool", "decision", "reasons"],
-      "properties": {
-        "decision": {"enum": ["allow", "deny", "require_approval"]},
-        "reasons": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["decision", "rule", "message"],
-                    "properties": {"rule": {"type": "string", "pattern": "^TP-[A-Z-]+$"}}}}}}},
-    "summary": {"type": "object", "required": ["calls", "allow", "deny", "require_approval"]},
-    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
-                 "properties": {"rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}}},
-    "policy": {"type": "object"}
+    "passed": {
+      "type": "boolean"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "call_id",
+          "tool",
+          "decision",
+          "reasons",
+          "declared_provenance",
+          "effective_provenance",
+          "classification_source"
+        ],
+        "properties": {
+          "decision": {
+            "enum": [
+              "allow",
+              "deny",
+              "require_approval"
+            ]
+          },
+          "reasons": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "decision",
+                "rule",
+                "message"
+              ],
+              "properties": {
+                "rule": {
+                  "type": "string",
+                  "pattern": "^TP-[A-Z-]+$"
+                }
+              }
+            }
+          },
+          "declared_provenance": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "effective_provenance": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "context_provenance": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "classification_source": {
+            "enum": [
+              "derived",
+              "self_declared"
+            ]
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "calls",
+        "allow",
+        "deny",
+        "require_approval"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "rule",
+          "message"
+        ],
+        "properties": {
+          "rule": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "severity": {
+            "enum": [
+              "error",
+              "warning",
+              "info"
+            ]
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object"
+    }
   }
 }

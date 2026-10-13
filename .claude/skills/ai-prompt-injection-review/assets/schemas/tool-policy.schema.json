@@ -3,17 +3,129 @@
   "$id": "agent-library/ai-prompt-injection-review/tool-policy.schema.json",
   "title": "Agent tool-use policy",
   "type": "object",
-  "required": ["policy_id", "version", "allowed_tools", "side_effecting_tools"],
+  "required": [
+    "policy_id",
+    "version",
+    "allowed_tools",
+    "side_effecting_tools"
+  ],
   "properties": {
-    "policy_id": {"type": "string"},
-    "version": {"type": "string"},
-    "description": {"type": "string"},
-    "allowed_tools": {"type": "array", "items": {"type": "string"}},
-    "side_effecting_tools": {"type": "array", "items": {"type": "string"}},
-    "untrusted_provenance": {"type": "array", "items": {"enum": ["user", "system", "retrieved_content", "tool_output"]}},
-    "forbidden_domains": {"type": "array", "items": {"type": "string"}},
-    "allowed_egress_domains": {"type": "array", "items": {"type": "string"}},
-    "personal_data_classifications": {"type": "array", "items": {"type": "string"}},
-    "pii_egress_allowed_domains": {"type": "array", "items": {"type": "string"}}
+    "policy_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "side_effecting_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "untrusted_provenance": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "user",
+          "system",
+          "retrieved_content",
+          "tool_output"
+        ]
+      }
+    },
+    "forbidden_domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_egress_domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "personal_data_classifications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pii_egress_allowed_domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "taint_side_effects": {
+      "enum": [
+        "deny",
+        "require_approval"
+      ],
+      "description": "decision for side-effecting calls whose effective (tainted) provenance is untrusted although the declared label is trusted; default deny"
+    },
+    "bind_recipient_to_thread": {
+      "description": "tools whose recipient args must be in the call's thread_recipients: {tool: arg | [args]} or a list of tools (default args to/to_number/recipient/recipients/cc/bcc)",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "default_deny_unlisted_destinations": {
+      "type": "boolean",
+      "description": "side-effecting calls to any destination outside allowed_destination_domains are denied regardless of classification"
+    },
+    "allowed_destination_domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "allowlist for default_deny_unlisted_destinations; falls back to allowed_egress_domains"
+    },
+    "tool_classification": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "public",
+          "internal",
+          "confidential",
+          "personal",
+          "special_category"
+        ]
+      },
+      "description": "classification derived from the tool; overrides the caller's data_classification"
+    }
   }
 }

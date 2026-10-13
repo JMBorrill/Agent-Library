@@ -7,8 +7,14 @@ evidence reference: slo_defined, rollback_tested, oncall_staffed, restore_tested
 be "na" only with a justification, e.g. a stateless service). Any blocking gap -> NO_GO. Open
 non-blocking items, missing evidence, unjustified N/A or uncovered areas -> GO_WITH_CONDITIONS.
 
+Project-defined blocking items: the checklist field `blocking_items` (list of item keys or ids) and/or
+`--blocking id,id` add launch blockers (e.g. security_isolation_tested, tool_enforcement_tested,
+dpia_complete). Each must exist and be "done" with an evidence reference ("na" never satisfies a
+project blocker); otherwise NO_GO. A `no-security-evidence` warning (and condition) is raised when no
+security-area item is done with evidence.
+
 Usage:
-  readiness_check.py checklist.json [--json]
+  readiness_check.py checklist.json [--blocking key,key] [--json]
 Exit codes: 0 GO or GO_WITH_CONDITIONS, 1 NO_GO, 2 unreadable input.
 
 Scope: the output is a recommendation from the checklist as written; the launch decision requires
@@ -35,11 +41,28 @@ def _finding(fid: str, severity: str, rule: str, message: str) -> dict:
     return {"id": fid, "severity": severity, "rule": rule, "message": message}
 
 
-def evaluate(doc: dict) -> dict:
+def _project_blocking(doc: dict, extra: list[str] | None, add) -> list[str]:
+    """Project-defined blocking item keys/ids from the checklist and the CLI, de-duplicated in order."""
+    raw = doc.get("blocking_items", [])
+    if not isinstance(raw, list) or not all(isinstance(x, str) and x.strip() for x in raw):
+        add("-", "error", "bad-blocking-items", "blocking_items must be a list of item keys or ids")
+        raw = []
+    out: list[str] = []
+    for x in [*raw, *(extra or [])]:
+        x = x.strip()
+        if x and x not in out and x not in BLOCKING:
+            out.append(x)
+    return out
+
+
+def evaluate(doc: dict, extra_blocking: list[str] | None = None) -> dict:
     findings: list[dict] = []
     add = lambda *a: findings.append(_finding(*a))  # noqa: E731
     blocking_failures: list[str] = []
     conditions: list[dict] = []
+    project_blocking = _project_blocking(doc, extra_blocking, add)
+    found_project: set[str] = set()
+    security_evidence = False
     if not doc.get("service"):
         add("-", "error", "missing-field", "service name missing")
     if not doc.get("reviewers"):
@@ -71,6 +94,19 @@ def evaluate(doc: dict) -> dict:
         if key:
             by_key[key] = it
         evidence = str(it.get("evidence_ref") or "").strip()
+        if area == "security" and status == "done" and evidence:
+            security_evidence = True
+        pkeys = [k for k in (key, it.get("id")) if k in project_blocking]
+        if pkeys and key not in BLOCKING:
+            pk = pkeys[0]
+            found_project.update(pkeys)
+            if status != "done":
+                blocking_failures.append(pk)
+                add(iid, "error", "blocking-item-not-done", f"project blocking item '{pk}' is {status}")
+            elif not evidence:
+                blocking_failures.append(pk)
+                add(iid, "error", "blocking-no-evidence", f"project blocking item '{pk}' marked done without evidence")
+            continue
         if key in BLOCKING:
             if status == "na" and key in NA_ALLOWED_BLOCKING and len(str(it.get("justification") or "")) >= 10:
                 add(iid, "info", "restore-not-applicable", f"restore marked N/A: {it.get('justification')}")
@@ -103,6 +139,14 @@ def evaluate(doc: dict) -> dict:
         if key not in by_key:
             blocking_failures.append(key)
             add(key, "error", "blocking-item-missing", f"no checklist item with key '{key}' (area {area})")
+    for pk in project_blocking:
+        if pk not in found_project:
+            blocking_failures.append(pk)
+            add(pk, "error", "blocking-item-missing", f"no checklist item with key or id '{pk}' (project-defined blocker)")
+    if not security_evidence:
+        conditions.append({"id": "security", "title": "no security item done with evidence", "owner": None, "due": None})
+        add("security", "warning", "no-security-evidence",
+            "no security-area item is done with an evidence reference; security is not shown ready")
     for area in AREAS:
         if area not in covered:
             conditions.append({"id": area, "title": f"area {area} not reviewed", "owner": None, "due": None})
@@ -115,7 +159,8 @@ def evaluate(doc: dict) -> dict:
     else:
         rec = "GO"
     summary = {"service": doc.get("service"), "recommendation": rec, "requires_human_signoff": True,
-               "blocking_failures": sorted(set(blocking_failures)), "conditions": conditions,
+               "blocking_failures": sorted(set(blocking_failures)), "project_blocking_items": project_blocking,
+               "conditions": conditions,
                "areas_covered": sorted(covered), "items": len(items),
                "errors": sev.get("error", 0), "warnings": sev.get("warning", 0), "info": sev.get("info", 0)}
     return {"findings": findings, "summary": summary}
@@ -124,8 +169,15 @@ def evaluate(doc: dict) -> dict:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Production readiness recommendation from a checklist.")
     ap.add_argument("checklist", type=Path)
+    ap.add_argument("--blocking", help="comma-separated item keys/ids that also block launch (added to blocking_items)")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args(argv)
+    extra = None
+    if args.blocking is not None:
+        extra = [x.strip() for x in args.blocking.split(",") if x.strip()]
+        if not extra:
+            print("--blocking needs at least one item key or id", file=sys.stderr)
+            return 2
     try:
         doc = json.loads(args.checklist.read_text(encoding="utf-8"))
         if not isinstance(doc, dict):
@@ -133,7 +185,7 @@ def main(argv: list[str] | None = None) -> int:
     except (OSError, UnicodeDecodeError, ValueError) as exc:
         print(f"cannot read: {exc}", file=sys.stderr)
         return 2
-    result = evaluate(doc)
+    result = evaluate(doc, extra)
     s = result["summary"]
     result["passed"] = s["recommendation"] != "NO_GO"
     if args.json:
