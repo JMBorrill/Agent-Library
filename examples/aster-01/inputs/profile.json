@@ -1,0 +1,15 @@
+{
+  "name": "Project ASTER",
+  "project": "ASTER-01 low-gravity locomotion demonstrator (synthetic)",
+  "description": "Autonomous asteroid-mining robot. Phase 1 develops a low-gravity locomotion system and a ground demonstrator (hopping concept candidates: spring hopper, internal flywheel hopper) tested in a reduced-gravity analogue rig with embedded control software. All data in this demonstration are synthetic.",
+  "objectives": ["Characterise hopping locomotion in a low-gravity analogue", "Select a locomotion concept for preliminary design"],
+  "stage": "concept", "risk_class": "moderate", "jurisdiction": "UK",
+  "flags": {"hardware": true, "physical_tests": true, "software": true, "ai": false, "finance": false, "lending": false,
+            "personal_data": false, "multi_tenant": false, "ui": false, "external_users": false,
+            "safety_critical": true, "regulated": false, "decisions_about_individuals": false, "novel_technology": true},
+  "safety_critical": true, "regulated": false, "novel_technology": true, "hardware": true, "software": true,
+  "team_size": 5, "external_customer": false,
+  "decision_owner": "ASTER Phase 1 project lead (synthetic)",
+  "safety_authority": "Laboratory test-safety authority (synthetic)",
+  "_notes": "One profile serves select_frameworks.py (reads name/description/flags) and tailor_process.py (reads top-level risk/safety/novelty keys). Adapted from .claude/skills/select-frameworks/assets/examples/profile-aster.json. Unknowns: team size is a planning assumption; jurisdiction for any future flight phase not assessed."
+}

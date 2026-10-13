@@ -1,0 +1,13 @@
+{
+  "description": "ASTER-T1 (synthetic) target body: radius 400 m, bulk density 2000 kg/m^3, rotation period 6 h. Illustrative values chosen for this demonstration — NOT a real asteroid. Equatorial site (latitude 0) is the worst case for net gravity. Robot mass 12 kg is a proposed (TBR) design value.",
+  "cases": [
+    {"id": "ASTER-T1-BODY", "command": "body", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6}},
+    {"id": "ASTER-T1-ROT45", "command": "rotation", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "latitude_deg": 45}},
+    {"id": "HOP-NOM", "command": "hop", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "speed": 0.05, "angle_deg": 45}},
+    {"id": "HOP-MAX", "command": "hop", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "speed": 0.085, "angle_deg": 45}},
+    {"id": "IMP-MAX", "command": "impulse", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "mass_kg": 12, "speed": 0.085, "angle_deg": 45, "push_time_s": 0.2, "friction_coefficient": 0.4}},
+    {"id": "BNC-LOW-E", "command": "bounce", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "speed": 0.06, "restitution": 0.2, "threshold_speed": 0.005}},
+    {"id": "BNC-MID-E", "command": "bounce", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "speed": 0.06, "restitution": 0.5, "threshold_speed": 0.005}},
+    {"id": "BNC-HIGH-E", "command": "bounce", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "speed": 0.06, "restitution": 0.8, "threshold_speed": 0.005}}
+  ]
+}

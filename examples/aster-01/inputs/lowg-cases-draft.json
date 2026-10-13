@@ -1,0 +1,7 @@
+{
+  "description": "FIRST DRAFT sizing (kept to show the check catching it): ASTER-T1 (synthetic) body, radius 400 m, density 2000 kg/m^3, 6 h rotation. The draft tried to reach a sampling site 500 m away in a single 45-degree hop, which needs v = sqrt(range * g_net) ~ 0.31 m/s. Superseded by lowg-cases.json.",
+  "cases": [
+    {"id": "ASTER-T1-BODY", "command": "body", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6}},
+    {"id": "HOP-TRAVERSE-500M", "command": "hop", "params": {"radius_m": 400, "density_kg_m3": 2000, "rotation_period_h": 6, "speed": 0.31, "angle_deg": 45}}
+  ]
+}

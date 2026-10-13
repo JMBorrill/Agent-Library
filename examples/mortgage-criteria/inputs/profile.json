@@ -1,0 +1,9 @@
+{
+  "name": "Mortgage Criteria Platform",
+  "description": "AI-powered mortgage lender criteria search and decision-support web application for UK brokers, covering first and second charge mortgages. It matches synthetic client cases against versioned lender criteria, runs transparent affordability arithmetic and explains indicative eligibility with citations; it never makes credit decisions. This demonstration simulates a second-charge case with fictitious lenders and borrowers.",
+  "objectives": ["Reduce broker time to find suitable lenders", "Explain criteria matches with citations", "Keep humans in control of every recommendation"],
+  "stage": "mvp", "risk_class": "high", "jurisdiction": "UK",
+  "flags": {"hardware": false, "software": true, "ai": true, "agentic_tools": false, "finance": true, "lending": true,
+            "personal_data": true, "multi_tenant": true, "online_service": true, "ui": true, "external_users": true,
+            "safety_critical": false, "regulated": true, "decisions_about_individuals": true}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "AI Operations Platform (synthetic) - Solo plan, alpha planning model as of 2026-10-13. Definitions: new customer = first paid month after trial; S&M = ads, content and founder sales time at cost; variable cost = SMS credits + LLM tokens per account",
+  "currency": "GBP",
+  "inputs": {
+    "sales_marketing_spend": {"value": 9000, "tag": "estimate", "source": "alpha go-to-market budget, quarter 1 (synthetic plan)", "owner": "product lead (synthetic)", "as_of": "2026-10-13"},
+    "new_customers": {"value": 45, "tag": "estimate", "source": "pilot waitlist conversion assumption; no paid customers yet (synthetic)", "owner": "product lead (synthetic)", "as_of": "2026-10-13"},
+    "paid_spend": {"value": 5000, "tag": "estimate", "source": "planned paid social budget (synthetic)", "owner": "growth lead (synthetic)", "as_of": "2026-10-13"},
+    "paid_new_customers": {"value": 15, "tag": "estimate", "source": "assumed 1.5% landing-page conversion (synthetic, untested)", "owner": "growth lead (synthetic)", "as_of": "2026-10-13"},
+    "arpa_monthly": {"value": 29, "tag": "estimate", "source": "hypothesis AIOPS-AS-004 price point; untested", "owner": "product lead (synthetic)", "as_of": "2026-10-13"},
+    "gross_margin_pct": {"value": 0.78, "tag": "estimate", "source": "hosting + support cost model v0 (synthetic)", "owner": "financial analyst (synthetic)", "as_of": "2026-10-13"},
+    "variable_cost_per_account_monthly": {"value": 4.5, "tag": "estimate", "source": "SMS credits (about 120 SMS) + LLM tokens (about 300 drafts) per account per month at list prices (synthetic)", "owner": "financial analyst (synthetic)", "as_of": "2026-10-13"},
+    "monthly_churn": {"value": 0.04, "tag": "benchmark", "source": "Synthetic micro-SMB SaaS churn benchmark BM-SMB-2026 (synthetic dataset, 2026-06)", "owner": "financial analyst (synthetic)", "as_of": "2026-10-13"},
+    "discount_rate_annual": {"value": 0.15, "tag": "estimate", "source": "founder hurdle rate (synthetic)", "owner": "financial analyst (synthetic)", "as_of": "2026-10-13"},
+    "horizon_months": {"value": 48, "tag": "estimate", "source": "policy: value no more than 4 years of a micro-business account", "owner": "financial analyst (synthetic)", "as_of": "2026-10-13"}
+  },
+  "scenarios": {
+    "downside": {"monthly_churn": 0.07, "arpa_monthly": 24, "new_customers": 30},
+    "upside": {"monthly_churn": 0.03, "arpa_monthly": 35}
+  },
+  "sensitivity": {"monthly_churn": [0.02, 0.04, 0.06, 0.08]}
+}
