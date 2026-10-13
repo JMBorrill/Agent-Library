@@ -28,6 +28,8 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | `framework-selector` skill + `agentlib route` + eval suite | done |
 | Agents `review-board-chair`, `evidence-auditor`; 5 workflows; 7 commands; root templates | done |
 | Docs: AUTHORING, ARCHITECTURE, EVALUATION, USING_IN_OTHER_REPOS, CLAUDE.md, Agent SDK example | done |
+| `assurance-case` skill + `agentlib assurance-case check/render/template` (CAE structure, evidence strength by criticality) | done, `tests/test_assurance_case.py`, 4 eval cases |
+| Reusable composite GitHub Action `action.yml` (consumer CI) | done, CI `action-smoke` job |
 | Workflow runner `agentlib workflow init/status/gate` (review folders, stub tracking, gate records) | done, `tests/test_workflow_runner.py` |
 | Executable walkthrough `examples/walkthrough.yaml` (18 tool runs on sample inputs) | done, `tests/test_examples.py` |
 | Native Claude Code plugin evals `plugin-evals/` (10 skill-firing cases) | done; run on demand (costs money) |
@@ -48,7 +50,7 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | Green Book 2026 | `greenbook` / `greenbook` | green-book-appraisal | economic-appraisal-analyst | done: 121 items, 69 tests, 6 eval cases |
 
 All six framework builds are complete. Whole-library gates: `agentlib validate` 0 errors/0 warnings;
-`pytest` 438+ passed; offline evals 99/99; `claude plugin validate .` passes; every skill/agent/command/template
+`pytest` 463 passed; offline evals 107/107; `claude plugin validate .` passes; every skill/agent/command/template
 passes `agentlib evidence check` (enforced by `tests/test_content_quality.py`).
 
 ## Assumptions (library-wide)
