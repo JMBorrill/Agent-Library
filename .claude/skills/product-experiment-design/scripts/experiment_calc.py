@@ -3,6 +3,7 @@
 
 Subcommands
   sample-size  --baseline P1 (--target P2 | --mde D) [--alpha A] [--power B] [--formula pooled|unpooled]
+               [--cluster-size M --icc RHO]   (cluster randomisation: design effect 1 + (M-1)*RHO)
   mde          --baseline P1 --n N [--alpha A] [--power B] [--formula ...] [--direction increase|decrease]
   evaluate     --control X N --treatment X N [--alpha A]           (quick result evaluation)
   evaluate     --plan plan.json --results results.json             (primary + guardrails + decision rule)
@@ -16,6 +17,9 @@ correction; z values from statistics.NormalDist):
     pbar = (p1+p2)/2  (pooled variance under H0, unpooled under H1)
   unpooled:
     n = (z(1-a/2) + z(1-b))^2 * (p1(1-p1) + p2(1-p2)) / (p2-p1)^2
+  cluster randomisation (optional): design effect DE = 1 + (m - 1) * rho, m = mean cluster size,
+    rho = intra-cluster correlation; n_clustered = ceil(n_per_arm * DE), clusters = ceil(n_clustered / m)
+    (equal cluster sizes assumed; unequal sizes need a larger DE).
   Result test: z = (p2-p1)/sqrt(p(1-p)(1/n1+1/n2)) with pooled p; two-sided p-value;
   CI on the difference uses the unpooled (Wald) standard error.
 Exit codes: 0 ok / no blocking findings, 1 blocking findings, 2 invalid input.
@@ -85,6 +89,23 @@ def n_per_arm_exact(p1: float, p2: float, alpha: float = 0.05, power: float = 0.
 def sample_size(p1: float, p2: float, alpha: float = 0.05, power: float = 0.8,
                 formula: str = "pooled") -> int:
     return math.ceil(n_per_arm_exact(p1, p2, alpha, power, formula) - 1e-9)
+
+
+def cluster_adjust(n_per_arm: int, cluster_size: float, icc: float) -> dict:
+    """Inflate an individually randomised n per arm by the design effect DE = 1 + (m - 1) * rho."""
+    for name, v in (("cluster_size", cluster_size), ("icc", icc)):
+        if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v):
+            raise InputError(f"{name} must be a finite number")
+    if cluster_size < 1:
+        raise InputError(f"cluster_size must be >= 1 (got {cluster_size})")
+    if not 0 <= icc <= 1:
+        raise InputError(f"icc must satisfy 0 <= icc <= 1 (got {icc})")
+    de = 1 + (cluster_size - 1) * icc
+    n_c = math.ceil(n_per_arm * de - 1e-9)
+    clusters = math.ceil(n_c / cluster_size - 1e-9)
+    return {"design_effect": de, "n_per_arm_individual": n_per_arm, "n_per_arm": n_c,
+            "clusters_per_arm": clusters, "total": 2 * n_c, "total_clusters": 2 * clusters,
+            "individuals_in_whole_clusters_per_arm": clusters * cluster_size}
 
 
 def mde(p1: float, n: int, alpha: float = 0.05, power: float = 0.8, formula: str = "pooled",
@@ -352,6 +373,8 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--target", type=float)
     g.add_argument("--mde", type=float, help="absolute difference (0.02 = 2 percentage points)")
     s.add_argument("--direction", choices=["increase", "decrease"], default="increase")
+    s.add_argument("--cluster-size", type=float, help="mean cluster size m (cluster randomisation; needs --icc)")
+    s.add_argument("--icc", type=float, help="intra-cluster correlation rho in [0, 1] (needs --cluster-size)")
     m = sub.add_parser("mde")
     m.add_argument("--baseline", type=float, required=True)
     m.add_argument("--n", type=int, required=True, help="sample size per arm")
@@ -383,6 +406,13 @@ def main(argv: list[str] | None = None) -> int:
                               "power": args.power, "two_sided": True},
                    "result": {"n_per_arm": math.ceil(exact - 1e-9), "n_per_arm_unrounded": exact,
                               "total": 2 * math.ceil(exact - 1e-9)}}
+            if (args.cluster_size is None) != (args.icc is None):
+                raise InputError("cluster randomisation needs both --cluster-size and --icc")
+            if args.cluster_size is not None:
+                cl = cluster_adjust(out["result"]["n_per_arm"], args.cluster_size, args.icc)
+                out["inputs"].update(cluster_size=args.cluster_size, icc=args.icc)
+                out["cluster_adjustment"] = "design effect DE = 1 + (m - 1) * rho; equal cluster sizes assumed"
+                out["result"] = {**cl, "n_per_arm_individual_unrounded": exact}
             code = 0
         elif args.cmd == "mde":
             v = mde(args.baseline, args.n, args.alpha, args.power, args.formula, args.direction)

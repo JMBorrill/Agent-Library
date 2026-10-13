@@ -90,11 +90,13 @@
     "gross_margin_per_account_monthly": 22.62,
     "contribution_per_account_monthly": 18.12,
     "contribution_margin_pct": 0.6248275862068966,
-    "expected_lifetime_months": 25.0,
+    "expected_lifetime_months": 21.4766223545454,
+    "lifetime_untruncated_months": 25.0,
+    "lifetime_definition": "expected active months within 48-month horizon (geometric survival sum; same basis as discounted LTV)",
     "lifetime_capped_at_horizon": false,
-    "ltv": 453.0,
+    "ltv": 389.15639706436264,
     "ltv_discounted": 322.1486082684223,
-    "ltv_to_cac": 2.265,
+    "ltv_to_cac": 1.9457819853218132,
     "cac_payback_months": 11.037527593818984,
     "cac_payback_never": false,
     "cac_payback_gross_margin_months": 8.841732979664014,
@@ -107,11 +109,13 @@
       "gross_margin_per_account_monthly": 18.72,
       "contribution_per_account_monthly": 14.219999999999999,
       "contribution_margin_pct": 0.5924999999999999,
-      "expected_lifetime_months": 14.285714285714285,
+      "expected_lifetime_months": 13.847099274872853,
+      "lifetime_untruncated_months": 14.285714285714285,
+      "lifetime_definition": "expected active months within 48-month horizon (geometric survival sum; same basis as discounted LTV)",
       "lifetime_capped_at_horizon": false,
-      "ltv": 203.1428571428571,
+      "ltv": 196.90575168869196,
       "ltv_discounted": 170.96479512602937,
-      "ltv_to_cac": 0.677142857142857,
+      "ltv_to_cac": 0.6563525056289732,
       "cac_payback_months": 21.09704641350211,
       "cac_payback_never": false,
       "cac_payback_gross_margin_months": 16.025641025641026,
@@ -128,11 +132,13 @@
       "gross_margin_per_account_monthly": 27.3,
       "contribution_per_account_monthly": 22.8,
       "contribution_margin_pct": 0.6514285714285715,
-      "expected_lifetime_months": 33.333333333333336,
+      "expected_lifetime_months": 25.60791528155995,
+      "lifetime_untruncated_months": 33.333333333333336,
+      "lifetime_definition": "expected active months within 48-month horizon (geometric survival sum; same basis as discounted LTV)",
       "lifetime_capped_at_horizon": false,
-      "ltv": 760.0000000000001,
+      "ltv": 583.8604684195669,
       "ltv_discounted": 474.1409307430797,
-      "ltv_to_cac": 3.8000000000000007,
+      "ltv_to_cac": 2.9193023420978346,
       "cac_payback_months": 8.771929824561402,
       "cac_payback_never": false,
       "cac_payback_gross_margin_months": 7.326007326007326,
@@ -147,34 +153,47 @@
     "monthly_churn": [
       {
         "value": 0.02,
-        "ltv": 869.76,
-        "ltv_to_cac": 4.3488,
+        "ltv": 562.4580069149024,
+        "ltv_to_cac": 2.812290034574512,
         "cac_payback_months": 11.037527593818984
       },
       {
         "value": 0.04,
-        "ltv": 453.0,
-        "ltv_to_cac": 2.265,
+        "ltv": 389.15639706436264,
+        "ltv_to_cac": 1.9457819853218132,
         "cac_payback_months": 11.037527593818984
       },
       {
         "value": 0.06,
-        "ltv": 302.00000000000006,
-        "ltv_to_cac": 1.5100000000000002,
+        "ltv": 286.5067005190809,
+        "ltv_to_cac": 1.4325335025954045,
         "cac_payback_months": 11.037527593818984
       },
       {
         "value": 0.08,
-        "ltv": 226.5,
-        "ltv_to_cac": 1.1325,
+        "ltv": 222.36110966929047,
+        "ltv_to_cac": 1.1118055483464524,
         "cac_payback_months": 11.037527593818984
       }
     ]
   },
-  "findings": [],
+  "findings": [
+    {
+      "id": "monthly_churn",
+      "severity": "warning",
+      "rule": "benchmark-input",
+      "message": "input is a benchmark, not your own data: replace with measured data before relying on the result"
+    },
+    {
+      "id": "scenario downside",
+      "severity": "warning",
+      "rule": "downside-ltv-cac-below-1",
+      "message": "downside LTV:CAC 0.66 < 1: growth destroys value under plausible assumptions; escalate to financial-analyst and independent-reviewer before scaling acquisition spend"
+    }
+  ],
   "summary": {
     "errors": 0,
-    "warnings": 0,
+    "warnings": 2,
     "info": 0
   },
   "passed": true,

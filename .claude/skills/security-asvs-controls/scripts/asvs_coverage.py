@@ -201,7 +201,7 @@ def main(argv: list[str] | None = None) -> int:
         chapters = parse_chapters(args.chapters, index)
         if args.generate_template:
             text = template(index, args.level, chapters)
-            if args.out:
+            if args.out and str(args.out) != "-":
                 args.out.write_text(text, encoding="utf-8")
             else:
                 sys.stdout.write(text)

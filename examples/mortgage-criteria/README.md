@@ -78,7 +78,7 @@ compliance officer has reviewed the triage.
 | 13 | credit-risk-governance / governance_check.py | 1 | 1 | real open gap `model-not-validated` (MCP-CTL-031) |
 | 14 | security-threat-model / threat_model_check.py | 0 | 0 | 19 threats, 4 tenant-isolation; 9 high risks with planned-only mitigations (warnings) |
 | 15 | security-asvs-controls / asvs_coverage.py | 0 | 0 | L2 subset V8 + V14: 16 rows mapped, 0 verified |
-| 16 | ai-eval-harness / run_eval.py (prior v0.3 responses) | 1 | 1 | 8 of 8 gates fail, pass rate 7/16 |
+| 16 | ai-eval-harness / run_eval.py (prior v0.3 responses) | 1 | 1 | 8 of 8 gates fail, pass rate 8/16 |
 | 17 | ai-eval-harness / run_eval.py (current responses) | 0 | 0 | 8 of 8 gates pass on this set, pass rate 16/16 |
 | 18 | ai-prompt-injection-review / injection_scan.py (malicious) | 1 | 1 | `flag`, score 17, 6 signals |
 | 19 | ai-prompt-injection-review / injection_scan.py (benign) | 0 | 0 | `clean` (not proof of safety) |

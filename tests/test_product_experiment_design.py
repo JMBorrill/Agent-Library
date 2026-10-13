@@ -42,6 +42,40 @@ class SampleSizeKnownAnswers(unittest.TestCase):
         assert_schema(self, out, SCHEMAS / "calc.output.schema.json")
 
 
+class ClusterRandomisation(unittest.TestCase):
+    """Design effect DE = 1 + (m - 1) * rho applied to n per arm."""
+
+    def test_known_answer(self):
+        # n = 1000, m = 20, rho = 0.05 -> DE = 1.95 -> 1950 per arm, ceil(1950/20) = 98 clusters
+        r = mod.cluster_adjust(1000, 20, 0.05)
+        self.assertAlmostEqual(r["design_effect"], 1.95, places=12)
+        self.assertEqual(r["n_per_arm"], 1950)
+        self.assertEqual(r["clusters_per_arm"], 98)
+        self.assertEqual(r["total"], 3900)
+        self.assertEqual(r["individuals_in_whole_clusters_per_arm"], 1960)
+        # rho = 0 or m = 1 -> no inflation
+        self.assertEqual(mod.cluster_adjust(1000, 20, 0)["n_per_arm"], 1000)
+        self.assertEqual(mod.cluster_adjust(1000, 1, 0.3)["clusters_per_arm"], 1000)
+
+    def test_cli_cluster_sample_size(self):
+        code, out = run_json(SKILL, "experiment_calc", "sample-size", "--baseline", "0.10", "--mde", "0.02",
+                             "--cluster-size", "20", "--icc", "0.05")
+        self.assertEqual(code, 0)
+        self.assertEqual(out["result"]["n_per_arm_individual"], 3841)
+        self.assertEqual(out["result"]["n_per_arm"], 7490)          # ceil(3841 * 1.95 = 7489.95)
+        self.assertEqual(out["result"]["clusters_per_arm"], 375)    # ceil(7490 / 20 = 374.5)
+        assert_schema(self, out, SCHEMAS / "calc.output.schema.json")
+
+    def test_invalid_cluster_inputs(self):
+        for m, rho in ((0.5, 0.05), (20, -0.1), (20, 1.5), (float("nan"), 0.1)):
+            with self.assertRaises(mod.InputError):
+                mod.cluster_adjust(1000, m, rho)
+        base = ["sample-size", "--baseline", "0.10", "--mde", "0.02"]
+        for extra in (["--cluster-size", "20"], ["--icc", "0.05"], ["--cluster-size", "0", "--icc", "0.05"],
+                      ["--cluster-size", "20", "--icc", "1.2"]):
+            self.assertEqual(run_cli(SKILL, "experiment_calc", *base, *extra).returncode, 2, extra)
+
+
 class EdgeCases(unittest.TestCase):
     def test_invalid_probabilities_and_effects(self):
         for p1, p2 in ((0, 0.1), (1, 0.9), (0.1, 1.0), (-0.1, 0.1), (0.1, 0.1)):

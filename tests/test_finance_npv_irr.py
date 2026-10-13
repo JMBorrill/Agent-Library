@@ -143,6 +143,36 @@ class Cli(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertAlmostEqual(out["results"]["npv"], -21.0368, delta=1e-4)
 
+    def test_csv_period_column_honoured(self):
+        """F07 regression: CSV periods 3,4,5 were treated as t0 (NPV 41.3223); now discounted by period."""
+        with tempfile.TemporaryDirectory() as td:
+            def write(name, body):
+                p = Path(td) / name
+                p.write_text(body)
+                return p
+            p3 = write("p3.csv", "period,cash_flow\n3,-1000\n4,600\n5,600\n")
+            code, out = run_json(SKILL, "cashflow", p3, "--rate", "0.10")
+            self.assertEqual(code, 0)
+            # -1000/1.1^3 + 600/1.1^4 + 600/1.1^5 = 41.3223 / 1.1^3 = 31.0461
+            self.assertAlmostEqual(out["results"]["npv"], -1000 / 1.1 ** 3 + 600 / 1.1 ** 4 + 600 / 1.1 ** 5,
+                                   places=8)
+            self.assertIn("csv-leading-periods-zero-filled", rules(out["findings"], "info"))
+            # starting at 0 and at 1 (unsorted rows) both index by period
+            code, out = run_json(SKILL, "cashflow", write("p0.csv", "period,cash_flow\n1,600\n0,-1000\n2,600\n"),
+                                 "--rate", "0.10")
+            self.assertAlmostEqual(out["results"]["npv"], -1000 + 600 / 1.1 + 600 / 1.21, places=8)
+            code, out = run_json(SKILL, "cashflow", write("p1.csv", "period,cash_flow\n1,-1000\n2,600\n3,600\n"),
+                                 "--rate", "0.10")
+            self.assertAlmostEqual(out["results"]["npv"], -1000 / 1.1 + 600 / 1.21 + 600 / 1.331, places=8)
+            for name, body, msg in (("gap.csv", "period,cash_flow\n0,-1000\n1,600\n3,600\n", "missing periods [2]"),
+                                    ("dup.csv", "period,cash_flow\n0,-1000\n1,600\n1,600\n", "duplicate periods [1]"),
+                                    ("neg.csv", "period,cash_flow\n-1,-1000\n0,600\n", "period must be >= 0")):
+                proc = run_cli(SKILL, "cashflow", write(name, body), "--rate", "0.1")
+                self.assertEqual(proc.returncode, 2, name)
+                self.assertIn(msg, proc.stderr, name)
+            proc = run_cli(SKILL, "cashflow", p3, "--rate", "0.1", "--convention", "t0")
+            self.assertEqual(proc.returncode, 2)
+
     def test_malformed_inputs_exit_2(self):
         with tempfile.TemporaryDirectory() as td:
             cases = {"empty.json": {"rate": 0.1, "flows": []},

@@ -129,14 +129,16 @@ payments, no external calendar sync, no voice). Exit 0, no warnings.
 
 | Scenario | CAC | Contribution / month | Lifetime (months) | LTV | LTV:CAC | Payback (months) |
 |---|---|---|---|---|---|---|
-| Base (churn 4%, ARPA GBP 29) | 200 | 18.12 | 25.0 | 453 | 2.27 | 11.0 |
-| Downside (churn 7%, ARPA 24, 30 new) | 300 | 14.22 | 14.3 | 203 | **0.68** | 21.1 |
-| Upside (churn 3%, ARPA 35) | 200 | 22.80 | 33.3 | 760 | 3.80 | 8.8 |
+| Base (churn 4%, ARPA GBP 29) | 200 | 18.12 | 21.5 | 389 | 1.95 | 11.0 |
+| Downside (churn 7%, ARPA 24, 30 new) | 300 | 14.22 | 13.8 | 197 | **0.66** | 21.1 |
+| Upside (churn 3%, ARPA 35) | 200 | 22.80 | 25.6 | 584 | 2.92 | 8.8 |
 
-Paid CAC is 333 against blended 200, so organic sign-ups flatter the blended ratio. Downside
-LTV:CAC below 1 means growth spend would destroy value under plausible assumptions; per the skill
-this is escalated to the financial analyst and product owner. The script did not raise a finding
-for it (see Library observations). Discounted base LTV:CAC is 1.61. These figures are arithmetic on
+Lifetime is expected active months within the 48-month horizon (the library's corrected, consistent
+definition — an earlier run used 1/churn uncapped, giving higher LTVs). Paid CAC is 333 against
+blended 200, so organic sign-ups flatter the blended ratio. Downside LTV:CAC below 1 means growth
+spend would destroy value under plausible assumptions; the script now raises
+`downside-ltv-cac-below-1` and `benchmark-input` warnings, and per the skill this is escalated to the
+financial analyst and product owner. Discounted base LTV:CAC is 1.61. These figures are arithmetic on
 stated assumptions, not a forecast.
 
 ### 3.7 Acceptance tests and AI evaluation (steps 18–20) — *draft → fix pair 4*
@@ -223,11 +225,12 @@ code repository were consulted. The independent review of this package has not b
   conditions; requirements owner before any AIOPS-SYS requirement leaves `proposed`.
 
 ## 9. Library observations
-- `finance-unit-economics`: the SKILL decision table says a `benchmark`-tagged key input should be
-  flagged and a downside LTV:CAC below 1 escalated, but `unit_economics.py` emitted no finding for
-  either (0 warnings, 0 info). Reported here rather than worked around.
-- `product-experiment-design`: the calculator assumes individual randomisation; there is no option
-  for a design effect when randomising by tenant (documented limitation, not a bug).
+- `finance-unit-economics`: this demo found that `benchmark` inputs and downside LTV:CAC < 1 were not
+  flagged and that simple and discounted LTV used different lifetimes. **Fixed in the library** (regression
+  tests `ReviewRegressions`); outputs above were regenerated.
+- `product-experiment-design`: tenant (cluster) randomisation is now supported with `--cluster-size`/`--icc`
+  (added after this demo raised it); step 04 still sizes individual randomisation — re-run with the design
+  effect before launching a tenant-level experiment.
 - `select-frameworks` does not list `sre-service-level-objectives` for this profile although
   `sre-production-readiness` blocks on a defined SLO.
 

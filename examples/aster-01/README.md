@@ -147,7 +147,8 @@ none has been given.
 - N² gaps: no power interfaces PWR→CTRL/EST/LOG and no EST mechanical mount yet (ASTER-RID-002).
 - Integration plan: no component exists or is unit-verified.
 - Margin and risk-matrix policies are library example values, not programme policy.
-- The SRR readiness tool counts listed independent reviewers; the independent review itself is still pending.
+- The SRR readiness tool now requires a cited independent-review record; none exists yet, so this is an
+  explicit condition (`independent-review-record`) in step 16.
 
 ## 7. Evidence actually checked
 

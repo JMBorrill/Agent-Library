@@ -34,7 +34,11 @@ Required
   `assets/templates/cashflow-case.json` or `assets/templates/flows.csv`.
 - Discount rate per period (decimal), or `"rate": "wacc"` with a `wacc` block.
 - Timing convention: `t0` (default; first flow at time 0, undiscounted) or `t1` (first flow at end of
-  period 1 - the spreadsheet `NPV()` convention). A CSV starting at period 1 is treated as `t1`.
+  period 1 - the spreadsheet `NPV()` convention). The CSV `period`
+  column is the actual period index: a CSV starting at period 0 is `t0`, at period 1 `t1`; a later
+  start (e.g. 3) zero-fills the earlier periods (info `csv-leading-periods-zero-filled`) so each flow is
+  discounted by its own period. Duplicate, negative or missing interior periods are rejected (exit 2);
+  `--convention` cannot contradict the CSV periods.
 Optional
 - `finance_rate`, `reinvest_rate` (MIRR; default = discount rate); `capm`; `wacc`; `dcf`
   (`fcf` years 1..N, `rate`, `terminal_growth`); `sensitivity` and `breakeven` variables

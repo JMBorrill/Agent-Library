@@ -47,6 +47,12 @@ run and the change affects price, safety or access (escalate).
 4. **Size it**: `python3 scripts/experiment_calc.py sample-size --baseline 0.30 --mde 0.05`
    (defaults: alpha 0.05 two-sided, power 0.8, pooled formula). If traffic is fixed, check what is
    detectable: `experiment_calc.py mde --baseline 0.30 --n 1400`.
+   **Cluster randomisation** (whole businesses, sites or teams assigned to an arm rather than
+   individual users): add `--cluster-size m --icc rho`. The individual n per arm is multiplied by the
+   design effect DE = 1 + (m − 1)·ρ and rounded up; clusters per arm = ⌈n_clustered / m⌉. Validated:
+   m ≥ 1, 0 ≤ ρ ≤ 1; both flags required together. Known answer: n 1,000, m 20, ρ 0.05 → DE 1.95 →
+   1,950 per arm, 98 clusters. Equal cluster sizes are assumed (unequal sizes need a larger DE); take
+   ρ from your own data or a cited source, and analyse at the cluster level.
 5. **Set duration** = required n ÷ eligible units per day per arm, rounded up to whole weeks
    (booking behaviour is weekly) and at least 7 days.
 6. **Write stopping and decision rules before launch** and record the date. Peeking-based stopping
@@ -69,6 +75,7 @@ run and the change affects price, safety or access (escalate).
 | Guardrail CI crosses its limit but estimate within it | Warning: judgement, consider more data |
 | Required n > achievable traffic | Raise MDE, lengthen within reason, or switch to qualitative evidence |
 | Power < 0.8 or alpha > 0.1 | Warning; record why |
+| Units randomised in groups (accounts, sites, teams) | Size with `--cluster-size`/`--icc`; an individual-level n understates the requirement by DE |
 
 Formula choice: `pooled` (default) uses the pooled variance under H0 and unpooled under H1 (Fleiss
 form without continuity correction); `unpooled` uses (z_α/2 + z_β)² × (p1q1 + p2q2) / d². Report which

@@ -291,6 +291,9 @@ def analyse(case: dict) -> dict:
                                           else "flows[0] at end of period 1"),
                    "currency": case.get("currency", "unspecified"),
                    "price_basis": case.get("price_basis", "unspecified")}
+    if case.get("period_note"):
+        assumptions["period_alignment"] = case["period_note"]
+        findings.append(_f("flows", "info", "csv-leading-periods-zero-filled", case["period_note"]))
     if case.get("price_basis") not in ("nominal", "real"):
         findings.append(_f("case", "warning", "price-basis-unstated",
                            "state whether flows and rate are nominal or real; mixing them misstates NPV"))
@@ -395,22 +398,53 @@ def analyse(case: dict) -> dict:
 
 
 # ----------------------------------------------------------------------------- IO
+def csv_case(rows: list[dict]) -> dict:
+    """Build a case from CSV rows, honouring the `period` column as the actual period index.
+
+    Periods must be non-negative integers, unique and without interior gaps (a gap is rejected
+    rather than silently zero-filled). A first period of 0 gives convention t0 (period p discounted
+    p periods); a first period k >= 1 gives convention t1 with periods 1..k-1 zero-filled, so period
+    p is still discounted p periods. Without a `period` column, rows are taken in file order.
+    """
+    if not rows or "cash_flow" not in rows[0]:
+        raise InputError("CSV needs columns period,cash_flow")
+    if "period" not in rows[0]:
+        return {"flows": [r["cash_flow"] for r in rows]}
+    periods = []
+    for i, r in enumerate(rows, start=2):
+        try:
+            p = int(str(r.get("period") or "").strip())
+        except ValueError:
+            raise InputError(f"CSV row {i}: period must be an integer, got {r.get('period')!r}") from None
+        if p < 0:
+            raise InputError(f"CSV row {i}: period must be >= 0, got {p}")
+        periods.append(p)
+    dups = sorted({p for p in periods if periods.count(p) > 1})
+    if dups:
+        raise InputError(f"duplicate periods {dups}: give exactly one cash_flow row per period")
+    first, last = min(periods), max(periods)
+    missing = sorted(set(range(first, last + 1)) - set(periods))
+    if missing:
+        raise InputError(f"missing periods {missing} between {first} and {last}: add rows with "
+                         "cash_flow 0 (gaps are not zero-filled silently)")
+    by_period = {p: r["cash_flow"] for p, r in zip(periods, rows)}
+    base = 0 if first == 0 else 1
+    case = {"flows": [by_period.get(p, 0.0) for p in range(base, last + 1)],
+            "convention": "t0" if base == 0 else "t1", "period_convention": True, "period_first": first}
+    if first > 1:
+        case["period_note"] = (f"CSV starts at period {first}: periods 1..{first - 1} zero-filled so each "
+                               "flow is discounted by its actual period index")
+    return case
+
+
 def load_case(path: Path, rate: float | None, convention: str | None) -> dict:
     text = path.read_text(encoding="utf-8-sig")
     if path.suffix.lower() == ".csv":
-        rows = list(csv.DictReader(text.splitlines()))
-        if not rows or "cash_flow" not in rows[0]:
-            raise InputError("CSV needs columns period,cash_flow")
-        try:
-            rows.sort(key=lambda r: int(r.get("period", 0)))
-        except ValueError:
-            raise InputError("period must be an integer") from None
-        periods = [int(r.get("period", i)) for i, r in enumerate(rows)]
-        if periods != list(range(periods[0], periods[0] + len(periods))):
-            raise InputError("periods must be consecutive integers")
-        case = {"flows": [r["cash_flow"] for r in rows]}
-        if periods[0] == 1:
-            case["convention"] = "t1"
+        case = csv_case(list(csv.DictReader(text.splitlines())))
+        if convention is not None and "period_convention" in case and convention != case["convention"]:
+            raise InputError(f"CSV periods start at {case['period_first']}, which fixes convention "
+                             f"{case['convention']}; --convention {convention} would shift every flow by one "
+                             "period (renumber the CSV instead)")
     else:
         try:
             case = json.loads(text)

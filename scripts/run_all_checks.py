@@ -14,7 +14,9 @@ GATES = [
     ("structure", [PY, "scripts/validate_library.py"]),
     ("router catalogue in sync", [PY, "scripts/build_catalog.py", "--check"]),
     ("unit + fixture tests", [PY, "-m", "unittest", "discover", "-s", "tests", "-t", "."]),
-    ("demo outputs: assurance-language screen", [PY, ".claude/skills/independent-review/scripts/claim_check.py", "examples"]),
+    ("authored demo text: assurance-language screen", [PY, ".claude/skills/independent-review/scripts/claim_check.py",
+      *sorted(str(p.relative_to(ROOT)) for d in (ROOT / "examples").iterdir() if d.is_dir()
+              for p in (d / "README.md", d / "inputs", d / "review") if p.exists())]),
     ("demo reproduction", [PY, "examples/run_demos.py", "--check"]),
 ]
 

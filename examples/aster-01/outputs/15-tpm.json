@@ -7,6 +7,12 @@
       "message": "trend projects 12.92 kg at 2027-03-15 (margin -7.7%)"
     },
     {
+      "id": "TPM-VERR",
+      "severity": "warning",
+      "rule": "projection-implausible",
+      "message": "linear trend projects a negative value (-0.00741) \u2014 extrapolation not physically meaningful"
+    },
+    {
       "id": "TPM-SETTLE",
       "severity": "warning",
       "rule": "alert",
@@ -58,7 +64,7 @@
       "alert": 1
     },
     "errors": 0,
-    "warnings": 2
+    "warnings": 3
   },
   "passed": true
 }

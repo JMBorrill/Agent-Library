@@ -75,6 +75,19 @@ class DiffRiskScanTests(unittest.TestCase):
         self.assertEqual(run_cli(SKILL, "diff_risk_scan", "missing.diff").returncode, 2)
 
     def test_strict_blocks_warnings(self):
+        """F09 regression: --strict must turn a warnings-only diff into exit 1."""
+        import tempfile
+        from pathlib import Path
+        text = diff("src/a.py", ["def f():", "    print('debug')", "    return 1"])
+        res = scan_mod.scan(text)
+        self.assertEqual(res["summary"]["errors"], 0)
+        self.assertGreater(res["summary"]["warnings"], 0)
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "warn-only.diff"
+            p.write_text(text)
+            self.assertEqual(run_cli(SKILL, "diff_risk_scan", p).returncode, 0)
+            self.assertEqual(run_cli(SKILL, "diff_risk_scan", p, "--strict").returncode, 1)
+        # a clean diff still passes under --strict
         path = skill_path(SKILL, "assets", "examples", "pr-pass.diff")
         self.assertEqual(run_cli(SKILL, "diff_risk_scan", path, "--strict").returncode, 0)
 

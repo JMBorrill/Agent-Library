@@ -74,10 +74,7 @@
       "criterion": "C4",
       "weight": 0.15,
       "flips_within_pct": [],
-      "switching_weight": {
-        "weight": 1.0,
-        "winner": "FLYWHEEL-IMU"
-      }
+      "switching_weight": null
     },
     {
       "criterion": "C5",

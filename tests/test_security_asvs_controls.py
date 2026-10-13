@@ -86,5 +86,18 @@ class AsvsCoverageTests(unittest.TestCase):
         self.assertNotRegex(proc.stdout.lower().replace("not a compliance", ""), r"\bcompliant\b|\bcertified\b")
 
 
+class OutDashRegression(unittest.TestCase):
+    def test_out_dash_means_stdout(self):
+        import os, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            import subprocess, sys
+            script = skill_path("security-asvs-controls", "scripts", "asvs_coverage.py")
+            p = subprocess.run([sys.executable, "-I", str(script), "--generate-template", "--level", "1",
+                                "--chapters", "V7", "--out", "-"], cwd=d, capture_output=True, text=True)
+            self.assertEqual(p.returncode, 0, p.stderr)
+            self.assertIn("asvs_id", p.stdout)
+            self.assertFalse(os.path.exists(os.path.join(d, "-")))
+
+
 if __name__ == "__main__":
     unittest.main()
