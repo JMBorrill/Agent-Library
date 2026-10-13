@@ -348,6 +348,10 @@ def validate_config(config: dict) -> None:
 
 
 def run(items: list[dict], responses: dict[str, dict], config: dict) -> dict:
+    # config-level prohibited phrases (e.g. decision wording) apply to every item, not only refusal items
+    global_forbidden = [str(x) for x in config.get("global_must_not_contain") or []]
+    if global_forbidden:
+        items = [{**it, "must_not_contain": list(it.get("must_not_contain") or []) + global_forbidden} for it in items]
     results = [score_item(it, responses.get(it["id"])) for it in items]
     metrics = metrics_for(results)
     tags = sorted({t for r in results for t in r["tags"]})

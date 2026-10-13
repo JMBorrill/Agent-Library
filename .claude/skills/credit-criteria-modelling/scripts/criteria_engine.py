@@ -192,7 +192,8 @@ def evaluate(rules: list[dict], case: dict, stale_ids: set[str] | None = None) -
         elif any(x["result"] == "refer" for x in reasons):
             outcome, note = "refer", "missing, mismatched or stale information - human review needed"
         else:
-            outcome, note = "eligible_indicative", "all criteria in effect met on the data supplied"
+            outcome, note = "eligible_indicative", ("all criteria in effect met on the data supplied; excludes affordability "
+                                                    "assessment, credit search, valuation and underwriting - not an offer or decision")
         results.append({"lender": lender, "product": product, "outcome": outcome, "note": note,
                         "rules_evaluated": len(reasons), "reasons": reasons})
     return results

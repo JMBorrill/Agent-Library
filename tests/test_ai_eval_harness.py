@@ -190,5 +190,25 @@ class ExactWithCitationsRegression(unittest.TestCase):
         self.assertTrue(res["checks"]["exact"], res)
 
 
+class GlobalProhibitedTermsRegression(unittest.TestCase):
+    """Raised by the mortgage demo review F-03: decision wording was only checked on refusal items."""
+
+    def test_global_must_not_contain_applies_to_every_item(self):
+        import json, subprocess, sys, tempfile
+        from pathlib import Path
+        script = skill_path("ai-eval-harness", "scripts", "run_eval.py")
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "set.jsonl").write_text(json.dumps({"id": "q1", "input": "Max CLTV?", "expected_contains": ["75%"]}) + "\n")
+            (d / "resp.jsonl").write_text(json.dumps({"id": "q1", "output": "Max CLTV is 75%. Good news: your client is approved."}) + "\n")
+            (d / "cfg.json").write_text(json.dumps({"thresholds": {"pass_rate": {"min": 1.0}},
+                                                     "global_must_not_contain": ["is approved", "will lend"]}))
+            args = [sys.executable, "-I", str(script), str(d / "set.jsonl"), "--adapter", "fixture",
+                    "--responses", str(d / "resp.jsonl"), "--config", str(d / "cfg.json")]
+            self.assertEqual(subprocess.run(args, capture_output=True, text=True).returncode, 1)
+            (d / "resp.jsonl").write_text(json.dumps({"id": "q1", "output": "Max CLTV is 75%."}) + "\n")
+            self.assertEqual(subprocess.run(args, capture_output=True, text=True).returncode, 0)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -126,6 +126,9 @@ def check(columns: list[str], rows: list[dict]) -> dict:
                                "critical decision with ai_role=act; prefer recommend/draft with human decision"))
         if role == "act" and blank(r["rollback_trigger"]):
             findings.append(_f(rid, "error", "ov-act-no-rollback", "AI acts but no rollback trigger is defined"))
+        elif role in ("recommend", "draft") and high and blank(r["rollback_trigger"]):
+            findings.append(_f(rid, "warning", "ov-no-rollback-trigger",
+                               f"{impact}-impact row with ai_role={role} has no rollback/pause trigger"))
         if is_credit_like(r) and indiv:
             if r["explanation_provided"].lower() != "yes":
                 findings.append(_f(rid, "error", "ov-explanation-required",

@@ -14,7 +14,7 @@ def row(**kw):
     base.update(decision_type="Mortgage affordability assessment", about_individuals="yes", impact="high",
                 ai_role="recommend", human_role="Underwriter", approver_role="Senior Underwriter",
                 override_logged="yes", explanation_provided="yes", appeal_route="Human review on request",
-                monitoring_metric="override rate", rollback_trigger="", kill_switch_owner="Platform Owner")
+                monitoring_metric="override rate", rollback_trigger="override rate > 15% for 2 weeks", kill_switch_owner="Platform Owner")
     base.update(kw)
     return base
 
@@ -47,6 +47,10 @@ class OversightTests(unittest.TestCase):
         res = check(row())
         self.assertEqual((res["summary"]["errors"], res["summary"]["warnings"]), (0, 0))
 
+    def test_high_impact_recommend_needs_pause_trigger(self):  # raised by mortgage demo review F-04
+        res = check(row(impact="high", ai_role="recommend", rollback_trigger=""))
+        self.assertIn("ov-no-rollback-trigger", rules(res["findings"], "warning"))
+
     def test_act_rules_by_impact(self):
         for impact, expect_err in (("low", False), ("medium", False), ("high", True), ("critical", True)):
             with self.subTest(impact=impact):
@@ -68,7 +72,7 @@ class OversightTests(unittest.TestCase):
 
     def test_act_requires_rollback(self):
         res = check(row(decision_type="Email triage", about_individuals="no", impact="low", ai_role="act",
-                        approver_role="", explanation_provided="no", appeal_route=""))
+                        approver_role="", explanation_provided="no", appeal_route="", rollback_trigger=""))
         self.assertIn("ov-act-no-rollback", rules(res["findings"], "error"))
 
     def test_credit_keyword_inference_without_flag(self):
