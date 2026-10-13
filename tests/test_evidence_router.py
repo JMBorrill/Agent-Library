@@ -98,3 +98,11 @@ def test_router_ranks_relevant_skill(root):
 def test_router_phrase_boundaries():
     assert not router._phrase_hit("sca", " escalate ")
     assert router._phrase_hit("sca", " run sca daily ")
+
+
+def test_asvs_identifier_forms(root):
+    if not (root / "catalog" / "owasp-asvs-5.json").is_file():
+        pytest.skip("ASVS catalog not present")
+    assert evidence.check_document("Covers V6.2.1 and v5.0.0-6.2.1.", root) == []
+    msgs = [f.message for f in evidence.check_document("Covers V6.99.1 and v5.0.0-6.99.2.", root)]
+    assert any("V6.99.1" in m for m in msgs) and any("6.99.2" in m for m in msgs)

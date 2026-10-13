@@ -350,3 +350,14 @@ def test_extraction_script_is_reproducible():
         pytest.skip("pdftotext or pinned PDF unavailable")
     r = subprocess.run([sys.executable, str(ROOT / "scripts/extract/asvs.py"), "--check"], capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
+
+
+def test_grade_covers_scope():
+    text = " ".join(r["id"] for r in asvs.select(1, ["V2"]))
+    assert asvs.grade_covers_scope(text, {"level": 1, "chapters": ["V2"]})[0]
+    ok, detail = asvs.grade_covers_scope(text, {"level": 2, "chapters": ["V2"]})
+    assert not ok and "missing" in detail
+
+
+def test_claimed_levels_ignores_version_strings():
+    assert asvs.claimed_levels("OWASP ASVS 5.0.0 Level 1 checklist; 1.2.4 (L1)") == [("1.2.4", 1)]

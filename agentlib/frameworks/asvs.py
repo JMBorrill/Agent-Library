@@ -499,7 +499,7 @@ def tokenize(text: str) -> list[str]:
 
 
 def _stem(t: str) -> str:
-    for suf in ("ation", "ing", "ies", "es", "ed", "s"):
+    for suf in ("ation", "ing", "ies", "ed", "s"):
         if t.endswith(suf) and len(t) - len(suf) >= 4:
             return t[: -len(suf)] + ("y" if suf == "ies" else "")
     return t
@@ -662,7 +662,8 @@ _INLINE_LEVEL = re.compile(r"(?<![\d.])(?:v5\.0\.0-|V)?(\d{1,2}\.\d{1,2}\.\d{1,2
 
 def claimed_levels(output: str) -> list[tuple[str, int]]:
     """(id, level) claims from inline '1.2.5 (L1)' text and Markdown tables with an ID and Level column."""
-    claims = [(normalize_id(m.group(1)), int(m.group(2))) for m in _INLINE_LEVEL.finditer(output)]
+    claims = [(normalize_id(m.group(1)), int(m.group(2))) for m in _INLINE_LEVEL.finditer(output)
+              if m.group(1).split(".")[1] != "0"]  # skip version strings such as "5.0.0 Level 1"
     header = None
     for line in output.splitlines():
         s = line.strip()
@@ -695,6 +696,14 @@ def grade_levels_claimed(output: str, check: dict) -> tuple[bool, str]:
     need = int(check.get("min", 1))
     ok = not wrong and not unknown and len(claims) >= need
     return ok, f"{len(claims)} level claims; wrong (id, claimed, actual): {wrong}; unknown: {unknown}"
+
+
+def grade_covers_scope(output: str, check: dict) -> tuple[bool, str]:
+    """Every requirement in scope (``level`` cumulative, optional ``chapters``) is cited in the output."""
+    want = [r["id"] for r in select(int(check["level"]), check.get("chapters"))]
+    have = set(ids_in(output))
+    missing = [i for i in want if i not in have]
+    return not missing, f"{len(want) - len(missing)}/{len(want)} in-scope ids cited; missing: {missing[:10]}"
 
 
 def grade_chapters_exist(output: str, check: dict) -> tuple[bool, str]:

@@ -1,0 +1,86 @@
+skill: owasp-asvs
+description: >-
+  Checks that the owasp-asvs skill produces level-correct checklists, real ASVS 5.0.0 identifiers with the
+  right levels, honest (suggestion-labelled, confirmed) finding mappings, correct scoping decisions and
+  assessments that pass the deterministic validator.
+cases:
+  - id: l1-checklist-v6
+    prompt: >-
+      Produce the OWASP ASVS 5.0.0 Level 1 verification checklist for chapter V6 (Authentication) as a Markdown
+      table with columns ID, Level, Requirement, Status and Evidence / finding. Explain briefly what is in
+      scope at Level 1.
+    golden: golden/l1-checklist-v6.md
+    negative: golden/l1-checklist-v6.bad.md
+    checks:
+      - {type: table, columns: ["ID", "Level", "Requirement", "Status"]}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_ids_exist", min: 13}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_level_appropriate", level: 1}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_covers_scope", level: 1, chapters: [V6]}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_levels_claimed", min: 13}
+      - {type: any_of, values: ["cumulative", "only the Level 1"]}
+  - id: map-pentest-findings
+    prompt: >-
+      Map these penetration test findings to OWASP ASVS 5.0.0 requirements. Give one table row per finding
+      with the requirement id(s), level and rationale. Say how confident the mapping is.
+    fixtures: [fixtures/pentest-findings.json]
+    golden: golden/map-pentest-findings.md
+    negative: golden/map-pentest-findings.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.asvs:grade_ids_exist", min: 5, require: ["1.2.4", "8.2.2", "9.1.1", "3.3.4", "16.5.1"]}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_chapters_exist"}
+      - {type: any_of, values: ["suggestion", "confirmed", "heuristic"]}
+      - {type: not_contains, values: ["definitive", "certified"]}
+      - {type: table, columns: ["Finding", "Level"]}
+  - id: review-assessment
+    prompt: >-
+      Review this ASVS 5.0.0 Level 1 assessment for chapters V2 and V5 before we write the report. List every
+      problem and tell us whether it can be reported.
+    fixtures: [fixtures/assessment-l1.yaml]
+    golden: golden/review-assessment.md
+    negative: golden/review-assessment.bad.md
+    checks:
+      - {type: contains, values: ["2.2.2", "2.3.1", "2.1.4", "5.3.1", "5.2.2", "5.4.3"]}
+      - {type: regex, pattern: "cannot be reported|not (yet )?reportable|invalid"}
+      - {type: any_of, values: ["finding reference", "finding id"]}
+      - {type: any_of, values: ["justification", "justify"]}
+      - {type: regex, pattern: "5\\.4\\.3[^\\n]*(Level 2|L2)"}
+      - {type: not_contains, values: ["fully compliant", "acceptable for Level 1"]}
+  - id: scope-m2m-api
+    prompt: >-
+      We want an ASVS 5.0.0 verification of our payments settlement API. It is a machine-to-machine REST API
+      with no browser frontend, it validates OAuth 2 access tokens (JWT) issued by a separate authorization
+      server product, partners upload CSV batches, and we do not use WebRTC, GraphQL or OIDC. Recommend a
+      target level and chapter scope, with reasons.
+    golden: golden/scope-m2m-api.md
+    negative: golden/scope-m2m-api.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.asvs:grade_chapters_exist"}
+      - {type: contains, values: ["V3", "V17", "V10.3", "cumulative"]}
+      - {type: regex, pattern: "V3[^\\n]*\\|\\s*\\**No"}
+      - {type: any_of, values: ["does not prescribe", "organisation chooses", "organization chooses"]}
+      - {type: not_contains, values: ["mandates level", "certified", "V18"]}
+      - {type: cites, values: ["owasp-asvs"]}
+  - id: upload-requirements-spec
+    prompt: >-
+      We are designing a document upload and download feature. Write the security requirements specification
+      section for it using OWASP ASVS 5.0.0 at Level 2: a table with ID, Level, Requirement, Component,
+      Approach and Acceptance test, plus any documented decisions needed first.
+    golden: golden/upload-requirements-spec.md
+    negative: golden/upload-requirements-spec.bad.md
+    checks:
+      - {type: table, columns: ["ID", "Level", "Requirement", "Acceptance"]}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_covers_scope", level: 2, chapters: [V5]}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_level_appropriate", level: 2}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_levels_claimed", min: 9}
+      - {type: contains, values: ["5.1.1", "document"]}
+  - id: assessment-json
+    prompt: >-
+      Turn these verification notes into an ASVS 5.0.0 assessment file (JSON in a ```json block) that our
+      checker will accept, then summarise the result.
+    fixtures: [fixtures/verification-notes-v2.md]
+    golden: golden/assessment-json.md
+    negative: golden/assessment-json.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.asvs:grade_json_assessment", level: 1, chapters: [V2], require_complete: true}
+      - {type: contains, values: ["F-12", "2.3.1"]}
+      - {type: python, function: "agentlib.frameworks.asvs:grade_ids_exist", min: 4}

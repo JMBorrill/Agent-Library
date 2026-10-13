@@ -42,7 +42,8 @@ ID_FAMILIES = {
     "ssdf": (re.compile(r"\b(?:PO|PS|PW|RV)\.\d+\.\d+\b"), ("nist-ssdf",)),
     "ai-rmf": (re.compile(r"\b(?:GOVERN|MAP|MEASURE|MANAGE)\s+\d+\.\d+\b"), ("nist-ai",)),
     "swe": (re.compile(r"\bSWE-\d{3}\b"), ("nasa-software-requirements",)),
-    "asvs": (re.compile(r"\bV\d{1,2}\.\d{1,2}\.\d{1,2}\b"), ("owasp-asvs",)),
+    # V-prefixed (V6.2.1) or version-qualified (v5.0.0-6.2.1); bare 6.2.1 is too ambiguous in prose.
+    "asvs": (re.compile(r"(?:\bV\d{1,2}\.\d{1,2}\.\d{1,2}\b|(?<=\bv5\.0\.0-)\d{1,2}\.\d{1,2}\.\d{1,2}\b)"), ("owasp-asvs",)),
 }
 
 OVERCLAIM_PATTERNS = [
