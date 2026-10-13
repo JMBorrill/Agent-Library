@@ -1,0 +1,214 @@
+{
+  "notes": "Preliminary crosswalk based on NASA SE Handbook chapters 4\u20136. Verify titles, sections and applicability against live original. Proposed skills can be new or existing.",
+  "processes": [
+    {
+      "id": "SE-01",
+      "group": "System design",
+      "handbook_section": "4.1",
+      "process": "Stakeholder Expectations Definition",
+      "source_id": "nasa-se-design",
+      "proposed_skill_ids": [
+        "se-stakeholder-conops"
+      ],
+      "proposed_artifact": "ConOps/stakeholder-needs",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-02",
+      "group": "System design",
+      "handbook_section": "4.2",
+      "process": "Technical Requirements Definition",
+      "source_id": "nasa-se-design",
+      "proposed_skill_ids": [
+        "se-requirements"
+      ],
+      "proposed_artifact": "technical requirements and traceability",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-03",
+      "group": "System design",
+      "handbook_section": "4.3",
+      "process": "Logical Decomposition",
+      "source_id": "nasa-se-design",
+      "proposed_skill_ids": [
+        "se-logical-decomposition",
+        "se-architecture-trades"
+      ],
+      "proposed_artifact": "logical/functional architecture",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-04",
+      "group": "System design",
+      "handbook_section": "4.4",
+      "process": "Design Solution Definition",
+      "source_id": "nasa-se-design",
+      "proposed_skill_ids": [
+        "se-architecture-trades"
+      ],
+      "proposed_artifact": "design alternatives/trade study",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-05",
+      "group": "Product realization",
+      "handbook_section": "5.1",
+      "process": "Product Implementation",
+      "source_id": "nasa-se-realize",
+      "proposed_skill_ids": [
+        "se-implementation-integration"
+      ],
+      "proposed_artifact": "implementation plan/build evidence",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-06",
+      "group": "Product realization",
+      "handbook_section": "5.2",
+      "process": "Product Integration",
+      "source_id": "nasa-se-realize",
+      "proposed_skill_ids": [
+        "se-implementation-integration"
+      ],
+      "proposed_artifact": "integration plan and records",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-07",
+      "group": "Product realization",
+      "handbook_section": "5.3",
+      "process": "Product Verification",
+      "source_id": "nasa-se-realize",
+      "proposed_skill_ids": [
+        "se-verification-validation"
+      ],
+      "proposed_artifact": "verification matrix/procedures",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-08",
+      "group": "Product realization",
+      "handbook_section": "5.4",
+      "process": "Product Validation",
+      "source_id": "nasa-se-realize",
+      "proposed_skill_ids": [
+        "se-verification-validation"
+      ],
+      "proposed_artifact": "validation scenarios/evidence",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-09",
+      "group": "Product realization",
+      "handbook_section": "5.5",
+      "process": "Product Transition",
+      "source_id": "nasa-se-realize",
+      "proposed_skill_ids": [
+        "se-transition"
+      ],
+      "proposed_artifact": "transition/acceptance plan",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-10",
+      "group": "Technical management",
+      "handbook_section": "6.1",
+      "process": "Technical Planning",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-technical-planning"
+      ],
+      "proposed_artifact": "systems engineering management plan",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-11",
+      "group": "Technical management",
+      "handbook_section": "6.2",
+      "process": "Requirements Management",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-requirements",
+        "se-change-control"
+      ],
+      "proposed_artifact": "baseline and change traceability",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-12",
+      "group": "Technical management",
+      "handbook_section": "6.3",
+      "process": "Interface Management",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-interface-control"
+      ],
+      "proposed_artifact": "interface control document",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-13",
+      "group": "Technical management",
+      "handbook_section": "6.4",
+      "process": "Technical Risk Management",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-risk-analysis"
+      ],
+      "proposed_artifact": "technical risk register",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-14",
+      "group": "Technical management",
+      "handbook_section": "6.5",
+      "process": "Configuration Management",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-configuration-management",
+        "se-change-control"
+      ],
+      "proposed_artifact": "configuration status log",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-15",
+      "group": "Technical management",
+      "handbook_section": "6.6",
+      "process": "Technical Data Management",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-technical-data-management"
+      ],
+      "proposed_artifact": "data registry and access policy",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-16",
+      "group": "Technical management",
+      "handbook_section": "6.7",
+      "process": "Technical Assessment",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-technical-assessment",
+        "se-review-gates"
+      ],
+      "proposed_artifact": "technical assessment/review package",
+      "verification_status": "mapping_needs_source_recheck"
+    },
+    {
+      "id": "SE-17",
+      "group": "Technical management",
+      "handbook_section": "6.8",
+      "process": "Decision Analysis",
+      "source_id": "nasa-se-manage",
+      "proposed_skill_ids": [
+        "se-decision-analysis",
+        "se-architecture-trades"
+      ],
+      "proposed_artifact": "decision analysis and rationale",
+      "verification_status": "mapping_needs_source_recheck"
+    }
+  ]
+}

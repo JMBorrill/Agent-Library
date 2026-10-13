@@ -1,0 +1,173 @@
+[
+  {
+    "source_id": "nasa-se",
+    "pack": "systems-engineering",
+    "phase": "A",
+    "suggested_agents": "Systems engineer; requirements engineer; systems architect; V&V engineer; independent reviewer",
+    "suggested_skills": "se-stakeholder-conops; se-requirements; se-logical-decomposition; se-architecture-trades; se-interface-control; se-risk-analysis; se-implementation-integration; se-verification-validation; se-technical-planning; se-change-control; se-review-gates; se-transition; se-configuration-management; se-technical-data-management; se-technical-assessment; se-decision-analysis",
+    "required_artifacts": "NASA 17-process traceability, ConOps, requirements and V&V matrix",
+    "example_evaluation": "NASA 17 process crosswalk + deliberate missing-test fixtures"
+  },
+  {
+    "source_id": "nasa-se-design",
+    "pack": "systems-engineering",
+    "phase": "A",
+    "suggested_agents": "Requirements engineer; systems architect",
+    "suggested_skills": "se-stakeholder-conops; se-requirements; se-logical-decomposition; se-architecture-trades",
+    "required_artifacts": "ConOps and baseline requirements, architecture trade",
+    "example_evaluation": "atomic requirements and source traceability check"
+  },
+  {
+    "source_id": "nasa-se-realize",
+    "pack": "systems-engineering",
+    "phase": "A",
+    "suggested_agents": "Systems engineer; V&V engineer",
+    "suggested_skills": "se-implementation-integration; se-verification-validation; se-transition",
+    "required_artifacts": "Integration, V&V plan, acceptance package",
+    "example_evaluation": "test references and verification versus validation distinction"
+  },
+  {
+    "source_id": "nasa-se-manage",
+    "pack": "systems-engineering",
+    "phase": "A",
+    "suggested_agents": "Systems engineer; independent reviewer",
+    "suggested_skills": "se-technical-planning; se-risk-analysis; se-interface-control; se-change-control; se-configuration-management; se-technical-data-management; se-technical-assessment; se-decision-analysis",
+    "required_artifacts": "SE management plans and review package",
+    "example_evaluation": "risk/change ownership and evidence gaps"
+  },
+  {
+    "source_id": "ecss-se",
+    "pack": "space-engineering",
+    "phase": "B",
+    "suggested_agents": "Systems engineer; space-domain reviewer",
+    "suggested_skills": "space-mission-assurance; space-technical-budgets; space-qualification-planning",
+    "required_artifacts": "ECSS-vs-NASA applicability and engineering budgets",
+    "example_evaluation": "ECSS edition and source access gate"
+  },
+  {
+    "source_id": "nasa-software",
+    "pack": "software",
+    "phase": "C",
+    "suggested_agents": "Software quality reviewer; systems engineer",
+    "suggested_skills": "software-requirements-traceability; software-assurance-plan; software-vv",
+    "required_artifacts": "Software assurance and release evidence",
+    "example_evaluation": "requirements-to-test-to-result references"
+  },
+  {
+    "source_id": "google-review",
+    "pack": "software",
+    "phase": "C",
+    "suggested_agents": "Software quality reviewer",
+    "suggested_skills": "software-code-review; software-maintainability",
+    "required_artifacts": "PR review findings and tests",
+    "example_evaluation": "intentionally flawed PR fixture"
+  },
+  {
+    "source_id": "google-sre",
+    "pack": "reliability-security",
+    "phase": "C",
+    "suggested_agents": "Reliability engineer; incident reviewer",
+    "suggested_skills": "sre-service-level-objectives; sre-incident-response; sre-production-readiness",
+    "required_artifacts": "SLO, observability, postmortem, rollback",
+    "example_evaluation": "error budget computations and incident fixture"
+  },
+  {
+    "source_id": "dora",
+    "pack": "software",
+    "phase": "C",
+    "suggested_agents": "Software quality reviewer; reliability engineer",
+    "suggested_skills": "software-delivery-metrics; software-improvement-experiment",
+    "required_artifacts": "Delivery metrics baseline and improvement plan",
+    "example_evaluation": "metric definitions and data granularity checks"
+  },
+  {
+    "source_id": "owasp-asvs",
+    "pack": "reliability-security",
+    "phase": "C",
+    "suggested_agents": "Security reviewer; software quality reviewer",
+    "suggested_skills": "security-threat-model; security-asvs-controls; security-release-gate",
+    "required_artifacts": "Versioned ASVS control/verification map",
+    "example_evaluation": "deliberately vulnerable test scenarios"
+  },
+  {
+    "source_id": "nist-ssdf",
+    "pack": "reliability-security",
+    "phase": "C",
+    "suggested_agents": "Security reviewer",
+    "suggested_skills": "security-supply-chain; security-secure-development",
+    "required_artifacts": "SSDF practice-to-evidence map",
+    "example_evaluation": "SSDF control evidence checks"
+  },
+  {
+    "source_id": "gov-service",
+    "pack": "product",
+    "phase": "D",
+    "suggested_agents": "Product lead; user research reviewer",
+    "suggested_skills": "product-discovery; product-experiment-design; product-service-journey; product-delivery-gates",
+    "required_artifacts": "Discovery evidence, service blueprint and outcome metrics",
+    "example_evaluation": "hypothesis versus observation audit"
+  },
+  {
+    "source_id": "gov-design",
+    "pack": "ux",
+    "phase": "D",
+    "suggested_agents": "UX accessibility reviewer; product lead",
+    "suggested_skills": "ux-accessibility-review; ux-form-patterns",
+    "required_artifacts": "Accessible flows and design review report",
+    "example_evaluation": "keyboard/input/error messages fixture"
+  },
+  {
+    "source_id": "shape-up",
+    "pack": "product",
+    "phase": "D",
+    "suggested_agents": "Product lead",
+    "suggested_skills": "product-shaping; product-scope-risk",
+    "required_artifacts": "Shaped pitch and bounded solution scope",
+    "example_evaluation": "unsupported assumptions and rabbit holes"
+  },
+  {
+    "source_id": "treasury-green",
+    "pack": "finance-credit",
+    "phase": "E",
+    "suggested_agents": "Financial analyst; independent reviewer",
+    "suggested_skills": "finance-options; finance-appraisal; finance-five-cases",
+    "required_artifacts": "Options appraisal and Green Book-aligned business case",
+    "example_evaluation": "sensitivity and non-financial effects caveat"
+  },
+  {
+    "source_id": "damodaran",
+    "pack": "finance-credit",
+    "phase": "E",
+    "suggested_agents": "Financial analyst",
+    "suggested_skills": "finance-unit-economics; finance-valuation; finance-npv-irr",
+    "required_artifacts": "Reproducible spreadsheet-free valuation calculator and narrative",
+    "example_evaluation": "NPV/IRR and sensitivity known-answer tests"
+  },
+  {
+    "source_id": "basel-credit",
+    "pack": "finance-credit",
+    "phase": "E",
+    "suggested_agents": "Credit governance reviewer; financial analyst",
+    "suggested_skills": "credit-governance; credit-risk-controls",
+    "required_artifacts": "Credit governance/controls assessment",
+    "example_evaluation": "no false loan approval claims"
+  },
+  {
+    "source_id": "fca",
+    "pack": "finance-credit",
+    "phase": "E",
+    "suggested_agents": "Regulatory applicability reviewer",
+    "suggested_skills": "finance-fca-scope-check; finance-consumer-duty-review",
+    "required_artifacts": "Regulatory obligations applicability with effective-date sources",
+    "example_evaluation": "jurisdiction/product-scope and human-signoff fixture"
+  },
+  {
+    "source_id": "nist-ai",
+    "pack": "ai-governance",
+    "phase": "F",
+    "suggested_agents": "AI governance reviewer; AI evaluation engineer",
+    "suggested_skills": "ai-risk-assessment; ai-eval-harness; ai-prompt-injection-review; ai-human-oversight",
+    "required_artifacts": "Risk register, model card, safe evaluation suite",
+    "example_evaluation": "benign/malicious prompts and expected outcomes"
+  }
+]

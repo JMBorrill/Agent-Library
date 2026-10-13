@@ -1,0 +1,3 @@
+id,statement,rationale,source,owner,status,verification_method,acceptance_criteria,verification_id,evidence,result
+ASTER01-REQ-001,"The ground demonstrator shall record commanded actuation time and measured body acceleration during each trial.",Support reproducible locomotion analysis,Stakeholder proposal,TBD,proposed,test,"Timestamped command and IMU data exported for each completed trial; sampling limits TBD",ASTER01-TST-001,,not_tested
+ASTER01-REQ-002,"The test setup shall provide a documented means of halting actuator motion before physical trials.",Reduce experimental hazard,Preliminary risk assessment,TBD,proposed,inspection,"Stop method identified and validated by qualified supervisor against planned energy levels",ASTER01-TST-002,,not_tested
