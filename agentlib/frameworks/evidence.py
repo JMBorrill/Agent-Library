@@ -20,6 +20,8 @@ Checks performed by :func:`check_document`:
   within ``PAGE_TOLERANCE`` of the catalog's page (catches mis-citations)
 * framework identifiers used in prose (e.g. ``PW.7.1``, ``GOVERN 1.1``,
   ``SWE-033``, ``V6.2.1``) exist in the relevant catalog
+* lines containing ``<!-- evidence:ignore -->`` are skipped (for deliberate
+  mentions such as retired or deliberately fictitious identifiers)
 * over-claiming language ("fully compliant", "certified", "guarantees" ...)
   that an AI-produced assessment must not assert without a qualified authority
 """
@@ -35,6 +37,7 @@ from agentlib.paths import repo_root
 
 CITATION_RE = re.compile(r"\[(?P<src>[a-z][a-z0-9-]+)(?:\s+(?P<loc>[^\],\[]+?))?,\s*pp?\.\s*(?P<page>\d+)(?:\s*[-–]\s*(?P<end>\d+))?\]")
 PAGE_TOLERANCE = 2
+IGNORE_MARK = "<!-- evidence:ignore -->"
 
 # Identifier families that appear in prose. Each maps to (regex, catalog source ids
 # whose item ids should contain the match, normaliser).
@@ -128,6 +131,8 @@ def check_document(text: str, root: Path | None = None, require_citations: bool 
             continue
         if in_code:
             continue
+        if IGNORE_MARK in line:
+            continue  # intentional mention, e.g. documenting retired or hallucinated ids
         for m in CITATION_RE.finditer(line):
             n_citations += 1
             src = aliases.get(m["src"], m["src"])
@@ -143,7 +148,10 @@ def check_document(text: str, root: Path | None = None, require_citations: bool 
             loc = (m["loc"] or "").strip()
             bucket = index.get(src, {})
             if loc and bucket:
-                key = next((c for c in _normalise_id(loc.split()[0]) if c in bucket), None)
+                words = loc.split()
+                # longest locator prefix first, so "MAP 5.1" matches the subcategory, not the "MAP" function
+                prefixes = [" ".join(words[:n]) for n in range(len(words), 0, -1)]
+                key = next((c for pre in prefixes for c in _normalise_id(pre) if c in bucket), None)
                 if key and bucket[key] and abs(bucket[key] - page) > PAGE_TOLERANCE:
                     findings.append(Finding("warning", lineno,
                                             f"{m.group(0)}: catalog places {key} on p. {bucket[key]}"))

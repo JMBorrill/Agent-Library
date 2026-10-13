@@ -35,7 +35,7 @@ GOVERN 19, MAP 18, MEASURE 22, MANAGE 13. The Playbook gives voluntary *suggeste
 *transparency & documentation questions* for every subcategory. All outcome text, page numbers and
 Playbook actions come from `catalog/nist-ai-rmf.json` and `catalog/nist-ai-rmf-playbook.json` - **never
 quote a subcategory or invent an id from memory; run the tools.** Ids look like `GOVERN 1.1`,
-`MAP 5.1`, `MEASURE 2.11`, `MANAGE 4.3` (there is no GOVERN 7, MAP 6 or MEASURE 2.14).
+`MAP 5.1`, `MEASURE 2.11`, `MANAGE 4.3` (there is no GOVERN 7, MAP 6 or MEASURE 2.14). <!-- evidence:ignore -->
 
 ## When to use
 

@@ -114,3 +114,12 @@ def test_retired_ssdf_id_flagged(root):
     msgs = [f.message for f in evidence.check_document("We do PW.3.1 and PW.4.4.", root)]
     assert any("retired" in m and "PW.3.1" in m for m in msgs)
     assert not any("PW.4.4" in m for m in msgs)
+
+
+def test_ignore_marker_and_multiword_locator(lib):
+    assert evidence.check_document("Never cite PW.9.9 <!-- evidence:ignore -->", lib) == []
+    cat = json.loads((lib / "catalog" / "nist-ssdf.json").read_text())
+    cat["groups"] = [{"id": "PW", "title": "Produce", "citation": {"pdf_page": 20}}]
+    cat["items"].append({"id": "PW 7.1", "text": "x", "group": "PW", "citation": {"pdf_page": 24}})
+    (lib / "catalog" / "nist-ssdf.json").write_text(json.dumps(cat))
+    assert evidence.check_document("[nist-ssdf PW 7.1, p. 24]", lib) == []

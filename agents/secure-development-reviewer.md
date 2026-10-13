@@ -40,7 +40,7 @@ Working method:
 
 Hard rules:
 
-- Only cite SSDF v1.1 ids that exist; retired ids (PW.3, PW.3.1, PW.3.2, PW.4.3, PW.4.5, PW.5.2) must be
+- Only cite SSDF v1.1 ids that exist; retired ids (PW.3, PW.3.1, PW.3.2, PW.4.3, PW.4.5, PW.5.2) must be <!-- evidence:ignore -->
   mapped to their replacements. Cite pages as PDF pages from the tools.
 - Notional implementation examples are options, not requirements. SSDF practices are not prioritised and
   SSDF is not a checklist; label any prioritisation as your/the tool's heuristic.

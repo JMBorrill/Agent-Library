@@ -82,10 +82,10 @@ Organizations should identify residual vulnerabilities in their software release
 SSDF 1.1 keeps these ids in Table 1 only as pointers (Change Log, PDF p.36):
 
 - PW.3: "Moved to PW.4" (PDF p.21)
-- PW.3.1: "Moved to PO.1.3" (PDF p.21)
-- PW.3.2: "Moved to PW.4.4" (PDF p.21)
-- PW.4.3: "Moved to PW.1.3" (PDF p.21)
-- PW.4.5: "Moved to PW.4.1 and PW.4.4" (PDF p.22)
-- PW.5.2: "Moved to PW.5.1 as example" (PDF p.22)
+- PW.3.1: "Moved to PO.1.3" (PDF p.21) <!-- evidence:ignore -->
+- PW.3.2: "Moved to PW.4.4" (PDF p.21) <!-- evidence:ignore -->
+- PW.4.3: "Moved to PW.1.3" (PDF p.21) <!-- evidence:ignore -->
+- PW.4.5: "Moved to PW.4.1 and PW.4.4" (PDF p.22) <!-- evidence:ignore -->
+- PW.5.2: "Moved to PW.5.1 as example" (PDF p.22) <!-- evidence:ignore -->
 
 Use the current id in any assessment; `ssdf check-assessment` rejects retired ids.

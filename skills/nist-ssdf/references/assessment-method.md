@@ -80,5 +80,5 @@ before PO.4.2 automation; PW.1.1 risk models before PW.2.1 design review), regul
 - Counting an SBOM that is generated but never shared, protected or updated as PS.3.2 `implemented`
   (see PS.3.2 examples 1-4).
 - Marking all of PW.6 N/A for interpreted languages: PW.6 covers "compiler, interpreter, and build" tools.
-- Citing retired ids (PW.4.5, PW.5.2...) from SSDF 1.0-era material.
+- Citing retired ids (PW.4.5, PW.5.2...) from SSDF 1.0-era material. <!-- evidence:ignore -->
 - Reporting "SSDF compliant". Say "self-assessed coverage of N% across 42 tasks".

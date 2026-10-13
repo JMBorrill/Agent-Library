@@ -63,8 +63,8 @@ obligations, or certifying anyone - SSDF is not a certification scheme and "is n
   undefined - the organisation must define them (PDF p.13).
 - Responsibility may be shared with platform/service providers; tenants should agree who does each
   practice/task and how providers attest (PDF p.12).
-- Retired ids (PW.3, PW.3.1, PW.3.2, PW.4.3, PW.4.5, PW.5.2) remain only as pointers; use the current id
-  (Change Log, PDF p.36). PO.1.3 was formerly PW.3.1; PW.1.3 was formerly PW.4.3.
+- Retired ids (PW.3, PW.3.1, PW.3.2, PW.4.3, PW.4.5, PW.5.2) remain only as pointers; use the current id <!-- evidence:ignore -->
+  (Change Log, PDF p.36). PO.1.3 was formerly PW.3.1; PW.1.3 was formerly PW.4.3. <!-- evidence:ignore -->
 - Appendix A Table 2 (PDF p.33, printed p.24) maps EO 14028 Section 4e subsections to tasks; 4e(ix) maps to
   all practices and tasks "consistent with a risk-based approach".
 

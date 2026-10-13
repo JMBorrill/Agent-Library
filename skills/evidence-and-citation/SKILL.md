@@ -54,7 +54,7 @@ evidence standard they share. Load it alongside any framework skill.
    ```
 
    It flags unknown source ids, out-of-range pages, citations whose page disagrees with the catalog,
-   framework identifiers that do not exist (e.g. a hallucinated `PW.9.3` or `SWE-999`) and over-claims.
+   framework identifiers that do not exist (e.g. a hallucinated `PW.9.3` or `SWE-999`) and over-claims. <!-- evidence:ignore -->
 8. **State limitations and open items** at the end of the document: what was not reviewed, assumptions
    made, evidence not available.
 
