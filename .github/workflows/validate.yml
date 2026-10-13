@@ -75,3 +75,29 @@ jobs:
         run: |
           python -m pip install .
           cd /tmp && AGENTLIB_ROOT="$GITHUB_WORKSPACE" agentlib list skills
+
+  action-smoke:
+    name: Reusable action works from a consumer's perspective
+    runs-on: ubuntu-24.04
+    needs: validate
+    steps:
+      - uses: actions/checkout@v5
+      - name: Prepare a consumer workspace
+        run: |
+          mkdir -p /tmp/consumer/docs
+          printf 'Code review is enforced [nist-ssdf PW.7.1, p. 23].\n' > /tmp/consumer/docs/good.md
+          printf 'We follow SWE-999 [nist-ssdf, p. 999].\n' > /tmp/consumer/docs/bad.md
+      - name: Passing check
+        uses: ./
+        with:
+          working-directory: /tmp/consumer
+          args: evidence check docs/good.md --require-citations
+      - name: Failing check must fail
+        id: bad
+        continue-on-error: true
+        uses: ./
+        with:
+          working-directory: /tmp/consumer
+          args: evidence check docs/bad.md
+      - name: Assert the failing check failed
+        run: test "${{ steps.bad.outcome }}" = "failure"

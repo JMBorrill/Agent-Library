@@ -100,6 +100,23 @@ Example GitHub Actions step in a consuming repository:
     AGENTLIB_ROOT="$RUNNER_TEMP/agent-library" agentlib evidence check docs/assessments/*.md --require-citations
 ```
 
+### Reusable GitHub Action
+
+The repository root is also a composite action, so consumers need no install step:
+
+```yaml
+- uses: actions/checkout@v5
+- uses: JMBorrill/Agent-Library@main   # pin to a commit SHA or tag in production
+  with:
+    args: evidence check docs/assessments/*.md --require-citations
+- uses: JMBorrill/Agent-Library@main
+  with:
+    args: asvs check-assessment security/asvs-l2.yaml --level 2
+```
+
+The step fails when the command exits non-zero; the exit code is also exposed as the `exit-code` output.
+Arguments are split on whitespace (globs expand; quoting is not supported).
+
 ## Using skills programmatically (Claude Agent SDK / API)
 
 See [`examples/`](../examples/) for a minimal Claude Agent SDK script that loads this library as a plugin,

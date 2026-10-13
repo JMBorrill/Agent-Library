@@ -1,0 +1,52 @@
+name: Professional Agent Library checks
+description: >-
+  Run agentlib tools (evidence checker, ASVS/SSDF/AI RMF/NPR validators, requirements linter, Green Book
+  calculators) from JMBorrill/Agent-Library in any repository's CI.
+author: JMBorrill
+branding:
+  icon: check-square
+  color: blue
+inputs:
+  args:
+    description: >-
+      Arguments for `python -m agentlib`, e.g. "evidence check docs/assessment.md --require-citations"
+      or "asvs check-assessment security/asvs.yaml --level 2". Paths are relative to working-directory.
+      Arguments are split on whitespace and globs expand; quoting is not supported.
+    required: true
+  working-directory:
+    description: Directory to run in (default the repository root).
+    required: false
+    default: "."
+  python-version:
+    description: Python version to use.
+    required: false
+    default: "3.13"
+outputs:
+  exit-code:
+    description: Exit code of the agentlib command (the step fails when it is non-zero).
+    value: ${{ steps.run.outputs.exit-code }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v6
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install agentlib dependencies
+      shell: bash
+      run: python -m pip install -q "PyYAML>=6.0" "jsonschema>=4.17"
+    - name: Run agentlib
+      id: run
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        AGENTLIB_ROOT: ${{ github.action_path }}
+        PYTHONPATH: ${{ github.action_path }}
+        AGENTLIB_ARGS: ${{ inputs.args }}
+      run: |
+        set +e
+        # word-split and glob-expand, but never eval: args must not be able to run shell code
+        # shellcheck disable=SC2086
+        python -m agentlib $AGENTLIB_ARGS
+        code=$?
+        echo "exit-code=$code" >> "$GITHUB_OUTPUT"
+        exit $code
