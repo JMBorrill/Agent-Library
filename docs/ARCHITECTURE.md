@@ -39,10 +39,11 @@ repeatable, checkable way to apply professional frameworks.
 
 ## Data flow for a typical review
 
-1. `/secure-delivery-review` (command) → `review-board-chair` loads `workflows/secure-software-delivery.yaml`.
+1. `/secure-delivery-review` (command) → `review-board-chair` runs `python -m agentlib workflow init secure-software-delivery`,
+   which scaffolds a review folder (`PLAN.md`, `state.json`, artefact stubs) from `workflows/secure-software-delivery.yaml`.
 2. Stage `scope` → `application-security-verifier` loads `skills/owasp-asvs/`, runs
    `python -m agentlib asvs checklist --level 2` (catalog `owasp-asvs-5`), writes a verification plan.
-3. Gates run validators (`asvs check-assessment`, `ssdf check-assessment`), `evidence-auditor` runs
+3. Gates are recorded with `agentlib workflow gate` (refused while artefacts are stubs or earlier gates are open); gates run validators (`asvs check-assessment`, `ssdf check-assessment`), `evidence-auditor` runs
    `evidence check`, and the chair writes `templates/review-board-decision.md`.
 
 ## Extension points

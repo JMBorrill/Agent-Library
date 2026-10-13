@@ -112,6 +112,16 @@ pip install -r requirements-dev.txt
    python -m agentlib evidence check evals/evidence-and-citation/fixtures/flawed-report.md
    ```
 
+18. **Show a workflow plan (stages, agents, skills, gates)** (expected exit 0)
+
+   ```sh
+   python -m agentlib workflow show secure-software-delivery
+   ```
+
+To run a workflow as a tracked review folder: `python -m agentlib workflow init <id> --dir reviews/x`,
+fill the artefact stubs, check progress with `workflow status reviews/x`, and record each gate decision with
+`workflow gate reviews/x <stage> --result pass --by "<decision-maker>"`.
+
 ## Claude Agent SDK
 
 [`agent_sdk_review.py`](agent_sdk_review.py) loads this library as a local plugin and runs a skill or

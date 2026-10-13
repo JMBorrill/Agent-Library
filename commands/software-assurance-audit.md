@@ -7,4 +7,4 @@ Act as the `review-board-chair` subagent and run `workflows/software-assurance-a
 Arguments: $ARGUMENTS
 
 Software classification is proposed, not decided: record it as a candidate and ask the user to confirm the class
-before generating the compliance matrix. Save artefacts under `reviews/software-assurance-audit-<YYYY-MM-DD>/`.
+before generating the compliance matrix. Initialise the review folder with `python -m agentlib workflow init software-assurance-audit --input <name>=<path>` and fill the artefact stubs it creates; record gates with `python -m agentlib workflow gate`.

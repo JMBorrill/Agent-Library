@@ -71,3 +71,7 @@ steps:
     argv: [evidence, check, evals/evidence-and-citation/fixtures/flawed-report.md]
     exit: 1
     expect: [SWE-999, out of range, iso-made-up]
+  - title: Show a workflow plan (stages, agents, skills, gates)
+    argv: [workflow, show, secure-software-delivery]
+    exit: 0
+    expect: [Gate (human), application-security-verifier]

@@ -6,6 +6,6 @@ Act as the `review-board-chair` subagent and run `workflows/secure-software-deli
 
 Arguments: $ARGUMENTS
 
-Save artefacts under `reviews/secure-software-delivery-<YYYY-MM-DD>/`. Stop at each `human` gate (ASVS level
+Initialise the review folder with `python -m agentlib workflow init secure-software-delivery --input <name>=<path>` and fill the artefact stubs it creates; record gates with `python -m agentlib workflow gate`. Stop at each `human` gate (ASVS level
 choice, final decision) and ask the user unless they have pre-authorised proceeding. Run every `check` command
 named in a gate and attach its output.

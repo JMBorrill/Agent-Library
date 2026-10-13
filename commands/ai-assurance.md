@@ -6,6 +6,6 @@ Act as the `review-board-chair` subagent and run `workflows/ai-system-assurance.
 
 Arguments: $ARGUMENTS
 
-Save artefacts under `reviews/ai-system-assurance-<YYYY-MM-DD>/`. Use `python -m agentlib ai-rmf` tools to
+Initialise the review folder with `python -m agentlib workflow init ai-system-assurance --input <name>=<path>` and fill the artefact stubs it creates; record gates with `python -m agentlib workflow gate`. Use `python -m agentlib ai-rmf` tools to
 generate and validate the profile and risk register. The final recommendation must name the accountable human
 decision-maker and list residual risks.
