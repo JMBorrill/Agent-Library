@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "id": "$.evaluations[4](EV-MCP-SLICE-01)",
+      "severity": "warning",
+      "rule": "eval-not-tested",
+      "message": "evaluation listed but not run"
+    },
+    {
+      "id": "$.sign_off",
+      "severity": "info",
+      "rule": "recommendation-awaiting-sign-off",
+      "message": "recommendation NO_GO is advisory until a named human signs off"
+    },
+    {
+      "id": "$.rollback_plan",
+      "severity": "warning",
+      "rule": "rollback-untested",
+      "message": "no record that rollback was exercised"
+    }
+  ],
+  "summary": {
+    "system": "Mortgage Criteria Platform criteria assistant (synthetic)",
+    "evaluations": 5,
+    "recommendation": "NO_GO",
+    "errors": 0,
+    "warnings": 2,
+    "info": 1,
+    "as_of": "2026-10-13"
+  },
+  "passed": true
+}

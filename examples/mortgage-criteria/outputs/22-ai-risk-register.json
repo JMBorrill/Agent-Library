@@ -1,0 +1,25 @@
+{
+  "findings": [],
+  "summary": {
+    "risks": 7,
+    "by_status": {
+      "mitigating": 5,
+      "open": 2
+    },
+    "residual_bands": {
+      "medium": 7
+    },
+    "rmf_function_refs": {
+      "MAP": 5,
+      "MEASURE": 3,
+      "MANAGE": 4,
+      "GOVERN": 2
+    },
+    "errors": 0,
+    "warnings": 0,
+    "info": 0,
+    "high_threshold": 15,
+    "as_of": "2026-10-13"
+  },
+  "passed": true
+}

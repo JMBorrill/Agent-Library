@@ -1,0 +1,215 @@
+{
+  "dataset": "MCP synthetic second-charge lender criteria, 3 fictitious lenders (illustrative only; no real lender, no real criteria)",
+  "as_of": "2026-10-13",
+  "findings": [],
+  "summary": {
+    "rules": 14,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0,
+    "outcomes": {
+      "refer": 1,
+      "eligible_indicative": 1,
+      "ineligible_indicative": 1
+    }
+  },
+  "case_id": "MCP-CASE-0007",
+  "results": [
+    {
+      "lender": "Harrowgate Home Loans (synthetic)",
+      "product": "Second charge homeowner loan (synthetic)",
+      "outcome": "refer",
+      "note": "missing, mismatched or stale information - human review needed",
+      "rules_evaluated": 4,
+      "reasons": [
+        {
+          "rule_id": "MCP-HGF-2C-001",
+          "criterion": "cltv_pct",
+          "operator": "lte",
+          "value": 85,
+          "unit": "percent",
+          "source_document": "Harrowgate synthetic broker criteria sheet 2026-04 (re-confirmed by lender criteria contact 2026-10-05, synthetic)",
+          "last_verified": "2026-10-05",
+          "actual": 72.86,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-HGF-2C-002",
+          "criterion": "gross_annual_income",
+          "operator": "gte",
+          "value": 25000,
+          "unit": "GBP",
+          "source_document": "Harrowgate synthetic broker criteria sheet 2026-04 (re-confirmed by lender criteria contact 2026-10-05, synthetic)",
+          "last_verified": "2026-10-05",
+          "actual": 52000,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-HGF-2C-003",
+          "criterion": "secured_arrears_months_last_12m",
+          "operator": "lte",
+          "value": 1,
+          "unit": "count",
+          "source_document": "Harrowgate synthetic broker criteria sheet 2026-04 (re-confirmed by lender criteria contact 2026-10-05, synthetic)",
+          "last_verified": "2026-10-05",
+          "actual": null,
+          "result": "refer",
+          "reason": "missing case data for 'secured_arrears_months_last_12m' - cannot assume it passes"
+        },
+        {
+          "rule_id": "MCP-HGF-2C-004",
+          "criterion": "ccj_count_last_6y",
+          "operator": "lte",
+          "value": 1,
+          "unit": "count",
+          "source_document": "Harrowgate synthetic broker criteria sheet 2026-04 (re-confirmed by lender criteria contact 2026-10-05, synthetic)",
+          "last_verified": "2026-10-05",
+          "actual": 0,
+          "result": "pass",
+          "reason": "meets criterion"
+        }
+      ]
+    },
+    {
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "outcome": "eligible_indicative",
+      "note": "all criteria in effect met on the data supplied",
+      "rules_evaluated": 6,
+      "reasons": [
+        {
+          "rule_id": "MCP-NBM-2C-002",
+          "criterion": "cltv_pct",
+          "operator": "lte",
+          "value": 80,
+          "unit": "percent",
+          "source_document": "Northbridge synthetic intermediary criteria guide v8 (2026-09), s.2",
+          "last_verified": "2026-09-20",
+          "actual": 72.86,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-NBM-2C-003",
+          "criterion": "loan_amount",
+          "operator": "between",
+          "value": [
+            10000,
+            250000
+          ],
+          "unit": "GBP",
+          "source_document": "Northbridge synthetic intermediary criteria guide v7 (2026-01), s.2",
+          "last_verified": "2026-09-15",
+          "actual": 45000,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-NBM-2C-004",
+          "criterion": "employment_type",
+          "operator": "in",
+          "value": [
+            "employed",
+            "self_employed"
+          ],
+          "unit": "category",
+          "source_document": "Northbridge synthetic intermediary criteria guide v7 (2026-01), s.2",
+          "last_verified": "2026-09-15",
+          "actual": "employed",
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-NBM-2C-005",
+          "criterion": "ccj_count_last_6y",
+          "operator": "lte",
+          "value": 0,
+          "unit": "count",
+          "source_document": "Northbridge synthetic intermediary criteria guide v7 (2026-01), s.2",
+          "last_verified": "2026-09-15",
+          "actual": 0,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-NBM-2C-006",
+          "criterion": "age_at_term_end",
+          "operator": "lte",
+          "value": 80,
+          "unit": "years",
+          "source_document": "Northbridge synthetic intermediary criteria guide v7 (2026-01), s.2",
+          "last_verified": "2026-09-15",
+          "actual": 61,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-NBM-2C-007",
+          "criterion": "property_type",
+          "operator": "in",
+          "value": [
+            "house",
+            "flat"
+          ],
+          "unit": "category",
+          "source_document": "Northbridge synthetic intermediary criteria guide v7 (2026-01), s.2",
+          "last_verified": "2026-09-15",
+          "actual": "house",
+          "result": "pass",
+          "reason": "meets criterion"
+        }
+      ]
+    },
+    {
+      "lender": "Ospreyfield Building Society (synthetic)",
+      "product": "Second charge low-CLTV 2-year fixed (synthetic)",
+      "outcome": "ineligible_indicative",
+      "note": "at least one criterion not met",
+      "rules_evaluated": 3,
+      "reasons": [
+        {
+          "rule_id": "MCP-OBS-2C-001",
+          "criterion": "cltv_pct",
+          "operator": "lte",
+          "value": 65,
+          "unit": "percent",
+          "source_document": "Ospreyfield synthetic product guide 2026-Q3, p.4",
+          "last_verified": "2026-09-30",
+          "actual": 72.86,
+          "result": "fail",
+          "reason": "does not meet criterion"
+        },
+        {
+          "rule_id": "MCP-OBS-2C-002",
+          "criterion": "loan_amount",
+          "operator": "gte",
+          "value": 15000,
+          "unit": "GBP",
+          "source_document": "Ospreyfield synthetic product guide 2026-Q3, p.4",
+          "last_verified": "2026-09-30",
+          "actual": 45000,
+          "result": "pass",
+          "reason": "meets criterion"
+        },
+        {
+          "rule_id": "MCP-OBS-2C-003",
+          "criterion": "employment_type",
+          "operator": "in",
+          "value": [
+            "employed"
+          ],
+          "unit": "category",
+          "source_document": "Ospreyfield synthetic product guide 2026-Q3, p.4",
+          "last_verified": "2026-09-30",
+          "actual": "employed",
+          "result": "pass",
+          "reason": "meets criterion"
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "scope": "Scope: indicative criteria matching only; not a lending decision, offer or advice. The lender's own underwriting decides."
+}

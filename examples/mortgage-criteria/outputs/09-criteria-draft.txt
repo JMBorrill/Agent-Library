@@ -1,0 +1,5 @@
+WARNING  MCP-HGF-2C-001   stale-criterion              last verified 194 days before 2026-10-13 (limit 90); outcomes using it are referred
+ERROR    MCP-NBM-2C-002   overlapping-effective-dates  MCP-NBM-2C-001 and MCP-NBM-2C-002 both in effect for Northbridge Mutual (synthetic) / Second charge 5-year fixed (synthetic) / cltv_pct
+
+FAIL: {'rules': 14, 'errors': 1, 'warnings': 1, 'info': 0}
+Scope: indicative criteria matching only; not a lending decision, offer or advice. The lender's own underwriting decides.

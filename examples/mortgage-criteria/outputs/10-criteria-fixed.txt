@@ -1,0 +1,3 @@
+
+PASS: {'rules': 14, 'errors': 0, 'warnings': 0, 'info': 0}
+Scope: indicative criteria matching only; not a lending decision, offer or advice. The lender's own underwriting decides.

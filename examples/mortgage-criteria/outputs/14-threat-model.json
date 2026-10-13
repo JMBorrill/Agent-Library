@@ -1,0 +1,128 @@
+{
+  "findings": [
+    {
+      "id": "MCP-T01",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T03",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T05",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T06",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T07",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T09",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T10",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T13",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "MCP-T16",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    }
+  ],
+  "summary": {
+    "system": "Mortgage Criteria Platform (synthetic): multi-tenant AI criteria search and decision support for UK brokers",
+    "components": 6,
+    "data_flows": 6,
+    "boundary_crossing_flows": 5,
+    "threats": 19,
+    "by_stride": {
+      "S": 1,
+      "T": 5,
+      "I": 6,
+      "D": 5,
+      "E": 1,
+      "R": 1
+    },
+    "by_risk": {
+      "high": 9,
+      "low": 5,
+      "medium": 5
+    },
+    "asvs_ids_cited": [
+      "v5.0.0-1.2.4",
+      "v5.0.0-12.2.1",
+      "v5.0.0-14.2.1",
+      "v5.0.0-15.1.3",
+      "v5.0.0-16.2.1",
+      "v5.0.0-16.3.1",
+      "v5.0.0-2.2.1",
+      "v5.0.0-2.4.1",
+      "v5.0.0-3.3.1",
+      "v5.0.0-3.4.1",
+      "v5.0.0-5.2.1",
+      "v5.0.0-5.2.2",
+      "v5.0.0-6.3.1",
+      "v5.0.0-8.2.1",
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.3.1",
+      "v5.0.0-8.4.1"
+    ],
+    "coverage": {
+      "DF1": {
+        "required": "STIDE",
+        "covered": "DEIST",
+        "missing": ""
+      },
+      "DF2": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF3": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF4": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF5": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      }
+    },
+    "errors": 0,
+    "warnings": 9,
+    "info": 0
+  },
+  "passed": true
+}

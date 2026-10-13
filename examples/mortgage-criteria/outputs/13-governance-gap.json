@@ -1,0 +1,26 @@
+{
+  "findings": [
+    {
+      "id": "MCP-CTL-031",
+      "severity": "error",
+      "rule": "model-not-validated",
+      "message": "model-risk item has no independent validation date"
+    }
+  ],
+  "summary": {
+    "controls": 12,
+    "coverage_by_area": {
+      "credit_risk_environment": 3,
+      "credit_granting": 3,
+      "administration_measurement_monitoring": 3,
+      "controls": 3
+    },
+    "errors": 1,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": false,
+  "report_type": "gap-report",
+  "as_of": "2026-10-13",
+  "scope": "Scope: gap report for human review only; not an approval, audit opinion or supervisory assessment."
+}

@@ -1,0 +1,372 @@
+{
+ "demo": "mortgage-criteria",
+ "title": "Mortgage Criteria Platform (synthetic) \u2014 AI criteria search and decision support for UK brokers, second-charge case",
+ "steps": [
+  {
+   "id": "01-framework-selection",
+   "skill": "select-frameworks",
+   "script": "select_frameworks.py",
+   "args": [
+    "inputs/profile.json",
+    "--markdown"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/01-framework-selection.md",
+   "purpose": "choose packs, skills, agents and oversight level"
+  },
+  {
+   "id": "02-fca-triage",
+   "skill": "finance-fca-scope-check",
+   "script": "reg_triage.py",
+   "args": [
+    "inputs/fca-questionnaire.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/02-fca-triage.json",
+   "purpose": "UK regulatory applicability triage; every candidate needs compliance/legal sign-off"
+  },
+  {
+   "id": "03-discovery-evidence",
+   "skill": "product-discovery",
+   "script": "evidence_audit.py",
+   "args": [
+    "inputs/evidence-log.csv",
+    "--assumptions",
+    "inputs/assumptions.csv",
+    "--target",
+    "alpha",
+    "--as-of",
+    "2026-10-13",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/03-discovery-evidence.json",
+   "purpose": "audit broker research log; hypotheses kept apart from synthetic observations"
+  },
+  {
+   "id": "04-prd-check-draft",
+   "skill": "product-requirements-brief",
+   "script": "prd_check.py",
+   "args": [
+    "inputs/prd-draft.md",
+    "--stories",
+    "inputs/stories-draft.csv",
+    "--evidence",
+    "inputs/evidence-log.csv"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/04-prd-check-draft.txt",
+   "purpose": "first-draft PRD: two job stories not in job-story form (expected findings)"
+  },
+  {
+   "id": "05-prd-check-flowdown",
+   "skill": "product-requirements-brief",
+   "script": "prd_check.py",
+   "args": [
+    "inputs/prd.md",
+    "--stories",
+    "inputs/stories.csv",
+    "--evidence",
+    "inputs/evidence-log.csv",
+    "--flow-down",
+    "outputs/candidate-reqs.csv",
+    "--prefix",
+    "MCP-SYS",
+    "--owner",
+    "requirements-engineer (to confirm)",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/05-prd-check-flowdown.json",
+   "purpose": "corrected PRD; flow down candidate MCP-SYS requirements"
+  },
+  {
+   "id": "06-req-lint-candidates",
+   "skill": "se-requirements",
+   "script": "req_lint.py",
+   "args": [
+    "outputs/candidate-reqs.csv",
+    "--tree"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/06-req-lint-candidates.txt",
+   "purpose": "lint mechanically flowed-down candidates"
+  },
+  {
+   "id": "07-req-lint-draft",
+   "skill": "se-requirements",
+   "script": "req_lint.py",
+   "args": [
+    "inputs/requirements-draft.csv"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/07-req-lint-draft.txt",
+   "purpose": "edited register first draft: premature approval with TBR, bad method, broken parent (expected findings)"
+  },
+  {
+   "id": "08-req-lint-fixed",
+   "skill": "se-requirements",
+   "script": "req_lint.py",
+   "args": [
+    "inputs/requirements.csv",
+    "--tree"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/08-req-lint-fixed.txt",
+   "purpose": "corrected register (all proposed, awaiting owner approval)"
+  },
+  {
+   "id": "09-criteria-draft",
+   "skill": "credit-criteria-modelling",
+   "script": "criteria_engine.py",
+   "args": [
+    "inputs/criteria-draft.json",
+    "--as-of",
+    "2026-10-13"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/09-criteria-draft.txt",
+   "purpose": "draft criteria: overlapping Northbridge CLTV versions and a stale Harrowgate rule (expected findings)"
+  },
+  {
+   "id": "10-criteria-fixed",
+   "skill": "credit-criteria-modelling",
+   "script": "criteria_engine.py",
+   "args": [
+    "inputs/criteria.json",
+    "--as-of",
+    "2026-10-13"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/10-criteria-fixed.txt",
+   "purpose": "corrected criteria: superseded rule closed, stale rule re-verified"
+  },
+  {
+   "id": "11-case-evaluation",
+   "skill": "credit-criteria-modelling",
+   "script": "criteria_engine.py",
+   "args": [
+    "inputs/criteria.json",
+    "--case",
+    "inputs/case-second-charge.json",
+    "--as-of",
+    "2026-10-13",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/11-case-evaluation.json",
+   "purpose": "evaluate synthetic second-charge case: indicative outcomes or refer, never approval"
+  },
+  {
+   "id": "12-affordability",
+   "skill": "credit-criteria-modelling",
+   "script": "affordability_calc.py",
+   "args": [
+    "inputs/affordability-case.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/12-affordability.json",
+   "purpose": "CLTV, stressed payment (lender-policy margin), DTI, NDI arithmetic"
+  },
+  {
+   "id": "13-governance-gap",
+   "skill": "credit-risk-governance",
+   "script": "governance_check.py",
+   "args": [
+    "inputs/controls-register.csv",
+    "--as-of",
+    "2026-10-13",
+    "--coverage",
+    "inputs/governance-topics.json",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/13-governance-gap.json",
+   "purpose": "platform-operator controls register: real open gap (AI component not independently validated)"
+  },
+  {
+   "id": "14-threat-model",
+   "skill": "security-threat-model",
+   "script": "threat_model_check.py",
+   "args": [
+    "inputs/threat-model.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/14-threat-model.json",
+   "purpose": "STRIDE model incl. tenant isolation and broker case data"
+  },
+  {
+   "id": "15-asvs-coverage",
+   "skill": "security-asvs-controls",
+   "script": "asvs_coverage.py",
+   "args": [
+    "inputs/asvs-control-map.csv",
+    "--level",
+    "2",
+    "--chapters",
+    "V8,V14",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/15-asvs-coverage.json",
+   "purpose": "ASVS 5.0.0 L2 subset (V8, V14) verification map; nothing verified yet"
+  },
+  {
+   "id": "16-eval-prior-bad",
+   "skill": "ai-eval-harness",
+   "script": "run_eval.py",
+   "args": [
+    "inputs/evalset.jsonl",
+    "--adapter",
+    "fixture",
+    "--responses",
+    "inputs/responses-prior-bad.jsonl",
+    "--config",
+    "inputs/eval-config.json",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/16-eval-prior-bad.json",
+   "purpose": "offline fixture evaluation of prior v0.3 recorded responses (fails gates)"
+  },
+  {
+   "id": "17-eval-current",
+   "skill": "ai-eval-harness",
+   "script": "run_eval.py",
+   "args": [
+    "inputs/evalset.jsonl",
+    "--adapter",
+    "fixture",
+    "--responses",
+    "inputs/responses-current.jsonl",
+    "--config",
+    "inputs/eval-config.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/17-eval-current.json",
+   "purpose": "offline fixture evaluation of current recorded responses (gates pass on this set only)"
+  },
+  {
+   "id": "18-injection-scan-malicious",
+   "skill": "ai-prompt-injection-review",
+   "script": "injection_scan.py",
+   "args": [
+    "inputs/uploaded-statement-malicious.html",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/18-injection-scan-malicious.json",
+   "purpose": "screen a malicious uploaded statement (expected flag)"
+  },
+  {
+   "id": "19-injection-scan-benign",
+   "skill": "ai-prompt-injection-review",
+   "script": "injection_scan.py",
+   "args": [
+    "inputs/uploaded-payslip-benign.html",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/19-injection-scan-benign.json",
+   "purpose": "screen a benign uploaded payslip (clean is not proof of safety)"
+  },
+  {
+   "id": "20-tool-policy",
+   "skill": "ai-prompt-injection-review",
+   "script": "tool_policy_check.py",
+   "args": [
+    "inputs/tool-calls.json",
+    "--policy",
+    "inputs/tool-policy.json",
+    "--expect",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/20-tool-policy.json",
+   "purpose": "proposed assistant tool calls vs policy; injected calls denied"
+  },
+  {
+   "id": "21-oversight",
+   "skill": "ai-human-oversight",
+   "script": "oversight_check.py",
+   "args": [
+    "inputs/oversight-matrix.csv"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/21-oversight.txt",
+   "purpose": "broker always decides; lender staff make credit decisions; explanation and challenge routes"
+  },
+  {
+   "id": "22-ai-risk-register",
+   "skill": "ai-risk-assessment",
+   "script": "ai_risk_register_check.py",
+   "args": [
+    "inputs/ai-risk-register.csv",
+    "--as-of",
+    "2026-10-13",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/22-ai-risk-register.json",
+   "purpose": "NIST AI RMF risk register lint"
+  },
+  {
+   "id": "23-system-card",
+   "skill": "ai-risk-assessment",
+   "script": "system_card_check.py",
+   "args": [
+    "inputs/system-card.json",
+    "--as-of",
+    "2026-10-13",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/23-system-card.json",
+   "purpose": "system card consistency (recommendation NO_GO, sign-off pending)"
+  },
+  {
+   "id": "24-vmatrix",
+   "skill": "se-verification-validation",
+   "script": "vmatrix_check.py",
+   "args": [
+    "inputs/vmatrix.csv",
+    "--requirements",
+    "inputs/requirements.csv",
+    "--include-proposed",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/24-vmatrix.json",
+   "purpose": "V&V plan incl. human-review workflow; only offline eval results recorded as pass"
+  },
+  {
+   "id": "25-pilot-gate",
+   "skill": "se-review-gates",
+   "script": "review_readiness.py",
+   "args": [
+    "inputs/pilot-review.json",
+    "--criteria",
+    "inputs/pilot-gate-criteria.json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/25-pilot-gate.txt",
+   "purpose": "pilot readiness recommendation (expected NO_GO pending compliance sign-off and validation)"
+  },
+  {
+   "id": "26-claim-check",
+   "skill": "independent-review",
+   "script": "claim_check.py",
+   "args": [
+    "README.md",
+    "inputs"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/26-claim-check.txt",
+   "purpose": "language screen of README and inputs for overclaiming"
+  }
+ ]
+}

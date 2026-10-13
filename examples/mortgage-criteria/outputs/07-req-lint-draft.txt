@@ -1,0 +1,18 @@
+INFO     MCP-STK-001        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STK-002        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-001        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-002        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-003        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-004        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-005        need-statement             stakeholder/mission need (no 'shall' expected)
+WARNING  MCP-SYS-001        ambiguous-term             ambiguous terms ['quickly']: define measurably or move to acceptance criteria
+ERROR    MCP-SYS-005        tbd-in-approved            approved requirement still contains TBD/TBR/TBC
+WARNING  MCP-SYS-005        approved-under-proposed    approved child of proposed parent 'MCP-STY-003'
+WARNING  MCP-SYS-009        not-atomic                 2 'shall' clauses — split into separate requirements
+WARNING  MCP-SYS-009        possible-compound          conjunction may join two obligations; check atomicity
+WARNING  MCP-SYS-009        unmeasurable-acceptance    test/analysis acceptance criteria contain no quantitative threshold
+ERROR    MCP-SYS-010        verification-method        unknown method(s) ['pen test']; use ['analysis', 'demonstration', 'inspection', 'test']
+ERROR    MCP-SYS-012        unknown-parent             parent 'MCP-STK-003' not in register
+
+FAIL: {'requirements': 20, 'by_status': {'proposed': 19, 'approved': 1}, 'errors': 3, 'warnings': 5, 'info': 7, 'tbd_count': 1}
+Scope: structural/linguistic lint only; technical adequacy needs an accountable engineer.

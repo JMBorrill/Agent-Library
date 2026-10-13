@@ -1,0 +1,19 @@
+{
+  "documents": [
+    {
+      "id": "uploaded-payslip-benign.html",
+      "label": null,
+      "verdict": "clean",
+      "score": 0,
+      "hits": []
+    }
+  ],
+  "summary": {
+    "documents": 1,
+    "flag": 0,
+    "review": 0,
+    "clean": 1
+  },
+  "findings": [],
+  "passed": true
+}

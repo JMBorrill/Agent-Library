@@ -1,0 +1,35 @@
+{
+  "findings": [
+    {
+      "id": "MCP-VER-005",
+      "severity": "warning",
+      "rule": "no-reviewer",
+      "message": "result has no independent reviewer recorded"
+    },
+    {
+      "id": "MCP-VER-006",
+      "severity": "warning",
+      "rule": "no-reviewer",
+      "message": "result has no independent reviewer recorded"
+    }
+  ],
+  "summary": {
+    "requirements_in_scope": 13,
+    "planned_coverage_pct": 100.0,
+    "passed_pct": 15.4,
+    "requirement_states": {
+      "not_tested": 11,
+      "pass": 2
+    },
+    "needs": 7,
+    "needs_with_validation": 7,
+    "activities_by_result": {
+      "not_tested": 18,
+      "pass": 2
+    },
+    "errors": 0,
+    "warnings": 2,
+    "failed_or_blocked": []
+  },
+  "passed": true
+}

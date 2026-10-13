@@ -1,0 +1,15 @@
+{
+  "findings": [],
+  "summary": {
+    "stories": 5,
+    "by_priority": {
+      "must": 4,
+      "should": 1
+    },
+    "flowed_down_rows": 14,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": true
+}

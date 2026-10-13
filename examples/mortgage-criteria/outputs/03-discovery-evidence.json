@@ -1,0 +1,75 @@
+{
+  "findings": [
+    {
+      "id": "MCP-EV-007",
+      "severity": "info",
+      "rule": "hypothesis-not-evidence",
+      "message": "hypothesis recorded for tracking; never counted as evidence"
+    },
+    {
+      "id": "MCP-EV-008",
+      "severity": "info",
+      "rule": "hypothesis-not-evidence",
+      "message": "hypothesis recorded for tracking; never counted as evidence"
+    },
+    {
+      "id": "MCP-EV-009",
+      "severity": "info",
+      "rule": "hypothesis-not-evidence",
+      "message": "hypothesis recorded for tracking; never counted as evidence"
+    },
+    {
+      "id": "MCP-AS-005",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    },
+    {
+      "id": "MCP-AS-006",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    },
+    {
+      "id": "MCP-AS-007",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    }
+  ],
+  "summary": {
+    "evidence_rows": 9,
+    "counted_evidence": 6,
+    "by_strength": {
+      "strong": 4,
+      "moderate": 1,
+      "weak": 1
+    },
+    "not_evidence": {
+      "assumption": 0,
+      "hypothesis": 3
+    },
+    "excluded_invalid": 0,
+    "assumptions": 7,
+    "assumptions_by_risk": {
+      "high": 6,
+      "medium": 1
+    },
+    "errors": 0,
+    "warnings": 3,
+    "info": 3
+  },
+  "gate": {
+    "recommendation": "PROCEED_WITH_CONDITIONS",
+    "gate_equivalent": "GO_WITH_CONDITIONS",
+    "target_phase": "alpha",
+    "reasons": [
+      "MCP-AS-002: medium-risk assumption still open (testing)",
+      "MCP-AS-005: run the planned experiment in alpha before any build commitment",
+      "MCP-AS-006: run the planned experiment in alpha before any build commitment",
+      "MCP-AS-007: run the planned experiment in alpha before any build commitment"
+    ],
+    "requires_human_decision": true
+  },
+  "passed": true
+}

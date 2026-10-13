@@ -1,0 +1,7 @@
+ERROR    job_stories[3]     job-story-format           use 'When <situation>, I want to <motivation>, so I can <outcome>'
+ERROR    job_stories[4]     job-story-format           use 'When <situation>, I want to <motivation>, so I can <outcome>'
+ERROR    MCP-STY-003        job-story-format           use 'When <situation>, I want to <motivation>, so I can <outcome>'
+ERROR    MCP-STY-004        job-story-format           use 'When <situation>, I want to <motivation>, so I can <outcome>'
+
+FAIL: {'stories': 5, 'by_priority': {'must': 4, 'should': 1}, 'flowed_down_rows': 0, 'errors': 4, 'warnings': 0, 'info': 0}
+Scope: structure/wording lint only; flowed-down requirements are proposals needing owner approval.

@@ -1,0 +1,32 @@
+INFO     MCP-STK-001        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STK-002        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-001        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-002        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-003        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-004        need-statement             stakeholder/mission need (no 'shall' expected)
+INFO     MCP-STY-005        need-statement             stakeholder/mission need (no 'shall' expected)
+
+Trace tree:
+- MCP-STK-001
+  - MCP-SYS-011
+- MCP-STK-002
+  - MCP-SYS-010
+  - MCP-SYS-012
+- MCP-STY-001
+  - MCP-SYS-001
+  - MCP-SYS-002
+- MCP-STY-002
+  - MCP-SYS-003
+  - MCP-SYS-004
+- MCP-STY-003
+  - MCP-SYS-005
+  - MCP-SYS-006
+- MCP-STY-004
+  - MCP-SYS-007
+  - MCP-SYS-008
+- MCP-STY-005
+  - MCP-SYS-009
+  - MCP-SYS-013
+
+PASS: {'requirements': 20, 'by_status': {'proposed': 20}, 'errors': 0, 'warnings': 0, 'info': 7, 'tbd_count': 0}
+Scope: structural/linguistic lint only; technical adequacy needs an accountable engineer.

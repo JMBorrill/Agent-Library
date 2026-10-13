@@ -1,0 +1,6 @@
+ERROR    governance_check check-failed               automated check failed (exit 1); see outputs/13-governance-gap.json
+
+Recommendation (PILOT): NO_GO
+Blocking: ['MCP-RID-001', 'MCP-RID-002', 'MCP-RID-003', 'PIL-01', 'PIL-06', 'PIL-08', 'PIL-09', 'governance_check']  Conditions: ['MCP-RID-004', 'PIL-05', 'PIL-10']
+Decision: pending — only Product owner (synthetic), after compliance officer (synthetic) sign-off can record the gate decision
+Scope: readiness of recorded evidence only; not a technical judgement of the design.

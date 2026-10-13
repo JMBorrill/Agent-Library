@@ -1,0 +1,41 @@
+{
+  "inputs": {
+    "property_value": 350000.0,
+    "loan_amount": 45000.0,
+    "term_years": 15.0,
+    "product_rate_pct": 8.2,
+    "stress_margin_pct": 2.0,
+    "gross_annual_income": 52000.0,
+    "net_monthly_income": 3300.0,
+    "monthly_committed_expenditure": 220.0,
+    "monthly_essential_expenditure": 1250.0,
+    "existing_first_charge_balance": 210000.0,
+    "existing_first_charge_payment": 1080.0,
+    "stress_floor_rate_pct": 0.0,
+    "repayment_type": "repayment",
+    "charge": "second"
+  },
+  "results": {
+    "charge": "second",
+    "repayment_type": "repayment",
+    "ltv_pct": 12.857142857142856,
+    "cltv_pct": 72.85714285714285,
+    "lti": 0.8653846153846154,
+    "lti_total_secured": 4.903846153846154,
+    "monthly_payment_product_rate": 435.25520828911107,
+    "stressed_rate_pct": 10.2,
+    "stress_margin_basis": "lender policy: Northbridge Mutual (synthetic) lending policy v8 s.4 - lender policy input, not a regulatory rate",
+    "monthly_payment_stressed": 489.0930950982116,
+    "dti_pct": 41.286763733035656,
+    "payment_to_net_income_pct": 14.82100288176399,
+    "net_disposable_income_monthly": 260.9069049017884
+  },
+  "findings": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": true,
+  "scope": "Scope: affordability arithmetic only; stress margin is lender policy input. Not an affordability assessment, lending decision or advice."
+}

@@ -1,0 +1,3 @@
+
+PASS: {'decisions': 7, 'by_ai_role': {'inform': 3, 'recommend': 3, 'draft': 1}, 'by_impact': {'critical': 1, 'high': 4, 'medium': 2}, 'errors': 0, 'warnings': 0, 'info': 0}
+Scope: oversight design completeness only; effectiveness of the humans involved needs review.
