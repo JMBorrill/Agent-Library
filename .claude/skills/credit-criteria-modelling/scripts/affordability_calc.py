@@ -8,7 +8,8 @@ where stated:
   stress_margin_source (lender policy label), [stress_floor_rate_pct], repayment_type
   (repayment | interest_only), gross_annual_income, net_monthly_income,
   monthly_committed_expenditure (existing credit commitments), monthly_essential_expenditure,
-  [charge: first | second], [existing_first_charge_balance], [existing_first_charge_payment]
+  [charge: first | second], [existing_first_charge_balance], [existing_first_charge_payment],
+  [dti_policy_max_pct, dti_policy_source] (lender-policy DTI threshold; optional)
 
 Formulas:
   annuity payment = P i / (1 - (1+i)^-n), i = annual rate / 12, n = months; i = 0 -> P / n
@@ -19,7 +20,11 @@ Formulas:
   NDI = net monthly income - essential - committed - existing first-charge payment - stressed payment
 
 Usage: affordability_calc.py case.json [--json]
-Exit: 0 no error findings, 1 error findings (e.g. LTV/CLTV > 100%, zero income), 2 invalid input
+Output never says PASS: the banner is "CALCULATION COMPLETE (indicative arithmetic, not an
+affordability decision)" or "REFER ...". Negative net disposable income at the stressed payment, DTI
+above a supplied policy threshold, LTV/CLTV > 100% and zero income are error findings that set
+top-level "refer": true (with "refer_reasons") so a consuming UI cannot present the case as affordable.
+Exit: 0 calculation complete with no refer signal, 1 refer (error findings), 2 invalid input
 (negative or non-numeric values, missing fields).
 
 Scope: arithmetic only. The stress margin is a lender-policy input, not a regulatory figure; the
@@ -39,6 +44,8 @@ REQUIRED = ["property_value", "loan_amount", "term_years", "product_rate_pct", "
             "gross_annual_income", "net_monthly_income"]
 OPTIONAL_ZERO = ["monthly_committed_expenditure", "monthly_essential_expenditure",
                  "existing_first_charge_balance", "existing_first_charge_payment", "stress_floor_rate_pct"]
+BANNER_COMPLETE = "CALCULATION COMPLETE (indicative arithmetic, not an affordability decision)"
+BANNER_REFER = "REFER to a qualified human (indicative arithmetic, not an affordability decision)"
 
 
 class InputError(ValueError):
@@ -101,6 +108,12 @@ def calculate(case: dict) -> dict:
         raise InputError("property_value must be positive")
     if v["loan_amount"] == 0:
         findings.append(_f("loan_amount", "warning", "zero-loan", "loan amount is zero"))
+    dti_max = case.get("dti_policy_max_pct")
+    if dti_max is not None:
+        dti_max = _num(dti_max, "dti_policy_max_pct")
+    if v["stress_margin_pct"] == 0 and v["stress_floor_rate_pct"] <= v["product_rate_pct"]:
+        findings.append(_f("stress_margin_pct", "warning", "stress-margin-zero",
+                           "stress margin is 0 and no floor applies: payment is not stressed"))
     if not case.get("stress_margin_source"):
         findings.append(_f("stress_margin_pct", "warning", "stress-margin-unsourced",
                            "label the stress margin with the lender policy it comes from"))
@@ -143,14 +156,27 @@ def calculate(case: dict) -> dict:
         findings.append(_f("net_monthly_income", "error", "net-income-zero",
                            "net income is zero: payment-to-income undefined"))
     if res["net_disposable_income_monthly"] < 0:
-        findings.append(_f("ndi", "warning", "negative-ndi",
-                           "net disposable income is negative at the stressed payment"))
+        findings.append(_f("ndi", "error", "negative-ndi",
+                           f"net disposable income is negative at the stressed payment "
+                           f"({res['net_disposable_income_monthly']:,.2f}/month): refer to a qualified human; "
+                           "do not present as affordable"))
+    if dti_max is not None:
+        res["dti_policy_max_pct"] = dti_max
+        res["dti_policy_basis"] = f"lender policy: {case.get('dti_policy_source') or 'UNSPECIFIED'}"
+        if res["dti_pct"] is not None and res["dti_pct"] > dti_max:
+            findings.append(_f("dti_pct", "error", "dti-above-policy",
+                               f"DTI {res['dti_pct']:.2f}% exceeds the supplied policy threshold "
+                               f"{dti_max:.2f}%: refer to a qualified human"))
     if rtype == "interest_only":
         findings.append(_f("repayment_type", "info", "interest-only",
                            "interest-only: a credible repayment strategy must be evidenced separately"))
     sev = [f["severity"] for f in findings]
+    refer_reasons = [f["rule"] for f in findings if f["severity"] == "error"]
     return {"inputs": {**v, "repayment_type": rtype, "charge": charge}, "results": res, "findings": findings,
-            "summary": {"errors": sev.count("error"), "warnings": sev.count("warning"), "info": sev.count("info")}}
+            "summary": {"errors": sev.count("error"), "warnings": sev.count("warning"), "info": sev.count("info")},
+            "refer": bool(refer_reasons), "refer_reasons": refer_reasons,
+            "status": "refer" if refer_reasons else "calculation_complete",
+            "banner": BANNER_REFER if refer_reasons else BANNER_COMPLETE}
 
 
 def _fmt(x) -> str:
@@ -180,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  {k:32} {_fmt(val)}")
         for f in out["findings"]:
             print(f"{f['severity'].upper():8} {f['id']:<30} {f['rule']:<30} {f['message']}")
-        print(f"\n{'FAIL' if failed else 'PASS'}: {out['summary']}")
+        print(f"\n{out['banner']}: {out['summary']}")
         print(SCOPE)
     return 1 if failed else 0
 
