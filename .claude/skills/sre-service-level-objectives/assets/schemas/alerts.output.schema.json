@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/sre-service-level-objectives/alerts.output.schema.json",
+  "title": "slo_calc.py alerts --json output",
+  "type": "object",
+  "required": ["target", "alerts", "firing"],
+  "properties": {
+    "target": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "firing": {"type": "array", "items": {"type": "string"}},
+    "alerts": {"type": "array", "items": {"type": "object",
+      "required": ["name", "severity", "long_window", "short_window", "threshold", "burn_long", "burn_short", "firing",
+                   "budget_spent_at_detection"],
+      "properties": {"firing": {"type": "boolean"}, "threshold": {"type": "number", "exclusiveMinimum": 0}}}}
+  }
+}

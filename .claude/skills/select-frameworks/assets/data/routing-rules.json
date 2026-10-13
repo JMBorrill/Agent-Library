@@ -1,0 +1,488 @@
+{
+  "_provenance": "Library-defined routing heuristics (original). They propose; the project owner decides which frameworks apply.",
+  "packs": {
+    "systems-engineering": {
+      "flags_any": [
+        "hardware",
+        "physical_tests",
+        "safety_critical"
+      ],
+      "risk_at_least": "high",
+      "keywords": [
+        "robot",
+        "hardware",
+        "vehicle",
+        "satellite",
+        "sensor",
+        "actuator",
+        "mechanical",
+        "electrical",
+        "embedded",
+        "locomotion",
+        "rig",
+        "drone",
+        "device",
+        "system of systems",
+        "prototype"
+      ],
+      "reason": "physical/multidisciplinary system or high consequence of failure \u2014 needs requirements, interfaces, risk, V&V and gates",
+      "exclude_reason": "no hardware, physical test, safety-critical or high-risk element detected",
+      "skills_always": [
+        "se-technical-planning",
+        "se-stakeholder-conops",
+        "se-requirements",
+        "se-risk-analysis",
+        "se-verification-validation",
+        "se-review-gates"
+      ],
+      "skills_if": {
+        "se-logical-decomposition": {
+          "flags_any": [
+            "hardware"
+          ]
+        },
+        "se-architecture-trades": {
+          "flags_any": [
+            "hardware"
+          ]
+        },
+        "se-decision-analysis": {
+          "flags_any": [
+            "hardware",
+            "novel_technology"
+          ]
+        },
+        "se-interface-control": {
+          "flags_any": [
+            "hardware"
+          ]
+        },
+        "se-implementation-integration": {
+          "flags_any": [
+            "hardware"
+          ]
+        },
+        "se-technical-assessment": {
+          "flags_any": [
+            "hardware"
+          ]
+        },
+        "se-change-control": {
+          "risk_at_least": "moderate"
+        },
+        "se-configuration-management": {
+          "risk_at_least": "moderate"
+        },
+        "se-technical-data-management": {
+          "flags_any": [
+            "personal_data",
+            "regulated"
+          ]
+        },
+        "se-transition": {
+          "flags_any": [
+            "hardware"
+          ]
+        }
+      }
+    },
+    "space-engineering": {
+      "keywords": [
+        "space",
+        "asteroid",
+        "orbit",
+        "orbital",
+        "lunar",
+        "moon",
+        "mars",
+        "planetary",
+        "spacecraft",
+        "satellite",
+        "low-gravity",
+        "low gravity",
+        "microgravity",
+        "small body",
+        "comet",
+        "regolith"
+      ],
+      "reason": "space or small-body environment \u2014 engineering budgets and low-gravity physics apply",
+      "exclude_reason": "no space or low-gravity context detected",
+      "skills_always": [
+        "space-technical-budgets"
+      ],
+      "skills_if": {
+        "space-low-gravity-mobility": {
+          "keywords": [
+            "asteroid",
+            "low-gravity",
+            "low gravity",
+            "microgravity",
+            "small body",
+            "comet",
+            "hop",
+            "locomotion",
+            "regolith"
+          ]
+        }
+      }
+    },
+    "software": {
+      "flags_any": [
+        "software"
+      ],
+      "keywords": [
+        "software",
+        "app",
+        "saas",
+        "web",
+        "api",
+        "platform",
+        "mobile",
+        "code",
+        "service"
+      ],
+      "reason": "software is being built \u2014 code review, traceability and delivery metrics apply",
+      "exclude_reason": "no software development detected",
+      "skills_always": [
+        "software-code-review"
+      ],
+      "skills_if": {
+        "software-requirements-traceability": {
+          "risk_at_least": "moderate"
+        },
+        "software-delivery-metrics": {
+          "stage_in": [
+            "beta",
+            "production"
+          ]
+        }
+      }
+    },
+    "reliability-security": {
+      "flags_any": [
+        "multi_tenant",
+        "personal_data",
+        "online_service",
+        "payments"
+      ],
+      "keywords": [
+        "saas",
+        "multi-tenant",
+        "multi tenant",
+        "cloud",
+        "login",
+        "accounts",
+        "api",
+        "customer data",
+        "crm",
+        "payments"
+      ],
+      "reason": "deployed service handling data or users \u2014 threat modelling, ASVS controls, secure development and operations apply",
+      "exclude_reason": "no deployed service, personal data or multi-tenancy detected",
+      "skills_always": [
+        "security-threat-model",
+        "security-asvs-controls",
+        "security-code-checks"
+      ],
+      "skills_if": {
+        "security-secure-development": {
+          "risk_at_least": "moderate"
+        },
+        "sre-service-level-objectives": {
+          "stage_in": [
+            "beta",
+            "production"
+          ]
+        },
+        "sre-incident-response": {
+          "stage_in": [
+            "beta",
+            "production"
+          ]
+        },
+        "sre-production-readiness": {
+          "stage_in": [
+            "mvp",
+            "beta",
+            "production"
+          ]
+        }
+      }
+    },
+    "product": {
+      "flags_any": [
+        "external_users"
+      ],
+      "keywords": [
+        "customer",
+        "customers",
+        "user",
+        "users",
+        "market",
+        "mvp",
+        "product",
+        "saas",
+        "crm",
+        "small business",
+        "businesses",
+        "subscription"
+      ],
+      "reason": "external users/customers \u2014 evidence-led discovery and scoped delivery apply",
+      "exclude_reason": "no external users or market detected (internal research tool)",
+      "skills_always": [
+        "product-discovery",
+        "product-requirements-brief"
+      ],
+      "skills_if": {
+        "product-experiment-design": {
+          "stage_in": [
+            "concept",
+            "mvp",
+            "beta"
+          ]
+        },
+        "product-shaping": {
+          "stage_in": [
+            "concept",
+            "mvp",
+            "beta",
+            "production"
+          ]
+        }
+      }
+    },
+    "ux": {
+      "flags_any": [
+        "ui"
+      ],
+      "keywords": [
+        "ui",
+        "form",
+        "forms",
+        "web app",
+        "mobile app",
+        "dashboard",
+        "portal",
+        "screen"
+      ],
+      "reason": "user interface \u2014 accessible form and error patterns apply",
+      "exclude_reason": "no user interface detected",
+      "skills_always": [
+        "ux-accessibility-review"
+      ],
+      "skills_if": {}
+    },
+    "finance-credit": {
+      "flags_any": [
+        "finance",
+        "lending"
+      ],
+      "keywords": [
+        "mortgage",
+        "loan",
+        "lending",
+        "lender",
+        "credit",
+        "investment",
+        "business case",
+        "pricing",
+        "revenue",
+        "unit economics",
+        "roi",
+        "fintech",
+        "subscription",
+        "saas"
+      ],
+      "reason": "investment, unit economics or lending decisions \u2014 reproducible financial and credit analysis apply",
+      "exclude_reason": "no financial appraisal, revenue model or lending detected",
+      "skills_always": [],
+      "skills_if": {
+        "finance-unit-economics": {
+          "keywords": [
+            "saas",
+            "subscription",
+            "pricing",
+            "revenue",
+            "customers",
+            "crm",
+            "unit economics"
+          ]
+        },
+        "finance-npv-irr": {
+          "keywords": [
+            "investment",
+            "business case",
+            "valuation",
+            "roi",
+            "npv",
+            "capital",
+            "payback"
+          ]
+        },
+        "finance-options": {
+          "keywords": [
+            "options appraisal",
+            "business case",
+            "public sector",
+            "investment"
+          ]
+        },
+        "credit-criteria-modelling": {
+          "flags_any": [
+            "lending"
+          ],
+          "keywords": [
+            "mortgage",
+            "lender",
+            "criteria",
+            "loan",
+            "credit"
+          ]
+        },
+        "credit-risk-governance": {
+          "flags_any": [
+            "lending"
+          ],
+          "keywords": [
+            "mortgage",
+            "loan",
+            "lending",
+            "credit risk"
+          ]
+        },
+        "finance-fca-scope-check": {
+          "flags_all": [
+            "regulated"
+          ],
+          "jurisdiction_in": [
+            "UK",
+            "GB",
+            "United Kingdom"
+          ]
+        }
+      }
+    },
+    "ai-governance": {
+      "flags_any": [
+        "ai"
+      ],
+      "keywords": [
+        "ai",
+        "llm",
+        "machine learning",
+        "model",
+        "gpt",
+        "claude",
+        "agent",
+        "chatbot",
+        "copilot",
+        "classifier",
+        "recommendation",
+        "scoring",
+        "ai-powered"
+      ],
+      "reason": "AI components \u2014 risk assessment, evaluation, prompt-injection testing and oversight apply",
+      "exclude_reason": "no AI/ML component detected",
+      "skills_always": [
+        "ai-risk-assessment",
+        "ai-eval-harness",
+        "ai-prompt-injection-review"
+      ],
+      "skills_if": {
+        "ai-human-oversight": {
+          "flags_any": [
+            "decisions_about_individuals",
+            "regulated",
+            "agentic_tools"
+          ]
+        }
+      }
+    },
+    "orchestration": {
+      "always": true,
+      "reason": "independent challenge review applies to every project",
+      "skills_always": [
+        "independent-review",
+        "select-frameworks"
+      ],
+      "skills_if": {}
+    }
+  },
+  "workflow": [
+    {
+      "phase": "1. Frame and tailor",
+      "skills": [
+        "select-frameworks",
+        "se-technical-planning",
+        "se-stakeholder-conops",
+        "product-discovery",
+        "finance-fca-scope-check",
+        "ai-risk-assessment"
+      ]
+    },
+    {
+      "phase": "2. Define needs and requirements",
+      "skills": [
+        "product-requirements-brief",
+        "product-experiment-design",
+        "se-requirements",
+        "finance-unit-economics",
+        "finance-options",
+        "credit-criteria-modelling"
+      ]
+    },
+    {
+      "phase": "3. Design and analyse",
+      "skills": [
+        "se-logical-decomposition",
+        "se-architecture-trades",
+        "se-decision-analysis",
+        "se-interface-control",
+        "space-technical-budgets",
+        "space-low-gravity-mobility",
+        "security-threat-model",
+        "ai-human-oversight",
+        "product-shaping",
+        "finance-npv-irr",
+        "credit-risk-governance"
+      ]
+    },
+    {
+      "phase": "4. Build and verify",
+      "skills": [
+        "se-implementation-integration",
+        "se-verification-validation",
+        "software-code-review",
+        "software-requirements-traceability",
+        "security-code-checks",
+        "security-asvs-controls",
+        "security-secure-development",
+        "ux-accessibility-review",
+        "ai-eval-harness",
+        "ai-prompt-injection-review",
+        "se-technical-assessment",
+        "se-risk-analysis"
+      ]
+    },
+    {
+      "phase": "5. Independent review and gates",
+      "skills": [
+        "independent-review",
+        "se-review-gates",
+        "se-change-control",
+        "se-configuration-management"
+      ]
+    },
+    {
+      "phase": "6. Release, transition and operate",
+      "skills": [
+        "sre-service-level-objectives",
+        "sre-production-readiness",
+        "sre-incident-response",
+        "software-delivery-metrics",
+        "se-transition",
+        "se-technical-data-management"
+      ]
+    }
+  ]
+}

@@ -129,8 +129,6 @@ def check(columns: list[str], rows: list[dict], practices: dict, as_of: date | N
         covered_practices.add(pid)
         if task:
             covered_tasks.add(task)
-        elif status in DONE or status == "not_applicable":
-            pass
     if unqualified:
         findings.append(_finding("-", "info", "unqualified-id",
                                  f"{unqualified} row(s) use bare IDs; prefer SSDF-v{VERSION}-<id> in shared reports"))

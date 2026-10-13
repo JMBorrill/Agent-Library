@@ -1,0 +1,102 @@
+{
+ "service": "AI Operations Platform - new scheduling engine (synthetic)",
+ "review_date": "2026-10-12",
+ "launch_date": "2026-10-20",
+ "reviewers": [
+  {
+   "name": "reliability-engineer (synthetic)",
+   "role": "SRE"
+  },
+  {
+   "name": "security-lead (synthetic)",
+   "role": "Security"
+  },
+  {
+   "name": "scheduling-lead (synthetic)",
+   "role": "Service owner"
+  }
+ ],
+ "items": [
+  {
+   "id": "RR-01",
+   "area": "slo",
+   "title": "Booking journey SLO agreed (99.9%, 30d rolling)",
+   "status": "done",
+   "evidence_ref": "slo/booking-api.json v3",
+   "key": "slo_defined"
+  },
+  {
+   "id": "RR-02",
+   "area": "monitoring",
+   "title": "Dashboards for SLI, saturation and queue age",
+   "status": "done",
+   "evidence_ref": "dash/booking-overview"
+  },
+  {
+   "id": "RR-03",
+   "area": "alerting",
+   "title": "Burn-rate alerts tested with synthetic errors",
+   "status": "done",
+   "evidence_ref": "ALERT-TEST-2026-10-08"
+  },
+  {
+   "id": "RR-04",
+   "area": "capacity",
+   "title": "Load test at 3x forecast peak with p95 < 2 s",
+   "status": "done",
+   "evidence_ref": "perf/report-2026-10-05"
+  },
+  {
+   "id": "RR-05",
+   "area": "dependencies",
+   "title": "Calendar and LLM provider failure modes degrade gracefully",
+   "status": "done",
+   "evidence_ref": "game-day GD-12 notes"
+  },
+  {
+   "id": "RR-06",
+   "area": "rollback",
+   "title": "Rollback rehearsed in staging and prod canary (< 5 min)",
+   "status": "done",
+   "evidence_ref": "rollback drill RB-2026-10-07",
+   "key": "rollback_tested"
+  },
+  {
+   "id": "RR-07",
+   "area": "runbooks",
+   "title": "Runbooks for top 5 alerts linked from alerts",
+   "status": "done",
+   "evidence_ref": "runbooks/booking/*"
+  },
+  {
+   "id": "RR-08",
+   "area": "oncall",
+   "title": "Primary/secondary on-call rota staffed for launch +4 weeks",
+   "status": "done",
+   "evidence_ref": "rota export 2026-10-10",
+   "key": "oncall_staffed"
+  },
+  {
+   "id": "RR-09",
+   "area": "security",
+   "title": "Threat model reviewed and ASVS L2 map with no failed V8 controls",
+   "status": "done",
+   "evidence_ref": "security-review SR-88 signed by security-lead"
+  },
+  {
+   "id": "RR-10",
+   "area": "backup_restore",
+   "title": "Point-in-time restore tested into isolated environment",
+   "status": "done",
+   "evidence_ref": "restore test RT-2026-10-03 (RPO 5 min, RTO 42 min)",
+   "key": "restore_tested"
+  },
+  {
+   "id": "RR-11",
+   "area": "feature_flags",
+   "title": "New scheduling engine behind per-tenant flag with kill switch",
+   "status": "done",
+   "evidence_ref": "flag aiops.new-scheduler"
+  }
+ ]
+}

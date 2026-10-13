@@ -1,0 +1,9 @@
+{
+  "name": "Project ASTER",
+  "description": "Autonomous asteroid-mining robot. Phase 1 develops a low-gravity locomotion system and a ground demonstrator that hops in a reduced-gravity analogue rig with embedded control software.",
+  "objectives": ["Characterise hopping locomotion in a low-gravity analogue", "Select a locomotion concept for preliminary design"],
+  "stage": "concept", "risk_class": "moderate", "jurisdiction": "UK",
+  "flags": {"hardware": true, "physical_tests": true, "software": true, "ai": false, "finance": false, "lending": false,
+            "personal_data": false, "multi_tenant": false, "ui": false, "external_users": false,
+            "safety_critical": true, "regulated": false, "decisions_about_individuals": false, "novel_technology": true}
+}

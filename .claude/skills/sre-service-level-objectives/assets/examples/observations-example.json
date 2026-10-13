@@ -1,0 +1,8 @@
+{
+  "_note": "Synthetic observations for the AI Operations Platform booking API: a fast burn that started ~40 minutes ago.",
+  "5m":  {"good": 9790, "total": 10000},
+  "1h":  {"good": 118000, "total": 120000},
+  "30m": {"good": 59100, "total": 60000},
+  "6h":  {"good": 717000, "total": 720000},
+  "3d":  {"good": 8635000, "total": 8640000}
+}

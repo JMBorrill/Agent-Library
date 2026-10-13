@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "service": "",
+  "user_journey": "",
+  "sli": {
+    "description": "",
+    "good_events": "",
+    "valid_events": "",
+    "measurement": ""
+  },
+  "target": 0.999,
+  "window": "30d rolling",
+  "owner": "",
+  "exclusion_policy": "",
+  "alerting_policy": {
+    "ref": "",
+    "alerts": [
+      {
+        "name": "",
+        "severity": "page | ticket",
+        "long_window": "1h",
+        "short_window": "5m",
+        "burn_rate": 0
+      }
+    ]
+  },
+  "error_budget_policy": ""
+}

@@ -1,0 +1,58 @@
+{
+ "title": "Booking API latency regression (synthetic)",
+ "severity": "SEV3",
+ "summary": "A slow ORM query added in release 2026.10.2 raised booking API p95 latency.",
+ "impact": "p95 latency 2.8 s (SLO threshold 2 s) for 47 minutes; 12% of booking requests counted as bad; 9% of monthly latency budget consumed.",
+ "timeline": [
+  {
+   "time": "2026-10-06T09:02Z",
+   "event": "Release 2026.10.2 deployed"
+  },
+  {
+   "time": "2026-10-06T09:14Z",
+   "event": "Fast-burn latency alert pages on-call"
+  },
+  {
+   "time": "2026-10-06T09:31Z",
+   "event": "Rollback started"
+  },
+  {
+   "time": "2026-10-06T09:49Z",
+   "event": "Latency back within SLO; resolved"
+  }
+ ],
+ "root_causes": [
+  "New query lacked an index on appointments(tenant_id, starts_at)"
+ ],
+ "contributing_factors": [
+  "Load test dataset had 10x fewer appointments than production",
+  "Query plan not reviewed for new repository methods"
+ ],
+ "detection": "Burn-rate alert paged 12 minutes after deploy.",
+ "response": "On-call rolled back the release; incident commander coordinated.",
+ "went_well": [
+  "Alert fired quickly",
+  "Rollback was a single command"
+ ],
+ "went_badly": [
+  "Load test data unrepresentative"
+ ],
+ "action_items": [
+  {
+   "description": "Add composite index",
+   "owner": "scheduling-team",
+   "priority": "P1",
+   "due": "2026-10-10",
+   "tracking_id": "AIOPS-2301",
+   "status": "done"
+  },
+  {
+   "description": "Refresh load-test dataset monthly",
+   "owner": "perf-lead",
+   "priority": "P2",
+   "due": "2026-11-15",
+   "tracking_id": "AIOPS-2302",
+   "status": "open"
+  }
+ ]
+}

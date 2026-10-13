@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/sre-service-level-objectives/slo-spec.schema.json",
+  "title": "SLO specification (input to slo_calc.py validate)",
+  "type": "object",
+  "required": ["service", "user_journey", "sli", "target", "window", "owner", "exclusion_policy", "alerting_policy"],
+  "properties": {
+    "service": {"type": "string", "minLength": 1},
+    "user_journey": {"type": "string", "minLength": 1},
+    "sli": {"type": "object", "required": ["good_events", "valid_events", "measurement"]},
+    "target": {"type": "number", "exclusiveMinimum": 0},
+    "window": {"type": "string", "pattern": "^\\d+\\s*[dwDW](\\s+(rolling|calendar))?$"},
+    "owner": {"type": "string", "minLength": 1},
+    "exclusion_policy": {"type": "string", "minLength": 1},
+    "alerting_policy": {"type": "object"},
+    "error_budget_policy": {"type": "string"}
+  }
+}

@@ -1,0 +1,127 @@
+{
+ "service": "",
+ "review_date": "YYYY-MM-DD",
+ "launch_date": "YYYY-MM-DD",
+ "reviewers": [
+  {
+   "name": "",
+   "role": ""
+  }
+ ],
+ "items": [
+  {
+   "id": "RR-01",
+   "area": "slo",
+   "key": "slo_defined",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-02",
+   "area": "monitoring",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-03",
+   "area": "alerting",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-04",
+   "area": "capacity",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-05",
+   "area": "dependencies",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-06",
+   "area": "rollback",
+   "key": "rollback_tested",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-07",
+   "area": "runbooks",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-08",
+   "area": "oncall",
+   "key": "oncall_staffed",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-09",
+   "area": "security",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-10",
+   "area": "backup_restore",
+   "key": "restore_tested",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  },
+  {
+   "id": "RR-11",
+   "area": "feature_flags",
+   "title": "",
+   "status": "done | partial | not_done | na",
+   "evidence_ref": "",
+   "owner": "",
+   "due": "YYYY-MM-DD",
+   "justification": ""
+  }
+ ]
+}

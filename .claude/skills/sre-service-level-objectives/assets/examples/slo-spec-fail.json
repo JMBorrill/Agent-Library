@@ -1,0 +1,15 @@
+{
+  "name": "criteria-search-latency",
+  "service": "Mortgage-criteria search (synthetic)",
+  "user_journey": "",
+  "sli": {"description": "Search is fast", "good_events": "fast responses"},
+  "target": 100,
+  "window": "monthly",
+  "owner": "",
+  "alerting_policy": {
+    "alerts": [
+      {"name": "inverted-windows", "severity": "ticket", "long_window": "5m", "short_window": "1h", "burn_rate": 14.4},
+      {"name": "too-slow", "severity": "ticket", "long_window": "30d", "short_window": "1d", "burn_rate": 2}
+    ]
+  }
+}

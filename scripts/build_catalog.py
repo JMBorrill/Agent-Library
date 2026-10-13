@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""Build the self-contained catalogue used by the select-frameworks skill.
+
+Reads packs/packs.json, sources/registry.json, every SKILL.md description and every agent's skill
+list, and writes .claude/skills/select-frameworks/assets/data/catalog.json. Run after adding or
+changing skills/agents/packs; tests fail if the catalogue is stale.
+
+Usage: python3 scripts/build_catalog.py [--check]
+Exit: 0 written / up to date, 1 stale (with --check).
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from agentlib import AGENTS_DIR, ROOT, SKILLS_DIR, frontmatter  # noqa: E402
+
+OUT = SKILLS_DIR / "select-frameworks" / "assets" / "data" / "catalog.json"
+
+
+def build() -> dict:
+    packs = json.loads((ROOT / "packs" / "packs.json").read_text(encoding="utf-8"))["packs"]
+    registry = json.loads((ROOT / "sources" / "registry.json").read_text(encoding="utf-8"))
+    skills = {}
+    for p in sorted(SKILLS_DIR.glob("*/SKILL.md")):
+        fm, _ = frontmatter.load(p.read_text(encoding="utf-8"))
+        meta = fm.get("metadata", {})
+        skills[fm["name"]] = {"pack": meta.get("pack"), "sources": meta.get("sources", "").split(),
+                              "description": fm["description"]}
+    agents = {}
+    for p in sorted(AGENTS_DIR.glob("*.md")):
+        fm, body = frontmatter.load(p.read_text(encoding="utf-8"))
+        m = re.search(r"^## Skills\s*$(.*?)(?=^## |\Z)", body, re.M | re.S)
+        refs = set(fm.get("skills", [])) | set(re.findall(r"`([a-z0-9]+(?:-[a-z0-9]+)*)`", m.group(1) if m else ""))
+        agents[fm["name"]] = {"skills": sorted(s for s in refs if s in skills),
+                              "reviewer": "Write" not in fm.get("tools", ""), "description": fm["description"]}
+    sources = {r["id"]: {"title": r["title"], "access_status": r["access_status"], "url": r["url"],
+                         "normative_status": r["normative_status"]} for r in registry}
+    return {"_generated_by": "scripts/build_catalog.py — do not edit by hand",
+            "packs": {k: {"title": v["title"], "skills": v["skills"], "agents": v["agents"], "sources": v["sources"],
+                          "requires": v.get("requires", [])} for k, v in packs.items()},
+            "skills": skills, "agents": agents, "sources": sources}
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--check", action="store_true")
+    a = ap.parse_args(argv)
+    data = json.dumps(build(), indent=2, sort_keys=True) + "\n"
+    if a.check:
+        if not OUT.is_file() or OUT.read_text(encoding="utf-8") != data:
+            print(f"STALE: {OUT.relative_to(ROOT)} — run python3 scripts/build_catalog.py")
+            return 1
+        print("catalog up to date")
+        return 0
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(data, encoding="utf-8")
+    print(f"wrote {OUT.relative_to(ROOT)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

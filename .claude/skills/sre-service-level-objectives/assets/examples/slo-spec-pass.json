@@ -1,0 +1,24 @@
+{
+  "name": "booking-api-availability",
+  "service": "AI Operations Platform booking API (synthetic)",
+  "user_journey": "Clinic receptionist books, moves or cancels an appointment",
+  "sli": {
+    "description": "Proportion of valid booking API requests served successfully",
+    "good_events": "HTTP responses with status < 500 and latency below 2 s, excluding 429 from per-tenant rate limiting",
+    "valid_events": "All booking API requests from authenticated tenants, excluding synthetic health checks",
+    "measurement": "Load balancer request logs aggregated per minute"
+  },
+  "target": 0.999,
+  "window": "30d rolling",
+  "owner": "scheduling-team (synthetic)",
+  "exclusion_policy": "Planned maintenance announced 7 days ahead and capped at 30 minutes per month; incidents caused by a single tenant exceeding contractual quotas",
+  "alerting_policy": {
+    "ref": "alerts/booking-api.yaml",
+    "alerts": [
+      {"name": "fast-burn-page", "severity": "page", "long_window": "1h", "short_window": "5m", "burn_rate": 14.4},
+      {"name": "slow-burn-page", "severity": "page", "long_window": "6h", "short_window": "30m", "burn_rate": 6},
+      {"name": "budget-ticket", "severity": "ticket", "long_window": "3d", "short_window": "6h", "burn_rate": 1}
+    ]
+  },
+  "error_budget_policy": "If the 30-day budget is exhausted, feature releases pause until reliability work restores budget; exceptions need the product lead and SRE lead"
+}

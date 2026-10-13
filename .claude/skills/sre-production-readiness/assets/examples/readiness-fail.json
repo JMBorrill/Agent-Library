@@ -1,0 +1,94 @@
+{
+ "service": "AI Operations Platform - AI call summaries (synthetic)",
+ "review_date": "2026-10-12",
+ "launch_date": "2026-10-20",
+ "reviewers": [
+  {
+   "name": "reliability-engineer (synthetic)",
+   "role": "SRE"
+  },
+  {
+   "name": "security-lead (synthetic)",
+   "role": "Security"
+  },
+  {
+   "name": "scheduling-lead (synthetic)",
+   "role": "Service owner"
+  }
+ ],
+ "items": [
+  {
+   "id": "RR-01",
+   "area": "slo",
+   "title": "SLO not yet agreed for AI call summaries",
+   "status": "not_done",
+   "evidence_ref": "",
+   "key": "slo_defined"
+  },
+  {
+   "id": "RR-02",
+   "area": "monitoring",
+   "title": "Dashboards for SLI, saturation and queue age",
+   "status": "done",
+   "evidence_ref": "dash/booking-overview"
+  },
+  {
+   "id": "RR-03",
+   "area": "alerting",
+   "title": "Burn-rate alerts tested with synthetic errors",
+   "status": "not_done",
+   "evidence_ref": ""
+  },
+  {
+   "id": "RR-04",
+   "area": "capacity",
+   "title": "Load test at 3x forecast peak with p95 < 2 s",
+   "status": "done",
+   "evidence_ref": "perf/report-2026-10-05"
+  },
+  {
+   "id": "RR-05",
+   "area": "dependencies",
+   "title": "Calendar and LLM provider failure modes degrade gracefully",
+   "status": "done",
+   "evidence_ref": "game-day GD-12 notes"
+  },
+  {
+   "id": "RR-06",
+   "area": "rollback",
+   "title": "Rollback script written but never exercised",
+   "status": "partial",
+   "evidence_ref": "",
+   "key": "rollback_tested"
+  },
+  {
+   "id": "RR-07",
+   "area": "runbooks",
+   "title": "Runbooks for top 5 alerts linked from alerts",
+   "status": "done",
+   "evidence_ref": "runbooks/booking/*"
+  },
+  {
+   "id": "RR-09",
+   "area": "security",
+   "title": "Threat model reviewed and ASVS L2 map with no failed V8 controls",
+   "status": "done",
+   "evidence_ref": "security-review SR-88 signed by security-lead"
+  },
+  {
+   "id": "RR-10",
+   "area": "backup_restore",
+   "title": "Backups enabled (restore never tested)",
+   "status": "done",
+   "evidence_ref": "",
+   "key": "restore_tested"
+  },
+  {
+   "id": "RR-11",
+   "area": "feature_flags",
+   "title": "New scheduling engine behind per-tenant flag with kill switch",
+   "status": "done",
+   "evidence_ref": "flag aiops.new-scheduler"
+  }
+ ]
+}

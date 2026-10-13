@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/sre-production-readiness/readiness-checklist.schema.json",
+  "title": "Production readiness checklist (input to readiness_check.py)",
+  "type": "object",
+  "required": ["service", "reviewers", "items"],
+  "properties": {
+    "service": {"type": "string", "minLength": 1},
+    "review_date": {"type": "string"},
+    "launch_date": {"type": "string"},
+    "reviewers": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["name", "role"]}},
+    "items": {"type": "array", "minItems": 1, "items": {"type": "object",
+      "required": ["id", "area", "title", "status"],
+      "properties": {
+        "area": {"enum": ["slo", "monitoring", "alerting", "capacity", "dependencies", "rollback", "runbooks", "oncall",
+                          "security", "backup_restore", "feature_flags"]},
+        "key": {"type": "string"},
+        "status": {"enum": ["done", "partial", "not_done", "na"]},
+        "evidence_ref": {"type": "string"},
+        "owner": {"type": "string"},
+        "due": {"type": "string"},
+        "justification": {"type": "string"}}}}
+  }
+}

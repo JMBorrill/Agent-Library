@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/security-secure-development/ssdf-evidence.output.schema.json",
+  "title": "ssdf_evidence_check.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
+      "properties": {"severity": {"enum": ["error", "warning", "info"]},
+                     "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}}},
+    "summary": {"type": "object",
+      "required": ["ssdf_version", "practices", "practices_covered", "tasks", "groups", "errors", "warnings"],
+      "properties": {"ssdf_version": {"const": "1.1"}, "practices": {"const": 19}, "tasks": {"const": 42},
+        "groups": {"type": "object", "propertyNames": {"enum": ["PO", "PS", "PW", "RV"]}}}}
+  }
+}

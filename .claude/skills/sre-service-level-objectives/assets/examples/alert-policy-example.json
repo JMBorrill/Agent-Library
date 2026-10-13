@@ -1,0 +1,10 @@
+{
+  "_note": "EXAMPLE thresholds commonly cited for a 99.9% / 30-day SLO (page 14.4x over 1h with 5m short window; page 6x over 6h/30m; ticket 1x over 3d/6h). They were NOT verified against the Google SRE Workbook in this library (source inaccessible). Tune for your service.",
+  "target": 0.999,
+  "slo_window_days": 30,
+  "alerts": [
+    {"name": "fast-burn-page", "severity": "page", "long_window": "1h", "short_window": "5m", "burn_rate": 14.4},
+    {"name": "slow-burn-page", "severity": "page", "long_window": "6h", "short_window": "30m", "burn_rate": 6},
+    {"name": "budget-ticket", "severity": "ticket", "long_window": "3d", "short_window": "6h", "burn_rate": 1}
+  ]
+}

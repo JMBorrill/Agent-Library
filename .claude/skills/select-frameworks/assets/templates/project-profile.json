@@ -1,0 +1,15 @@
+{
+  "name": "",
+  "description": "",
+  "objectives": [],
+  "stage": "concept",
+  "risk_class": "moderate",
+  "jurisdiction": "",
+  "flags": {
+    "hardware": false, "physical_tests": false, "software": false, "ai": false, "agentic_tools": false,
+    "finance": false, "lending": false, "personal_data": false, "multi_tenant": false, "online_service": false,
+    "payments": false, "ui": false, "external_users": false, "safety_critical": false, "regulated": false,
+    "decisions_about_individuals": false, "novel_technology": false
+  },
+  "open_questions": []
+}
