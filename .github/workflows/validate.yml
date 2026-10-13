@@ -16,7 +16,7 @@ concurrency:
 jobs:
   validate:
     name: Validate, test and evaluate (offline)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # poppler 24.02: catalogs are reproduced byte-for-byte
     strategy:
       fail-fast: false
       matrix:
@@ -35,6 +35,8 @@ jobs:
           python -m pip install -r requirements-dev.txt
       - name: Verify pinned source PDFs
         run: python scripts/verify_source_pdfs.py
+      - name: Catalogs reproduce from pinned PDFs
+        run: for f in scripts/extract/*.py; do python "$f" --check || exit 1; done
       - name: Registry is current
         run: python -m agentlib registry --check
       - name: Structural validation
@@ -53,7 +55,7 @@ jobs:
 
   install-smoke:
     name: Install into a fresh repository
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # poppler 24.02: catalogs are reproduced byte-for-byte
     needs: validate
     steps:
       - uses: actions/checkout@v4
