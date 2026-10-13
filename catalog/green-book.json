@@ -1,0 +1,2069 @@
+{
+  "catalog_id": "green-book",
+  "source_id": "treasury-green",
+  "title": "The Green Book: UK government guidance on appraisal - appraisal process, Five Case Model, key concepts and parameters",
+  "edition": "2026 edition (HM Treasury, ISBN 978-1-918417-12-8, PU3608)",
+  "description": "Machine-readable extract of the 2026 Green Book: the four-stage appraisal process, the Five Case Model (what each case contains and must demonstrate), business case stages (SOC/OBC/FBC), key appraisal concepts with paragraph references, and numeric appraisal parameters actually stated in the 2026 text. Values deferred to supplementary guidance are listed under parameters.not_in_edition and must be supplied by users. Crown copyright 2026, Open Government Licence v3.0.",
+  "extraction": {
+    "method": "Manual reading of the full 2026 text; each item anchored by regex to a unique body page of `pdftotext -layout` output; parameters parsed by regex and asserted (scripts/extract/greenbook.py).",
+    "date": "2026-10-13",
+    "fidelity": "paraphrased",
+    "notes": "Item texts paraphrase the cited paragraphs; para numbers are those printed in the 2026 edition. Printed page = PDF page - 6 for body pages (verified from folios).",
+    "pages_reviewed": "1-88 (body text PDF pp. 7-85)"
+  },
+  "groups": [
+    {
+      "id": "general",
+      "title": "Purpose, scope and principles of the Green Book (Chapters 1-2)",
+      "citation": {
+        "pdf_page": 7,
+        "printed_page": 1,
+        "section": "Purpose, scope and principles of the Green Book (Chapters 1-2)"
+      }
+    },
+    {
+      "id": "process",
+      "title": "The appraisal process (Table 1)",
+      "citation": {
+        "pdf_page": 11,
+        "printed_page": 5,
+        "section": "The appraisal process (Table 1)"
+      }
+    },
+    {
+      "id": "five-case",
+      "title": "The Five Case Model (Table 2)",
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 14,
+        "section": "The Five Case Model (Table 2)"
+      }
+    },
+    {
+      "id": "bc-stages",
+      "title": "Project business case stages (Table 3)",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "Project business case stages (Table 3)"
+      }
+    },
+    {
+      "id": "duties",
+      "title": "Statutory duties reflected in appraisal (para 3.18)",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "Statutory duties reflected in appraisal (para 3.18)"
+      }
+    },
+    {
+      "id": "rationale",
+      "title": "Rationale and objectives (Chapter 4)",
+      "citation": {
+        "pdf_page": 23,
+        "printed_page": 17,
+        "section": "Rationale and objectives (Chapter 4)"
+      }
+    },
+    {
+      "id": "csf",
+      "title": "Critical success factors (Table 4)",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "Critical success factors (Table 4)"
+      }
+    },
+    {
+      "id": "longlist",
+      "title": "Generating options and longlist appraisal (Chapter 5)",
+      "citation": {
+        "pdf_page": 29,
+        "printed_page": 23,
+        "section": "Generating options and longlist appraisal (Chapter 5)"
+      }
+    },
+    {
+      "id": "shortlist",
+      "title": "Shortlist appraisal: scope, time horizon, costs and benefits (Chapter 6)",
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 32,
+        "section": "Shortlist appraisal: scope, time horizon, costs and benefits (Chapter 6)"
+      }
+    },
+    {
+      "id": "prices-discounting",
+      "title": "Inflation and discounting (Chapter 6)",
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 39,
+        "section": "Inflation and discounting (Chapter 6)"
+      }
+    },
+    {
+      "id": "risk",
+      "title": "Risk, uncertainty, optimism bias and contingency (Chapter 6)",
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 41,
+        "section": "Risk, uncertainty, optimism bias and contingency (Chapter 6)"
+      }
+    },
+    {
+      "id": "metrics",
+      "title": "Summary metrics, preferred option, sensitivity and switching values (Chapter 6)",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 45,
+        "section": "Summary metrics, preferred option, sensitivity and switching values (Chapter 6)"
+      }
+    },
+    {
+      "id": "distributional",
+      "title": "Distributional and place-based analysis (Chapter 7)",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 49,
+        "section": "Distributional and place-based analysis (Chapter 7)"
+      }
+    },
+    {
+      "id": "valuation",
+      "title": "Valuation of social costs and social benefits (Chapter 8)",
+      "citation": {
+        "pdf_page": 59,
+        "printed_page": 53,
+        "section": "Valuation of social costs and social benefits (Chapter 8)"
+      }
+    },
+    {
+      "id": "presentation",
+      "title": "Presentation of results (Chapter 9)",
+      "citation": {
+        "pdf_page": 75,
+        "printed_page": 69,
+        "section": "Presentation of results (Chapter 9)"
+      }
+    },
+    {
+      "id": "me",
+      "title": "Monitoring and evaluation (Chapter 10)",
+      "citation": {
+        "pdf_page": 78,
+        "printed_page": 72,
+        "section": "Monitoring and evaluation (Chapter 10)"
+      }
+    },
+    {
+      "id": "private-finance",
+      "title": "Private finance models (Annex A)",
+      "citation": {
+        "pdf_page": 82,
+        "printed_page": 76,
+        "section": "Private finance models (Annex A)"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "general.mandatory",
+      "title": "Who must follow the Green Book",
+      "text": "Mandatory for UK government departments and arm's length bodies, with the accompanying business case guidance, when developing proposals involving significant public spending; also used for regulatory impact assessments.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 7,
+        "printed_page": 1,
+        "section": "para 1.3-1.4"
+      },
+      "para": "1.3-1.4",
+      "level": "must"
+    },
+    {
+      "id": "general.proportionality",
+      "title": "Proportionality",
+      "text": "Guidance should be used proportionately: effort should correlate with the proposal's scale, cost, complexity and risk.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 8,
+        "printed_page": 2,
+        "section": "para 1.8"
+      },
+      "para": "1.8",
+      "level": "should"
+    },
+    {
+      "id": "general.supplementary-guidance",
+      "title": "Supplementary guidance",
+      "text": "Many topics are covered in more detail in supplementary guidance listed on GOV.UK; departmental supplementary guidance is peer-reviewed by the Chief Economist Appraisal Group.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 8,
+        "printed_page": 2,
+        "section": "para 1.9"
+      },
+      "para": "1.9",
+      "level": "guidance"
+    },
+    {
+      "id": "general.appraisal-vs-evaluation",
+      "title": "Appraisal versus evaluation",
+      "text": "Appraisal assesses a proposal before approval; evaluation assesses it after implementation (Magenta Book). Consider from the outset how the proposal will be evaluated.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 8,
+        "printed_page": 2,
+        "section": "para 1.10"
+      },
+      "para": "1.10",
+      "level": "should"
+    },
+    {
+      "id": "general.roamef",
+      "title": "ROAMEF cycle",
+      "text": "A proposal typically progresses through Rationale, Objectives, Appraisal, Monitoring, Evaluation and Feedback (ROAMEF). The Green Book focuses on the first three.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 9,
+        "printed_page": 3,
+        "section": "para 2.2-2.3"
+      },
+      "para": "2.2-2.3",
+      "level": "guidance"
+    },
+    {
+      "id": "general.social-value",
+      "title": "Social value",
+      "text": "Social value is the value a proposal brings to UK residents: all benefits, costs and risks affecting wellbeing (prosperity, justice, security, climate, environment, health, distributional effects), not just financial returns.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 10,
+        "printed_page": 4,
+        "section": "para 2.4-2.5"
+      },
+      "para": "2.4-2.5",
+      "level": "guidance"
+    },
+    {
+      "id": "general.value-for-money",
+      "title": "Definition of value for money (Box 1)",
+      "text": "Value for money is a balanced judgement on the optimal use of public resources, based on: performance against objectives and CSFs (options failing objectives cannot be VfM); monetisable costs and benefits; unmonetisable costs and benefits; public sector financial impact; distribution across groups and places; and risk and uncertainty.",
+      "group": "general",
+      "citation": {
+        "pdf_page": 10,
+        "printed_page": 4,
+        "section": "para 2.6 / Box 1"
+      },
+      "para": "2.6 / Box 1",
+      "level": "must"
+    },
+    {
+      "id": "general.fraud-risk",
+      "title": "Fraud risk",
+      "text": "Pay particular attention to fraud risk where public money is distributed through grants, loans or other payments (Government Fraud Risk Assessment Standard).",
+      "group": "general",
+      "citation": {
+        "pdf_page": 13,
+        "printed_page": 7,
+        "section": "para 2.24"
+      },
+      "para": "2.24",
+      "level": "should"
+    },
+    {
+      "id": "stage.1-rationale-objectives",
+      "title": "Stage 1: Rationale and objectives",
+      "text": "Set out why government needs to act, what is needed to bring about the desired outcomes, and what would happen if government does not act; establish specific objectives.",
+      "group": "process",
+      "citation": {
+        "pdf_page": 11,
+        "printed_page": 5,
+        "section": "para 2.8 / Table 1"
+      },
+      "para": "2.8 / Table 1",
+      "stage_number": 1,
+      "level": "must"
+    },
+    {
+      "id": "stage.2-options-longlist",
+      "title": "Stage 2: Generating options and longlist appraisal",
+      "text": "Generate and assess a wide range of possible options for achieving the objectives; take the most compelling forward as a shortlist.",
+      "group": "process",
+      "citation": {
+        "pdf_page": 11,
+        "printed_page": 5,
+        "section": "para 2.8 / Table 1"
+      },
+      "para": "2.8 / Table 1",
+      "stage_number": 2,
+      "level": "must"
+    },
+    {
+      "id": "stage.3-shortlist",
+      "title": "Stage 3: Shortlist appraisal",
+      "text": "Detailed analysis of the shortlisted options using social cost-benefit analysis or social cost-effectiveness analysis.",
+      "group": "process",
+      "citation": {
+        "pdf_page": 11,
+        "printed_page": 5,
+        "section": "para 2.8 / Table 1"
+      },
+      "para": "2.8 / Table 1",
+      "stage_number": 3,
+      "level": "must"
+    },
+    {
+      "id": "stage.4-preferred-option",
+      "title": "Stage 4: Identifying the preferred option",
+      "text": "Identify a single preferred option that optimises value for money and present it, with details of the appraisal process, in advice to decision makers.",
+      "group": "process",
+      "citation": {
+        "pdf_page": 11,
+        "printed_page": 5,
+        "section": "para 2.8 / Table 1"
+      },
+      "para": "2.8 / Table 1",
+      "stage_number": 4,
+      "level": "must"
+    },
+    {
+      "id": "process.evidence",
+      "title": "All stages informed by evidence",
+      "text": "All four stages must be informed by evidence, including previous evaluations of similar interventions; sources of uncertainty should be clearly communicated.",
+      "group": "process",
+      "citation": {
+        "pdf_page": 11,
+        "printed_page": 5,
+        "section": "para 2.9-2.10"
+      },
+      "para": "2.9-2.10",
+      "level": "must"
+    },
+    {
+      "id": "case.strategic",
+      "title": "Strategic case",
+      "text": "Sets out the rationale and objectives for the intervention.",
+      "group": "five-case",
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 14,
+        "section": "para 3.12 / Table 2"
+      },
+      "para": "3.12 / Table 2",
+      "level": "must",
+      "demonstrates": "The case for change and the SMART objectives the intervention will achieve.",
+      "contents": [
+        "Case for change",
+        "Theory of change",
+        "SMART objectives",
+        "Business as usual",
+        "Strategic fit"
+      ],
+      "guidance_sources": [
+        "Business case guidance",
+        "Green Book Chapter 4"
+      ]
+    },
+    {
+      "id": "case.economic",
+      "title": "Economic case",
+      "text": "Sets out the longlist and shortlist of options for achieving the objectives in the strategic case and identifies the preferred option that delivers the best value for money.",
+      "group": "five-case",
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 14,
+        "section": "para 3.12 / Table 2"
+      },
+      "para": "3.12 / Table 2",
+      "level": "must",
+      "demonstrates": "The preferred option optimises value for money among a genuine range of options.",
+      "contents": [
+        "Critical success factors",
+        "Longlist appraisal",
+        "Shortlist appraisal"
+      ],
+      "guidance_sources": [
+        "Business case guidance",
+        "Green Book Chapters 5-8"
+      ]
+    },
+    {
+      "id": "case.commercial",
+      "title": "Commercial case",
+      "text": "Describes how government will source the inputs required for delivering the preferred option and who will manage the risks associated with delivery and operation.",
+      "group": "five-case",
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 14,
+        "section": "para 3.12 / Table 2"
+      },
+      "para": "3.12 / Table 2",
+      "level": "must",
+      "demonstrates": "The preferred option can be sourced on commercially viable terms with appropriate risk allocation.",
+      "contents": [
+        "Procurement strategy",
+        "Service requirements and outputs",
+        "Risk allocation",
+        "Charging mechanism",
+        "Key contractual arrangements",
+        "Personnel implications"
+      ],
+      "guidance_sources": [
+        "Business case guidance",
+        "Commercial Standard and Sourcing Playbook",
+        "Cabinet Office Central Commercial Teams"
+      ]
+    },
+    {
+      "id": "case.financial",
+      "title": "Financial case",
+      "text": "Concerned with the affordability of the proposal for the public bodies involved.",
+      "group": "five-case",
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 14,
+        "section": "para 3.12 / Table 2"
+      },
+      "para": "3.12 / Table 2",
+      "level": "must",
+      "demonstrates": "The proposal is affordable and funded for every public body involved.",
+      "contents": [
+        "Public sector costs in RDEL, CDEL or AME",
+        "Impact on income, expenditure and balance sheet of public bodies",
+        "Overall affordability and funding"
+      ],
+      "guidance_sources": [
+        "Business case guidance",
+        "Consolidated budgeting guidance",
+        "Departmental finance teams"
+      ]
+    },
+    {
+      "id": "case.management",
+      "title": "Management case",
+      "text": "Sets out the practical arrangements for implementation and demonstrates that the preferred option can be delivered successfully.",
+      "group": "five-case",
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 14,
+        "section": "para 3.12 / Table 2"
+      },
+      "para": "3.12 / Table 2",
+      "level": "must",
+      "demonstrates": "The preferred option can be delivered successfully.",
+      "contents": [
+        "Governance arrangements (roles, responsibilities, plans)",
+        "Change management, benefits realisation and risk management arrangements",
+        "Monitoring and evaluation plan",
+        "Contingency arrangements and plans"
+      ],
+      "guidance_sources": [
+        "Business case guidance",
+        "Teal Book (project delivery)",
+        "Orange Book (risk management)",
+        "Magenta Book (monitoring and evaluation)"
+      ]
+    },
+    {
+      "id": "five-case.interdependence",
+      "title": "Five cases developed together",
+      "text": "The five dimensions are not five separate business cases but interconnected perspectives developed together iteratively and proportionately; no additional 'case' should be invented for special features (express them as objectives, CSFs or social costs/benefits).",
+      "group": "five-case",
+      "citation": {
+        "pdf_page": 19,
+        "printed_page": 13,
+        "section": "para 3.15-3.16"
+      },
+      "para": "3.15-3.16",
+      "level": "should"
+    },
+    {
+      "id": "bc.soc",
+      "title": "Strategic Outline Case (SOC)",
+      "text": "First stage: makes the case for change, identifies SMART objectives and sets out an initial longlist and shortlist of options to identify a preferred way forward.",
+      "group": "bc-stages",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "para 3.17 / Table 3"
+      },
+      "para": "3.17 / Table 3",
+      "level": "must",
+      "appraisal_stages": [
+        "Rationale and objectives",
+        "Options generation and longlist appraisal",
+        "Identification of preferred way forward"
+      ]
+    },
+    {
+      "id": "bc.obc",
+      "title": "Outline Business Case (OBC)",
+      "text": "Second stage: revisits the SOC options to identify the preferred option after more detailed analysis, and outlines commercial, financial and management arrangements.",
+      "group": "bc-stages",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "para 3.17 / Table 3"
+      },
+      "para": "3.17 / Table 3",
+      "level": "must",
+      "appraisal_stages": [
+        "Shortlist appraisal",
+        "Identification of preferred option"
+      ]
+    },
+    {
+      "id": "bc.fbc",
+      "title": "Full Business Case (FBC)",
+      "text": "Third stage: sets out the full commercial, financial and management arrangements required to deliver the project successfully, following procurement.",
+      "group": "bc-stages",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "para 3.17 / Table 3"
+      },
+      "para": "3.17 / Table 3",
+      "level": "must",
+      "appraisal_stages": [
+        "Review and iterate the appraisal following the procurement process"
+      ]
+    },
+    {
+      "id": "duty.epps",
+      "title": "Environmental principles policy statement (EPPS) duty",
+      "text": "Environment Act 2021 duty on Ministers to have due regard to the EPPS; identify environmental effects of options and apply the five principles; reflect explicitly at longlist and shortlist stages.",
+      "group": "duties",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "para 3.18"
+      },
+      "para": "3.18",
+      "level": "must"
+    },
+    {
+      "id": "duty.biodiversity",
+      "title": "Biodiversity duty",
+      "text": "Public authorities in England must consider what they can do to conserve and enhance biodiversity; reflect explicitly at longlist and shortlist stages.",
+      "group": "duties",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "para 3.18"
+      },
+      "para": "3.18",
+      "level": "must"
+    },
+    {
+      "id": "duty.psed",
+      "title": "Public sector equality duty (PSED)",
+      "text": "Have due regard to eliminating conduct prohibited by the Equality Act 2010, advancing equality of opportunity and fostering good relations; assess differential impacts on people with protected characteristics and consider mitigation.",
+      "group": "duties",
+      "citation": {
+        "pdf_page": 21,
+        "printed_page": 15,
+        "section": "para 3.18"
+      },
+      "para": "3.18",
+      "level": "must"
+    },
+    {
+      "id": "rationale.case-for-change",
+      "title": "Case for change",
+      "text": "Explains why the government needs to act, why the outcomes are worth pursuing, why government is best placed, and why businesses, households and charities cannot achieve them themselves.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 23,
+        "printed_page": 17,
+        "section": "para 4.2-4.5"
+      },
+      "para": "4.2-4.5",
+      "level": "should"
+    },
+    {
+      "id": "rationale.market-failure",
+      "title": "Market failure and equity rationales",
+      "text": "Rationales include market failures (public goods, externalities, market power, imperfect information, co-ordination failure) and equity; PESTLE analysis can frame context.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 24,
+        "printed_page": 18,
+        "section": "para 4.6-4.8"
+      },
+      "para": "4.6-4.8",
+      "level": "guidance"
+    },
+    {
+      "id": "rationale.theory-of-change",
+      "title": "Theory of change",
+      "text": "The logical chain from inputs to outputs to outcomes, with stated, evidenced assumptions agreed by decision makers.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 24,
+        "printed_page": 18,
+        "section": "para 4.9-4.13"
+      },
+      "para": "4.9-4.13",
+      "level": "should"
+    },
+    {
+      "id": "rationale.bau",
+      "title": "Business as usual (BAU)",
+      "text": "The outcome expected if current arrangements continue and the proposal is not implemented; a benchmark. BAU does not mean doing nothing and must be fair and reasonable.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 20,
+        "section": "para 4.14-4.18"
+      },
+      "para": "4.14-4.18",
+      "level": "must"
+    },
+    {
+      "id": "rationale.bau-absolute",
+      "title": "Present options in absolute terms",
+      "text": "Costs and benefits should usually be presented in absolute terms rather than as increments from BAU; avoid normalising BAU to zero.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 20,
+        "section": "para 4.19"
+      },
+      "para": "4.19",
+      "level": "should"
+    },
+    {
+      "id": "rationale.deadweight-additionality",
+      "title": "Deadweight and additionality",
+      "text": "Deadweight: outcomes that would have happened anyway. Additionality: outcomes caused by the intervention.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 20,
+        "section": "para 4.17"
+      },
+      "para": "4.17",
+      "level": "guidance"
+    },
+    {
+      "id": "rationale.smart-objectives",
+      "title": "SMART objectives",
+      "text": "Objectives must be specific, measurable, achievable, realistic and time-limited; few in number; ideally outcome-based rather than output-based.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 20,
+        "section": "para 4.20-4.26"
+      },
+      "para": "4.20-4.26",
+      "level": "must"
+    },
+    {
+      "id": "rationale.strategic-fit",
+      "title": "Strategic fit",
+      "text": "Alignment with the higher-level programme/portfolio/policy, other proposals of the originating organisation and those of other public bodies.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 27,
+        "printed_page": 21,
+        "section": "para 4.27"
+      },
+      "para": "4.27",
+      "level": "should"
+    },
+    {
+      "id": "rationale.transformational-change",
+      "title": "Transformational change",
+      "text": "Claims of transformational change (radical, permanent, qualitative change, often with tipping points and feedback) must be transparently explained and supported by evidence.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 27,
+        "printed_page": 21,
+        "section": "para 4.28-4.30"
+      },
+      "para": "4.28-4.30",
+      "level": "must"
+    },
+    {
+      "id": "rationale.policy-hierarchy",
+      "title": "Policy hierarchy and golden thread",
+      "text": "Objectives cascade from policy to portfolio, programme and project (the 'golden thread'); a project appraisal need not justify its parent programme.",
+      "group": "rationale",
+      "citation": {
+        "pdf_page": 17,
+        "printed_page": 11,
+        "section": "para 3.2-3.10"
+      },
+      "para": "3.2-3.10",
+      "level": "guidance"
+    },
+    {
+      "id": "csf.1-objectives-strategic-fit",
+      "title": "CSF 1: Objectives and strategic fit",
+      "text": "The proposal meets its SMART objectives and has strategic fit with other public sector activity.",
+      "group": "csf",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.5 / Table 4"
+      },
+      "para": "5.5 / Table 4",
+      "level": "guidance"
+    },
+    {
+      "id": "csf.2-value-for-money",
+      "title": "CSF 2: Value for money",
+      "text": "The proposal represents the optimal use of public resources to achieve its objectives.",
+      "group": "csf",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.5 / Table 4"
+      },
+      "para": "5.5 / Table 4",
+      "level": "guidance"
+    },
+    {
+      "id": "csf.3-supplier-capacity",
+      "title": "CSF 3: Supplier capacity and capability",
+      "text": "Suppliers can feasibly provide the inputs; government and suppliers can agree payments and risk transfer.",
+      "group": "csf",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.5 / Table 4"
+      },
+      "para": "5.5 / Table 4",
+      "level": "guidance"
+    },
+    {
+      "id": "csf.4-affordability",
+      "title": "CSF 4: Affordability",
+      "text": "The proposal is affordable for all of the public bodies involved.",
+      "group": "csf",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.5 / Table 4"
+      },
+      "para": "5.5 / Table 4",
+      "level": "guidance"
+    },
+    {
+      "id": "csf.5-achievability",
+      "title": "CSF 5: Achievability",
+      "text": "Robust arrangements are in place to deliver, monitor and evaluate the proposal.",
+      "group": "csf",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.5 / Table 4"
+      },
+      "para": "5.5 / Table 4",
+      "level": "guidance"
+    },
+    {
+      "id": "csf.constraints",
+      "title": "Constraints as CSFs",
+      "text": "CSFs may include constraints such as legal requirements, ethical standards, social acceptability, timing and environmental policy.",
+      "group": "csf",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.6"
+      },
+      "para": "5.6",
+      "level": "guidance"
+    },
+    {
+      "id": "longlist.purpose",
+      "title": "Longlist: options generation and longlist appraisal",
+      "text": "Generate a wide range of options and assess them against objectives and CSFs to narrow to a shortlist; options failing objectives or CSFs must not proceed.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 29,
+        "printed_page": 23,
+        "section": "para 5.1-5.2, 5.9"
+      },
+      "para": "5.1-5.2, 5.9",
+      "level": "should"
+    },
+    {
+      "id": "longlist.documented",
+      "title": "Document longlist reasoning",
+      "text": "Document which options were considered and why each was or was not progressed to the shortlist.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 29,
+        "printed_page": 23,
+        "section": "para 5.3-5.4"
+      },
+      "para": "5.3-5.4",
+      "level": "should"
+    },
+    {
+      "id": "longlist.indicative-estimates",
+      "title": "Indicative estimates at longlist",
+      "text": "Longlist appraisal typically uses indicative estimates and ranges rather than detailed CBA.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 24,
+        "section": "para 5.10"
+      },
+      "para": "5.10",
+      "level": "guidance"
+    },
+    {
+      "id": "longlist.dependencies",
+      "title": "Dependencies and unintended consequences",
+      "text": "Consider external dependencies and potential unintended consequences (e.g. gaming of incentive schemes).",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 31,
+        "printed_page": 25,
+        "section": "para 5.11-5.12"
+      },
+      "para": "5.11-5.12",
+      "level": "should"
+    },
+    {
+      "id": "longlist.off",
+      "title": "Options framework filter (OFF)",
+      "text": "Recommended (not mandatory) method: break options into components, rate option choices and recombine them; delivered through structured facilitated workshops with explicit deliberation.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 31,
+        "printed_page": 25,
+        "section": "para 2.12, 5.13, 5.21-5.23"
+      },
+      "para": "2.12, 5.13, 5.21-5.23",
+      "level": "recommended"
+    },
+    {
+      "id": "longlist.off-categories",
+      "title": "OFF categories",
+      "text": "Five recommended categories: scope, solution, delivery, implementation and funding, considered in that order.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 33,
+        "printed_page": 27,
+        "section": "para 5.25-5.32"
+      },
+      "para": "5.25-5.32",
+      "level": "recommended",
+      "categories": [
+        "Scope",
+        "Solution",
+        "Delivery",
+        "Implementation",
+        "Funding"
+      ]
+    },
+    {
+      "id": "longlist.off-ratings",
+      "title": "OFF ratings (green/amber/red)",
+      "text": "Green: best meets CSFs; amber: meets CSFs less well (both carried forward); red: fails CSFs (dropped). Record the reason for each rating with evidence, assumptions and sources.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 28,
+        "section": "para 5.26-5.27"
+      },
+      "para": "5.26-5.27",
+      "level": "must"
+    },
+    {
+      "id": "longlist.mcda-mca",
+      "title": "MCDA acceptable; simple MCA not recommended",
+      "text": "MCDA with swing weighting and an expert facilitator may be used; simple weighting-and-scoring MCA is recommended against. SWOT may also be used.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 31,
+        "printed_page": 25,
+        "section": "para 5.14-5.16"
+      },
+      "para": "5.14-5.16",
+      "level": "recommended"
+    },
+    {
+      "id": "longlist.summary-matrix",
+      "title": "Options summary matrix",
+      "text": "Present OFF results in an options summary matrix (categories, BAU, option choices, ratings) accompanied by a record of workshop decisions and rationale.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 35,
+        "printed_page": 29,
+        "section": "para 5.33-5.34"
+      },
+      "para": "5.33-5.34",
+      "level": "must"
+    },
+    {
+      "id": "shortlist.composition",
+      "title": "Shortlist composition (around five options)",
+      "text": "Around five options: BAU, do minimum, preferred way forward, more ambitious and less ambitious preferred way forward (the latter may be excluded if the preferred way forward is the do minimum).",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 26,
+        "section": "para 5.17-5.19, 5.35"
+      },
+      "para": "5.17-5.19, 5.35",
+      "level": "should",
+      "options": [
+        "Business as usual",
+        "Do minimum",
+        "Preferred way forward",
+        "More ambitious preferred way forward",
+        "Less ambitious preferred way forward"
+      ]
+    },
+    {
+      "id": "shortlist.bau-always",
+      "title": "BAU always shortlisted",
+      "text": "Options not achieving objectives must not be shortlisted, except BAU, which must always be taken forward as the benchmark.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 12,
+        "printed_page": 6,
+        "section": "para 2.16, 5.18"
+      },
+      "para": "2.16, 5.18",
+      "level": "must"
+    },
+    {
+      "id": "shortlist.do-minimum",
+      "title": "Do minimum",
+      "text": "The option that just achieves the objectives; shows whether other options add genuinely worthwhile improvements or 'gold plating'.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 26,
+        "section": "para 5.18"
+      },
+      "para": "5.18",
+      "level": "should"
+    },
+    {
+      "id": "shortlist.pwf-vs-preferred",
+      "title": "Preferred way forward vs preferred option",
+      "text": "Longlist appraisal identifies a preferred way forward; shortlist appraisal identifies the preferred option, which may differ.",
+      "group": "longlist",
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 26,
+        "section": "para 5.20"
+      },
+      "para": "5.20",
+      "level": "guidance"
+    },
+    {
+      "id": "shortlist.methods",
+      "title": "CBA or CEA",
+      "text": "Social cost-benefit analysis (recommended for detailed comparison) or social cost-effectiveness analysis (when main benefits are unmonetisable or options deliver the same output differently).",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 32,
+        "section": "para 2.19, 6.4"
+      },
+      "para": "2.19, 6.4",
+      "level": "should"
+    },
+    {
+      "id": "shortlist.scope-uk",
+      "title": "Scope is UK society",
+      "text": "Scope is all UK residents; consider impacts on other public bodies, households, businesses and charities, not just the originating organisation.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 32,
+        "section": "para 6.5-6.7"
+      },
+      "para": "6.5-6.7",
+      "level": "must"
+    },
+    {
+      "id": "shortlist.time-horizon",
+      "title": "Time horizon",
+      "text": "Cover the whole lifetime of the proposal. Standard horizons additional to year 0: 60 years infrastructure, 30 years refurbishment, 10 years regulations, 10 years other; agree longer periods with HM Treasury where effects extend beyond 60 years.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 33,
+        "section": "para 6.9-6.13"
+      },
+      "para": "6.9-6.13",
+      "level": "should"
+    },
+    {
+      "id": "shortlist.year-0",
+      "title": "Year 0",
+      "text": "Year 0 is generally the first year with social costs or benefits; may be standardised to a calendar or financial year across options.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 33,
+        "section": "para 6.10"
+      },
+      "para": "6.10",
+      "level": "guidance"
+    },
+    {
+      "id": "shortlist.climate-scenarios",
+      "title": "Climate scenarios",
+      "text": "Horizons ending before 2040: appraise against a 2C warming scenario; ending 2040 or later: at least 2C and 4C scenarios (AECC supplementary guidance).",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 33,
+        "section": "para 6.14, 8.86"
+      },
+      "para": "6.14, 8.86",
+      "level": "should"
+    },
+    {
+      "id": "shortlist.classification",
+      "title": "Classifying costs and benefits",
+      "text": "Monetisable (cash / non-cash) vs unmonetisable (quantifiable / qualitative); monetise where possible and proportionate, focusing on decisive impacts.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 41,
+        "printed_page": 35,
+        "section": "para 6.23-6.30"
+      },
+      "para": "6.23-6.30",
+      "level": "should"
+    },
+    {
+      "id": "shortlist.cost-types",
+      "title": "Capital, operating and maintenance costs",
+      "text": "Distinguish capital, operating and maintenance costs; appraisals must reflect maintenance needed to sustain benefits.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 42,
+        "printed_page": 36,
+        "section": "para 6.31, 8.34"
+      },
+      "para": "6.31, 8.34",
+      "level": "must"
+    },
+    {
+      "id": "shortlist.sunk-costs",
+      "title": "Exclude sunk costs",
+      "text": "Sunk costs must not be included; consider the opportunity cost of continuing to use already-paid resources.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 37,
+        "section": "para 6.32"
+      },
+      "para": "6.32",
+      "level": "must"
+    },
+    {
+      "id": "shortlist.transfers",
+      "title": "Economic transfers",
+      "text": "Transfers (taxes, grants, subsidies, benefits, fines) net to zero for society; either include as offsetting items (pushes BCR towards one) or exclude, and explain; must be shown in distributional analysis and public sector financial impact.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 37,
+        "section": "para 6.33-6.40"
+      },
+      "para": "6.33-6.40",
+      "level": "must"
+    },
+    {
+      "id": "shortlist.no-macro",
+      "title": "No GDP/GVA or Keynesian multipliers",
+      "text": "Do not compare options on GDP/GVA changes and do not count Keynesian multiplier effects as social benefits.",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 44,
+        "printed_page": 38,
+        "section": "para 6.41-6.43"
+      },
+      "para": "6.41-6.43",
+      "level": "should"
+    },
+    {
+      "id": "shortlist.cost-of-funds",
+      "title": "Costs of raising public funds",
+      "text": "Generally not included in appraisal, except when assessing private finance model options (Annex A).",
+      "group": "shortlist",
+      "citation": {
+        "pdf_page": 44,
+        "printed_page": 38,
+        "section": "para 6.44"
+      },
+      "para": "6.44",
+      "level": "should"
+    },
+    {
+      "id": "prices.real-terms",
+      "title": "Real prices",
+      "text": "Estimate in real prices (nominal equals real in year 0): forecast nominal prices then remove general inflation using the GDP deflator.",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 39,
+        "section": "para 6.45-6.48"
+      },
+      "para": "6.45-6.48",
+      "level": "should"
+    },
+    {
+      "id": "prices.gdp-deflator-source",
+      "title": "GDP deflator forecasts",
+      "text": "Five-year GDP deflator forecasts: latest OBR Economic and Fiscal Outlook; fifty-year: OBR Long-term economic determinants. (No deflator values are given in the Green Book.)",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 39,
+        "section": "para 6.49"
+      },
+      "para": "6.49",
+      "level": "guidance"
+    },
+    {
+      "id": "prices.relative-price-effects",
+      "title": "Relative price effects",
+      "text": "Include significant relative price effects (e.g. construction) in CBA; quality changes may be reflected in real prices.",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 39,
+        "section": "para 6.50-6.51"
+      },
+      "para": "6.50-6.51",
+      "level": "should"
+    },
+    {
+      "id": "discount.stpr",
+      "title": "Social Time Preference Rate (STPR)",
+      "text": "STPR is 3.50% real for years 1 to 30, 3.00% for years 31 to 75, and 2.50% for year 76 onwards. Derivation is in the supplementary guidance on discounting.",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "para 6.52-6.54"
+      },
+      "para": "6.52-6.54",
+      "level": "should"
+    },
+    {
+      "id": "discount.factors",
+      "title": "Applying discount factors",
+      "text": "Multiply future-year values by that year's discount factor; pre-calculated factors are in the supplementary guidance on discounting (Table 8 gives a worked example).",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "para 6.55, 6.57 / Table 8"
+      },
+      "para": "6.55, 6.57 / Table 8",
+      "level": "should"
+    },
+    {
+      "id": "discount.real-only",
+      "title": "Discount real values only",
+      "text": "The STPR is a real rate and must be applied only to real values; never add inflation and discount rates together.",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "para 6.56"
+      },
+      "para": "6.56",
+      "level": "must"
+    },
+    {
+      "id": "discount.health",
+      "title": "Health discount rate",
+      "text": "Health and life effects are discounted at 1.5% (wealth effect excluded); the health rate applies in every year of the appraisal; other effects use the standard STPR.",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "para 6.58"
+      },
+      "para": "6.58",
+      "level": "should"
+    },
+    {
+      "id": "discount.no-retrospective",
+      "title": "No retrospective discounting",
+      "text": "Do not discount (or compound) costs and benefits that have already occurred.",
+      "group": "prices-discounting",
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 41,
+        "section": "para 6.59"
+      },
+      "para": "6.59",
+      "level": "should"
+    },
+    {
+      "id": "risk.risk-uncertainty",
+      "title": "Risk and uncertainty",
+      "text": "Must be considered as part of the VfM judgement. Uncertainty: assumptions not fully known; risk: the effect of uncertainty on objectives (consistent with the Orange Book).",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 41,
+        "section": "para 6.60-6.64"
+      },
+      "para": "6.60-6.64",
+      "level": "must"
+    },
+    {
+      "id": "risk.risk-costs",
+      "title": "Risk costs",
+      "text": "Impact costs, correction costs and prevention costs; include risk costs in appraisal.",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 41,
+        "section": "para 2.23, 6.65"
+      },
+      "para": "2.23, 6.65",
+      "level": "should"
+    },
+    {
+      "id": "risk.mitigation-transfer",
+      "title": "Risk mitigation and transfer",
+      "text": "Weigh the costs and benefits of mitigation and of transferring risk to the party best able to manage it.",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 48,
+        "printed_page": 42,
+        "section": "para 6.66"
+      },
+      "para": "6.66",
+      "level": "should"
+    },
+    {
+      "id": "risk.contingent-liabilities",
+      "title": "Contingent liabilities",
+      "text": "Appraise contingent liabilities as part of the expected social cost of risk (HM Treasury contingent liability approval framework).",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 48,
+        "printed_page": 42,
+        "section": "para 6.67"
+      },
+      "para": "6.67",
+      "level": "should"
+    },
+    {
+      "id": "risk.quantifying-uncertainty",
+      "title": "Expressing uncertainty",
+      "text": "Central estimate and range; expected values (probability-weighted); confidence intervals; P90 values; consider tail risks proportionately.",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 48,
+        "printed_page": 42,
+        "section": "para 6.68-6.73"
+      },
+      "para": "6.68-6.73",
+      "level": "should"
+    },
+    {
+      "id": "risk.advanced-methods",
+      "title": "Advanced risk methods",
+      "text": "Scenario analysis, decision trees, real options analysis and Monte Carlo analysis for higher-cost, higher-risk proposals.",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 49,
+        "printed_page": 43,
+        "section": "para 6.74-6.77"
+      },
+      "para": "6.74-6.77",
+      "level": "guidance"
+    },
+    {
+      "id": "risk.optimism-bias",
+      "title": "Optimism bias",
+      "text": "Must explicitly adjust at the outset: increase costs and durations and decrease benefits. Size the adjustment from the organisation's historical forecast errors; if none, use generic values in the Green Book supplementary guidance on optimism bias (no percentages are given in the 2026 Green Book itself). Reduce the adjustment in proportion to risks prevented.",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 44,
+        "section": "para 2.25, 6.78-6.82"
+      },
+      "para": "2.25, 6.78-6.82",
+      "level": "must"
+    },
+    {
+      "id": "risk.contingency",
+      "title": "Contingency",
+      "text": "Contingency (financial case) = remaining optimism bias adjustment + value of unprevented risk, converted to nominal; typically not allocated to the project because government self-insures. Prevention costs belong in core costs.",
+      "group": "risk",
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 44,
+        "section": "para 6.83-6.84"
+      },
+      "para": "6.83-6.84",
+      "level": "should"
+    },
+    {
+      "id": "metrics.public-sector-financial-impact",
+      "title": "Public sector financial impact",
+      "text": "Lifetime costs and receipts for all public bodies, excluding wider social costs; shown in nominal, undiscounted terms; cost-shifting within the public sector is not VfM.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 45,
+        "section": "para 6.85-6.91"
+      },
+      "para": "6.85-6.91",
+      "level": "should"
+    },
+    {
+      "id": "metrics.econ-vs-financial",
+      "title": "Economic vs financial case treatment (Table 9)",
+      "text": "Economic case: real, discounted at STPR, transfers optional, wider social impacts included. Financial case: nominal, undiscounted, transfers always included, wider social impacts excluded; depreciation only in the financial dimension.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 45,
+        "section": "para 6.88, 6.92 / Table 9"
+      },
+      "para": "6.88, 6.92 / Table 9",
+      "level": "should"
+    },
+    {
+      "id": "metrics.pv-variables",
+      "title": "PVB, PVC, PVC public, PVC non-public",
+      "text": "Present values (real, discounted) of monetisable benefits (PVB), costs (PVC), public sector financial costs (PVC public) and costs outside the public sector (PVC non-public).",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 46,
+        "section": "para 6.93"
+      },
+      "para": "6.93",
+      "level": "guidance"
+    },
+    {
+      "id": "metrics.npsv",
+      "title": "Net present social value (NPSV)",
+      "text": "NPSV = PVB - PVC.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 46,
+        "section": "para 6.93 / Table 10"
+      },
+      "para": "6.93 / Table 10",
+      "level": "should",
+      "formula": "PVB - PVC"
+    },
+    {
+      "id": "metrics.bcr",
+      "title": "Benefit-cost ratio (BCR)",
+      "text": "BCR = PVB / PVC: monetisable social benefits per pound of monetisable social cost.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 46,
+        "section": "para 6.93 / Table 10"
+      },
+      "para": "6.93 / Table 10",
+      "level": "should",
+      "formula": "PVB / PVC"
+    },
+    {
+      "id": "metrics.rpsc",
+      "title": "Return on public sector cost (RPSC)",
+      "text": "RPSC = (PVB - PVC non-public) / PVC public: social value relative to cost to the public sector.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 46,
+        "section": "para 6.93 / Table 10"
+      },
+      "para": "6.93 / Table 10",
+      "level": "should",
+      "formula": "(PVB - PVC_non_public) / PVC_public"
+    },
+    {
+      "id": "metrics.npuc",
+      "title": "Net present unit cost (NPUC)",
+      "text": "For CEA: PVC relative to quantifiable (non-monetisable) social benefits.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 46,
+        "section": "para 6.93 / Table 10"
+      },
+      "para": "6.93 / Table 10",
+      "level": "should",
+      "formula": "PVC / quantifiable benefits"
+    },
+    {
+      "id": "metrics.sign-convention",
+      "title": "Sign convention affects BCR",
+      "text": "Treating an impact as a negative benefit or a cost changes the BCR (not NPSV or RPSC); explain the choice. Use a consistent approach across similar decisions.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 47,
+        "section": "para 6.94-6.95"
+      },
+      "para": "6.94-6.95",
+      "level": "should"
+    },
+    {
+      "id": "metrics.ranking-not-sufficient",
+      "title": "Initial ranking is not sufficient",
+      "text": "Rank options by summary metrics as a first step only; a single metric is not enough for the balanced VfM judgement (Box 1).",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 47,
+        "section": "para 2.30, 6.96-6.97"
+      },
+      "para": "2.30, 6.96-6.97",
+      "level": "should"
+    },
+    {
+      "id": "metrics.no-bcr-thresholds",
+      "title": "No BCR thresholds",
+      "text": "Do not judge VfM using BCR thresholds (e.g. rejecting a proposal with BCR below two). A BCR below one may still be VfM if there are significant unmonetisable benefits, subject to rigorous scrutiny.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 47,
+        "section": "para 6.98-6.99"
+      },
+      "para": "6.98-6.99",
+      "level": "must"
+    },
+    {
+      "id": "metrics.same-objectives",
+      "title": "Compare options with the same objectives only",
+      "text": "Summary metrics compare options meeting the same objectives, not proposals with different objectives.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 47,
+        "section": "para 6.100"
+      },
+      "para": "6.100",
+      "level": "should"
+    },
+    {
+      "id": "metrics.sensitivity",
+      "title": "Sensitivity analysis",
+      "text": "Stress-test uncertain assumptions (e.g. input costs, demand) and show effects on social value.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 48,
+        "section": "para 2.27, 6.102"
+      },
+      "para": "2.27, 6.102",
+      "level": "should"
+    },
+    {
+      "id": "metrics.switching-values",
+      "title": "Switching values",
+      "text": "The value a key variable must reach for an option to stop being VfM (e.g. NPSV negative, or preferred option overtaken). At minimum, sensitivity analysis and switching values for the preferred option must be included in results; can also test unmonetisable benefits.",
+      "group": "metrics",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 48,
+        "section": "para 6.103-6.105"
+      },
+      "para": "6.103-6.105",
+      "level": "should"
+    },
+    {
+      "id": "distributional.proportionate",
+      "title": "Proportionate distributional analysis",
+      "text": "Effort proportionate to scale: describe small effects; analyse significant effects; present welfare effects where redistribution is an objective or effects are highly significant.",
+      "group": "distributional",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 49,
+        "section": "para 7.1-7.4"
+      },
+      "para": "7.1-7.4",
+      "level": "should"
+    },
+    {
+      "id": "distributional.equivalisation",
+      "title": "Income equivalisation",
+      "text": "Adjust household incomes for composition (Figure 7 scores: first adult 0.67, additional adult 0.33, child 14+ 0.33, child under 14 0.20).",
+      "group": "distributional",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 50,
+        "section": "para 7.5-7.7 / Figure 7"
+      },
+      "para": "7.5-7.7 / Figure 7",
+      "level": "should"
+    },
+    {
+      "id": "distributional.welfare-weights",
+      "title": "Distributional (welfare) weights",
+      "text": "Welfare weight = (national median equivalised income / group median equivalised income)^1.3; weighted impact = income change x weight; weighted estimates must be shown alongside unweighted.",
+      "group": "distributional",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 50,
+        "section": "para 7.8-7.15"
+      },
+      "para": "7.8-7.15",
+      "level": "must"
+    },
+    {
+      "id": "distributional.place-based",
+      "title": "Place-based analysis",
+      "text": "Assess distribution across places; consider additionality, deadweight, displacement, substitution and leakage; sub-national metrics always alongside UK-wide values.",
+      "group": "distributional",
+      "citation": {
+        "pdf_page": 57,
+        "printed_page": 51,
+        "section": "para 7.16-7.20"
+      },
+      "para": "7.16-7.20",
+      "level": "should"
+    },
+    {
+      "id": "distributional.local-authority-funding",
+      "title": "Distributing money to local authorities",
+      "text": "Follow the funding simplification doctrine; choose allocation or competition; competitive processes run bids to OBC with final allocation conditional on a satisfactory FBC.",
+      "group": "distributional",
+      "citation": {
+        "pdf_page": 58,
+        "printed_page": 52,
+        "section": "para 7.21-7.24"
+      },
+      "para": "7.21-7.24",
+      "level": "should"
+    },
+    {
+      "id": "valuation.opportunity-cost",
+      "title": "Opportunity cost and market prices",
+      "text": "Value at opportunity cost, starting from market prices excluding taxes and subsidies; use non-market valuation where markets fail.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 59,
+        "printed_page": 53,
+        "section": "para 8.1-8.5"
+      },
+      "para": "8.1-8.5",
+      "level": "should"
+    },
+    {
+      "id": "valuation.hierarchy",
+      "title": "Valuation hierarchy",
+      "text": "From most to least reliable: market prices, generic prices, revealed preference, then stated preference / wellbeing valuation; use ranges and sensitivity for non-market prices.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 60,
+        "printed_page": 54,
+        "section": "para 8.6-8.22 / Figure 8"
+      },
+      "para": "8.6-8.22 / Figure 8",
+      "level": "should"
+    },
+    {
+      "id": "valuation.residual-value",
+      "title": "Residual value",
+      "text": "Include an asset's residual value or liability at the end of the appraisal period.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 64,
+        "printed_page": 58,
+        "section": "para 8.31-8.33"
+      },
+      "para": "8.31-8.33",
+      "level": "should"
+    },
+    {
+      "id": "valuation.labour-displacement",
+      "title": "Full displacement of jobs",
+      "text": "Assume no increase in national labour supply; any exception needs compelling evidence signed off by the chief economist.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 66,
+        "printed_page": 60,
+        "section": "para 8.41-8.43"
+      },
+      "para": "8.41-8.43",
+      "level": "should"
+    },
+    {
+      "id": "valuation.life-health",
+      "title": "Life and health values",
+      "text": "Use VPF (TAG data book), SLY/VOLY and QALY (supplementary guidance on health); values are not given in the Green Book.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 68,
+        "printed_page": 62,
+        "section": "para 8.55-8.58"
+      },
+      "para": "8.55-8.58",
+      "level": "should"
+    },
+    {
+      "id": "valuation.ghg",
+      "title": "Energy use and GHG emissions",
+      "text": "Value changes in energy use (quantity x LRVC) and emissions (quantity x emissions factor x social value of carbon) per DESNZ supplementary guidance; report levels and monetised values.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 69,
+        "printed_page": 63,
+        "section": "para 8.63-8.74"
+      },
+      "para": "8.63-8.74",
+      "level": "should"
+    },
+    {
+      "id": "valuation.ghg-negligible",
+      "title": "Negligible emissions threshold",
+      "text": "Generally negligible if below 0.1 MtCO2e in every year of the appraisal horizon; basic analysis still required.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 70,
+        "printed_page": 64,
+        "section": "para 8.75"
+      },
+      "para": "8.75",
+      "level": "guidance"
+    },
+    {
+      "id": "valuation.natural-capital",
+      "title": "Natural capital screening",
+      "text": "Screen options against natural capital assets; if any apply, follow the ENCA four-step approach.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 71,
+        "printed_page": 65,
+        "section": "para 8.76-8.84"
+      },
+      "para": "8.76-8.84",
+      "level": "should"
+    },
+    {
+      "id": "valuation.efficiency-fraud-error",
+      "title": "Efficiency savings, fraud and error",
+      "text": "Efficiency savings must not come from reduced outputs; treat fraud proceeds as a one-sided transfer or a social cost; assume fraud where error status is doubtful.",
+      "group": "valuation",
+      "citation": {
+        "pdf_page": 73,
+        "printed_page": 67,
+        "section": "para 8.88-8.99"
+      },
+      "para": "8.88-8.99",
+      "level": "should"
+    },
+    {
+      "id": "presentation.exec-summary",
+      "title": "Business case executive summary",
+      "text": "Spending appraisals are presented in a business case beginning with an executive summary covering the five dimensions; regulation follows the Better Regulation Framework.",
+      "group": "presentation",
+      "citation": {
+        "pdf_page": 75,
+        "printed_page": 69,
+        "section": "para 9.1-9.2"
+      },
+      "para": "9.1-9.2",
+      "level": "should"
+    },
+    {
+      "id": "presentation.ast",
+      "title": "Appraisal summary table (AST)",
+      "text": "Recommended AST per shortlisted option: description (why preferred or inferior); summary metrics (NPSV, BCR, RPSC or NPUC); unmonetisable costs and benefits; public sector financial impact (nominal, undiscounted); distribution across groups and places; with risks and uncertainties for each element.",
+      "group": "presentation",
+      "citation": {
+        "pdf_page": 75,
+        "printed_page": 69,
+        "section": "para 2.32, 9.3-9.6 / Table 12"
+      },
+      "para": "2.32, 9.3-9.6 / Table 12",
+      "level": "recommended"
+    },
+    {
+      "id": "me.definitions",
+      "title": "Monitoring and evaluation",
+      "text": "Monitoring tracks delivery progress; evaluation assesses design, implementation and outcomes (Magenta Book). Goals: learning and accountability.",
+      "group": "me",
+      "citation": {
+        "pdf_page": 78,
+        "printed_page": 72,
+        "section": "para 10.1-10.3"
+      },
+      "para": "10.1-10.3",
+      "level": "guidance"
+    },
+    {
+      "id": "me.evaluation-types",
+      "title": "Types of evaluation",
+      "text": "Process, impact and value for money evaluation.",
+      "group": "me",
+      "citation": {
+        "pdf_page": 78,
+        "printed_page": 72,
+        "section": "para 10.4"
+      },
+      "para": "10.4",
+      "level": "guidance"
+    },
+    {
+      "id": "me.evidence-input",
+      "title": "Evaluation evidence as input",
+      "text": "Use evaluation evidence for rationale, objectives and option appraisal, including historical forecast errors to derive optimism bias adjustments.",
+      "group": "me",
+      "citation": {
+        "pdf_page": 79,
+        "printed_page": 73,
+        "section": "para 10.5-10.6"
+      },
+      "para": "10.5-10.6",
+      "level": "should"
+    },
+    {
+      "id": "me.plan",
+      "title": "Evaluation plan",
+      "text": "Develop an evaluation plan once a preferred option is identified and have a robust plan before final approval, based on the theory of change; the management case sets out monitoring and evaluation.",
+      "group": "me",
+      "citation": {
+        "pdf_page": 79,
+        "printed_page": 73,
+        "section": "para 10.7"
+      },
+      "para": "10.7",
+      "level": "should"
+    },
+    {
+      "id": "me.costs",
+      "title": "M&E costs included",
+      "text": "Include M&E costs in the economic and financial dimensions; no fixed proportion, assess case by case.",
+      "group": "me",
+      "citation": {
+        "pdf_page": 79,
+        "printed_page": 73,
+        "section": "para 10.8-10.9"
+      },
+      "para": "10.8-10.9",
+      "level": "should"
+    },
+    {
+      "id": "me.registry-publication",
+      "title": "Evaluation registry and business case publication",
+      "text": "Register evaluations on the Government Evaluation Registry; GMPP business cases must be published within four months of HM Treasury approval.",
+      "group": "me",
+      "citation": {
+        "pdf_page": 80,
+        "printed_page": 74,
+        "section": "para 10.11-10.12"
+      },
+      "para": "10.11-10.12",
+      "level": "must"
+    },
+    {
+      "id": "pf.longlist",
+      "title": "Private finance at longlist",
+      "text": "Use the Table A.1 qualitative questions alongside the CSFs to decide whether a private finance model should be the preferred way forward or shortlisted.",
+      "group": "private-finance",
+      "citation": {
+        "pdf_page": 82,
+        "printed_page": 76,
+        "section": "A.8-A.9 / Table A.1"
+      },
+      "para": "A.8-A.9 / Table A.1",
+      "level": "must"
+    },
+    {
+      "id": "pf.shortlist-requirements",
+      "title": "Private finance shortlist requirements",
+      "text": "Include a public sector option (unless agreed with HM Treasury) and an additional sensitivity discounting the costs of all shortlisted options at the risk-free real gilt rate.",
+      "group": "private-finance",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 78,
+        "section": "A.10"
+      },
+      "para": "A.10",
+      "level": "must"
+    },
+    {
+      "id": "pf.payments-as-costs",
+      "title": "Model payments as they occur",
+      "text": "Model private finance social costs as public-to-private payments over the contract as they occur, regardless of balance sheet classification.",
+      "group": "private-finance",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 78,
+        "section": "A.11-A.12"
+      },
+      "para": "A.11-A.12",
+      "level": "should"
+    },
+    {
+      "id": "pf.public-sector-option",
+      "title": "Public sector option (comparator)",
+      "text": "An equivalent-quality, publicly financed and procured option, adjusted for effective tax differences; optimism bias applied to all options.",
+      "group": "private-finance",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 78,
+        "section": "A.13-A.16"
+      },
+      "para": "A.13-A.16",
+      "level": "must"
+    },
+    {
+      "id": "pf.gilt-sensitivity",
+      "title": "Gilt-rate sensitivity",
+      "text": "Discount only the costs of each shortlisted option at the risk-free real gilt rate matching the weighted average contract duration (consult HM Treasury for the rate; none is given in the Green Book).",
+      "group": "private-finance",
+      "citation": {
+        "pdf_page": 85,
+        "printed_page": 79,
+        "section": "A.17-A.18"
+      },
+      "para": "A.17-A.18",
+      "level": "must"
+    }
+  ],
+  "parameters": {
+    "stpr": {
+      "description": "Social Time Preference Rate (real). Year 0 is undiscounted (factor 1). The rate for year t applies to the step from year t-1 to t, so factors compound across bands.",
+      "bands": [
+        {
+          "from_year": 1,
+          "to_year": 30,
+          "rate": 0.035
+        },
+        {
+          "from_year": 31,
+          "to_year": 75,
+          "rate": 0.03
+        },
+        {
+          "from_year": 76,
+          "to_year": null,
+          "rate": 0.025
+        }
+      ],
+      "year_zero_factor": 1.0,
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "Chapter 6, para 6.54"
+      },
+      "year_zero_citation": {
+        "pdf_page": 39,
+        "printed_page": 33,
+        "section": "Chapter 6, para 6.10"
+      },
+      "note": "The 2026 text states 2.50% 'for year 76 onwards' with no further step-down; earlier-edition schedules are not used."
+    },
+    "health_discount_rate": {
+      "rate": 0.015,
+      "applies": "every year of the appraisal, to health and life effects only",
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "Chapter 6, para 6.58"
+      }
+    },
+    "table8_worked_example": {
+      "description": "Table 8 discount factors for years 0-5 (STPR 3.5%), used as a regression check.",
+      "discount_factors": [
+        1.0,
+        0.9662,
+        0.9335,
+        0.9019,
+        0.8714,
+        0.842
+      ],
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 40,
+        "section": "Chapter 6, Table 8"
+      }
+    },
+    "table7_worked_example": {
+      "description": "Table 7 GDP deflator factors for years 0-5 at 2% general inflation (illustrative only).",
+      "deflator_factors": [
+        1.0,
+        0.9804,
+        0.9612,
+        0.9423,
+        0.9238,
+        0.9057
+      ],
+      "inflation_rate": 0.02,
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 39,
+        "section": "Chapter 6, Table 7"
+      }
+    },
+    "time_horizons_years_after_year0": {
+      "infrastructure": 60,
+      "refurbishment": 30,
+      "regulations": 10,
+      "other": 10,
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 33,
+        "section": "Chapter 6, para 6.11"
+      },
+      "note": "Agree a suitable period with HM Treasury if significant effects extend beyond 60 years (para 6.12)."
+    },
+    "welfare_weight_elasticity": {
+      "value": 1.3,
+      "formula": "(median equivalised income of national population / median equivalised income of group) ^ 1.3",
+      "citation": {
+        "pdf_page": 57,
+        "printed_page": 51,
+        "section": "Chapter 7, paras 7.11-7.15"
+      }
+    },
+    "equivalisation_scores": {
+      "first_adult": 0.67,
+      "additional_adult": 0.33,
+      "child_14_and_over": 0.33,
+      "child_under_14": 0.2,
+      "reference": "couple with no children = 1.00",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 50,
+        "section": "Chapter 7, Figure 7"
+      }
+    },
+    "shortlist_size": {
+      "value": 5,
+      "qualifier": "around",
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 26,
+        "section": "Chapter 5, para 5.17"
+      }
+    },
+    "climate_scenarios": {
+      "horizon_ends_before_2040": [
+        "2C"
+      ],
+      "horizon_ends_2040_or_later": [
+        "2C",
+        "4C"
+      ],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 33,
+        "section": "Chapter 6, para 6.14 (also para 8.86)"
+      }
+    },
+    "ghg_negligible_threshold_mtco2e_per_year": {
+      "value": 0.1,
+      "citation": {
+        "pdf_page": 70,
+        "printed_page": 64,
+        "section": "Chapter 8, para 8.75"
+      }
+    },
+    "gmpp_business_case_publication_months": {
+      "value": 4,
+      "citation": {
+        "pdf_page": 80,
+        "printed_page": 74,
+        "section": "Chapter 10, para 10.12"
+      }
+    },
+    "bcr_threshold": {
+      "value": null,
+      "statement": "No BCR threshold may be used to judge value for money.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 47,
+        "section": "Chapter 6, paras 6.98-6.99"
+      }
+    },
+    "not_in_edition": [
+      {
+        "parameter": "optimism_bias_percentages",
+        "statement": "Not given in the 2026 Green Book. Use the organisation's historical forecast errors, else generic values from the Green Book supplementary guidance on optimism bias (or departmental guidance, e.g. DfT). Must be supplied by the user.",
+        "citation": {
+          "pdf_page": 50,
+          "printed_page": 44,
+          "section": "Chapter 6, paras 6.80-6.81"
+        }
+      },
+      {
+        "parameter": "risk_free_real_gilt_rate",
+        "statement": "Not given. Rate matching the weighted average duration of the private finance contract; consult HM Treasury. Must be supplied by the user.",
+        "citation": {
+          "pdf_page": 85,
+          "printed_page": 79,
+          "section": "Annex A, para A.17"
+        }
+      },
+      {
+        "parameter": "gdp_deflator_series",
+        "statement": "Not given. Use the latest OBR Economic and Fiscal Outlook (5 years) and Long-term economic determinants (50 years). Must be supplied by the user.",
+        "citation": {
+          "pdf_page": 45,
+          "printed_page": 39,
+          "section": "Chapter 6, para 6.49"
+        }
+      },
+      {
+        "parameter": "discount_factor_table",
+        "statement": "Pre-calculated factors are in the supplementary guidance on discounting; the tools compute factors from the stated STPR bands instead.",
+        "citation": {
+          "pdf_page": 46,
+          "printed_page": 40,
+          "section": "Chapter 6, para 6.55"
+        }
+      },
+      {
+        "parameter": "social_value_of_carbon",
+        "statement": "Not given. DESNZ supplementary guidance.",
+        "citation": {
+          "pdf_page": 60,
+          "printed_page": 54,
+          "section": "Chapter 8, para 8.10"
+        }
+      },
+      {
+        "parameter": "qaly_value",
+        "statement": "Not given. Green Book supplementary guidance on health.",
+        "citation": {
+          "pdf_page": 68,
+          "printed_page": 62,
+          "section": "Chapter 8, para 8.57"
+        }
+      },
+      {
+        "parameter": "value_of_prevented_fatality",
+        "statement": "Not given. DfT TAG data book.",
+        "citation": {
+          "pdf_page": 68,
+          "printed_page": 62,
+          "section": "Chapter 8, para 8.55"
+        }
+      },
+      {
+        "parameter": "wellby_value",
+        "statement": "Not given. Supplementary guidance on wellbeing.",
+        "citation": {
+          "pdf_page": 62,
+          "printed_page": 56,
+          "section": "Chapter 8, para 8.22"
+        }
+      }
+    ]
+  }
+}

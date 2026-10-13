@@ -1,0 +1,31 @@
+# CI/CD pipeline description for the fictional Acme checkout platform (GitHub Actions).
+pipeline:
+  name: acme-checkout (GitHub Actions)
+  steps:
+    - name: Branch protection on main (2 reviewers, CODEOWNERS)
+      type: code-review
+    - name: Repository access control
+      type: branch-protection
+    - name: CodeQL
+      type: sast
+      blocking: true
+      scheduled: true
+    - name: Gitleaks
+      type: secret-scanning
+      blocking: true
+    - name: Dependabot + Snyk
+      type: sca
+      blocking: false
+    - name: Lockfiles committed
+      type: dependency-pinning
+    - name: ESLint security rules
+      type: linting
+    - name: Workflows in .github/workflows
+      type: pipeline-as-code
+    - name: Actions pinned by commit SHA
+      type: ci-hardening
+    - name: Checkov IaC scan
+      type: iac-scanning
+    - name: Cosign image signing
+      type: signing
+      enabled: false

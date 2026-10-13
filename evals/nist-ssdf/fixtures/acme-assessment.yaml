@@ -1,0 +1,322 @@
+# Filled SSDF v1.1 worksheet (fictional example organisation) used by eval cases and tests.
+assessment:
+  organisation: Acme Payments Ltd
+  scope: Checkout platform (6 services, web + API)
+  assessor: Internal AppSec team
+  date: '2026-10-01'
+tasks:
+- id: PO.1.1
+  status: implemented
+  evidence:
+  - Secure Development Policy SDP-01 v2.3 (approved 2026-03-02)
+  owner: CISO
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.1.2
+  status: partial
+  evidence:
+  - Product security requirements baseline (Confluence SEC-REQ)
+  owner: AppSec lead
+  target_date: '2026-12-15'
+  justification: ''
+  notes: No exception-handling process yet
+- id: PO.1.3
+  status: not-implemented
+  evidence: []
+  owner: Procurement
+  target_date: ''
+  justification: ''
+  notes: Supplier contracts have no security clauses
+- id: PO.2.1
+  status: implemented
+  evidence:
+  - RACI for SDLC roles (HR-ROLES-7)
+  owner: VP Engineering
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.2.2
+  status: planned
+  evidence: []
+  owner: AppSec lead
+  target_date: '2027-02-01'
+  justification: ''
+  notes: Role-based secure coding curriculum being procured
+- id: PO.2.3
+  status: implemented
+  evidence:
+  - Board-approved security charter 2026
+  owner: CTO
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.3.1
+  status: implemented
+  evidence:
+  - Toolchain standard TS-04 lists mandatory SAST/SCA
+  owner: Platform team
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.3.2
+  status: partial
+  evidence:
+  - GitHub Actions pinned by SHA
+  owner: Platform team
+  target_date: '2026-11-30'
+  justification: ''
+  notes: Runner hardening outstanding
+- id: PO.3.3
+  status: implemented
+  evidence: []
+  owner: Platform team
+  target_date: ''
+  justification: ''
+  notes: Scan results kept 90 days
+- id: PO.4.1
+  status: partial
+  evidence:
+  - Definition of Done includes 'no critical SAST findings'
+  owner: AppSec lead
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.4.2
+  status: not-implemented
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.5.1
+  status: implemented
+  evidence:
+  - Separate AWS accounts for dev/build/prod (ADR-019)
+  - SSO+MFA enforced (IdP policy export)
+  owner: Cloud team
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PO.5.2
+  status: partial
+  evidence:
+  - MDM baseline for laptops
+  owner: IT
+  target_date: '2026-12-31'
+  justification: ''
+  notes: ''
+- id: PS.1.1
+  status: implemented
+  evidence:
+  - Branch protection export (main requires 2 reviews)
+  - Org repo access review Q3
+  owner: Platform team
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PS.2.1
+  status: not-implemented
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: Release hashes not published
+- id: PS.3.1
+  status: implemented
+  evidence:
+  - Artifactory release repo, read-only retention policy
+  owner: Platform team
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PS.3.2
+  status: planned
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: SBOM generation in backlog
+- id: PW.1.1
+  status: partial
+  evidence:
+  - Threat models for 2 of 6 services
+  owner: AppSec lead
+  target_date: '2027-03-31'
+  justification: ''
+  notes: ''
+- id: PW.1.2
+  status: implemented
+  evidence:
+  - Jira SECREQ project with risk decisions
+  owner: AppSec lead
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.1.3
+  status: implemented
+  evidence:
+  - Standard auth library (OIDC) mandated in ADR-011
+  owner: Architecture
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.2.1
+  status: partial
+  evidence:
+  - Design review checklist used for new services
+  owner: Architecture
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.4.1
+  status: partial
+  evidence:
+  - Internal npm/PyPI proxy
+  owner: Platform team
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.4.2
+  status: not-applicable
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.4.4
+  status: implemented
+  evidence:
+  - Dependabot alerts + Snyk PR checks
+  owner: Platform team
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.5.1
+  status: implemented
+  evidence:
+  - Secure coding standard SCS-02; ESLint security rules
+  owner: Engineering managers
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.6.1
+  status: not-applicable
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: Interpreted TypeScript/Python services only; no compiled executables are shipped
+  notes: ''
+- id: PW.6.2
+  status: not-applicable
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: No compiler in the build; interpreter flags covered by container baseline
+  notes: ''
+- id: PW.7.1
+  status: implemented
+  evidence:
+  - Code review policy CRP-01
+  owner: Engineering managers
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.7.2
+  status: implemented
+  evidence:
+  - CodeQL on every PR
+  - 2-reviewer rule
+  owner: Engineering managers
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.8.1
+  status: partial
+  evidence:
+  - Test strategy mentions DAST for public APIs
+  owner: QA lead
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: PW.8.2
+  status: not-implemented
+  evidence: []
+  owner: QA lead
+  target_date: ''
+  justification: ''
+  notes: No DAST or fuzzing yet
+- id: PW.9.1
+  status: planned
+  evidence: []
+  owner: Product security
+  target_date: '2027-01-15'
+  justification: ''
+  notes: ''
+- id: PW.9.2
+  status: planned
+  evidence: []
+  owner: Product security
+  target_date: '2027-01-15'
+  justification: ''
+  notes: ''
+- id: RV.1.1
+  status: partial
+  evidence:
+  - Dependabot alerts
+  owner: AppSec lead
+  target_date: ''
+  justification: ''
+  notes: No intake from customers
+- id: RV.1.2
+  status: implemented
+  evidence:
+  - Nightly CodeQL on release branches
+  owner: AppSec lead
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: RV.1.3
+  status: not-implemented
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: No public vulnerability disclosure policy
+- id: RV.2.1
+  status: implemented
+  evidence:
+  - Jira VULN workflow with CVSS scoring
+  owner: AppSec lead
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: RV.2.2
+  status: partial
+  evidence:
+  - Patch SLAs defined
+  owner: AppSec lead
+  target_date: ''
+  justification: ''
+  notes: No customer advisories
+- id: RV.3.1
+  status: planned
+  evidence: []
+  owner: AppSec lead
+  target_date: '2027-04-30'
+  justification: ''
+  notes: ''
+- id: RV.3.2
+  status: not-implemented
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: ''
+- id: RV.3.3
+  status: not-implemented
+  evidence: []
+  owner: ''
+  target_date: ''
+  justification: ''
+  notes: ''
