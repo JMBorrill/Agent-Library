@@ -544,3 +544,41 @@ def test_cli_review_trade_listings(tmp_path, capsys):
     assert main(["nasa-se", "lifecycle", "--kind", "review", "--format", "markdown"]) == 0
     assert main(["nasa-se", "req-checklist", "-o", str(tmp_path / "c.md")]) == 0
     assert (tmp_path / "c.md").read_text(encoding="utf-8").count("- [ ]") == 55
+
+
+# ----------------------------------------------------------------------------- regressions
+def test_trade_csv_mandatory_criterion_without_weight_is_screened(tmp_path, capsys):
+    f = tmp_path / "trade.csv"
+    f.write_text("criterion,cost,mass,crew safety\nweight,0.6,0.4\nmandatory,no,no,yes\n"
+                 "Alt A,9,9,no\nAlt B,5,5,yes\n", encoding="utf-8")
+    assert main(["nasa-se", "trade-study", str(f), "--format", "json"]) == 0
+    res = json.loads(capsys.readouterr().out)
+    assert res["mandatory_criteria"] == ["crew safety"]
+    assert res["recommended"] == "Alt B"
+    assert [d["name"] for d in res["disregarded"]] == ["Alt A"]
+
+
+def test_trade_csv_short_rows_are_input_errors():
+    with pytest.raises(n.InputError, match="no weight for criterion: mass"):
+        n._trade_from_rows([["criterion", "cost", "mass"], ["weight", "0.6"], ["A", "1", "2"]])
+    with pytest.raises(n.InputError, match="yes/no cell for every criterion"):
+        n._trade_from_rows([["criterion", "cost", "mass", "safety"], ["weight", "0.6", "0.4"],
+                            ["mandatory", "no", "no"], ["A", "1", "2", "yes"]])
+
+
+def test_trace_top_level_independent_of_row_order():
+    sys_r = n.Requirement(id="SYS-1", text="The system shall supply 28 V.", level="system", verification="Test")
+    sub_r = n.Requirement(id="SUB-1", text="The power subsystem shall supply 28 V.", level="subsystem",
+                          parents=["SYS-1"], verification="Test")
+    for reqs in ([sys_r, sub_r], [sub_r, sys_r]):
+        rep = n.trace(reqs)
+        assert rep["stats"]["roots"] == ["SYS-1"]
+        assert rep["stats"]["orphans"] == []
+        assert not [f for f in rep["findings"] if f["severity"] == "error"]
+
+
+def test_lint_min_severity_does_not_change_exit_code(tmp_path):
+    f = tmp_path / "lint.csv"
+    f.write_text("id,text,verification\nR-1,The system shall supply 28 V +/- 1 V.,Test\n", encoding="utf-8")
+    assert main(["nasa-se", "lint-requirements", str(f), "--fail-on", "warning"]) == 1
+    assert main(["nasa-se", "lint-requirements", str(f), "--fail-on", "warning", "--min-severity", "error"]) == 1

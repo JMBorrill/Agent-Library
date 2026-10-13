@@ -395,3 +395,13 @@ def test_grade_page_citation_formats():
     assert ssdf.grade_page_citations("PW.7.2, PDF p.23 and PO.5.1 [PDF p. 18]", {"min": 2})[0]
     # a different page mentioned later in the sentence is not attributed to the task
     assert ssdf.grade_page_citations("PS.3.2 (p.19) maps to 4e(vii) (PDF p.33)", {"min": 1})[0]
+
+
+def test_load_assessment_accepts_utf8_bom(tmp_path):
+    text = "id,status,evidence\nPO.1.1,implemented,CI log\n"
+    plain, bom = tmp_path / "plain.csv", tmp_path / "bom.csv"
+    plain.write_text(text, encoding="utf-8")
+    bom.write_text("\ufeff" + text, encoding="utf-8")
+    assert ssdf.load_assessment(bom) == ssdf.load_assessment(plain)
+    _, rows = ssdf.load_assessment(bom)
+    assert rows[0]["id"] == "PO.1.1"

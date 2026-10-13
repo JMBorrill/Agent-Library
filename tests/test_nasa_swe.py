@@ -413,3 +413,24 @@ def test_skill_reference_indexes_cover_catalogs(root):
             assert f"| {it['swe']}{it['swe_part'] or ''} | {it['npr_section']} |" in sa_index, it["id"]
         if it["kind"] == "ivv-requirement":
             assert f"| {it['id']} | {it['citation']['pdf_page']} |" in sa_index, it["id"]
+
+
+def test_check_matrix_compliance_counts_only_applicable_first_rows(tmp_path, capsys):
+    rows = [{"swe_id": r["swe_id"], "status": "Compliant", "evidence": "doc"} for r in ns.build_matrix("A")]
+    rep = ns.check_matrix(rows, "E")
+    assert rep["summary"]["compliant_pct_of_applicable"] == 100.0
+    dup = ns.check_matrix([{"swe_id": "SWE-033", "status": "Compliant", "evidence": "doc"}] * 3, "E")
+    assert dup["summary"]["status_counts"]["Compliant"] == 1
+    assert dup["summary"]["compliant_pct_of_applicable"] == round(100 / 12, 1)
+    assert sum("appears more than once" in f["message"] for f in dup["findings"]) == 1
+    f = tmp_path / "a.json"
+    f.write_text(json.dumps({"class": "A", "rows": rows}), encoding="utf-8")
+    main(["nasa-swe", "check-matrix", str(f), "--class", "E", "--format", "json"])
+    assert json.loads(capsys.readouterr().out)["summary"]["compliant_pct_of_applicable"] == 100.0
+
+
+def test_load_matrix_accepts_utf8_bom(tmp_path):
+    f = tmp_path / "m.csv"
+    f.write_text("\ufeff# class: C\nSWE,Status,Evidence\nSWE-033,compliant,trade study\n", encoding="utf-8")
+    cls, rows = ns.load_matrix(f)
+    assert cls == "C" and rows[0]["swe_id"] == "SWE-033"
