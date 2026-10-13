@@ -11,7 +11,7 @@ A professional AI agent and skills library for Claude, grounded in pinned offici
 | NIST Secure Software Development Framework | SP 800-218 v1.1 | `nist-ssdf` | `agentlib ssdf` |
 | OWASP Application Security Verification Standard | 5.0.0 | `owasp-asvs` | `agentlib asvs` |
 | HM Treasury Green Book | 2026 | `green-book-appraisal` | `agentlib greenbook` |
-| Cross-cutting | — | `evidence-and-citation`, `framework-selector` | `agentlib evidence`, `agentlib route` |
+| Cross-cutting | — | `evidence-and-citation`, `framework-selector`, `assurance-case` | `agentlib evidence`, `agentlib route`, `agentlib assurance-case`, `agentlib workflow` |
 
 It is a **Claude Code plugin** (skills, subagents, slash commands), a set of **structured workflows** with stage
 gates, and a **Python package** (`agentlib`) of deterministic tools — calculators, checklist generators,

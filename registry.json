@@ -2,6 +2,26 @@
   "schema_version": 1,
   "skills": [
     {
+      "name": "assurance-case",
+      "path": "skills/assurance-case",
+      "description": "Builds and checks a structured assurance case (claims, arguments, evidence) that ties framework results together for a decision-maker: e.g. \"the payments API is acceptably secure for release\", argued through ASVS verification, SSDF process evidence and residual-risk acceptance. A deterministic checker (python -m agentlib assurance-case check) enforces one root claim, no cycles, every leaf claim backed by evidence of adequate strength or explicitly undeveloped with justification, and real framework identifiers. Use when preparing a release, safety, security or AI deployment decision package, or when a review board needs one argument that integrates several assessments.",
+      "category": "quality",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-se",
+        "nasa-software-assurance",
+        "owasp-asvs"
+      ],
+      "catalogs": [],
+      "tools": [
+        "python -m agentlib assurance-case template",
+        "python -m agentlib assurance-case check",
+        "python -m agentlib assurance-case render"
+      ],
+      "has_eval_suite": true
+    },
+    {
       "name": "evidence-and-citation",
       "path": "skills/evidence-and-citation",
       "description": "Disciplined evidence handling for professional assessments produced with AI assistance: how to cite the pinned framework sources (source id, locator, PDF page), how to record evidence, how to grade claim strength, and how to avoid over-claiming compliance or certification. Includes a deterministic checker (python -m agentlib evidence check) that validates citations, page ranges and framework identifiers (SSDF tasks, AI RMF subcategories, NPR 7150.2D SWE ids, ASVS requirements) against the catalogs. Use when writing or reviewing any assessment, gap analysis, review package, business case or report that relies on the library's frameworks, and always before delivering such a document.",
@@ -502,6 +522,11 @@
     }
   ],
   "eval_suites": [
+    {
+      "skill": "assurance-case",
+      "path": "evals/assurance-case/cases.yaml",
+      "cases": 4
+    },
     {
       "skill": "evidence-and-citation",
       "path": "evals/evidence-and-citation/cases.yaml",

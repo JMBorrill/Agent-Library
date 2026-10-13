@@ -1,0 +1,26 @@
+case:
+  id: AC-001
+  title: <system> is acceptable for <decision>
+  scope: <artefacts, versions, environment>
+  decision_authority: <accountable role>
+claims:
+  - id: C1
+    text: <top claim>
+    criticality: high
+    argument: <why the subclaims together support the top claim>
+    subclaims: [C1.1, C1.2]
+  - id: C1.1
+    text: <subclaim supported directly by evidence>
+    criticality: high
+    frameworks: []
+    evidence: [EV-1]
+  - id: C1.2
+    text: <subclaim not yet supported>
+    status: undeveloped
+    justification: <why, and the action that will close it>
+evidence:
+  - id: EV-1
+    description: <what it is>
+    artefact: <path or URL>
+    method: Test
+    strength: E3

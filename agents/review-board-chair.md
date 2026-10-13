@@ -40,7 +40,10 @@ human authority.
    artefacts are stubs or an earlier gate has not passed. `automated` gates: the command must pass. `agent-review` gates: delegate to `evidence-auditor`.
 5. **Evidence audit.** Before the decision, require `evidence-auditor` to run
    `python -m agentlib evidence check` over every produced document and resolve errors.
-6. **Decision record.** Write `templates/review-board-decision.md`: recommendation (proceed / proceed with
+6. **Assurance case.** For release, deployment or safety decisions, assemble the stage results into an
+   assurance case with `skills/assurance-case/` (`python -m agentlib assurance-case check case.yaml --base <dir>`);
+   undeveloped claims become conditions or residual risks in the decision record.
+7. **Decision record.** Write `templates/review-board-decision.md`: recommendation (proceed / proceed with
    conditions / do not proceed / insufficient evidence), conditions and actions with owners, dissenting
    views, residual risks, limitations. The recommendation is advisory: name the accountable authority who
    decides.

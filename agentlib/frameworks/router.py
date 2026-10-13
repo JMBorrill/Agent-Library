@@ -52,6 +52,10 @@ SIGNALS: dict[str, list[tuple[float, list[str]]]] = {
              "bcr", "options appraisal", "appraisal", "hm treasury", "five case"]),
         (1.5, ["public spending", "investment", "discount rate", "optimism bias", "benefits realisation", "funding"]),
     ],
+    "assurance-case": [
+        (3, ["assurance case", "safety case", "security case", "claims arguments evidence", "go/no-go"]),
+        (1.5, ["release decision", "deployment decision", "decision package", "argument"]),
+    ],
     "evidence-and-citation": [
         (2, ["citation", "cite", "evidence", "audit trail", "traceable claims", "assurance case"]),
         (0.5, ["report", "assessment", "review"]),

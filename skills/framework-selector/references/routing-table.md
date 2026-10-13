@@ -10,6 +10,7 @@
 | Web/API application security requirements or verification, pentest scoping, findings mapping | `owasp-asvs` | `nist-ssdf` | `application-security-verifier` | `secure-software-delivery` |
 | AI/ML system risk, governance, impact assessment, model cards, AI incident monitoring | `nist-ai-rmf` | `owasp-asvs`, `nist-ssdf` | `ai-risk-assessor`, `ai-governance-advisor` | `ai-system-assurance` |
 | Public spending proposal, options appraisal, cost-benefit analysis, business case | `green-book-appraisal` | `nasa-systems-engineering` (for technical options), `evidence-and-citation` | `economic-appraisal-analyst` | `public-investment-business-case` |
+| Integrated release / deployment / safety decision across several assessments | `assurance-case` | `evidence-and-citation` + framework skills | `review-board-chair`, `evidence-auditor` | any |
 | Any deliverable that will be relied on | `evidence-and-citation` | — | `evidence-auditor` | all |
 | Multi-discipline decision needing a panel | `framework-selector` | all relevant | `review-board-chair` | any |
 
