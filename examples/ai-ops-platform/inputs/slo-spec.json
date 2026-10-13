@@ -1,0 +1,24 @@
+{
+  "name": "AIOPS-SLO-001 booking-api-availability",
+  "service": "AI Operations Platform booking API (synthetic MVP)",
+  "user_journey": "Business owner or assistant-approved action books, moves or cancels a customer booking",
+  "sli": {
+    "description": "Proportion of valid booking API requests served successfully",
+    "good_events": "HTTP responses with status < 500 and latency below 2 s, excluding 429 from per-tenant rate limiting",
+    "valid_events": "All booking API requests from authenticated tenants, excluding synthetic health checks and the LLM drafting endpoints (separate SLO later)",
+    "measurement": "Load balancer request logs aggregated per minute"
+  },
+  "target": 0.995,
+  "window": "30d rolling",
+  "owner": "reliability lead (synthetic)",
+  "exclusion_policy": "Planned maintenance announced 7 days ahead and capped at 30 minutes per month",
+  "alerting_policy": {
+    "ref": "inputs/alert-policy.json",
+    "alerts": [
+      {"name": "fast-burn-page", "severity": "page", "long_window": "1h", "short_window": "5m", "burn_rate": 14.4},
+      {"name": "slow-burn-page", "severity": "page", "long_window": "6h", "short_window": "30m", "burn_rate": 6},
+      {"name": "budget-ticket", "severity": "ticket", "long_window": "3d", "short_window": "6h", "burn_rate": 1}
+    ]
+  },
+  "error_budget_policy": "If the 30-day budget is exhausted, assistant feature releases pause until reliability work restores budget; exceptions need the product owner and reliability lead"
+}

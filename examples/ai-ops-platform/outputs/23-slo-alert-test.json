@@ -1,0 +1,41 @@
+{
+  "target": 0.995,
+  "alerts": [
+    {
+      "name": "fast-burn-page",
+      "severity": "page",
+      "long_window": "1h",
+      "short_window": "5m",
+      "threshold": 14.4,
+      "burn_long": 15.8333,
+      "burn_short": 18.0,
+      "firing": true,
+      "budget_spent_at_detection": 0.02
+    },
+    {
+      "name": "slow-burn-page",
+      "severity": "page",
+      "long_window": "6h",
+      "short_window": "30m",
+      "threshold": 6.0,
+      "burn_long": 2.9167,
+      "burn_short": 17.5,
+      "firing": false,
+      "budget_spent_at_detection": 0.05
+    },
+    {
+      "name": "budget-ticket",
+      "severity": "ticket",
+      "long_window": "3d",
+      "short_window": "6h",
+      "threshold": 1.0,
+      "burn_long": 0.2546,
+      "burn_short": 2.9167,
+      "firing": false,
+      "budget_spent_at_detection": 0.1
+    }
+  ],
+  "firing": [
+    "fast-burn-page"
+  ]
+}

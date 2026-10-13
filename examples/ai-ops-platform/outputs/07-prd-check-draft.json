@@ -1,0 +1,35 @@
+{
+  "findings": [
+    {
+      "id": "job_stories[2]",
+      "severity": "error",
+      "rule": "job-story-format",
+      "message": "use 'When <situation>, I want to <motivation>, so I can <outcome>'"
+    },
+    {
+      "id": "AIOPS-STY-002",
+      "severity": "error",
+      "rule": "job-story-format",
+      "message": "use 'When <situation>, I want to <motivation>, so I can <outcome>'"
+    },
+    {
+      "id": "AIOPS-STY-004",
+      "severity": "warning",
+      "rule": "story-without-gwt",
+      "message": "no Given/When/Then scenario yet"
+    }
+  ],
+  "summary": {
+    "stories": 4,
+    "by_priority": {
+      "must": 2,
+      "should": 1,
+      "could": 1
+    },
+    "flowed_down_rows": 0,
+    "errors": 2,
+    "warnings": 1,
+    "info": 0
+  },
+  "passed": false
+}

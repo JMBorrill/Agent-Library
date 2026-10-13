@@ -1,0 +1,62 @@
+{
+  "findings": [
+    {
+      "id": "AIOPS-EV-004",
+      "severity": "info",
+      "rule": "hypothesis-not-evidence",
+      "message": "hypothesis recorded for tracking; never counted as evidence"
+    },
+    {
+      "id": "AIOPS-EV-005",
+      "severity": "info",
+      "rule": "hypothesis-not-evidence",
+      "message": "hypothesis recorded for tracking; never counted as evidence"
+    },
+    {
+      "id": "AIOPS-AS-003",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    },
+    {
+      "id": "AIOPS-AS-004",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    }
+  ],
+  "summary": {
+    "evidence_rows": 7,
+    "counted_evidence": 5,
+    "by_strength": {
+      "strong": 3,
+      "moderate": 1,
+      "weak": 1
+    },
+    "not_evidence": {
+      "assumption": 0,
+      "hypothesis": 2
+    },
+    "excluded_invalid": 0,
+    "assumptions": 5,
+    "assumptions_by_risk": {
+      "high": 3,
+      "medium": 2
+    },
+    "errors": 0,
+    "warnings": 2,
+    "info": 2
+  },
+  "gate": {
+    "recommendation": "PROCEED_WITH_CONDITIONS",
+    "gate_equivalent": "GO_WITH_CONDITIONS",
+    "target_phase": "alpha",
+    "reasons": [
+      "AIOPS-AS-003: run the planned experiment in alpha before any build commitment",
+      "AIOPS-AS-004: run the planned experiment in alpha before any build commitment",
+      "AIOPS-AS-005: medium-risk assumption still open (experiment_planned)"
+    ],
+    "requires_human_decision": true
+  },
+  "passed": true
+}

@@ -1,0 +1,63 @@
+{
+  "findings": [],
+  "summary": {
+    "asvs_version": "5.0.0",
+    "target_level": 2,
+    "chapters": [
+      "V8",
+      "V14",
+      "V16"
+    ],
+    "in_scope": 32,
+    "mapped": 32,
+    "applicable": 32,
+    "not_applicable": 0,
+    "pass": 0,
+    "fail": 0,
+    "not_verified": 32,
+    "mapped_pct": 100.0,
+    "pass_pct_of_applicable": 0.0,
+    "per_chapter": {
+      "V8": {
+        "in_scope": 7,
+        "mapped": 7,
+        "applicable": 7,
+        "not_applicable": 0,
+        "pass": 0,
+        "fail": 0,
+        "not_verified": 7,
+        "missing": [],
+        "mapped_pct": 100.0,
+        "pass_pct_of_applicable": 0.0
+      },
+      "V14": {
+        "in_scope": 9,
+        "mapped": 9,
+        "applicable": 9,
+        "not_applicable": 0,
+        "pass": 0,
+        "fail": 0,
+        "not_verified": 9,
+        "missing": [],
+        "mapped_pct": 100.0,
+        "pass_pct_of_applicable": 0.0
+      },
+      "V16": {
+        "in_scope": 16,
+        "mapped": 16,
+        "applicable": 16,
+        "not_applicable": 0,
+        "pass": 0,
+        "fail": 0,
+        "not_verified": 16,
+        "missing": [],
+        "mapped_pct": 100.0,
+        "pass_pct_of_applicable": 0.0
+      }
+    },
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": true
+}

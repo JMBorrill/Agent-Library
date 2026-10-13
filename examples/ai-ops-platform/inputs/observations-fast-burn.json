@@ -1,0 +1,8 @@
+{
+  "_note": "Synthetic replay: booking database failover drill in staging, error rate about 9% for 40 minutes. Not production data.",
+  "5m":  {"good": 1820, "total": 2000},
+  "1h":  {"good": 22100, "total": 24000},
+  "30m": {"good": 10950, "total": 12000},
+  "6h":  {"good": 141900, "total": 144000},
+  "3d":  {"good": 1725800, "total": 1728000}
+}

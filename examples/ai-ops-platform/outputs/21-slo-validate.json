@@ -1,0 +1,13 @@
+{
+  "findings": [],
+  "summary": {
+    "service": "AI Operations Platform booking API (synthetic MVP)",
+    "target": 0.995,
+    "window_days": 30,
+    "allowed_bad_minutes": 216.0,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": true
+}

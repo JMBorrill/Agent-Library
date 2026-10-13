@@ -1,0 +1,1 @@
+{"tenant_tables": ["customers", "bookings", "messages"], "tenant_column": "tenant_id"}

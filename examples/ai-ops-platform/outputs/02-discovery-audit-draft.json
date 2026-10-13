@@ -1,0 +1,60 @@
+{
+  "findings": [
+    {
+      "id": "AIOPS-EV-004",
+      "severity": "error",
+      "rule": "quote-without-session",
+      "message": "quoted words with no traceable session reference in source_ref \u2014 possible fabricated or composite quote"
+    },
+    {
+      "id": "AIOPS-EV-005",
+      "severity": "info",
+      "rule": "hypothesis-not-evidence",
+      "message": "hypothesis recorded for tracking; never counted as evidence"
+    },
+    {
+      "id": "AIOPS-AS-003",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    },
+    {
+      "id": "AIOPS-AS-004",
+      "severity": "warning",
+      "rule": "high-risk-untested",
+      "message": "high-risk assumption not yet tested; acceptable only as an alpha condition"
+    }
+  ],
+  "summary": {
+    "evidence_rows": 6,
+    "counted_evidence": 4,
+    "by_strength": {
+      "strong": 2,
+      "moderate": 1,
+      "weak": 1
+    },
+    "not_evidence": {
+      "assumption": 0,
+      "hypothesis": 1
+    },
+    "excluded_invalid": 1,
+    "assumptions": 5,
+    "assumptions_by_risk": {
+      "high": 3,
+      "medium": 2
+    },
+    "errors": 1,
+    "warnings": 2,
+    "info": 1
+  },
+  "gate": {
+    "recommendation": "DO_NOT_PROCEED",
+    "gate_equivalent": "NO_GO",
+    "target_phase": "alpha",
+    "reasons": [
+      "1 evidence/register integrity error(s) \u2014 fix before deciding"
+    ],
+    "requires_human_decision": true
+  },
+  "passed": false
+}

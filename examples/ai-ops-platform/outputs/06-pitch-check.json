@@ -1,0 +1,21 @@
+{
+  "findings": [],
+  "summary": {
+    "pitch": {
+      "sections_found": [
+        "problem",
+        "appetite",
+        "solution",
+        "rabbit_holes",
+        "no_gos"
+      ],
+      "appetite_weeks": 6.0,
+      "max_appetite_weeks": 6.0,
+      "rabbit_holes": 4,
+      "no_gos": 4
+    },
+    "errors": 0,
+    "warnings": 0
+  },
+  "passed": true
+}

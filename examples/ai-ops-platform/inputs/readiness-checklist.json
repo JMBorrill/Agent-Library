@@ -1,0 +1,122 @@
+{
+ "service": "AI Operations Platform MVP - AI scheduling assistant and booking API (synthetic)",
+ "review_date": "2026-10-13",
+ "launch_date": "2026-12-07",
+ "reviewers": [
+  {
+   "name": "reliability-engineer (synthetic)",
+   "role": "SRE"
+  },
+  {
+   "name": "security owner (synthetic)",
+   "role": "Security"
+  },
+  {
+   "name": "product owner (synthetic)",
+   "role": "Service owner"
+  }
+ ],
+ "items": [
+  {
+   "id": "AIOPS-RR-01",
+   "area": "slo",
+   "title": "Booking API SLO AIOPS-SLO-001 defined (99.5%, 30d rolling) and validated",
+   "status": "done",
+   "evidence_ref": "outputs/21-slo-validate.json (slo_calc validate, this demo)",
+   "key": "slo_defined"
+  },
+  {
+   "id": "AIOPS-RR-02",
+   "area": "monitoring",
+   "title": "SLI dashboard for booking API and assistant draft latency",
+   "status": "not_done",
+   "evidence_ref": "",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-20"
+  },
+  {
+   "id": "AIOPS-RR-03",
+   "area": "alerting",
+   "title": "Burn-rate alert policy evaluated on a synthetic fast-burn replay; not yet wired to the paging system",
+   "status": "partial",
+   "evidence_ref": "outputs/23-slo-alert-test.json (synthetic replay only)",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-20"
+  },
+  {
+   "id": "AIOPS-RR-04",
+   "area": "capacity",
+   "title": "Load test at 3x forecast pilot peak (50 tenants)",
+   "status": "not_done",
+   "evidence_ref": "",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-27"
+  },
+  {
+   "id": "AIOPS-RR-05",
+   "area": "dependencies",
+   "title": "LLM provider and SMS gateway failure modes: degraded manual mode designed (AIOPS-TM-T13), game day not run",
+   "status": "partial",
+   "evidence_ref": "inputs/threat-model.json AIOPS-TM-T13",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-27"
+  },
+  {
+   "id": "AIOPS-RR-06",
+   "area": "rollback",
+   "title": "Rollback of app and schema migration rehearsed and timed",
+   "status": "not_done",
+   "evidence_ref": "",
+   "key": "rollback_tested",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-27"
+  },
+  {
+   "id": "AIOPS-RR-07",
+   "area": "runbooks",
+   "title": "Runbooks for fast-burn page, injection-flag spike and SMS send-cap breach",
+   "status": "not_done",
+   "evidence_ref": "",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-27"
+  },
+  {
+   "id": "AIOPS-RR-08",
+   "area": "oncall",
+   "title": "On-call rota for pilot launch +4 weeks (team of 3; rota not agreed)",
+   "status": "not_done",
+   "evidence_ref": "",
+   "key": "oncall_staffed",
+   "owner": "engineering manager (synthetic)",
+   "due": "2026-11-30"
+  },
+  {
+   "id": "AIOPS-RR-09",
+   "area": "security",
+   "title": "Threat model and ASVS L2 map (V8, V14, V16) structurally checked; security owner sign-off and DPIA pending",
+   "status": "partial",
+   "evidence_ref": "outputs/12-threat-model-check.json; outputs/15-asvs-coverage.json",
+   "owner": "security owner (synthetic)",
+   "due": "2026-11-30"
+  },
+  {
+   "id": "AIOPS-RR-10",
+   "area": "backup_restore",
+   "title": "Point-in-time restore of tenant database tested into an isolated environment",
+   "status": "not_done",
+   "evidence_ref": "",
+   "key": "restore_tested",
+   "owner": "reliability lead (synthetic)",
+   "due": "2026-11-27"
+  },
+  {
+   "id": "AIOPS-RR-11",
+   "area": "feature_flags",
+   "title": "Assistant behind a per-tenant flag with a global kill switch owned by Head of Product (synthetic)",
+   "status": "partial",
+   "evidence_ref": "inputs/oversight-matrix.csv (kill-switch owner named; flag not built)",
+   "owner": "product owner (synthetic)",
+   "due": "2026-11-20"
+  }
+ ]
+}

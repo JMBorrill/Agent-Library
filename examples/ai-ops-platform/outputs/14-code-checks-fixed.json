@@ -1,0 +1,49 @@
+{
+  "findings": [],
+  "summary": {
+    "files_scanned": 2,
+    "by_rule": {},
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "rules": {
+    "SC001": {
+      "rule": "hardcoded-secret",
+      "asvs_ref": "ASVS v5.0.0 V13.3 Secret Management"
+    },
+    "SC002": {
+      "rule": "sql-string-building",
+      "asvs_ref": "ASVS v5.0.0 V1.2 Injection Prevention"
+    },
+    "SC003": {
+      "rule": "missing-tenant-filter",
+      "asvs_ref": "ASVS v5.0.0 V8 Authorization"
+    },
+    "SC004": {
+      "rule": "debug-mode-enabled",
+      "asvs_ref": "ASVS v5.0.0 V13.4 Unintended Information Leakage"
+    },
+    "SC005": {
+      "rule": "weak-password-hash",
+      "asvs_ref": "ASVS v5.0.0 V11.4 Hashing and Hash-based Functions"
+    },
+    "SC006": {
+      "rule": "insecure-deserialization",
+      "asvs_ref": "ASVS v5.0.0 V1.5 Safe Deserialization"
+    },
+    "SC007": {
+      "rule": "tls-verification-disabled",
+      "asvs_ref": "ASVS v5.0.0 V12 Secure Communication"
+    },
+    "SC008": {
+      "rule": "cors-wildcard-credentials",
+      "asvs_ref": "ASVS v5.0.0 V3.5 Browser Origin Separation"
+    },
+    "SC009": {
+      "rule": "jwt-verification-disabled",
+      "asvs_ref": "ASVS v5.0.0 V9.1 Token source and integrity"
+    }
+  },
+  "passed": true
+}

@@ -190,6 +190,7 @@
         },
         "sre-service-level-objectives": {
           "stage_in": [
+            "mvp",
             "beta",
             "production"
           ]

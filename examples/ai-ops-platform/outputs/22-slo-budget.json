@@ -1,0 +1,6 @@
+{
+  "target": 0.995,
+  "window_days": 30.0,
+  "error_budget_fraction": 0.005,
+  "allowed_bad_minutes": 216.0
+}

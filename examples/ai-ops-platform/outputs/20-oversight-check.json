@@ -1,0 +1,19 @@
+{
+  "findings": [],
+  "summary": {
+    "decisions": 5,
+    "by_ai_role": {
+      "draft": 2,
+      "recommend": 1,
+      "act": 2
+    },
+    "by_impact": {
+      "medium": 3,
+      "low": 2
+    },
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": true
+}

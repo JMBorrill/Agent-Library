@@ -1,0 +1,182 @@
+{
+  "name": "AI Operations Platform (synthetic) - Solo plan, alpha planning model as of 2026-10-13. Definitions: new customer = first paid month after trial; S&M = ads, content and founder sales time at cost; variable cost = SMS credits + LLM tokens per account",
+  "currency": "GBP",
+  "period": "month",
+  "assumption_ledger": [
+    {
+      "input": "sales_marketing_spend",
+      "value": 9000.0,
+      "tag": "estimate",
+      "source": "alpha go-to-market budget, quarter 1 (synthetic plan)",
+      "owner": "product lead (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "new_customers",
+      "value": 45.0,
+      "tag": "estimate",
+      "source": "pilot waitlist conversion assumption; no paid customers yet (synthetic)",
+      "owner": "product lead (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "paid_spend",
+      "value": 5000.0,
+      "tag": "estimate",
+      "source": "planned paid social budget (synthetic)",
+      "owner": "growth lead (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "paid_new_customers",
+      "value": 15.0,
+      "tag": "estimate",
+      "source": "assumed 1.5% landing-page conversion (synthetic, untested)",
+      "owner": "growth lead (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "arpa_monthly",
+      "value": 29.0,
+      "tag": "estimate",
+      "source": "hypothesis AIOPS-AS-004 price point; untested",
+      "owner": "product lead (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "gross_margin_pct",
+      "value": 0.78,
+      "tag": "estimate",
+      "source": "hosting + support cost model v0 (synthetic)",
+      "owner": "financial analyst (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "variable_cost_per_account_monthly",
+      "value": 4.5,
+      "tag": "estimate",
+      "source": "SMS credits (about 120 SMS) + LLM tokens (about 300 drafts) per account per month at list prices (synthetic)",
+      "owner": "financial analyst (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "monthly_churn",
+      "value": 0.04,
+      "tag": "benchmark",
+      "source": "Synthetic micro-SMB SaaS churn benchmark BM-SMB-2026 (synthetic dataset, 2026-06)",
+      "owner": "financial analyst (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "discount_rate_annual",
+      "value": 0.15,
+      "tag": "estimate",
+      "source": "founder hurdle rate (synthetic)",
+      "owner": "financial analyst (synthetic)",
+      "as_of": "2026-10-13"
+    },
+    {
+      "input": "horizon_months",
+      "value": 48.0,
+      "tag": "estimate",
+      "source": "policy: value no more than 4 years of a micro-business account",
+      "owner": "financial analyst (synthetic)",
+      "as_of": "2026-10-13"
+    }
+  ],
+  "base": {
+    "blended_cac": 200.0,
+    "paid_cac": 333.3333333333333,
+    "gross_margin_per_account_monthly": 22.62,
+    "contribution_per_account_monthly": 18.12,
+    "contribution_margin_pct": 0.6248275862068966,
+    "expected_lifetime_months": 25.0,
+    "lifetime_capped_at_horizon": false,
+    "ltv": 453.0,
+    "ltv_discounted": 322.1486082684223,
+    "ltv_to_cac": 2.265,
+    "cac_payback_months": 11.037527593818984,
+    "cac_payback_never": false,
+    "cac_payback_gross_margin_months": 8.841732979664014,
+    "ltv_discounted_to_cac": 1.6107430413421115
+  },
+  "scenarios": {
+    "downside": {
+      "blended_cac": 300.0,
+      "paid_cac": 333.3333333333333,
+      "gross_margin_per_account_monthly": 18.72,
+      "contribution_per_account_monthly": 14.219999999999999,
+      "contribution_margin_pct": 0.5924999999999999,
+      "expected_lifetime_months": 14.285714285714285,
+      "lifetime_capped_at_horizon": false,
+      "ltv": 203.1428571428571,
+      "ltv_discounted": 170.96479512602937,
+      "ltv_to_cac": 0.677142857142857,
+      "cac_payback_months": 21.09704641350211,
+      "cac_payback_never": false,
+      "cac_payback_gross_margin_months": 16.025641025641026,
+      "ltv_discounted_to_cac": 0.5698826504200979,
+      "overrides": {
+        "monthly_churn": 0.07,
+        "arpa_monthly": 24.0,
+        "new_customers": 30.0
+      }
+    },
+    "upside": {
+      "blended_cac": 200.0,
+      "paid_cac": 333.3333333333333,
+      "gross_margin_per_account_monthly": 27.3,
+      "contribution_per_account_monthly": 22.8,
+      "contribution_margin_pct": 0.6514285714285715,
+      "expected_lifetime_months": 33.333333333333336,
+      "lifetime_capped_at_horizon": false,
+      "ltv": 760.0000000000001,
+      "ltv_discounted": 474.1409307430797,
+      "ltv_to_cac": 3.8000000000000007,
+      "cac_payback_months": 8.771929824561402,
+      "cac_payback_never": false,
+      "cac_payback_gross_margin_months": 7.326007326007326,
+      "ltv_discounted_to_cac": 2.3707046537153986,
+      "overrides": {
+        "monthly_churn": 0.03,
+        "arpa_monthly": 35.0
+      }
+    }
+  },
+  "sensitivity": {
+    "monthly_churn": [
+      {
+        "value": 0.02,
+        "ltv": 869.76,
+        "ltv_to_cac": 4.3488,
+        "cac_payback_months": 11.037527593818984
+      },
+      {
+        "value": 0.04,
+        "ltv": 453.0,
+        "ltv_to_cac": 2.265,
+        "cac_payback_months": 11.037527593818984
+      },
+      {
+        "value": 0.06,
+        "ltv": 302.00000000000006,
+        "ltv_to_cac": 1.5100000000000002,
+        "cac_payback_months": 11.037527593818984
+      },
+      {
+        "value": 0.08,
+        "ltv": 226.5,
+        "ltv_to_cac": 1.1325,
+        "cac_payback_months": 11.037527593818984
+      }
+    ]
+  },
+  "findings": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "passed": true,
+  "scope": "Scope: arithmetic on stated assumptions; not a forecast, valuation or investment advice."
+}

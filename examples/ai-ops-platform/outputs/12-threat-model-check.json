@@ -1,0 +1,129 @@
+{
+  "findings": [
+    {
+      "id": "AIOPS-TM-T01",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T02",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T03",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T05",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T06",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T07",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T10",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T12",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T17",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    }
+  ],
+  "summary": {
+    "system": "AI Operations Platform MVP (synthetic): multi-tenant AI CRM, messaging and scheduling SaaS with a tool-calling assistant",
+    "components": 7,
+    "data_flows": 6,
+    "boundary_crossing_flows": 5,
+    "threats": 19,
+    "by_stride": {
+      "E": 1,
+      "I": 5,
+      "S": 2,
+      "T": 5,
+      "D": 5,
+      "R": 1
+    },
+    "by_risk": {
+      "high": 9,
+      "low": 5,
+      "medium": 5
+    },
+    "asvs_ids_cited": [
+      "v5.0.0-1.2.4",
+      "v5.0.0-12.2.1",
+      "v5.0.0-12.3.1",
+      "v5.0.0-13.3.1",
+      "v5.0.0-14.2.1",
+      "v5.0.0-15.1.3",
+      "v5.0.0-16.2.1",
+      "v5.0.0-16.3.2",
+      "v5.0.0-2.2.1",
+      "v5.0.0-2.3.1",
+      "v5.0.0-2.4.1",
+      "v5.0.0-3.3.1",
+      "v5.0.0-3.4.1",
+      "v5.0.0-4.1.1",
+      "v5.0.0-6.3.1",
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.3.1",
+      "v5.0.0-8.4.1"
+    ],
+    "coverage": {
+      "DF1": {
+        "required": "STIDE",
+        "covered": "DEIST",
+        "missing": ""
+      },
+      "DF2": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF3": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF4": {
+        "required": "STID",
+        "covered": "DST",
+        "missing": ""
+      },
+      "DF5": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      }
+    },
+    "errors": 0,
+    "warnings": 9,
+    "info": 0
+  },
+  "passed": true
+}

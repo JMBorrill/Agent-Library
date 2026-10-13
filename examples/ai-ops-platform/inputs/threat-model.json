@@ -1,0 +1,573 @@
+{
+ "system": "AI Operations Platform MVP (synthetic): multi-tenant AI CRM, messaging and scheduling SaaS with a tool-calling assistant",
+ "version": "mvp-0.3",
+ "owner": "security owner (synthetic)",
+ "date": "2026-10-13",
+ "multi_tenant": true,
+ "asvs_target_level": 2,
+ "notes": "Synthetic, pre-build design model. Mitigation statuses are mostly 'planned' because the MVP is not built. ASVS IDs were chosen by chapter/section title from the bundled 5.0.0 index and must be confirmed against the requirement text before use.",
+ "components": [
+  {
+   "id": "C1",
+   "name": "Business owner browser / mobile web",
+   "type": "external_entity",
+   "trust_zone": "internet"
+  },
+  {
+   "id": "C2",
+   "name": "Platform API (CRM, inbox, booking)",
+   "type": "process",
+   "trust_zone": "app"
+  },
+  {
+   "id": "C3",
+   "name": "Tenant database (shared schema, tenant_id column, row-level security)",
+   "type": "data_store",
+   "trust_zone": "data"
+  },
+  {
+   "id": "C4",
+   "name": "LLM provider API",
+   "type": "external_entity",
+   "trust_zone": "third_party"
+  },
+  {
+   "id": "C5",
+   "name": "Inbound SMS/email webhook (end-customer messages)",
+   "type": "external_entity",
+   "trust_zone": "internet"
+  },
+  {
+   "id": "C6",
+   "name": "Assistant orchestrator and tool executor",
+   "type": "process",
+   "trust_zone": "app"
+  },
+  {
+   "id": "C7",
+   "name": "SMS/email delivery gateway",
+   "type": "external_entity",
+   "trust_zone": "third_party"
+  }
+ ],
+ "trust_boundaries": [
+  {
+   "id": "TB1",
+   "name": "Internet to platform edge"
+  },
+  {
+   "id": "TB2",
+   "name": "Platform to third-party AI provider"
+  },
+  {
+   "id": "TB3",
+   "name": "Application tier to data tier"
+  },
+  {
+   "id": "TB4",
+   "name": "Platform to messaging gateway (data egress)"
+  }
+ ],
+ "assets": [
+  {
+   "id": "A1",
+   "name": "End-customer contact details and message threads (personal data, per tenant)",
+   "classification": "confidential"
+  },
+  {
+   "id": "A2",
+   "name": "Bookings and calendars",
+   "classification": "confidential"
+  },
+  {
+   "id": "A3",
+   "name": "Owner session tokens",
+   "classification": "restricted"
+  },
+  {
+   "id": "A4",
+   "name": "Prompts and completions containing tenant data",
+   "classification": "confidential"
+  },
+  {
+   "id": "A5",
+   "name": "Gateway API key (stored in secret manager; placeholder sk-FAKE-0000 in examples)",
+   "classification": "restricted"
+  }
+ ],
+ "data_flows": [
+  {
+   "id": "DF1",
+   "from": "C1",
+   "to": "C2",
+   "data": [
+    "A1",
+    "A2",
+    "A3"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB1",
+   "required_categories": "STIDE"
+  },
+  {
+   "id": "DF2",
+   "from": "C2",
+   "to": "C3",
+   "data": [
+    "A1",
+    "A2"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF3",
+   "from": "C6",
+   "to": "C4",
+   "data": [
+    "A4"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB2"
+  },
+  {
+   "id": "DF4",
+   "from": "C5",
+   "to": "C2",
+   "data": [
+    "A1"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB1",
+   "required_categories": "STID",
+   "not_applicable": {
+    "I": "Webhook response is an empty 204; inbound content is stored, never echoed back to the sender"
+   }
+  },
+  {
+   "id": "DF5",
+   "from": "C6",
+   "to": "C7",
+   "data": [
+    "A1",
+    "A5"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB4"
+  },
+  {
+   "id": "DF6",
+   "from": "C2",
+   "to": "C6",
+   "data": [
+    "A1",
+    "A2"
+   ],
+   "protocol": "internal queue",
+   "crosses_boundary": false
+  }
+ ],
+ "threats": [
+  {
+   "id": "AIOPS-TM-T01",
+   "title": "Owner changes tenant_id in a request to read or book in another tenant",
+   "stride": "E",
+   "targets": [
+    "DF1",
+    "C2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tenant derived from the authenticated session only; object-level authorization on every booking/contact endpoint",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T02",
+   "title": "Query missing the tenant filter returns another tenant's customers",
+   "stride": "I",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Repository-layer tenant filter plus database row-level security; static check SC003 in CI; isolation test suite AIOPS-VER-101",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T03",
+   "title": "Credential stuffing against owner login",
+   "stride": "S",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "high",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Rate limiting on login and MFA for owners",
+     "asvs": [
+      "v5.0.0-6.3.1",
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T04",
+   "title": "Tampering with booking parameters in transit",
+   "stride": "T",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "HTTPS only with HSTS",
+     "asvs": [
+      "v5.0.0-12.2.1",
+      "v5.0.0-3.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T05",
+   "title": "Another tenant's data enters the model prompt context (shared cache or retrieval)",
+   "stride": "I",
+   "targets": [
+    "DF3",
+    "C6"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Prompt built per request from one tenant's records; no cross-tenant retrieval index or cache in MVP; eval check AIOPS-VER-102",
+     "asvs": [
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T06",
+   "title": "Indirect prompt injection in an inbound customer email makes the assistant send messages or create bookings",
+   "stride": "T",
+   "targets": [
+    "DF4",
+    "C6"
+   ],
+   "likelihood": "high",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Inbound content labelled retrieved_content; side-effecting tools denied from untrusted provenance (tool policy)",
+     "asvs": [
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    },
+    {
+     "description": "Owner approval before every send/book; hidden markup stripped before the model reads content",
+     "asvs": [
+      "v5.0.0-2.2.1",
+      "v5.0.0-2.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T07",
+   "title": "Session token disclosure via insecure cookie",
+   "stride": "I",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Secure, HttpOnly, SameSite cookies",
+     "asvs": [
+      "v5.0.0-3.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T08",
+   "title": "API flooding by one tenant degrades booking for all tenants",
+   "stride": "D",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-tenant rate limits and quotas",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T09",
+   "title": "Owner disputes having approved a message sent in their name",
+   "stride": "R",
+   "targets": [
+    "C2",
+    "C6"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Append-only activity log of draft, edit, approval and tool call with tenant, user and timestamp",
+     "asvs": [
+      "v5.0.0-16.2.1",
+      "v5.0.0-16.3.2"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T10",
+   "title": "SQL injection through inbox search modifies tenant data",
+   "stride": "T",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Parameterised queries only; static check SC002 in CI",
+     "asvs": [
+      "v5.0.0-1.2.4"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T11",
+   "title": "Unbounded report query exhausts the shared database",
+   "stride": "D",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "accepted",
+   "mitigations": [],
+   "accepted_by": "CTO (synthetic) - acceptance pending human sign-off",
+   "acceptance_rationale": "Statement timeout of 5 s on reporting queries; revisit before 200 tenants"
+  },
+  {
+   "id": "AIOPS-TM-T12",
+   "title": "Tenant message data retained or exposed by the LLM provider",
+   "stride": "I",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Data processing agreement, minimum-retention setting, send only the current thread",
+     "asvs": [
+      "v5.0.0-14.2.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T13",
+   "title": "LLM provider outage blocks owners from replying",
+   "stride": "D",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "medium",
+   "impact": "low",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Inbox and manual reply work without the assistant (degraded mode)",
+     "asvs": [
+      "v5.0.0-15.1.3"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T14",
+   "title": "Completion altered in transit between platform and LLM provider",
+   "stride": "T",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "TLS with certificate validation to the provider endpoint",
+     "asvs": [
+      "v5.0.0-12.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T15",
+   "title": "Forged inbound webhook injects fake customer messages",
+   "stride": "S",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Verify gateway signature and timestamp on every webhook",
+     "asvs": [
+      "v5.0.0-4.1.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T16",
+   "title": "Inbound webhook flood (spam) fills inboxes and drives LLM cost",
+   "stride": "D",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-source and per-tenant rate limits; drafts generated only when the owner opens a thread",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T17",
+   "title": "Assistant tool call exfiltrates customer data to a recipient outside the thread (AI tool misuse)",
+   "stride": "I",
+   "targets": [
+    "DF5",
+    "C6"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tool policy: recipients restricted to the thread's own customer; data egress to non-allowlisted domains denied; approval shows full arguments",
+     "asvs": [
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T18",
+   "title": "Message content altered between platform and gateway",
+   "stride": "T",
+   "targets": [
+    "DF5"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "TLS to gateway; gateway key in secret manager, never in code",
+     "asvs": [
+      "v5.0.0-12.3.1",
+      "v5.0.0-13.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "AIOPS-TM-T19",
+   "title": "SMS pumping or runaway tool loop sends large message volumes (cost and spam)",
+   "stride": "D",
+   "targets": [
+    "DF5"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-tenant daily send cap and circuit breaker on the send tools",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  }
+ ]
+}

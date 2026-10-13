@@ -1,0 +1,136 @@
+{
+  "findings": [
+    {
+      "id": "AIOPS-RR-02",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (not_done): owner reliability lead (synthetic), due 2026-11-20"
+    },
+    {
+      "id": "AIOPS-RR-03",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (partial): owner reliability lead (synthetic), due 2026-11-20"
+    },
+    {
+      "id": "AIOPS-RR-04",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (not_done): owner reliability lead (synthetic), due 2026-11-27"
+    },
+    {
+      "id": "AIOPS-RR-05",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (partial): owner reliability lead (synthetic), due 2026-11-27"
+    },
+    {
+      "id": "AIOPS-RR-06",
+      "severity": "error",
+      "rule": "blocking-item-not-done",
+      "message": "blocking item 'rollback_tested' is not_done"
+    },
+    {
+      "id": "AIOPS-RR-07",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (not_done): owner reliability lead (synthetic), due 2026-11-27"
+    },
+    {
+      "id": "AIOPS-RR-08",
+      "severity": "error",
+      "rule": "blocking-item-not-done",
+      "message": "blocking item 'oncall_staffed' is not_done"
+    },
+    {
+      "id": "AIOPS-RR-09",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (partial): owner security owner (synthetic), due 2026-11-30"
+    },
+    {
+      "id": "AIOPS-RR-10",
+      "severity": "error",
+      "rule": "blocking-item-not-done",
+      "message": "blocking item 'restore_tested' is not_done"
+    },
+    {
+      "id": "AIOPS-RR-11",
+      "severity": "warning",
+      "rule": "open-item",
+      "message": "open (partial): owner product owner (synthetic), due 2026-11-20"
+    }
+  ],
+  "summary": {
+    "service": "AI Operations Platform MVP - AI scheduling assistant and booking API (synthetic)",
+    "recommendation": "NO_GO",
+    "requires_human_signoff": true,
+    "blocking_failures": [
+      "oncall_staffed",
+      "restore_tested",
+      "rollback_tested"
+    ],
+    "conditions": [
+      {
+        "id": "AIOPS-RR-02",
+        "title": "SLI dashboard for booking API and assistant draft latency",
+        "owner": "reliability lead (synthetic)",
+        "due": "2026-11-20"
+      },
+      {
+        "id": "AIOPS-RR-03",
+        "title": "Burn-rate alert policy evaluated on a synthetic fast-burn replay; not yet wired to the paging system",
+        "owner": "reliability lead (synthetic)",
+        "due": "2026-11-20"
+      },
+      {
+        "id": "AIOPS-RR-04",
+        "title": "Load test at 3x forecast pilot peak (50 tenants)",
+        "owner": "reliability lead (synthetic)",
+        "due": "2026-11-27"
+      },
+      {
+        "id": "AIOPS-RR-05",
+        "title": "LLM provider and SMS gateway failure modes: degraded manual mode designed (AIOPS-TM-T13), game day not run",
+        "owner": "reliability lead (synthetic)",
+        "due": "2026-11-27"
+      },
+      {
+        "id": "AIOPS-RR-07",
+        "title": "Runbooks for fast-burn page, injection-flag spike and SMS send-cap breach",
+        "owner": "reliability lead (synthetic)",
+        "due": "2026-11-27"
+      },
+      {
+        "id": "AIOPS-RR-09",
+        "title": "Threat model and ASVS L2 map (V8, V14, V16) structurally checked; security owner sign-off and DPIA pending",
+        "owner": "security owner (synthetic)",
+        "due": "2026-11-30"
+      },
+      {
+        "id": "AIOPS-RR-11",
+        "title": "Assistant behind a per-tenant flag with a global kill switch owned by Head of Product (synthetic)",
+        "owner": "product owner (synthetic)",
+        "due": "2026-11-20"
+      }
+    ],
+    "areas_covered": [
+      "alerting",
+      "backup_restore",
+      "capacity",
+      "dependencies",
+      "feature_flags",
+      "monitoring",
+      "oncall",
+      "rollback",
+      "runbooks",
+      "security",
+      "slo"
+    ],
+    "items": 11,
+    "errors": 3,
+    "warnings": 7,
+    "info": 0
+  },
+  "passed": false
+}

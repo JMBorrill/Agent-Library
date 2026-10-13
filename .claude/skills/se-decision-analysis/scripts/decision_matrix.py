@@ -79,6 +79,14 @@ def analyse(d: dict) -> dict:
         findings.append(_f(did, "error", "no-criteria", "no criteria"))
     if any(f["severity"] == "error" for f in findings if f["rule"] in {"too-few-alternatives", "no-criteria"}):
         return {"findings": findings, "summary": {"errors": len([f for f in findings if f["severity"] == "error"])}}
+    for i, c in enumerate(crit):
+        if not isinstance(c, dict) or not c.get("id"):
+            findings.append(_f(f"criteria[{i}]", "error", "criterion-id", "every criterion needs an id"))
+    for i, a in enumerate(alts):
+        if not isinstance(a, dict) or not a.get("id"):
+            findings.append(_f(f"alternatives[{i}]", "error", "alternative-id", "every alternative needs an id"))
+    if any(f["rule"] in {"criterion-id", "alternative-id"} for f in findings):
+        return {"findings": findings, "summary": {"errors": sum(f["severity"] == "error" for f in findings)}}
     ids = Counter(c.get("id") for c in crit)
     for c, n in ids.items():
         if n > 1:
@@ -141,6 +149,16 @@ def analyse(d: dict) -> dict:
                            "min-max normalisation with fewer than 3 alternatives maps scores to 0/1 and exaggerates "
                            "differences; consider settings.normalisation='none' with scores on a common scale"))
     scale_max = float(settings.get("scale_max", 1.0))
+    if mode == "none":
+        if scale_max <= 0:
+            findings.append(_f(did, "error", "scale-max", "scale_max must be > 0"))
+            return {"findings": findings, "summary": {"errors": 1}}
+        bad = [(a["id"], c["id"]) for a in feasible for c in crit
+               if not 0 <= float(_score(a, c["id"])[0]) <= scale_max]
+        for aid, cid in bad:
+            findings.append(_f(aid, "error", "score-out-of-scale", f"score for {cid} outside 0..{scale_max:g}"))
+        if bad:
+            return {"findings": findings, "summary": {"errors": sum(f["severity"] == "error" for f in findings)}}
     for c in crit:
         vals = {a["id"]: float(_score(a, c["id"])[0]) for a in feasible}
         if mode == "none":

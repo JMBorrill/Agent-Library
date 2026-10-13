@@ -1,0 +1,23 @@
+{
+  "findings": [
+    {
+      "id": "AIOPS-STY-004",
+      "severity": "warning",
+      "rule": "story-without-gwt",
+      "message": "no Given/When/Then scenario yet"
+    }
+  ],
+  "summary": {
+    "stories": 4,
+    "by_priority": {
+      "must": 2,
+      "should": 1,
+      "could": 1
+    },
+    "flowed_down_rows": 7,
+    "errors": 0,
+    "warnings": 1,
+    "info": 0
+  },
+  "passed": true
+}

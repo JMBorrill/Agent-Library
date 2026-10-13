@@ -1,0 +1,33 @@
+{
+  "findings": [
+    {
+      "id": "AIOPS-STY-001",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "AIOPS-STY-002",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "AIOPS-STY-003",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    }
+  ],
+  "summary": {
+    "requirements": 7,
+    "by_status": {
+      "proposed": 7
+    },
+    "errors": 0,
+    "warnings": 0,
+    "info": 3,
+    "tbd_count": 0
+  },
+  "passed": true
+}

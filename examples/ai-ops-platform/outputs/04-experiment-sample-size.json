@@ -1,0 +1,16 @@
+{
+  "calculation": "sample-size",
+  "formula": "pooled",
+  "inputs": {
+    "baseline": 0.12,
+    "target": 0.09,
+    "alpha": 0.05,
+    "power": 0.8,
+    "two_sided": true
+  },
+  "result": {
+    "n_per_arm": 1638,
+    "n_per_arm_unrounded": 1637.9282867817096,
+    "total": 3276
+  }
+}

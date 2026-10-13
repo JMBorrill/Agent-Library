@@ -1,0 +1,10 @@
+{
+  "findings": [],
+  "summary": {
+    "plan": "AIOPS-EXP-001",
+    "required_per_arm": 1638,
+    "errors": 0,
+    "warnings": 0
+  },
+  "passed": true
+}

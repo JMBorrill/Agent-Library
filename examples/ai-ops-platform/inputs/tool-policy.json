@@ -1,0 +1,12 @@
+{
+  "policy_id": "AIOPS-TOOL-POLICY-MVP",
+  "version": "0.3.0",
+  "description": "Synthetic tool policy for the AI Operations Platform MVP scheduling assistant. Sending messages and creating bookings require owner approval; data egress outside the platform and its messaging gateway is denied.",
+  "allowed_tools": ["read_thread", "read_calendar", "draft_reply", "propose_slots", "send_sms", "send_email", "create_booking"],
+  "side_effecting_tools": ["send_sms", "send_email", "create_booking"],
+  "untrusted_provenance": ["retrieved_content", "tool_output"],
+  "forbidden_domains": ["data-harvest.example", "pastebin.com", "webhook.site", "ngrok.io"],
+  "allowed_egress_domains": ["aiops-platform.invalid", "sms-gateway.invalid"],
+  "personal_data_classifications": ["personal"],
+  "pii_egress_allowed_domains": ["sms-gateway.invalid"]
+}

@@ -1,0 +1,374 @@
+{
+ "demo": "ai-ops-platform",
+ "title": "AI Operations Platform (synthetic) — multi-tenant AI CRM, messaging and scheduling MVP",
+ "steps": [
+  {
+   "id": "01-framework-selection",
+   "skill": "select-frameworks",
+   "script": "select_frameworks.py",
+   "args": [
+    "inputs/profile.json",
+    "--markdown"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/01-framework-selection.md",
+   "purpose": "choose packs, skills, agents and oversight level"
+  },
+  {
+   "id": "02-discovery-audit-draft",
+   "skill": "product-discovery",
+   "script": "evidence_audit.py",
+   "args": [
+    "inputs/evidence-log-draft.csv",
+    "--assumptions",
+    "inputs/assumptions.csv",
+    "--target",
+    "alpha",
+    "--as-of",
+    "2026-10-13",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/02-discovery-audit-draft.json",
+   "purpose": "draft evidence log with an untraceable composite customer quote (expect quote-without-session)"
+  },
+  {
+   "id": "03-discovery-audit",
+   "skill": "product-discovery",
+   "script": "evidence_audit.py",
+   "args": [
+    "inputs/evidence-log.csv",
+    "--assumptions",
+    "inputs/assumptions.csv",
+    "--target",
+    "alpha",
+    "--as-of",
+    "2026-10-13",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/03-discovery-audit.json",
+   "purpose": "corrected log: quote withdrawn and re-logged as a hypothesis; alpha gate recommendation"
+  },
+  {
+   "id": "04-experiment-sample-size",
+   "skill": "product-experiment-design",
+   "script": "experiment_calc.py",
+   "args": [
+    "sample-size",
+    "--baseline",
+    "0.12",
+    "--mde",
+    "0.03",
+    "--direction",
+    "decrease",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/04-experiment-sample-size.json",
+   "purpose": "size the reminder-SMS no-show experiment"
+  },
+  {
+   "id": "05-experiment-plan-check",
+   "skill": "product-experiment-design",
+   "script": "experiment_calc.py",
+   "args": [
+    "plan",
+    "inputs/experiment-plan.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/05-experiment-plan-check.json",
+   "purpose": "check pre-registered plan AIOPS-EXP-001"
+  },
+  {
+   "id": "06-pitch-check",
+   "skill": "product-shaping",
+   "script": "pitch_check.py",
+   "args": [
+    "inputs/pitch.md",
+    "--max-appetite-weeks",
+    "6",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/06-pitch-check.json",
+   "purpose": "MVP AI scheduling assistant pitch: appetite, rabbit holes, no-gos"
+  },
+  {
+   "id": "07-prd-check-draft",
+   "skill": "product-requirements-brief",
+   "script": "prd_check.py",
+   "args": [
+    "inputs/prd-draft.md",
+    "--stories",
+    "inputs/stories-draft.csv",
+    "--evidence",
+    "inputs/evidence-log.csv",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/07-prd-check-draft.json",
+   "purpose": "first PRD draft: AIOPS-STY-002 not in job-story form (cannot flow down)"
+  },
+  {
+   "id": "08-prd-check-flowdown",
+   "skill": "product-requirements-brief",
+   "script": "prd_check.py",
+   "args": [
+    "inputs/prd.md",
+    "--stories",
+    "inputs/stories.csv",
+    "--evidence",
+    "inputs/evidence-log.csv",
+    "--flow-down",
+    "outputs/candidate-requirements.csv",
+    "--prefix",
+    "AIOPS-SYS",
+    "--owner",
+    "product-lead (synthetic)",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/08-prd-check-flowdown.json",
+   "purpose": "corrected PRD; flow stories down to candidate AIOPS-SYS requirements"
+  },
+  {
+   "id": "09-req-lint-candidates",
+   "skill": "se-requirements",
+   "script": "req_lint.py",
+   "args": [
+    "outputs/candidate-requirements.csv",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/09-req-lint-candidates.json",
+   "purpose": "lint flowed-down candidate requirements"
+  },
+  {
+   "id": "10-req-lint-system",
+   "skill": "se-requirements",
+   "script": "req_lint.py",
+   "args": [
+    "inputs/requirements.csv",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/10-req-lint-system.json",
+   "purpose": "lint security/AI/reliability system requirements AIOPS-SYS-010..015"
+  },
+  {
+   "id": "11-unit-economics",
+   "skill": "finance-unit-economics",
+   "script": "unit_economics.py",
+   "args": [
+    "inputs/unit-economics-model.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/11-unit-economics.json",
+   "purpose": "CAC, churn, LTV, payback: base/downside/upside with assumption ledger"
+  },
+  {
+   "id": "12-threat-model-check",
+   "skill": "security-threat-model",
+   "script": "threat_model_check.py",
+   "args": [
+    "inputs/threat-model.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/12-threat-model-check.json",
+   "purpose": "STRIDE model: tenant isolation, AI tool misuse, data flows"
+  },
+  {
+   "id": "13-code-checks-draft",
+   "skill": "security-code-checks",
+   "script": "static_checks.py",
+   "args": [
+    "inputs/code-draft",
+    "--config",
+    "inputs/static-checks-config.json",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/13-code-checks-draft.json",
+   "purpose": "first-draft snippet with a missing tenant filter (expect SC003)"
+  },
+  {
+   "id": "14-code-checks-fixed",
+   "skill": "security-code-checks",
+   "script": "static_checks.py",
+   "args": [
+    "inputs/code-fixed",
+    "--config",
+    "inputs/static-checks-config.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/14-code-checks-fixed.json",
+   "purpose": "fixed snippet: tenant filter from session"
+  },
+  {
+   "id": "15-asvs-coverage",
+   "skill": "security-asvs-controls",
+   "script": "asvs_coverage.py",
+   "args": [
+    "inputs/asvs-control-map.csv",
+    "--level",
+    "2",
+    "--chapters",
+    "V8,V14,V16",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/15-asvs-coverage.json",
+   "purpose": "ASVS 5.0.0 L2 verification map (all not_verified pre-build)"
+  },
+  {
+   "id": "16-injection-scan",
+   "skill": "ai-prompt-injection-review",
+   "script": "injection_scan.py",
+   "args": [
+    "inputs/inbound-email-injection.txt",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/16-injection-scan.json",
+   "purpose": "inbound customer email with hidden indirect injection (expect flag)"
+  },
+  {
+   "id": "17-tool-policy-check",
+   "skill": "ai-prompt-injection-review",
+   "script": "tool_policy_check.py",
+   "args": [
+    "inputs/tool-calls.json",
+    "--policy",
+    "inputs/tool-policy.json",
+    "--expect",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/17-tool-policy-check.json",
+   "purpose": "sends need approval, untrusted side effects and egress denied"
+  },
+  {
+   "id": "18-eval-drafting-v0",
+   "skill": "ai-eval-harness",
+   "script": "run_eval.py",
+   "args": [
+    "inputs/evalset-drafting.jsonl",
+    "--adapter",
+    "fixture",
+    "--responses",
+    "inputs/responses-drafting-v0.jsonl",
+    "--config",
+    "inputs/eval-config.json",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/18-eval-drafting-v0.json",
+   "purpose": "prompt v0 fixture responses: PII leak, injection followed, ungrounded slot"
+  },
+  {
+   "id": "19-eval-drafting-v1",
+   "skill": "ai-eval-harness",
+   "script": "run_eval.py",
+   "args": [
+    "inputs/evalset-drafting.jsonl",
+    "--adapter",
+    "fixture",
+    "--responses",
+    "inputs/responses-drafting-v1.jsonl",
+    "--config",
+    "inputs/eval-config.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/19-eval-drafting-v1.json",
+   "purpose": "prompt v1 fixture responses against the same gates"
+  },
+  {
+   "id": "20-oversight-check",
+   "skill": "ai-human-oversight",
+   "script": "oversight_check.py",
+   "args": [
+    "inputs/oversight-matrix.csv",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/20-oversight-check.json",
+   "purpose": "who approves sends and bookings; kill switch; rollback triggers"
+  },
+  {
+   "id": "21-slo-validate",
+   "skill": "sre-service-level-objectives",
+   "script": "slo_calc.py",
+   "args": [
+    "validate",
+    "inputs/slo-spec.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/21-slo-validate.json",
+   "purpose": "booking API availability SLO spec"
+  },
+  {
+   "id": "22-slo-budget",
+   "skill": "sre-service-level-objectives",
+   "script": "slo_calc.py",
+   "args": [
+    "budget",
+    "--target",
+    "99.5",
+    "--window-days",
+    "30",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/22-slo-budget.json",
+   "purpose": "error budget for 99.5% / 30 days"
+  },
+  {
+   "id": "23-slo-alert-test",
+   "skill": "sre-service-level-objectives",
+   "script": "slo_calc.py",
+   "args": [
+    "alerts",
+    "--policy",
+    "inputs/alert-policy.json",
+    "--observations",
+    "inputs/observations-fast-burn.json",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/23-slo-alert-test.json",
+   "purpose": "synthetic fast-burn replay must fire the page alert (exit 1 = firing)"
+  },
+  {
+   "id": "24-readiness",
+   "skill": "sre-production-readiness",
+   "script": "readiness_check.py",
+   "args": [
+    "inputs/readiness-checklist.json",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/24-readiness.json",
+   "purpose": "MVP launch readiness: expect NO_GO (rollback, restore, on-call not done)"
+  },
+  {
+   "id": "25-claim-check",
+   "skill": "independent-review",
+   "script": "claim_check.py",
+   "args": [
+    "README.md",
+    "inputs",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/25-claim-check.json",
+   "purpose": "screen README and inputs for overclaiming"
+  }
+ ]
+}

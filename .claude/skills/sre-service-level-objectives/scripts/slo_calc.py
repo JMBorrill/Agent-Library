@@ -85,6 +85,8 @@ def budget(target: float, window_days: float, total_events: float | None = None,
             out["remaining_bad_events"] = round(frac * total_events - bad_events, 6)
     elif bad_events is not None:
         raise InputError("--bad-events needs --total-events")
+    if bad_minutes is not None and bad_events is not None:
+        raise InputError("give either bad events or bad minutes, not both (they measure the budget differently)")
     if bad_minutes is not None:
         if bad_minutes < 0:
             raise InputError("bad minutes must be >= 0")
@@ -135,9 +137,12 @@ def evaluate_alerts(policy: dict, observations: dict) -> dict:
         bs = burn_rate(_error_rate(observations[short_w]), t)
         results.append({"name": a.get("name"), "severity": a.get("severity", "page"), "long_window": long_w,
                         "short_window": short_w, "threshold": thr, "burn_long": round(bl, 4),
-                        "burn_short": round(bs, 4), "firing": bl >= thr and bs >= thr,
+                        "burn_short": round(bs, 4), "firing": bl >= thr - EPS and bs >= thr - EPS,
                         "budget_spent_at_detection": round(thr * minutes(long_w) / period, 6)})
     return {"target": t, "alerts": results, "firing": [r["name"] for r in results if r["firing"]]}
+
+
+EPS = 1e-9  # tolerance so a burn rate exactly at the threshold fires despite float rounding
 
 
 def validate_spec(spec: dict) -> dict:

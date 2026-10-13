@@ -62,6 +62,15 @@ class SloCalcTests(unittest.TestCase):
         self.assertAlmostEqual(fast["burn_short"], 21.0, delta=1e-4)    # 210/10000 / 0.001
         assert_schema(self, out, SCHEMAS / "alerts.output.schema.json")
 
+    def test_exact_threshold_fires_despite_float_rounding(self):  # review F03
+        policy = {"target": 0.999, "alerts": [{"name": "a", "long_window": "1h", "short_window": "5m", "burn_rate": 14.4}]}
+        res = mod.evaluate_alerts(policy, {"1h": {"error_rate": 0.0144}, "5m": {"error_rate": 0.0144}})
+        self.assertEqual(res["firing"], ["a"])
+
+    def test_bad_minutes_and_events_together_rejected(self):  # review F04
+        with self.assertRaises(mod.InputError):
+            mod.budget(0.999, 30, total_events=1000, bad_events=1, bad_minutes=5)
+
     def test_both_windows_required(self):
         policy = {"target": 0.999, "alerts": [{"name": "a", "long_window": "1h", "short_window": "5m", "burn_rate": 10}]}
         quiet = mod.evaluate_alerts(policy, {"1h": {"error_rate": 0.02}, "5m": {"error_rate": 0.001}})

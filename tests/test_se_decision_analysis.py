@@ -67,6 +67,7 @@ class DecisionTests(unittest.TestCase):
     def test_normalisation_none(self):
         res = mod.analyse(simple(normalisation="none", scale_max=10))
         self.assertEqual(res["ranking"][0]["score"], 0.6)
+        self.assertEqual(res["summary"]["errors"], 0)
 
     def test_weak_evidence(self):
         d = simple()
@@ -86,6 +87,15 @@ class DecisionTests(unittest.TestCase):
         code, out = run_json(SKILL, "decision_matrix", EX / "decision-fail.json")
         self.assertEqual(code, 1)
         self.assertTrue({"no-decision-owner", "direction", "missing-score"} <= rules(out["findings"], "error"))
+
+    def test_missing_ids_reported_not_crash(self):  # review F08
+        d = simple()
+        del d["criteria"][0]["id"]
+        self.assertIn("criterion-id", rules(mod.analyse(d)["findings"], "error"))
+
+    def test_score_out_of_scale_rejected(self):  # review F08
+        res = mod.analyse(simple(normalisation="none", scale_max=5))  # scores of 10 exceed 5
+        self.assertIn("score-out-of-scale", rules(res["findings"], "error"))
 
     def test_too_few_alternatives_and_unreadable(self):
         d = simple()

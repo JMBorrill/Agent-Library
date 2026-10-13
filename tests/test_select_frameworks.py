@@ -56,6 +56,10 @@ class SelectFrameworksTests(unittest.TestCase):
         self.assertEqual(r["selected_packs"]["finance-credit"]["skills"], ["finance-unit-economics"])
         self.assertIn("ai-human-oversight", r["selected_packs"]["ai-governance"]["skills"])  # agentic tools
         self.assertEqual(r["oversight_level"], "medium")
+        # readiness blocks on a missing SLO, so the SLO skill must be proposed whenever readiness is
+        rs = r["selected_packs"]["reliability-security"]["skills"]
+        self.assertIn("sre-production-readiness", rs)
+        self.assertIn("sre-service-level-objectives", rs)
 
     def test_every_selected_skill_and_agent_exists(self):
         for name in ("aster", "mortgage", "aiops"):

@@ -1,0 +1,33 @@
+asvs_id,level,applicable,justification,implementation_ref,verification_method,evidence_ref,status
+v5.0.0-8.1.1,L1,yes,,docs/authorization-matrix.md (planned),documentation-review,,not_verified
+v5.0.0-8.1.2,L2,yes,,docs/authorization-matrix.md (planned),documentation-review,,not_verified
+v5.0.0-8.2.1,L1,yes,,api/authz.py tenant-from-session + object-level checks (planned),automated-test,,not_verified
+v5.0.0-8.2.2,L1,yes,,api/authz.py tenant-from-session + object-level checks (planned),automated-test,,not_verified
+v5.0.0-8.2.3,L2,yes,,api/authz.py tenant-from-session + object-level checks (planned),automated-test,,not_verified
+v5.0.0-8.3.1,L1,yes,,api/authz.py operation checks; tool policy inputs/tool-policy.json (planned),automated-test,,not_verified
+v5.0.0-8.4.1,L2,yes,,db row-level security policies (planned),automated-test,,not_verified
+v5.0.0-14.1.1,L2,yes,,data inventory and retention schedule in DPIA (planned),documentation-review,,not_verified
+v5.0.0-14.1.2,L2,yes,,data inventory and retention schedule in DPIA (planned),documentation-review,,not_verified
+v5.0.0-14.2.1,L1,yes,,api data-minimisation; LLM provider minimum retention (planned),documentation-review,,not_verified
+v5.0.0-14.2.2,L2,yes,,api data-minimisation; LLM provider minimum retention (planned),documentation-review,,not_verified
+v5.0.0-14.2.3,L2,yes,,api data-minimisation; LLM provider minimum retention (planned),documentation-review,,not_verified
+v5.0.0-14.2.4,L2,yes,,api data-minimisation; LLM provider minimum retention (planned),documentation-review,,not_verified
+v5.0.0-14.3.1,L1,yes,,web client cache-control and storage rules (planned),documentation-review,,not_verified
+v5.0.0-14.3.2,L2,yes,,web client cache-control and storage rules (planned),documentation-review,,not_verified
+v5.0.0-14.3.3,L2,yes,,web client cache-control and storage rules (planned),documentation-review,,not_verified
+v5.0.0-16.1.1,L2,yes,,logging inventory (planned),documentation-review,,not_verified
+v5.0.0-16.2.1,L2,yes,,activity log service (planned),code-review,,not_verified
+v5.0.0-16.2.2,L2,yes,,activity log service (planned),code-review,,not_verified
+v5.0.0-16.2.3,L2,yes,,activity log service (planned),code-review,,not_verified
+v5.0.0-16.2.4,L2,yes,,activity log service (planned),code-review,,not_verified
+v5.0.0-16.2.5,L2,yes,,activity log service (planned),code-review,,not_verified
+v5.0.0-16.3.1,L2,yes,,"security event logging for auth, authz and tool approvals (planned)",code-review,,not_verified
+v5.0.0-16.3.2,L2,yes,,"security event logging for auth, authz and tool approvals (planned)",code-review,,not_verified
+v5.0.0-16.3.3,L2,yes,,"security event logging for auth, authz and tool approvals (planned)",code-review,,not_verified
+v5.0.0-16.3.4,L2,yes,,"security event logging for auth, authz and tool approvals (planned)",code-review,,not_verified
+v5.0.0-16.4.1,L2,yes,,append-only log store (planned),code-review,,not_verified
+v5.0.0-16.4.2,L2,yes,,append-only log store (planned),code-review,,not_verified
+v5.0.0-16.4.3,L2,yes,,append-only log store (planned),code-review,,not_verified
+v5.0.0-16.5.1,L2,yes,,error handler (planned),code-review,,not_verified
+v5.0.0-16.5.2,L2,yes,,error handler (planned),code-review,,not_verified
+v5.0.0-16.5.3,L2,yes,,error handler (planned),code-review,,not_verified
