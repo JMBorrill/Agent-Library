@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Structured multi-stage workflow",
+  "type": "object",
+  "required": ["id", "title", "version", "description", "stages"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "title": {"type": "string"},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "description": {"type": "string", "minLength": 30},
+    "sources": {"type": "array", "items": {"type": "string"}},
+    "inputs": {"type": "array", "items": {"$ref": "#/$defs/io"}},
+    "outputs": {"type": "array", "items": {"$ref": "#/$defs/io"}},
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "agent", "skills", "produces", "gate"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "title": {"type": "string"},
+          "agent": {"type": "string"},
+          "skills": {"type": "array", "items": {"type": "string"}},
+          "depends_on": {"type": "array", "items": {"type": "string"}},
+          "instructions": {"type": "string"},
+          "consumes": {"type": "array", "items": {"type": "string"}},
+          "produces": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "tools": {"type": "array", "items": {"type": "string"}},
+          "gate": {
+            "type": "object",
+            "required": ["criteria", "decision"],
+            "additionalProperties": false,
+            "properties": {
+              "criteria": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "decision": {"enum": ["human", "automated", "agent-review"]},
+              "check": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "io": {
+      "type": "object",
+      "required": ["name", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "description": {"type": "string"},
+        "template": {"type": "string"},
+        "required": {"type": "boolean"}
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claude Code subagent front matter",
+  "type": "object",
+  "required": ["name", "description"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 64},
+    "description": {"type": "string", "minLength": 60, "maxLength": 1024},
+    "tools": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "model": {"enum": ["inherit", "sonnet", "opus", "haiku", "fable"]},
+    "color": {"type": "string"},
+    "skills": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]}
+  }
+}

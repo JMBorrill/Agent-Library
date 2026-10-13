@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claude Code slash command front matter",
+  "type": "object",
+  "required": ["description"],
+  "additionalProperties": false,
+  "properties": {
+    "description": {"type": "string", "minLength": 20, "maxLength": 300},
+    "argument-hint": {"type": "string"},
+    "allowed-tools": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "model": {"type": "string"}
+  }
+}
