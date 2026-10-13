@@ -43,8 +43,12 @@ def _cmd_registry(args) -> int:
     current_path = root / "registry.json"
     fresh = build_registry(root)
     if args.check:
-        if not current_path.is_file() or json.loads(current_path.read_text()) != fresh:
-            print("registry.json is stale; run `python -m agentlib registry --write`", file=sys.stderr)
+        from agentlib.registry import build_catalogue
+
+        cat = root / "docs" / "CATALOGUE.md"
+        if (not current_path.is_file() or json.loads(current_path.read_text()) != fresh
+                or not cat.is_file() or cat.read_text(encoding="utf-8") != build_catalogue(root)):
+            print("registry.json or docs/CATALOGUE.md is stale; run `python -m agentlib registry --write`", file=sys.stderr)
             return 1
         print("registry.json is up to date")
         return 0

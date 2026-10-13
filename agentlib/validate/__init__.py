@@ -358,6 +358,11 @@ def check_registry(root: Path) -> list[Issue]:
     current = json.loads(path.read_text(encoding="utf-8"))
     if current != build_registry(root):
         return [Issue("error", "registry.json", "out of date; run `python -m agentlib registry --write`")]
+    from agentlib.registry import build_catalogue
+
+    cat = root / "docs" / "CATALOGUE.md"
+    if not cat.is_file() or cat.read_text(encoding="utf-8") != build_catalogue(root):
+        return [Issue("error", "docs/CATALOGUE.md", "out of date; run `python -m agentlib registry --write`")]
     return []
 
 

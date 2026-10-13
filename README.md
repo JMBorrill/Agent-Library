@@ -76,6 +76,7 @@ See [docs/EVALUATION.md](docs/EVALUATION.md).
 
 ## Documentation
 
+- [Catalogue of every skill, agent, workflow and command](docs/CATALOGUE.md) (generated)
 - [Architecture](docs/ARCHITECTURE.md) · [Authoring contract](docs/AUTHORING.md) · [Evaluation](docs/EVALUATION.md)
 - [Using in other repositories](docs/USING_IN_OTHER_REPOS.md)
 - Framework implementation notes, assumptions and gaps: [docs/frameworks/](docs/frameworks/)
