@@ -1,0 +1,8 @@
+id,assumption,category,risk,evidence_ids,status
+MCP-AS-001,Finding suitable second-charge lenders is a significant recurring time cost for brokers,desirability,high,MCP-EV-001;MCP-EV-002;MCP-EV-006,supported
+MCP-AS-002,Brokers act on out-of-date criteria often enough to cause rework,desirability,medium,MCP-EV-003,testing
+MCP-AS-003,Brokers check the cited source rather than trusting the summary,usability,high,MCP-EV-004,supported
+MCP-AS-004,Brokers want decision support that leaves the lender choice and the credit decision with humans,ethics,high,MCP-EV-005,supported
+MCP-AS-005,Broker firms will pay a per-seat subscription,viability,high,,experiment_planned
+MCP-AS-006,AI explanations cut shortlist time without increasing wrong-lender submissions,desirability,high,,experiment_planned
+MCP-AS-007,Lender criteria can be kept current (re-verified within 90 days) at acceptable cost,feasibility,high,,experiment_planned

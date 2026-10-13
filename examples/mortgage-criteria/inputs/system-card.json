@@ -1,0 +1,170 @@
+{
+  "card_version": "0.1.0",
+  "system_name": "Mortgage Criteria Platform criteria assistant (synthetic)",
+  "system_version": "0.4.0-pilot-candidate",
+  "card_date": "2026-10-13",
+  "model_details": {
+    "base_model": "hosted LLM (vendor-neutral placeholder)",
+    "provider": "To be selected (DPA required)",
+    "model_version": "to be pinned before pilot",
+    "architecture": "retrieval-augmented explanations over versioned lender criteria; eligibility outcomes come from the deterministic rules engine, not the LLM"
+  },
+  "intended_use": {
+    "description": "Explain indicative criteria matches and answer UK broker questions about fictitious lenders' second-charge criteria, citing retrieved criteria documents.",
+    "users": [
+      "UK mortgage brokers (advisers)",
+      "Broker case administrators"
+    ],
+    "decision_context": "Decision support only: the broker recommends and authorised lender credit staff make every lending decision."
+  },
+  "out_of_scope_uses": [
+    "Making, predicting or communicating lending decisions",
+    "Consumer-facing advice or journeys",
+    "Answering criteria questions without retrieved documents",
+    "Editing lender rules"
+  ],
+  "data_lineage": [
+    {
+      "name": "MCP synthetic lender criteria corpus",
+      "version": "2026.10",
+      "source": "Authored test documents for three fictitious lenders (inputs/criteria.json, inputs/evalset.jsonl)",
+      "licence": "internal synthetic",
+      "contains_personal_data": false
+    },
+    {
+      "name": "Synthetic case notes",
+      "version": "2026.10",
+      "source": "Fictitious case MCP-CASE-0007 written for testing",
+      "licence": "internal synthetic",
+      "contains_personal_data": true,
+      "lawful_basis_ref": "Synthetic test data only; DPIA-MCP-2026-01 required before any real broker data (not started)"
+    }
+  ],
+  "evaluations": [
+    {
+      "eval_id": "EV-MCP-QA-01",
+      "metric": "citation grounding rate (offline fixture evaluation of recorded responses)",
+      "value": 1.0,
+      "threshold": 0.95,
+      "comparator": ">=",
+      "n": 16,
+      "date": "2026-10-13",
+      "dataset": "inputs/evalset.jsonl",
+      "dataset_version": "1.0.0",
+      "dataset_sha256": "2d424e50ab05089aa9ed9affdedbb1e18dae4ab8a18867dc50ad85304bd629e2",
+      "result": "pass"
+    },
+    {
+      "eval_id": "EV-MCP-QA-01-PII",
+      "metric": "PII leakage rate (offline fixture evaluation)",
+      "value": 0.0,
+      "threshold": 0.0,
+      "comparator": "<=",
+      "n": 16,
+      "date": "2026-10-13",
+      "dataset": "inputs/evalset.jsonl",
+      "dataset_version": "1.0.0",
+      "dataset_sha256": "2d424e50ab05089aa9ed9affdedbb1e18dae4ab8a18867dc50ad85304bd629e2",
+      "result": "pass"
+    },
+    {
+      "eval_id": "EV-MCP-QA-01-REFUSAL",
+      "metric": "decision-prediction refusal rate (offline fixture evaluation)",
+      "value": 1.0,
+      "threshold": 1.0,
+      "comparator": ">=",
+      "n": 3,
+      "date": "2026-10-13",
+      "dataset": "inputs/evalset.jsonl",
+      "dataset_version": "1.0.0",
+      "dataset_sha256": "2d424e50ab05089aa9ed9affdedbb1e18dae4ab8a18867dc50ad85304bd629e2",
+      "result": "pass"
+    },
+    {
+      "eval_id": "EV-MCP-QA-00",
+      "metric": "citation grounding rate, prior system v0.3 recorded responses (offline fixture evaluation)",
+      "value": 0.75,
+      "threshold": 0.95,
+      "comparator": ">=",
+      "n": 16,
+      "date": "2026-10-13",
+      "dataset": "inputs/evalset.jsonl",
+      "dataset_version": "1.0.0",
+      "dataset_sha256": "2d424e50ab05089aa9ed9affdedbb1e18dae4ab8a18867dc50ad85304bd629e2",
+      "result": "fail"
+    },
+    {
+      "eval_id": "EV-MCP-SLICE-01",
+      "metric": "pass rate on income-type and adverse-credit slices with at least 30 items each",
+      "value": 0.0,
+      "threshold": 0.95,
+      "comparator": ">=",
+      "n": 0,
+      "date": "2026-10-13",
+      "dataset": "to be built",
+      "dataset_version": "0.0.0",
+      "result": "not_tested"
+    }
+  ],
+  "known_limitations": [
+    "All evaluation is offline fixture evaluation of recorded responses on 16 synthetic items; no live model was called and the 95% interval for grounding is 0.81-1.0.",
+    "The prior v0.3 responses failed every gate; the current responses are a different recorded run and have not been reproduced against a pinned live model.",
+    "Fairness slices have 3 and 2 items; equal performance across groups is not established.",
+    "Injection screening is heuristic with known false negatives; the tool policy carries the control.",
+    "No independent model validation has been performed (governance gap MCP-CTL-031)."
+  ],
+  "trustworthiness_notes": {
+    "valid-and-reliable": "grounding gate on offline fixture evaluation",
+    "privacy-enhanced": "redaction and leakage gate (heuristic detectors)",
+    "accountable-and-transparent": "decision-prediction refusal gate and indicative labels",
+    "fair-with-harmful-bias-managed": "slice evaluation not yet sized"
+  },
+  "human_oversight": {
+    "summary": "The assistant informs and recommends; the broker decides what to recommend and lender credit staff decide on lending. Overrides and challenges are logged.",
+    "approver_role": "Broker (adviser responsible for the case)",
+    "oversight_matrix_ref": "inputs/oversight-matrix.csv"
+  },
+  "monitoring": {
+    "metrics": [
+      "weekly 50-answer grounding and decision-wording sample",
+      "PII detector hits",
+      "broker override and agreement rates",
+      "wrong-lender submission rate"
+    ],
+    "review_frequency": "weekly",
+    "alert_owner": "Head of Broker Tools (synthetic)"
+  },
+  "rollback_plan": {
+    "triggers": [
+      "grounding sample < 0.90",
+      "any confirmed PII leak",
+      "any output stating a lending decision"
+    ],
+    "procedure": "Feature flag off: rules engine and affordability continue without the assistant; revert to previous pinned model and index.",
+    "owner": "Head of Broker Tools (synthetic)"
+  },
+  "contacts": [
+    {
+      "role": "Accountable executive",
+      "name": "R. Example (synthetic)",
+      "email": "r.example@example.com"
+    },
+    {
+      "role": "Technical owner",
+      "name": "S. Sample (synthetic)",
+      "email": "s.sample@example.com"
+    }
+  ],
+  "risk_register_ref": "inputs/ai-risk-register.csv",
+  "recommendation": "NO_GO",
+  "conditions": [
+    "Independent model validation (MCP-CTL-031)",
+    "Compliance officer and legal counsel sign-off on the FCA triage candidates incl. perimeter",
+    "DPIA signed by the data-protection lead",
+    "Fairness slice eval EV-MCP-SLICE-01 run with at least 30 items per slice",
+    "Eval re-run against the pinned live model"
+  ],
+  "sign_off": {
+    "status": "pending"
+  }
+}

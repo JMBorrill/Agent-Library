@@ -1,0 +1,459 @@
+{
+  "command": "batch",
+  "cases": [
+    {
+      "id": "ASTER-T1-BODY",
+      "command": "body",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6
+      },
+      "results": {
+        "body": {
+          "radius_m": 400.0,
+          "density_kg_m3": 2000.0,
+          "volume_m3": 268082573.106329,
+          "mass_kg": 536165146212.65796,
+          "gm_m3_s2": 35.78527035367143,
+          "surface_gravity_m_s2": 0.00022365793971044644,
+          "escape_speed_m_s": 0.4229968696909673,
+          "circular_speed_m_s": 0.29910395497916537,
+          "circular_period_h": 2.3340771299609244
+        },
+        "rotation": {
+          "omega_rad_s": 0.0002908882086657216,
+          "centrifugal_equator_m_s2": 3.384637997630095e-05,
+          "centrifugal_radial_m_s2": 3.384637997630095e-05,
+          "centrifugal_tangential_m_s2": 0.0,
+          "gravity_m_s2": 0.00022365793971044644,
+          "net_radial_gravity_m_s2": 0.0001898115597341455,
+          "centrifugal_to_gravity_ratio": 0.151331001350184,
+          "critical_period_h": 2.3340771299609244,
+          "latitude_deg": 0.0
+        }
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "ASTER-T1-BODY:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "ASTER-T1-ROT45",
+      "command": "rotation",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "latitude_deg": 45
+      },
+      "results": {
+        "body": {
+          "radius_m": 400.0,
+          "density_kg_m3": 2000.0,
+          "volume_m3": 268082573.106329,
+          "mass_kg": 536165146212.65796,
+          "gm_m3_s2": 35.78527035367143,
+          "surface_gravity_m_s2": 0.00022365793971044644,
+          "escape_speed_m_s": 0.4229968696909673,
+          "circular_speed_m_s": 0.29910395497916537,
+          "circular_period_h": 2.3340771299609244
+        },
+        "rotation": {
+          "omega_rad_s": 0.0002908882086657216,
+          "centrifugal_equator_m_s2": 3.384637997630095e-05,
+          "centrifugal_radial_m_s2": 1.6923189988150477e-05,
+          "centrifugal_tangential_m_s2": 1.6923189988150473e-05,
+          "gravity_m_s2": 0.00022365793971044644,
+          "net_radial_gravity_m_s2": 0.00020673474972229597,
+          "centrifugal_to_gravity_ratio": 0.07566550067509202,
+          "critical_period_h": 2.3340771299609244,
+          "latitude_deg": 45
+        }
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [],
+      "passed": true
+    },
+    {
+      "id": "HOP-NOM",
+      "command": "hop",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "speed": 0.05,
+        "angle_deg": 45
+      },
+      "results": {
+        "flight_time_s": 372.5309365651585,
+        "range_m": 13.17095757234996,
+        "apex_height_m": 3.2927393930874898,
+        "vertical_speed_m_s": 0.035355339059327376,
+        "horizontal_speed_m_s": 0.03535533905932738,
+        "g_used_m_s2": 0.0001898115597341455,
+        "surface_rotation_speed_m_s": 0.11635528346628864,
+        "inertial_launch_speed_m_s": 0.16635528346628864,
+        "inertial_speed_basis": "worst case: relative speed + surface rotation speed (no heading)"
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)",
+        "flat, uniform gravity; no Coriolis; launch and landing at the same level",
+        "gravity reduced by equatorial-plane centrifugal term at given latitude"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "HOP-NOM:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        },
+        {
+          "id": "HOP-NOM:hop",
+          "severity": "warning",
+          "rule": "surface-rotation-speed-significant",
+          "message": "surface rotation speed 0.1164 m/s is 28% of escape speed; launch direction relative to spin changes the escape margin"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "HOP-MAX",
+      "command": "hop",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "speed": 0.085,
+        "angle_deg": 45
+      },
+      "results": {
+        "flight_time_s": 633.3025921607694,
+        "range_m": 38.06406738409138,
+        "apex_height_m": 9.516016846022845,
+        "vertical_speed_m_s": 0.06010407640085654,
+        "horizontal_speed_m_s": 0.06010407640085655,
+        "g_used_m_s2": 0.0001898115597341455,
+        "surface_rotation_speed_m_s": 0.11635528346628864,
+        "inertial_launch_speed_m_s": 0.20135528346628864,
+        "inertial_speed_basis": "worst case: relative speed + surface rotation speed (no heading)"
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)",
+        "flat, uniform gravity; no Coriolis; launch and landing at the same level",
+        "gravity reduced by equatorial-plane centrifugal term at given latitude"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "HOP-MAX:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        },
+        {
+          "id": "HOP-MAX:hop",
+          "severity": "warning",
+          "rule": "surface-rotation-speed-significant",
+          "message": "surface rotation speed 0.1164 m/s is 28% of escape speed; launch direction relative to spin changes the escape margin"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "IMP-MAX",
+      "command": "impulse",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "mass_kg": 12,
+        "speed": 0.085,
+        "angle_deg": 45,
+        "push_time_s": 0.2,
+        "friction_coefficient": 0.4
+      },
+      "results": {
+        "impulse_n_s": 1.02,
+        "kinetic_energy_j": 0.04335000000000001,
+        "impulse_vertical_n_s": 0.7212489168102785,
+        "impulse_horizontal_n_s": 0.7212489168102786,
+        "mean_force_n": 5.1,
+        "weight_n": 0.0022777387168097457,
+        "max_traction_n": 0.0009110954867238985,
+        "max_drive_accel_m_s2": 7.59246238936582e-05,
+        "mean_force_to_weight_ratio": 2239.062787299493,
+        "inertial_speed_m_s": 0.20135528346628864
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "IMP-MAX:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        },
+        {
+          "id": "IMP-MAX:impulse",
+          "severity": "info",
+          "rule": "force-exceeds-weight",
+          "message": "mean push force exceeds local weight: reaction from the surface or anchoring is needed to apply it without lifting off early"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "BNC-LOW-E",
+      "command": "bounce",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "speed": 0.06,
+        "restitution": 0.2,
+        "threshold_speed": 0.005
+      },
+      "results": {
+        "rebounds_above_threshold": 1,
+        "contacts_to_settle": 2,
+        "time_to_settle_s": 126.4411926945596,
+        "first_rebound_speed_m_s": 0.012,
+        "rebound_heights_m_first20": [
+          0.3793235780836788
+        ],
+        "infinite_series_time_s": 158.0514908681995,
+        "g_used_m_s2": 0.0001898115597341455,
+        "inertial_first_rebound_speed_m_s": 0.11697244115825052
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)",
+        "vertical bounces, constant restitution, level rigid surface",
+        "gravity reduced by equatorial-plane centrifugal term at given latitude"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "BNC-LOW-E:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "BNC-MID-E",
+      "command": "bounce",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "speed": 0.06,
+        "restitution": 0.5,
+        "threshold_speed": 0.005
+      },
+      "results": {
+        "rebounds_above_threshold": 3,
+        "contacts_to_settle": 4,
+        "time_to_settle_s": 553.1802180386983,
+        "first_rebound_speed_m_s": 0.03,
+        "rebound_heights_m_first20": [
+          2.370772363022992,
+          0.592693090755748,
+          0.148173272688937
+        ],
+        "infinite_series_time_s": 632.205963472798,
+        "g_used_m_s2": 0.0001898115597341455,
+        "inertial_first_rebound_speed_m_s": 0.12016052592478273
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)",
+        "vertical bounces, constant restitution, level rigid surface",
+        "gravity reduced by equatorial-plane centrifugal term at given latitude"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "BNC-MID-E:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "BNC-HIGH-E",
+      "command": "bounce",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "speed": 0.06,
+        "restitution": 0.8,
+        "threshold_speed": 0.005
+      },
+      "results": {
+        "rebounds_above_threshold": 11,
+        "contacts_to_settle": 12,
+        "time_to_settle_s": 2311.599538895046,
+        "first_rebound_speed_m_s": 0.048,
+        "rebound_heights_m_first20": [
+          6.0691772493388605,
+          3.884273439576871,
+          2.4859350013291976,
+          1.5909984008506868,
+          1.01823897654444,
+          0.6516729449884415,
+          0.4170706847926027,
+          0.2669252382672657,
+          0.1708321524910501,
+          0.10933257759427209,
+          0.06997284966033415
+        ],
+        "infinite_series_time_s": 2528.8238538911924,
+        "g_used_m_s2": 0.0001898115597341455,
+        "inertial_first_rebound_speed_m_s": 0.1258671998199705
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)",
+        "vertical bounces, constant restitution, level rigid surface",
+        "gravity reduced by equatorial-plane centrifugal term at given latitude"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "BNC-HIGH-E:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "ASTER-T1-BODY:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "HOP-NOM:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "HOP-NOM:hop",
+      "severity": "warning",
+      "rule": "surface-rotation-speed-significant",
+      "message": "surface rotation speed 0.1164 m/s is 28% of escape speed; launch direction relative to spin changes the escape margin"
+    },
+    {
+      "id": "HOP-MAX:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "HOP-MAX:hop",
+      "severity": "warning",
+      "rule": "surface-rotation-speed-significant",
+      "message": "surface rotation speed 0.1164 m/s is 28% of escape speed; launch direction relative to spin changes the escape margin"
+    },
+    {
+      "id": "IMP-MAX:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "IMP-MAX:impulse",
+      "severity": "info",
+      "rule": "force-exceeds-weight",
+      "message": "mean push force exceeds local weight: reaction from the surface or anchoring is needed to apply it without lifting off early"
+    },
+    {
+      "id": "BNC-LOW-E:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "BNC-MID-E:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "BNC-HIGH-E:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    }
+  ],
+  "passed": true,
+  "constants": {
+    "G_m3_kg_s2": 6.6743e-11,
+    "G_source": "CODATA 2018 recommended value"
+  },
+  "scope": "Scope: first-order point-mass/flat-gravity analysis aid with stated assumptions; results are not a design sign-off and physical tests need authorisation by a competent, authorised human."
+}

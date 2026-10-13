@@ -1,0 +1,7 @@
+tpm_id,parameter,unit,direction,limit,alert_margin_pct,date,value,basis,requirement_id
+TPM-MASS,Demonstrator predicted mass (CBE + contingency),kg,upper_limit,12,15,2026-09-15,9.20,estimate,ASTER-SUB-002
+TPM-MASS,Demonstrator predicted mass (CBE + contingency),kg,upper_limit,12,15,2026-10-01,9.50,estimate,ASTER-SUB-002
+TPM-MASS,Demonstrator predicted mass (CBE + contingency),kg,upper_limit,12,15,2026-10-12,9.76,estimate,ASTER-SUB-002
+TPM-VERR,Predicted 1-sigma launch-speed error,m/s,upper_limit,0.010,20,2026-09-15,0.006,estimate,ASTER-SUB-001
+TPM-VERR,Predicted 1-sigma launch-speed error,m/s,upper_limit,0.010,20,2026-10-12,0.004,estimate,ASTER-SUB-001
+TPM-SETTLE,Predicted settle time at restitution 0.8,s,upper_limit,2400,10,2026-10-12,2312,analysis,ASTER-SYS-003

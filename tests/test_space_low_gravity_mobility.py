@@ -78,6 +78,47 @@ class HopTests(unittest.TestCase):
         self.assertIn("no-ballistic-solution", rules(bad["findings"], "error"))
 
 
+class RotatingFrameEscapeTests(unittest.TestCase):
+    """F01 regression: escape/orbital checks must use the inertial (rotation-corrected) speed."""
+
+    def test_reviewer_case_eastward_hop_exceeds_escape(self):
+        # aster-target: omega*r = 2*pi/14400*250 = 0.109083 m/s; v_esc = 0.257679 m/s.
+        # 0.15 m/s at 10 deg heading east: east 0.147721 + 0.109083 = 0.256804, up 0.026047
+        # -> |v| = 0.258122 m/s > v_esc.
+        res = lg.run("hop", {"preset": "aster-target", "speed": 0.15, "angle_deg": 10, "heading_deg": 90})
+        self.assertFalse(res["passed"])
+        self.assertIn("exceeds-escape-speed", rules(res["findings"], "error"))
+        self.assertAlmostEqual(res["results"]["surface_rotation_speed_m_s"], 0.109083, delta=1e-6)
+        self.assertAlmostEqual(res["results"]["inertial_launch_speed_m_s"], 0.258122, delta=1e-6)
+        code = run_cli(SKILL, "lowg_calc", "hop", "--preset", "aster-target", "--speed", "0.15",
+                       "--angle-deg", "10", "--heading-deg", "90", "--json").returncode
+        self.assertEqual(code, 1)
+
+    def test_no_heading_uses_worst_case(self):
+        res = lg.run("hop", {"preset": "aster-target", "speed": 0.15, "angle_deg": 10})
+        self.assertAlmostEqual(res["results"]["inertial_launch_speed_m_s"], 0.15 + 0.109083, delta=1e-6)
+        self.assertIn("exceeds-escape-speed", rules(res["findings"], "error"))
+
+    def test_westward_hop_and_warnings(self):
+        res = lg.run("hop", {"preset": "aster-target", "speed": 0.15, "angle_deg": 10, "heading_deg": 270})
+        self.assertNotIn("exceeds-escape-speed", rules(res["findings"], "error"))
+        self.assertIn("surface-rotation-speed-significant", rules(res["findings"], "warning"))
+        # worst case 0.03 + 0.109 = 0.139 m/s = 54 % of v_esc -> approaching warning, not error
+        near = lg.run("hop", {"preset": "aster-target", "speed": 0.03, "angle_deg": 45})
+        self.assertIn("approaching-escape-speed", rules(near["findings"], "warning"))
+        self.assertTrue(near["passed"])
+        with self.assertRaises(lg.InputError):
+            lg.run("hop", {"preset": "aster-target", "speed": 0.01, "heading_deg": 400})
+
+    def test_impulse_and_bounce_rotation_aware(self):
+        imp = lg.run("impulse", {"preset": "aster-target", "mass_kg": 20, "speed": 0.16})
+        self.assertIn("exceeds-escape-speed", rules(imp["findings"], "error"))
+        # vertical rebound 0.24 m/s: sqrt(0.24^2 + 0.109^2) = 0.2636 > v_esc
+        bn = lg.run("bounce", {"preset": "aster-target", "speed": 0.3, "restitution": 0.8,
+                               "threshold_speed": 0.01})
+        self.assertIn("rebound-exceeds-escape-speed", rules(bn["findings"], "error"))
+
+
 class ImpulseBounceRotationTests(unittest.TestCase):
     def test_impulse_known_answer(self):
         r = lg.impulse(20.0, 0.05, angle_deg=30.0, push_time_s=0.5, g=G_ASTER, friction_coefficient=0.5)

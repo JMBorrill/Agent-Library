@@ -1,0 +1,10 @@
+{
+  "findings": [],
+  "summary": {
+    "functions": 12,
+    "leaves": 11,
+    "errors": 0,
+    "warnings": 0
+  },
+  "passed": true
+}

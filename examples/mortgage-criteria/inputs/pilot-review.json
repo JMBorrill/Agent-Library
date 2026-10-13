@@ -1,0 +1,152 @@
+{
+  "review": "PILOT",
+  "project": "Mortgage Criteria Platform (synthetic)",
+  "date": "2026-10-13",
+  "authors": [
+    "product-lead",
+    "financial-analyst",
+    "requirements-engineer",
+    "ai-evaluation-engineer"
+  ],
+  "independent_reviewers": [
+    "credit-regulatory-reviewer",
+    "security-reviewer",
+    "ai-governance-reviewer",
+    "independent-reviewer"
+  ],
+  "gate_authority": "Product owner (synthetic), after compliance officer (synthetic) sign-off",
+  "evidence": [
+    {
+      "criterion_id": "PIL-01",
+      "status": "not_met",
+      "evidence_ref": "outputs/02-fca-triage.json",
+      "justification": "Triage complete (14 candidates) but no candidate has been reviewed or signed by the compliance officer or legal counsel"
+    },
+    {
+      "criterion_id": "PIL-02",
+      "status": "met",
+      "evidence_ref": "outputs/08-req-lint-fixed.txt"
+    },
+    {
+      "criterion_id": "PIL-03",
+      "status": "met",
+      "evidence_ref": "outputs/24-vmatrix.json"
+    },
+    {
+      "criterion_id": "PIL-04",
+      "status": "met",
+      "evidence_ref": "outputs/10-criteria-fixed.txt"
+    },
+    {
+      "criterion_id": "PIL-05",
+      "status": "partial",
+      "evidence_ref": "outputs/17-eval-current.json",
+      "justification": "Gates pass on offline fixture evaluation of recorded responses only; not yet run against a pinned live model"
+    },
+    {
+      "criterion_id": "PIL-06",
+      "status": "not_met",
+      "evidence_ref": "outputs/13-governance-gap.json",
+      "justification": "MCP-CTL-031 model-not-validated"
+    },
+    {
+      "criterion_id": "PIL-07",
+      "status": "met",
+      "evidence_ref": "outputs/21-oversight.txt"
+    },
+    {
+      "criterion_id": "PIL-08",
+      "status": "not_met",
+      "evidence_ref": "outputs/14-threat-model.json",
+      "justification": "All mitigations planned only; security-reviewer review pending"
+    },
+    {
+      "criterion_id": "PIL-09",
+      "status": "not_met",
+      "evidence_ref": "",
+      "justification": "DPIA not started"
+    },
+    {
+      "criterion_id": "PIL-10",
+      "status": "not_met",
+      "evidence_ref": "",
+      "justification": "Lenders are fictitious in this demo; real lender confirmation required before any real pilot"
+    }
+  ],
+  "checks": [
+    {
+      "name": "req_lint (requirements.csv)",
+      "exit_code": 0,
+      "report": "outputs/08-req-lint-fixed.txt"
+    },
+    {
+      "name": "vmatrix_check",
+      "exit_code": 0,
+      "report": "outputs/24-vmatrix.json"
+    },
+    {
+      "name": "criteria_engine (criteria.json)",
+      "exit_code": 0,
+      "report": "outputs/10-criteria-fixed.txt"
+    },
+    {
+      "name": "governance_check",
+      "exit_code": 1,
+      "report": "outputs/13-governance-gap.json"
+    },
+    {
+      "name": "threat_model_check",
+      "exit_code": 0,
+      "report": "outputs/14-threat-model.json"
+    },
+    {
+      "name": "run_eval (current recorded responses)",
+      "exit_code": 0,
+      "report": "outputs/17-eval-current.json"
+    },
+    {
+      "name": "oversight_check",
+      "exit_code": 0,
+      "report": "outputs/21-oversight.txt"
+    },
+    {
+      "name": "system_card_check",
+      "exit_code": 0,
+      "report": "outputs/23-system-card.json"
+    }
+  ],
+  "actions": [
+    {
+      "id": "MCP-RID-001",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-002",
+      "severity": "major",
+      "owner": "Head of Model Validation (synthetic)",
+      "due": "2026-11-27",
+      "status": "open",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-003",
+      "severity": "major",
+      "owner": "Data-protection lead (synthetic)",
+      "due": "2026-11-20",
+      "status": "open",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-004",
+      "severity": "minor",
+      "owner": "AI evaluation engineer (synthetic)",
+      "due": "2026-11-06",
+      "status": "open",
+      "closure_evidence": ""
+    }
+  ]
+}

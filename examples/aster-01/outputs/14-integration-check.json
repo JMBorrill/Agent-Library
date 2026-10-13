@@ -1,0 +1,90 @@
+{
+  "findings": [
+    {
+      "id": "I1",
+      "severity": "warning",
+      "rule": "unit-not-verified",
+      "message": "'PWR' enters integration without unit verification"
+    },
+    {
+      "id": "I1",
+      "severity": "warning",
+      "rule": "component-not-available",
+      "message": "'PWR' status is planned"
+    },
+    {
+      "id": "I1",
+      "severity": "warning",
+      "rule": "unit-not-verified",
+      "message": "'CTRL' enters integration without unit verification"
+    },
+    {
+      "id": "I1",
+      "severity": "warning",
+      "rule": "component-not-available",
+      "message": "'CTRL' status is planned"
+    },
+    {
+      "id": "I2",
+      "severity": "warning",
+      "rule": "unit-not-verified",
+      "message": "'EST' enters integration without unit verification"
+    },
+    {
+      "id": "I2",
+      "severity": "warning",
+      "rule": "component-not-available",
+      "message": "'EST' status is planned"
+    },
+    {
+      "id": "I3",
+      "severity": "warning",
+      "rule": "unit-not-verified",
+      "message": "'LOG' enters integration without unit verification"
+    },
+    {
+      "id": "I3",
+      "severity": "warning",
+      "rule": "component-not-available",
+      "message": "'LOG' status is planned"
+    },
+    {
+      "id": "I4",
+      "severity": "warning",
+      "rule": "unit-not-verified",
+      "message": "'HOP' enters integration without unit verification"
+    },
+    {
+      "id": "I4",
+      "severity": "warning",
+      "rule": "component-not-available",
+      "message": "'HOP' status is planned"
+    },
+    {
+      "id": "I5",
+      "severity": "warning",
+      "rule": "unit-not-verified",
+      "message": "'RIG' enters integration without unit verification"
+    },
+    {
+      "id": "I5",
+      "severity": "warning",
+      "rule": "component-not-available",
+      "message": "'RIG' status is planned"
+    }
+  ],
+  "order": [
+    "I1",
+    "I2",
+    "I3",
+    "I4",
+    "I5"
+  ],
+  "summary": {
+    "steps": 5,
+    "components": 6,
+    "errors": 0,
+    "warnings": 12
+  },
+  "passed": true
+}

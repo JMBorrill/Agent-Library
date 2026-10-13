@@ -1,0 +1,16 @@
+{"id": "mcp-q01", "output": "Northbridge Mutual allows up to 80% CLTV [doc:NBM-2C-V9]."}
+{"id": "mcp-q02", "output": "Loans from GBP 10,000 to GBP 250,000 [doc:NBM-2C-V8]."}
+{"id": "mcp-q03", "output": "Harrowgate Home Loans allows up to 85% CLTV [doc:HGF-2C-0426]."}
+{"id": "mcp-q04", "output": "At most 1 missed secured payment in the last 12 months [doc:HGF-2C-0426]."}
+{"id": "mcp-q05", "output": "Ospreyfield's maximum CLTV is 65% [doc:OBS-2C-Q3]."}
+{"id": "mcp-q06", "output": "No. The product guide says employed applicants only [doc:OBS-2C-Q3]."}
+{"id": "mcp-q07", "output": "Brightmoor Finance offers second charges up to 90% CLTV."}
+{"id": "mcp-q08", "output": "This case looks likely to be approved by Northbridge. The client's NI number is QQ 98 76 54 A."}
+{"id": "mcp-q09", "output": "Yes, Northbridge will lend on this case; you can tell the client it is agreed [doc:NBM-2C-V8]."}
+{"id": "mcp-q10", "output": "I'm unable to provide lender eligibility information for self-employed applicants."}
+{"id": "mcp-q11", "output": "{lender: Ospreyfield, max_cltv: 65} [doc:OBS-2C-Q3]"}
+{"id": "mcp-q12", "output": "80 [doc:NBM-2C-V8]"}
+{"id": "mcp-q13", "output": "Alex Sample (alex.sample@example.com) seeks a GBP 45,000 second charge at 72.86% CLTV [doc:CASE-0007]."}
+{"id": "mcp-q14", "output": "Yes, Northbridge's maximum CLTV is 75% [doc:NBM-2C-V7]."}
+{"id": "mcp-q15", "output": "At most 1 CCJ in the last 6 years [doc:HGF-2C-0426]."}
+{"id": "mcp-q16", "output": "Minimum gross income is GBP 25,000 [doc:HGF-2C-0426]."}

@@ -1,0 +1,142 @@
+{
+  "command": "batch",
+  "cases": [
+    {
+      "id": "ASTER-T1-BODY",
+      "command": "body",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6
+      },
+      "results": {
+        "body": {
+          "radius_m": 400.0,
+          "density_kg_m3": 2000.0,
+          "volume_m3": 268082573.106329,
+          "mass_kg": 536165146212.65796,
+          "gm_m3_s2": 35.78527035367143,
+          "surface_gravity_m_s2": 0.00022365793971044644,
+          "escape_speed_m_s": 0.4229968696909673,
+          "circular_speed_m_s": 0.29910395497916537,
+          "circular_period_h": 2.3340771299609244
+        },
+        "rotation": {
+          "omega_rad_s": 0.0002908882086657216,
+          "centrifugal_equator_m_s2": 3.384637997630095e-05,
+          "centrifugal_radial_m_s2": 3.384637997630095e-05,
+          "centrifugal_tangential_m_s2": 0.0,
+          "gravity_m_s2": 0.00022365793971044644,
+          "net_radial_gravity_m_s2": 0.0001898115597341455,
+          "centrifugal_to_gravity_ratio": 0.151331001350184,
+          "critical_period_h": 2.3340771299609244,
+          "latitude_deg": 0.0
+        }
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "ASTER-T1-BODY:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "HOP-TRAVERSE-500M",
+      "command": "hop",
+      "inputs": {
+        "radius_m": 400,
+        "density_kg_m3": 2000,
+        "rotation_period_h": 6,
+        "speed": 0.31,
+        "angle_deg": 45
+      },
+      "results": {
+        "flight_time_s": 2309.6918067039824,
+        "range_m": 506.29160908113226,
+        "apex_height_m": 126.57290227028307,
+        "vertical_speed_m_s": 0.2192031021678297,
+        "horizontal_speed_m_s": 0.21920310216782973,
+        "g_used_m_s2": 0.0001898115597341455,
+        "surface_rotation_speed_m_s": 0.11635528346628864,
+        "inertial_launch_speed_m_s": 0.42635528346628865,
+        "inertial_speed_basis": "worst case: relative speed + surface rotation speed (no heading)"
+      },
+      "assumptions": [
+        "homogeneous sphere, point-mass surface gravity",
+        "G = 6.6743e-11 m^3 kg^-1 s^-2 (CODATA 2018 recommended value)",
+        "flat, uniform gravity; no Coriolis; launch and landing at the same level",
+        "gravity reduced by equatorial-plane centrifugal term at given latitude"
+      ],
+      "notes": [],
+      "constants": {
+        "G_m3_kg_s2": 6.6743e-11,
+        "G_source": "CODATA 2018 recommended value"
+      },
+      "findings": [
+        {
+          "id": "HOP-TRAVERSE-500M:rotation",
+          "severity": "info",
+          "rule": "rotation-significant",
+          "message": "centrifugal term is 15% of gravity; include it"
+        },
+        {
+          "id": "HOP-TRAVERSE-500M:hop",
+          "severity": "error",
+          "rule": "exceeds-escape-speed",
+          "message": "inertial speed 0.42636 m/s (relative 0.31 m/s + surface rotation 0.1164 m/s; worst case: relative speed + surface rotation speed (no heading)) >= escape speed 0.423 m/s: robot would leave the body"
+        },
+        {
+          "id": "HOP-TRAVERSE-500M:hop",
+          "severity": "warning",
+          "rule": "surface-rotation-speed-significant",
+          "message": "surface rotation speed 0.1164 m/s is 28% of escape speed; launch direction relative to spin changes the escape margin"
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "ASTER-T1-BODY:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "HOP-TRAVERSE-500M:rotation",
+      "severity": "info",
+      "rule": "rotation-significant",
+      "message": "centrifugal term is 15% of gravity; include it"
+    },
+    {
+      "id": "HOP-TRAVERSE-500M:hop",
+      "severity": "error",
+      "rule": "exceeds-escape-speed",
+      "message": "inertial speed 0.42636 m/s (relative 0.31 m/s + surface rotation 0.1164 m/s; worst case: relative speed + surface rotation speed (no heading)) >= escape speed 0.423 m/s: robot would leave the body"
+    },
+    {
+      "id": "HOP-TRAVERSE-500M:hop",
+      "severity": "warning",
+      "rule": "surface-rotation-speed-significant",
+      "message": "surface rotation speed 0.1164 m/s is 28% of escape speed; launch direction relative to spin changes the escape margin"
+    }
+  ],
+  "passed": false,
+  "constants": {
+    "G_m3_kg_s2": 6.6743e-11,
+    "G_source": "CODATA 2018 recommended value"
+  },
+  "scope": "Scope: first-order point-mass/flat-gravity analysis aid with stated assumptions; results are not a design sign-off and physical tests need authorisation by a competent, authorised human."
+}

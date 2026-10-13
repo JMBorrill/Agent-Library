@@ -1,0 +1,136 @@
+{
+  "findings": [
+    {
+      "id": "ASTER-STK-001",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-STK-002",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-STK-002",
+      "severity": "warning",
+      "rule": "unmeasurable-acceptance",
+      "message": "test/analysis acceptance criteria contain no quantitative threshold"
+    },
+    {
+      "id": "ASTER-STK-003",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-SYS-001",
+      "severity": "warning",
+      "rule": "not-atomic",
+      "message": "2 'shall' clauses \u2014 split into separate requirements"
+    },
+    {
+      "id": "ASTER-SYS-001",
+      "severity": "warning",
+      "rule": "possible-compound",
+      "message": "conjunction may join two obligations; check atomicity"
+    },
+    {
+      "id": "ASTER-SYS-001",
+      "severity": "warning",
+      "rule": "ambiguous-term",
+      "message": "ambiguous terms ['robust', 'safe']: define measurably or move to acceptance criteria"
+    },
+    {
+      "id": "ASTER-SYS-001",
+      "severity": "warning",
+      "rule": "unmeasurable-acceptance",
+      "message": "test/analysis acceptance criteria contain no quantitative threshold"
+    },
+    {
+      "id": "ASTER-SYS-003",
+      "severity": "warning",
+      "rule": "ambiguous-term",
+      "message": "ambiguous terms ['quickly']: define measurably or move to acceptance criteria"
+    },
+    {
+      "id": "ASTER-SYS-003",
+      "severity": "warning",
+      "rule": "unmeasurable-acceptance",
+      "message": "test/analysis acceptance criteria contain no quantitative threshold"
+    },
+    {
+      "id": "ASTER-SYS-004",
+      "severity": "error",
+      "rule": "duplicate-id",
+      "message": "identifier used 2 times"
+    },
+    {
+      "id": "ASTER-SYS-004",
+      "severity": "error",
+      "rule": "tbd-in-approved",
+      "message": "approved requirement still contains TBD/TBR/TBC"
+    },
+    {
+      "id": "ASTER-SYS-004",
+      "severity": "warning",
+      "rule": "approved-under-proposed",
+      "message": "approved child of proposed parent 'ASTER-STK-001'"
+    },
+    {
+      "id": "ASTER-SYS-004",
+      "severity": "error",
+      "rule": "duplicate-id",
+      "message": "identifier used 2 times"
+    },
+    {
+      "id": "ASTER-SYS-06",
+      "severity": "error",
+      "rule": "id-format",
+      "message": "identifier does not match ^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-[0-9]{3,}$"
+    },
+    {
+      "id": "ASTER-SYS-06",
+      "severity": "warning",
+      "rule": "escape-clause",
+      "message": "escape clause ['where practical'] makes the requirement unverifiable"
+    },
+    {
+      "id": "ASTER-SYS-06",
+      "severity": "warning",
+      "rule": "unmeasurable-acceptance",
+      "message": "test/analysis acceptance criteria contain no quantitative threshold"
+    },
+    {
+      "id": "ASTER-SUB-001",
+      "severity": "warning",
+      "rule": "unmeasurable-acceptance",
+      "message": "test/analysis acceptance criteria contain no quantitative threshold"
+    },
+    {
+      "id": "ASTER-SUB-001",
+      "severity": "error",
+      "rule": "unknown-parent",
+      "message": "parent 'ASTER-SYS-010' not in register"
+    },
+    {
+      "id": "ASTER-SUB-002",
+      "severity": "error",
+      "rule": "verification-method",
+      "message": "unknown method(s) ['simulation']; use ['analysis', 'demonstration', 'inspection', 'test']"
+    }
+  ],
+  "summary": {
+    "requirements": 11,
+    "by_status": {
+      "proposed": 10,
+      "approved": 1
+    },
+    "errors": 6,
+    "warnings": 11,
+    "info": 3,
+    "tbd_count": 1
+  },
+  "passed": false
+}

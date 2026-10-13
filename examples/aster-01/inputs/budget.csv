@@ -1,0 +1,16 @@
+item_id,parent,budget,unit,cbe,maturity,quantity,mode,notes
+DEMO,,,,,,,,ASTER-01 ground demonstrator top node — SPRING-CAM option (synthetic CBEs; no hardware weighed)
+STRUCT,DEMO,mass,kg,3.2,estimated,1,,compliant outer shell and frame — engineering estimate
+HOPLEG,DEMO,mass,kg,2.4,calculated,1,,spring leg latch and winding motor — CAD mass properties (synthetic)
+BATT,DEMO,mass,kg,1.1,heritage,1,,battery pack catalogue mass (synthetic)
+CTRLB,DEMO,mass,kg,0.35,estimated,1,,controller board and enclosure
+IMU,DEMO,mass,kg,0.08,heritage,1,,IMU datasheet mass (synthetic)
+CAM,DEMO,mass,kg,0.5,estimated,1,,downward camera and mount (SPRING-CAM only)
+LOGB,DEMO,mass,kg,0.25,estimated,1,,on-board data logger
+HARN,DEMO,mass,g,600,estimated,1,,harness estimate in grams
+CTRL-P,DEMO,power,W,2.0,estimated,1,all,controller always on
+IMU-P,DEMO,power,W,0.3,heritage,1,all,IMU datasheet power (synthetic)
+LOG-P,DEMO,power,W,1.5,estimated,1,all,logger always on
+WIND-P,DEMO,power,W,18.0,calculated,1,arm,spring winding motor during arming
+CAM-P,DEMO,power,W,2.5,estimated,1,trial,camera during trial
+LATCH-P,DEMO,power,W,6.0,calculated,1,trial,latch release solenoid (worst-case continuous)

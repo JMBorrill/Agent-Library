@@ -1,0 +1,148 @@
+{
+  "findings": [],
+  "concepts": [
+    {
+      "concept": "FLYWHEEL+PASSIVE+IMU",
+      "options": [
+        "FLYWHEEL",
+        "PASSIVE",
+        "IMU"
+      ],
+      "min_trl": 4,
+      "immature": []
+    },
+    {
+      "concept": "FLYWHEEL+PASSIVE+IMU-CAM",
+      "options": [
+        "FLYWHEEL",
+        "PASSIVE",
+        "IMU-CAM"
+      ],
+      "min_trl": 4,
+      "immature": []
+    },
+    {
+      "concept": "SPRING+PASSIVE+IMU",
+      "options": [
+        "SPRING",
+        "PASSIVE",
+        "IMU"
+      ],
+      "min_trl": 4,
+      "immature": []
+    },
+    {
+      "concept": "SPRING+PASSIVE+IMU-CAM",
+      "options": [
+        "SPRING",
+        "PASSIVE",
+        "IMU-CAM"
+      ],
+      "min_trl": 4,
+      "immature": []
+    },
+    {
+      "concept": "FLYWHEEL+ACTIVE-RW+IMU-CAM",
+      "options": [
+        "FLYWHEEL",
+        "ACTIVE-RW",
+        "IMU-CAM"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ACTIVE-RW"
+      ]
+    },
+    {
+      "concept": "FLYWHEEL+ANCHOR+IMU",
+      "options": [
+        "FLYWHEEL",
+        "ANCHOR",
+        "IMU"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ANCHOR"
+      ]
+    },
+    {
+      "concept": "FLYWHEEL+ANCHOR+IMU-CAM",
+      "options": [
+        "FLYWHEEL",
+        "ANCHOR",
+        "IMU-CAM"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ANCHOR"
+      ]
+    },
+    {
+      "concept": "SPRING+ACTIVE-RW+IMU-CAM",
+      "options": [
+        "SPRING",
+        "ACTIVE-RW",
+        "IMU-CAM"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ACTIVE-RW"
+      ]
+    },
+    {
+      "concept": "SPRING+ANCHOR+IMU",
+      "options": [
+        "SPRING",
+        "ANCHOR",
+        "IMU"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ANCHOR"
+      ]
+    },
+    {
+      "concept": "SPRING+ANCHOR+IMU-CAM",
+      "options": [
+        "SPRING",
+        "ANCHOR",
+        "IMU-CAM"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ANCHOR"
+      ]
+    },
+    {
+      "concept": "WHEELS+ANCHOR+IMU",
+      "options": [
+        "WHEELS",
+        "ANCHOR",
+        "IMU"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ANCHOR"
+      ]
+    },
+    {
+      "concept": "WHEELS+ANCHOR+IMU-CAM",
+      "options": [
+        "WHEELS",
+        "ANCHOR",
+        "IMU-CAM"
+      ],
+      "min_trl": 3,
+      "immature": [
+        "ANCHOR"
+      ]
+    }
+  ],
+  "summary": {
+    "combinations": 18,
+    "feasible": 12,
+    "errors": 0,
+    "with_immature_options": 8
+  },
+  "passed": true
+}

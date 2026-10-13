@@ -1,0 +1,17 @@
+asvs_id,level,applicable,justification,implementation_ref,verification_method,evidence_ref,status
+v5.0.0-8.1.1,L1,yes,,docs/authorisation-model.md (planned): broker roles per firm,documentation-review,,not_verified
+v5.0.0-8.1.2,L2,yes,,docs/authorisation-model.md (planned): field-level rules for case facts,documentation-review,,not_verified
+v5.0.0-8.2.1,L1,yes,,API role check middleware (planned),automated-test,,not_verified
+v5.0.0-8.2.2,L1,yes,,Tenant-scoped repository + row-level security (planned; threat MCP-T05/T07/T11/T17),pen-test,,not_verified
+v5.0.0-8.2.3,L2,yes,,Field-level filtering of case facts by role (planned),automated-test,,not_verified
+v5.0.0-8.3.1,L1,yes,,Server-side authorisation on every operation incl. assistant tool calls (planned; MCP-T09/T13),automated-test,,not_verified
+v5.0.0-8.4.1,L2,yes,,Cross-tenant controls for multi-tenant data (planned; MCP-T07),pen-test,,not_verified
+v5.0.0-14.1.1,L2,yes,,"Data classification for case facts, documents and prompts (planned DPIA input)",documentation-review,,not_verified
+v5.0.0-14.1.2,L2,yes,,Protection requirements per data class (planned),documentation-review,,not_verified
+v5.0.0-14.2.1,L1,yes,,No case data in URLs or query strings; identifiers redacted before LLM calls (planned; MCP-T10),code-review,,not_verified
+v5.0.0-14.2.2,L2,yes,,Server-side cache controls for case responses (planned),config-review,,not_verified
+v5.0.0-14.2.3,L2,yes,,No case data sent to analytics or third parties beyond the LLM DPA (planned),code-review,,not_verified
+v5.0.0-14.2.4,L2,yes,,"Retention of case searches 90 days, decided by data-protection lead (planned)",documentation-review,,not_verified
+v5.0.0-14.3.1,L1,yes,,Browser storage cleared at logout (planned),manual-test,,not_verified
+v5.0.0-14.3.2,L2,yes,,Cache-control headers on case pages (planned),automated-test,,not_verified
+v5.0.0-14.3.3,L2,yes,,No case data in browser local storage (planned),code-review,,not_verified

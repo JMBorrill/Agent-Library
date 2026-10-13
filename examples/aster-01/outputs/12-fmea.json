@@ -1,0 +1,73 @@
+{
+  "findings": [
+    {
+      "id": "FM-001",
+      "severity": "warning",
+      "rule": "high-severity",
+      "message": "severity 9 \u2014 review regardless of RPN (135); escalate if safety-related"
+    },
+    {
+      "id": "FM-002",
+      "severity": "warning",
+      "rule": "high-severity",
+      "message": "severity 10 \u2014 review regardless of RPN (120); escalate if safety-related"
+    },
+    {
+      "id": "FM-006",
+      "severity": "warning",
+      "rule": "high-severity",
+      "message": "severity 9 \u2014 review regardless of RPN (90); escalate if safety-related"
+    }
+  ],
+  "ranked": [
+    {
+      "fmea_id": "FM-001",
+      "rpn": 135,
+      "severity": 9,
+      "needs_action": true
+    },
+    {
+      "fmea_id": "FM-002",
+      "rpn": 120,
+      "severity": 10,
+      "needs_action": true
+    },
+    {
+      "fmea_id": "FM-006",
+      "rpn": 90,
+      "severity": 9,
+      "needs_action": true
+    },
+    {
+      "fmea_id": "FM-007",
+      "rpn": 140,
+      "severity": 7,
+      "needs_action": true
+    },
+    {
+      "fmea_id": "FM-005",
+      "rpn": 84,
+      "severity": 7,
+      "needs_action": false
+    },
+    {
+      "fmea_id": "FM-003",
+      "rpn": 72,
+      "severity": 6,
+      "needs_action": false
+    },
+    {
+      "fmea_id": "FM-004",
+      "rpn": 72,
+      "severity": 8,
+      "needs_action": false
+    }
+  ],
+  "summary": {
+    "modes": 7,
+    "needing_action": 4,
+    "errors": 0,
+    "warnings": 3
+  },
+  "passed": true
+}

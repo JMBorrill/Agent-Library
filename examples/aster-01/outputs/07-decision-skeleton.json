@@ -1,0 +1,422 @@
+{
+  "decision_id": "ASTER-TRADE-001-DEC",
+  "question": "Select concept for preliminary design",
+  "decision_owner": "",
+  "criteria": [
+    {
+      "id": "C1",
+      "name": "Predicted 1-sigma launch-speed error",
+      "weight": 0.3,
+      "direction": "min",
+      "unit": "m/s",
+      "must": {
+        "max": 0.01
+      }
+    },
+    {
+      "id": "C2",
+      "name": "Peak stored mechanical energy during ground trials",
+      "weight": 0.2,
+      "direction": "min",
+      "unit": "J"
+    },
+    {
+      "id": "C3",
+      "name": "Demonstrator mass",
+      "weight": 0.15,
+      "direction": "min",
+      "unit": "kg",
+      "must": {
+        "max": 12
+      }
+    },
+    {
+      "id": "C4",
+      "name": "Technology readiness (team estimate)",
+      "weight": 0.15,
+      "direction": "max",
+      "unit": "TRL"
+    },
+    {
+      "id": "C5",
+      "name": "Time to relocate 10 m including settle",
+      "weight": 0.2,
+      "direction": "min",
+      "unit": "s"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "FLYWHEEL+PASSIVE+IMU",
+      "name": "FLYWHEEL+PASSIVE+IMU",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "FLYWHEEL+PASSIVE+IMU-CAM",
+      "name": "FLYWHEEL+PASSIVE+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "SPRING+PASSIVE+IMU",
+      "name": "SPRING+PASSIVE+IMU",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "SPRING+PASSIVE+IMU-CAM",
+      "name": "SPRING+PASSIVE+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "FLYWHEEL+ACTIVE-RW+IMU-CAM",
+      "name": "FLYWHEEL+ACTIVE-RW+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "FLYWHEEL+ANCHOR+IMU",
+      "name": "FLYWHEEL+ANCHOR+IMU",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "FLYWHEEL+ANCHOR+IMU-CAM",
+      "name": "FLYWHEEL+ANCHOR+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "SPRING+ACTIVE-RW+IMU-CAM",
+      "name": "SPRING+ACTIVE-RW+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "SPRING+ANCHOR+IMU",
+      "name": "SPRING+ANCHOR+IMU",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "SPRING+ANCHOR+IMU-CAM",
+      "name": "SPRING+ANCHOR+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "WHEELS+ANCHOR+IMU",
+      "name": "WHEELS+ANCHOR+IMU",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "id": "WHEELS+ANCHOR+IMU-CAM",
+      "name": "WHEELS+ANCHOR+IMU-CAM",
+      "scores": {
+        "C1": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C2": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C3": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C4": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        },
+        "C5": {
+          "value": null,
+          "basis": "",
+          "source": ""
+        }
+      }
+    }
+  ]
+}

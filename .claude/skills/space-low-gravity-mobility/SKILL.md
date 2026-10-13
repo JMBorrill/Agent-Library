@@ -49,8 +49,13 @@ Optional
 2. **Check rotation:** `lowg_calc.py rotation ... --rotation-period-h P --latitude-deg PHI`. If net
    gravity is ≤ 0 (`net-gravity-outward`), stop: surface operation there needs anchoring or a
    different site — escalate.
-3. **Size hops:** `lowg_calc.py hop --speed V --angle-deg A <body options>`. Keep launch speed well
-   below v_circ; treat `flat-gravity-approx-questionable` as "use a central-force trajectory model".
+3. **Size hops:** `lowg_calc.py hop --speed V --angle-deg A [--heading-deg AZ] <body options>`. Keep
+   launch speed well below v_circ; treat `flat-gravity-approx-questionable` as "use a central-force
+   trajectory model". **Rotating bodies:** the surface itself moves east at ω·r·cos(latitude) (0.109 m/s
+   on `aster-target`, 42 % of v_esc), so escape/orbital checks use the *inertial* speed = launch
+   velocity relative to the surface + surface rotation velocity. Give `--heading-deg` (azimuth from
+   north, 90 = east) for the vector sum; without it the worst case |v_rel| + ω·r·cos(latitude) is used.
+   An eastward hop that looks safe relative to the surface can exceed escape speed.
 4. **Size the actuator:** `lowg_calc.py impulse --mass-kg m --speed V --push-time-s T --friction-coefficient MU <body>`.
    Compare mean force with weight; compare required drive acceleration with μ·g (traction limit).
 5. **Landing/settling:** `lowg_calc.py bounce --speed V0 --restitution E --threshold-speed VT <body>`.
@@ -64,8 +69,10 @@ Optional
 ## Decision criteria
 | Situation | Rule |
 |---|---|
-| Launch or rebound speed ≥ v_esc | Blocking (`exceeds-escape-speed`): loss of vehicle risk; redesign or add control. |
-| v_circ ≤ speed < v_esc | Blocking (`exceeds-orbital-speed`): flat model invalid; re-analyse with orbital mechanics. |
+| Inertial launch or rebound speed (relative + surface rotation) ≥ v_esc | Blocking (`exceeds-escape-speed`): loss of vehicle risk; redesign or add control. |
+| v_circ ≤ inertial speed < v_esc | Blocking (`exceeds-orbital-speed`): flat model invalid; re-analyse with orbital mechanics. |
+| Inertial speed ≥ 50 % of v_esc (below v_circ) | Warning (`approaching-escape-speed`): little margin to loss of vehicle. |
+| Surface rotation speed > 10 % of v_esc | Warning (`surface-rotation-speed-significant`): launch direction vs spin changes the escape margin; give `--heading-deg`. |
 | speed/v_circ > 0.3 (default, heuristic) | Warning: approximation questionable; cross-check with a central-force model. |
 | Range > 10 % of radius (heuristic) | Warning: curvature and gravity variation matter. |
 | Net gravity ≤ 0 at site | Blocking: anchoring or site change; escalate to systems-architect and safety-risk-reviewer. |
@@ -88,8 +95,9 @@ Heuristic thresholds are engineering judgement defaults, configurable (`--approx
   r = 250 m, ρ = 1900 kg/m³: M ≈ 1.2435e11 kg, g ≈ 1.328e-4 m/s², v_esc ≈ 0.2577 m/s,
   v_circ ≈ 0.1822 m/s; hop, bounce and impulse hand calculations.
 - PASS means the formulas were applied to valid inputs and no speed/rotation limit was crossed under
-  the stated model. It does **not** mean the mobility concept works: irregular shape, regolith
-  mechanics, Coriolis, terrain and control are not modelled.
+  the stated model (speed limits checked in the inertial frame, including surface rotation). It does
+  **not** mean the mobility concept works: irregular shape, regolith mechanics, Coriolis deflection of
+  the hop path, terrain and control are not modelled.
 
 ## Examples
 - `assets/examples/lowg-cases-pass.json` → exit 0 (info `rotation-significant`, `force-exceeds-weight`).

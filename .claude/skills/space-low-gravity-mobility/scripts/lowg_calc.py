@@ -4,7 +4,7 @@ settling and rotational effects, with physical input validation and JSON output.
 
 Subcommands:
   body      --radius-m R (--density RHO | --mass-kg M) | --preset NAME  [--rotation-period-h P]
-  hop       --speed V --angle-deg A  (body options | --g G)  [--rotation-period-h P]
+  hop       --speed V --angle-deg A  (body options | --g G)  [--rotation-period-h P] [--latitude-deg PHI] [--heading-deg AZ]
   impulse   --mass-kg m --speed V [--angle-deg A] [--push-time-s T] [--friction-coefficient MU] [body options | --g G]
   bounce    --speed V0 --restitution E --threshold-speed VT  (body options | --g G)
   rotation  (body options) --rotation-period-h P [--latitude-deg PHI]
@@ -14,7 +14,10 @@ Add --json for machine-readable output.
 Model (stated assumptions): homogeneous sphere; point-mass gravity g = GM/r^2 at the surface;
 v_esc = sqrt(2GM/r); circular orbit speed at the surface v_circ = sqrt(GM/r); hops use a flat,
 uniform gravity field (no curvature, no variation of g with height, no Coriolis), no atmosphere;
-bounces are vertical with a constant coefficient of restitution. G = 6.67430e-11 m^3 kg^-1 s^-2
+bounces are vertical with a constant coefficient of restitution. Speed-limit checks (escape and
+circular speed) use the INERTIAL speed: velocity relative to the surface plus the surface rotation
+velocity omega*r*cos(latitude) (eastward). With --heading-deg the vector sum is used; without it the
+conservative worst case |v_rel| + omega*r*cos(latitude) is used. G = 6.67430e-11 m^3 kg^-1 s^-2
 (CODATA 2018 recommended value).
 
 Exit codes: 0 no blocking findings, 1 blocking findings (e.g. model invalid, escape, outward net
@@ -132,25 +135,78 @@ def hop(speed: float, angle_deg: float, g: float) -> dict:
             "vertical_speed_m_s": vz, "horizontal_speed_m_s": vx, "g_used_m_s2": g}
 
 
+def surface_speed(rot: dict | None, radius_m: float) -> float:
+    """Eastward speed of the surface in the inertial frame, omega*r*cos(latitude) (0 if no rotation)."""
+    if rot is None:
+        return 0.0
+    return rot["omega_rad_s"] * radius_m * math.cos(math.radians(rot["latitude_deg"]))
+
+
+def inertial_launch_speed(speed: float, angle_deg: float, v_surface: float,
+                          heading_deg: float | None = None) -> tuple[float, str]:
+    """Inertial launch speed = |velocity relative to surface + surface rotational velocity|.
+
+    heading_deg is the azimuth of the horizontal launch component, clockwise from north (90 = east).
+    Without a heading the conservative worst case is used: speed + v_surface (launch aligned with the
+    surface motion). Returns (speed, basis).
+    """
+    if v_surface == 0.0:
+        return speed, "no rotation supplied"
+    if heading_deg is None:
+        return speed + v_surface, "worst case: relative speed + surface rotation speed (no heading)"
+    th, az = math.radians(angle_deg), math.radians(heading_deg)
+    up = speed * math.sin(th)
+    east = speed * math.cos(th) * math.sin(az) + v_surface
+    north = speed * math.cos(th) * math.cos(az)
+    return math.sqrt(up * up + east * east + north * north), f"heading {heading_deg:g} deg vector sum"
+
+
+APPROACH_ESCAPE_FRACTION = 0.5  # warn when inertial speed exceeds this fraction of v_esc
+
+
+def speed_limit_findings(fid: str, rel_speed: float, v_inertial: float, basis: str, bp: dict,
+                         v_surface: float) -> list[dict]:
+    """Compare the inertial (rotation-corrected) speed with escape and circular speed."""
+    out = []
+    vesc, vcirc = bp["escape_speed_m_s"], bp["circular_speed_m_s"]
+    frame = (f"inertial speed {v_inertial:.5g} m/s (relative {rel_speed:.4g} m/s + surface rotation "
+             f"{v_surface:.4g} m/s; {basis})") if v_surface else f"launch speed {rel_speed:.4g} m/s"
+    if v_inertial >= vesc:
+        out.append(_f(fid, "error", "exceeds-escape-speed",
+                      f"{frame} >= escape speed {vesc:.5g} m/s: robot would leave the body"))
+    elif v_inertial >= vcirc:
+        out.append(_f(fid, "error", "exceeds-orbital-speed",
+                      f"{frame} >= circular orbit speed {vcirc:.4g} m/s: flat-gravity model invalid"))
+    elif v_inertial >= APPROACH_ESCAPE_FRACTION * vesc:
+        out.append(_f(fid, "warning", "approaching-escape-speed",
+                      f"{frame} is {v_inertial / vesc:.0%} of escape speed: little margin to loss of vehicle"))
+    if v_surface > 0.1 * vesc:
+        out.append(_f(fid, "warning", "surface-rotation-speed-significant",
+                      f"surface rotation speed {v_surface:.4g} m/s is {v_surface / vesc:.0%} of escape speed; "
+                      "launch direction relative to spin changes the escape margin"))
+    return out
+
+
 def hop_findings(res: dict, speed: float, bp: dict | None, approx_ratio: float,
-                 range_fraction: float) -> list[dict]:
+                 range_fraction: float, rot: dict | None = None, angle_deg: float = 45.0,
+                 heading_deg: float | None = None) -> list[dict]:
     out = []
     if bp is None:
         out.append(_f("hop", "info", "no-body-check",
                       "gravity given directly; launch speed not compared with escape/orbital speed"))
         return out
-    vesc, vcirc, r = bp["escape_speed_m_s"], bp["circular_speed_m_s"], bp["radius_m"]
-    if speed >= vesc:
-        out.append(_f("hop", "error", "exceeds-escape-speed",
-                      f"launch speed {speed:.4g} m/s >= escape speed {vesc:.4g} m/s: robot would leave the body"))
-    elif speed >= vcirc:
-        out.append(_f("hop", "error", "exceeds-orbital-speed",
-                      f"launch speed >= circular orbit speed {vcirc:.4g} m/s: flat-gravity hop model invalid"))
-    elif speed / vcirc > approx_ratio:
+    vcirc, r = bp["circular_speed_m_s"], bp["radius_m"]
+    v_surf = surface_speed(rot, r)
+    v_in, basis = inertial_launch_speed(speed, angle_deg, v_surf, heading_deg)
+    res["surface_rotation_speed_m_s"] = v_surf
+    res["inertial_launch_speed_m_s"] = v_in
+    res["inertial_speed_basis"] = basis
+    out += speed_limit_findings("hop", speed, v_in, basis, bp, v_surf)
+    if v_in < vcirc and speed / vcirc > approx_ratio:
         out.append(_f("hop", "warning", "flat-gravity-approx-questionable",
                       f"launch speed is {speed / vcirc:.0%} of circular speed (> {approx_ratio:.0%}): "
                       "curvature and gravity variation matter; use a central-force trajectory"))
-    if speed < vcirc and res["range_m"] > range_fraction * r:
+    if v_in < vcirc and res["range_m"] > range_fraction * r:
         out.append(_f("hop", "warning", "range-large-vs-radius",
                       f"range {res['range_m']:.3g} m exceeds {range_fraction:.0%} of body radius {r:.3g} m"))
     return out
@@ -226,6 +282,10 @@ def _body_from(params: dict) -> tuple[dict | None, dict, list[str]]:
 
 def run(command: str, params: dict) -> dict:
     params = {k: v for k, v in params.items() if v is not None}
+    hd = params.get("heading_deg")
+    if hd is not None and (isinstance(hd, bool) or not isinstance(hd, (int, float))
+                           or not math.isfinite(hd) or not 0.0 <= hd <= 360.0):
+        raise InputError("heading_deg must be within [0, 360]")
     findings: list[dict] = []
     bp, params, notes = _body_from(params)
     assumptions = ["homogeneous sphere, point-mass surface gravity", f"G = {G} m^3 kg^-1 s^-2 ({G_SOURCE})"]
@@ -266,16 +326,22 @@ def run(command: str, params: dict) -> dict:
             results = hop(params.get("speed"), params.get("angle_deg", 45.0), g_eff)
             findings += hop_findings(results, params["speed"], bp,
                                      params.get("approx_ratio", DEFAULT_APPROX_RATIO),
-                                     params.get("range_fraction", DEFAULT_RANGE_FRACTION))
+                                     params.get("range_fraction", DEFAULT_RANGE_FRACTION),
+                                     rot, params.get("angle_deg", 45.0), params.get("heading_deg"))
             assumptions.append("flat, uniform gravity; no Coriolis; launch and landing at the same level")
         else:
             results = bounce(params.get("speed"), params.get("restitution"),
                              params.get("threshold_speed"), g_eff)
             assumptions.append("vertical bounces, constant restitution, level rigid surface")
-            if bp is not None and results["first_rebound_speed_m_s"] >= bp["escape_speed_m_s"]:
+            # vertical rebound: inertial speed = sqrt(v^2 + v_surface^2)
+            v_rb = results["first_rebound_speed_m_s"]
+            v_rb_in = math.hypot(v_rb, surface_speed(rot, bp["radius_m"])) if bp is not None else v_rb
+            if bp is not None:
+                results["inertial_first_rebound_speed_m_s"] = v_rb_in
+            if bp is not None and v_rb_in >= bp["escape_speed_m_s"]:
                 findings.append(_f("bounce", "error", "rebound-exceeds-escape-speed",
-                                   "first rebound speed exceeds escape speed"))
-            elif bp is not None and results["first_rebound_speed_m_s"] >= bp["circular_speed_m_s"]:
+                                   "first rebound speed (inertial, incl. surface rotation) exceeds escape speed"))
+            elif bp is not None and v_rb_in >= bp["circular_speed_m_s"]:
                 findings.append(_f("bounce", "error", "rebound-exceeds-orbital-speed",
                                    "first rebound speed exceeds circular orbit speed; flat model invalid"))
         if rot is not None and g_eff > 0:
@@ -283,9 +349,17 @@ def run(command: str, params: dict) -> dict:
     elif command == "impulse":
         results = impulse(params.get("mass_kg"), params.get("speed"), params.get("angle_deg"),
                           params.get("push_time_s"), g_eff, params.get("friction_coefficient"))
-        if bp is not None and params["speed"] >= bp["escape_speed_m_s"]:
-            findings.append(_f("impulse", "error", "exceeds-escape-speed",
-                               "imparted speed exceeds escape speed of the body"))
+        if bp is not None:
+            v_surf = surface_speed(rot, bp["radius_m"])
+            # heading is only usable with an elevation angle; otherwise use the worst case
+            ang = params.get("angle_deg")
+            v_in, basis = inertial_launch_speed(params["speed"], ang if ang is not None else 90.0, v_surf,
+                                                params.get("heading_deg") if ang is not None else None)
+            results["inertial_speed_m_s"] = v_in
+            if v_in >= bp["escape_speed_m_s"]:
+                findings.append(_f("impulse", "error", "exceeds-escape-speed",
+                                   f"imparted speed (inertial {v_in:.5g} m/s; {basis}) exceeds escape "
+                                   "speed of the body"))
         if results.get("mean_force_to_weight_ratio", 0) > 1:
             findings.append(_f("impulse", "info", "force-exceeds-weight",
                                "mean push force exceeds local weight: reaction from the surface or "
@@ -327,6 +401,9 @@ def _add_body(p: argparse.ArgumentParser, allow_g: bool = True) -> None:
     p.add_argument("--body-mass-kg", dest="mass_kg_body", type=float, help="body mass kg (instead of density)")
     p.add_argument("--rotation-period-h", type=float)
     p.add_argument("--latitude-deg", type=float)
+    p.add_argument("--heading-deg", type=float,
+                   help="launch azimuth clockwise from north (90 = east); without it the escape check "
+                        "adds the full surface rotation speed (worst case)")
     if allow_g:
         p.add_argument("--g", type=float, help="surface gravity m/s^2 (instead of body options)")
     p.add_argument("--json", action="store_true")

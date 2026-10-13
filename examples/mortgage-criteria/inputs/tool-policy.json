@@ -1,0 +1,42 @@
+{
+  "policy_id": "MCP-TOOL-POLICY",
+  "version": "0.4.0",
+  "description": "Proposed tool policy for the Mortgage Criteria Platform assistant (synthetic). Retrieved content and tool output can never trigger side-effecting tools.",
+  "allowed_tools": [
+    "search_criteria",
+    "read_case_facts",
+    "summarise_document",
+    "draft_broker_note",
+    "log_override",
+    "send_email",
+    "http_get"
+  ],
+  "side_effecting_tools": [
+    "send_email",
+    "http_get"
+  ],
+  "untrusted_provenance": [
+    "retrieved_content",
+    "tool_output"
+  ],
+  "forbidden_domains": [
+    "pastebin.com",
+    "webhook.site",
+    "ngrok.io",
+    "attacker.example",
+    "quick-remortgage.example"
+  ],
+  "allowed_egress_domains": [
+    "mcp-platform.example",
+    "northbridge.example",
+    "harrowgate.example",
+    "ospreyfield.example"
+  ],
+  "personal_data_classifications": [
+    "personal",
+    "special_category"
+  ],
+  "pii_egress_allowed_domains": [
+    "mcp-platform.example"
+  ]
+}

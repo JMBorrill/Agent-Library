@@ -1,0 +1,19 @@
+{
+  "case_id": "MCP-CASE-0007",
+  "application_date": "2026-10-13",
+  "description": "Synthetic employed homeowner (Alex Sample, synthetic) seeking a GBP 45,000 second charge for home improvements; no real person",
+  "facts": {
+    "cltv_pct": 72.86,
+    "loan_amount": 45000,
+    "employment_type": "employed",
+    "ccj_count_last_6y": 0,
+    "age_at_term_end": 61,
+    "property_type": "house",
+    "gross_annual_income": 52000
+  },
+  "units": {
+    "cltv_pct": "percent",
+    "loan_amount": "GBP",
+    "gross_annual_income": "GBP"
+  }
+}

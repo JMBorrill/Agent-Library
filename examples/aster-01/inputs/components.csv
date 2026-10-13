@@ -1,0 +1,7 @@
+component_id,name
+HOP,Hop actuator assembly (spring or flywheel option; selection pending ASTER-DEC-001)
+CTRL,Hop controller and embedded software
+EST,IMU and launch-state estimator
+LOG,Trial data logger
+PWR,Battery power distribution and hardwired e-stop chain
+RIG,Counterweight offload rig with arrestor and safety net (test equipment)

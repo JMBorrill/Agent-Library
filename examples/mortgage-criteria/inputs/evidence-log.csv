@@ -1,0 +1,10 @@
+id,claim,type,source_ref,method,date,participants,segment,confidence,linked_assumption
+MCP-EV-001,"7 of 9 brokers checked second-charge criteria by opening between 3 and 6 lender PDFs or portals per case",observation,BRK-INT-01..BRK-INT-09 (synthetic interview notes),interview,2026-08-19,9,second-charge brokers,high,MCP-AS-001
+MCP-EV-002,"Median 38 minutes from case fact-find to a lender shortlist across 24 observed second-charge cases",observation,Contextual observation log OBS-2026-08 (synthetic dataset),usability_test,2026-08-28,6,second-charge brokers,medium,MCP-AS-001
+MCP-EV-003,"Broker described rechecking a lender's CLTV cap because the PDF they held was an older version",observation,BRK-INT-04 transcript 18:05 (synthetic),interview,2026-08-20,1,second-charge brokers,medium,MCP-AS-002
+MCP-EV-004,"5 of 6 brokers opened the cited criteria source before shortlisting a lender in the clickable prototype",observation,PROTO-UT-01..PROTO-UT-06 (synthetic session notes),usability_test,2026-09-17,6,second-charge brokers,medium,MCP-AS-003
+MCP-EV-005,"6 of 6 brokers kept the final lender choice themselves and said they would not accept a tool that picks for them",observation,PROTO-UT-01..PROTO-UT-06 (synthetic session notes),usability_test,2026-09-17,6,second-charge brokers,medium,MCP-AS-004
+MCP-EV-006,"Trade press desk note reports second-charge criteria vary widely between lenders on CLTV and adverse credit",desk_research,Desk note DN-MCP-02 (synthetic citation),desk,2026-08-05,,all brokers,low,MCP-AS-001
+MCP-EV-007,"Brokers would pay a per-seat subscription for criteria search with citations",hypothesis,,none,,,second-charge brokers,low,MCP-AS-005
+MCP-EV-008,"An AI explanation layer will reduce shortlist time by at least half without increasing wrong-lender submissions",hypothesis,,none,,,second-charge brokers,low,MCP-AS-006
+MCP-EV-009,"Lenders will supply dated criteria documents often enough to keep rules under 90 days old",hypothesis,,none,,,lender partners,low,MCP-AS-007

@@ -24,6 +24,7 @@
               "mass_kg_body": {"type": "number", "exclusiveMinimum": 0},
               "rotation_period_h": {"type": "number", "exclusiveMinimum": 0},
               "latitude_deg": {"type": "number", "minimum": -90, "maximum": 90},
+              "heading_deg": {"type": "number", "minimum": 0, "maximum": 360, "description": "launch azimuth clockwise from north"},
               "g": {"type": "number", "exclusiveMinimum": 0},
               "speed": {"type": "number", "exclusiveMinimum": 0},
               "angle_deg": {"type": "number", "exclusiveMinimum": 0, "maximum": 90},

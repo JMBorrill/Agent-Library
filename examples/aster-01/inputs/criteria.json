@@ -1,0 +1,7 @@
+[
+  {"id": "C1", "name": "Predicted 1-sigma launch-speed error", "weight": 0.30, "direction": "min", "unit": "m/s", "must": {"max": 0.010}},
+  {"id": "C2", "name": "Peak stored mechanical energy during ground trials", "weight": 0.20, "direction": "min", "unit": "J"},
+  {"id": "C3", "name": "Demonstrator mass", "weight": 0.15, "direction": "min", "unit": "kg", "must": {"max": 12}},
+  {"id": "C4", "name": "Technology readiness (team estimate)", "weight": 0.15, "direction": "max", "unit": "TRL"},
+  {"id": "C5", "name": "Time to relocate 10 m including settle", "weight": 0.20, "direction": "min", "unit": "s"}
+]

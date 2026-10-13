@@ -1,0 +1,13 @@
+function_id,parent_function,name,inputs,outputs,allocated_to,requirement_ids
+F0,,Relocate robot by ballistic hop,EXT:hop command;EXT:e-stop signal;EXT:safing command;EXT:offload force,EXT:trial data set;EXT:rest state,,ASTER-STK-001;ASTER-STK-002
+F1,F0,Estimate launch speed,body acceleration,estimated launch speed,EST,ASTER-SYS-001;ASTER-SUB-001
+F2,F0,Store hop energy,actuator power;arm command,stored energy,HOP,ASTER-SUB-002
+F3,F0,Command hop release,EXT:hop command;estimated launch speed,arm command;release command,CTRL,ASTER-SUB-001
+F4,F0,Release energy into take-off impulse,stored energy;release command,body motion,HOP,ASTER-SYS-002;ASTER-SUB-002
+F5,F0,Measure body acceleration,body motion,body acceleration,EST,ASTER-SYS-004
+F6,F0,Record trial data,body acceleration;release command,EXT:trial data set,LOG,ASTER-SYS-004;ASTER-SUB-003
+F7,F0,Supply and interrupt actuator power,EXT:e-stop signal,actuator power,PWR,ASTER-SYS-005;ASTER-SUB-004
+F8,F0,Dump stored energy,EXT:safing command;stored energy,EXT:dissipated heat,HOP,ASTER-SYS-006
+F9,F0,Offload demonstrator weight,EXT:offload force;body motion,EXT:residual vertical acceleration,RIG,ASTER-SYS-007
+F10,F0,Arrest uncontrolled motion,body motion,EXT:arrest load,RIG,ASTER-SYS-008
+F11,F0,Dissipate landing energy,body motion,EXT:rest state,HOP,ASTER-SYS-003

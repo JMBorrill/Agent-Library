@@ -1,0 +1,180 @@
+{
+  "decision_id": "ASTER-DEC-001",
+  "question": "Which hopping concept should the ASTER-01 ground demonstrator carry into preliminary design?",
+  "decision_owner": "ASTER Phase 1 project lead (synthetic)",
+  "decision_status": "PENDING — recommendation only; no decision has been recorded by the decision owner",
+  "context": "Synthetic demonstration. Alternatives come from the screened trade space (ASTER-TRADE-001). Weights are PROPOSED by the systems-architect and have not been confirmed by the decision owner. Every score is an engineering estimate or first-order analysis (lowg_calc.py outputs/04b-lowg-sizing.json); no score comes from test or measurement.",
+  "criteria": [
+    {
+      "id": "C1",
+      "name": "Predicted 1-sigma launch-speed error",
+      "weight": 0.3,
+      "direction": "min",
+      "unit": "m/s",
+      "must": {
+        "max": 0.01
+      }
+    },
+    {
+      "id": "C2",
+      "name": "Peak stored mechanical energy during ground trials",
+      "weight": 0.2,
+      "direction": "min",
+      "unit": "J"
+    },
+    {
+      "id": "C3",
+      "name": "Demonstrator mass",
+      "weight": 0.15,
+      "direction": "min",
+      "unit": "kg",
+      "must": {
+        "max": 12
+      }
+    },
+    {
+      "id": "C4",
+      "name": "Technology readiness (team estimate)",
+      "weight": 0.15,
+      "direction": "max",
+      "unit": "TRL"
+    },
+    {
+      "id": "C5",
+      "name": "Time to relocate 10 m including settle",
+      "weight": 0.2,
+      "direction": "min",
+      "unit": "s"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "SPRING-IMU",
+      "name": "Latched spring hopper, passive shell, IMU estimation (SPRING+PASSIVE+IMU)",
+      "scores": {
+        "C1": {
+          "value": 0.006,
+          "basis": "estimate",
+          "source": "spring preload repeatability +/-7 % of 0.085 m/s (engineering estimate)"
+        },
+        "C2": {
+          "value": 0.15,
+          "basis": "analysis",
+          "source": "IMP-MAX kinetic energy 0.043 J / assumed 30 % transfer efficiency"
+        },
+        "C3": {
+          "value": 9.16,
+          "basis": "estimate",
+          "source": "budget.csv predicted mass 9.76 kg (SPRING-CAM, CBE + contingency) minus camera 0.5 kg + 20 % contingency"
+        },
+        "C4": {
+          "value": 4,
+          "basis": "estimate",
+          "source": "trade-space.json team TRL estimate"
+        },
+        "C5": {
+          "value": 926,
+          "basis": "analysis",
+          "source": "HOP-NOM flight 373 s + BNC-MID-E settle 553 s"
+        }
+      }
+    },
+    {
+      "id": "SPRING-CAM",
+      "name": "Latched spring hopper, passive shell, IMU plus camera (SPRING+PASSIVE+IMU-CAM)",
+      "scores": {
+        "C1": {
+          "value": 0.004,
+          "basis": "estimate",
+          "source": "camera-aided correction of preload error (engineering estimate)"
+        },
+        "C2": {
+          "value": 0.15,
+          "basis": "analysis",
+          "source": "as SPRING-IMU"
+        },
+        "C3": {
+          "value": 9.76,
+          "basis": "estimate",
+          "source": "budget.csv predicted mass (CBE 8.48 kg + contingency 1.28 kg), outputs/10-budget.json"
+        },
+        "C4": {
+          "value": 4,
+          "basis": "estimate",
+          "source": "trade-space.json team TRL estimate"
+        },
+        "C5": {
+          "value": 986,
+          "basis": "estimate",
+          "source": "926 s + 60 s image-based pre-launch check (estimate)"
+        }
+      }
+    },
+    {
+      "id": "FLYWHEEL-IMU",
+      "name": "Internal flywheel hopper, passive shell, IMU estimation (FLYWHEEL+PASSIVE+IMU)",
+      "scores": {
+        "C1": {
+          "value": 0.003,
+          "basis": "estimate",
+          "source": "brake-torque control of momentum exchange (engineering estimate)"
+        },
+        "C2": {
+          "value": 5.9,
+          "basis": "analysis",
+          "source": "L = 1.02 N s x 0.15 m lever = 0.153 N m s; I = 0.002 kg m2 gives omega 76.5 rad/s, E = 0.5 I omega^2 = 5.9 J"
+        },
+        "C3": {
+          "value": 10.4,
+          "basis": "estimate",
+          "source": "SPRING-IMU minus spring leg, plus flywheel, brake and housing (estimate)"
+        },
+        "C4": {
+          "value": 4,
+          "basis": "estimate",
+          "source": "trade-space.json team TRL estimate"
+        },
+        "C5": {
+          "value": 1226,
+          "basis": "estimate",
+          "source": "926 s + 300 s post-landing reorientation (tumbling expected; estimate)"
+        }
+      }
+    },
+    {
+      "id": "WHEEL-REF",
+      "name": "Wheeled rover with microspine anchoring, reference only (WHEELS+ANCHOR+IMU)",
+      "scores": {
+        "C1": {
+          "value": 0.001,
+          "basis": "judgement",
+          "source": "drive-speed control error; no ballistic launch"
+        },
+        "C2": {
+          "value": 0.05,
+          "basis": "estimate",
+          "source": "drive kinetic energy only"
+        },
+        "C3": {
+          "value": 13.0,
+          "basis": "estimate",
+          "source": "wheels, drive train and anchoring mechanism (estimate)"
+        },
+        "C4": {
+          "value": 6,
+          "basis": "judgement",
+          "source": "terrestrial heritage; low-gravity traction unproven"
+        },
+        "C5": {
+          "value": 2000,
+          "basis": "judgement",
+          "source": "traction-limited drive acceleration 7.6e-5 m/s2 (IMP-MAX) and contact loss over bumps"
+        }
+      }
+    }
+  ],
+  "settings": {
+    "sensitivity_pct": 20,
+    "close_margin": 0.05
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "findings": [],
+  "summary": {
+    "requirements_in_scope": 12,
+    "planned_coverage_pct": 100.0,
+    "passed_pct": 0.0,
+    "requirement_states": {
+      "not_tested": 12
+    },
+    "needs": 4,
+    "needs_with_validation": 4,
+    "activities_by_result": {
+      "not_tested": 16
+    },
+    "errors": 0,
+    "warnings": 0,
+    "failed_or_blocked": []
+  },
+  "passed": true
+}

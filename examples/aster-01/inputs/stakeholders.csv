@@ -1,0 +1,6 @@
+stakeholder,role,interest,influence,needs,decision_rights,engagement,evidence_ref
+ASTER Phase 1 project lead (synthetic),Decision owner,Defensible concept selection for preliminary design,high,ASTER-STK-001,Approves requirements baselines tailoring and gate decisions,Weekly review,ASTER-MIN-2026-09-15
+Mission systems architect (synthetic),Mission design authority,No loss of vehicle on the target body,high,ASTER-STK-002;ASTER-STK-004,Owns mission-level speed and settle limits,Fortnightly design review,ASTER-MIN-2026-09-15
+Laboratory test-safety authority (synthetic),Safety authority,No injury or damage during ground trials,high,ASTER-STK-003,Authorises every physical test and accepts residual safety risk,TRR sign-off,LAB-SAF-POL-04
+Test operators (synthetic),Operators,Simple safe arming and recovery,medium,ASTER-STK-003,,Daily stand-up,
+Research sponsor (synthetic),Funder,Phase 1 results within budget,medium,ASTER-STK-001,Approves Phase 2 funding,Milestone reports,

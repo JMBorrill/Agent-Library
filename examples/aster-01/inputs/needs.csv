@@ -1,0 +1,5 @@
+need_id,statement,stakeholder,priority,moe,evidence_ref
+ASTER-STK-001,Repeatable measured hop data from a reduced-gravity analogue to compare locomotion concepts,ASTER Phase 1 project lead (synthetic),must,Hop range 1-sigma spread <= 10 % over 10 trials,ASTER-MIN-2026-09-15
+ASTER-STK-002,Relocation hops that cannot lose the robot from the target body,Mission systems architect (synthetic),must,Predicted launch speed <= 30 % of circular-orbit speed in all analysed cases,ASTER-MIN-2026-09-15
+ASTER-STK-003,Ground trials run without exposing people to stored mechanical energy,Laboratory test-safety authority (synthetic),must,0 operator entries into guarded zone while energy is stored over 20 trials,LAB-SAF-POL-04
+ASTER-STK-004,Robot comes to rest after landing within a bounded wait so work can resume,Mission systems architect (synthetic),should,Predicted settle time <= 2400 s for restitution up to 0.8,ASTER-MIN-2026-09-15

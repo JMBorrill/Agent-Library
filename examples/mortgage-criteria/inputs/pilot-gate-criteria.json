@@ -1,0 +1,60 @@
+{
+  "_provenance": "Programme-supplied PILOT readiness criteria written for this synthetic demo by the product-lead and requirements-engineer; not taken from any standard or regulator. A real firm replaces them with criteria agreed by its compliance function.",
+  "reviews": {
+    "PILOT": {
+      "name": "Limited broker pilot readiness (synthetic cases, then consenting pilot firms)",
+      "criteria": [
+        {
+          "id": "PIL-01",
+          "text": "Regulatory triage complete and every candidate area reviewed and signed off by the compliance officer or legal counsel, incl. the perimeter question",
+          "blocking": true
+        },
+        {
+          "id": "PIL-02",
+          "text": "Requirements lint clean (no errors) and traced to stakeholder needs",
+          "blocking": true
+        },
+        {
+          "id": "PIL-03",
+          "text": "Every requirement has a planned verification activity and every need a validation activity",
+          "blocking": true
+        },
+        {
+          "id": "PIL-04",
+          "text": "Lender criteria validate with no errors and no stale rules",
+          "blocking": true
+        },
+        {
+          "id": "PIL-05",
+          "text": "AI eval gates pass on the pinned live model configuration",
+          "blocking": true
+        },
+        {
+          "id": "PIL-06",
+          "text": "Independent validation of the AI component completed",
+          "blocking": true
+        },
+        {
+          "id": "PIL-07",
+          "text": "Human oversight matrix validated: broker decides, lender staff make credit decisions, override and challenge routes exist",
+          "blocking": true
+        },
+        {
+          "id": "PIL-08",
+          "text": "Threat model reviewed and tenant-isolation mitigations implemented and tested",
+          "blocking": true
+        },
+        {
+          "id": "PIL-09",
+          "text": "DPIA signed by the data-protection lead",
+          "blocking": true
+        },
+        {
+          "id": "PIL-10",
+          "text": "Lender credit staff confirm the encoded criteria for each pilot lender",
+          "blocking": false
+        }
+      ]
+    }
+  }
+}

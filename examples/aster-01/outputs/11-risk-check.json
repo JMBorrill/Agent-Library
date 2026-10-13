@@ -1,0 +1,116 @@
+{
+  "findings": [
+    {
+      "id": "ASTER-RSK-001",
+      "severity": "warning",
+      "rule": "safety-escalation",
+      "message": "safety risk with severe consequence \u2014 requires review by a qualified safety authority"
+    },
+    {
+      "id": "ASTER-RSK-002",
+      "severity": "warning",
+      "rule": "safety-escalation",
+      "message": "safety risk with severe consequence \u2014 requires review by a qualified safety authority"
+    },
+    {
+      "id": "ASTER-RSK-003",
+      "severity": "warning",
+      "rule": "safety-escalation",
+      "message": "safety risk with severe consequence \u2014 requires review by a qualified safety authority"
+    },
+    {
+      "id": "ASTER-RSK-004",
+      "severity": "info",
+      "rule": "consequence-reduced",
+      "message": "mitigation claims to reduce consequence \u2014 ensure it changes the outcome, not just likelihood"
+    },
+    {
+      "id": "ASTER-RSK-004",
+      "severity": "warning",
+      "rule": "safety-escalation",
+      "message": "safety risk with severe consequence \u2014 requires review by a qualified safety authority"
+    },
+    {
+      "id": "ASTER-RSK-008",
+      "severity": "warning",
+      "rule": "safety-escalation",
+      "message": "safety risk with severe consequence \u2014 requires review by a qualified safety authority"
+    }
+  ],
+  "summary": {
+    "risks": 8,
+    "open": 8,
+    "open_by_level": {
+      "high": 1,
+      "medium": 7
+    },
+    "errors": 0,
+    "warnings": 5,
+    "top_risks": [
+      "ASTER-RSK-001",
+      "ASTER-RSK-003",
+      "ASTER-RSK-004",
+      "ASTER-RSK-006",
+      "ASTER-RSK-002"
+    ]
+  },
+  "risks": [
+    {
+      "risk_id": "ASTER-RSK-001",
+      "score": 15,
+      "level": "high",
+      "residual_level": "low",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-002",
+      "score": 10,
+      "level": "medium",
+      "residual_level": "low",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-003",
+      "score": 12,
+      "level": "medium",
+      "residual_level": "low",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-004",
+      "score": 12,
+      "level": "medium",
+      "residual_level": "medium",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-005",
+      "score": 10,
+      "level": "medium",
+      "residual_level": "low",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-006",
+      "score": 12,
+      "level": "medium",
+      "residual_level": "medium",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-007",
+      "score": 9,
+      "level": "medium",
+      "residual_level": "medium",
+      "status": "open"
+    },
+    {
+      "risk_id": "ASTER-RSK-008",
+      "score": 8,
+      "level": "medium",
+      "residual_level": "low",
+      "status": "open"
+    }
+  ],
+  "passed": true
+}

@@ -27,7 +27,12 @@ h ≈ 4.71 m.
 
 Validity: h/r = (v/v_circ)²·sin²θ/2 and R/r = (v/v_circ)²·sin2θ, so the speed ratio v/v_circ controls
 the error. The script warns above 0.3 (heuristic) and blocks at v_circ and v_esc. On a rotating body
-the launch speed is relative to a moving surface and Coriolis deflects the path — neither is modelled.
+the launch speed is relative to a moving surface: the escape/orbital checks therefore use the
+inertial speed |v_rel + v_surf|, where v_surf = ω·r·cosφ points east. With a heading azimuth α
+(clockwise from north) the components are up v·sinθ, east v·cosθ·sinα + v_surf, north v·cosθ·cosα;
+without a heading the worst case v + v_surf is used. Example (aster-target, v_surf = 0.1091 m/s):
+0.15 m/s at 10° heading east → inertial 0.2581 m/s > v_esc 0.2577 m/s, blocked. Coriolis deflection
+of the hop path itself is not modelled (the hop trajectory uses the rotating-frame net gravity).
 
 ## Take-off impulse and traction
 J = m·Δv; mean force over push time T is J/T. Weight is m·g — on the ASTER-target a 20 kg robot weighs

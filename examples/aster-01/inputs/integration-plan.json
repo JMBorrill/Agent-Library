@@ -1,0 +1,27 @@
+{
+  "plan_id": "ASTER-INT-001",
+  "context": "ASTER-01 ground demonstrator integration sequence (synthetic, planned only). No component exists yet; every step involving stored energy or suspended masses needs a TRR-style check and written authorisation by the laboratory test-safety authority before execution.",
+  "final_assembly": "RIG-SYS",
+  "components": [
+    {"id": "PWR", "status": "planned", "unit_verified": false, "source": "buy", "acceptance": "receiving inspection of battery pack and contactors"},
+    {"id": "CTRL", "status": "planned", "unit_verified": false, "source": "make", "acceptance": "unit tests of release-inhibit logic"},
+    {"id": "EST", "status": "planned", "unit_verified": false, "source": "buy", "acceptance": "IMU bias calibration record"},
+    {"id": "LOG", "status": "planned", "unit_verified": false, "source": "reuse", "acceptance": "bench timing check"},
+    {"id": "HOP", "status": "planned", "unit_verified": false, "source": "make", "acceptance": "load-cell impulse bench (ASTER-VER-009)"},
+    {"id": "RIG", "status": "planned", "unit_verified": false, "source": "make", "acceptance": "inert-mass calibration drops (ASTER-VER-007)"}
+  ],
+  "steps": [
+    {"step_id": "I1", "integrates": ["PWR", "CTRL"], "produces": "ELEC-ASSY", "prerequisites": [],
+     "interfaces": ["ASTER-IF-002"], "checks": ["ASTER-VER-011"], "hazards": "24 V DC; current-limited bench supply before battery"},
+    {"step_id": "I2", "integrates": ["ELEC-ASSY", "EST"], "produces": "AVI-ASSY", "prerequisites": ["I1"],
+     "interfaces": ["ASTER-IF-004"], "checks": ["ASTER-VER-008"], "hazards": "none beyond I1"},
+    {"step_id": "I3", "integrates": ["AVI-ASSY", "LOG"], "produces": "INSTR-ASSY", "prerequisites": ["I2"],
+     "interfaces": ["ASTER-IF-005", "ASTER-IF-006"], "checks": ["ASTER-VER-004", "ASTER-VER-010"], "hazards": "none beyond I1"},
+    {"step_id": "I4", "integrates": ["INSTR-ASSY", "HOP"], "produces": "DEMO-ASSY", "prerequisites": ["I3"],
+     "interfaces": ["ASTER-IF-001", "ASTER-IF-003", "ASTER-IF-009"], "checks": ["ASTER-VER-005", "ASTER-VER-006", "ASTER-VER-009"],
+     "hazards": "Stored spring or flywheel energy: guard, safety pin, TRR and safety-authority authorisation required"},
+    {"step_id": "I5", "integrates": ["DEMO-ASSY", "RIG"], "produces": "RIG-SYS", "prerequisites": ["I4"],
+     "interfaces": ["ASTER-IF-007", "ASTER-IF-008"], "checks": ["ASTER-VER-007", "ASTER-VER-012"],
+     "hazards": "Suspended masses and counterweight: exclusion zone, arrestor, TRR and safety-authority authorisation required"}
+  ]
+}

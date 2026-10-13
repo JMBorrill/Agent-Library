@@ -1,0 +1,133 @@
+{
+  "policy_label": "ASTER-01 margin policy PROPOSAL (synthetic) \u2014 contingency and margin values copied from the library example policy; NOT from ECSS or NASA; pending sign-off by the decision owner",
+  "totals": [
+    {
+      "budget": "mass",
+      "mode": "all",
+      "unit": "kg",
+      "combine": "sum",
+      "items": 8,
+      "cbe": 8.48,
+      "contingency": 1.279,
+      "predicted": 9.759,
+      "allocation": 12.0,
+      "margin": 2.241,
+      "margin_percent": 18.675,
+      "margin_basis": "allocation",
+      "required_margin_percent": 15.0,
+      "status": "within-policy"
+    },
+    {
+      "budget": "power",
+      "mode": "safe",
+      "unit": "W",
+      "combine": "sum",
+      "items": 3,
+      "cbe": 3.8,
+      "contingency": 0.715,
+      "predicted": 4.515,
+      "allocation": 8.0,
+      "margin": 3.485,
+      "margin_percent": 43.5625,
+      "margin_basis": "allocation",
+      "required_margin_percent": 15.0,
+      "status": "within-policy"
+    },
+    {
+      "budget": "power",
+      "mode": "arm",
+      "unit": "W",
+      "combine": "sum",
+      "items": 4,
+      "cbe": 21.8,
+      "contingency": 2.515,
+      "predicted": 24.315,
+      "allocation": 35.0,
+      "margin": 10.685,
+      "margin_percent": 30.528571,
+      "margin_basis": "allocation",
+      "required_margin_percent": 15.0,
+      "status": "within-policy"
+    },
+    {
+      "budget": "power",
+      "mode": "trial",
+      "unit": "W",
+      "combine": "sum",
+      "items": 5,
+      "cbe": 12.3,
+      "contingency": 1.815,
+      "predicted": 14.115,
+      "allocation": 20.0,
+      "margin": 5.885,
+      "margin_percent": 29.425,
+      "margin_basis": "allocation",
+      "required_margin_percent": 15.0,
+      "status": "within-policy"
+    }
+  ],
+  "rollup": [
+    {
+      "node": "DEMO",
+      "budget": "mass",
+      "mode": "all",
+      "unit": "kg",
+      "cbe": 8.48,
+      "contingency": 1.279,
+      "predicted": 9.759,
+      "items": 8
+    },
+    {
+      "node": "DEMO",
+      "budget": "power",
+      "mode": "all",
+      "unit": "W",
+      "cbe": 3.8,
+      "contingency": 0.715,
+      "predicted": 4.515,
+      "items": 3
+    },
+    {
+      "node": "DEMO",
+      "budget": "power",
+      "mode": "arm",
+      "unit": "W",
+      "cbe": 18.0,
+      "contingency": 1.8,
+      "predicted": 19.8,
+      "items": 1
+    },
+    {
+      "node": "DEMO",
+      "budget": "power",
+      "mode": "trial",
+      "unit": "W",
+      "cbe": 8.5,
+      "contingency": 1.1,
+      "predicted": 9.6,
+      "items": 2
+    }
+  ],
+  "findings": [
+    {
+      "id": "HARN",
+      "severity": "info",
+      "rule": "unit-converted",
+      "message": "g converted to kg"
+    },
+    {
+      "id": "policy",
+      "severity": "warning",
+      "rule": "example-policy-in-use",
+      "message": "policy is marked as example values; replace with your programme's policy"
+    }
+  ],
+  "summary": {
+    "rows": 15,
+    "errors": 0,
+    "warnings": 1,
+    "info": 1
+  },
+  "passed": true,
+  "scope": "Scope: arithmetic/consistency check against the supplied margin policy only; margins are proposals until the programme signs them off; not an engineering sign-off."
+}

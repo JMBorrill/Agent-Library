@@ -1,0 +1,564 @@
+{
+ "system": "Mortgage Criteria Platform (synthetic): multi-tenant AI criteria search and decision support for UK brokers",
+ "version": "pilot-design-0.4",
+ "owner": "security-reviewer (synthetic)",
+ "date": "2026-10-13",
+ "multi_tenant": true,
+ "asvs_target_level": 2,
+ "notes": "Synthetic design-stage model. Tenant = broker firm. All mitigations are planned; nothing has been implemented or verified. ASVS IDs were chosen by chapter/section title from the bundled ASVS 5.0.0 index and must be confirmed against the requirement text before use.",
+ "components": [
+  {
+   "id": "C1",
+   "name": "Broker browser (adviser or case administrator)",
+   "type": "external_entity",
+   "trust_zone": "internet"
+  },
+  {
+   "id": "C2",
+   "name": "Platform API (criteria search, affordability, assistant orchestration)",
+   "type": "process",
+   "trust_zone": "app"
+  },
+  {
+   "id": "C3",
+   "name": "Tenant case database (shared schema, tenant_id column)",
+   "type": "data_store",
+   "trust_zone": "data"
+  },
+  {
+   "id": "C4",
+   "name": "Lender criteria store (versioned rules, shared across tenants)",
+   "type": "data_store",
+   "trust_zone": "data"
+  },
+  {
+   "id": "C5",
+   "name": "LLM provider API",
+   "type": "external_entity",
+   "trust_zone": "third_party"
+  },
+  {
+   "id": "C6",
+   "name": "Document parsing worker (uploaded payslips and statements)",
+   "type": "process",
+   "trust_zone": "app"
+  }
+ ],
+ "trust_boundaries": [
+  {
+   "id": "TB1",
+   "name": "Internet to platform edge"
+  },
+  {
+   "id": "TB2",
+   "name": "Platform to third-party LLM provider"
+  },
+  {
+   "id": "TB3",
+   "name": "Application tier to data tier"
+  }
+ ],
+ "assets": [
+  {
+   "id": "A1",
+   "name": "Broker client case facts (consumer personal and financial data)",
+   "classification": "confidential"
+  },
+  {
+   "id": "A2",
+   "name": "Uploaded case documents (payslips, bank statements)",
+   "classification": "restricted"
+  },
+  {
+   "id": "A3",
+   "name": "Broker session tokens",
+   "classification": "restricted"
+  },
+  {
+   "id": "A4",
+   "name": "Lender criteria rules and source references",
+   "classification": "internal"
+  },
+  {
+   "id": "A5",
+   "name": "LLM prompts and completions with redacted case context",
+   "classification": "confidential"
+  },
+  {
+   "id": "A6",
+   "name": "Audit log of results, overrides and challenges",
+   "classification": "confidential"
+  }
+ ],
+ "data_flows": [
+  {
+   "id": "DF1",
+   "from": "C1",
+   "to": "C2",
+   "data": [
+    "A1",
+    "A2",
+    "A3",
+    "A6"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB1",
+   "required_categories": "STIDE"
+  },
+  {
+   "id": "DF2",
+   "from": "C2",
+   "to": "C3",
+   "data": [
+    "A1",
+    "A6"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF3",
+   "from": "C2",
+   "to": "C5",
+   "data": [
+    "A5"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB2"
+  },
+  {
+   "id": "DF4",
+   "from": "C2",
+   "to": "C4",
+   "data": [
+    "A4"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF5",
+   "from": "C6",
+   "to": "C3",
+   "data": [
+    "A2",
+    "A1"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF6",
+   "from": "C2",
+   "to": "C6",
+   "data": [
+    "A2"
+   ],
+   "protocol": "internal queue",
+   "crosses_boundary": false
+  }
+ ],
+ "threats": [
+  {
+   "id": "MCP-T01",
+   "title": "Credential stuffing against broker logins",
+   "stride": "S",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "high",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "MFA for all broker users; rate limiting on login",
+     "asvs": [
+      "v5.0.0-6.3.1",
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T02",
+   "title": "Tampering with case facts in transit",
+   "stride": "T",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "HTTPS only with HSTS",
+     "asvs": [
+      "v5.0.0-12.2.1",
+      "v5.0.0-3.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T03",
+   "title": "Session token disclosure via insecure cookie",
+   "stride": "I",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Secure, HttpOnly, SameSite cookies",
+     "asvs": [
+      "v5.0.0-3.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T04",
+   "title": "Search flooding exhausts capacity for all broker firms",
+   "stride": "D",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-tenant rate limits and quotas",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T05",
+   "title": "Broker changes tenant_id in a request to read another firm's cases",
+   "stride": "E",
+   "targets": [
+    "DF1",
+    "C2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tenant derived from session, never from request; object-level authorisation on every case read",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "MCP-T06",
+   "title": "SQL injection through case search modifies tenant data",
+   "stride": "T",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Parameterised queries only; no string-built SQL",
+     "asvs": [
+      "v5.0.0-1.2.4"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T07",
+   "title": "Query missing tenant filter returns another firm's client cases",
+   "stride": "I",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Row-level security keyed on tenant_id plus repository-layer filter and cross-tenant tests",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "MCP-T08",
+   "title": "Unbounded case export query exhausts the shared database",
+   "stride": "D",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Statement timeout and pagination limits",
+     "asvs": [
+      "v5.0.0-15.1.3"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T09",
+   "title": "Instructions hidden in an uploaded document steer the assistant (indirect prompt injection)",
+   "stride": "T",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "high",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Injection screening before context assembly; retrieved content can never trigger side-effecting tools; model output treated as untrusted",
+     "asvs": [
+      "v5.0.0-2.2.1",
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T10",
+   "title": "Client case data retained or reused by the LLM provider",
+   "stride": "I",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Identifier redaction before prompts; data processing agreement with zero-retention setting; minimise fields sent",
+     "asvs": [
+      "v5.0.0-14.2.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T11",
+   "title": "One firm's case context included in another firm's assistant prompt",
+   "stride": "I",
+   "targets": [
+    "DF3",
+    "C2"
+   ],
+   "likelihood": "low",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Context assembled per request from tenant-scoped queries only; no shared prompt cache across tenants",
+     "asvs": [
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "MCP-T12",
+   "title": "LLM provider outage blocks criteria search",
+   "stride": "D",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "medium",
+   "impact": "low",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Rules engine and affordability work without the assistant; assistant degrades to off",
+     "asvs": [
+      "v5.0.0-15.1.3"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T13",
+   "title": "Unauthorised change to a lender rule alters results for every firm",
+   "stride": "T",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Four-eyes rule change with lender contact approval; criteria validation before load; change audit log",
+     "asvs": [
+      "v5.0.0-8.3.1",
+      "v5.0.0-16.2.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T14",
+   "title": "Disclosure of lender criteria to unauthenticated users",
+   "stride": "I",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "low",
+   "impact": "low",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Criteria store reachable only from the API tier",
+     "asvs": [
+      "v5.0.0-8.2.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T15",
+   "title": "Criteria store unavailable during search",
+   "stride": "D",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Read replica; search returns refer when criteria cannot be loaded",
+     "asvs": [
+      "v5.0.0-15.1.3"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T16",
+   "title": "Malicious document content alters parsed income figures",
+   "stride": "T",
+   "targets": [
+    "DF5"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Parsed figures shown to the broker for confirmation before use; hidden text stripped before parsing",
+     "asvs": [
+      "v5.0.0-5.2.1",
+      "v5.0.0-2.2.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T17",
+   "title": "Parsing worker writes a document into the wrong tenant",
+   "stride": "I",
+   "targets": [
+    "DF5",
+    "C6"
+   ],
+   "likelihood": "low",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tenant ID carried in a signed job envelope and re-checked by the worker",
+     "asvs": [
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "MCP-T18",
+   "title": "Oversized or compressed upload exhausts the parsing worker",
+   "stride": "D",
+   "targets": [
+    "DF5"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "File size and type limits at upload",
+     "asvs": [
+      "v5.0.0-5.2.1",
+      "v5.0.0-5.2.2"
+     ],
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "MCP-T19",
+   "title": "Broker disputes having overridden or relied on a result",
+   "stride": "R",
+   "targets": [
+    "C2"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Audit log of results, overrides and challenges with user and time",
+     "asvs": [
+      "v5.0.0-16.2.1",
+      "v5.0.0-16.3.1"
+     ],
+     "status": "planned"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+  "note": "Coverage topics tailored by the financial-analyst for a criteria-search platform OPERATOR (not a lender): the operator grants no credit, so lender-only topics (credit limits, approval authority, collections) are replaced by controls over criteria data, refer handling and the AI component. Grouped under the four Basel areas as reported by secondary sources (unverified). Synthetic.",
+  "topics": {
+    "credit_risk_environment": ["criteria-governance-policy", "decision-support-boundary", "new-lender-onboarding"],
+    "credit_granting": ["granting-criteria", "criteria-change-approval", "refer-handling"],
+    "administration_measurement_monitoring": ["criteria-staleness-monitoring", "outcome-monitoring", "override-monitoring"],
+    "controls": ["independent-criteria-review", "model-validation", "internal-audit"]
+  }
+}

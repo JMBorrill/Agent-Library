@@ -1,0 +1,105 @@
+{
+  "findings": [
+    {
+      "id": "WHEEL-REF",
+      "severity": "info",
+      "rule": "screened-out",
+      "message": "C3=13.0 > must-max 12"
+    },
+    {
+      "id": "C4",
+      "severity": "info",
+      "rule": "non-discriminating",
+      "message": "all feasible alternatives score the same"
+    },
+    {
+      "id": "SPRING-CAM",
+      "severity": "warning",
+      "rule": "weak-evidence",
+      "message": "75% of the winner's score rests on judgement/estimate/vendor claims"
+    }
+  ],
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.15,
+    "C4": 0.15,
+    "C5": 0.2
+  },
+  "ranking": [
+    {
+      "alternative": "SPRING-CAM",
+      "score": 0.7874
+    },
+    {
+      "alternative": "SPRING-IMU",
+      "score": 0.7
+    },
+    {
+      "alternative": "FLYWHEEL-IMU",
+      "score": 0.45
+    }
+  ],
+  "screened": {
+    "WHEEL-REF": [
+      "C3=13.0 > must-max 12"
+    ]
+  },
+  "sensitivity": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "flips_within_pct": [],
+      "switching_weight": {
+        "weight": 0.194,
+        "winner": "SPRING-IMU"
+      }
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "flips_within_pct": [],
+      "switching_weight": null
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.15,
+      "flips_within_pct": [],
+      "switching_weight": {
+        "weight": 0.281,
+        "winner": "SPRING-IMU"
+      }
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "flips_within_pct": [],
+      "switching_weight": {
+        "weight": 1.0,
+        "winner": "FLYWHEEL-IMU"
+      }
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.2,
+      "flips_within_pct": [],
+      "switching_weight": {
+        "weight": 0.444,
+        "winner": "SPRING-IMU"
+      }
+    }
+  ],
+  "recommendation": {
+    "alternative": "SPRING-CAM",
+    "margin": 0.0874,
+    "status": "recommendation \u2014 requires approval by ASTER Phase 1 project lead (synthetic)"
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "feasible": 3,
+    "screened": 1,
+    "weak_evidence_share": 0.746
+  },
+  "passed": true
+}

@@ -1,0 +1,99 @@
+{
+  "findings": [
+    {
+      "id": "ASTER-STK-001",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-STK-002",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-STK-003",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-STK-004",
+      "severity": "info",
+      "rule": "need-statement",
+      "message": "stakeholder/mission need (no 'shall' expected)"
+    },
+    {
+      "id": "ASTER-SYS-001",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-002",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-003",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-004",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-005",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-006",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-007",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SYS-008",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SUB-001",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    },
+    {
+      "id": "ASTER-SUB-002",
+      "severity": "warning",
+      "rule": "tbd-open",
+      "message": "contains TBD/TBR/TBC \u2014 track closure owner and date"
+    }
+  ],
+  "summary": {
+    "requirements": 16,
+    "by_status": {
+      "proposed": 16
+    },
+    "errors": 0,
+    "warnings": 10,
+    "info": 4,
+    "tbd_count": 10
+  },
+  "passed": true
+}

@@ -1,0 +1,8 @@
+{
+  "_note": "ASTER-01 risk matrix PROPOSAL (synthetic): values copied from the library example policy (se-risk-analysis/assets/templates/risk-matrix-policy.json), which is not taken from NASA or ECSS. Pending approval by the decision owner and the laboratory test-safety authority.",
+  "scale": 5,
+  "levels": {"high": 15, "medium": 6},
+  "high_cells": [[4, 4], [3, 5], [5, 3]],
+  "max_review_age_days": {"high": 30, "medium": 90, "low": 180},
+  "fmea": {"severity_always_review": 9, "rpn_action": 100}
+}
