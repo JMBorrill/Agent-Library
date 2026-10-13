@@ -1,0 +1,78 @@
+id: software-assurance-audit
+title: Software engineering compliance and assurance audit (NPR 7150.2D + NASA-STD-8739.8B)
+version: 1.0.0
+description: >-
+  Classifies the software, builds and checks the NPR 7150.2D compliance matrix, performs the
+  NASA-STD-8739.8B software assurance and safety assessment, audits the evidence and records a board
+  recommendation.
+sources: [nasa-software-requirements, nasa-software-assurance]
+inputs:
+  - name: software-description
+    description: Software purpose, mission/safety role, operational environment, size and development approach.
+    required: true
+  - name: project-artefacts
+    description: Plans, requirements, design, code, test results, CM records, problem reports.
+    required: true
+outputs:
+  - name: assurance-decision
+    description: Board decision record.
+    template: templates/review-board-decision.md
+stages:
+  - id: classify
+    title: Software classification and safety-criticality screening
+    agent: software-engineering-lead
+    skills: [nasa-software-engineering]
+    consumes: [software-description]
+    produces: [classification-record]
+    tools: ["python -m agentlib nasa-swe classify"]
+    gate:
+      criteria:
+        - Candidate class and safety-criticality rationale cited; confirmation by the responsible organisation requested.
+      decision: human
+  - id: compliance
+    title: Compliance matrix
+    agent: software-engineering-lead
+    skills: [nasa-software-engineering]
+    depends_on: [classify]
+    consumes: [classification-record, project-artefacts]
+    produces: [compliance-matrix]
+    tools: ["python -m agentlib nasa-swe matrix --class <class>", "python -m agentlib nasa-swe check-matrix <file>"]
+    gate:
+      criteria:
+        - Matrix validates; every applicable requirement has status and evidence or a tailoring/waiver reference.
+      decision: automated
+      check: python -m agentlib nasa-swe check-matrix <compliance-matrix>
+  - id: assurance
+    title: Software assurance and safety assessment
+    agent: software-assurance-engineer
+    skills: [nasa-software-assurance]
+    depends_on: [compliance]
+    consumes: [classification-record, compliance-matrix, project-artefacts]
+    produces: [sa-assessment-report, non-conformances]
+    gate:
+      criteria:
+        - SA tasks for the class are assessed; non-conformances recorded with severity.
+      decision: agent-review
+  - id: evidence-audit
+    title: Independent evidence audit
+    agent: evidence-auditor
+    skills: [evidence-and-citation]
+    depends_on: [assurance]
+    consumes: [compliance-matrix, sa-assessment-report]
+    produces: [evidence-audit-report]
+    gate:
+      criteria:
+        - No checker errors; all SWE identifiers exist.
+      decision: automated
+      check: python -m agentlib evidence check <documents> --require-citations
+  - id: board
+    title: Board recommendation
+    agent: review-board-chair
+    skills: [nasa-software-engineering, nasa-software-assurance, evidence-and-citation]
+    depends_on: [evidence-audit]
+    consumes: [classification-record, compliance-matrix, sa-assessment-report, non-conformances, evidence-audit-report]
+    produces: [assurance-decision]
+    gate:
+      criteria:
+        - Open non-conformances dispositioned; decision authority named.
+      decision: human

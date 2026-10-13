@@ -1,0 +1,75 @@
+id: technical-review-gate
+title: NASA-style technical life-cycle review gate
+version: 1.0.0
+description: >-
+  Prepares and assesses the review package for a life-cycle technical review (e.g. SRR, PDR, CDR) using
+  NASA systems engineering practice: readiness checklist, requirements quality and traceability audit,
+  evidence audit and a board recommendation for the decision authority.
+sources: [nasa-se]
+inputs:
+  - name: review-id
+    description: Life-cycle review being held (e.g. SRR, PDR, CDR) - see `python -m agentlib nasa-se lifecycle`.
+    required: true
+  - name: requirements-set
+    description: Requirements in CSV/YAML (id, text, parent, verification method, rationale).
+    required: true
+  - name: design-artefacts
+    description: ConOps, architecture, design documents, trade studies, risk list appropriate to the review.
+    required: true
+outputs:
+  - name: board-decision
+    description: Review board decision record.
+    template: templates/review-board-decision.md
+stages:
+  - id: readiness
+    title: Review readiness assessment
+    agent: systems-engineer
+    skills: [nasa-systems-engineering]
+    consumes: [review-id, design-artefacts]
+    produces: [readiness-checklist, package-gap-list]
+    tools: ["python -m agentlib nasa-se review-checklist <review-id>"]
+    instructions: >-
+      Generate the readiness checklist for the review from the catalog, assess each entrance/success item
+      against the supplied artefacts with evidence references, and list package gaps.
+    gate:
+      criteria:
+        - Every checklist item is assessed with an artefact reference or marked as a gap.
+        - Gaps that block the review are identified explicitly.
+      decision: agent-review
+  - id: requirements-audit
+    title: Requirements quality and traceability audit
+    agent: requirements-engineer
+    skills: [requirements-engineering]
+    depends_on: [readiness]
+    consumes: [requirements-set]
+    produces: [requirements-lint-report, traceability-report]
+    tools: ["python -m agentlib nasa-se lint-requirements <file>", "python -m agentlib nasa-se trace <file>"]
+    gate:
+      criteria:
+        - Linter and trace reports are attached.
+        - No orphan or unverifiable requirement remains without a disposition.
+      decision: automated
+      check: python -m agentlib nasa-se trace <requirements-set>
+  - id: evidence-audit
+    title: Independent evidence audit
+    agent: evidence-auditor
+    skills: [evidence-and-citation]
+    depends_on: [requirements-audit]
+    consumes: [readiness-checklist, requirements-lint-report, traceability-report]
+    produces: [evidence-audit-report]
+    gate:
+      criteria:
+        - evidence check reports no errors on all produced documents.
+      decision: automated
+      check: python -m agentlib evidence check <documents> --require-citations
+  - id: board
+    title: Board recommendation
+    agent: review-board-chair
+    skills: [nasa-systems-engineering, evidence-and-citation]
+    depends_on: [evidence-audit]
+    consumes: [readiness-checklist, package-gap-list, requirements-lint-report, traceability-report, evidence-audit-report]
+    produces: [board-decision]
+    gate:
+      criteria:
+        - Recommendation, conditions, residual risks and decision authority are recorded.
+      decision: human

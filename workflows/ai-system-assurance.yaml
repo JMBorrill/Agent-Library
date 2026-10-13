@@ -1,0 +1,88 @@
+id: ai-system-assurance
+title: AI system risk assessment and assurance (NIST AI RMF)
+version: 1.0.0
+description: >-
+  Maps the context of an AI system, builds and assesses an AI risk register and current/target profile
+  using the NIST AI RMF and Playbook, checks the conventional software security of the hosting system,
+  audits the evidence and produces a governance recommendation.
+sources: [nist-ai, nist-ai-playbook, nist-ssdf, owasp-asvs]
+inputs:
+  - name: ai-system-description
+    description: Purpose, users, affected people, model(s), data, deployment context and human oversight.
+    required: true
+  - name: organisational-policies
+    description: Existing AI, risk, privacy and security policies (or a statement that none exist).
+    required: false
+outputs:
+  - name: governance-recommendation
+    description: Board decision record on deployment / continued operation.
+    template: templates/review-board-decision.md
+stages:
+  - id: map
+    title: Context mapping and impact assessment (MAP)
+    agent: ai-risk-assessor
+    skills: [nist-ai-rmf]
+    consumes: [ai-system-description]
+    produces: [ai-context-record]
+    gate:
+      criteria:
+        - Intended purpose, foreseeable misuse, affected stakeholders and deployment context are documented.
+      decision: agent-review
+  - id: risk
+    title: Risk register, measurement and treatment (MEASURE / MANAGE)
+    agent: ai-risk-assessor
+    skills: [nist-ai-rmf]
+    depends_on: [map]
+    consumes: [ai-context-record]
+    produces: [ai-risk-register, ai-profile]
+    tools: ["python -m agentlib ai-rmf check-register <file>", "python -m agentlib ai-rmf check-profile <file>"]
+    gate:
+      criteria:
+        - Register validates; every high residual risk has treatment and named acceptance authority.
+      decision: automated
+      check: python -m agentlib ai-rmf check-register <ai-risk-register>
+  - id: security
+    title: Hosting software security baseline
+    agent: application-security-verifier
+    skills: [owasp-asvs, nist-ssdf]
+    depends_on: [risk]
+    consumes: [ai-system-description]
+    produces: [security-baseline-report]
+    gate:
+      criteria:
+        - Security scope, ASVS level and SSDF gaps relevant to the AI system are reported.
+      decision: agent-review
+  - id: governance
+    title: Governance review (GOVERN)
+    agent: ai-governance-advisor
+    skills: [nist-ai-rmf]
+    depends_on: [security]
+    consumes: [ai-context-record, ai-risk-register, ai-profile, security-baseline-report]
+    produces: [governance-review]
+    gate:
+      criteria:
+        - Accountability, oversight, monitoring and incident response arrangements are assessed.
+      decision: agent-review
+  - id: evidence-audit
+    title: Independent evidence audit
+    agent: evidence-auditor
+    skills: [evidence-and-citation]
+    depends_on: [governance]
+    consumes: [ai-context-record, ai-risk-register, governance-review]
+    produces: [evidence-audit-report]
+    gate:
+      criteria:
+        - No checker errors; all AI RMF identifiers exist.
+      decision: automated
+      check: python -m agentlib evidence check <documents> --require-citations
+  - id: decision
+    title: Governance recommendation
+    agent: review-board-chair
+    skills: [nist-ai-rmf, evidence-and-citation]
+    depends_on: [evidence-audit]
+    consumes: [ai-risk-register, governance-review, evidence-audit-report]
+    produces: [governance-recommendation]
+    gate:
+      criteria:
+        - Recommendation records residual risks and the accountable human decision-maker.
+      decision: human

@@ -1,0 +1,32 @@
+# Citation format
+
+```
+[<source-id> <locator>, p. <pdf-page>]
+[<source-id> <locator>, pp. <first>-<last>]
+```
+
+| Part | Rule | Example |
+|---|---|---|
+| source-id | An `id` from `sources/pdf-manifest.json` (`sources` or `linked_sources`) or a `framework_aliases` key | `nist-ssdf` |
+| locator | Optional. Requirement/control id, section, paragraph, table or figure. Prefer the most specific stable id. | `PW.7.1`, `para 5.33`, `Table 4.2-1`, `Appendix C` |
+| page | PDF page index (1-based) in the pinned file. Printed page labels differ in most of the NASA and Treasury PDFs; give the printed page inside the locator if a reader needs it. | `p. 23`, `pp. 52-54` |
+
+## Examples
+
+- `[nist-ai GOVERN 1.1, p. 26]`
+- `[nasa-se 6.8 Technical Assessment printed 166, p. 180]`
+- `[nasa-software-requirements SWE-033, p. 20]`
+- `[owasp-asvs V6.2.1, p. 41]`
+- `[treasury-green para 5.33, p. 52]`
+
+## Link-only sources
+
+Sources such as `nasa-software` (SWEHB wiki), `gov-service` and `dora` are not bundled. Cite them by id and
+section and include the URL and access date in the bibliography; the checker accepts them but cannot
+range-check a page, so write `p. 1` only if the page concept is meaningful — otherwise use a footnote-style
+reference with the URL instead of the bracket form.
+
+## Why PDF pages
+
+Printed page labels restart in front matter and appendices; PDF indices are unambiguous and checkable
+against the pinned file's SHA-256 in the manifest. Record both when the reader will use a printed copy.

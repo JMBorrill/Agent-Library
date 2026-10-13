@@ -1,0 +1,53 @@
+skill: evidence-and-citation
+description: >-
+  Checks that the skill produces calibrated, cited statements, detects fabricated identifiers and bad
+  citations, and grades evidence strength honestly.
+cases:
+  - id: rewrite-overclaim
+    prompt: >-
+      Rewrite the following paragraph so it is suitable for an AI-assisted assessment report. Keep the facts,
+      remove over-claims, cite the relevant SSDF task in the library citation format and state what evidence
+      would be needed.
+    fixtures: [fixtures/overclaim.md]
+    golden: golden/rewrite-overclaim.md
+    negative: golden/rewrite-overclaim.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.evidence:grade_no_overclaim"}
+      - {type: python, function: "agentlib.frameworks.evidence:grade_citations", min: 1}
+      - {type: contains, values: ["PW.7.1", "evidence"]}
+      - {type: any_of, values: ["accountable", "authority", "not independently verified", "E2"]}
+  - id: audit-flawed-report
+    prompt: >-
+      Audit this report extract for citation and identifier problems. Report findings in a table with columns
+      Item, Problem, Severity, Correction and give an overall verdict.
+    fixtures: [fixtures/flawed-report.md]
+    golden: golden/audit-flawed-report.md
+    negative: golden/audit-flawed-report.bad.md
+    checks:
+      - {type: table, columns: ["Item", "Problem", "Severity", "Correction"]}
+      - {type: contains, values: ["SWE-999", "412", "iso-made-up"]}
+      - {type: regex, pattern: "verdict[^\\n]*\\bfail\\b"}
+  - id: evidence-record
+    prompt: >-
+      Create an evidence record for SSDF task PW.7.1 (code review). We examined the branch protection settings
+      of repository app/payments on 2026-10-01 (commit a1b2c3d) and 20 merged pull requests from September,
+      all of which had one approving review. Use the library template and grade the claim strength.
+    golden: golden/evidence-record.md
+    negative: golden/evidence-record.bad.md
+    checks:
+      - {type: contains, values: ["Claim strength", "a1b2c3d", "Method", "Limitations"]}
+      - {type: regex, pattern: "\\bE3\\b"}
+      - {type: python, function: "agentlib.frameworks.evidence:grade_citations", min: 1}
+      - {type: python, function: "agentlib.frameworks.evidence:grade_no_overclaim"}
+  - id: grade-policy-only
+    prompt: >-
+      The only evidence for our vulnerability disclosure process is a two-page policy document approved by the
+      CISO. No reports have been received yet. What claim strength grade applies to "RV.1.1 is implemented",
+      and how should the status be worded?
+    golden: golden/grade-policy-only.md
+    negative: golden/grade-policy-only.bad.md
+    checks:
+      - {type: regex, pattern: "\\bE2\\b"}
+      - {type: not_contains, values: ["E4", "fully implemented"]}
+      - {type: any_of, values: ["not independently verified", "documented"]}
+      - {type: contains, values: ["RV.1.1"]}
