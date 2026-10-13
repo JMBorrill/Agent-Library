@@ -1,0 +1,5 @@
+# Lawfully obtained source documents (not redistributed). Ledger of hashes is committed.
+sources/originals/*
+!sources/originals/.gitkeep
+__pycache__/
+*.pyc
