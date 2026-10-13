@@ -486,3 +486,41 @@ def test_parse_amounts():
     assert -54.86 in gb.parse_amounts("NPSV (54.86)")
     assert 2.5e6 in gb.parse_amounts("£2.5m")
     assert 1234.5 in gb.parse_amounts("£1,234.5")
+
+
+# ---------------------------------------------------------------------- regressions
+def test_check_case_accepts_utf8_bom(tmp_path):
+    text = (EVAL / "golden" / "soc-outline.md").read_text(encoding="utf-8")
+    plain = _write(tmp_path, "plain.md", text)
+    bom = _write(tmp_path, "bom.md", "\ufeff" + text)
+    assert main(["greenbook", "check-case", str(bom), "--strict"]) == 0
+    assert main(["greenbook", "check-case", str(plain), "--strict"]) == 0
+
+
+def test_check_case_bom_first_heading_recognised(tmp_path, capsys):
+    text = "# Strategic case\n\nText.\n"
+    main(["greenbook", "check-case", str(_write(tmp_path, "a.md", text)), "--format", "json"])
+    plain = json.loads(capsys.readouterr().out)
+    main(["greenbook", "check-case", str(_write(tmp_path, "b.md", "\ufeff" + text)), "--format", "json"])
+    assert json.loads(capsys.readouterr().out) == plain
+
+
+def test_options_as_strings_is_input_error(tmp_path, capsys):
+    f = _write(tmp_path, "opt.yaml", "options:\n  - Do minimum\n")
+    with pytest.raises(gb.GreenBookError, match="option 0 must be a mapping"):
+        gb.load_flows(f)
+    assert main(["greenbook", "npv", str(f)]) == 2
+    assert "option 0 must be a mapping" in capsys.readouterr().err
+    g = _write(tmp_path, "fl.yaml", "options:\n  - name: A\n    flows: [cost]\n")
+    with pytest.raises(gb.GreenBookError, match="flow must be a mapping"):
+        gb.load_flows(g)
+
+
+def test_real_financial_year_is_input_error(tmp_path, capsys):
+    nom = _write(tmp_path, "nom.csv", "year,capex\n2026,100\n2027/28,110\n")
+    defl = _write(tmp_path, "defl.csv", "year,index\n2026,100\n2027,102\n")
+    assert main(["greenbook", "real", str(nom), "--deflators", str(defl)]) == 2
+    assert "2027/28" in capsys.readouterr().err
+    bad_defl = _write(tmp_path, "d2.csv", "year,index\n2026/27,100\n")
+    with pytest.raises(gb.GreenBookError, match="year must be an integer"):
+        gb.deflator_index(gb.read_table(bad_defl))

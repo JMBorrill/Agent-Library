@@ -428,3 +428,14 @@ def test_grade_playbook_refs():
     ok, msg = rmf.grade_playbook_refs("see GOVERN 1.6/action-99", {})
     assert not ok and "GOVERN 1.6/action-99" in msg
     assert not rmf.grade_playbook_refs("no refs", {})[0]
+
+
+def test_check_profile_scalar_functions(tmp_path, capsys):
+    rows = [r for r in _profile_rows() if r["subcategory"].startswith("MAP ")]
+    rep = rmf.check_profile(rows, "MAP")
+    assert rep["scope"] == ["MAP"] and rep["ok"]
+    assert rmf.check_profile(rows, "MAP, MEASURE")["scope"] == ["MAP", "MEASURE"]
+    f = tmp_path / "p.yaml"
+    f.write_text(yaml.safe_dump({"profile": {"functions": "MAP"}, "subcategories": rows}), encoding="utf-8")
+    assert main(["ai-rmf", "check-profile", str(f), "--json"]) == 0
+    assert json.loads(capsys.readouterr().out)["scope"] == ["MAP"]

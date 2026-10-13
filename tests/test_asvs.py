@@ -361,3 +361,13 @@ def test_grade_covers_scope():
 
 def test_claimed_levels_ignores_version_strings():
     assert asvs.claimed_levels("OWASP ASVS 5.0.0 Level 1 checklist; 1.2.4 (L1)") == [("1.2.4", 1)]
+
+
+def test_check_assessment_scalar_scope():
+    res = _results()
+    rep = asvs.check_assessment({"target_level": 1, "scope": "V6", "results": res})
+    assert rep["scope"] == ["V6"] and rep["compliant"]
+    assert rep["totals"]["in_scope"] == len(res)
+    assert asvs.normalize_scope("V6") == ["V6"]
+    assert asvs.check_assessment({"target_level": 1, "scope": "all chapters", "results": res})["scope"] == \
+        ["V1-V17 (all)"]
