@@ -27,6 +27,7 @@ def test_catalog_counts_match_document():
     assert per_group == {"PO": 5, "PS": 3, "PW": 8, "RV": 3}
     assert len(ssdf.practices()) == 19
     assert len(ssdf.tasks()) == 42
+    assert {g: len(ssdf.tasks(group=g)) for g in ("PO", "PS", "PW", "RV")} == {"PO": 13, "PS": 4, "PW": 16, "RV": 9}
     retired = {i["id"] for i in cat["items"] if i["status"] == "retired"}
     # SSDF 1.1 Change Log (PDF p.36) retired these identifiers
     assert retired == {"PW.3", "PW.3.1", "PW.3.2", "PW.4.3", "PW.4.5", "PW.5.2"}
@@ -382,3 +383,15 @@ def test_cli_pipeline(tmp_path, capsys):
     bad = tmp_path / "p.yaml"
     bad.write_text("pipeline: {steps: []}", encoding="utf-8")
     assert main(["ssdf", "map-pipeline", str(bad)]) == 2
+
+
+def test_skill_rule_reference_in_sync():
+    ref = (ROOT / "skills" / "nist-ssdf" / "references" / "pipeline-mapping-rules.md").read_text(encoding="utf-8")
+    table = ssdf.render_rules().split("Support != compliance.\n\n", 1)[1]
+    assert table.strip() in ref, "regenerate the Rules table in references/pipeline-mapping-rules.md"
+
+
+def test_grade_page_citation_formats():
+    assert ssdf.grade_page_citations("PW.7.2, PDF p.23 and PO.5.1 [PDF p. 18]", {"min": 2})[0]
+    # a different page mentioned later in the sentence is not attributed to the task
+    assert ssdf.grade_page_citations("PS.3.2 (p.19) maps to 4e(vii) (PDF p.33)", {"min": 1})[0]

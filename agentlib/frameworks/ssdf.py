@@ -1035,10 +1035,11 @@ def grade_no_overclaim(output: str, check: dict) -> tuple[bool, str]:
 
 
 def grade_page_citations(output: str, check: dict) -> tuple[bool, str]:
-    """Citations written as '<task id> ... p.<N>' / '(p. N)' within the same line segment must match the
-    catalog's PDF page for that task (or a continuation page). ``min`` = minimum number of correct citations."""
+    """Page citations attached directly to a task id - ``PW.7.2 (p.23)``, ``PW.7.2, PDF p.23``,
+    ``PW.7.2 [PDF p. 23]`` - must match the catalog's PDF page for that task (or a continuation page).
+    ``min`` = minimum number of correct citations."""
     by = items_by_id()
-    pat = re.compile(r"\b((?:PO|PS|PW|RV)\.\d+\.\d+)\b[^\n|]{0,60}?\bp(?:age|p)?\.?\s*(\d{1,2})\b", re.I)
+    pat = re.compile(r"\b((?:PO|PS|PW|RV)\.\d+\.\d+)\b\s*[(\[,]?\s*(?:PDF\s+)?p(?:age)?\.?\s*(\d{1,2})\b", re.I)
     good, bad = [], []
     for tid, page in pat.findall(output):
         it = by.get(tid.upper())

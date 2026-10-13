@@ -36,7 +36,7 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | NASA SE Handbook | `nasa_se` / `nasa-se` | nasa-systems-engineering, requirements-engineering | systems-engineer, requirements-engineer | in progress |
 | NPR 7150.2D + NASA-STD-8739.8B | `nasa_swe` / `nasa-swe` | nasa-software-engineering, nasa-software-assurance | software-engineering-lead, software-assurance-engineer | in progress |
 | NIST AI RMF + Playbook | `ai_rmf` / `ai-rmf` | nist-ai-rmf | ai-risk-assessor, ai-governance-advisor | in progress |
-| NIST SSDF | `ssdf` / `ssdf` | nist-ssdf | secure-development-reviewer | in progress |
+| NIST SSDF | `ssdf` / `ssdf` | nist-ssdf | secure-development-reviewer | done: 19 practices, 42 tasks, 42 tests, 5 eval cases |
 | OWASP ASVS 5.0.0 | `asvs` / `asvs` | owasp-asvs | application-security-verifier | done: 345 reqs, 45 tests, 6 eval cases |
 | Green Book 2026 | `greenbook` / `greenbook` | green-book-appraisal | economic-appraisal-analyst | in progress |
 
