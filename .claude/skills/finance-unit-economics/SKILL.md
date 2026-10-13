@@ -48,10 +48,16 @@ Optional
    with the churn input. Young cohorts overstate retention; mixed-cohort averages hide trends.
 4. **Run the model:** `python3 scripts/unit_economics.py model.json [--cohorts cohorts.csv]`.
    Fix every error (undefined CAC, inconsistent customers/spend, untagged benchmarks).
-5. **Read the outputs:** CAC (blended and paid), contribution per account, lifetime (capped at
-   the horizon - churn 0 always triggers `churn-zero-capped`), LTV, LTV:CAC, CAC payback months.
+5. **Read the outputs:** CAC (blended and paid), contribution per account, lifetime, LTV, LTV:CAC,
+   CAC payback months. **Lifetime definition:** expected active months *within the horizon* H under
+   geometric survival, Σ_{t=1..H}(1−churn)^(t−1) = (1−(1−churn)^H)/churn (churn 0 → H and always
+   `churn-zero-capped`); the untruncated 1/churn is reported as `lifetime_untruncated_months`.
+   Simple and discounted LTV use the same survival curve and horizon, so they agree at a 0% rate.
 6. **Stress it:** add `downside`/`upside` scenarios (churn, ARPA, CAC) and a churn sensitivity;
-   report the downside LTV:CAC and payback, not just the base case.
+   report the downside LTV:CAC and payback, not just the base case. Override keys must be model
+   input names; an unknown key (e.g. a typo `monthly_chrn`) is an error (`unknown-override-key`) and
+   that scenario is not evaluated. A scenario whose name contains `downside` with LTV:CAC < 1 raises
+   `downside-ltv-cac-below-1` (warning, escalate).
 7. **Write the metrics note:** definitions, ledger, results table, scenarios, what would change the
    conclusion, open data issues; send to `financial-analyst` / `independent-reviewer`.
 
@@ -63,8 +69,9 @@ Optional
 | Churn = 0 or lifetime capped | Treat LTV as horizon-bound; show the cap explicitly in any claim. |
 | LTV:CAC >= 3 and payback <= 12-18 months in the downside | Often cited heuristics (industry folklore, not a standard); supports scaling the channel *(recommendation only)*. |
 | Paid CAC much higher than blended | Organic customers subsidise the ratio; decide channel spend on paid CAC. |
-| Key input tagged `benchmark` | Flag; replace with measured data before relying on the result. |
-| Downside LTV:CAC < 1 | Growth destroys value under plausible assumptions; escalate. |
+| Key input tagged `benchmark` | Flag (`benchmark-input` warning); replace with measured data before relying on the result. |
+| Downside LTV:CAC < 1 | Growth destroys value under plausible assumptions; escalate (`downside-ltv-cac-below-1` warning). |
+| Scenario/sensitivity key is not a model input | Error `unknown-override-key`; fix the name. |
 
 ## Outputs
 - Metrics report (`unit_economics.py --json`; schema `assets/schemas/unit-economics-output.schema.json`)
@@ -74,18 +81,19 @@ Optional
 ## Validation
 - `python3 scripts/unit_economics.py assets/examples/unit-economics-pass.json --json` -> exit 0.
 - Exit 1 = blocking findings (missing inputs, undefined CAC, inconsistent inputs, bad tags,
-  benchmark/measured without source); exit 2 = unreadable or non-numeric input. `--strict` also
+  benchmark/measured without source, unknown override keys); exit 2 = unreadable or non-numeric input. `--strict` also
   blocks on warnings.
 - PASS means the ledger is complete and the arithmetic is defined. It does **not** validate the
   data, the attribution model or the forecast.
 
 ## Examples
 - `assets/examples/unit-economics-pass.json` (synthetic SMB scheduling/CRM SaaS): CAC 1,000,
-  contribution 70/month, lifetime 50 months, LTV 3,500, LTV:CAC 3.5, payback 14.29 months; downside
-  LTV:CAC 1.77; exit 0.
+  contribution 70/month, lifetime 35.12 months within the 60-month horizon (untruncated 1/churn = 50),
+  LTV 2,458.56 (discounted at 12%: 1,972.99), LTV:CAC 2.46, payback 14.29 months; downside LTV:CAC
+  1.56; exit 0.
 - `assets/examples/unit-economics-fail.json`: exit 1 with `cac-undefined`, `inconsistent-customers`,
   `inconsistent-spend`, `benchmark-without-source`, `assumption-bad-tag`; warnings
-  `churn-zero-capped`, `non-positive-contribution`, `assumption-untagged`.
+  `churn-zero-capped`, `non-positive-contribution`, `assumption-untagged`, `benchmark-input`.
 - `assets/examples/cohorts-pass.csv` (average month-3 retention 90%) and
   `assets/examples/cohorts-fail.csv` (`cohort-no-month-0`, `duplicate-cohort-month`).
 

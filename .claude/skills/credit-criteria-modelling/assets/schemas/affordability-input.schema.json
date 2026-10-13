@@ -20,6 +20,8 @@
     "monthly_committed_expenditure": {"type": "number", "minimum": 0},
     "monthly_essential_expenditure": {"type": "number", "minimum": 0},
     "existing_first_charge_balance": {"type": "number", "minimum": 0},
-    "existing_first_charge_payment": {"type": "number", "minimum": 0}
+    "existing_first_charge_payment": {"type": "number", "minimum": 0},
+    "dti_policy_max_pct": {"type": "number", "minimum": 0, "description": "optional lender-policy DTI threshold"},
+    "dti_policy_source": {"type": "string"}
   }
 }

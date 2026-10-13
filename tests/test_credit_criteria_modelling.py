@@ -165,6 +165,63 @@ class Affordability(unittest.TestCase):
                 af.calculate(bad)
 
 
+class AffordabilityReferSignal(unittest.TestCase):
+    """F02 regression: no PASS banner; negative NDI / DTI over policy produce a refer signal."""
+
+    # Reviewer case 1: 200,000 over 25 y at 5% + 3% stress; income 40,000; net 2,600/month
+    AFF1 = {"property_value": 250000, "loan_amount": 200000, "term_years": 25, "product_rate_pct": 5,
+            "stress_margin_pct": 3, "stress_margin_source": "synthetic policy", "gross_annual_income": 40000,
+            "net_monthly_income": 2600, "monthly_committed_expenditure": 200, "monthly_essential_expenditure": 1000}
+    # Reviewer case 2 (second charge): 50,000 over 10 y at 0%, first-charge payment 900/month
+    AFF2 = {"property_value": 300000, "loan_amount": 50000, "term_years": 10, "product_rate_pct": 0,
+            "stress_margin_pct": 0, "stress_margin_source": "x", "gross_annual_income": 30000,
+            "net_monthly_income": 2000, "monthly_committed_expenditure": 0, "monthly_essential_expenditure": 1500,
+            "charge": "second", "existing_first_charge_balance": 200000, "existing_first_charge_payment": 900}
+
+    def test_reviewer_case_1_negative_ndi_refers(self):
+        out = af.calculate(self.AFF1)
+        r = out["results"]
+        # stressed payment at 8%: 1,543.63; NDI 2600-1000-200-1543.63 = -143.63; DTI 1743.63/3333.33 = 52.31%
+        self.assertAlmostEqual(r["monthly_payment_stressed"], 1543.63, places=2)
+        self.assertAlmostEqual(r["net_disposable_income_monthly"], -143.63, places=2)
+        self.assertAlmostEqual(r["dti_pct"], 52.31, places=2)
+        self.assertTrue(out["refer"])
+        self.assertIn("negative-ndi", rules(out["findings"], "error"))
+        self.assertEqual(out["status"], "refer")
+
+    def test_reviewer_case_2_second_charge_refers(self):
+        out = af.calculate(self.AFF2)
+        # payment 50,000/120 = 416.67; NDI 2000-1500-900-416.67 = -816.67
+        self.assertAlmostEqual(out["results"]["net_disposable_income_monthly"], -816.67, places=2)
+        self.assertTrue(out["refer"])
+        self.assertIn("negative-ndi", rules(out["findings"], "error"))
+        self.assertIn("stress-margin-zero", rules(out["findings"], "warning"))
+
+    def test_dti_policy_threshold(self):
+        case = dict(self.AFF1, net_monthly_income=4000, dti_policy_max_pct=45, dti_policy_source="synthetic")
+        out = af.calculate(case)
+        self.assertGreater(out["results"]["net_disposable_income_monthly"], 0)
+        self.assertIn("dti-above-policy", rules(out["findings"], "error"))
+        self.assertTrue(out["refer"])
+        ok = af.calculate(dict(case, dti_policy_max_pct=60))
+        self.assertFalse(ok["refer"])
+        self.assertEqual(ok["status"], "calculation_complete")
+
+    def test_cli_never_prints_pass(self):
+        with tempfile.TemporaryDirectory() as td:
+            for name, case in (("a1.json", self.AFF1), ("a2.json", self.AFF2)):
+                p = Path(td) / name
+                p.write_text(json.dumps(case))
+                proc = run_cli(SKILL, "affordability_calc", p)
+                self.assertEqual(proc.returncode, 1)
+                self.assertNotIn("PASS", proc.stdout)
+                self.assertIn("REFER", proc.stdout)
+        proc = run_cli(SKILL, "affordability_calc", EX / "affordability-pass.json")
+        self.assertEqual(proc.returncode, 0)
+        self.assertNotIn("PASS", proc.stdout)
+        self.assertIn("CALCULATION COMPLETE (indicative arithmetic, not an affordability decision)", proc.stdout)
+
+
 class Cli(unittest.TestCase):
     def test_engine_pass(self):
         code, out = run_json(SKILL, "criteria_engine", EX / "criteria-pass.json", "--case", EX / "case-pass.json")
@@ -193,7 +250,8 @@ class Cli(unittest.TestCase):
         assert_schema(self, AFF, SCH / "affordability-input.schema.json")
         code, out = run_json(SKILL, "affordability_calc", EX / "affordability-fail.json")
         self.assertEqual(code, 1)
-        self.assertEqual(rules(out["findings"], "error"), {"cltv-exceeds-100", "income-zero", "net-income-zero"})
+        self.assertEqual(rules(out["findings"], "error"), {"cltv-exceeds-100", "income-zero", "net-income-zero", "negative-ndi"})
+        self.assertTrue(out["refer"])
 
     def test_malformed_exit_2(self):
         with tempfile.TemporaryDirectory() as td:

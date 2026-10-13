@@ -3,9 +3,13 @@
   "$id": "agent-library/credit-criteria-modelling/affordability-output.schema.json",
   "title": "affordability_calc.py --json output",
   "type": "object",
-  "required": ["inputs", "results", "findings", "summary", "passed", "scope"],
+  "required": ["inputs", "results", "findings", "summary", "passed", "scope", "refer", "status"],
   "properties": {
     "passed": {"type": "boolean"},
+    "refer": {"type": "boolean"},
+    "refer_reasons": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["calculation_complete", "refer"]},
+    "banner": {"type": "string", "not": {"pattern": "PASS"}},
     "scope": {"type": "string"},
     "results": {
       "type": "object",

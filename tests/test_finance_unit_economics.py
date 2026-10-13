@@ -34,9 +34,13 @@ class KnownAnswers(unittest.TestCase):
         m = ue.run_model(model())["base"]
         self.assertAlmostEqual(m["blended_cac"], 1000.0)
         self.assertAlmostEqual(m["contribution_per_account_monthly"], 70.0)
-        self.assertAlmostEqual(m["expected_lifetime_months"], 50.0)
-        self.assertAlmostEqual(m["ltv"], 3500.0)
-        self.assertAlmostEqual(m["ltv_to_cac"], 3.5)
+        # lifetime = expected active months within 60-month horizon = (1 - 0.98^60) / 0.02 = 35.1223
+        life = (1 - 0.98 ** 60) / 0.02
+        self.assertAlmostEqual(m["expected_lifetime_months"], life, places=10)
+        self.assertAlmostEqual(m["expected_lifetime_months"], 35.1223, places=4)
+        self.assertAlmostEqual(m["lifetime_untruncated_months"], 50.0)
+        self.assertAlmostEqual(m["ltv"], 70 * life, places=8)
+        self.assertAlmostEqual(m["ltv_to_cac"], 70 * life / 1000, places=10)
         self.assertAlmostEqual(m["cac_payback_months"], 1000 / 70, places=10)
         self.assertAlmostEqual(m["cac_payback_gross_margin_months"], 12.5)
 
@@ -56,9 +60,48 @@ class KnownAnswers(unittest.TestCase):
         mdl["scenarios"] = {"downside": {"monthly_churn": 0.04}}
         mdl["sensitivity"] = {"monthly_churn": [0.01, 0.05]}
         out = ue.run_model(mdl)
-        self.assertAlmostEqual(out["scenarios"]["downside"]["ltv"], 70 * 25)
-        self.assertAlmostEqual(out["sensitivity"]["monthly_churn"][0]["ltv"], 70 * 60)  # capped at 60
-        self.assertAlmostEqual(out["sensitivity"]["monthly_churn"][1]["ltv_to_cac"], 1.4)
+        self.assertAlmostEqual(out["scenarios"]["downside"]["ltv"], 70 * (1 - 0.96 ** 60) / 0.04, places=8)
+        self.assertAlmostEqual(out["sensitivity"]["monthly_churn"][0]["ltv"], 70 * (1 - 0.99 ** 60) / 0.01, places=8)
+        self.assertAlmostEqual(out["sensitivity"]["monthly_churn"][1]["ltv_to_cac"],
+                               70 * (1 - 0.95 ** 60) / 0.05 / 1000, places=10)
+
+
+class ReviewRegressions(unittest.TestCase):
+    """F05/F06 and SKILL.md decision-criteria regressions."""
+
+    def test_unknown_override_key_is_error(self):
+        mdl = model()
+        mdl["scenarios"] = {"typo": {"monthly_chrn": 0.5}}
+        mdl["sensitivity"] = {"arpa": [90, 110]}
+        out = ue.run_model(mdl)
+        errs = [f for f in out["findings"] if f["rule"] == "unknown-override-key"]
+        self.assertEqual({f["id"] for f in errs}, {"scenario typo:monthly_chrn", "sensitivity:arpa"})
+        self.assertNotIn("typo", out["scenarios"])
+
+    def test_simple_and_discounted_ltv_agree_at_zero_discount(self):
+        # reviewer case: churn 0.01, horizon 60, discount 0 -> previously 4800.0 vs 3622.75
+        for churn in (0.01, 0.02, 0.0, 0.5):
+            out = ue.run_model(model(monthly_churn=churn, discount_rate_annual=0.0))
+            self.assertAlmostEqual(out["base"]["ltv"], out["base"]["ltv_discounted"], places=6)
+        out = ue.run_model(model(monthly_churn=0.01, discount_rate_annual=0.0))
+        self.assertAlmostEqual(out["base"]["ltv"], 70 * (1 - 0.99 ** 60) / 0.01, places=8)
+
+    def test_benchmark_input_warned(self):
+        mdl = model()
+        mdl["inputs"]["monthly_churn"] = {"value": 0.02, "tag": "benchmark", "source": "industry report 2025"}
+        out = ue.run_model(mdl)
+        self.assertIn("benchmark-input", rules(out["findings"], "warning"))
+        self.assertNotIn("benchmark-input", rules(ue.run_model(model())["findings"], "warning"))
+
+    def test_downside_ltv_cac_below_1_escalates(self):
+        mdl = model()
+        mdl["scenarios"] = {"downside": {"monthly_churn": 0.08}, "upside": {"monthly_churn": 0.01}}
+        out = ue.run_model(mdl)
+        self.assertLess(out["scenarios"]["downside"]["ltv_to_cac"], 1)
+        hits = [f for f in out["findings"] if f["rule"] == "downside-ltv-cac-below-1"]
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["severity"], "warning")
+        self.assertIn("escalate", hits[0]["message"])
 
 
 class EdgeCases(unittest.TestCase):
@@ -126,7 +169,7 @@ class Cli(unittest.TestCase):
         code, out = run_json(SKILL, "unit_economics", EX / "unit-economics-pass.json",
                              "--cohorts", EX / "cohorts-pass.csv")
         self.assertEqual(code, 0)
-        self.assertAlmostEqual(out["base"]["ltv_to_cac"], 3.5)
+        self.assertAlmostEqual(out["base"]["ltv_to_cac"], 70 * (1 - 0.98 ** 60) / 0.02 / 1000, places=10)
         self.assertAlmostEqual(out["cohort_retention"]["average_retention"]["3"], 0.9)
         self.assertEqual(len(out["assumption_ledger"]), 10)
         assert_schema(self, out, SCHEMA)

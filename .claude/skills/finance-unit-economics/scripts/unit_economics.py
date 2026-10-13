@@ -7,9 +7,12 @@ Metric definitions follow common SaaS industry practice (not a single authoritat
   paid CAC         = paid acquisition spend / paid-attributed new customers
   gross margin/acc = ARPA x gross margin %
   contribution/acc = ARPA x gross margin % - other variable cost per account
-  lifetime (months)= 1 / monthly churn, capped at horizon_months (churn 0 -> horizon, flagged)
-  LTV (simple)     = contribution per month x lifetime
+  lifetime (months)= expected active months within the horizon H under geometric survival:
+                     sum_{t=1..H} (1-churn)^(t-1) = (1 - (1-churn)^H) / churn  (churn 0 -> H, flagged);
+                     the untruncated 1/churn is reported alongside for reference
+  LTV (simple)     = contribution per month x lifetime  (= discounted LTV at a 0% discount rate)
   LTV (discounted) = sum_{t=1..H} c (1-churn)^(t-1) / (1+d_m)^t, d_m = (1+annual)^(1/12) - 1
+  Both LTVs use the same survival curve and horizon, so they agree when the discount rate is 0.
   CAC payback      = blended CAC / contribution per month (never if contribution <= 0)
 
 Usage:
@@ -136,11 +139,17 @@ def safe_div(a: float | None, b: float | None) -> float | None:
 
 
 def expected_lifetime(churn: float, horizon: float) -> tuple[float, bool]:
-    """Months; returns (lifetime, capped). Churn 0 or 1/churn > horizon -> horizon, capped=True."""
+    """Expected active months within the horizon: sum_{t=1..H} (1-churn)^(t-1).
+
+    Same survival curve and horizon as discounted_ltv, so simple LTV = discounted LTV at 0%.
+    Returns (lifetime, capped); capped is True when churn is 0 or 1/churn exceeds the horizon
+    (the horizon, not churn, then dominates the result).
+    """
+    h = int(horizon)
     if churn <= 0:
-        return horizon, True
-    life = 1.0 / churn
-    return (horizon, True) if life > horizon else (life, False)
+        return float(h), True
+    life = (1.0 - (1.0 - churn) ** h) / churn
+    return life, (1.0 / churn) > horizon
 
 
 def discounted_ltv(contribution: float, churn: float, annual_rate: float, horizon_months: int) -> float:
@@ -166,6 +175,9 @@ def metrics(v: dict) -> dict:
         "contribution_per_account_monthly": contrib,
         "contribution_margin_pct": safe_div(contrib, arpa),
         "expected_lifetime_months": life,
+        "lifetime_untruncated_months": (1.0 / churn) if churn > 0 else None,
+        "lifetime_definition": f"expected active months within {int(horizon)}-month horizon "
+                               "(geometric survival sum; same basis as discounted LTV)",
         "lifetime_capped_at_horizon": capped,
         "ltv": ltv,
         "ltv_discounted": None,
@@ -198,13 +210,29 @@ def metric_findings(m: dict, v: dict) -> list[dict]:
                       f"churn 0: lifetime capped at horizon {v.get('horizon_months')} months; LTV depends on the cap"))
     elif m["lifetime_capped_at_horizon"]:
         out.append(_f("monthly_churn", "info", "lifetime-capped",
-                      "1/churn exceeds horizon; lifetime capped at horizon"))
+                      "1/churn exceeds horizon; lifetime is dominated by the horizon truncation"))
     if m["contribution_per_account_monthly"] <= 0:
         out.append(_f("contribution", "warning", "non-positive-contribution",
                       "contribution per account <= 0: LTV <= 0 and CAC never pays back"))
     if m["cac_payback_never"]:
         out.append(_f("cac_payback", "warning", "cac-never-pays-back", "CAC never pays back at current contribution"))
     return out
+
+
+KNOWN_INPUTS = set(REQUIRED) | set(OPTIONAL_DEFAULTS)
+
+
+def unknown_keys(keys, where: str) -> list[dict]:
+    return [_f(f"{where}:{k}", "error", "unknown-override-key",
+               f"'{k}' is not a model input (known: {sorted(KNOWN_INPUTS)}); possible typo; not evaluated")
+            for k in keys if k not in KNOWN_INPUTS]
+
+
+def ledger_findings(ledger: list[dict]) -> list[dict]:
+    """Inputs tagged benchmark are flagged even when sourced (SKILL.md decision criteria)."""
+    return [_f(r["input"], "warning", "benchmark-input",
+               "input is a benchmark, not your own data: replace with measured data before relying on the result")
+            for r in ledger if r["tag"] == "benchmark"]
 
 
 def apply_overrides(values: dict, overrides: dict) -> dict:
@@ -219,6 +247,8 @@ def run_model(model: dict) -> dict:
     if not isinstance(model, dict):
         raise InputError("model must be a JSON object")
     values, ledger, findings = build_ledger(model.get("inputs", {}))
+    findings += unknown_keys(model.get("inputs", {}), "inputs")
+    findings += ledger_findings(ledger)
     findings += consistency(values)
     result: dict = {"name": model.get("name", ""), "currency": model.get("currency", "unspecified"),
                     "period": "month", "assumption_ledger": ledger}
@@ -231,6 +261,10 @@ def run_model(model: dict) -> dict:
         result["base"] = base
         scen = {}
         for name, ov in (model.get("scenarios") or {}).items():
+            uk = unknown_keys(ov or {}, f"scenario {name}")
+            if uk:
+                findings += uk
+                continue
             sv = apply_overrides(values, ov)
             sf = consistency(sv)
             if any(f["severity"] == "error" for f in sf):
@@ -240,9 +274,19 @@ def run_model(model: dict) -> dict:
                 continue
             scen[name] = metrics(sv)
             scen[name]["overrides"] = {k: sv[k] for k in ov}
+            r = scen[name]["ltv_to_cac"]
+            if "downside" in name.lower() and r is not None and r < 1:
+                findings.append(_f(f"scenario {name}", "warning", "downside-ltv-cac-below-1",
+                                   f"downside LTV:CAC {r:.2f} < 1: growth destroys value under plausible "
+                                   "assumptions; escalate to financial-analyst and independent-reviewer "
+                                   "before scaling acquisition spend"))
         result["scenarios"] = scen
         sens = {}
         for var, vals in (model.get("sensitivity") or {}).items():
+            uk = unknown_keys([var], "sensitivity")
+            if uk:
+                findings += uk
+                continue
             rows = []
             for x in vals:
                 sv = apply_overrides(values, {var: x})

@@ -10,15 +10,16 @@ the definition used. Nothing here is quoted from a registered source.
 | Paid CAC | paid spend / paid-attributed new customers | paid customers = 0 |
 | Gross margin per account | ARPA x GM% | - |
 | Contribution per account | ARPA x GM% - other variable cost per account | - |
-| Expected lifetime | 1 / churn, capped at horizon | churn = 0 (capped and flagged) |
-| LTV (simple) | contribution x lifetime | - |
+| Expected lifetime | expected active months within horizon H: sum over t=1..H of (1-churn)^(t-1) = (1-(1-churn)^H)/churn; 1/churn reported as untruncated reference | churn = 0 (= H, flagged) |
+| LTV (simple) | contribution x lifetime (equals discounted LTV at 0%: same survival curve and horizon) | - |
 | LTV (discounted) | sum over t=1..H of c (1-churn)^(t-1) / (1+d)^t, d = monthly equivalent of annual rate | - |
 | LTV:CAC | LTV / CAC | CAC undefined or 0 |
 | CAC payback | CAC / contribution per month | contribution <= 0 -> "never" |
 
 ## Worked check (hand-computed)
-ARPA 100, GM 80%, variable cost 10 -> contribution 70. Churn 2% -> lifetime 50 months -> LTV 3,500.
-S&M 30,000 / 30 new = CAC 1,000 -> LTV:CAC 3.5; payback 1,000/70 = 14.29 months.
+ARPA 100, GM 80%, variable cost 10 -> contribution 70. Churn 2%, horizon 60 -> lifetime
+(1-0.98^60)/0.02 = 35.12 months (untruncated 1/churn = 50) -> LTV 2,458.56.
+S&M 30,000 / 30 new = CAC 1,000 -> LTV:CAC 2.46; payback 1,000/70 = 14.29 months.
 Discounted check: churn 50%, rate 0, horizon 2 -> c x (1 + 0.5) = 1.5c.
 
 ## Pitfalls

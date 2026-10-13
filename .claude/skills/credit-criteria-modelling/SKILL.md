@@ -66,6 +66,9 @@ Optional
 | No rules in effect on the application date | `refer` (criteria gap). |
 | All rules in effect pass, none stale | `eligible_indicative` - still subject to lender underwriting. |
 | LTV or CLTV > 100%, or zero income | Error finding; ratios reported as undefined, refer to a human. |
+| Net disposable income < 0 at the stressed payment | Error `negative-ndi`; output `refer: true`, banner `REFER`; never present as affordable. |
+| DTI above `dti_policy_max_pct` (optional lender-policy input) | Error `dti-above-policy`; `refer: true`. |
+| Stress margin 0 with no binding floor | Warning `stress-margin-zero`: payment is not stressed. |
 | Criteria validation has errors | Do not evaluate cases (engine exits 1). |
 
 ## Outputs
@@ -78,9 +81,13 @@ Optional
 ## Validation
 - `python3 scripts/criteria_engine.py assets/examples/criteria-pass.json --case assets/examples/case-pass.json --json` -> exit 0.
 - `python3 scripts/affordability_calc.py assets/examples/affordability-pass.json --json` -> exit 0.
-- Exit 1 = criteria errors / affordability error findings; exit 2 = unreadable input, negative or
+- Exit 1 = criteria errors / affordability refer (error findings); exit 2 = unreadable input, negative or
   non-numeric values, missing fields, invalid case date.
-- PASS means rules are well-formed and arithmetic is defined. It does **not** mean the rules match
+- `affordability_calc.py` never prints PASS. Its banner is `CALCULATION COMPLETE (indicative
+  arithmetic, not an affordability decision)` or `REFER to a qualified human (...)`; JSON carries
+  `status` (`calculation_complete` | `refer`), `refer` and `refer_reasons`. A consuming UI must show
+  `refer` cases as needing human review, not as affordable.
+- Engine PASS / affordability CALCULATION COMPLETE means rules are well-formed and arithmetic is defined. It does **not** mean the rules match
   the lender's current criteria, that the customer can afford the loan, or that the product meets
   FCA requirements.
 
@@ -94,8 +101,8 @@ Optional
   `stale-criterion`.
 - `assets/examples/affordability-pass.json`: CLTV 72.50%, product payment 463.51, stressed (9.5%)
   522.11, DTI 38.44%, NDI 527.89. Known answer: 200,000 over 25 years at 5% -> 1,169.18/month.
-- `assets/examples/affordability-fail.json`: exit 1 with `cltv-exceeds-100`, `income-zero`,
-  `net-income-zero`.
+- `assets/examples/affordability-fail.json`: exit 1 (`refer: true`) with `cltv-exceeds-100`,
+  `income-zero`, `net-income-zero`, `negative-ndi`.
 
 ## Escalation and stop conditions
 - Stop if a rule has no source document or the lender has not confirmed the criteria version.
