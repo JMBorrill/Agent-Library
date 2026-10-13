@@ -221,7 +221,10 @@ def score_item(item: dict, resp: dict | None) -> dict:
     if not isinstance(out, str):
         out = json.dumps(out)
     if "expected" in item:
-        checks["exact"] = norm(out) == norm(str(item["expected"]))
+        expected_text = str(item["expected"])
+        # inline citation markers are scored by the grounding scorer, not by exact match
+        cmp_out = out if CITATION_RE.search(expected_text) else CITATION_RE.sub("", out)
+        checks["exact"] = norm(cmp_out) == norm(expected_text)
         if not checks["exact"]:
             details.append("exact match failed")
     if item.get("expected_contains"):

@@ -106,7 +106,7 @@ def parse_date(text: str) -> dt.date | None:
 
 
 def lint(columns: list[str], rows: list[dict], structure: dict, as_of: dt.date | None = None,
-         high: int = 15, medium: int = 8) -> dict:
+         high: int = 15, medium: int = 8, known_evals: set[str] | None = None) -> dict:
     findings: list[dict] = []
     missing = [c for c in REQUIRED_COLUMNS if c not in columns]
     if missing:
@@ -187,6 +187,8 @@ def lint(columns: list[str], rows: list[dict], structure: dict, as_of: dt.date |
         for e in evals:
             if not EVAL_ID.fullmatch(e):
                 findings.append(_f(rid, "error", "eval-id-format", f"eval id '{e}' has invalid characters"))
+            elif known_evals is not None and e not in known_evals:
+                findings.append(_f(rid, "error", "unknown-eval", f"eval '{e}' not found in the supplied eval set(s)"))
         acceptor = r.get("accepted_by", "")
         if acceptor and NON_HUMAN.search(acceptor):
             findings.append(_f(rid, "error", "accepted-by-non-human",
@@ -226,6 +228,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--structure", type=Path, default=DEFAULT_STRUCTURE)
     ap.add_argument("--as-of", help="YYYY-MM-DD date for stale-review checks")
     ap.add_argument("--high-threshold", type=int, default=15, help="residual score treated as high (default 15)")
+    ap.add_argument("--evals", type=Path, nargs="*", help="eval set JSONL file(s) or eval-config JSON; ids/names must match eval_ids")
     ap.add_argument("--strict", action="store_true", help="treat warnings as errors")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args(argv)
@@ -241,10 +244,25 @@ def main(argv: list[str] | None = None) -> int:
     try:
         structure = load_structure(args.structure)
         columns, rows = read_rows(args.csv)
+        known_evals = None
+        if args.evals:
+            known_evals = set()
+            for ep in args.evals:
+                text = ep.read_text(encoding="utf-8")
+                if ep.suffix == ".jsonl":
+                    for line in text.splitlines():
+                        if line.strip():
+                            item = json.loads(line)
+                            known_evals |= {str(item.get("id", ""))} | set(map(str, item.get("tags", [])))
+                    known_evals.add(ep.stem)
+                else:
+                    cfg = json.loads(text)
+                    known_evals |= {str(cfg.get("name", "")), str(cfg.get("id", "")), ep.stem}
+            known_evals.discard("")
     except (OSError, UnicodeDecodeError, csv.Error, json.JSONDecodeError) as exc:
         print(f"cannot read input: {exc}", file=sys.stderr)
         return 2
-    result = lint(columns, rows, structure, as_of, args.high_threshold)
+    result = lint(columns, rows, structure, as_of, args.high_threshold, known_evals=known_evals)
     s = result["summary"]
     failed = s["errors"] > 0 or (args.strict and s["warnings"] > 0)
     result["passed"] = not failed

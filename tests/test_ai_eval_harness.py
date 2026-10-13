@@ -176,5 +176,19 @@ class CliTests(unittest.TestCase):
             self.assertEqual(run_cli(SKILL, "run_eval", bad, "--responses", bad).returncode, 2)
 
 
+class ExactWithCitationsRegression(unittest.TestCase):
+    """Raised by the mortgage-criteria demo builder: exact + expected_citations could never pass."""
+
+    def test_exact_ignores_inline_citation_markers(self):
+        ev = load_script("ai-eval-harness", "run_eval")
+        sample = "Max CLTV is 75% [doc:NB-01]"
+        marker = ev.CITATION_RE.findall(sample)
+        self.assertTrue(marker, "fixture assumes [doc:...] citation syntax")
+        res = ev.score_item({"id": "x", "input": "q", "expected": "Max CLTV is 75%",
+                             "expected_citations": [marker[0]], "context": [marker[0]]},
+                            {"id": "x", "output": sample})
+        self.assertTrue(res["checks"]["exact"], res)
+
+
 if __name__ == "__main__":
     unittest.main()

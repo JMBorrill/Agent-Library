@@ -2,8 +2,8 @@
 
 An AI-powered lender criteria search and decision-support web app for UK mortgage brokers, run through
 the library end to end on a **simulated second-charge case**. Every lender, broker, borrower, document and
-number here is synthetic: lenders are fictitious ("Northbridge Mutual (synthetic)", "Harrowgate Home Loans
-(synthetic)", "Ospreyfield Building Society (synthetic)"), and the borrower (Alex Sample, synthetic) does
+number here is synthetic: lenders are fictitious (Northbridge Mutual (synthetic), Harrowgate Home Loans
+(synthetic), Ospreyfield Building Society (synthetic)), and the borrower (Alex Sample, synthetic) does
 not exist. No real personal data, no real lender criteria, no real credit decision.
 
 The product is **decision support**. Its outputs are `eligible_indicative`, `ineligible_indicative` or
@@ -22,7 +22,7 @@ Output: [outputs/01-framework-selection.md](outputs/01-framework-selection.md).
 
 **Oversight level: high** (regulated, high risk class, AI informing decisions about individuals).
 
-| Pack | Selected? | Why (from the routing output, confirmed by the product lead) |
+| Pack | Selected? | Why (routing output; to be confirmed by the product owner) |
 |---|---|---|
 | finance-credit | yes | lending, mortgage and lender keywords; UK + regulated adds `finance-fca-scope-check` |
 | ai-governance | yes | AI component informing decisions about individuals; adds `ai-human-oversight` |
@@ -59,7 +59,7 @@ The reviewer agents are **assigned, and their reviews are pending**: no reviewer
 is recorded anywhere in this demo. The gate authority is the product owner, and only after the
 compliance officer has reviewed the triage.
 
-## 3. Skill execution (26 steps, 13 skills, 7 packs)
+## 3. Skill execution (26 steps, 16 skills, 6 packs)
 
 | Step | Skill / script | Expected | Actual | What it shows |
 |---|---|---|---|---|
@@ -100,8 +100,8 @@ An expected exit of 1 means the checker found the defect or gap it should find.
    linter was first run. Rewritten as "I want to get..." and "I want to see...", the brief passes and
    flows down.
 2. **Requirements register (07 to 08).** The requirements engineer's first edit of the flowed-down
-   candidates ([inputs/requirements-draft.csv](inputs/requirements-draft.csv)) marked MCP-SYS-005 as
-   approved while its threshold was still TBR, used a non-method "pen test", pointed MCP-SYS-012 at a
+   candidates ([inputs/requirements-draft.csv](inputs/requirements-draft.csv)) set MCP-SYS-005 to
+   status `approved` while its threshold was still TBR, used a non-method "pen test", pointed MCP-SYS-012 at a
    need that does not exist (MCP-STK-003), wrote "quickly", and merged two obligations into MCP-SYS-009.
    The corrected register ([inputs/requirements.csv](inputs/requirements.csv)) keeps every row `proposed`
    until a named owner approves it.
@@ -198,7 +198,8 @@ written for this demo ([inputs/pilot-gate-criteria.json](inputs/pilot-gate-crite
 **NO_GO** for a limited broker pilot. Blocking: no compliance or legal review of the 14 triage candidates
 (PIL-01, action MCP-RID-001), no independent validation of the AI component (PIL-06, governance gap from
 step 13), tenant-isolation mitigations planned but not implemented (PIL-08), DPIA not started (PIL-09).
-Conditions: eval re-run against a pinned live model (PIL-05), real lender confirmation of criteria (PIL-10).
+Conditions: eval re-run against a pinned live model (PIL-05), real lender confirmation of criteria (PIL-10),
+and a recorded independent review (the checker notes that reviewers are named but no review record is cited).
 The recommendation is advisory; only the product owner can record a gate decision, and only after the
 compliance officer has reviewed the triage. A realistic next target is GO_WITH_CONDITIONS for a pilot on
 synthetic cases once PIL-01, PIL-06, PIL-08 and PIL-09 close.
@@ -259,7 +260,7 @@ Run from the library root with Python 3 (standard library only). Outputs are wri
 ## Library observations (reported, not fixed)
 
 - `ai-risk-assessment/scripts/system_card_check.py`: the non-human owner pattern matches the words
-  "model" and "AI" anywhere, so human role titles such as "Head of Model Risk" or "AI Governance Lead"
+  "model" and "AI" anywhere, so human role titles such as Head of Model Risk or AI Governance Lead
   raise `owner-non-human` errors. This demo used a different role title instead.
 - `ai-eval-harness/scripts/run_eval.py`: the `exact` scorer compares the whole output, including inline
   `[doc:ID]` citations, so an item with both `expected` and `expected_citations` can never pass. The

@@ -62,7 +62,8 @@ requests), `claim_check.py --json` report.
 
 ## Validation
 `claim_check.py` exit 0 ⇒ no overclaiming language detected. It is a language screen with false
-negatives; it does not establish truth. Unit tests: `tests/test_independent_review.py`.
+negatives; it does not establish truth. It scans prose files (`.md`, `.txt`, `.rst`) only — CSV/JSON
+registers legitimately contain status values such as `approved`, so review their free-text columns manually. Unit tests: `tests/test_independent_review.py`.
 
 ## Examples
 - `assets/examples/report-pass.md` → exit 0 (negated claims, evidence tags, a cited sign-off record).

@@ -186,5 +186,30 @@ class SystemCardTests(unittest.TestCase):
         self.assertNotRegex(proc.stdout.lower(), r"\bapproved\b|\bcompliant\b")
 
 
+class LibraryBugRegressionTests(unittest.TestCase):
+    """Raised by the mortgage-criteria demo builder."""
+
+    def test_human_role_titles_with_model_are_human(self):
+        card_mod = load_script("ai-risk-assessment", "system_card_check")
+        self.assertFalse(card_mod.NON_HUMAN.search("Head of Model Risk (synthetic)"))
+        self.assertFalse(card_mod.NON_HUMAN.search("AI Governance Lead"))
+        self.assertTrue(card_mod.NON_HUMAN.search("the model"))
+        self.assertTrue(card_mod.NON_HUMAN.search("GPT-4o"))
+        self.assertTrue(card_mod.NON_HUMAN.search("Support chatbot"))
+
+    def test_unknown_eval_id(self):
+        reg = load_script("ai-risk-assessment", "ai_risk_register_check")
+        ex = skill_path("ai-risk-assessment", "assets", "examples")
+        csv_path = next(p for p in ex.iterdir() if p.suffix == ".csv" and "pass" in p.name)
+        cols, rows = reg.read_rows(csv_path)
+        structure = reg.load_structure(reg.DEFAULT_STRUCTURE)
+        ids = {e for r in rows for e in reg.split_list(r["eval_ids"])}
+        self.assertTrue(ids, "pass fixture should link evals")
+        ok = reg.lint(cols, rows, structure, known_evals=ids)
+        self.assertNotIn("unknown-eval", rules(ok["findings"]))
+        bad = reg.lint(cols, rows, structure, known_evals=set())
+        self.assertIn("unknown-eval", rules(bad["findings"], "error"))
+
+
 if __name__ == "__main__":
     unittest.main()

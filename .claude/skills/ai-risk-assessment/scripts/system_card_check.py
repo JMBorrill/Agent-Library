@@ -28,7 +28,20 @@ from collections import Counter
 from pathlib import Path
 
 DEFAULT_SCHEMA = Path(__file__).resolve().parent.parent / "assets" / "schemas" / "system-card.schema.json"
-NON_HUMAN = re.compile(r"\b(ai|agent|bot|model|llm|gpt|claude|system)\b", re.I)
+# A name is non-human if it IS a system label ("the model", "AI agent", "GPT-4o") or contains an
+# unambiguous product/bot token. Human role titles such as "Head of Model Risk" are allowed.
+NON_HUMAN_FULL = re.compile(r"^\s*(the\s+)?(ai|ai\s+system|agent|ai\s+agent|bot|chatbot|model|the\s+model|llm|system|"
+                            r"assistant|ai\s+assistant|copilot|automated\s+\w+)\s*$", re.I)
+NON_HUMAN_TOKEN = re.compile(r"\b(llm|gpt[\w.-]*|claude[\w.-]*|chatbot|bot)\b", re.I)
+
+
+class _NonHuman:
+    @staticmethod
+    def search(text: str):
+        return NON_HUMAN_FULL.search(text) or NON_HUMAN_TOKEN.search(text)
+
+
+NON_HUMAN = _NonHuman()
 ASSURANCE = re.compile(r"\b(compliant|certified|approved|guaranteed|fully safe|risk[- ]free)\b", re.I)
 EMAIL = re.compile(r"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$")
 TYPES = {"object": dict, "array": list, "string": str, "boolean": bool, "null": type(None)}

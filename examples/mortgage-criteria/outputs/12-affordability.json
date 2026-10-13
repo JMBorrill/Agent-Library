@@ -36,6 +36,10 @@
     "warnings": 0,
     "info": 0
   },
+  "refer": false,
+  "refer_reasons": [],
+  "status": "calculation_complete",
+  "banner": "CALCULATION COMPLETE (indicative arithmetic, not an affordability decision)",
   "passed": true,
   "scope": "Scope: affordability arithmetic only; stress margin is lender policy input. Not an affordability assessment, lending decision or advice."
 }
