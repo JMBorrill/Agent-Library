@@ -14,13 +14,14 @@
     "ai-governance-reviewer",
     "independent-reviewer"
   ],
+  "independent_review_ref": "review/independent-review.md (credit-regulatory-reviewer, 2026-10-13; advisory, not a gate decision); lead responses in review/lead-response.md",
   "gate_authority": "Product owner (synthetic), after compliance officer (synthetic) sign-off",
   "evidence": [
     {
       "criterion_id": "PIL-01",
       "status": "not_met",
       "evidence_ref": "outputs/02-fca-triage.json",
-      "justification": "Triage complete (14 candidates) but no candidate has been reviewed or signed by the compliance officer or legal counsel"
+      "justification": "Triage returns refer: activities.arranges is unanswered (left null after review finding F-01 until legal counsel answers TRI-PERG-002). Perimeter-worst-case run lists 17 candidates (outputs/02b-fca-triage-perimeter-worst-case.json). No candidate reviewed or signed by the compliance officer or legal counsel"
     },
     {
       "criterion_id": "PIL-02",
@@ -41,7 +42,7 @@
       "criterion_id": "PIL-05",
       "status": "partial",
       "evidence_ref": "outputs/17-eval-current.json",
-      "justification": "Gates pass on offline fixture evaluation of recorded responses only; not yet run against a pinned live model"
+      "justification": "Offline fixture evaluation of recorded responses only, and since PT-01 decision-wording terms were added (F-03) the current responses fail 2 of 8 gates (not_contains and pass_rate: mcp-q09 'will lend', mcp-q10 'accepted'); not yet run against a pinned live model"
     },
     {
       "criterion_id": "PIL-06",
@@ -51,8 +52,9 @@
     },
     {
       "criterion_id": "PIL-07",
-      "status": "met",
-      "evidence_ref": "outputs/21-oversight.txt"
+      "status": "partial",
+      "evidence_ref": "outputs/21-oversight.txt",
+      "justification": "Review finding F-04: oversight_check exit 0 shows design completeness only, not validation. Rollback triggers and approver roles are now filled (proposed values, owner approval pending), but the override and challenge walkthrough (MCP-VAL-005) and decision-boundary validation (MCP-VAL-006) are not_tested"
     },
     {
       "criterion_id": "PIL-08",
@@ -100,8 +102,8 @@
       "report": "outputs/14-threat-model.json"
     },
     {
-      "name": "run_eval (current recorded responses)",
-      "exit_code": 0,
+      "name": "run_eval (current recorded responses, with PT-01 terms)",
+      "exit_code": 1,
       "report": "outputs/17-eval-current.json"
     },
     {
@@ -135,7 +137,7 @@
     {
       "id": "MCP-RID-003",
       "severity": "major",
-      "owner": "Data-protection lead (synthetic)",
+      "owner": "Data Protection Officer (synthetic)",
       "due": "2026-11-20",
       "status": "open",
       "closure_evidence": ""
@@ -146,6 +148,369 @@
       "owner": "AI evaluation engineer (synthetic)",
       "due": "2026-11-06",
       "status": "open",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-005",
+      "severity": "major",
+      "owner": "Product owner (synthetic) with legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "F-02",
+      "description": "Give legal counsel the perimeter-relevant design facts (AI role recommend for lender choice; send_email may reach lender domains; mcp-c07 approval; mcp-c08 denied only by PII egress list) with TRI-PERG-002; product owner records whether introductions or transmitting case data to lenders are out of scope as a product rule",
+      "required_closure_evidence": "Memo to legal counsel filed; product rule recorded in prd.md non-goals and tool-policy.json",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-006",
+      "severity": "minor",
+      "owner": "Product owner (synthetic)",
+      "due": "2026-11-20",
+      "status": "open",
+      "finding_ref": "F-05",
+      "description": "Result text for eligible_indicative must state what it excludes (affordability, credit search, valuation, underwriting) in the product UI; add MCP-CASE-0007 (thin NDI) to MCP-VAL-006",
+      "required_closure_evidence": "UI copy in prd.md; MCP-VAL-006 procedure lists the case; re-run outputs 11 and 24",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-007",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic) with legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "F-06",
+      "description": "Add or reject each missing applicability area O-15 to O-23 with reasons",
+      "required_closure_evidence": "Signed triage annex listing each area as added or rejected with reasons",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-008",
+      "severity": "major",
+      "owner": "financial-analyst (author); reviewer credit-regulatory-reviewer",
+      "due": "2026-11-20",
+      "status": "open",
+      "finding_ref": "F-07",
+      "description": "Add conduct topics and controls with owners (complaint routing, vulnerable customers, Consumer Duty outcome MI, Equality Act fairness slice monitoring) to governance-topics.json and controls-register.csv",
+      "required_closure_evidence": "Updated register and topics; governance_check re-run with the new gaps or controls shown",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-009",
+      "severity": "minor",
+      "owner": "Product owner (synthetic)",
+      "due": "2026-12-04",
+      "status": "open",
+      "finding_ref": "F-08",
+      "description": "Decide whether PIL-10 (lender credit staff confirm encoded criteria) becomes blocking before any real lender criteria are used",
+      "required_closure_evidence": "Recorded product-owner decision; pilot-gate-criteria.json updated",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-010",
+      "severity": "minor",
+      "owner": "Head of Criteria Data (synthetic)",
+      "due": "2026-11-27",
+      "status": "open",
+      "finding_ref": "F-09",
+      "description": "Add a verification_ref field (record ID and role) to every rule; replace free-text re-confirmation",
+      "required_closure_evidence": "criteria.json with verification_ref per rule; criteria_engine re-run",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-011",
+      "severity": "minor",
+      "owner": "financial-analyst (synthetic)",
+      "due": "2026-11-27",
+      "status": "open",
+      "finding_ref": "F-10",
+      "description": "Compute CLTV once from loan, first charge and value instead of a typed pre-rounded cltv_pct; compare unrounded values with a stated rounding policy",
+      "required_closure_evidence": "case-second-charge.json without hand-typed CLTV or with a derivation check; rounding policy in criteria.json",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-012",
+      "severity": "minor",
+      "owner": "Legal counsel (synthetic) and Data Protection Officer (synthetic)",
+      "due": "2026-11-20",
+      "status": "open",
+      "finding_ref": "F-15",
+      "description": "Confirm UK GDPR automated decision-making provisions in force on the assessment date, incl. Data (Use and Access) Act 2025 amendments (unverified)",
+      "required_closure_evidence": "Signed note on TRI-GDPR-002 citing the provisions checked and their commencement",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-013",
+      "severity": "major",
+      "owner": "AI evaluation engineer (synthetic); PT-01 list owned by compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "F-03",
+      "description": "PT-01 draft terms added to eval-config.json; current recorded responses now fail 2 gates (mcp-q09 contains 'will lend' inside a refusal; mcp-q10 contains 'accepted' quoting the lender's guide). Decide the final PT-01 list and whether negated or quoted criteria wording is allowed, then fix response wording or scorer and re-run steps 16-17; do not cite the eval for MCP-SYS-011 until then",
+      "required_closure_evidence": "PT-01 list signed by the compliance officer; outputs/17-eval-current.json re-run with the signed list",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-014",
+      "severity": "minor",
+      "owner": "Product owner (synthetic) with AI Governance Lead (synthetic)",
+      "due": "2026-11-27",
+      "status": "open",
+      "finding_ref": "F-04",
+      "description": "Approve or change the proposed rollback/pause triggers and the two justified 'none' approver entries in oversight-matrix.csv; run MCP-VAL-005 and MCP-VAL-006 before PIL-07 can be met",
+      "required_closure_evidence": "Approval record for the matrix; MCP-VAL-005/006 results in vmatrix.csv",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-015",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-01",
+      "description": "Obligation to verify (unverified): TRI-PERG-001 perimeter / permission. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-016",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-02",
+      "description": "Obligation to verify (unverified): TRI-PERG-002 information vs arranging/advising boundary (F-01, F-02); answer activities.arranges in the questionnaire. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-017",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-03",
+      "description": "Obligation to verify (unverified): TRI-MCOB-001 MCOB for regulated mortgage activity. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-018",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-04",
+      "description": "Obligation to verify (unverified): TRI-MCOB-002 responsible lending (MCOB 11.6), second-charge carve-outs. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-019",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-05",
+      "description": "Obligation to verify (unverified): TRI-MCOB-003 advice and selling standards. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-020",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-06",
+      "description": "Obligation to verify (unverified): TRI-MCOB-004 second-charge specifics / transitional. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-021",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-07",
+      "description": "Obligation to verify (unverified): TRI-PRIN-001 Consumer Duty (PRIN 2A). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-022",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-08",
+      "description": "Obligation to verify (unverified): TRI-PRIN-002 vulnerable customers. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-023",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-09",
+      "description": "Obligation to verify (unverified): TRI-SYSC-002 AI in decisions under existing rules. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-024",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-10",
+      "description": "Obligation to verify (unverified): TRI-DISP-001 complaints / FOS. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-025",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-11",
+      "description": "Obligation to verify (unverified): TRI-BUS-001 business customers. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-026",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic) and Data Protection Officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-12",
+      "description": "Obligation to verify (unverified): TRI-GDPR-001 UK GDPR / DPA 2018, DPIA. Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-027",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic) and Data Protection Officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-13",
+      "description": "Obligation to verify (unverified): TRI-GDPR-002 automated decision-making incl. 2025 amendments (F-15). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-028",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-14",
+      "description": "Obligation to verify (unverified): TRI-EQA-001 Equality Act 2010 (age-at-term-end, income-type criteria). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-029",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic) with legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-15, F-06",
+      "description": "Obligation to verify (unverified): TRI-AUTH-001 permissions / appointed-representative status (in perimeter-worst-case run). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-030",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-16, F-06",
+      "description": "Obligation to verify (unverified): TRI-SYSC-001 systems and controls, records, outsourcing (in perimeter-worst-case run). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-031",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic) with legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-17, F-06",
+      "description": "Obligation to verify (unverified): TRI-MCOB-005 / FSMA s21 financial promotions; answer communicates_promotions in the questionnaire (in perimeter-worst-case run). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-032",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-18, F-06",
+      "description": "Obligation to verify (unverified): Outsourcing / third-party reliance by regulated broker and lender clients (reviewer-proposed). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-033",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-19, F-06",
+      "description": "Obligation to verify (unverified): Remuneration, lender payments, conflicts; Consumer Duty price and value (reviewer-proposed). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-034",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-20, F-06",
+      "description": "Obligation to verify (unverified): Consumer Duty down the distribution chain; consumer understanding of relayed AI explanations (reviewer-proposed). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-035",
+      "severity": "major",
+      "owner": "Compliance officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-21, F-06",
+      "description": "Obligation to verify (unverified): Broker suitability and records where AI-drafted notes enter the file (reviewer-proposed). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-036",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic) and Data Protection Officer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-22, F-06",
+      "description": "Obligation to verify (unverified): Licence terms for credit-reference data (reviewer-proposed). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
+      "closure_evidence": ""
+    },
+    {
+      "id": "MCP-RID-037",
+      "severity": "major",
+      "owner": "Legal counsel (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "finding_ref": "O-23, F-06",
+      "description": "Obligation to verify (unverified): Consumer buy-to-let regime and senior-manager accountability, if in scope (reviewer-proposed). Check against the point-in-time Handbook or statute, including effective date",
+      "required_closure_evidence": "Signed applicability decision (applies / does not apply, with reasons and the provision version checked)",
       "closure_evidence": ""
     }
   ]

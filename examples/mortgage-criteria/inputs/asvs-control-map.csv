@@ -11,7 +11,7 @@ v5.0.0-14.1.2,L2,yes,,Protection requirements per data class (planned),documenta
 v5.0.0-14.2.1,L1,yes,,No case data in URLs or query strings; identifiers redacted before LLM calls (planned; MCP-T10),code-review,,not_verified
 v5.0.0-14.2.2,L2,yes,,Server-side cache controls for case responses (planned),config-review,,not_verified
 v5.0.0-14.2.3,L2,yes,,No case data sent to analytics or third parties beyond the LLM DPA (planned),code-review,,not_verified
-v5.0.0-14.2.4,L2,yes,,"Retention of case searches 90 days, decided by data-protection lead (planned)",documentation-review,,not_verified
+v5.0.0-14.2.4,L2,yes,,"Retention of case searches 90 days, decided by Data Protection Officer (planned)",documentation-review,,not_verified
 v5.0.0-14.3.1,L1,yes,,Browser storage cleared at logout (planned),manual-test,,not_verified
 v5.0.0-14.3.2,L2,yes,,Cache-control headers on case pages (planned),automated-test,,not_verified
 v5.0.0-14.3.3,L2,yes,,No case data in browser local storage (planned),code-review,,not_verified

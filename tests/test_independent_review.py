@@ -50,6 +50,11 @@ class ClaimCheckTests(unittest.TestCase):
 
 
 class ClaimCheckFalsePositiveTests(unittest.TestCase):
+    def test_quote_pairs_not_merged_and_headings_skipped(self):
+        self.assertEqual(rules(mod.scan_text('Click "draft reply" then the panel shows a long explanation before "send" is pressed.')), set())
+        self.assertEqual(rules(mod.scan_text('## Recommendation on "proceed to building the MVP on synthetic data"')), set())
+        self.assertIn("unsupported-research", rules(mod.scan_text('He said "this is exactly what our whole team needs today".')))
+
     def test_domain_terms_not_flagged(self):
         self.assertEqual(rules(mod.scan_text("Escalate to a qualified human reviewer.")), set())
         self.assertEqual(rules(mod.scan_text("Use the risk-free rate from a cited curve.")), set())

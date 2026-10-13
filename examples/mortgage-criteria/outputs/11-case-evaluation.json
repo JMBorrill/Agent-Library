@@ -76,7 +76,7 @@
       "lender": "Northbridge Mutual (synthetic)",
       "product": "Second charge 5-year fixed (synthetic)",
       "outcome": "eligible_indicative",
-      "note": "all criteria in effect met on the data supplied",
+      "note": "all criteria in effect met on the data supplied; excludes affordability assessment, credit search, valuation and underwriting - not an offer or decision",
       "rules_evaluated": 6,
       "reasons": [
         {

@@ -132,6 +132,11 @@ def triage(q: dict, rules: list[dict]) -> dict:
         val = get(q, path)
         if val is not _MISSING and val is not None and not isinstance(val, bool):
             findings.append(_f(path, "error", "unrecognised-answer", f"'{path}' must be true or false"))
+    # Optional questions that drive candidate areas: an explicit null means "asked but not yet answered"
+    # and must not be silently treated as false (raised by the mortgage demo review F-01).
+    for path in ("activities.communicates_promotions",):
+        if get(q, path) is None:
+            findings.append(_f(path, "error", "missing-answer", f"'{path}' is null (unanswered): triage incomplete"))
     if get(q, "processes_personal_data") is _MISSING:
         findings.append(_f("processes_personal_data", "info", "assumed-personal-data",
                            "not answered; personal data processing assumed for data protection triage"))

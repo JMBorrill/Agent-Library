@@ -1,7 +1,7 @@
 ERROR    governance_check check-failed               automated check failed (exit 1); see outputs/13-governance-gap.json
-WARNING  -              review-not-evidenced       independent reviewers are named but no review record (independent_review_ref) is cited
+ERROR    run_eval (current recorded responses, with PT-01 terms) check-failed               automated check failed (exit 1); see outputs/17-eval-current.json
 
 Recommendation (PILOT): NO_GO
-Blocking: ['MCP-RID-001', 'MCP-RID-002', 'MCP-RID-003', 'PIL-01', 'PIL-06', 'PIL-08', 'PIL-09', 'governance_check']  Conditions: ['MCP-RID-004', 'PIL-05', 'PIL-10', 'independent-review-record']
+Blocking: ['MCP-RID-001', 'MCP-RID-002', 'MCP-RID-003', 'MCP-RID-005', 'MCP-RID-007', 'MCP-RID-008', 'MCP-RID-013', 'MCP-RID-015', 'MCP-RID-016', 'MCP-RID-017', 'MCP-RID-018', 'MCP-RID-019', 'MCP-RID-020', 'MCP-RID-021', 'MCP-RID-022', 'MCP-RID-023', 'MCP-RID-024', 'MCP-RID-025', 'MCP-RID-026', 'MCP-RID-027', 'MCP-RID-028', 'MCP-RID-029', 'MCP-RID-030', 'MCP-RID-031', 'MCP-RID-032', 'MCP-RID-033', 'MCP-RID-034', 'MCP-RID-035', 'MCP-RID-036', 'MCP-RID-037', 'PIL-01', 'PIL-06', 'PIL-08', 'PIL-09', 'governance_check', 'run_eval (current recorded responses, with PT-01 terms)']  Conditions: ['MCP-RID-004', 'MCP-RID-006', 'MCP-RID-009', 'MCP-RID-010', 'MCP-RID-011', 'MCP-RID-012', 'MCP-RID-014', 'PIL-05', 'PIL-07', 'PIL-10']
 Decision: pending — only Product owner (synthetic), after compliance officer (synthetic) sign-off can record the gate decision
 Scope: readiness of recorded evidence only; not a technical judgement of the design.

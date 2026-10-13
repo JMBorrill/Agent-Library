@@ -67,7 +67,7 @@ Case facts are personal data about consumer borrowers. Collect only the criteria
 matching (no names, addresses or identifiers in the criteria search); redact identifiers before any
 text is sent to the AI provider; keep case data per broker firm (tenant) with tenant derived from the
 session, never from the request; retain case searches for 90 days unless the firm's own record-keeping
-policy requires longer, as decided by the data-protection lead; log overrides and access for audit.
+policy requires longer, as decided by the Data Protection Officer; log overrides and access for audit.
 A DPIA is required before the pilot. Abuse cases: cross-tenant data access, prompt injection via
 uploaded documents, export of case data to non-allowlisted domains.
 

@@ -1,5 +1,5 @@
 {
-  "status": "triage_complete_signoff_required",
+  "status": "refer",
   "product": "Mortgage Criteria Platform (synthetic) - AI criteria search and decision support for UK brokers, first and second charge",
   "assessment_date": "2026-10-13",
   "candidates": [
@@ -214,7 +214,14 @@
       }
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "id": "activities.arranges",
+      "severity": "error",
+      "rule": "missing-answer",
+      "message": "'activities.arranges' not answered: triage incomplete"
+    }
+  ],
   "summary": {
     "candidates": 14,
     "fca_areas": [
@@ -234,10 +241,10 @@
       "UK GDPR / Data Protection Act 2018 (ICO)",
       "UK GDPR automated decision-making (ICO)"
     ],
-    "errors": 0,
+    "errors": 1,
     "warnings": 0,
     "info": 0
   },
-  "passed": true,
+  "passed": false,
   "scope": "Scope: applicability triage only - not legal advice or a compliance conclusion. Every item needs sign-off by the named role against the point-in-time FCA Handbook."
 }

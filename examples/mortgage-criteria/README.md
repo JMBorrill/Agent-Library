@@ -11,7 +11,7 @@ The product is **decision support**. Its outputs are `eligible_indicative`, `ine
 make every lending decision. Nothing in this folder is an approval, an offer, legal advice or a compliance
 conclusion, and nothing has been signed by a human.
 
-All 26 deterministic steps are reproduced by `python3 examples/run_demos.py --demo mortgage-criteria`
+All 27 deterministic steps are reproduced by `python3 examples/run_demos.py --demo mortgage-criteria`
 (see [outputs/RUN-SUMMARY.md](outputs/RUN-SUMMARY.md)). As-of date for every dated check: 2026-10-13.
 
 ## 1. Framework selection
@@ -55,16 +55,20 @@ are not exercised in this demo.
 | V&V plan and pilot gate | `requirements-engineer`, `ai-evaluation-engineer` | `independent-reviewer` |
 | Final challenge | none (review only) | `independent-reviewer` (claim screen step 26; full review left in [review/](review/README.md)) |
 
-The reviewer agents are **assigned, and their reviews are pending**: no reviewer finding or acceptance
-is recorded anywhere in this demo. The gate authority is the product owner, and only after the
+One independent review is on file: the `credit-regulatory-reviewer` report in
+[review/independent-review.md](review/independent-review.md), answered in
+[review/lead-response.md](review/lead-response.md) (see "Independent review" below). The other assigned
+reviews (`security-reviewer`, `ai-governance-reviewer`, `independent-reviewer`) are pending, and no
+reviewer acceptance is recorded anywhere in this demo. The gate authority is the product owner, and only after the
 compliance officer has reviewed the triage.
 
-## 3. Skill execution (26 steps, 16 skills, 6 packs)
+## 3. Skill execution (27 steps, 16 skills, 6 packs)
 
 | Step | Skill / script | Expected | Actual | What it shows |
 |---|---|---|---|---|
 | 01 | select-frameworks / select_frameworks.py | 0 | 0 | packs, agents, oversight high |
-| 02 | finance-fca-scope-check / reg_triage.py | 0 | 0 | `triage_complete_signoff_required`, 14 candidate areas |
+| 02 | finance-fca-scope-check / reg_triage.py | 1 | 1 | `refer`: perimeter answers left unknown (review F-01); 14 partial candidate areas |
+| 02b | finance-fca-scope-check / reg_triage.py (perimeter-worst-case copy) | 0 | 0 | hypothetical: arranging and promotions both true; 17 candidate areas |
 | 03 | product-discovery / evidence_audit.py | 0 | 0 | 6 counted observations, 3 hypotheses not counted; PROCEED_WITH_CONDITIONS to alpha |
 | 04 | product-requirements-brief / prd_check.py (draft) | 1 | 1 | 4 `job-story-format` errors |
 | 05 | product-requirements-brief / prd_check.py --flow-down | 0 | 0 | 14 candidate rows in `outputs/candidate-reqs.csv` |
@@ -79,18 +83,20 @@ compliance officer has reviewed the triage.
 | 14 | security-threat-model / threat_model_check.py | 0 | 0 | 19 threats, 4 tenant-isolation; 9 high risks with planned-only mitigations (warnings) |
 | 15 | security-asvs-controls / asvs_coverage.py | 0 | 0 | L2 subset V8 + V14: 16 rows mapped, 0 verified |
 | 16 | ai-eval-harness / run_eval.py (prior v0.3 responses) | 1 | 1 | 8 of 8 gates fail, pass rate 8/16 |
-| 17 | ai-eval-harness / run_eval.py (current responses) | 0 | 0 | 8 of 8 gates pass on this set, pass rate 16/16 |
+| 17 | ai-eval-harness / run_eval.py (current responses) | 1 | 1 | draft PT-01 decision-wording terms on every item: 2 of 8 gates fail (`not_contains`, `pass_rate` 14/16) |
 | 18 | ai-prompt-injection-review / injection_scan.py (malicious) | 1 | 1 | `flag`, score 17, 6 signals |
 | 19 | ai-prompt-injection-review / injection_scan.py (benign) | 0 | 0 | `clean` (not proof of safety) |
 | 20 | ai-prompt-injection-review / tool_policy_check.py --expect | 0 | 0 | 11 calls: 5 allow, 1 require_approval, 5 deny; 11/11 match |
-| 21 | ai-human-oversight / oversight_check.py | 0 | 0 | 7 decisions; AI never above `recommend` for decisions about borrowers |
+| 21 | ai-human-oversight / oversight_check.py | 0 | 0 | 7 decisions; AI never above `recommend` for decisions about borrowers; proposed rollback triggers on every row (design completeness only) |
 | 22 | ai-risk-assessment / ai_risk_register_check.py | 0 | 0 | 7 risks, residuals all medium (judgement) |
 | 23 | ai-risk-assessment / system_card_check.py | 0 | 0 | card recommends NO_GO; sign-off pending |
 | 24 | se-verification-validation / vmatrix_check.py | 0 | 0 | 13 requirements planned, 2 pass (offline evals), 7 needs with validation |
-| 25 | se-review-gates / review_readiness.py | 1 | 1 | pilot readiness **NO_GO** |
+| 25 | se-review-gates / review_readiness.py | 1 | 1 | pilot readiness **NO_GO**; 37 open actions (30 major) |
 | 26 | independent-review / claim_check.py | 0 | 0 | no overclaiming language in README and inputs |
 
-An expected exit of 1 means the checker found the defect or gap it should find.
+An expected exit of 1 means the checker found the defect or gap it should find. Steps 02 and 17 changed
+from an expected 0 to an expected 1 after the independent review: step 02 now refers because the perimeter
+is genuinely unanswered, and step 17 now fails because two recorded answers contain draft PT-01 terms.
 
 ### Draft to fix pairs
 
@@ -112,15 +118,26 @@ An expected exit of 1 means the checker found the defect or gap it should find.
 4. **AI evaluation (16 to 17).** Prior recorded responses (system v0.3) cited a document that was never
    retrieved, invented a lender ("Brightmoor"), leaked an NI number and an email, stated that a lender
    would lend, over-refused a legitimate question and returned invalid JSON. The current recorded
-   responses pass all 8 gates. Both runs are **offline fixture evaluations of recorded responses**; no
+   responses fixed those defects, but after the review added draft PT-01 decision-wording terms to every
+   item (F-03) they fail 2 of 8 gates: mcp-q09 says "I can't confirm that a lender will lend" [evidence: inputs/responses-current.jsonl mcp-q09] (a refusal
+   that still contains "will lend") and mcp-q10 says "self-employed accepted", quoting the lender's own
+   guide. The substring scorer cannot tell negated or quoted wording from a decision statement; whether
+   such wording is allowed is for the compliance officer, who owns PT-01 (action MCP-RID-013). The recorded
+   responses were not edited. Both runs are **offline fixture evaluations of recorded responses**; no
    live model was called.
 
 ## 4. UK regulated-risk triage summary
 
 Source: [outputs/02-fca-triage.json](outputs/02-fca-triage.json) from
 [inputs/fca-questionnaire.json](inputs/fca-questionnaire.json) (service model
-`information_criteria_search`, no arranging, advising or lending claimed, AI in decisions, vulnerable
-customers expected). The FCA Handbook was INACCESSIBLE in this environment (`sources/audits/fca.md`).
+`information_criteria_search`, no advising or lending claimed, AI in decisions, vulnerable customers
+expected). After review finding F-01, `arranges` and `communicates_promotions` are `null`: legal counsel
+answers the first and the compliance officer the second. The triage therefore returns `refer`, and the 14
+areas below are a partial list. A hypothetical perimeter-worst-case copy
+([inputs/fca-questionnaire-perimeter-worst-case.json](inputs/fca-questionnaire-perimeter-worst-case.json),
+step 02b, both answers `true`) adds TRI-AUTH-001 (permissions / appointed representative), TRI-SYSC-001
+(systems and controls) and TRI-MCOB-005 (financial promotions), 17 areas in all; that run is on file and is
+not an answer to the perimeter question. The FCA Handbook was INACCESSIBLE in this environment (`sources/audits/fca.md`).
 **Every Handbook and statute reference below is (unverified)**, must be checked against the point-in-time
 Handbook, and **requires compliance sign-off** (compliance officer, or legal counsel / DPO where named)
 before anyone relies on it. This is triage, not legal advice.
@@ -155,21 +172,23 @@ presentation and introductions, and needs a reasoned legal view before build dec
 | [criteria.json](inputs/criteria.json), [case-second-charge.json](inputs/case-second-charge.json), [affordability-case.json](inputs/affordability-case.json) | 14 versioned synthetic rules for 3 fictitious lenders with source and verification dates; synthetic case MCP-CASE-0007 |
 | [controls-register.csv](inputs/controls-register.csv), [governance-topics.json](inputs/governance-topics.json) | 12 platform-operator controls (all `designed`), topics tailored for an operator that grants no credit |
 | [threat-model.json](inputs/threat-model.json), [asvs-control-map.csv](inputs/asvs-control-map.csv) | STRIDE data-flow model (tenant = broker firm); ASVS L2 subset V8 Authorization and V14 Data Protection (index audit: sources/audits/owasp-asvs.md) |
-| [oversight-matrix.csv](inputs/oversight-matrix.csv) | Who decides what: lending decision is `inform` only with lender credit staff deciding; broker recommendation; explanation and challenge routes |
+| [oversight-matrix.csv](inputs/oversight-matrix.csv) | Who decides what: lending decision is `inform` only with lender credit staff deciding; broker recommendation; explanation and challenge routes; proposed rollback/pause triggers on every row; approver role named, or "none" with a justification, on every row |
 | [ai-risk-register.csv](inputs/ai-risk-register.csv), [system-card.json](inputs/system-card.json) | 7 AI risks with NIST AI RMF function references; card recommends NO_GO with conditions, sign-off `pending` |
 | [tool-policy.json](inputs/tool-policy.json), [tool-calls.json](inputs/tool-calls.json), [uploaded-statement-malicious.html](inputs/uploaded-statement-malicious.html) | Proposed tool policy, 11 proposed calls, and a synthetic attacker document (hidden comment, white text, image exfiltration) |
 
 **Synthetic case result (step 11), indicative only.** MCP-CASE-0007: employed, GBP 45,000 second charge,
 property GBP 350,000, first charge GBP 210,000, so CLTV = (210,000 + 45,000) / 350,000 = 72.86%.
-Northbridge Mutual (synthetic): `eligible_indicative` (all 6 rules in effect met; v8 cap 80%).
+Northbridge Mutual (synthetic): `eligible_indicative` (all 6 rules in effect met; v8 cap 80%). The
+result note states that this excludes affordability assessment, credit search, valuation and underwriting.
 Harrowgate Home Loans (synthetic): `refer` (the case does not state secured arrears in the last 12
 months; missing data is never assumed to pass). Ospreyfield Building Society (synthetic):
 `ineligible_indicative` (CLTV above its 65% cap). Lender underwriting decides in every case.
 
 **Affordability arithmetic (step 12).** Product payment GBP 435.26/month at 8.2% over 15 years;
 stressed payment GBP 489.09 at 10.2%, where the 2.0-point margin is labelled as Northbridge Mutual
-(synthetic) lending policy v8, a lender-policy input and not a regulatory rate; DTI 41.29%; net
-disposable income GBP 260.91/month. These are arithmetic, not an affordability assessment; the thin
+(synthetic) lending policy v8, a lender-policy input and not a regulatory rate; DTI 41.29% (stressed
+basis: uses the GBP 489.09 stressed payment; 40.04% at the product rate); payment-to-net-income 14.82%
+(stressed basis; 13.19% at the product rate); net disposable income GBP 260.91/month (stressed basis). These are arithmetic, not an affordability assessment; the thin
 disposable income is exactly the kind of figure a broker and the lender must judge.
 
 ## 6. Verification procedures
@@ -188,18 +207,23 @@ Every other activity is `not_tested`: no pilot build exists, so nothing else has
 Eval design ([inputs/evalset.jsonl](inputs/evalset.jsonl), [inputs/eval-config.json](inputs/eval-config.json)):
 16 items covering criteria lookup, hallucination bait, a superseded-version trap, decision-prediction
 refusals, an over-refusal control, PII in a case note, structured output and income-type and
-adverse-credit slices. With n = 16 the 95% Wilson lower bound for 16/16 is 0.81, so the gates are set on
+adverse-credit slices. Since the review, [eval-config.json](inputs/eval-config.json) also applies six
+draft PT-01 decision-wording terms (`global_must_not_contain`) to every item; the list is proposed and the
+compliance officer owns it. With n = 16 the 95% Wilson lower bound for 16/16 is 0.81, so the gates are set on
 point estimates (`gate_on_interval: false`) and the result is weak evidence.
 
 ## 7. Readiness recommendation
 
 Step 25 ([outputs/25-pilot-gate.txt](outputs/25-pilot-gate.txt)) applies programme pilot criteria
 written for this demo ([inputs/pilot-gate-criteria.json](inputs/pilot-gate-criteria.json)) and returns
-**NO_GO** for a limited broker pilot. Blocking: no compliance or legal review of the 14 triage candidates
-(PIL-01, action MCP-RID-001), no independent validation of the AI component (PIL-06, governance gap from
-step 13), tenant-isolation mitigations planned but not implemented (PIL-08), DPIA not started (PIL-09).
-Conditions: eval re-run against a pinned live model (PIL-05), real lender confirmation of criteria (PIL-10),
-and a recorded independent review (the checker notes that reviewers are named but no review record is cited).
+**NO_GO** for a limited broker pilot. Blocking: triage refers and no compliance or legal review of any
+candidate (PIL-01, action MCP-RID-001), no independent validation of the AI component (PIL-06, governance
+gap from step 13), tenant-isolation mitigations planned but not implemented (PIL-08), DPIA not started
+(PIL-09), the step 17 eval now failing on PT-01 terms, and 30 open major actions (including the 23
+obligations to verify, O-01 to O-23, raised by the review). Conditions: eval re-run against a pinned live
+model (PIL-05), the oversight matrix not yet validated (PIL-07 `partial`: MCP-VAL-005/006 not tested), real
+lender confirmation of criteria (PIL-10) and 7 open minor actions. The independent review record is cited
+as `independent_review_ref`.
 The recommendation is advisory; only the product owner can record a gate decision, and only after the
 compliance officer has reviewed the triage. A realistic next target is GO_WITH_CONDITIONS for a pilot on
 synthetic cases once PIL-01, PIL-06, PIL-08 and PIL-09 close.
@@ -210,6 +234,8 @@ synthetic cases once PIL-01, PIL-06, PIL-08 and PIL-09 close.
   show how the log is audited, not what real brokers do.
 - Eval results come from recorded responses only (offline fixture adapter). They say nothing about a
   live model, production traffic or attacks outside the 16 items; fairness slices have 3 and 2 items.
+- PT-01 terms are matched as substrings, so negated or quoted wording counts as a hit (2 of the current
+  recorded answers); the draft list itself is unapproved.
 - PII and refusal detection in the harness are heuristics; the injection scanner has known false
   negatives (paraphrase, other languages). The tool policy, not the scanner, carries the control, and
   provenance labels in the tool-call file are trusted as given.
@@ -226,6 +252,8 @@ synthetic cases once PIL-01, PIL-06, PIL-08 and PIL-09 close.
 
 - Every output in [outputs/](outputs/RUN-SUMMARY.md) was produced by the library scripts in this run and
   read by the authoring agent; exit codes match `demo.json`.
+- The DTI and payment-to-net-income bases were recomputed for the labels in section 5 (stressed and
+  product-rate figures match the independent review's recomputation).
 - CLTV and the product-rate payment were cross-checked by hand (72.857% rounds to 72.86%; annuity on
   GBP 45,000 at 8.2% over 180 months is about GBP 435.25/month, matching 435.26 within rounding).
 - The eval dataset hash in [inputs/system-card.json](inputs/system-card.json) matches the
@@ -237,10 +265,10 @@ synthetic cases once PIL-01, PIL-06, PIL-08 and PIL-09 close.
 
 | Who | What they must decide |
 |---|---|
-| Compliance officer | Each of the 14 triage candidates against the current Handbook; prohibited-terms list PT-01; pilot readiness input |
-| Legal counsel | Perimeter (TRI-PERG-001/002), business-customer scope, UK GDPR automated decision-making, Equality Act review of criteria |
+| Compliance officer | Each triage candidate (14 partial, up to 17 in the worst case) against the current Handbook; the `communicates_promotions` answer; prohibited-terms list PT-01; pilot readiness input |
+| Legal counsel | Perimeter (TRI-PERG-001/002) and the `arranges` answer, business-customer scope, UK GDPR automated decision-making, Equality Act review of criteria |
 | Lender credit staff (per lender) | The encoded criteria for their products; every lending decision on any real case |
-| Data-protection lead | DPIA, lawful basis, retention period, provider data processing agreement |
+| Data Protection Officer | DPIA, lawful basis, retention period, provider data processing agreement (role name used throughout; whether a DPO must be formally designated is itself for legal counsel to confirm) |
 | Product owner | The PRD, requirement approvals (status `proposed` to `approved`), and the gate decision after compliance review |
 | Head of Model Validation | Independent validation of the AI component (MCP-CTL-031) |
 
@@ -251,11 +279,31 @@ No sign-off has been given. The system card's `sign_off.status` is `pending`.
 ```
 python3 examples/run_demos.py --demo mortgage-criteria          # regenerate outputs/
 python3 examples/run_demos.py --demo mortgage-criteria --check  # re-run, fail on exit or output drift
-python3 .claude/skills/independent-review/scripts/claim_check.py examples/mortgage-criteria/README.md examples/mortgage-criteria/inputs
+python3 .claude/skills/independent-review/scripts/claim_check.py examples/mortgage-criteria/README.md examples/mortgage-criteria/inputs examples/mortgage-criteria/review/lead-response.md examples/mortgage-criteria/review/README.md examples/mortgage-criteria/outputs/RUN-SUMMARY.md
 ```
+
+Run over the whole `review/` folder, the claim screen exits 1 on one line of the reviewer's own file
+(`independent-review.md:27`, the quoted F-03 probe sentence). The author does not edit that file; see
+[review/lead-response.md](review/lead-response.md).
 
 Run from the library root with Python 3 (standard library only). Outputs are written only by
 `run_demos.py`; step 05 also writes `outputs/candidate-reqs.csv`.
+
+## Independent review
+
+A separate `credit-regulatory-reviewer` agent reviewed this demo on 2026-10-13
+([review/independent-review.md](review/independent-review.md), filed verbatim). Its advisory
+recommendation: **GO_WITH_CONDITIONS for designing a closed pilot on synthetic cases and fictitious lenders
+only**, and pilot launch **NO_GO** (it judged the step 25 NO_GO justified). Its main findings were the
+pre-answered perimeter question (F-01), an eval that could not detect decision wording (F-03) and PIL-07
+recorded as met from a completeness-only check (F-04).
+
+The lead response ([review/lead-response.md](review/lead-response.md)) closes within the demo F-01 (answers
+set to unknown plus the worst-case run), F-03's eval change (with the two resulting failures recorded, not
+hidden), F-04's matrix changes (PIL-07 now `partial`), F-11, F-12 and F-13; everything else (F-02, F-05 to
+F-10, F-15, O-01 to O-23, plus the PT-01 failures and the oversight-matrix approval) is an open action in
+[inputs/pilot-review.json](inputs/pilot-review.json) with an owner, due date and required closure
+evidence. No human decision on any finding, the pilot design or the gate is recorded.
 
 ## Library observations (reported, not fixed)
 

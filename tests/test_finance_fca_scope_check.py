@@ -131,5 +131,22 @@ class Cli(unittest.TestCase):
         self.assertNotIn("approved", low)
 
 
+class NullOptionalAnswerRegression(unittest.TestCase):
+    def test_null_promotions_answer_refers(self):
+        mod = load_script("finance-fca-scope-check", "reg_triage")
+        import inspect
+        ex = skill_path("finance-fca-scope-check", "assets", "examples")
+        q_path = next(p for p in sorted(ex.glob("*.json")) if "pass" in p.name or "platform" in p.name)
+        q = json.loads(q_path.read_text())
+        q.setdefault("activities", {})["communicates_promotions"] = None
+        import tempfile, subprocess, sys
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+            json.dump(q, fh)
+        p = subprocess.run([sys.executable, "-I", str(skill_path("finance-fca-scope-check", "scripts", "reg_triage.py")), fh.name],
+                           capture_output=True, text=True)
+        self.assertEqual(p.returncode, 1, p.stdout)
+        self.assertIn("communicates_promotions", p.stdout)
+
+
 if __name__ == "__main__":
     unittest.main()

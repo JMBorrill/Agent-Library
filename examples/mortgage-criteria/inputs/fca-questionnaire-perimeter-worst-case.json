@@ -1,0 +1,26 @@
+{
+  "_note": "PERIMETER WORST CASE - hypothetical scenario, not an answer: arranges and communicates_promotions both set true to keep the widest candidate view on file while the perimeter question (TRI-PERG-002) is unresolved (finding F-01).",
+  "product_name": "Mortgage Criteria Platform (synthetic) - AI criteria search and decision support for UK brokers, first and second charge [perimeter-worst-case scenario]",
+  "assessment_date": "2026-10-13",
+  "jurisdiction": "UK",
+  "customer_types": [
+    "business",
+    "consumer"
+  ],
+  "products": [
+    "second_charge_mortgage",
+    "first_charge_mortgage"
+  ],
+  "service_model": "information_criteria_search",
+  "activities": {
+    "arranges": true,
+    "advises": false,
+    "lends": false
+  },
+  "performs_affordability_calculation": true,
+  "communicates_promotions": true,
+  "ai_in_decisions": true,
+  "vulnerable_customers": true,
+  "handles_complaints": true,
+  "processes_personal_data": true
+}

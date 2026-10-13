@@ -22,9 +22,21 @@
     "inputs/fca-questionnaire.json",
     "--json"
    ],
-   "expect_exit": 0,
+   "expect_exit": 1,
    "output": "outputs/02-fca-triage.json",
-   "purpose": "UK regulatory applicability triage; every candidate needs compliance/legal sign-off"
+   "purpose": "UK regulatory applicability triage with the perimeter answers (arranges, communicates_promotions) left null until legal counsel and the compliance officer answer (review F-01): expected refer with partial candidates; every candidate needs compliance/legal sign-off"
+  },
+  {
+   "id": "02b-fca-triage-perimeter-worst-case",
+   "skill": "finance-fca-scope-check",
+   "script": "reg_triage.py",
+   "args": [
+    "inputs/fca-questionnaire-perimeter-worst-case.json",
+    "--json"
+   ],
+   "expect_exit": 0,
+   "output": "outputs/02b-fca-triage-perimeter-worst-case.json",
+   "purpose": "hypothetical perimeter-worst-case copy (arranges and communicates_promotions true) so the widest candidate view is on file while the perimeter is unresolved; not an answer"
   },
   {
    "id": "03-discovery-evidence",
@@ -246,9 +258,9 @@
     "inputs/eval-config.json",
     "--json"
    ],
-   "expect_exit": 0,
+   "expect_exit": 1,
    "output": "outputs/17-eval-current.json",
-   "purpose": "offline fixture evaluation of current recorded responses (gates pass on this set only)"
+   "purpose": "offline fixture evaluation of current recorded responses with draft PT-01 decision-wording terms applied to every item (review F-03): 2 items contain a term, so 2 of 8 gates fail - a real finding, recorded as action MCP-RID-013"
   },
   {
    "id": "18-injection-scan-malicious",

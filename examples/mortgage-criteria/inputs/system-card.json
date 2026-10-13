@@ -81,6 +81,19 @@
       "result": "pass"
     },
     {
+      "eval_id": "EV-MCP-QA-01-PT01",
+      "metric": "share of answers free of draft PT-01 decision-wording terms (offline fixture evaluation; list not yet signed by the compliance officer)",
+      "value": 0.875,
+      "threshold": 1.0,
+      "comparator": ">=",
+      "n": 16,
+      "date": "2026-10-13",
+      "dataset": "inputs/evalset.jsonl",
+      "dataset_version": "1.0.0",
+      "dataset_sha256": "2d424e50ab05089aa9ed9affdedbb1e18dae4ab8a18867dc50ad85304bd629e2",
+      "result": "fail"
+    },
+    {
       "eval_id": "EV-MCP-QA-00",
       "metric": "citation grounding rate, prior system v0.3 recorded responses (offline fixture evaluation)",
       "value": 0.75,
@@ -111,7 +124,8 @@
     "The prior v0.3 responses failed every gate; the current responses are a different recorded run and have not been reproduced against a pinned live model.",
     "Fairness slices have 3 and 2 items; equal performance across groups is not established.",
     "Injection screening is heuristic with known false negatives; the tool policy carries the control.",
-    "No independent model validation has been performed (governance gap MCP-CTL-031)."
+    "No independent model validation has been performed (governance gap MCP-CTL-031).",
+    "Draft PT-01 decision-wording terms (review finding F-03) fail 2 of 16 current recorded responses (mcp-q09, mcp-q10); the substring scorer cannot tell a negated or quoted phrase from a decision statement."
   ],
   "trustworthiness_notes": {
     "valid-and-reliable": "grounding gate on offline fixture evaluation",
@@ -160,7 +174,7 @@
   "conditions": [
     "Independent model validation (MCP-CTL-031)",
     "Compliance officer and legal counsel sign-off on the FCA triage candidates incl. perimeter",
-    "DPIA signed by the data-protection lead",
+    "DPIA signed by the Data Protection Officer",
     "Fairness slice eval EV-MCP-SLICE-01 run with at least 30 items per slice",
     "Eval re-run against the pinned live model"
   ],

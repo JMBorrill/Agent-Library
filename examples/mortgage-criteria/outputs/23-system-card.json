@@ -1,7 +1,7 @@
 {
   "findings": [
     {
-      "id": "$.evaluations[4](EV-MCP-SLICE-01)",
+      "id": "$.evaluations[5](EV-MCP-SLICE-01)",
       "severity": "warning",
       "rule": "eval-not-tested",
       "message": "evaluation listed but not run"
@@ -21,7 +21,7 @@
   ],
   "summary": {
     "system": "Mortgage Criteria Platform criteria assistant (synthetic)",
-    "evaluations": 5,
+    "evaluations": 6,
     "recommendation": "NO_GO",
     "errors": 0,
     "warnings": 2,

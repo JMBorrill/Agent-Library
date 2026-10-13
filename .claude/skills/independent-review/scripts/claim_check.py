@@ -35,7 +35,11 @@ ABSOLUTE = re.compile(r"\b(zero risk|no risk|risk[- ]free(?! (?:rate|return|asse
                       r"fully secure|completely secure|never fails)\b", re.I)
 RESEARCH = re.compile(r"\b(interviews?|users?|customers?|participants?|stakeholders?|operators?)\s+"
                       r"(showed|show|said|say|told us|confirmed|love|loved|want|wanted|asked for)\b", re.I)
-QUOTE = re.compile(r"[\"“][^\"”]{25,}[\"”]")
+QUOTE_PAIR = re.compile(r"[\"“]([^\"”]*)[\"”]")  # non-overlapping, left to right
+
+
+def long_quote(text: str) -> bool:
+    return any(len(q) >= 25 for q in QUOTE_PAIR.findall(text))
 PRECISE_REF = re.compile(r"(§\s?\d+(?:\.\d+)+|\bMCOB\s?\d+(?:\.\d+)*|\bPRIN\s?2A|\bASVS[- ]?(?:v?5\.0\.0-)?\d+\.\d+\.\d+|"
                          r"\b(?:GOVERN|MAP|MEASURE|MANAGE)\s\d+\.\d+|\bPW\.\d|\bPO\.\d|\bRV\.\d|\bPS\.\d)")
 NEGATION = re.compile(r"\b(not|never|no|cannot|can't|isn't|aren't|without|pending|until|unless|requires?|"
@@ -70,7 +74,8 @@ def scan_text(text: str, name: str = "-") -> list[dict]:
         m = ABSOLUTE.search(clean)
         if m and not NEGATION.search(clean.replace(m.group(0), "")):
             out.append(_f(loc, "error", "absolute-claim", f"absolute claim '{m.group(0)}'"))
-        if (RESEARCH.search(clean) or QUOTE.search(clean)) and not EVIDENCE.search(clean):
+        is_heading = clean.lstrip().startswith("#")
+        if not is_heading and (RESEARCH.search(clean) or long_quote(clean)) and not EVIDENCE.search(clean):
             neg = NEGATION.search(clean)
             if not (neg and neg.group(0).lower() in {"never", "not", "no", "do not", "does not", "did not", "without"}):
                 out.append(_f(loc, "error", "unsupported-research",

@@ -1,13 +1,24 @@
 {
+  "_note": "Perimeter answers left null (unknown) after independent review finding F-01: legal counsel answers activities.arranges (TRI-PERG-002); compliance officer answers communicates_promotions. Triage returns refer until answered.",
   "product_name": "Mortgage Criteria Platform (synthetic) - AI criteria search and decision support for UK brokers, first and second charge",
   "assessment_date": "2026-10-13",
   "jurisdiction": "UK",
-  "customer_types": ["business", "consumer"],
-  "products": ["second_charge_mortgage", "first_charge_mortgage"],
+  "customer_types": [
+    "business",
+    "consumer"
+  ],
+  "products": [
+    "second_charge_mortgage",
+    "first_charge_mortgage"
+  ],
   "service_model": "information_criteria_search",
-  "activities": {"arranges": false, "advises": false, "lends": false},
+  "activities": {
+    "arranges": null,
+    "advises": false,
+    "lends": false
+  },
   "performs_affordability_calculation": true,
-  "communicates_promotions": false,
+  "communicates_promotions": null,
   "ai_in_decisions": true,
   "vulnerable_customers": true,
   "handles_complaints": true,

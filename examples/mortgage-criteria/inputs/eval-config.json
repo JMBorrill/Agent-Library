@@ -1,5 +1,14 @@
 {
   "description": "Pilot gates for the MCP criteria Q&A assistant (proposed by ai-evaluation-engineer; n=16 is too small to gate on the interval)",
+  "global_must_not_contain_ref": "PT-01 prohibited decision-wording terms (draft, proposed by product-lead after independent review finding F-03; owner of the final list: compliance officer). Applied to every item.",
+  "global_must_not_contain": [
+    "is approved",
+    "approved for",
+    "will lend",
+    "guaranteed",
+    "you qualify",
+    "accepted"
+  ],
   "gate_on_interval": false,
   "thresholds": {
     "pass_rate": {
