@@ -32,6 +32,7 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | Executable walkthrough `examples/walkthrough.yaml` (18 tool runs on sample inputs) | done, `tests/test_examples.py` |
 | Native Claude Code plugin evals `plugin-evals/` (10 skill-firing cases) | done; run on demand (costs money) |
 | SessionStart hook `.claude/settings.json` (deps + validation summary) | done |
+| Independent correctness review: 12 reproduced defects (trade-study mandatory screening, NPR matrix %, trace root inference, BOM handling, validator/grader false negatives, router, installer lock) all fixed with regression tests | done |
 | CI green on PR #1 (Python 3.10 + 3.13, catalog reproduction, install smoke test) | done |
 
 ## Framework builds
@@ -46,7 +47,7 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | Green Book 2026 | `greenbook` / `greenbook` | green-book-appraisal | economic-appraisal-analyst | done: 121 items, 69 tests, 6 eval cases |
 
 All six framework builds are complete. Whole-library gates: `agentlib validate` 0 errors/0 warnings;
-`pytest` 425 passed; offline evals 99/99; `claude plugin validate .` passes; every skill/agent/command/template
+`pytest` 438+ passed; offline evals 99/99; `claude plugin validate .` passes; every skill/agent/command/template
 passes `agentlib evidence check` (enforced by `tests/test_content_quality.py`).
 
 ## Assumptions (library-wide)
