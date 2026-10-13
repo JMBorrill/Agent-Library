@@ -91,6 +91,7 @@ def test_catalogs_validate_and_reproduce():
 
 @pytest.mark.skipif(not __import__("shutil").which("pdftotext"), reason="pdftotext not installed")
 def test_extraction_reproducible():
+    pytest.importorskip("pdfplumber")
     r = subprocess.run([sys.executable, str(ROOT / "scripts/extract/ai_rmf.py"), "--check"], capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
 
