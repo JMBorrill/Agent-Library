@@ -1,0 +1,17 @@
+# Solar array trade for a 12U lunar CubeSat. Scores 1 (worst) to 10 (best) on each criterion;
+# operational definitions are in the team's trade plan.
+criteria:
+  - {name: Life-cycle cost, weight: 35}
+  - {name: Mass, weight: 25}
+  - {name: End-of-life power margin, weight: 25}
+  - {name: Technology maturity, weight: 15}
+  - {name: Fits 12U dispenser envelope, mandatory: true}
+alternatives:
+  - name: Body-mounted panels
+    scores: {Life-cycle cost: 9, Mass: 8, End-of-life power margin: 3, Technology maturity: 9, Fits 12U dispenser envelope: yes}
+  - name: Single-wing deployable
+    scores: {Life-cycle cost: 6, Mass: 6, End-of-life power margin: 8, Technology maturity: 8, Fits 12U dispenser envelope: yes}
+  - name: Double-wing deployable
+    scores: {Life-cycle cost: 4, Mass: 5, End-of-life power margin: 10, Technology maturity: 7, Fits 12U dispenser envelope: yes}
+  - name: Roll-out flexible array
+    scores: {Life-cycle cost: 5, Mass: 9, End-of-life power margin: 10, Technology maturity: 4, Fits 12U dispenser envelope: no}

@@ -1,0 +1,7 @@
+id,requirement,rationale,verification
+PWR-001,The EPS shall provide sufficient power to all subsystems as appropriate.,,
+PWR-002,The battery will be user-friendly to integrate and/or replace.,,
+PWR-003,The solar array shall deploy quickly and shall be robust.,,Simulation
+PWR-004,The EPS shall not exceed TBD W of dissipation.,,Test
+PWR-005,Bus voltage shall be regulated.,,
+PWR-006,The operator shall monitor battery temperature.,,

@@ -22,7 +22,7 @@ Software TRL definitions are in NPR 7123.1, not in the handbook (PDF p. 265).
 ## Assessment rules
 
 - Technology assessment = (1) determine current maturity as TRLs, then (2) determine the difficulty of
-  advancing, the Advancement Degree of Difficulty (AD2) (glossary PDF p. 246; G.4 PDF p. 263).
+  advancing, the Advancement Degree of Difficulty (AD2) (glossary PDF p. 246; G.4 PDF p. 266).
 - Establishing TRLs means determining **what was demonstrated and under what conditions** (PDF p. 264).
 - Define terms first ("breadboard", "relevant environment" vary between disciplines); quantify judgement
   calls using form, fit and function; use a balanced, experienced assessment team (PDF p. 265).

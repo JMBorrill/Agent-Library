@@ -363,6 +363,9 @@ LY_STOP = {"only", "early", "daily", "weekly", "monthly", "yearly", "hourly", "q
            "poly", "belly", "jelly", "rally", "imply", "nominally"}
 IZE_STOP = {"size", "seize", "prize", "initialize", "initialise", "synchronize", "synchronise", "authorize",
             "authorise", "serialize", "deserialize", "resize", "sanitize", "sanitise"}
+# Established technical compounds in which a listed term is a name, not a vague qualifier.
+TERM_EXCEPTIONS = re.compile(r"\bsafe[- ](?:mode|hold|state|position|configuration|haven)\b|\bfast[- ]fourier\b|"
+                             r"\bsmall[- ]?sat(?:ellite)?s?\b|\blarge[- ]scale integration\b", re.I)
 OPERATOR_SUBJECTS = r"(?:operator|operators|user|users|crew|crewmember|astronaut|astronauts|pilot|technician|personnel)"
 BOUND_WORDS = ("±", "+/-", "plus or minus", "at least", "no more than", "no less than", "not exceed", "not to exceed",
                "less than", "greater than", "fewer than", "more than", "maximum", "minimum", "max", "min", "within",
@@ -450,7 +453,7 @@ def lint_requirement(req: Requirement, require_rationale: bool = True,
     amb_hits = [t for t, rx in amb if rx.search(text)]
     for t in amb_hits:
         out.append(_f(req, "ambiguous-term", f"Ambiguous term '{t}' (C.4 Clarity).", t))
-    masked = text
+    masked = TERM_EXCEPTIONS.sub(" ", text)
     for t, rx in amb:
         masked = rx.sub(" ", masked)
     seen = set()

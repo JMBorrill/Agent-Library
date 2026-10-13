@@ -188,6 +188,11 @@ def test_appropriate_not_double_reported():
     assert not any(f.rule == "unverifiable-term" for f in fs)
 
 
+def test_term_exceptions():
+    assert "unverifiable-term" not in rules("The ADCS shall enter safe mode within 5 seconds of a fault.")
+    assert "unverifiable-term" in rules("The ADCS shall be safe.")
+
+
 def test_bounded_quantity_not_flagged():
     assert "missing-tolerance" not in rules("The battery shall supply 28 V plus or minus 0.5 V.")
     assert "missing-tolerance" not in rules("The software shall comply with NPR 7150.2 class B.")
