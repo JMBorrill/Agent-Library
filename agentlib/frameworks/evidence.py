@@ -157,6 +157,8 @@ def check_document(text: str, root: Path | None = None, require_citations: bool 
                                             f"{m.group(0)}: catalog places {key} on p. {bucket[key]}"))
         for family, (pattern, sources) in ID_FAMILIES.items():
             for ident in dict.fromkeys(pattern.findall(line)):  # de-duplicate, keep order
+                if family == "asvs" and re.fullmatch(r"V?\d+\.0\.\d+", ident):
+                    continue  # a version string such as "V5.0.0", not a requirement (sections start at 1)
                 buckets = [index[s] for s in sources if s in index]
                 if not buckets:
                     continue  # catalog not available: cannot judge

@@ -102,11 +102,16 @@ def install(target: Path, components: list[str], skills: list[str] | None = None
             shutil.copy2(src, dst)
         lock["files"][rel] = _sha(src)
         written.append(rel)
-    lock.update({"library": "JMBorrill/Agent-Library", "version": __version__, "skills": chosen, "components": components})
+    # merge with earlier installs: a later "--components catalog" must not claim skills it did not install
+    prev_skills = set(lock.get("skills", []))
+    prev_components = set(lock.get("components", []))
+    lock.update({"library": "JMBorrill/Agent-Library", "version": __version__,
+                 "skills": sorted(prev_skills | (set(chosen) if "skills" in components else set())),
+                 "components": sorted(prev_components | set(components))})
     if not dry_run:
         lock_path.write_text(json.dumps(lock, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     lines = [f"{'Would install' if dry_run else 'Installed'} into {target}",
-             f"  skills: {', '.join(chosen)}",
+             f"  skills: {', '.join(chosen) if 'skills' in components else '(skills component not selected)'}",
              f"  written: {len(written)}  unchanged: {len(unchanged)}  skipped (locally modified): {len(skipped)}"]
     lines += [f"    skipped {s} (use --force to overwrite)" for s in skipped]
     return "\n".join(lines)

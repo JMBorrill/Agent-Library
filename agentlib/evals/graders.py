@@ -47,6 +47,9 @@ class _Check:
         for key in cls.required:
             if key not in chk:
                 raise KeyError(f"missing '{key}'")
+        if "values" in chk and (not isinstance(chk["values"], list) or not chk["values"]):
+            # a bare string would be iterated character by character
+            raise TypeError("'values' must be a non-empty list")
 
     @classmethod
     def run(cls, output: str, chk: dict) -> CheckResult:  # pragma: no cover - abstract
@@ -95,7 +98,7 @@ class Regex(_Check):
 
     @classmethod
     def run(cls, output, chk):
-        matches = re.findall(chk["pattern"], output, re.M | re.I)
+        matches = [m.group(0) for m in re.finditer(chk["pattern"], output, re.M | re.I)]
         need = int(chk.get("count", 1))
         return CheckResult("regex", len(matches) >= need, f"{len(matches)} match(es) of /{chk['pattern']}/ (need {need})")
 
@@ -127,7 +130,7 @@ class Ids(_Check):
 
     @classmethod
     def run(cls, output, chk):
-        found = set(re.findall(chk["pattern"], output))
+        found = {m.group(0) for m in re.finditer(chk["pattern"], output)}  # whole match, not capture groups
         need = int(chk.get("min", 1))
         return CheckResult("ids", len(found) >= need, f"{len(found)} distinct ids (need {need})")
 

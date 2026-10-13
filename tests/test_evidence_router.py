@@ -123,3 +123,17 @@ def test_ignore_marker_and_multiword_locator(lib):
     cat["items"].append({"id": "PW 7.1", "text": "x", "group": "PW", "citation": {"pdf_page": 24}})
     (lib / "catalog" / "nist-ssdf.json").write_text(json.dumps(cat))
     assert evidence.check_document("[nist-ssdf PW 7.1, p. 24]", lib) == []
+
+
+def test_router_matches_versioned_and_prefix_phrases():
+    res = {r["skill"]: r for r in router.route("SWE-033 compliance under NPR 7150.2D and NASA-STD-8739.8B")}
+    assert "swe-" in res["nasa-software-engineering"]["signals"]
+    assert "7150.2" in res["nasa-software-engineering"]["signals"]
+    assert "8739.8" in res["nasa-software-assurance"]["signals"]
+    assert not router._phrase_hit("pdr", " pdrs ")
+
+
+def test_asvs_version_string_not_an_identifier(root):
+    if not (root / "catalog" / "owasp-asvs-5.json").is_file():
+        pytest.skip("ASVS catalog not present")
+    assert evidence.check_document("Assessed against OWASP ASVS V5.0.0 [owasp-asvs V6.2.1, p. 46].", root) == []

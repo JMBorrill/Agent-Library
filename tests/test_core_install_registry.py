@@ -38,3 +38,14 @@ def test_install_dry_run_writes_nothing(tmp_path, root):
 def test_cli_list_and_validate(capsys):
     assert main(["list", "skills"]) == 0
     assert "SKILLS" in capsys.readouterr().out
+
+
+def test_lock_merges_partial_installs(tmp_path, root):
+    target = tmp_path / "repo"
+    target.mkdir()
+    install(target, ["skills"], skills=["owasp-asvs"], root=root)
+    report = install(target, ["catalog"], root=root)
+    lock = json.loads((target / LOCK_NAME).read_text())
+    assert lock["skills"] == ["owasp-asvs"]
+    assert lock["components"] == ["catalog", "skills"]
+    assert "not selected" in report

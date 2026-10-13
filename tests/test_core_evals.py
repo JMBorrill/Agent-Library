@@ -75,3 +75,14 @@ def test_offline_golden_and_negative(tmp_path):
 def test_all_repository_suites_pass_offline(root):
     failures = [r for s in discover_suites(root) for r in run_offline(s) if not r.passed]
     assert not failures, failures
+
+
+def test_values_must_be_a_list():
+    with pytest.raises(TypeError):
+        graders.Contains.validate({"type": "contains", "values": "Net Present Social Value"})
+
+
+def test_ids_and_regex_count_whole_matches_with_groups():
+    text = "PO.1.1 PO.1.2 PW.7.1 PW.7.2 RV.1.1"
+    assert graders.Ids.run(text, {"pattern": r"\b(PO|PS|PW|RV)\.\d+\.\d+\b", "min": 5}).passed
+    assert graders.Regex.run(text, {"pattern": r"(PO)\.\d", "count": 2}).passed

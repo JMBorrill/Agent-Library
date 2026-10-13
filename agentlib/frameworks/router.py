@@ -65,7 +65,10 @@ def _tokens(text: str) -> set[str]:
 
 
 def _phrase_hit(phrase: str, text: str) -> bool:
-    return re.search(r"(?<![a-z0-9])" + re.escape(phrase) + r"(?![a-z0-9])", text) is not None
+    """Whole-word match. Phrases ending in punctuation ("swe-") or a version number ("7150.2")
+    may be followed by more characters ("swe-033", "7150.2d")."""
+    tail = "" if not phrase[-1].isalpha() else r"(?![a-z0-9])"
+    return re.search(r"(?<![a-z0-9])" + re.escape(phrase) + tail, text) is not None
 
 
 def route(problem: str, top: int = 5) -> list[dict]:

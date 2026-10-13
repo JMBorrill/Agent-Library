@@ -84,8 +84,16 @@ def _check_links(root: Path, md_path: Path, body: str) -> list[Issue]:
     return issues
 
 
+FENCE_RE = re.compile(r"^(```|~~~).*?^\1[^\n]*$", re.M | re.S)
+
+
+def _strip_fences(body: str) -> str:
+    """Remove fenced code blocks so headings inside examples do not count."""
+    return FENCE_RE.sub("", body)
+
+
 def _sections(body: str) -> list[str]:
-    return [m.group(1).strip() for m in re.finditer(r"^##\s+(.+)$", body, re.M)]
+    return [m.group(1).strip() for m in re.finditer(r"^##\s+(.+)$", _strip_fences(body), re.M)]
 
 
 # ---------------------------------------------------------------- skills
@@ -124,9 +132,10 @@ def check_skills(root: Path) -> list[Issue]:
         n_lines = body.count("\n")
         if n_lines > MAX_SKILL_BODY_LINES:
             issues.append(Issue("warning", rel, f"body has {n_lines} lines (> {MAX_SKILL_BODY_LINES}); move detail to references/"))
-        sources_section = _section_text(body, "Sources")
+        sources_section = _section_text(_strip_fences(body), "Sources")
         for sid in md_meta.get("sources", []):
-            if sid not in sources_section:
+            # token match: citing "nist-ai-playbook" must not count as citing "nist-ai"
+            if not re.search(rf"(?<![\w-]){re.escape(sid)}(?![\w-])", sources_section):
                 issues.append(Issue("error", rel, f"source '{sid}' declared in metadata but not cited in '## Sources'"))
         issues += _check_links(root, md, body)
         for extra in skill_dir.rglob("*.md"):

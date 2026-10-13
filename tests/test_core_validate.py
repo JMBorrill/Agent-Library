@@ -162,3 +162,15 @@ def test_repository_validates(root):
     """The real library must be free of validation errors."""
     issues = errors(validate_all(root))
     assert issues == [], "\n".join(map(str, issues))
+
+
+def test_source_citation_is_token_matched(lib):
+    p = lib / "skills" / "demo-skill" / "SKILL.md"
+    p.write_text(SKILL.replace("- nasa-se, Rev 2, p. 1", "- nasa-se-design, Rev 2, p. 1"))
+    assert any("not cited" in i.message for i in errors(check_skills(lib)))
+
+
+def test_headings_in_code_fences_do_not_count(lib):
+    p = lib / "skills" / "demo-skill" / "SKILL.md"
+    p.write_text(SKILL.replace("## Limitations\nx\n", "```md\n## Limitations\n```\n"))
+    assert any("Limitations" in i.message for i in errors(check_skills(lib)))
