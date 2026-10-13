@@ -725,6 +725,13 @@ def lines_of(words: list[dict]) -> dict[int, list[dict]]:
     return result
 
 
+def join_line(prev: str, nxt: str) -> str:
+    """Join two wrapped table lines; a trailing hyphen after a letter is a compound-word break."""
+    if re.search(r"[A-Za-z]-$", prev):
+        return prev + nxt
+    return prev + " " + nxt
+
+
 def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
     """Table 1 rows: SWE -> SA/SS tasks. Columns: section x<120, SWE# 120-160, NPR text 160-415, tasks >=415."""
     stream: list[tuple[int, int, list[dict]]] = []
@@ -732,8 +739,9 @@ def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
         lines = lines_of(std_words(pdf.pages[pno - 1]))
         for t, ln in lines.items():
             txt = " ".join(w["text"] for w in ln)
-            if txt.startswith("Table 1.") or re.match(r"^(NPR SWE NPR 7150\.2 Requirement|7150\.2 #|Section)$", txt):
-                continue
+            if (txt.startswith(("Table 1.", "NPR SWE")) or txt in ("7150.2 #", "Section")
+                    or txt in ("Software Assurance and Software Safety Tasks", "NPR 7150.2 Requirement")):
+                continue  # repeated column-header row
             stream.append((pno, t, ln))
     rows: list[dict] = []
     headings: list[dict] = []
@@ -748,11 +756,9 @@ def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
                    "req_lines": [], "task_lines": []}
             rows.append(cur)
         elif sec and not num:
+            # section heading row (e.g. "3.2 Software Cost Estimation"); it carries no tasks, and task
+            # text on later lines/pages still belongs to the current row
             headings.append({"section": sec[0], "title": " ".join(req), "pdf_page": pno})
-            cur_heading = True  # noqa: F841 - headings end the previous row's requirement text only
-            if cur is not None and req:
-                # heading rows never carry tasks; keep the row open for task continuation on later pages
-                pass
             continue
         if cur is None:
             continue
@@ -761,7 +767,6 @@ def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
         if task:
             cur["task_lines"].append(" ".join(task))
             cur["pages"].add(pno)
-    # multi-line headings: merge "3.6 Software Assurance and Software Independent" + next line handled by title text
     out = []
     for r in rows:
         tasks: list[str] = []
@@ -772,12 +777,12 @@ def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
                 tasks.append(m.group(2))
                 expected += 1
             elif tasks:
-                tasks[-1] += " " + ln
+                tasks[-1] = join_line(tasks[-1], ln)
             else:
                 raise AssertionError(f"SWE-{r['num']}: task text before task 1: {ln!r}")
         out.append({
             "num": r["num"], "section": r["section"], "pdf_page": r["pdf_page"], "pages": sorted(r["pages"]),
-            "npr_text": norm(" ".join(r["req_lines"])), "tasks": [norm(t) for t in tasks],
+            "tasks": [norm(t) for t in tasks],
         })
     return out, headings
 
@@ -839,7 +844,7 @@ def extract_hazard_causes(pdf: pdfplumber.PDF) -> list[dict]:
             if num:
                 cur["causes"].append(body)
             elif body and cur and cur["causes"]:
-                cur["causes"][-1] += " " + body
+                cur["causes"][-1] = join_line(cur["causes"][-1], body)
     for a in areas:
         a["area"] = norm(a["area"])
         a["causes"] = [norm(c) for c in a["causes"]]
@@ -912,10 +917,10 @@ def build_std(npr: dict) -> dict:
                       "Programmable logic device errors", "Flight system time management errors",
                       "Coding, logic, and algorithm failures, algorithm specification errors",
                       "Fault tolerance and fault management errors", "Human-machine interface errors",
-                      "Security and virus errors", "Unknown/Unknowns errors"}
+                      "Security and virus errors", "Unknown/Unknowns errors", "Software processes errors"}
     got_areas = {a["area"] for a in hazards}
     missing = expected_areas - got_areas
-    assert not missing, f"hazard cause areas not found: {missing}; got {got_areas}"
+    assert not missing and len(hazards) == len(expected_areas), f"hazard cause areas: missing {missing}; got {got_areas}"
     for a in hazards:
         assert a["causes"], a["area"]
 
@@ -949,7 +954,6 @@ def build_std(npr: dict) -> dict:
             "text": " ".join(f"{i}. {t}" for i, t in enumerate(r["tasks"], 1)),
             "tasks": [{"n": i, "text": t} for i, t in enumerate(r["tasks"], 1)],
             "safety_related_tasks": sc_related,
-            "npr_requirement_text_in_table": r["npr_text"],
             "citation": {"pdf_page": r["pdf_page"], "printed_page": r["pdf_page"], "section": f"Table 1, {r['section']}"},
             "pages": r["pages"],
         })

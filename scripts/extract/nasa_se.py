@@ -699,11 +699,12 @@ def build_lifecycle(doc: Doc) -> dict:
     # every phase purpose row is on Table 2.2-1 (pp. t221..t221+1)
     doc.require(t221, "Pre-Phase A", "Phase A", "Phase B", "Phase C", "Phase D")
     doc.require(t221 + 1, "Phase E", "Phase F")
+    names = {p[0]: p[1].split(":")[0] for p in PHASES}
     for kid, title, frm, to in KDPS:
         doc.require(fig301, kid.replace("-", " "))
         items.append({"id": kid, "kind": "kdp", "group": "kdps", "title": title,
                       "text": (f"Decision gate at which the decision authority determines readiness to progress from "
-                               f"{frm} to {to}; decisions may carry liens, and a project failing a KDP may retry "
+                               f"{names[frm]} to {names[to]}; decisions may carry liens, and a project failing a KDP may retry "
                                f"after addressing deficiencies or be terminated."),
                       "precedes_phase": to, "follows_phase": frm, "citation": cit(fig301, "3.0"),
                       "definition_citation": cit(kdp_def, "3.0")})
@@ -713,7 +714,7 @@ def build_lifecycle(doc: Doc) -> dict:
         for col, cell in zip(MATURITY_COLUMNS, cells):
             if cell:
                 maturity_by_review[col].append({"product": row.replace("Stakeholder identification and",
-                                                                       "Stakeholder identification and understanding*"),
+                                                                       "Stakeholder identification and [label truncated in source]"),
                                                 "maturity": cell.lstrip("*"), "required": cell.startswith("**")})
     for rid, name, phases, anchor, gtable, purpose, timing, results in REVIEWS:
         if rid == "TRR":
@@ -927,7 +928,7 @@ APPC_GROUPS = [
     ("c4-verifiability", "C.4 Validation: Verifiability/Testability", "Verifiability/Testability"),
     ("c4-data-usage", "C.4 Validation: Data Usage", "Data Usage"),
 ]
-EXPECTED_APPC_ITEMS = 61
+EXPECTED_APPC_ITEMS = 55  # C.1: 3, C.2: 6, C.3: 7, C.4: 39
 
 UNVERIFIABLE_TERMS = ["flexible", "easy", "sufficient", "safe", "ad hoc", "adequate", "accommodate",
                       "user-friendly", "usable", "when required", "if required", "appropriate", "fast", "portable",
@@ -1021,7 +1022,7 @@ def build_checklist(doc: Doc) -> dict:
     for iid, title, fn in METADATA:
         doc.require(t422, title, fn[:60])
         items.append({"id": iid, "group": "metadata", "title": title, "text": fn, "citation": cit(t422, "4.2 (Table 4.2-2)")})
-    box = doc.find("Methods of Verification", 115, 130)
+    box = doc.find("Methods of Verification Analysis: The use of mathematical modeling", 115, 130)
     groups.append({"id": "verification-methods", "title": "Methods of Verification", "parent": None,
                    "citation": cit(box, "5.3")})
     for iid, title, desc in VERIFICATION_METHODS:

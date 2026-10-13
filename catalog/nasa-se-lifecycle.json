@@ -1,0 +1,1800 @@
+{
+  "catalog_id": "nasa-se-lifecycle",
+  "source_id": "nasa-se",
+  "title": "NASA Project Life Cycle, Key Decision Points, Technical Reviews and TRLs",
+  "edition": "NASA/SP-2016-6105 Rev 2 (2016)",
+  "description": "Space flight project life-cycle phases (Pre-Phase A to F), KDPs, the life-cycle technical reviews of Table 6.7-1 (plus TRR), the SE product maturity expected at each review (Table 3.0-1) and the TRL scale (Figure G.4-1), as presented in NASA SE Handbook Rev 2.",
+  "extraction": {
+    "method": "pdftotext -layout of the pinned PDF with anchor-based page location; Table 3.0-1 and Figure G.4-1 transcribed from pdftoppm page renders and cross-checked against recovered text tokens (scripts/extract/nasa_se.py)",
+    "date": "2026-10-13",
+    "fidelity": "paraphrased",
+    "notes": "Phase purposes, review purposes/timing/results and KDP text are paraphrases. TRL descriptions and product-maturity cells are verbatim from the figures. Entrance and success criteria for each review are NOT reproduced in the handbook; it points to NPR 7123.1 Appendix G tables, recorded here as 'criteria_reference'. TRR is not a row of Table 6.7-1; it is taken from the Section 5.3 note and the Appendix B glossary. Life cycles for IT (NPR 7120.7), R&T (NPR 7120.8) and software (NPR 7150.2) differ and are not modelled.",
+    "pages_reviewed": "22-23, 32-56, 60, 122, 196-205, 246, 263-268"
+  },
+  "groups": [
+    {
+      "id": "phases",
+      "title": "Project life-cycle phases (Pre-Phase A to F)",
+      "citation": {
+        "pdf_page": 22,
+        "printed_page": 9,
+        "section": "2.2"
+      }
+    },
+    {
+      "id": "kdps",
+      "title": "Key Decision Points",
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "reviews",
+      "title": "Life-cycle technical reviews",
+      "citation": {
+        "pdf_page": 200,
+        "printed_page": 187,
+        "section": "6.7"
+      }
+    },
+    {
+      "id": "trl",
+      "title": "Technology Readiness Levels",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "pre-phase-a",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Pre-Phase A: Concept Studies",
+      "stage": "Pre-Formulation",
+      "text": "Produce a broad spectrum of mission ideas and alternatives from which new programs/projects can be selected; determine feasibility, develop mission concepts, draft system-level requirements, assess performance/cost/schedule feasibility and identify technology needs and scope.",
+      "typical_outcomes": "Feasible system concepts (simulations, analyses, study reports, models, mockups)",
+      "key_activities": [
+        "Identify key stakeholders and capture expectations as needs, goals and objectives (NGOs)",
+        "Define measures of effectiveness",
+        "Develop and baseline the Concept of Operations",
+        "Perform trade-offs and analyses of alternatives",
+        "Identify risk classification and initial technical risks",
+        "Develop preliminary SEMP and baseline the Technology Development Plan",
+        "Define preliminary verification and validation approach",
+        "Prepare proposals incl. high-level WBS and ROM cost, schedule and risk estimates"
+      ],
+      "reviews": [
+        "MCR",
+        "Informal proposal review"
+      ],
+      "section_citation": {
+        "pdf_page": 37,
+        "printed_page": 24,
+        "section": "3.3"
+      },
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 26,
+        "section": "3.3"
+      }
+    },
+    {
+      "id": "phase-a",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Phase A: Concept and Technology Development",
+      "stage": "Formulation",
+      "text": "Determine the feasibility and desirability of the suggested system and establish an initial baseline; develop the final mission concept, system-level requirements, needed technology developments and technical management plans.",
+      "typical_outcomes": "System concept definition (simulations, analyses, engineering models and mockups, trade study definition)",
+      "key_activities": [
+        "Develop and baseline top-level requirements and constraints incl. internal and external interfaces",
+        "Allocate system requirements to functions and to the next lower level",
+        "Validate requirements",
+        "Baseline the SEMP, HSI Plan and control plans (risk, CM, data management, S&MA, software)",
+        "Develop preliminary Verification and Validation Plan",
+        "Develop and baseline mission architecture; perform and archive trade studies",
+        "Provide technical cost estimate and range; define the WBS; develop SOWs",
+        "Identify, analyze and update risks"
+      ],
+      "reviews": [
+        "SRR",
+        "MDR/SDR"
+      ],
+      "section_citation": {
+        "pdf_page": 39,
+        "printed_page": 26,
+        "section": "3.4"
+      },
+      "citation": {
+        "pdf_page": 41,
+        "printed_page": 28,
+        "section": "3.4"
+      }
+    },
+    {
+      "id": "phase-b",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Phase B: Preliminary Design and Technology Completion",
+      "stage": "Formulation",
+      "text": "Define the project in enough detail to establish an initial baseline capable of meeting mission needs; develop end-product and enabling-product requirements and a preliminary design for each system structure end product.",
+      "typical_outcomes": "Mockups, trade study results, specification and interface documents, prototypes",
+      "key_activities": [
+        "Develop the preliminary design incl. internal and external interfaces; select a preliminary design solution",
+        "Develop operations plans based on the matured ConOps",
+        "Report technology development results",
+        "Update cost range estimate and schedule data",
+        "Identify and update risks",
+        "Develop preliminary orbital debris assessment, decommissioning and disposal plans"
+      ],
+      "reviews": [
+        "PDR",
+        "Safety review"
+      ],
+      "section_citation": {
+        "pdf_page": 42,
+        "printed_page": 29,
+        "section": "3.5"
+      },
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 30,
+        "section": "3.5"
+      }
+    },
+    {
+      "id": "phase-c",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Phase C: Final Design and Fabrication",
+      "stage": "Implementation",
+      "text": "Complete the detailed design of the system (including operations systems), fabricate hardware and code software; generate final designs for each system structure end product.",
+      "typical_outcomes": "End-product detailed designs, component fabrication and software development",
+      "key_activities": [
+        "Develop and document hardware and software detailed designs; fully document final design and data package",
+        "Baseline interface definitions, implementation, integration, V&V and operations plans",
+        "Develop/refine procedures for integration, manufacturing/assembly and V&V",
+        "Fabricate (or code) the product",
+        "Identify and update risks"
+      ],
+      "reviews": [
+        "CDR",
+        "PRR",
+        "SIR",
+        "Safety review"
+      ],
+      "section_citation": {
+        "pdf_page": 44,
+        "printed_page": 31,
+        "section": "3.6"
+      },
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 32,
+        "section": "3.6"
+      }
+    },
+    {
+      "id": "phase-d",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Phase D: System Assembly, Integration and Test, Launch",
+      "stage": "Implementation",
+      "text": "Assemble and integrate the system (hardware, software and humans) while developing confidence that it meets the system requirements; launch and prepare for operations; transition to use.",
+      "typical_outcomes": "Operations-ready system end product with supporting related enabling products",
+      "key_activities": [
+        "Integrate/assemble components according to the integration plans",
+        "Perform verification and validation per the V&V Plan (qualification, acceptance, end-to-end tests)",
+        "Resolve V&V discrepancies and baseline the verification and validation report",
+        "Prepare and baseline operator's and maintenance manuals and operations handbook",
+        "Train operators and maintainers; confirm readiness for flight",
+        "Document lessons learned"
+      ],
+      "reviews": [
+        "TRR",
+        "SAR",
+        "ORR",
+        "FRR",
+        "System functional and physical configuration audits",
+        "Safety review"
+      ],
+      "section_citation": {
+        "pdf_page": 46,
+        "printed_page": 33,
+        "section": "3.7"
+      },
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 34,
+        "section": "3.7"
+      }
+    },
+    {
+      "id": "phase-e",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Phase E: Operations and Sustainment",
+      "stage": "Implementation",
+      "text": "Conduct the mission to meet the initially identified need and maintain support for that need; implement the mission operations plan.",
+      "typical_outcomes": "Desired system",
+      "key_activities": [
+        "Conduct the prime mission(s) and provide sustaining support",
+        "Collect and analyse engineering and science data",
+        "Address problem/failure reports; identify and update risks",
+        "Apply for mission extensions if warranted",
+        "Prepare for deactivation and decommissioning; capture lessons learned"
+      ],
+      "reviews": [
+        "PLAR",
+        "CERR",
+        "PFAR",
+        "DR",
+        "System upgrade review",
+        "Safety review"
+      ],
+      "section_citation": {
+        "pdf_page": 48,
+        "printed_page": 35,
+        "section": "3.8"
+      },
+      "citation": {
+        "pdf_page": 49,
+        "printed_page": 36,
+        "section": "3.8"
+      }
+    },
+    {
+      "id": "phase-f",
+      "kind": "phase",
+      "group": "phases",
+      "title": "Phase F: Closeout",
+      "stage": "Implementation",
+      "text": "Implement the systems decommissioning/disposal plan developed in Phase E and analyse returned data and any returned samples.",
+      "typical_outcomes": "Product closeout",
+      "key_activities": [
+        "Dispose of the system and supporting processes",
+        "Baseline the mission final report",
+        "Archive data",
+        "Capture lessons learned"
+      ],
+      "reviews": [
+        "DRR"
+      ],
+      "section_citation": {
+        "pdf_page": 50,
+        "printed_page": 37,
+        "section": "3.9"
+      },
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 37,
+        "section": "3.9"
+      }
+    },
+    {
+      "id": "KDP-A",
+      "kind": "kdp",
+      "group": "kdps",
+      "title": "Key Decision Point A",
+      "text": "Decision gate at which the decision authority determines readiness to progress from Pre-Phase A to Phase A; decisions may carry liens, and a project failing a KDP may retry after addressing deficiencies or be terminated.",
+      "precedes_phase": "phase-a",
+      "follows_phase": "pre-phase-a",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 21,
+        "section": "3.0"
+      },
+      "definition_citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "KDP-B",
+      "kind": "kdp",
+      "group": "kdps",
+      "title": "Key Decision Point B",
+      "text": "Decision gate at which the decision authority determines readiness to progress from Phase A to Phase B; decisions may carry liens, and a project failing a KDP may retry after addressing deficiencies or be terminated.",
+      "precedes_phase": "phase-b",
+      "follows_phase": "phase-a",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 21,
+        "section": "3.0"
+      },
+      "definition_citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "KDP-C",
+      "kind": "kdp",
+      "group": "kdps",
+      "title": "Key Decision Point C",
+      "text": "Decision gate at which the decision authority determines readiness to progress from Phase B to Phase C; decisions may carry liens, and a project failing a KDP may retry after addressing deficiencies or be terminated.",
+      "precedes_phase": "phase-c",
+      "follows_phase": "phase-b",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 21,
+        "section": "3.0"
+      },
+      "definition_citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "KDP-D",
+      "kind": "kdp",
+      "group": "kdps",
+      "title": "Key Decision Point D",
+      "text": "Decision gate at which the decision authority determines readiness to progress from Phase C to Phase D; decisions may carry liens, and a project failing a KDP may retry after addressing deficiencies or be terminated.",
+      "precedes_phase": "phase-d",
+      "follows_phase": "phase-c",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 21,
+        "section": "3.0"
+      },
+      "definition_citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "KDP-E",
+      "kind": "kdp",
+      "group": "kdps",
+      "title": "Key Decision Point E",
+      "text": "Decision gate at which the decision authority determines readiness to progress from Phase D to Phase E; decisions may carry liens, and a project failing a KDP may retry after addressing deficiencies or be terminated.",
+      "precedes_phase": "phase-e",
+      "follows_phase": "phase-d",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 21,
+        "section": "3.0"
+      },
+      "definition_citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "KDP-F",
+      "kind": "kdp",
+      "group": "kdps",
+      "title": "Key Decision Point F",
+      "text": "Decision gate at which the decision authority determines readiness to progress from Phase E to Phase F; decisions may carry liens, and a project failing a KDP may retry after addressing deficiencies or be terminated.",
+      "precedes_phase": "phase-f",
+      "follows_phase": "phase-e",
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 21,
+        "section": "3.0"
+      },
+      "definition_citation": {
+        "pdf_page": 32,
+        "printed_page": 19,
+        "section": "3.0"
+      }
+    },
+    {
+      "id": "MCR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "MCR",
+      "title": "Mission Concept Review",
+      "aliases": [],
+      "phases": [
+        "pre-phase-a"
+      ],
+      "text": "Affirm the mission need and evaluate the proposed objectives and the concept for meeting them.",
+      "timing": "Completed before entering the concept development phase (Phase A).",
+      "results": "Supports a determination that the mission meets the customer need and merits further study as a candidate Phase A effort.",
+      "criteria_reference": "NPR 7123.1 Table G-3",
+      "citation": {
+        "pdf_page": 200,
+        "printed_page": 187,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Stakeholder identification and [label truncated in source]",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Concept definition",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Measure of Effectiveness definition",
+          "maturity": "Approve",
+          "required": true
+        },
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Initial",
+          "required": false
+        },
+        {
+          "product": "SEMP",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Requirements",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation plans",
+          "maturity": "Approach",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "SRR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "SRR",
+      "title": "System Requirements Review",
+      "aliases": [],
+      "phases": [
+        "phase-a"
+      ],
+      "text": "Evaluate the functional and performance requirements defined for the system and the preliminary program/project plan, and ensure that the requirements and selected concept will satisfy the mission.",
+      "timing": "Conducted during concept development (Phase A), before the SDR or MDR.",
+      "results": "Freezes program/project requirements and leads to a formal decision to proceed with proposal request preparations for project implementation. (Program-level SRR criteria: NPR 7123.1 Table G-1.)",
+      "criteria_reference": "NPR 7123.1 Table G-4",
+      "citation": {
+        "pdf_page": 200,
+        "printed_page": 187,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Stakeholder identification and [label truncated in source]",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Concept definition",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "SEMP",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Requirements",
+          "maturity": "Baseline",
+          "required": true
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "MDR-SDR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "MDR/SDR",
+      "title": "Mission Definition Review / System Definition Review",
+      "aliases": [
+        "MDR",
+        "SDR",
+        "MDR/SDR"
+      ],
+      "phases": [
+        "phase-a"
+      ],
+      "text": "Evaluate whether the proposed architecture is responsive to the functional and performance requirements and that the requirements have been allocated to all functional elements of the mission/system (called MDR for robotic projects, SDR for human flight projects).",
+      "timing": "Conducted during concept development (Phase A), prior to KDP B and the start of preliminary design.",
+      "results": "Supports the decision to further develop the architecture/design and any needed technology; the system and its operation are understood well enough to warrant design and acquisition of end items. (Program-level criteria: NPR 7123.1 Table G-2.)",
+      "criteria_reference": "NPR 7123.1 Table G-5",
+      "citation": {
+        "pdf_page": 201,
+        "printed_page": 188,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Stakeholder identification and [label truncated in source]",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Concept definition",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "SEMP",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Requirements",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Technical Performance Measures definition",
+          "maturity": "Approve",
+          "required": true
+        },
+        {
+          "product": "Architecture definition",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Allocation of requirements to next lower level",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Required leading indicator trends",
+          "maturity": "Initial",
+          "required": true
+        },
+        {
+          "product": "Design solution definition",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Interface definition(s)",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Implementation plans (Make/code, buy, reuse)",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Integration plans",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation plans",
+          "maturity": "Preliminary",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "PDR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "PDR",
+      "title": "Preliminary Design Review",
+      "aliases": [],
+      "phases": [
+        "phase-b"
+      ],
+      "text": "Demonstrate that the preliminary design meets all system requirements with acceptable risk and within cost and schedule constraints: correct design options selected, interfaces identified, verification methods described, critical system-wide issues resolved.",
+      "timing": "Near the completion of preliminary design (Phase B), as the last review in the Formulation Phase.",
+      "results": "The design-to baseline is approved and the project is authorized to proceed into Implementation and toward final design.",
+      "criteria_reference": "NPR 7123.1 Table G-6",
+      "citation": {
+        "pdf_page": 201,
+        "printed_page": 188,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Stakeholder identification and [label truncated in source]",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Concept definition",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "SEMP",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Requirements",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Required leading indicator trends",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Design solution definition",
+          "maturity": "Preliminary",
+          "required": true
+        },
+        {
+          "product": "Interface definition(s)",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "Implementation plans (Make/code, buy, reuse)",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "Integration plans",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation plans",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "Operations plans",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "Decommissioning plans",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Preliminary",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "CDR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "CDR",
+      "title": "Critical Design Review",
+      "aliases": [],
+      "phases": [
+        "phase-c"
+      ],
+      "text": "Demonstrate that design maturity supports proceeding with full-scale fabrication, assembly, integration and test, and that the technical effort is on track to meet mission performance requirements within cost and schedule.",
+      "timing": "During the final design phase (Phase C).",
+      "results": "The build-to baseline, production and verification plans are approved; coding of deliverable software and system qualification testing and integration are authorized; open issues have closure actions.",
+      "criteria_reference": "NPR 7123.1 Table G-7",
+      "citation": {
+        "pdf_page": 201,
+        "printed_page": 188,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Concept definition",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "SEMP",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Requirements",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Required leading indicator trends",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Design solution definition",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Interface definition(s)",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Implementation plans (Make/code, buy, reuse)",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Integration plans",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation plans",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Transportation criteria and instructions",
+          "maturity": "Initial",
+          "required": false
+        },
+        {
+          "product": "Operations plans",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Operational procedures",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Decommissioning plans",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Preliminary",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "PRR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "PRR",
+      "title": "Production Readiness Review",
+      "aliases": [],
+      "phases": [
+        "phase-c"
+      ],
+      "text": "For projects producing multiple or similar systems (more than three, or as determined by the project): determine readiness to efficiently produce the required number of systems, with production plans, enabling products and personnel in place.",
+      "timing": "During the final design phase (Phase C).",
+      "results": "The final production build-to baseline, production and verification plans are approved and drawings are released for production.",
+      "criteria_reference": "NPR 7123.1 Table G-8",
+      "citation": {
+        "pdf_page": 202,
+        "printed_page": 189,
+        "section": "6.7 (Table 6.7-1)"
+      }
+    },
+    {
+      "id": "SIR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "SIR",
+      "title": "System Integration Review",
+      "aliases": [],
+      "phases": [
+        "phase-c"
+      ],
+      "text": "Ensure segments, components and subsystems are on schedule to be integrated and that integration facilities, support personnel and integration plans and procedures are on schedule.",
+      "timing": "At the end of final design (Phase C), before system assembly, integration and test (Phase D) begins.",
+      "results": "The final as-built baseline and verification plans are approved; drawings released to support integration; integration procedures, GSE, facilities, logistics and personnel ready.",
+      "criteria_reference": "NPR 7123.1 Table G-9",
+      "citation": {
+        "pdf_page": 202,
+        "printed_page": 189,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "SEMP",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Required leading indicator trends",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Design solution definition",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Interface definition(s)",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Integration plans",
+          "maturity": "Update",
+          "required": true
+        },
+        {
+          "product": "Verification and Validation plans",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation results",
+          "maturity": "Initial",
+          "required": true
+        },
+        {
+          "product": "Transportation criteria and instructions",
+          "maturity": "Final",
+          "required": false
+        },
+        {
+          "product": "Operations plans",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Operational procedures",
+          "maturity": "Baseline",
+          "required": false
+        },
+        {
+          "product": "Decommissioning plans",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Preliminary",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "TRR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "TRR",
+      "title": "Test Readiness Review",
+      "aliases": [],
+      "phases": [
+        "phase-d"
+      ],
+      "text": "Ensure that the test article (hardware/software), test facility, support personnel and test procedures are ready for testing; held (informally early, more formally later) to assess readiness for verification and validation, with tailored entrance/success criteria.",
+      "timing": "Before verification/validation test events; typically several TRRs, listed among Phase D reviews.",
+      "results": "Confirmed readiness and availability of test ranges, facilities, trained testers, instrumentation, integration labs, support equipment and other enabling products.",
+      "criteria_reference": "Tailored by the project (TRRs are an activity of the Technical Assessment Process); see NPR 7123.1 for any required criteria.",
+      "glossary_citation": {
+        "pdf_page": 246,
+        "printed_page": 233,
+        "section": "Appendix B"
+      },
+      "citation": {
+        "pdf_page": 122,
+        "printed_page": 109,
+        "section": "5.3.1.2.1"
+      }
+    },
+    {
+      "id": "SAR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "SAR",
+      "title": "System Acceptance Review",
+      "aliases": [
+        "pre-ship review"
+      ],
+      "phases": [
+        "phase-d"
+      ],
+      "text": "Verify the completeness of specific end products relative to their expected maturity, assess compliance with stakeholder expectations and ensure sufficient technical maturity to authorize shipment to the operational facility or launch site.",
+      "timing": "Phase D (generally applies to human space flight; robotic projects may hold a pre-ship review).",
+      "results": "The system is accepted by the buyer and shipment and installation for operational use are authorized.",
+      "criteria_reference": "NPR 7123.1 Table G-11",
+      "citation": {
+        "pdf_page": 202,
+        "printed_page": 189,
+        "section": "6.7 (Table 6.7-1)"
+      }
+    },
+    {
+      "id": "ORR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "ORR",
+      "title": "Operational Readiness Review",
+      "aliases": [],
+      "phases": [
+        "phase-d"
+      ],
+      "text": "Examine the actual system characteristics and operating procedures; ensure all flight and ground hardware, software, personnel, procedures and user documentation reflect the deployed state.",
+      "timing": "Phase D, before operations.",
+      "results": "The system is ready to assume normal operations.",
+      "criteria_reference": "NPR 7123.1 Table G-12",
+      "citation": {
+        "pdf_page": 203,
+        "printed_page": 190,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Design solution definition",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation results",
+          "maturity": "Preliminary",
+          "required": true
+        },
+        {
+          "product": "Transportation criteria and instructions",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Operations plans",
+          "maturity": "Update",
+          "required": true
+        },
+        {
+          "product": "Operational procedures",
+          "maturity": "Update",
+          "required": true
+        },
+        {
+          "product": "Certification (flight/use)",
+          "maturity": "Preliminary",
+          "required": false
+        },
+        {
+          "product": "Decommissioning plans",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Baseline",
+          "required": true
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "FRR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "FRR",
+      "title": "Flight Readiness Review",
+      "aliases": [
+        "MRR"
+      ],
+      "phases": [
+        "phase-d"
+      ],
+      "text": "Examine tests, demonstrations, analyses and audits that determine readiness for a safe and successful flight or launch and subsequent flight operations; ensure flight and ground systems, personnel and procedures are operationally ready.",
+      "timing": "Phase D, before launch (Phase D activities focus on preparing for the FRR/MRR).",
+      "results": "Technical and procedural maturity exists for launch and flight authorization and, in some cases, initiation of operations.",
+      "criteria_reference": "NPR 7123.1 Table G-13",
+      "citation": {
+        "pdf_page": 203,
+        "printed_page": 190,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Verification and Validation results",
+          "maturity": "Baseline",
+          "required": true
+        },
+        {
+          "product": "Operational procedures",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Certification (flight/use)",
+          "maturity": "Final",
+          "required": true
+        },
+        {
+          "product": "Decommissioning plans",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Update",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "PLAR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "PLAR",
+      "title": "Post-Launch Assessment Review",
+      "aliases": [],
+      "phases": [
+        "phase-e"
+      ],
+      "text": "Post-deployment evaluation of readiness to proceed with full, routine operations, including transfer of responsibility from the development to the operations organization.",
+      "timing": "Typically after early flight operations and initial checkout.",
+      "results": "The system is ready to assume in-space operations.",
+      "criteria_reference": "NPR 7123.1 Table G-14",
+      "citation": {
+        "pdf_page": 203,
+        "printed_page": 190,
+        "section": "6.7 (Table 6.7-1)"
+      }
+    },
+    {
+      "id": "CERR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "CERR",
+      "title": "Critical Event Readiness Review",
+      "aliases": [],
+      "phases": [
+        "phase-e"
+      ],
+      "text": "Confirm readiness to execute the mission's critical activities during flight operations (e.g., orbit insertion, rendezvous and docking, re-entry, scientific encounters).",
+      "timing": "Before each critical event (established at the discretion of the program).",
+      "results": "The system is ready to assume (or resume) in-space operations.",
+      "criteria_reference": "NPR 7123.1 Table G-15",
+      "citation": {
+        "pdf_page": 203,
+        "printed_page": 190,
+        "section": "6.7 (Table 6.7-1)"
+      }
+    },
+    {
+      "id": "PFAR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "PFAR",
+      "title": "Post-Flight Assessment Review",
+      "aliases": [],
+      "phases": [
+        "phase-e"
+      ],
+      "text": "Evaluate flight activities after recovery, identify all anomalies and determine actions to mitigate or resolve them for future flights (human space flight).",
+      "timing": "After flight and recovery.",
+      "results": "Report documenting flight performance and recommendations is complete; all anomalies documented and dispositioned.",
+      "criteria_reference": "NPR 7123.1 Table G-16",
+      "citation": {
+        "pdf_page": 204,
+        "printed_page": 191,
+        "section": "6.7 (Table 6.7-1)"
+      }
+    },
+    {
+      "id": "DR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "DR",
+      "title": "Decommissioning Review",
+      "aliases": [],
+      "phases": [
+        "phase-e"
+      ],
+      "text": "Confirm the decision to terminate or decommission the system and assess readiness for safe decommissioning and disposal of system assets.",
+      "timing": "Normally near the end of routine mission operations; may be advanced or delayed by events or extensions.",
+      "results": "Decommissioning and disposal of system items and processes are appropriate and effective.",
+      "criteria_reference": "NPR 7123.1 Table G-17",
+      "citation": {
+        "pdf_page": 204,
+        "printed_page": 191,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Decommissioning plans",
+          "maturity": "Update",
+          "required": true
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Update",
+          "required": false
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "DRR",
+      "kind": "review",
+      "group": "reviews",
+      "acronym": "DRR",
+      "title": "Disposal Readiness Review",
+      "aliases": [],
+      "phases": [
+        "phase-f"
+      ],
+      "text": "Confirm readiness for the final disposal of the system assets.",
+      "timing": "Held as major assets are ready for final disposal.",
+      "results": "Disposal of system items and processes is appropriate and effective.",
+      "criteria_reference": "NPR 7123.1 Table G-18",
+      "citation": {
+        "pdf_page": 204,
+        "printed_page": 191,
+        "section": "6.7 (Table 6.7-1)"
+      },
+      "product_maturity": [
+        {
+          "product": "Cost and schedule for technical",
+          "maturity": "Update",
+          "required": false
+        },
+        {
+          "product": "Disposal plans",
+          "maturity": "Update",
+          "required": true
+        }
+      ],
+      "product_maturity_citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0 (Table 3.0-1)"
+      }
+    },
+    {
+      "id": "TRL-1",
+      "kind": "trl",
+      "group": "trl",
+      "level": 1,
+      "title": "TRL 1",
+      "text": "Basic principles observed and reported",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-2",
+      "kind": "trl",
+      "group": "trl",
+      "level": 2,
+      "title": "TRL 2",
+      "text": "Technology concept and/or application formulated",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-3",
+      "kind": "trl",
+      "group": "trl",
+      "level": 3,
+      "title": "TRL 3",
+      "text": "Analytical and experimental critical function and/or characteristic proof-of-concept",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-4",
+      "kind": "trl",
+      "group": "trl",
+      "level": 4,
+      "title": "TRL 4",
+      "text": "Component and/or breadboard validation in laboratory environment",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-5",
+      "kind": "trl",
+      "group": "trl",
+      "level": 5,
+      "title": "TRL 5",
+      "text": "Component and/or breadboard validation in relevant environment",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-6",
+      "kind": "trl",
+      "group": "trl",
+      "level": 6,
+      "title": "TRL 6",
+      "text": "System/subsystem model or prototype demonstration in a relevant environment (ground or space)",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-7",
+      "kind": "trl",
+      "group": "trl",
+      "level": 7,
+      "title": "TRL 7",
+      "text": "System prototype demonstration in a target/space environment",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-8",
+      "kind": "trl",
+      "group": "trl",
+      "level": 8,
+      "title": "TRL 8",
+      "text": "Actual system completed and \"flight qualified\" through test and demonstration (ground or flight)",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    },
+    {
+      "id": "TRL-9",
+      "kind": "trl",
+      "group": "trl",
+      "level": 9,
+      "title": "TRL 9",
+      "text": "Actual system \"flight proven\" through successful mission operations",
+      "citation": {
+        "pdf_page": 264,
+        "printed_page": 251,
+        "section": "G.4 (Figure G.4-1)"
+      }
+    }
+  ],
+  "parameters": {
+    "se_product_maturity": {
+      "title": "Table 3.0-1 SE Product Maturity from NPR 7123.1",
+      "columns": [
+        "MCR",
+        "SRR",
+        "MDR/SDR",
+        "PDR",
+        "CDR",
+        "SIR",
+        "ORR",
+        "FRR",
+        "DR",
+        "DRR"
+      ],
+      "rows": [
+        {
+          "product": "Stakeholder identification and",
+          "cells": [
+            "**Baseline",
+            "Update",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Concept definition",
+          "cells": [
+            "**Baseline",
+            "Update",
+            "Update",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Measure of Effectiveness definition",
+          "cells": [
+            "**Approve",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Cost and schedule for technical",
+          "cells": [
+            "Initial",
+            "Update",
+            "Update",
+            "Baseline",
+            "Update",
+            "Update",
+            "Update",
+            "Update",
+            "Update",
+            "Update"
+          ]
+        },
+        {
+          "product": "SEMP",
+          "cells": [
+            "Preliminary",
+            "**Baseline",
+            "**Baseline",
+            "Update",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Requirements",
+          "cells": [
+            "Preliminary",
+            "**Baseline",
+            "Update",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Technical Performance Measures definition",
+          "cells": [
+            null,
+            null,
+            "**Approve",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Architecture definition",
+          "cells": [
+            null,
+            null,
+            "**Baseline",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Allocation of requirements to next lower level",
+          "cells": [
+            null,
+            null,
+            "**Baseline",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Required leading indicator trends",
+          "cells": [
+            null,
+            null,
+            "**Initial",
+            "Update",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Design solution definition",
+          "cells": [
+            null,
+            null,
+            "Preliminary",
+            "**Preliminary",
+            "**Baseline",
+            "Update",
+            "Update",
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Interface definition(s)",
+          "cells": [
+            null,
+            null,
+            "Preliminary",
+            "Baseline",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Implementation plans (Make/code, buy, reuse)",
+          "cells": [
+            null,
+            null,
+            "Preliminary",
+            "Baseline",
+            "Update",
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Integration plans",
+          "cells": [
+            null,
+            null,
+            "Preliminary",
+            "Baseline",
+            "Update",
+            "**Update",
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Verification and Validation plans",
+          "cells": [
+            "Approach",
+            null,
+            "Preliminary",
+            "Baseline",
+            "Update",
+            "Update",
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Verification and Validation results",
+          "cells": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            "**Initial",
+            "**Preliminary",
+            "**Baseline",
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Transportation criteria and instructions",
+          "cells": [
+            null,
+            null,
+            null,
+            null,
+            "Initial",
+            "Final",
+            "Update",
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Operations plans",
+          "cells": [
+            null,
+            null,
+            null,
+            "Baseline",
+            "Update",
+            "Update",
+            "**Update",
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Operational procedures",
+          "cells": [
+            null,
+            null,
+            null,
+            null,
+            "Preliminary",
+            "Baseline",
+            "**Update",
+            "Update",
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Certification (flight/use)",
+          "cells": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            "Preliminary",
+            "**Final",
+            null,
+            null
+          ]
+        },
+        {
+          "product": "Decommissioning plans",
+          "cells": [
+            null,
+            null,
+            null,
+            "Preliminary",
+            "Preliminary",
+            "Preliminary",
+            "**Baseline",
+            "Update",
+            "**Update",
+            null
+          ]
+        },
+        {
+          "product": "Disposal plans",
+          "cells": [
+            null,
+            null,
+            null,
+            "Preliminary",
+            "Preliminary",
+            "Preliminary",
+            "**Baseline",
+            "Update",
+            "Update",
+            "**Update"
+          ]
+        }
+      ],
+      "legend": "'**' prefix = item is a required product for that review",
+      "footnote": "SEMP is baselined at SRR for projects, tightly coupled programs and single-project programs, and at MDR/SDR for uncoupled and loosely coupled programs.",
+      "note": "The first row label is truncated in the source table ('Stakeholder identification and').",
+      "citation": {
+        "pdf_page": 35,
+        "printed_page": 22,
+        "section": "3.0"
+      }
+    },
+    "technical_assessment_criteria": {
+      "items": [
+        "Alignment with and contribution to Agency strategic goals",
+        "Adequacy of management approach",
+        "Adequacy of technical approach",
+        "Adequacy of the integrated cost and schedule estimates and funding strategy",
+        "Adequacy and availability of non-budgetary resources",
+        "Adequacy of the risk management approach"
+      ],
+      "citation": {
+        "pdf_page": 196,
+        "printed_page": 183,
+        "section": "6.7.1"
+      }
+    },
+    "review_activities": {
+      "items": [
+        "Identify, plan and conduct phase-to-phase technical reviews",
+        "Establish each review's purpose, objective, and entry and success criteria",
+        "Establish the makeup of the review team",
+        "Identify and resolve action items resulting from the review"
+      ],
+      "citation": {
+        "pdf_page": 199,
+        "printed_page": 186,
+        "section": "6.7.1.2.2"
+      }
+    },
+    "trl_rules": {
+      "system_trl_is_lowest": "The TRL of a system is determined by the lowest TRL present in it; elements never integrated as a unit lower the unit's TRL.",
+      "system_trl_citation": {
+        "pdf_page": 268,
+        "printed_page": 255,
+        "section": "G.4"
+      },
+      "heritage": "If the architecture and environment have changed, a heritage system's TRL drops to TRL 5, at least initially; further analysis may justify TRL 6 or 7 but not TRL 9.",
+      "heritage_citation": {
+        "pdf_page": 265,
+        "printed_page": 252,
+        "section": "G.4"
+      },
+      "typical_integration_threshold": "Typically TRL 6 (technology demonstrated in a relevant environment) is required for a technology to be integrated into an SE process (glossary).",
+      "typical_integration_threshold_citation": {
+        "pdf_page": 246,
+        "printed_page": 233,
+        "section": "Appendix B"
+      }
+    },
+    "tailoring": {
+      "definition": "Tailoring seeks relief from SE NPR requirements (results in deviations/waivers documented e.g. via the Compliance Matrix in the SEMP); customization modifies recommended practices and needs no waiver, but significant customization should be documented in the SEMP.",
+      "definition_citation": {
+        "pdf_page": 52,
+        "printed_page": 39,
+        "section": "3.11.1"
+      },
+      "criteria": [
+        "Type of mission",
+        "Criticality of the mission in meeting the Agency Strategic Plan",
+        "Acceptable risk level",
+        "National significance",
+        "Complexity",
+        "Mission lifetime",
+        "Cost of mission",
+        "Launch constraints"
+      ],
+      "criteria_citation": {
+        "pdf_page": 53,
+        "printed_page": 40,
+        "section": "3.11.2"
+      },
+      "ways": [
+        "Eliminate a requirement that does not apply",
+        "Eliminate a requirement that is overly burdensome",
+        "Scale the requirement to balance implementation cost and project risk",
+        "Customize: adjust how each of the 17 SE processes is implemented",
+        "Customize: adjust the formality and timing of reviews"
+      ],
+      "ways_citation": {
+        "pdf_page": 55,
+        "printed_page": 42,
+        "section": "3.11.4"
+      },
+      "combining_reviews": "A small project may combine SRR and SDR/MDR without an SE NPR waiver as long as the intent of both is accomplished; dropping a required review needs a waiver or deviation; the governing PM NPR may still require one.",
+      "combining_reviews_citation": {
+        "pdf_page": 56,
+        "printed_page": 43,
+        "section": "3.11.4.3"
+      }
+    }
+  }
+}

@@ -424,6 +424,12 @@ def check_assessment(meta: dict, raw_rows: list[dict], today: date | None = None
                 res.findings.append(Finding("warning", rid, "planned without an owner"))
             if st == "planned" and not row["target_date"]:
                 res.findings.append(Finding("warning", rid, "planned without a target_date"))
+        # conservative scoring: unevidenced claims and unjustified exclusions earn no credit
+        row["score_status"] = st
+        if st == "implemented" and not evidence:
+            row["score_status"] = "unevidenced"
+        if st == "not-applicable" and not row["justification"]:
+            row["score_status"] = "unassessed"
         if row["target_date"]:
             try:
                 d = date.fromisoformat(row["target_date"])
@@ -435,8 +441,8 @@ def check_assessment(meta: dict, raw_rows: list[dict], today: date | None = None
     for tid in active:
         if tid not in res.rows:
             res.findings.append(Finding("error", tid, "task missing from assessment"))
-            res.rows[tid] = {"id": tid, "status": "unassessed", "evidence": [], "owner": "", "target_date": "",
-                             "justification": "", "notes": ""}
+            res.rows[tid] = {"id": tid, "status": "unassessed", "score_status": "unassessed", "evidence": [],
+                             "owner": "", "target_date": "", "justification": "", "notes": ""}
     res.scores = score(res.rows)
     res.gaps = prioritise_gaps(res.rows)
     order = {t: n for n, t in enumerate(active)}
@@ -445,11 +451,11 @@ def check_assessment(meta: dict, raw_rows: list[dict], today: date | None = None
 
 
 def _score_bucket(rows: list[dict]) -> dict:
-    counts = {s: 0 for s in STATUSES + ("unassessed",)}
+    counts = {s: 0 for s in STATUSES + ("unevidenced", "unassessed")}
     for r in rows:
-        counts[r["status"]] = counts.get(r["status"], 0) + 1
+        counts[r["score_status"]] = counts.get(r["score_status"], 0) + 1
     applicable = len(rows) - counts["not-applicable"]
-    credit = sum(STATUS_CREDIT.get(r["status"], 0.0) for r in rows)
+    credit = sum(STATUS_CREDIT.get(r["score_status"], 0.0) for r in rows)
     return {"tasks": len(rows), "applicable": applicable, "counts": counts,
             "coverage_pct": _pct(credit, applicable), "implemented_pct": _pct(counts["implemented"], applicable)}
 
@@ -457,8 +463,8 @@ def _score_bucket(rows: list[dict]) -> dict:
 def score(rows: dict[str, dict]) -> dict:
     """Coverage % = (implemented + 0.5 x partial) / applicable tasks. Unassessed counts as 0."""
     all_rows = [rows[t] for t in active_task_ids()]
-    out = {"method": "coverage = (implemented + 0.5*partial) / (tasks - not-applicable); "
-                     "unassessed/invalid rows score 0",
+    out = {"method": "coverage = (implemented + 0.5*partial) / (tasks - not-applicable); unassessed/invalid "
+                     "rows, implemented-without-evidence and not-applicable-without-justification score 0",
            "overall": _score_bucket(all_rows), "groups": {}, "practices": {}}
     for g in groups():
         out["groups"][g["id"]] = _score_bucket([rows[t["id"]] for t in tasks(group=g["id"])])
@@ -467,7 +473,7 @@ def score(rows: dict[str, dict]) -> dict:
     return out
 
 
-STATUS_WEIGHT = {"unassessed": 3, "not-implemented": 3, "planned": 2, "partial": 1}
+STATUS_WEIGHT = {"unassessed": 3, "not-implemented": 3, "unevidenced": 2, "planned": 2, "partial": 1}
 
 
 def prioritise_gaps(rows: dict[str, dict]) -> list[dict]:
@@ -476,17 +482,20 @@ def prioritise_gaps(rows: dict[str, dict]) -> list[dict]:
     2) number of EO 14028 Section 4e subsections mapped to the task in Appendix A Table 2;
     3) document order.
     Tier: High = unassessed/not-implemented and EO-mapped; Medium = other unassessed/not-implemented,
-    or planned lacking owner/target date; Low = partial, or planned with owner and target date."""
+    or planned lacking owner/target date, or implemented without evidence; Low = partial, or planned with
+    owner and target date. Statuses here are scoring statuses (see ``check_assessment``)."""
     by = items_by_id()
     order = {t: n for n, t in enumerate(active_task_ids())}
     gaps = []
     for tid, r in rows.items():
-        st = r["status"]
+        st = r["score_status"]
         if st not in STATUS_WEIGHT:
             continue
         eo = eo_subsections(tid)
         if st in ("unassessed", "not-implemented"):
             tier = "High" if eo else "Medium"
+        elif st == "unevidenced":
+            tier = "Medium"
         elif st == "planned":
             tier = "Low" if (r["owner"] and r["target_date"]) else "Medium"
         else:
@@ -525,13 +534,13 @@ def render_check(res: AssessmentResult, max_gaps: int = 50) -> str:
             f"- Fully implemented: {_fmt_pct(o['implemented_pct'])} of {o['applicable']} applicable tasks "
             f"({o['tasks']} assessed tasks, {o['counts']['not-applicable']} not applicable)",
             "- Counts: " + ", ".join(f"{k} {v}" for k, v in o["counts"].items() if v), "",
-            "## By practice group", "", "| Group | Applicable | Implemented | Partial | Planned | Not implemented | Unassessed | Coverage |",
-            "|---|---|---|---|---|---|---|---|"]
+            "## By practice group", "", "| Group | Applicable | Implemented | Partial | Planned | Not implemented | Unevidenced | Unassessed | Coverage |",
+            "|---|---|---|---|---|---|---|---|---|"]
     for g in groups():
         b = sc["groups"][g["id"]]
         c = b["counts"]
         out.append(f"| {g['id']} {g['title']} | {b['applicable']} | {c['implemented']} | {c['partial']} | {c['planned']} | "
-                   f"{c['not-implemented']} | {c['unassessed']} | {_fmt_pct(b['coverage_pct'])} |")
+                   f"{c['not-implemented']} | {c['unevidenced']} | {c['unassessed']} | {_fmt_pct(b['coverage_pct'])} |")
     out += ["", "## By practice", "", "| Practice | Tasks | Applicable | Coverage |", "|---|---|---|---|"]
     by = items_by_id()
     for pid, b in sc["practices"].items():
