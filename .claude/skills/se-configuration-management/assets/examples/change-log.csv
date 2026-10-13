@@ -1,0 +1,4 @@
+cr_id,title,changed_ids,status,approved_by,approved_date
+DEMO-CR-001,Raise sampling to 500 Hz,DEMO-SYS-001,approved,Project lead (synthetic),2026-10-02
+DEMO-CR-002,Relax e-stop latency,DEMO-SYS-002,rejected,Safety board (synthetic),2026-10-03
+DEMO-CR-003,Add 2 kg mass allowance,DEMO-SYS-003,approved,Project lead (synthetic),2026-10-04

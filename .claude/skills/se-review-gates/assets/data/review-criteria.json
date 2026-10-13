@@ -1,0 +1,55 @@
+{
+  "_provenance": "Library-defined GENERIC readiness criteria written for this repository, inspired by common systems-engineering review practice. They are NOT the entrance/success criteria of NASA NPR 7123.1 or any other standard (primary sources were inaccessible in-session). Replace or extend with your programme's approved criteria via --criteria.",
+  "reviews": {
+    "MCR": {"name": "Mission/concept review", "criteria": [
+      {"id": "MCR-01", "text": "Problem/mission need and stakeholders documented", "blocking": true},
+      {"id": "MCR-02", "text": "At least one feasible concept and alternatives considered", "blocking": true},
+      {"id": "MCR-03", "text": "Top risks and key assumptions identified with owners", "blocking": false},
+      {"id": "MCR-04", "text": "Measures of effectiveness defined", "blocking": false}]},
+    "SRR": {"name": "Requirements review", "criteria": [
+      {"id": "SRR-01", "text": "ConOps and stakeholder needs baselined or approved for use", "blocking": true},
+      {"id": "SRR-02", "text": "System requirements lint clean (no errors) and traced to needs", "blocking": true},
+      {"id": "SRR-03", "text": "Every requirement has a verification method and acceptance criterion", "blocking": true},
+      {"id": "SRR-04", "text": "TBD/TBR list with owners and closure dates", "blocking": false},
+      {"id": "SRR-05", "text": "Risk register reviewed; high risks have handling plans", "blocking": false},
+      {"id": "SRR-06", "text": "Technical plan (process tailoring, reviews, authorities) agreed", "blocking": false}]},
+    "SDR": {"name": "System definition review", "criteria": [
+      {"id": "SDR-01", "text": "Functional decomposition complete and allocated to elements", "blocking": true},
+      {"id": "SDR-02", "text": "Architecture selected with documented trade/decision analysis", "blocking": true},
+      {"id": "SDR-03", "text": "Subsystem requirements flowed down and traced", "blocking": true},
+      {"id": "SDR-04", "text": "Key interfaces identified in the ICD", "blocking": false}]},
+    "PDR": {"name": "Preliminary design review", "criteria": [
+      {"id": "PDR-01", "text": "Preliminary design meets all approved requirements by analysis or justified estimate", "blocking": true},
+      {"id": "PDR-02", "text": "Interfaces defined with owners on both sides (ICD agreed)", "blocking": true},
+      {"id": "PDR-03", "text": "Verification matrix covers every approved requirement", "blocking": true},
+      {"id": "PDR-04", "text": "TPMs/budgets show positive margin against policy", "blocking": true},
+      {"id": "PDR-05", "text": "Risk register current; residual high risks accepted by named authority", "blocking": true},
+      {"id": "PDR-06", "text": "Hazard analysis performed and reviewed by a qualified person", "blocking": false},
+      {"id": "PDR-07", "text": "Long-lead procurement and technology maturation plans exist", "blocking": false}]},
+    "CDR": {"name": "Critical design review", "criteria": [
+      {"id": "CDR-01", "text": "Detailed design complete and baselined for build", "blocking": true},
+      {"id": "CDR-02", "text": "ICDs baselined; no unresolved interface conflicts", "blocking": true},
+      {"id": "CDR-03", "text": "Test procedures drafted for all verification activities", "blocking": true},
+      {"id": "CDR-04", "text": "Margins positive; no TPM in breach", "blocking": true},
+      {"id": "CDR-05", "text": "Hazard controls designed and traced to verification", "blocking": true},
+      {"id": "CDR-06", "text": "Integration plan defined with sequence and checks", "blocking": false}]},
+    "TRR": {"name": "Test readiness review", "criteria": [
+      {"id": "TRR-01", "text": "Test article configuration identified and matches the baseline", "blocking": true},
+      {"id": "TRR-02", "text": "Approved test procedure with pass/fail criteria", "blocking": true},
+      {"id": "TRR-03", "text": "Test hazards analysed; safety controls (e-stop, guards, PPE) verified", "blocking": true},
+      {"id": "TRR-04", "text": "Instrumentation calibrated and data capture verified", "blocking": true},
+      {"id": "TRR-05", "text": "Roles, test director and abort criteria defined", "blocking": true},
+      {"id": "TRR-06", "text": "Prior anomalies/NCRs dispositioned", "blocking": false}]},
+    "SAR": {"name": "Acceptance review", "criteria": [
+      {"id": "SAR-01", "text": "All verification activities complete; failures dispositioned", "blocking": true},
+      {"id": "SAR-02", "text": "As-built configuration audited against the baseline", "blocking": true},
+      {"id": "SAR-03", "text": "Validation against stakeholder needs performed or justified", "blocking": true},
+      {"id": "SAR-04", "text": "Known limitations, waivers and open issues documented", "blocking": true},
+      {"id": "SAR-05", "text": "Transition package (docs, training, support) ready", "blocking": false}]},
+    "ORR": {"name": "Operational readiness review", "criteria": [
+      {"id": "ORR-01", "text": "Operations procedures and contingency procedures approved", "blocking": true},
+      {"id": "ORR-02", "text": "Operators trained and certified as required", "blocking": true},
+      {"id": "ORR-03", "text": "Monitoring, incident response and rollback in place", "blocking": true},
+      {"id": "ORR-04", "text": "Residual risks accepted by the operating authority", "blocking": true}]}
+  }
+}

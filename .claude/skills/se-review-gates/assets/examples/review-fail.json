@@ -1,0 +1,13 @@
+{
+  "review": "TRR", "project": "DEMO low-gravity rig (synthetic)", "date": "2026-10-10",
+  "authors": ["vv-engineer"], "independent_reviewers": ["vv-engineer"],
+  "evidence": [
+    {"criterion_id": "TRR-01", "status": "met", "evidence_ref": ""},
+    {"criterion_id": "TRR-02", "status": "met", "evidence_ref": "TP-002 rev A"},
+    {"criterion_id": "TRR-03", "status": "not_met", "evidence_ref": "", "justification": "guard interlock untested"},
+    {"criterion_id": "TRR-05", "status": "na"},
+    {"criterion_id": "TRR-99", "status": "met", "evidence_ref": "x"}
+  ],
+  "checks": [{"name": "vmatrix_check", "exit_code": 1, "report": "reports/vmatrix.json"}],
+  "actions": [{"id": "DEMO-RID-007", "severity": "major", "owner": "", "due": "", "status": "open"}]
+}

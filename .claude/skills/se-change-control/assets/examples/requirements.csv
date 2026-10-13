@@ -1,0 +1,7 @@
+id,parent,level,statement,rationale,source,owner,status,verification_method,acceptance_criteria,verification_id
+DEMO-STK-001,,stakeholder,"Researchers need repeatable hop-height data in a reduced-gravity analogue.",Mission need,Workshop (synthetic),PI (synthetic),approved,demonstration,"PI confirms data supports analysis",DEMO-VAL-001
+DEMO-SYS-001,DEMO-STK-001,system,"The rig shall sample vertical displacement at 200 Hz or faster.",Apex resolution,Derived,Test lead,approved,test,"Sample interval <= 5.0 ms",DEMO-VER-001
+DEMO-SYS-002,DEMO-STK-001,system,"The rig shall remove actuator power within 100 ms of e-stop activation.",Hazard control,HA-01,Safety lead,approved,test,"Latency <= 100 ms in 10/10 trials",DEMO-VER-002
+DEMO-SYS-003,DEMO-STK-001,system,"The rig mass shall not exceed 40 kg.",Lab floor limit,Facility rules,Mech lead,approved,inspection,"Scale reading <= 40 kg",DEMO-VER-003
+DEMO-SYS-004,DEMO-STK-001,system,"The logger shall timestamp samples with a resolution of 1 ms or finer.",Sync,Derived,Test lead,proposed,analysis,"Clock analysis shows <= 1 ms",DEMO-VER-004
+DEMO-SUB-001,DEMO-SYS-001,subsystem,"The displacement sensor shall have a resolution of 1 mm or finer.",Hop height resolution,Allocated,Instrumentation,approved,inspection,"Calibration certificate <= 1 mm",DEMO-VER-005

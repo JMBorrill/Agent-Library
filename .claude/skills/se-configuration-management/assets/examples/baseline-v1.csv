@@ -1,0 +1,6 @@
+id,parent,level,statement,rationale,source,owner,status,verification_method,acceptance_criteria,verification_id
+DEMO-SYS-001,,system,"The rig shall sample vertical displacement at 200 Hz or faster.",Apex resolution,Derived,Test lead,approved,test,"Sample interval <= 5.0 ms",DEMO-VER-001
+DEMO-SYS-002,,system,"The rig shall remove actuator power within 100 ms of e-stop activation.",Hazard control,HA-01,Safety lead,approved,test,"Latency <= 100 ms",DEMO-VER-002
+DEMO-SYS-003,,system,"The rig mass shall not exceed 40 kg.",Floor limit,Facility,Mech lead,approved,inspection,"<= 40 kg",DEMO-VER-003
+DEMO-SYS-004,,system,"The logger shall timestamp samples to 1 ms.",Sync,Derived,Test lead,proposed,analysis,"<= 1 ms",DEMO-VER-004
+DEMO-SYS-005,,system,"Legacy requirement for tether.",Old concept,Concept study,PM,retired,inspection,n/a,

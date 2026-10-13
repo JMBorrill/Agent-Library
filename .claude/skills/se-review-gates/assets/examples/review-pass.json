@@ -1,0 +1,16 @@
+{
+  "review": "SRR", "project": "DEMO low-gravity rig (synthetic)", "date": "2026-10-10",
+  "authors": ["requirements-engineer"], "independent_reviewers": ["independent-reviewer", "Dr A. Reviewer (synthetic)"],
+  "gate_authority": "Project lead (synthetic)",
+  "evidence": [
+    {"criterion_id": "SRR-01", "status": "met", "evidence_ref": "conops.md v1.0 approved 2026-09-30"},
+    {"criterion_id": "SRR-02", "status": "met", "evidence_ref": "req_lint report 2026-10-09 (0 errors)"},
+    {"criterion_id": "SRR-03", "status": "met", "evidence_ref": "vmatrix_check --include-proposed 2026-10-09"},
+    {"criterion_id": "SRR-04", "status": "partial", "evidence_ref": "requirements-review.md", "justification": "2 TBRs lack closure dates"},
+    {"criterion_id": "SRR-05", "status": "met", "evidence_ref": "risk_check 2026-10-09"},
+    {"criterion_id": "SRR-06", "status": "met", "evidence_ref": "engineering-plan.md v0.9"}
+  ],
+  "checks": [{"name": "req_lint", "exit_code": 0, "report": "reports/req_lint.json"},
+             {"name": "vmatrix_check", "exit_code": 0, "report": "reports/vmatrix.json"}],
+  "actions": [{"id": "DEMO-RID-001", "severity": "minor", "owner": "Test lead", "due": "2026-10-24", "status": "open", "closure_evidence": ""}]
+}

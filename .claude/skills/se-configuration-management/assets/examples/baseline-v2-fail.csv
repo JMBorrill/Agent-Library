@@ -1,0 +1,5 @@
+id,parent,level,statement,rationale,source,owner,status,verification_method,acceptance_criteria,verification_id
+DEMO-SYS-001,,system,"The rig shall sample vertical displacement at 500 Hz or faster.",Apex resolution,Derived,Test lead,approved,test,"Sample interval <= 2.0 ms",DEMO-VER-001
+DEMO-SYS-002,,system,"The rig shall remove actuator power within 250 ms of e-stop activation.",Hazard control,HA-01,Safety lead,approved,test,"Latency <= 250 ms",DEMO-VER-002
+DEMO-SYS-004,,system,"The logger shall timestamp samples to 1 ms.",Sync,Derived,Test lead,approved,analysis,"<= 1 ms",DEMO-VER-004
+DEMO-SYS-005,,system,"The rig shall include a camera.",New idea,PM,PM,proposed,inspection,camera fitted,

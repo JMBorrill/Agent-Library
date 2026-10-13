@@ -1,0 +1,8 @@
+tpm_id,parameter,unit,direction,limit,alert_margin_pct,date,value,basis,requirement_id
+TPM-MASS,Rig mass,kg,upper_limit,40,10,2026-06-01,33.0,estimate,DEMO-SYS-003
+TPM-MASS,Rig mass,kg,upper_limit,40,10,2026-08-01,36.0,analysis,DEMO-SYS-003
+TPM-MASS,Rig mass,kg,upper_limit,40,10,2026-10-01,38.5,measured,DEMO-SYS-003
+TPM-LAT,E-stop latency,ms,upper_limit,100,20,2026-09-21,112,measured,DEMO-SYS-002
+TPM-PWR,Peak power,W,upper_limit,150,10,2026-09-01,140,estimate,
+TPM-PWR,Peak power,kW,upper_limit,0.15,10,2026-09-15,0.12,analysis,
+TPM-BAD,Thing,kg,sideways,10,10,2026-09-01,abc,measured,

@@ -1,0 +1,2 @@
+{"cr_id": "DEMO-CR-001", "title": "Raise sampling requirement from 200 Hz to 500 Hz", "changed_ids": ["DEMO-SYS-001"],
+ "reason": "Analysis AN-007 shows apex detection error > 5 mm at 200 Hz (synthetic)", "requested_by": "Test lead (synthetic)"}
