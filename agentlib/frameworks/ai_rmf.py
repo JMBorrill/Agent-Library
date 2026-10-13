@@ -945,7 +945,7 @@ def register(subparsers) -> None:
     sub = p.add_subparsers(dest="ai_rmf_cmd", required=True)
 
     ls = sub.add_parser("list", help="list subcategories")
-    ls.add_argument("--function", action="append", choices=list(FUNCTIONS), help="repeatable")
+    ls.add_argument("--function", action="append", type=str.upper, choices=list(FUNCTIONS), help="repeatable")
     ls.add_argument("--format", choices=["text", "json"], default="text")
     ls.add_argument("--full", action="store_true", help="do not truncate outcome text")
 

@@ -888,7 +888,7 @@ def grade_check_matrix_fixture(output: str, check: dict) -> tuple[bool, str]:
 def _emit(text: str, output: str | None) -> None:
     if output:
         Path(output).write_text(text, encoding="utf-8")
-        print(f"wrote {output}")
+        print(f"wrote {output}", file=sys.stderr)
     else:
         sys.stdout.write(text if text.endswith("\n") else text + "\n")
 

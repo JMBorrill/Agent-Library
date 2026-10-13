@@ -40,7 +40,7 @@ statement follows; "Suggested Actions", "Transparency & Documentation" /
 become items; deeper-indented bullets become ``sub_actions`` of the preceding
 item; unbulleted lead-in text (e.g. "Organizational AI risk management policies
 should be designed to:") is kept as ``lead_in``. Page footers ("N of 142") are
-dropped. Cross-checked against pypdf text (word-sequence similarity >= 0.95
+dropped. Cross-checked against pypdf text (word-sequence similarity >= 0.95, except the decorative cover,
 on every page; see docs/frameworks/ai_rmf.md).
 
 Run:  python scripts/extract/ai_rmf.py [--check]
