@@ -40,11 +40,25 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | OWASP ASVS 5.0.0 | `asvs` / `asvs` | owasp-asvs | application-security-verifier | done: 345 reqs, 45 tests, 6 eval cases |
 | Green Book 2026 | `greenbook` / `greenbook` | green-book-appraisal | economic-appraisal-analyst | done: 121 items, 69 tests, 6 eval cases |
 
-Workflows reference these exact names; they validate once all agents/skills exist.
+All six framework builds are complete. Whole-library gates: `agentlib validate` 0 errors/0 warnings;
+`pytest` 391 passed; offline evals 99/99; `claude plugin validate .` passes; every skill/agent/command/template
+passes `agentlib evidence check` (enforced by `tests/test_content_quality.py`).
+
+## Assumptions (library-wide)
+
+- The "starter implementation kit" and "master Claude specification" referenced in earlier notes were not in the
+  repository. The library was designed from the user's mission brief and the bundled PDFs; component names and
+  architecture are this implementation's choices (`docs/ARCHITECTURE.md`).
+- Status scales, scoring formulas, risk matrices, linter severities and prioritisation heuristics are library
+  conventions, labelled as such in each framework doc; the frameworks themselves do not prescribe them.
+- Link-only sources (SWEHB wiki, ECSS, Google SRE, DORA, GOV.UK) are cited as further reading, never quoted.
+- Per-framework assumptions and gaps: `docs/frameworks/*.md`.
 
 ## Known gaps / next work
 
-- Update `README.md` with final inventory and plugin install line.
 - (done) Example citation pages verified against the PDF text.
 - Optional: native `claude plugin eval` cases in `plugin-evals/` (configured in plugin.json).
+- Not catalogued: NIST AI 600-1 GenAI profile, NPR 7123.1 review criteria (not bundled), ASVS appendices,
+  NASA SE Appendices E/H/I/K-T, Green Book supplementary guidance values (optimism bias, carbon, QALY etc.).
+- Live evals not yet run in this session (no API key); offline goldens/negatives verify the checks.
 - Run live evals (`live-evals.yml`) once an API key secret exists; record results here.
