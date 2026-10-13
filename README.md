@@ -35,7 +35,10 @@ python -m agentlib route "security review of a payments API and its CI pipeline"
 python -m agentlib asvs checklist --level 2 --format md
 python -m agentlib greenbook npv evals/green-book-appraisal/fixtures/appraisal_flows.csv
 python -m agentlib evidence check my-report.md --require-citations
+python -m agentlib workflow init secure-software-delivery --dir reviews/demo   # tracked, gated review folder
 ```
+
+A guided tour of every tool on sample inputs: [examples/README.md](examples/README.md).
 
 Using the library in other repositories (plugin, vendored install with lock file, or CI tools):
 **[docs/USING_IN_OTHER_REPOS.md](docs/USING_IN_OTHER_REPOS.md)**.
@@ -52,6 +55,9 @@ Using the library in other repositories (plugin, vendored install with lock file
 | `agentlib/` | Validators, registry, evaluation harness, installer and framework tools |
 | `evals/` | Evaluation suites per skill: prompts, deterministic checks, golden and negative outputs |
 | `sources/` | The pinned official PDFs and provenance manifest ([source index](sources/README.md)) |
+| `plugin-evals/` | Native `claude plugin eval` cases checking each skill fires and grounds its answer |
+| `examples/` | Executable tool walkthrough (tested) and a Claude Agent SDK script |
+| `action.yml` | Reusable GitHub Action: run any `agentlib` check in another repository's CI |
 | `registry.json` | Generated index of every component |
 
 ## Quality gates
