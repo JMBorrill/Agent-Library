@@ -8,13 +8,20 @@ from pathlib import Path
 def repo_root() -> Path:
     """Return the library root.
 
-    ``AGENTLIB_ROOT`` overrides discovery (useful when the package is installed
-    elsewhere). Otherwise the parent of the package directory is used.
+    Resolution order: ``AGENTLIB_ROOT``; the library checkout containing this
+    package; ``./.agent-library`` in the current directory (vendored install);
+    finally the package parent.
     """
     env = os.environ.get("AGENTLIB_ROOT")
     if env:
         return Path(env).resolve()
-    return Path(__file__).resolve().parents[1]
+    package_parent = Path(__file__).resolve().parents[1]
+    if (package_parent / "catalog").is_dir() or (package_parent / "skills").is_dir():
+        return package_parent  # running from a checkout of the library
+    vendored = Path.cwd() / ".agent-library"
+    if (vendored / "catalog").is_dir():
+        return vendored  # consuming repository with `agentlib install --components catalog`
+    return package_parent
 
 
 def catalog_dir(root: Path | None = None) -> Path:

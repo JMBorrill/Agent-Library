@@ -68,6 +68,9 @@ def _plan(root: Path, target: Path, components: list[str], skills: list[str]) ->
             for f in sorted((root / sub).rglob("*")):
                 if f.is_file():
                     pairs.append((f, target / ".agent-library" / sub / f.relative_to(root / sub)))
+    if "catalog" in components:
+        manifest = root / "sources" / "pdf-manifest.json"
+        pairs.append((manifest, target / ".agent-library" / "sources" / "pdf-manifest.json"))
     return pairs
 
 
