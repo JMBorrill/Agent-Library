@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "dataset": "Synthetic second-charge lender criteria (illustrative; no real lender)",
+  "rules": [
+    {
+      "rule_id": "NBM-2C-001",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "cltv_pct",
+      "operator": "lte",
+      "value": 70,
+      "unit": "percent",
+      "effective_from": "2025-01-01",
+      "effective_to": "2025-12-31",
+      "source_document": "Northbridge synthetic criteria guide v6 (2025-01), s.2",
+      "last_verified": "2025-06-01"
+    },
+    {
+      "rule_id": "NBM-2C-002",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "cltv_pct",
+      "operator": "lte",
+      "value": 75,
+      "unit": "percent",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "NBM-2C-003",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "loan_amount",
+      "operator": "between",
+      "value": [
+        10000,
+        250000
+      ],
+      "unit": "GBP",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "NBM-2C-004",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "employment_type",
+      "operator": "in",
+      "value": [
+        "employed",
+        "self_employed"
+      ],
+      "unit": "category",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "NBM-2C-005",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "ccj_count_last_6y",
+      "operator": "lte",
+      "value": 0,
+      "unit": "count",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "NBM-2C-006",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "age_at_term_end",
+      "operator": "lte",
+      "value": 80,
+      "unit": "years",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "NBM-2C-007",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "property_type",
+      "operator": "in",
+      "value": [
+        "house",
+        "flat"
+      ],
+      "unit": "category",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "FHF-2C-001",
+      "lender": "Fernvale Home Finance (synthetic)",
+      "product": "Second charge homeowner loan (synthetic)",
+      "criterion": "cltv_pct",
+      "operator": "lte",
+      "value": 85,
+      "unit": "percent",
+      "effective_from": "2026-03-01",
+      "effective_to": null,
+      "source_document": "Fernvale synthetic intermediary criteria sheet 2026-03",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "FHF-2C-002",
+      "lender": "Fernvale Home Finance (synthetic)",
+      "product": "Second charge homeowner loan (synthetic)",
+      "criterion": "gross_annual_income",
+      "operator": "gte",
+      "value": 25000,
+      "unit": "GBP",
+      "effective_from": "2026-03-01",
+      "effective_to": null,
+      "source_document": "Fernvale synthetic intermediary criteria sheet 2026-03",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "FHF-2C-003",
+      "lender": "Fernvale Home Finance (synthetic)",
+      "product": "Second charge homeowner loan (synthetic)",
+      "criterion": "self_employed_years_trading",
+      "operator": "gte",
+      "value": 2,
+      "unit": "years",
+      "effective_from": "2026-03-01",
+      "effective_to": null,
+      "source_document": "Fernvale synthetic intermediary criteria sheet 2026-03",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "FHF-2C-004",
+      "lender": "Fernvale Home Finance (synthetic)",
+      "product": "Second charge homeowner loan (synthetic)",
+      "criterion": "ccj_count_last_6y",
+      "operator": "lte",
+      "value": 1,
+      "unit": "count",
+      "effective_from": "2026-03-01",
+      "effective_to": null,
+      "source_document": "Fernvale synthetic intermediary criteria sheet 2026-03",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "KES-2C-001",
+      "lender": "Kestrel Lending (synthetic)",
+      "product": "Second charge low-CLTV (synthetic)",
+      "criterion": "cltv_pct",
+      "operator": "lte",
+      "value": 65,
+      "unit": "percent",
+      "effective_from": "2026-04-01",
+      "effective_to": null,
+      "source_document": "Kestrel synthetic product guide 2026-Q2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "KES-2C-002",
+      "lender": "Kestrel Lending (synthetic)",
+      "product": "Second charge low-CLTV (synthetic)",
+      "criterion": "loan_amount",
+      "operator": "gte",
+      "value": 15000,
+      "unit": "GBP",
+      "effective_from": "2026-04-01",
+      "effective_to": null,
+      "source_document": "Kestrel synthetic product guide 2026-Q2",
+      "last_verified": "2026-09-15"
+    }
+  ]
+}

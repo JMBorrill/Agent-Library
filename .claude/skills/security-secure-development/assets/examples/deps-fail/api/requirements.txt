@@ -1,0 +1,6 @@
+# AI Operations Platform API (synthetic) - deliberately unpinned
+fastapi>=0.100
+psycopg[binary]
+pydantic~=2.9
+httpx==0.27.*
+-e git+https://github.com/example-org/aiops-sdk.git@main#egg=aiops-sdk

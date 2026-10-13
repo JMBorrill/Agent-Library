@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/ai-prompt-injection-review/injection-scan.output.schema.json",
+  "title": "injection_scan.py --json output",
+  "type": "object",
+  "required": ["documents", "summary", "findings", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "documents": {"type": "array", "items": {
+      "type": "object", "required": ["id", "verdict", "score", "hits"],
+      "properties": {
+        "verdict": {"enum": ["flag", "review", "clean"]},
+        "score": {"type": "integer", "minimum": 0},
+        "label": {"enum": ["malicious", "benign", null]},
+        "hits": {"type": "array", "items": {"type": "object", "required": ["rule", "severity", "evidence"],
+                 "properties": {"severity": {"enum": ["high", "medium", "low"]}}}}}}},
+    "summary": {"type": "object", "required": ["documents", "flag", "review", "clean"]},
+    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
+                 "properties": {"severity": {"enum": ["error", "warning", "info"]},
+                                "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}}}
+  }
+}

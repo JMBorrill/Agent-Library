@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/credit-criteria-modelling/affordability-input.schema.json",
+  "title": "affordability_calc.py input",
+  "type": "object",
+  "required": ["property_value", "loan_amount", "term_years", "product_rate_pct", "stress_margin_pct",
+               "gross_annual_income", "net_monthly_income"],
+  "properties": {
+    "charge": {"enum": ["first", "second"]},
+    "property_value": {"type": "number", "exclusiveMinimum": 0},
+    "loan_amount": {"type": "number", "minimum": 0},
+    "term_years": {"type": "number", "exclusiveMinimum": 0},
+    "product_rate_pct": {"type": "number", "minimum": 0},
+    "stress_margin_pct": {"type": "number", "minimum": 0},
+    "stress_margin_source": {"type": "string"},
+    "stress_floor_rate_pct": {"type": "number", "minimum": 0},
+    "repayment_type": {"enum": ["repayment", "interest_only"]},
+    "gross_annual_income": {"type": "number", "minimum": 0},
+    "net_monthly_income": {"type": "number", "minimum": 0},
+    "monthly_committed_expenditure": {"type": "number", "minimum": 0},
+    "monthly_essential_expenditure": {"type": "number", "minimum": 0},
+    "existing_first_charge_balance": {"type": "number", "minimum": 0},
+    "existing_first_charge_payment": {"type": "number", "minimum": 0}
+  }
+}

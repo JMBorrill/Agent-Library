@@ -1,0 +1,14 @@
+{
+  "name": "Synthetic seeded-defect model: zero new customers, inconsistent attribution, unsourced benchmark",
+  "currency": "GBP",
+  "inputs": {
+    "sales_marketing_spend": {"value": 12000, "tag": "measured", "source": "synthetic ledger"},
+    "new_customers": {"value": 0, "tag": "measured", "source": "synthetic billing export"},
+    "paid_spend": {"value": 15000, "tag": "measured", "source": "synthetic ad invoices"},
+    "paid_new_customers": {"value": 5, "tag": "estimate", "owner": "growth lead"},
+    "arpa_monthly": {"value": 40, "tag": "benchmark"},
+    "gross_margin_pct": {"value": 0.30},
+    "variable_cost_per_account_monthly": {"value": 15, "tag": "estimate", "owner": "finance lead"},
+    "monthly_churn": {"value": 0.0, "tag": "guess"}
+  }
+}

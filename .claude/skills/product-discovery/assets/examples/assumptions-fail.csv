@@ -1,0 +1,6 @@
+id,assumption,category,risk,evidence_ids,status
+DWS-AS-101,Walkers will pay a monthly subscription,viability,high,DWS-EV-101;DWS-EV-102,supported
+DWS-AS-102,Automatic route planning is wanted,desirability,high,DWS-EV-103,untested
+DWS-AS-103,Walkers can set up a recurring walk without training,usability,high,DWS-EV-104,testing
+DWS-AS-104,Owners accept app-sent SMS reminders,ethics,medium,,untested
+DWS-AS-105,Payments integration is feasible in one quarter,feasibility,critical,DWS-EV-404,untested

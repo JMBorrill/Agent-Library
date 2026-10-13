@@ -1,0 +1,22 @@
+{
+  "id": "<PROJECT>-EXP-001",
+  "title": "",
+  "hypothesis": {"statement": "Because <evidence>, we believe <change> will <effect> for <users>.", "prediction": "<metric> <increases|decreases> from <baseline>% to at least <target>%."},
+  "primary_metric": {"name": "", "definition": "<numerator> / <denominator> within <window>", "unit": "proportion"},
+  "baseline": 0.0,
+  "mde": 0.0,
+  "direction": "increase",
+  "alpha": 0.05,
+  "power": 0.8,
+  "formula": "pooled",
+  "arms": 2,
+  "randomisation_unit": "",
+  "sample_size_per_arm": 0,
+  "expected_eligible_per_day": 0,
+  "duration_days": 0,
+  "launch_date": "YYYY-MM-DD",
+  "stopping_rule": "",
+  "ethics": {"consent_note": "", "harm_review": ""},
+  "decision_rule": {"set_before_launch": true, "recorded_on": "YYYY-MM-DD", "ship_if": "", "do_not_ship_if": ""},
+  "guardrails": [{"name": "", "direction": "must_not_increase", "max_abs_change": 0.0}]
+}

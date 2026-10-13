@@ -1,0 +1,20 @@
+{
+  "label": "example values — not from ECSS or NASA; replace with your programme's policy",
+  "is_example": true,
+  "policy_id": "ASTER-POLICY-EXAMPLE",
+  "margin_basis": "allocation",
+  "contingency_percent": {
+    "estimated": 20,
+    "calculated": 10,
+    "heritage": 5,
+    "measured": 3
+  },
+  "required_system_margin_percent": 15,
+  "budgets": {
+    "mass": {"unit": "kg", "allocation": 30.0, "required_system_margin_percent": 15},
+    "power": {"unit": "W", "allocation_by_mode": {"drive": 60.0, "hop-prep": 80.0, "safe": 25.0},
+              "required_system_margin_percent": 15},
+    "data": {"unit": "Mbit", "allocation": 2000, "required_system_margin_percent": 20,
+             "contingency_percent": {"estimated": 50}}
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "_provenance": "Library-defined tailoring heuristics (original). Process names follow the NASA SE Handbook's 17 common technical processes as corroborated by secondary sources; levels and artifacts are this library's proposal, not NASA policy.",
+  "levels": [
+    "light",
+    "standard",
+    "rigorous"
+  ],
+  "processes": [
+    {
+      "id": "SE-01",
+      "name": "Stakeholder Expectations Definition",
+      "skill": "se-stakeholder-conops",
+      "artifacts": {
+        "light": "one-page mission brief",
+        "standard": "conops.md + stakeholders.csv + needs.csv",
+        "rigorous": "conops + validated MOEs + stakeholder sign-off"
+      }
+    },
+    {
+      "id": "SE-02",
+      "name": "Technical Requirements Definition",
+      "skill": "se-requirements",
+      "artifacts": {
+        "light": "5-20 requirements in requirements.csv",
+        "standard": "full register linted, traced to needs",
+        "rigorous": "register linted --strict, independent review, baseline approval"
+      }
+    },
+    {
+      "id": "SE-03",
+      "name": "Logical Decomposition",
+      "skill": "se-logical-decomposition",
+      "artifacts": {
+        "light": "function list",
+        "standard": "function tree with allocation",
+        "rigorous": "function tree + flows closed + derived requirements"
+      }
+    },
+    {
+      "id": "SE-04",
+      "name": "Design Solution Definition",
+      "skill": "se-architecture-trades",
+      "artifacts": {
+        "light": "sketch + rationale",
+        "standard": "trade space + decision record",
+        "rigorous": "trade space + sensitivity + compliance matrix"
+      }
+    },
+    {
+      "id": "SE-05",
+      "name": "Product Implementation",
+      "skill": "se-implementation-integration",
+      "artifacts": {
+        "light": "build notes",
+        "standard": "make/buy/reuse with unit acceptance",
+        "rigorous": "build records + receiving inspection + unit verification evidence"
+      }
+    },
+    {
+      "id": "SE-06",
+      "name": "Product Integration",
+      "skill": "se-implementation-integration",
+      "artifacts": {
+        "light": "integration checklist",
+        "standard": "integration plan checked",
+        "rigorous": "integration plan + step records + anomaly log"
+      }
+    },
+    {
+      "id": "SE-07",
+      "name": "Product Verification",
+      "skill": "se-verification-validation",
+      "artifacts": {
+        "light": "minimum test matrix",
+        "standard": "verification matrix with evidence",
+        "rigorous": "matrix + procedures + independent witness for critical items"
+      }
+    },
+    {
+      "id": "SE-08",
+      "name": "Product Validation",
+      "skill": "se-verification-validation",
+      "artifacts": {
+        "light": "owner demo",
+        "standard": "validation plan against MOEs",
+        "rigorous": "operational validation with users + records"
+      }
+    },
+    {
+      "id": "SE-09",
+      "name": "Product Transition",
+      "skill": "se-transition",
+      "artifacts": {
+        "light": "handover note",
+        "standard": "transition checklist",
+        "rigorous": "transition package + acceptance record + support plan"
+      }
+    },
+    {
+      "id": "SE-10",
+      "name": "Technical Planning",
+      "skill": "se-technical-planning",
+      "artifacts": {
+        "light": "this tailoring output",
+        "standard": "engineering plan + milestones",
+        "rigorous": "SEMP-style plan + authorities + reserves"
+      }
+    },
+    {
+      "id": "SE-11",
+      "name": "Requirements Management",
+      "skill": "se-requirements",
+      "artifacts": {
+        "light": "edit with history",
+        "standard": "baseline + change control",
+        "rigorous": "baselines + CR board + trace audits"
+      }
+    },
+    {
+      "id": "SE-12",
+      "name": "Interface Management",
+      "skill": "se-interface-control",
+      "artifacts": {
+        "light": "interface notes",
+        "standard": "ICD register checked",
+        "rigorous": "ICDs baselined, both owners sign"
+      }
+    },
+    {
+      "id": "SE-13",
+      "name": "Technical Risk Management",
+      "skill": "se-risk-analysis",
+      "artifacts": {
+        "light": "top-5 risk list",
+        "standard": "risk register with policy",
+        "rigorous": "register + FMEA/hazard analysis + acceptance records"
+      }
+    },
+    {
+      "id": "SE-14",
+      "name": "Configuration Management",
+      "skill": "se-configuration-management",
+      "artifacts": {
+        "light": "version control",
+        "standard": "baselines + change log",
+        "rigorous": "CI list + audits + baseline_diff on every release"
+      }
+    },
+    {
+      "id": "SE-15",
+      "name": "Technical Data Management",
+      "skill": "se-technical-data-management",
+      "artifacts": {
+        "light": "shared folder with owners",
+        "standard": "data register",
+        "rigorous": "data register + access control + retention"
+      }
+    },
+    {
+      "id": "SE-16",
+      "name": "Technical Assessment",
+      "skill": "se-technical-assessment",
+      "artifacts": {
+        "light": "informal status",
+        "standard": "TPMs + reviews",
+        "rigorous": "TPMs + independent reviews at each milestone"
+      }
+    },
+    {
+      "id": "SE-17",
+      "name": "Decision Analysis",
+      "skill": "se-decision-analysis",
+      "artifacts": {
+        "light": "decision log",
+        "standard": "decision matrix for key choices",
+        "rigorous": "decision matrix + sensitivity + owner sign-off"
+      }
+    }
+  ],
+  "reviews": {
+    "light": [
+      "SRR (walk-through)",
+      "TRR for any hazardous test"
+    ],
+    "standard": [
+      "SRR",
+      "PDR",
+      "CDR",
+      "TRR",
+      "SAR"
+    ],
+    "rigorous": [
+      "MCR",
+      "SRR",
+      "SDR",
+      "PDR",
+      "CDR",
+      "TRR",
+      "SAR",
+      "ORR"
+    ]
+  },
+  "safety_rigorous": [
+    "SE-07",
+    "SE-12",
+    "SE-13",
+    "SE-14",
+    "SE-16"
+  ],
+  "regulated_rigorous": [
+    "SE-02",
+    "SE-11",
+    "SE-14",
+    "SE-15"
+  ],
+  "novel_rigorous": [
+    "SE-04",
+    "SE-13",
+    "SE-16",
+    "SE-17"
+  ]
+}

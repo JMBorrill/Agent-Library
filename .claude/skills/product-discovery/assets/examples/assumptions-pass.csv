@@ -1,0 +1,7 @@
+id,assumption,category,risk,evidence_ids,status
+DWS-AS-001,Weekly schedule planning is a significant recurring pain for sole-trader walkers,desirability,high,DWS-EV-001;DWS-EV-002;DWS-EV-005,supported
+DWS-AS-002,Walkers can set up a recurring walk without training,usability,high,DWS-EV-003,supported
+DWS-AS-003,Schedule changes are frequent enough that automatic rescheduling saves time,desirability,medium,DWS-EV-004,supported
+DWS-AS-004,Walkers will pay a monthly subscription,viability,high,DWS-EV-007,supported
+DWS-AS-005,Owners accept SMS reminders sent by the app on the walker's behalf,ethics,medium,,experiment_planned
+DWS-AS-006,Calendar sync with common phone calendars is technically straightforward,feasibility,low,,untested

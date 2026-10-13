@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/product-shaping/pitch-check.output.schema.json",
+  "title": "pitch_check.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {
+      "type": "object",
+      "required": ["errors", "warnings"],
+      "properties": {
+        "errors": {"type": "integer", "minimum": 0},
+        "warnings": {"type": "integer", "minimum": 0},
+        "pitch": {
+          "type": "object",
+          "properties": {
+            "appetite_weeks": {"type": ["number", "null"]},
+            "max_appetite_weeks": {"type": "number"},
+            "sections_found": {"type": "array", "items": {"enum": ["problem", "appetite", "solution", "rabbit_holes", "no_gos"]}}
+          }
+        },
+        "scopes": {"type": "object"}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "message": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

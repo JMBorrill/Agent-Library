@@ -1,0 +1,6 @@
+component_id,name
+LEG,Leg actuator assembly
+CTRL,Motion controller
+PWR,Battery and power distribution
+LOG,Data logger
+RIG,Offload test rig

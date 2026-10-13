@@ -1,0 +1,12 @@
+{
+  "product_name": "Synthetic criteria search launching in Ireland",
+  "assessment_date": "2026-10-13",
+  "jurisdiction": "Ireland",
+  "customer_types": ["consumer"],
+  "products": ["first_charge_mortgage"],
+  "service_model": "information_criteria_search",
+  "activities": {"arranges": false, "advises": false, "lends": false},
+  "ai_in_decisions": true,
+  "vulnerable_customers": true,
+  "handles_complaints": true
+}

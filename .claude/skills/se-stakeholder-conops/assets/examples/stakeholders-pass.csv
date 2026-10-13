@@ -1,0 +1,4 @@
+stakeholder,role,interest,influence,needs,decision_rights,engagement,evidence_ref
+Principal investigator,Decision owner,Valid locomotion data,high,DEMO-STK-001,Approves requirements and gate decisions,Weekly review,minutes-2026-09-02
+Lab safety officer,Safety authority,No injuries,high,DEMO-STK-002,Authorises physical tests,TRR sign-off,lab-safety-policy-v3
+Test operators,Operators,Easy safe setup,medium,DEMO-STK-002,,Daily,

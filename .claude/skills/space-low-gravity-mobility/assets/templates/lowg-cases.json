@@ -1,0 +1,10 @@
+{
+  "description": "<body name / source of parameters / date>",
+  "cases": [
+    {"id": "BODY-01", "command": "body", "params": {"radius_m": null, "density_kg_m3": null, "rotation_period_h": null}},
+    {"id": "HOP-01", "command": "hop", "params": {"radius_m": null, "density_kg_m3": null, "speed": null, "angle_deg": null}},
+    {"id": "IMP-01", "command": "impulse", "params": {"radius_m": null, "density_kg_m3": null, "mass_kg": null, "speed": null, "push_time_s": null, "friction_coefficient": null}},
+    {"id": "BNC-01", "command": "bounce", "params": {"radius_m": null, "density_kg_m3": null, "speed": null, "restitution": null, "threshold_speed": null}},
+    {"id": "ROT-01", "command": "rotation", "params": {"radius_m": null, "density_kg_m3": null, "rotation_period_h": null, "latitude_deg": 0}}
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/software-requirements-traceability/trace-report.schema.json",
+  "title": "trace_scan.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed", "matrix"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {"type": "object", "required": ["requirements", "errors", "warnings"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    },
+    "matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "code_refs", "tests", "result"],
+        "properties": {
+          "status": {"enum": ["proposed", "approved", "retired"]},
+          "code_refs": {"type": "array", "items": {"type": "string"}},
+          "tests": {"type": "array", "items": {"type": "string"}},
+          "result": {"enum": ["not_tested", "pass", "fail", "blocked"]}
+        }
+      }
+    }
+  }
+}

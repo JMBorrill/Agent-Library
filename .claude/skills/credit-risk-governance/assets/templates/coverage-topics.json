@@ -1,0 +1,29 @@
+{
+  "note": "Default coverage topics: generic credit risk management practice grouped under the four Basel areas as reported by secondary sources; topic list is NOT taken from the Basel text (unverified). Edit to match your framework and pass with --coverage.",
+  "topics": {
+    "credit_risk_environment": [
+      "risk-appetite-strategy",
+      "credit-policy",
+      "new-product-approval"
+    ],
+    "credit_granting": [
+      "granting-criteria",
+      "credit-limits",
+      "approval-authority",
+      "exceptions-overrides"
+    ],
+    "administration_measurement_monitoring": [
+      "credit-administration",
+      "individual-credit-monitoring",
+      "internal-rating",
+      "portfolio-reporting",
+      "stress-testing",
+      "problem-credit-management"
+    ],
+    "controls": [
+      "independent-credit-review",
+      "limit-breach-escalation",
+      "internal-audit"
+    ]
+  }
+}

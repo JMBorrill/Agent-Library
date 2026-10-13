@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/space-technical-budgets/link-input.schema.json",
+  "title": "Link budget input for link_budget.py evaluate",
+  "type": "object",
+  "$defs": {
+    "q": {"type": "object", "required": ["value", "unit"], "properties": {"value": {"type": "number"}, "unit": {"type": "string"}}},
+    "db": {"type": "object", "required": ["value", "unit"], "properties": {"value": {"type": "number"}, "unit": {"const": "dB"}}}
+  },
+  "required": ["frequency", "distance"],
+  "properties": {
+    "name": {"type": "string"},
+    "frequency": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"enum": ["Hz", "kHz", "MHz", "GHz"]}}}]},
+    "distance": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"enum": ["m", "km", "AU"]}}}]},
+    "tx_power": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"enum": ["dBW", "dBm", "W", "mW"]}}}]},
+    "eirp": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"enum": ["dBW", "dBm"]}}}]},
+    "tx_antenna_gain": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"const": "dBi"}}}]},
+    "tx_losses": {"$ref": "#/$defs/db"},
+    "other_losses": {"type": "array", "items": {"allOf": [{"$ref": "#/$defs/db"}, {"required": ["name"]}]}},
+    "rx_gt": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"const": "dB/K"}}}]},
+    "data_rate": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"enum": ["bps", "kbps", "Mbps", "Gbps", "dBHz"]}}}]},
+    "required_eb_n0": {"$ref": "#/$defs/db"},
+    "implementation_loss": {"$ref": "#/$defs/db"},
+    "rx_antenna_gain": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"const": "dBi"}}}]},
+    "rx_losses": {"$ref": "#/$defs/db"},
+    "rx_sensitivity": {"allOf": [{"$ref": "#/$defs/q"}, {"properties": {"unit": {"enum": ["dBW", "dBm"]}}}]},
+    "required_margin": {"$ref": "#/$defs/db"}
+  }
+}

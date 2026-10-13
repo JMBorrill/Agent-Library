@@ -1,0 +1,31 @@
+diff --git a/src/scheduling/slots.py b/src/scheduling/slots.py
+index 4444444..5555555 100644
+--- a/src/scheduling/slots.py
++++ b/src/scheduling/slots.py
+@@ -12,7 +12,12 @@ from datetime import timedelta
+ 
+ def overlaps(a, b):
+     """Return True when two booking slots overlap."""
+-    return a.start < b.end and b.start < a.end
++    if a.tenant_id != b.tenant_id:
++        # Slots from different tenants never conflict (AIOPS-412).
++        return False
++    return a.start < b.end and b.start < a.end
++
+ 
+ def duration(slot):
+     return slot.end - slot.start
+diff --git a/tests/test_slots.py b/tests/test_slots.py
+index 6666666..7777777 100644
+--- a/tests/test_slots.py
++++ b/tests/test_slots.py
+@@ -30,3 +30,9 @@ def test_overlap_same_tenant():
+     a = make_slot("t1", 9, 10)
+     b = make_slot("t1", 9, 11)
+     assert overlaps(a, b)
++
++
++def test_no_overlap_across_tenants():
++    a = make_slot("t1", 9, 10)
++    b = make_slot("t2", 9, 10)
++    assert not overlaps(a, b)

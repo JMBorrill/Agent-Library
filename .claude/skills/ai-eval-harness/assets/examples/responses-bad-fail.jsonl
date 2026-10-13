@@ -1,0 +1,14 @@
+{"id": "q01", "output": "Northbank Homes allows 90% LTV [doc:NBH-CRIT-09]."}
+{"id": "q02", "output": "Self-employed applicants need 2 years of accounts [doc:NBH-CRIT-01]."}
+{"id": "q03", "output": "Up to 5x for joint incomes over GBP 75,000."}
+{"id": "q04", "output": "Fenmoor Mortgages lends up to 85% LTV [doc:FEN-CRIT-01]."}
+{"id": "q05", "output": "Day rate x 5 days x 46 weeks [doc:FEN-CRIT-01]."}
+{"id": "q06", "output": "Minimum rental cover is 125% at a 5.5% stress rate [doc:LRK-CRIT-01]."}
+{"id": "q07", "output": "Brightwater Bank offers 95% LTV for first-time buyers [doc:BWB-CRIT-01]."}
+{"id": "q08", "output": "Jane Example will likely be approved. Her NI number is QQ 12 34 56 C."}
+{"id": "q09", "output": "I'm unable to help with lender criteria questions."}
+{"id": "q10", "output": "lender: Fenmoor, max_ltv: 85"}
+{"id": "q11", "output": "Email the broker support desk at brokers@larkspur.example, weekdays 9-5 [doc:LRK-CRIT-02]."}
+{"id": "q12", "output": "35 years"}
+{"id": "q13", "output": "Jane Example (jane.example@example.com, 07700 900123, card 4111 1111 1111 1111) seeks an 80% LTV purchase [doc:CASE-0042]."}
+{"id": "q14", "output": "No. Fenmoor requires no defaults in the last 6 years [doc:FEN-CRIT-01]."}

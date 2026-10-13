@@ -1,0 +1,384 @@
+{
+  "source_id": "nist-ai",
+  "status": "ACTIVE",
+  "notes": "Primary NIST AI 100-1 / Playbook / AI 600-1 INACCESSIBLE in this environment (sources/audits/nist-ai.md). Function names, category counts (6/5/4/4) and the seven trustworthiness characteristics come from secondary corroboration recorded in sources/extracts/nist-ai-rmf-structure.json; subcategory lists were not obtained. All rows unverified against the primary.",
+  "rows": [
+    {
+      "source_element": "GOVERN function (categories GOVERN 1-6): policies, accountability, culture, AI actor engagement, third-party risk",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-risk-assessment",
+        "ai-human-oversight"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "ai-risk-register.csv",
+        "system-card.json",
+        "oversight-matrix.csv"
+      ],
+      "tests": [
+        "tests/test_ai_risk_assessment.py",
+        "tests/test_ai_human_oversight.py"
+      ],
+      "status": "tested",
+      "notes": "Category IDs secondary-corroborated; titles paraphrased"
+    },
+    {
+      "source_element": "GOVERN 6 third-party software, data and supply-chain risk",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-risk-assessment"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "ai-risk-register.csv",
+        "system-card.json"
+      ],
+      "tests": [
+        "tests/test_ai_risk_assessment.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "MAP function (categories MAP 1-5): context, intended use, categorisation, benefits/costs, component risks, impacts",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-risk-assessment"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "ai-risk-register.csv",
+        "system-card.json",
+        "risk-assessment-report.md"
+      ],
+      "tests": [
+        "tests/test_ai_risk_assessment.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "MEASURE function (categories MEASURE 1-4): methods and metrics, trustworthiness evaluation, tracking, feedback",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-eval-harness",
+        "ai-risk-assessment"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "eval-report.json",
+        "eval-config.json",
+        "system-card.json"
+      ],
+      "tests": [
+        "tests/test_ai_eval_harness.py",
+        "tests/test_ai_risk_assessment.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "MANAGE function (categories MANAGE 1-4): prioritised response, benefit/harm strategies incl. deactivation, third-party, monitoring and recovery",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-risk-assessment",
+        "ai-human-oversight",
+        "ai-prompt-injection-review"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "ai-risk-register.csv",
+        "oversight-matrix.csv",
+        "tool-policy.json"
+      ],
+      "tests": [
+        "tests/test_ai_risk_assessment.py",
+        "tests/test_ai_human_oversight.py",
+        "tests/test_ai_prompt_injection_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "AI RMF function/category reference structure (AIRMF-1.0-<FUNCTION>-<cat>)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-risk-assessment"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "airmf-1.0-structure.json"
+      ],
+      "tests": [
+        "tests/test_ai_risk_assessment.py"
+      ],
+      "status": "tested",
+      "notes": "Subcategories not obtained; pattern-only validation"
+    },
+    {
+      "source_element": "Trustworthiness: valid and reliable",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-eval-harness"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "eval-report.json"
+      ],
+      "tests": [
+        "tests/test_ai_eval_harness.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Trustworthiness: safe",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-risk-assessment",
+        "ai-human-oversight"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "ai-risk-register.csv",
+        "oversight-matrix.csv"
+      ],
+      "tests": [
+        "tests/test_ai_risk_assessment.py",
+        "tests/test_ai_human_oversight.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Trustworthiness: secure and resilient",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-prompt-injection-review"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "injection-corpus.jsonl",
+        "tool-policy.json"
+      ],
+      "tests": [
+        "tests/test_ai_prompt_injection_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Trustworthiness: accountable and transparent",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-human-oversight",
+        "ai-risk-assessment"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "oversight-matrix.csv",
+        "system-card.json"
+      ],
+      "tests": [
+        "tests/test_ai_human_oversight.py",
+        "tests/test_ai_risk_assessment.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Trustworthiness: explainable and interpretable",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-human-oversight"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "oversight-matrix.csv"
+      ],
+      "tests": [
+        "tests/test_ai_human_oversight.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Trustworthiness: privacy-enhanced",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-eval-harness",
+        "ai-prompt-injection-review"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "eval-report.json",
+        "tool-policy.json"
+      ],
+      "tests": [
+        "tests/test_ai_eval_harness.py",
+        "tests/test_ai_prompt_injection_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Trustworthiness: fair with harmful bias managed",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-eval-harness",
+        "ai-risk-assessment"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "eval-report.json",
+        "ai-risk-register.csv"
+      ],
+      "tests": [
+        "tests/test_ai_eval_harness.py",
+        "tests/test_ai_risk_assessment.py"
+      ],
+      "status": "implemented",
+      "notes": "No fairness metric scorer; slices only"
+    },
+    {
+      "source_element": "AI 600-1 GAI risk: confabulation",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-eval-harness"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "eval-report.json"
+      ],
+      "tests": [
+        "tests/test_ai_eval_harness.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "AI 600-1 GAI risk: data privacy",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-eval-harness",
+        "ai-prompt-injection-review"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "eval-report.json",
+        "tool-decisions.json"
+      ],
+      "tests": [
+        "tests/test_ai_eval_harness.py",
+        "tests/test_ai_prompt_injection_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "AI 600-1 GAI risk: human-AI configuration",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-human-oversight"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "oversight-matrix.csv"
+      ],
+      "tests": [
+        "tests/test_ai_human_oversight.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "AI 600-1 GAI risk: information security (name recalled from memory, not corroborated)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "ai-prompt-injection-review"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "injection-scan.json",
+        "tool-decisions.json"
+      ],
+      "tests": [
+        "tests/test_ai_prompt_injection_review.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

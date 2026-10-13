@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/credit-criteria-modelling/criteria.schema.json",
+  "title": "Versioned lender criteria with provenance",
+  "type": "object",
+  "required": ["rules"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "dataset": {"type": "string"},
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "lender", "product", "criterion", "operator", "value", "unit",
+                     "effective_from", "effective_to", "source_document", "last_verified"],
+        "properties": {
+          "rule_id": {"type": "string", "minLength": 1},
+          "lender": {"type": "string", "minLength": 1},
+          "product": {"type": "string", "minLength": 1},
+          "criterion": {"type": "string", "minLength": 1, "description": "fact key in the case, e.g. cltv_pct"},
+          "operator": {"enum": ["lt", "lte", "gt", "gte", "eq", "neq", "in", "not_in", "between", "is_true", "is_false"]},
+          "value": {"description": "number, string, boolean, list (in/not_in) or [low, high] (between)"},
+          "unit": {"type": "string", "minLength": 1},
+          "effective_from": {"type": "string", "format": "date"},
+          "effective_to": {"type": ["string", "null"], "format": "date"},
+          "source_document": {"type": "string", "minLength": 1},
+          "last_verified": {"type": "string", "format": "date"},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

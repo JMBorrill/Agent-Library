@@ -1,0 +1,8 @@
+id,claim,type,source_ref,method,date,participants,segment,confidence,linked_assumption
+DWS-EV-001,"6 of 8 sole-trader dog walkers rebuild next week's schedule by hand every Sunday evening",observation,INT-01..INT-08 (synthetic interview notes),interview,2026-09-02,8,sole-trader walkers,high,DWS-AS-001
+DWS-EV-002,"Walker described Sunday planning as ""two hours of texting owners to confirm slots""",observation,INT-03 transcript 12:40 (synthetic),interview,2026-09-03,1,sole-trader walkers,medium,DWS-AS-001
+DWS-EV-003,"5 of 6 walkers completed a recurring-walk booking on the paper prototype without help",observation,UT-01..UT-06 (synthetic),usability_test,2026-09-16,6,sole-trader walkers,medium,DWS-AS-002
+DWS-EV-004,"Median of 3.1 schedule changes per walker per week in the pilot spreadsheet export",observation,Pilot export PX-2026-09 (synthetic dataset),analytics,2026-09-20,41,small multi-walker businesses,medium,DWS-AS-003
+DWS-EV-005,"Published pet-care survey reports most UK walkers use messaging apps to manage bookings",desk_research,Desk note DN-04 (synthetic citation),desk,2026-08-28,,all walkers,low,DWS-AS-001
+DWS-EV-006,"Walkers would pay a monthly subscription if the app cut planning time in half",hypothesis,,none,,,sole-trader walkers,low,DWS-AS-004
+DWS-EV-007,"4 of 5 walkers agreed to a 4-week trial at a stated price point after a concierge test",observation,Concierge test CT-01 notes (synthetic),interview,2026-09-25,5,sole-trader walkers,medium,DWS-AS-004

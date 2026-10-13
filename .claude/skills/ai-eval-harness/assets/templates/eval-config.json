@@ -1,0 +1,16 @@
+{
+  "description": "<what these gates protect>",
+  "gate_on_interval": false,
+  "thresholds": {
+    "pass_rate": {
+      "min": 0.9
+    },
+    "grounding": {
+      "min": 0.95
+    },
+    "pii_leakage_rate": {
+      "max": 0.0
+    }
+  },
+  "tag_thresholds": {}
+}

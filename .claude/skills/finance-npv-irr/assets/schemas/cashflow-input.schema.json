@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/finance-npv-irr/cashflow-input.schema.json",
+  "title": "cashflow.py case input",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "currency": {"type": "string"},
+    "price_basis": {"enum": ["nominal", "real"]},
+    "convention": {"enum": ["t0", "t1"]},
+    "rate": {"oneOf": [{"type": "number", "exclusiveMinimum": -1}, {"const": "wacc"}]},
+    "flows": {"type": "array", "minItems": 1, "items": {"type": "number"}},
+    "finance_rate": {"type": ["number", "null"]},
+    "reinvest_rate": {"type": ["number", "null"]},
+    "capm": {"type": "object", "properties": {"risk_free": {"type": "number"}, "beta": {"type": "number"}, "equity_risk_premium": {"type": "number"}}},
+    "wacc": {"type": "object", "properties": {"equity_value": {"type": "number", "minimum": 0}, "debt_value": {"type": "number", "minimum": 0}, "cost_of_equity": {"oneOf": [{"type": "number"}, {"const": "capm"}]}, "cost_of_debt": {"type": "number"}, "tax_rate": {"type": "number", "minimum": 0, "maximum": 1}}},
+    "dcf": {"type": "object", "required": ["fcf", "terminal_growth"], "properties": {"fcf": {"type": "array", "minItems": 1, "items": {"type": "number"}}, "rate": {"oneOf": [{"type": "number"}, {"const": "wacc"}]}, "terminal_growth": {"type": "number"}}},
+    "sensitivity": {"type": "object", "propertyNames": {"enum": ["rate", "inflow_scale", "outflow_scale"]}, "additionalProperties": {"type": "array", "items": {"type": "number"}}},
+    "breakeven": {"type": "array", "items": {"enum": ["rate", "inflow_scale", "outflow_scale"]}}
+  }
+}

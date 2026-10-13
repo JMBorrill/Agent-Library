@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/ai-eval-harness/eval-report.schema.json",
+  "title": "run_eval.py --json report",
+  "type": "object",
+  "required": ["passed", "summary", "metrics", "metrics_by_tag", "gates", "items", "findings", "reproducibility"],
+  "$defs": {
+    "rate": {"type": "object", "required": ["k", "n", "rate", "ci95"],
+             "properties": {"k": {"type": "integer", "minimum": 0}, "n": {"type": "integer", "minimum": 0},
+                            "rate": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+                            "ci95": {"type": ["array", "null"], "items": {"type": "number", "minimum": 0, "maximum": 1},
+                                     "minItems": 2, "maxItems": 2}}}
+  },
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {"type": "object", "required": ["items", "gates", "gates_failed"]},
+    "metrics": {"type": "object", "required": ["pass_rate", "grounding", "pii_leakage_rate"],
+                "properties": {"pass_rate": {"$ref": "#/$defs/rate"}, "grounding": {"$ref": "#/$defs/rate"},
+                               "pii_leakage_rate": {"$ref": "#/$defs/rate"}}},
+    "metrics_by_tag": {"type": "object"},
+    "gates": {"type": "array", "items": {"type": "object", "required": ["scope", "metric", "status"],
+              "properties": {"status": {"enum": ["pass", "fail"]}}}},
+    "items": {"type": "array", "items": {"type": "object", "required": ["id", "checks", "passed"]}},
+    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
+                 "properties": {"severity": {"enum": ["error", "warning", "info"]},
+                                "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}}},
+    "reproducibility": {"type": "object", "required": ["harness_version", "dataset_sha256", "config", "config_sha256", "adapter"],
+                        "properties": {"dataset_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                                       "config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}
+  }
+}

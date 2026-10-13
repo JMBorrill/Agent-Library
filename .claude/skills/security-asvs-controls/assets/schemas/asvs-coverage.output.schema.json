@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/security-asvs-controls/asvs-coverage.output.schema.json",
+  "title": "asvs_coverage.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
+      "properties": {"severity": {"enum": ["error", "warning", "info"]},
+                     "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}}},
+    "summary": {
+      "type": "object",
+      "required": ["asvs_version", "target_level", "in_scope", "mapped", "per_chapter", "errors", "warnings"],
+      "properties": {
+        "asvs_version": {"const": "5.0.0"},
+        "target_level": {"enum": [1, 2, 3]},
+        "per_chapter": {"type": "object", "patternProperties": {"^V([1-9]|1[0-7])$": {
+          "type": "object", "required": ["in_scope", "mapped", "applicable", "pass", "fail", "not_verified", "missing", "mapped_pct"]}},
+          "additionalProperties": false}
+      }
+    }
+  }
+}

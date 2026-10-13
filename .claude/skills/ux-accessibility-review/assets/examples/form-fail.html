@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Request a walk</title>
+</head>
+<body>
+  <header><img src="logo.svg"></header>
+  <main>
+    <h1>Request a walk</h1>
+    <div class="govuk-error-summary">
+      <h2>Errors</h2>
+      <ul>
+        <li><a href="#e-mail">Please enter a valid email</a></li>
+      </ul>
+    </div>
+    <form action="/request" method="post">
+      <label for="full-name">Full name *</label>
+      <input id="full-name" name="full-name" type="text" autocomplete="username" spellcheck="false" required>
+
+      <input id="email" name="email" type="text" placeholder="Email address" aria-invalid="true">
+      <p id="email-error" class="govuk-error-message">Please enter a valid email</p>
+
+      <label for="phone">Phone:</label>
+      <input id="phone" name="phone" type="tel" maxlength="11" onpaste="return false">
+
+      <label for="dogs">Number of dogs</label>
+      <p id="dogs-error" class="govuk-error-message"><span>Error:</span> Enter how many dogs you have</p>
+      <input id="dogs" name="dogs" type="number" aria-describedby="dogs-error">
+
+      <input id="town" name="town" type="text" autocomplete="address-level2">
+
+      <p>Walk type</p>
+      <input id="walk-solo" name="walk-type" type="radio" value="solo" checked>
+      <label for="walk-solo">Solo</label>
+      <input id="walk-group" name="walk-type" type="radio" value="group">
+      <label for="walk-group">Group</label>
+      <p class="govuk-error-message" id="walk-error">This field is required</p>
+
+      <fieldset>
+        <p>Start date</p>
+        <legend>When should walks start?</legend>
+        <input id="start-day" name="start-day" type="text" aria-label="Day">
+        <input id="start-month" name="start-month" type="text" aria-label="Month">
+      </fieldset>
+      <label for="birthday">Your date of birth</label>
+      <input id="birthday" name="birthday" type="date">
+
+      <label for="extra">Notes for the walker</label>
+      <textarea id="extra" name="extra" aria-describedby="extra-hint"></textarea>
+
+      <input id="email" name="email-confirm" type="hidden">
+      <button type="submit" disabled>Next</button>
+    </form>
+  </main>
+</body>
+</html>

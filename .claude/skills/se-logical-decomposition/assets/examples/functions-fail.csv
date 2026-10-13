@@ -1,0 +1,5 @@
+function_id,parent_function,name,inputs,outputs,allocated_to,requirement_ids
+F0,,Hop system,EXT:command,data,,
+F1,F0,Energy storage,power,stored energy,,DEMO-SYS-002
+F2,F0,Release energy,stored energy;magic signal,motion,ROCKET,
+F2,F9,Measure,motion,samples,LOG,

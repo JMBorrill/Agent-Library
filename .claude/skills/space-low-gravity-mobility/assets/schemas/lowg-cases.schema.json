@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/space-low-gravity-mobility/lowg-cases.schema.json",
+  "title": "Batch input for lowg_calc.py batch",
+  "type": "object",
+  "required": ["cases"],
+  "properties": {
+    "description": {"type": "string"},
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "command", "params"],
+        "properties": {
+          "id": {"type": "string"},
+          "command": {"enum": ["body", "hop", "impulse", "bounce", "rotation"]},
+          "params": {
+            "type": "object",
+            "properties": {
+              "preset": {"enum": ["aster-target", "fast-rotator-synthetic"]},
+              "radius_m": {"type": "number", "exclusiveMinimum": 0},
+              "density_kg_m3": {"type": "number", "exclusiveMinimum": 0},
+              "mass_kg_body": {"type": "number", "exclusiveMinimum": 0},
+              "rotation_period_h": {"type": "number", "exclusiveMinimum": 0},
+              "latitude_deg": {"type": "number", "minimum": -90, "maximum": 90},
+              "g": {"type": "number", "exclusiveMinimum": 0},
+              "speed": {"type": "number", "exclusiveMinimum": 0},
+              "angle_deg": {"type": "number", "exclusiveMinimum": 0, "maximum": 90},
+              "mass_kg": {"type": "number", "exclusiveMinimum": 0, "description": "robot mass"},
+              "push_time_s": {"type": "number", "exclusiveMinimum": 0},
+              "friction_coefficient": {"type": "number", "minimum": 0},
+              "restitution": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+              "threshold_speed": {"type": "number", "exclusiveMinimum": 0},
+              "approx_ratio": {"type": "number", "exclusiveMinimum": 0},
+              "range_fraction": {"type": "number", "exclusiveMinimum": 0}
+            }
+          }
+        }
+      }
+    }
+  }
+}

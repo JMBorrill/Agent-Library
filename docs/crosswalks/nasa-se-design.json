@@ -1,0 +1,90 @@
+{
+  "source_id": "nasa-se-design",
+  "status": "ACTIVE",
+  "notes": "NASA SE Handbook (NASA/SP-2016-6105 Rev 2) inaccessible in-session; mapping uses secondary corroboration of process names/sections. Procedures are original library text.",
+  "rows": [
+    {
+      "source_element": "\u00a74.1 Stakeholder Expectations Definition",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-stakeholder-conops"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "conops.md",
+        "stakeholders.csv",
+        "needs.csv"
+      ],
+      "tests": [
+        "tests/test_se_stakeholder_conops.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a74.2 Technical Requirements Definition",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-requirements"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "requirements-engineer"
+      ],
+      "artifacts": [
+        "requirements.csv",
+        "requirements-review.md"
+      ],
+      "tests": [
+        "tests/test_se_requirements.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a74.3 Logical Decomposition",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-logical-decomposition"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-architect"
+      ],
+      "artifacts": [
+        "functions.csv"
+      ],
+      "tests": [
+        "tests/test_se_logical_decomposition.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a74.4 Design Solution Definition",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-architecture-trades",
+        "se-decision-analysis"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-architect",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "trade-space.json",
+        "design-solution.md"
+      ],
+      "tests": [
+        "tests/test_se_architecture_trades.py",
+        "tests/test_se_decision_analysis.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "card_version": "0.1.0",
+  "system_name": "",
+  "system_version": "",
+  "card_date": "",
+  "model_details": {
+    "base_model": "",
+    "provider": "",
+    "model_version": "",
+    "architecture": ""
+  },
+  "intended_use": {
+    "description": "",
+    "users": [
+      ""
+    ],
+    "decision_context": ""
+  },
+  "out_of_scope_uses": [
+    ""
+  ],
+  "data_lineage": [
+    {
+      "name": "",
+      "version": "",
+      "source": "",
+      "licence": "",
+      "contains_personal_data": false
+    }
+  ],
+  "evaluations": [
+    {
+      "eval_id": "",
+      "metric": "",
+      "value": 0,
+      "threshold": 0,
+      "comparator": ">=",
+      "n": 0,
+      "date": "",
+      "dataset": "",
+      "dataset_version": "",
+      "result": "not_tested"
+    }
+  ],
+  "known_limitations": [
+    ""
+  ],
+  "trustworthiness_notes": {
+    "valid-and-reliable": "",
+    "privacy-enhanced": ""
+  },
+  "human_oversight": {
+    "summary": "",
+    "approver_role": "",
+    "oversight_matrix_ref": ""
+  },
+  "monitoring": {
+    "metrics": [
+      ""
+    ],
+    "review_frequency": "",
+    "alert_owner": ""
+  },
+  "rollback_plan": {
+    "triggers": [
+      ""
+    ],
+    "procedure": "",
+    "owner": "",
+    "last_tested": ""
+  },
+  "contacts": [
+    {
+      "role": "",
+      "name": "",
+      "email": ""
+    }
+  ],
+  "risk_register_ref": "",
+  "recommendation": "NO_GO",
+  "sign_off": {
+    "status": "pending"
+  }
+}

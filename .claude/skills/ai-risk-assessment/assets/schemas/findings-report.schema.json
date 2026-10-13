@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/ai-risk-assessment/findings-report.schema.json",
+  "title": "Findings report emitted by library check scripts (--json)",
+  "type": "object",
+  "required": ["findings", "summary", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {"type": "object"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "message": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

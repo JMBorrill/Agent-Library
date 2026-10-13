@@ -1,0 +1,8 @@
+id,claim,type,source_ref,method,date,participants,segment,confidence,linked_assumption
+DWS-EV-101,"Walkers spend hours planning every week",observation,,interview,2026-09-02,8,sole-trader walkers,high,DWS-AS-101
+DWS-EV-102,"A walker told us ""I would pay anything for this app""",observation,Notes from the team,interview,2026-09-03,1,sole-trader walkers,high,DWS-AS-101
+DWS-EV-103,"Walkers want AI to plan routes automatically",hypothesis,,none,,,sole-trader walkers,high,DWS-AS-102
+DWS-EV-104,"Recurring bookings are easy to set up",observation,UT-02 (synthetic),usability_test,02/09/2026,0,sole-trader walkers,medium,DWS-AS-103
+DWS-EV-104,"Duplicate row for the same session",observation,UT-02 (synthetic),usability_test,2026-09-16,1,sole-trader walkers,medium,DWS-AS-103
+DWS-EV-105,"Analytics show churn after week two",observation,Dashboard (synthetic),none,2026-09-20,40,small multi-walker businesses,medium,DWS-AS-999
+DWS-EV-106,"Competitor pricing page lists a per-walker monthly fee",desk_research,,desk,2026-08-28,,all walkers,low,DWS-AS-104

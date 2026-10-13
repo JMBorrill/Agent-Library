@@ -1,0 +1,458 @@
+{
+ "system": "AI Operations Platform (synthetic): multi-tenant AI CRM and scheduling SaaS",
+ "version": "2026.10",
+ "owner": "security-lead (synthetic)",
+ "date": "2026-10-12",
+ "multi_tenant": true,
+ "asvs_target_level": 2,
+ "notes": "Synthetic example. ASVS IDs were chosen by chapter/section title and must be confirmed against the requirement text of ASVS 5.0.0 before use.",
+ "components": [
+  {
+   "id": "C1",
+   "name": "Tenant user browser",
+   "type": "external_entity",
+   "trust_zone": "internet"
+  },
+  {
+   "id": "C2",
+   "name": "Platform API (CRM + scheduling)",
+   "type": "process",
+   "trust_zone": "app"
+  },
+  {
+   "id": "C3",
+   "name": "Tenant database (shared schema, tenant_id column)",
+   "type": "data_store",
+   "trust_zone": "data"
+  },
+  {
+   "id": "C4",
+   "name": "LLM provider API",
+   "type": "external_entity",
+   "trust_zone": "third_party"
+  },
+  {
+   "id": "C5",
+   "name": "Calendar provider webhooks",
+   "type": "external_entity",
+   "trust_zone": "internet"
+  },
+  {
+   "id": "C6",
+   "name": "Background worker (reminders, AI summaries)",
+   "type": "process",
+   "trust_zone": "app"
+  }
+ ],
+ "trust_boundaries": [
+  {
+   "id": "TB1",
+   "name": "Internet to platform edge"
+  },
+  {
+   "id": "TB2",
+   "name": "Platform to third-party AI provider"
+  },
+  {
+   "id": "TB3",
+   "name": "Application tier to data tier"
+  }
+ ],
+ "assets": [
+  {
+   "id": "A1",
+   "name": "Tenant CRM contacts and notes",
+   "classification": "confidential"
+  },
+  {
+   "id": "A2",
+   "name": "Appointments and calendars",
+   "classification": "confidential"
+  },
+  {
+   "id": "A3",
+   "name": "Session tokens",
+   "classification": "restricted"
+  },
+  {
+   "id": "A4",
+   "name": "LLM prompts and completions containing CRM data",
+   "classification": "confidential"
+  }
+ ],
+ "data_flows": [
+  {
+   "id": "DF1",
+   "from": "C1",
+   "to": "C2",
+   "data": [
+    "A1",
+    "A2",
+    "A3"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB1",
+   "required_categories": "STIDE"
+  },
+  {
+   "id": "DF2",
+   "from": "C2",
+   "to": "C3",
+   "data": [
+    "A1",
+    "A2"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF3",
+   "from": "C2",
+   "to": "C4",
+   "data": [
+    "A4"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB2"
+  },
+  {
+   "id": "DF4",
+   "from": "C5",
+   "to": "C2",
+   "data": [
+    "A2"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB1",
+   "required_categories": "STID",
+   "not_applicable": {
+    "I": "Inbound webhook carries only provider event IDs; response body is empty 204"
+   }
+  },
+  {
+   "id": "DF5",
+   "from": "C2",
+   "to": "C6",
+   "data": [
+    "A2"
+   ],
+   "protocol": "internal queue",
+   "crosses_boundary": false
+  }
+ ],
+ "threats": [
+  {
+   "id": "T01",
+   "title": "Credential stuffing against tenant user login",
+   "stride": "S",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "high",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Rate limiting and MFA for tenant admins",
+     "asvs": [
+      "v5.0.0-6.3.1",
+      "v5.0.0-2.4.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T02",
+   "title": "Request tampering of booking parameters in transit",
+   "stride": "T",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "HTTPS only with HSTS",
+     "asvs": [
+      "v5.0.0-12.2.1",
+      "v5.0.0-3.4.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T03",
+   "title": "Session token disclosure via insecure cookie",
+   "stride": "I",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Secure, HttpOnly, SameSite cookies",
+     "asvs": [
+      "v5.0.0-3.3.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T04",
+   "title": "Booking API flooding exhausts capacity for all tenants",
+   "stride": "D",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-tenant rate limits and quotas",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T05",
+   "title": "User changes tenant_id in request to act in another tenant",
+   "stride": "E",
+   "targets": [
+    "DF1",
+    "C2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tenant derived from session, never from request; object-level authorization",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.3.1"
+     ],
+     "status": "verified"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "T06",
+   "title": "SQL injection through CRM search modifies tenant data",
+   "stride": "T",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Parameterised queries via ORM; no string-built SQL",
+     "asvs": [
+      "v5.0.0-1.2.4"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T07",
+   "title": "Query missing tenant filter returns another tenant's contacts",
+   "stride": "I",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Row-level security policy keyed on tenant_id plus repository-layer filter and tests",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.4.1"
+     ],
+     "status": "verified"
+    }
+   ],
+   "tenant_isolation": true
+  },
+  {
+   "id": "T08",
+   "title": "Unbounded report query exhausts shared database",
+   "stride": "D",
+   "targets": [
+    "DF2"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "accepted",
+   "mitigations": [],
+   "accepted_by": "cto (synthetic)",
+   "acceptance_rationale": "Statement timeout 5 s and read replica; revisit at 500 tenants"
+  },
+  {
+   "id": "T09",
+   "title": "Prompt injection in CRM notes alters AI-generated actions",
+   "stride": "T",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "high",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Treat model output as untrusted; human confirmation before sending messages",
+     "asvs": [
+      "v5.0.0-2.2.1"
+     ],
+     "status": "planned"
+    },
+    {
+     "description": "Allow-list of tool actions per tenant",
+     "asvs": [
+      "v5.0.0-8.3.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T10",
+   "title": "Tenant CRM data retained or exposed by AI provider",
+   "stride": "I",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Data processing agreement, zero-retention setting, minimise fields sent",
+     "asvs": [
+      "v5.0.0-14.2.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T11",
+   "title": "AI provider outage blocks scheduling",
+   "stride": "D",
+   "targets": [
+    "DF3"
+   ],
+   "likelihood": "medium",
+   "impact": "low",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Degrade gracefully: scheduling works without AI summaries",
+     "asvs": [
+      "v5.0.0-15.1.3"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T12",
+   "title": "Forged calendar webhook cancels appointments",
+   "stride": "S",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Verify provider signature and timestamp on every webhook",
+     "asvs": [
+      "v5.0.0-4.1.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T13",
+   "title": "Replay of a captured webhook payload",
+   "stride": "T",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Reject events older than 5 minutes; idempotency keys",
+     "asvs": [
+      "v5.0.0-2.3.2"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T14",
+   "title": "Webhook flood from a compromised provider account",
+   "stride": "D",
+   "targets": [
+    "DF4"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-source rate limit on webhook endpoint",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "implemented"
+    }
+   ]
+  },
+  {
+   "id": "T15",
+   "title": "Worker processes a job under the wrong tenant context",
+   "stride": "E",
+   "targets": [
+    "C6"
+   ],
+   "likelihood": "low",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tenant ID carried in signed job envelope and re-checked by worker",
+     "asvs": [
+      "v5.0.0-8.2.2"
+     ],
+     "status": "implemented"
+    }
+   ],
+   "tenant_isolation": true
+  }
+ ]
+}

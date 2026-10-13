@@ -1,0 +1,6 @@
+item_id,parent,budget,unit,cbe,maturity,quantity,mode,notes
+ROVER,,mass,,,,,,synthetic rover mass tree
+STR,ROVER,mass,kg,13.0,calculated,1,,structure growing between snapshots
+RW,ROVER,mass,kg,0.9,heritage,4,,wheels
+HAR,ROVER,mass,kg,2.5,estimated,1,,harness
+CAM,ROVER,mass,kg,1.5,measured,1,,camera

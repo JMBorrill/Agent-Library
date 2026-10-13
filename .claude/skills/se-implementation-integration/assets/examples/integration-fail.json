@@ -1,0 +1,15 @@
+{
+  "plan_id": "DEMO-INT-002",
+  "final_assembly": "RIG-SYS",
+  "components": [
+    {"id": "PWR", "status": "available", "unit_verified": true},
+    {"id": "CTRL", "status": "planned", "unit_verified": false},
+    {"id": "LEG", "status": "available", "unit_verified": true},
+    {"id": "LOG", "status": "available", "unit_verified": true}
+  ],
+  "steps": [
+    {"step_id": "I1", "integrates": ["ACT-ASSY", "LOG"], "produces": "INSTR-ASSY", "prerequisites": [], "interfaces": [], "checks": []},
+    {"step_id": "I2", "integrates": ["PWR", "CTRL", "LEG"], "produces": "ACT-ASSY", "prerequisites": ["I3"], "interfaces": [], "checks": ["DEMO-VER-011"]},
+    {"step_id": "I3", "integrates": ["INSTR-ASSY", "GHOST"], "produces": "ACT-ASSY", "prerequisites": ["I2"], "interfaces": [], "checks": ["X"]}
+  ]
+}

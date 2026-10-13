@@ -1,0 +1,15 @@
+{
+  "product_name": "",
+  "assessment_date": "YYYY-MM-DD",
+  "jurisdiction": "UK",
+  "customer_types": ["consumer | business"],
+  "products": ["first_charge_mortgage | second_charge_mortgage | buy_to_let_mortgage | unsecured_consumer_credit | bnpl | business_lending | other"],
+  "service_model": "advice | execution_only | information_criteria_search | lending_direct",
+  "activities": {"arranges": null, "advises": null, "lends": null},
+  "performs_affordability_calculation": null,
+  "communicates_promotions": null,
+  "ai_in_decisions": null,
+  "vulnerable_customers": null,
+  "handles_complaints": null,
+  "processes_personal_data": null
+}

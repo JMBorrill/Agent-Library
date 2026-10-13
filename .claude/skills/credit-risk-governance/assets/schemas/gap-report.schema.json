@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/credit-risk-governance/gap-report.schema.json",
+  "title": "governance_check.py --json gap report",
+  "type": "object",
+  "required": ["findings", "summary", "passed", "report_type", "scope"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "report_type": {"const": "gap-report"},
+    "as_of": {"type": ["string", "null"]},
+    "scope": {"type": "string", "minLength": 1},
+    "summary": {
+      "type": "object",
+      "required": ["controls", "errors", "warnings", "info"],
+      "properties": {
+        "coverage_by_area": {
+          "type": "object",
+          "properties": {
+            "credit_risk_environment": {"type": "integer"},
+            "credit_granting": {"type": "integer"},
+            "administration_measurement_monitoring": {"type": "integer"},
+            "controls": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "plan_id": "DWS-EXP-001",
+  "primary": {"control": {"conversions": 420, "n": 1400}, "treatment": {"conversions": 497, "n": 1400}},
+  "guardrails": [
+    {"name": "client_complaint_rate", "control": {"conversions": 14, "n": 1400}, "treatment": {"conversions": 40, "n": 1400}},
+    {"name": "walker_opt_out_rate", "control": {"conversions": 3, "n": 1400}, "treatment": {"conversions": 4, "n": 1400}}
+  ]
+}

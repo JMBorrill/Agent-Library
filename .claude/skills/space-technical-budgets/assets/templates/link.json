@@ -1,0 +1,62 @@
+{
+  "name": "<link name>",
+  "frequency": {
+    "value": null,
+    "unit": "GHz"
+  },
+  "distance": {
+    "value": null,
+    "unit": "km"
+  },
+  "tx_power": {
+    "value": null,
+    "unit": "W"
+  },
+  "tx_antenna_gain": {
+    "value": null,
+    "unit": "dBi"
+  },
+  "tx_losses": {
+    "value": null,
+    "unit": "dB"
+  },
+  "other_losses": [
+    {
+      "name": "<loss name>",
+      "value": null,
+      "unit": "dB"
+    }
+  ],
+  "rx_gt": {
+    "value": null,
+    "unit": "dB/K"
+  },
+  "data_rate": {
+    "value": null,
+    "unit": "Mbps"
+  },
+  "required_eb_n0": {
+    "value": null,
+    "unit": "dB"
+  },
+  "implementation_loss": {
+    "value": null,
+    "unit": "dB"
+  },
+  "rx_antenna_gain": {
+    "value": null,
+    "unit": "dBi"
+  },
+  "rx_losses": {
+    "value": null,
+    "unit": "dB"
+  },
+  "rx_sensitivity": {
+    "value": null,
+    "unit": "dBm"
+  },
+  "required_margin": {
+    "value": null,
+    "unit": "dB"
+  }
+}

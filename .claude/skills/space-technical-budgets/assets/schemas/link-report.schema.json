@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/space-technical-budgets/link-report.schema.json",
+  "title": "link_budget.py --json output",
+  "type": "object",
+  "required": ["fspl_db", "findings", "passed", "scope"],
+  "properties": {
+    "fspl_db": {"type": "number"},
+    "eirp_dbw": {"type": "number"},
+    "c_n0_dbhz": {"type": "number"},
+    "eb_n0_db": {"type": "number"},
+    "eb_n0_margin_db": {"type": "number"},
+    "rx_power_dbm": {"type": "number"},
+    "rx_power_margin_db": {"type": "number"},
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/credit-criteria-modelling/case.schema.json",
+  "title": "Synthetic applicant case for criteria evaluation",
+  "type": "object",
+  "required": ["application_date", "facts"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "application_date": {"type": "string", "format": "date"},
+    "facts": {"type": "object", "additionalProperties": {"type": ["number", "string", "boolean", "null"]}},
+    "units": {"type": "object", "additionalProperties": {"type": "string"}}
+  }
+}

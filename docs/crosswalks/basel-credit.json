@@ -1,0 +1,88 @@
+{
+  "source_id": "basel-credit",
+  "status": "ACTIVE",
+  "notes": "BCBS Principles for the management of credit risk (rev. 30 Apr 2025, d595) INACCESSIBLE (sources/audits/basel-credit.md). Four areas corroborated by secondary snippets only; principle count and text unverified; no principle numbering used.",
+  "rows": [
+    {
+      "source_element": "Area: establishing a suitable credit risk environment",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "credit-risk-governance"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "controls-register.csv",
+        "governance_check.py gap report"
+      ],
+      "tests": [
+        "tests/test_credit_risk_governance.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Area: operating under a sound credit-granting process",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "credit-risk-governance",
+        "credit-criteria-modelling"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "governance_check.py gap report",
+        "criteria.json",
+        "criteria_engine.py report"
+      ],
+      "tests": [
+        "tests/test_credit_risk_governance.py",
+        "tests/test_credit_criteria_modelling.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Area: appropriate credit administration, measurement and monitoring",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "credit-risk-governance"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer"
+      ],
+      "artifacts": [
+        "governance_check.py gap report"
+      ],
+      "tests": [
+        "tests/test_credit_risk_governance.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Area: ensuring adequate controls over credit risk (independent review)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "credit-risk-governance"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "governance_check.py gap report",
+        "governance-review.md"
+      ],
+      "tests": [
+        "tests/test_credit_risk_governance.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "policy_id": "AIOPS-TOOL-POLICY",
+  "version": "1.0.0",
+  "description": "Synthetic tool policy for an AI operations assistant with CRM and mortgage case tools",
+  "allowed_tools": [
+    "search_kb",
+    "read_crm_record",
+    "read_case_file",
+    "summarise_document",
+    "draft_email",
+    "create_task",
+    "send_email",
+    "update_crm_record",
+    "http_get"
+  ],
+  "side_effecting_tools": [
+    "send_email",
+    "update_crm_record",
+    "http_get"
+  ],
+  "untrusted_provenance": [
+    "retrieved_content",
+    "tool_output"
+  ],
+  "forbidden_domains": [
+    "pastebin.com",
+    "webhook.site",
+    "ngrok.io",
+    "attacker.example"
+  ],
+  "allowed_egress_domains": [
+    "ourfirm.example",
+    "northbank.example",
+    "larkspur.example",
+    "fenmoor.example"
+  ],
+  "personal_data_classifications": [
+    "personal",
+    "special_category"
+  ],
+  "pii_egress_allowed_domains": [
+    "ourfirm.example",
+    "northbank.example"
+  ]
+}

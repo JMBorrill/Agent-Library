@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/security-threat-model/threat-model.schema.json",
+  "title": "STRIDE data-flow threat model (input to threat_model_check.py)",
+  "type": "object",
+  "required": ["system", "owner", "components", "trust_boundaries", "assets", "data_flows", "threats"],
+  "properties": {
+    "system": {"type": "string"},
+    "owner": {"type": "string"},
+    "multi_tenant": {"type": "boolean"},
+    "asvs_target_level": {"enum": [1, 2, 3]},
+    "components": {"type": "array", "items": {"type": "object", "required": ["id", "name", "type"],
+      "properties": {"type": {"enum": ["external_entity", "process", "data_store"]}}}},
+    "trust_boundaries": {"type": "array", "items": {"type": "object", "required": ["id", "name"]}},
+    "assets": {"type": "array", "items": {"type": "object", "required": ["id", "name", "classification"],
+      "properties": {"classification": {"enum": ["public", "internal", "confidential", "restricted"]}}}},
+    "data_flows": {"type": "array", "items": {"type": "object", "required": ["id", "from", "to", "crosses_boundary"],
+      "properties": {"crosses_boundary": {"type": "boolean"},
+                     "required_categories": {"type": "string", "pattern": "^[STRIDE]+$"},
+                     "not_applicable": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}}}},
+    "threats": {"type": "array", "items": {"type": "object",
+      "required": ["id", "title", "stride", "targets", "likelihood", "impact"],
+      "properties": {
+        "likelihood": {"enum": ["low", "medium", "high"]},
+        "impact": {"enum": ["low", "medium", "high"]},
+        "status": {"enum": ["open", "mitigated", "accepted", "transferred"]},
+        "tenant_isolation": {"type": "boolean"},
+        "mitigations": {"type": "array", "items": {"type": "object", "required": ["description"],
+          "properties": {"asvs": {"type": "array", "items": {"type": "string", "pattern": "^(ASVS-)?v5\\.0\\.0-\\d+\\.\\d+\\.\\d+$"}},
+                         "status": {"enum": ["planned", "implemented", "verified"]}}}}}}}
+  }
+}

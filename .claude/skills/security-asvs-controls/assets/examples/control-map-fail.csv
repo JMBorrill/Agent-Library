@@ -1,0 +1,10 @@
+asvs_id,level,applicable,justification,implementation_ref,verification_method,evidence_ref,status
+1.2.5,L1,yes,,criteria/search.py,code-review,PR-301,pass
+v4.0.3-4.1.1,L1,yes,,criteria/api.py,automated-test,ci-run-77,pass
+v5.0.0-8.9.1,L1,yes,,criteria/api.py,automated-test,ci-run-77,pass
+v5.0.0-7.2.1,L2,yes,,auth/session.py,automated-test,ci-run-77,pass
+v5.0.0-7.2.2,L1,na,,,,,not_verified
+v5.0.0-7.2.3,L1,yes,,auth/session.py,automated-test,,pass
+v5.0.0-8.2.2,L1,yes,,criteria/repository.py,pen-test,PT-2026-09 F-04 cross-tenant criteria read,fail
+v5.0.0-8.2.2,L1,yes,,criteria/repository.py,pen-test,PT-2026-09,pass
+v5.0.0-8.2.1,L1,yes,,criteria/api.py,vibes,ci-run-77,pass

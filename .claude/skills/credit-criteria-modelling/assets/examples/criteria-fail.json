@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "dataset": "Synthetic seeded-defect criteria",
+  "rules": [
+    {
+      "rule_id": "BAD-001",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "cltv_pct",
+      "operator": "lte",
+      "value": 75,
+      "unit": "percent",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "BAD-002",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "cltv_pct",
+      "operator": "lte",
+      "value": 80,
+      "unit": "percent",
+      "effective_from": "2026-06-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "BAD-003",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "loan_amount",
+      "operator": "approx",
+      "value": 50000,
+      "unit": "GBP",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "BAD-004",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "age_at_term_end",
+      "operator": "lte",
+      "value": 80,
+      "unit": "years",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "BAD-005",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "ccj_count_last_6y",
+      "operator": "lte",
+      "value": 0,
+      "unit": "count",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2025-11-30"
+    },
+    {
+      "rule_id": "BAD-006",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "loan_amount",
+      "operator": "between",
+      "value": [
+        250000,
+        10000
+      ],
+      "unit": "GBP",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    },
+    {
+      "rule_id": "BAD-007",
+      "lender": "Northbridge Mutual (synthetic)",
+      "product": "Second charge 5-year fixed (synthetic)",
+      "criterion": "term_years",
+      "operator": "lte",
+      "value": 25,
+      "unit": "years",
+      "effective_from": "2026-05-01",
+      "effective_to": "2026-02-01",
+      "source_document": "Northbridge synthetic criteria guide v7 (2026-01), s.2",
+      "last_verified": "2026-09-15"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "trade_id": "DEMO-TRADE-002",
+  "functions": [
+    {"id": "F2", "name": "Release energy", "options": [{"id": "SPRING", "trl": 5}]},
+    {"id": "F2", "name": "Duplicate", "options": [{"id": "SPRING", "trl": 12}]}
+  ],
+  "incompatible": [["SPRING", "GHOST"]],
+  "requires": [["SPRING", "SPRING"]]
+}

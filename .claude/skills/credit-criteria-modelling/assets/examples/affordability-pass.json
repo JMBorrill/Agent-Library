@@ -1,0 +1,18 @@
+{
+  "description": "Synthetic second-charge affordability case (illustrative)",
+  "charge": "second",
+  "property_value": 400000,
+  "loan_amount": 50000,
+  "term_years": 15,
+  "product_rate_pct": 7.5,
+  "stress_margin_pct": 2.0,
+  "stress_margin_source": "Northbridge Mutual (synthetic) lending policy v7 s.4",
+  "stress_floor_rate_pct": 0,
+  "repayment_type": "repayment",
+  "gross_annual_income": 60000,
+  "net_monthly_income": 3750,
+  "monthly_committed_expenditure": 250,
+  "monthly_essential_expenditure": 1300,
+  "existing_first_charge_balance": 240000,
+  "existing_first_charge_payment": 1150
+}

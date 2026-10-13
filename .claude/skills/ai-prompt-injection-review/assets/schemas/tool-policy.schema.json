@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/ai-prompt-injection-review/tool-policy.schema.json",
+  "title": "Agent tool-use policy",
+  "type": "object",
+  "required": ["policy_id", "version", "allowed_tools", "side_effecting_tools"],
+  "properties": {
+    "policy_id": {"type": "string"},
+    "version": {"type": "string"},
+    "description": {"type": "string"},
+    "allowed_tools": {"type": "array", "items": {"type": "string"}},
+    "side_effecting_tools": {"type": "array", "items": {"type": "string"}},
+    "untrusted_provenance": {"type": "array", "items": {"enum": ["user", "system", "retrieved_content", "tool_output"]}},
+    "forbidden_domains": {"type": "array", "items": {"type": "string"}},
+    "allowed_egress_domains": {"type": "array", "items": {"type": "string"}},
+    "personal_data_classifications": {"type": "array", "items": {"type": "string"}},
+    "pii_egress_allowed_domains": {"type": "array", "items": {"type": "string"}}
+  }
+}

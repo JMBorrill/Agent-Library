@@ -1,0 +1,72 @@
+{
+  "name": "ASTER rover-to-orbiter direct link attempt (synthetic example values; seeded to fail)",
+  "frequency": {
+    "value": 2.4,
+    "unit": "GHz"
+  },
+  "distance": {
+    "value": 200,
+    "unit": "km"
+  },
+  "tx_power": {
+    "value": 1,
+    "unit": "W"
+  },
+  "tx_antenna_gain": {
+    "value": 3,
+    "unit": "dBi"
+  },
+  "tx_losses": {
+    "value": 1,
+    "unit": "dB"
+  },
+  "other_losses": [
+    {
+      "name": "pointing",
+      "value": 1,
+      "unit": "dB"
+    },
+    {
+      "name": "polarisation",
+      "value": 1,
+      "unit": "dB"
+    },
+    {
+      "name": "surface multipath allowance",
+      "value": 1,
+      "unit": "dB"
+    }
+  ],
+  "rx_gt": {
+    "value": -24,
+    "unit": "dB/K"
+  },
+  "data_rate": {
+    "value": 10,
+    "unit": "Mbps"
+  },
+  "required_eb_n0": {
+    "value": 9.6,
+    "unit": "dB"
+  },
+  "implementation_loss": {
+    "value": 2,
+    "unit": "dB"
+  },
+  "rx_antenna_gain": {
+    "value": 3,
+    "unit": "dBi"
+  },
+  "rx_losses": {
+    "value": 1,
+    "unit": "dB"
+  },
+  "rx_sensitivity": {
+    "value": -95,
+    "unit": "dBm"
+  },
+  "required_margin": {
+    "value": 3,
+    "unit": "dB"
+  }
+}

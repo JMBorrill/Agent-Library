@@ -1,0 +1,37 @@
+{
+  "source_id": "ecss-se",
+  "status": "ACTIVE",
+  "notes": "ECSS-E-ST-10C Rev.1 was INACCESSIBLE in this environment (sources/audits/ecss-se.md); no text, clause numbers, DRDs or margin values were read or are cited. Rows map only broad topics that a space-sector system-engineering standard is publicly understood to address, and are all source_verification 'unverified'. ECSS clause-level mapping is BLOCKED pending lawful access to the licensed standard by a registered human; its applicability (contractual tailoring) and content must be checked under its own licence. The example margin policy in space-technical-budgets is explicitly not from ECSS or NASA.",
+  "rows": [
+    {
+      "source_element": "Engineering budgets and margins (topic level: allocation, contingency, system margin, budget tracking)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["space-technical-budgets"],
+      "agents": ["systems-engineer", "systems-architect", "vv-engineer", "safety-risk-reviewer"],
+      "artifacts": ["budget.csv", "margin-policy.json", "budget-report (budget_calc.py --json)", "link.json", "link-report (link_budget.py --json)"],
+      "tests": ["tests/test_space_technical_budgets.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "System engineering analysis supporting design definition (topic level; applied to small-body mobility physics)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["space-low-gravity-mobility"],
+      "agents": ["systems-architect", "systems-engineer", "vv-engineer", "safety-risk-reviewer"],
+      "artifacts": ["lowg-cases.json", "lowg-report (lowg_calc.py --json)", "test-analogue-plan.md"],
+      "tests": ["tests/test_space_low_gravity_mobility.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Clause-level requirements, pre-tailoring by product type and document requirement definitions (DRDs)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [],
+      "agents": ["systems-engineer"],
+      "artifacts": [],
+      "tests": [],
+      "status": "blocked"
+    }
+  ]
+}

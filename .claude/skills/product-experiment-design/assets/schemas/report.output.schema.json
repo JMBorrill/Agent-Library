@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/product-experiment-design/report.output.schema.json",
+  "title": "experiment_calc.py plan|evaluate --plan --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {
+      "type": "object",
+      "required": ["plan", "errors", "warnings"],
+      "properties": {
+        "recommendation": {"enum": ["RECOMMEND_SHIP", "RECOMMEND_DO_NOT_SHIP", "INCONCLUSIVE"]},
+        "requires_human_decision": {"const": true},
+        "required_per_arm": {"type": ["integer", "null"]}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "message": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

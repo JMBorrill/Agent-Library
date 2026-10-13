@@ -1,0 +1,12 @@
+{
+  "label": "example values — not from ECSS or NASA; replace with your programme's policy",
+  "is_example": true,
+  "policy_id": "ASTER-POLICY-EXAMPLE-TIGHT",
+  "margin_basis": "allocation",
+  "contingency_percent": {"estimated": 20, "calculated": 10, "heritage": 5, "measured": 3},
+  "required_system_margin_percent": 15,
+  "budgets": {
+    "mass": {"unit": "kg", "allocation": 25.0},
+    "power": {"unit": "W", "allocation_by_mode": {"drive": 60.0, "safe": 25.0}}
+  }
+}

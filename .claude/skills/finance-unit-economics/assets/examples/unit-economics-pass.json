@@ -1,0 +1,21 @@
+{
+  "name": "Synthetic scheduling/CRM SaaS (BookWell, synthetic) - SMB plan, Q3 2026",
+  "currency": "GBP",
+  "inputs": {
+    "sales_marketing_spend": {"value": 30000, "tag": "measured", "source": "synthetic ledger export Q3-2026 (S&M cost centre)", "owner": "finance lead"},
+    "new_customers": {"value": 30, "tag": "measured", "source": "synthetic billing system new-subscription count Q3-2026"},
+    "paid_spend": {"value": 18000, "tag": "measured", "source": "synthetic ad-platform invoices Q3-2026"},
+    "paid_new_customers": {"value": 12, "tag": "estimate", "source": "last-touch attribution report (method known to undercount)", "owner": "growth lead"},
+    "arpa_monthly": {"value": 100, "tag": "measured", "source": "synthetic MRR / active accounts, Sep 2026"},
+    "gross_margin_pct": {"value": 0.80, "tag": "measured", "source": "synthetic P&L: hosting + support COGS, Q3-2026"},
+    "variable_cost_per_account_monthly": {"value": 10, "tag": "estimate", "source": "payment fees + SMS credits per account", "owner": "finance lead"},
+    "monthly_churn": {"value": 0.02, "tag": "measured", "source": "synthetic cohort table, trailing 6 months"},
+    "discount_rate_annual": {"value": 0.12, "tag": "estimate", "source": "hurdle rate set by founders (synthetic)", "owner": "CEO"},
+    "horizon_months": {"value": 60, "tag": "estimate", "source": "policy: value no more than 5 years of an SMB account", "owner": "finance lead"}
+  },
+  "scenarios": {
+    "downside": {"monthly_churn": 0.035, "arpa_monthly": 90},
+    "upside": {"monthly_churn": 0.015, "arpa_monthly": 110}
+  },
+  "sensitivity": {"monthly_churn": [0.01, 0.02, 0.03, 0.05]}
+}

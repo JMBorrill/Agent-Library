@@ -1,0 +1,18 @@
+{
+  "policy_id": "<POLICY-ID>",
+  "version": "1.0.0",
+  "description": "<system and scope>",
+  "allowed_tools": [],
+  "side_effecting_tools": [],
+  "untrusted_provenance": [
+    "retrieved_content",
+    "tool_output"
+  ],
+  "forbidden_domains": [],
+  "allowed_egress_domains": [],
+  "personal_data_classifications": [
+    "personal",
+    "special_category"
+  ],
+  "pii_egress_allowed_domains": []
+}

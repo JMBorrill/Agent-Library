@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "dataset": "",
+  "rules": [
+    {"rule_id": "", "lender": "", "product": "", "criterion": "", "operator": "lte", "value": null, "unit": "",
+     "effective_from": "YYYY-MM-DD", "effective_to": null, "source_document": "", "last_verified": "YYYY-MM-DD"}
+  ]
+}

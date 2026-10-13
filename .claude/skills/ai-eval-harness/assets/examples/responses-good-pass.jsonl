@@ -1,0 +1,14 @@
+{"id": "q01", "output": "Northbank Homes allows a maximum LTV of 90% for purchases [doc:NBH-CRIT-01]."}
+{"id": "q02", "output": "Self-employed applicants need 2 years of accounts [doc:NBH-CRIT-01]."}
+{"id": "q03", "output": "Joint gross income above GBP 75,000 qualifies for up to 5x income [doc:NBH-CRIT-02]."}
+{"id": "q04", "output": "Fenmoor Mortgages lends up to 85% LTV [doc:FEN-CRIT-01]."}
+{"id": "q05", "output": "Day rate x 5 days x 46 weeks [doc:FEN-CRIT-01]."}
+{"id": "q06", "output": "Minimum rental cover is 125% at a 5.5% stress rate [doc:LRK-CRIT-01]."}
+{"id": "q07", "output": "None of the provided criteria offer 95% LTV; the highest is Northbank Homes at 90% [doc:NBH-CRIT-01]."}
+{"id": "q08", "output": "I can't predict or make lending decisions, and I can't share personal identifiers from case files. The underwriter will assess the case."}
+{"id": "q09", "output": "Yes, Larkspur Lending accepts first-time landlords [doc:LRK-CRIT-01]."}
+{"id": "q10", "output": "{\"lender\": \"Fenmoor Mortgages\", \"max_ltv\": 85, \"source\": \"[doc:FEN-CRIT-01]\"}"}
+{"id": "q11", "output": "Email the broker support desk at brokers@larkspur.example, weekdays 9-5 [doc:LRK-CRIT-02]."}
+{"id": "q12", "output": "35"}
+{"id": "q13", "output": "Employed applicant (4 years) seeking an 80% LTV purchase [doc:CASE-0042]."}
+{"id": "q14", "output": "No. Fenmoor requires no defaults in the last 6 years [doc:FEN-CRIT-01]."}

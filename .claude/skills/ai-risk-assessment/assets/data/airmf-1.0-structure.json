@@ -1,0 +1,120 @@
+{
+  "framework": "NIST AI Risk Management Framework (AI RMF 1.0, NIST AI 100-1)",
+  "ref_prefix": "AIRMF-1.0",
+  "ref_format": "AIRMF-1.0-<FUNCTION>-<category>[.<subcategory>]",
+  "provenance": {
+    "built_from": "sources/extracts/nist-ai-rmf-structure.json (evidence_level: secondary) plus author memory",
+    "primary_source_access": "INACCESSIBLE in this environment (see sources/audits/nist-ai.md)",
+    "function_ids": "secondary corroboration (multiple third-party summaries)",
+    "category_counts": "secondary corroboration: GOVERN 6, MAP 5, MEASURE 4, MANAGE 4",
+    "subcategory_counts": "NOT OBTAINED - subcategory lists deliberately empty (secondary sources report about 72 in total). Subcategory references are checked for pattern only and reported as unverified.",
+    "topic_hints": "UNVERIFIED paraphrases (GOVERN from the extract's paraphrases; MAP/MEASURE/MANAGE from memory). Not quotations; do not cite as NIST wording.",
+    "rebuild": "Replace with an official machine-readable source when one is obtained; re-check by 2027-01-13.",
+    "subcategory_validation": "pattern-only"
+  },
+  "functions": {
+    "GOVERN": {
+      "cross_cutting": true,
+      "categories": {
+        "1": {
+          "topic_hint": "organisation-wide AI risk policies, processes and practices",
+          "subcategories": []
+        },
+        "2": {
+          "topic_hint": "accountability structures, roles, training",
+          "subcategories": []
+        },
+        "3": {
+          "topic_hint": "workforce diversity, equity, inclusion and accessibility in AI risk work",
+          "subcategories": []
+        },
+        "4": {
+          "topic_hint": "risk-aware organisational culture and communication",
+          "subcategories": []
+        },
+        "5": {
+          "topic_hint": "engagement with relevant AI actors and affected parties",
+          "subcategories": []
+        },
+        "6": {
+          "topic_hint": "third-party software, data and supply-chain risk",
+          "subcategories": []
+        }
+      }
+    },
+    "MAP": {
+      "categories": {
+        "1": {
+          "topic_hint": "context and intended purpose established",
+          "subcategories": []
+        },
+        "2": {
+          "topic_hint": "categorisation of the AI system and its tasks",
+          "subcategories": []
+        },
+        "3": {
+          "topic_hint": "capabilities, intended benefits and costs",
+          "subcategories": []
+        },
+        "4": {
+          "topic_hint": "risks of components, including third-party",
+          "subcategories": []
+        },
+        "5": {
+          "topic_hint": "impacts on individuals, groups, organisations and society",
+          "subcategories": []
+        }
+      }
+    },
+    "MEASURE": {
+      "categories": {
+        "1": {
+          "topic_hint": "methods and metrics identified and applied",
+          "subcategories": []
+        },
+        "2": {
+          "topic_hint": "evaluation against trustworthiness characteristics",
+          "subcategories": []
+        },
+        "3": {
+          "topic_hint": "tracking identified risks over time",
+          "subcategories": []
+        },
+        "4": {
+          "topic_hint": "feedback on the efficacy of measurement",
+          "subcategories": []
+        }
+      }
+    },
+    "MANAGE": {
+      "categories": {
+        "1": {
+          "topic_hint": "prioritising and responding to mapped and measured risks",
+          "subcategories": []
+        },
+        "2": {
+          "topic_hint": "strategies to maximise benefit and minimise harm, incl. deactivation",
+          "subcategories": []
+        },
+        "3": {
+          "topic_hint": "third-party risks managed",
+          "subcategories": []
+        },
+        "4": {
+          "topic_hint": "risk treatment, response, recovery and communication monitored",
+          "subcategories": []
+        }
+      }
+    }
+  },
+  "trustworthiness_characteristics": [
+    "valid-and-reliable",
+    "safe",
+    "secure-and-resilient",
+    "accountable-and-transparent",
+    "explainable-and-interpretable",
+    "privacy-enhanced",
+    "fair-with-harmful-bias-managed"
+  ],
+  "trustworthiness_verification": "secondary (search snippet attributed to airc.nist.gov plus summaries)"
+}

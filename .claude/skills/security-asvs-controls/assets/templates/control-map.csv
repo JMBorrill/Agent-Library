@@ -1,0 +1,5 @@
+asvs_id,level,applicable,justification,implementation_ref,verification_method,evidence_ref,status
+v5.0.0-8.1.1,L1,yes,,,,,not_verified
+v5.0.0-8.2.1,L1,yes,,,,,not_verified
+v5.0.0-8.2.2,L1,yes,,,,,not_verified
+v5.0.0-8.3.1,L1,yes,,,,,not_verified

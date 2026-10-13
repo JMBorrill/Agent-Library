@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="python" tests="2" failures="0" errors="0">
+    <testcase classname="test_scheduling.BookingTests" name="test_AIOPS_SW_001_rejects_overlap" time="0.01"/>
+    <testcase classname="test_scheduling.BookingTests" name="test_cross_tenant_query_returns_nothing" time="0.01"/>
+  </testsuite>
+  <testsuite name="jest" tests="1" failures="0">
+    <testcase classname="reminders.test.ts" name="reminder is sent 24 hours before start" time="0.02"/>
+  </testsuite>
+</testsuites>

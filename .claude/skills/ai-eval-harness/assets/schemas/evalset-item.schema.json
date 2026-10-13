@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/ai-eval-harness/evalset-item.schema.json",
+  "title": "One line of an eval set JSONL",
+  "type": "object",
+  "required": ["id", "input"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "input": {"type": "string"},
+    "context": {"type": "array", "items": {"type": "object", "required": ["doc_id"],
+                "properties": {"doc_id": {"type": "string"}, "text": {"type": "string"}}}},
+    "expected": {"type": "string"},
+    "expected_contains": {"type": "array", "items": {"type": "string"}},
+    "must_not_contain": {"type": "array", "items": {"type": "string"}},
+    "expected_regex": {"type": "string"},
+    "expected_refusal": {"type": "boolean"},
+    "expected_citations": {"type": "array", "items": {"type": "string"}},
+    "expect_json": {"type": "boolean"},
+    "allowed_pii": {"type": "array", "items": {"type": "string"}},
+    "tags": {"type": "array", "items": {"type": "string"}}
+  }
+}

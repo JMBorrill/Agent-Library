@@ -1,0 +1,214 @@
+{
+  "appraisal": {
+    "title": "Synthetic Borough Council - citizen appointment booking (illustrative, GBP thousands)",
+    "price_base_year": 2026,
+    "price_basis": "real",
+    "appraisal_period_years": 10,
+    "currency": "GBP thousands",
+    "discount_schedule": "default"
+  },
+  "critical_success_factors": [
+    "CSF1 strategic fit: supports channel-shift objective",
+    "CSF2 achievable by 2027 with existing skills",
+    "CSF3 affordable within the capital envelope",
+    "CSF4 supplier market can deliver"
+  ],
+  "long_list": [
+    {
+      "id": "OPT-0",
+      "description": "Business as usual: keep legacy phone and paper booking",
+      "shortlisted": true,
+      "csf_assessment": {
+        "CSF1 strategic fit: supports channel-shift objective": "fails",
+        "CSF2 achievable by 2027 with existing skills": "meets",
+        "CSF3 affordable within the capital envelope": "meets",
+        "CSF4 supplier market can deliver": "meets"
+      },
+      "reason": "retained as counterfactual"
+    },
+    {
+      "id": "OPT-1",
+      "description": "Buy a configurable SaaS scheduling product (synthetic vendor)",
+      "shortlisted": true,
+      "csf_assessment": {
+        "CSF1 strategic fit: supports channel-shift objective": "meets",
+        "CSF2 achievable by 2027 with existing skills": "meets",
+        "CSF3 affordable within the capital envelope": "meets",
+        "CSF4 supplier market can deliver": "meets"
+      }
+    },
+    {
+      "id": "OPT-2",
+      "description": "Build an in-house booking service",
+      "shortlisted": true,
+      "csf_assessment": {
+        "CSF1 strategic fit: supports channel-shift objective": "meets",
+        "CSF2 achievable by 2027 with existing skills": "partial",
+        "CSF3 affordable within the capital envelope": "partial",
+        "CSF4 supplier market can deliver": "meets"
+      }
+    },
+    {
+      "id": "OPT-3",
+      "description": "Outsource the whole contact centre",
+      "shortlisted": false,
+      "csf_assessment": {
+        "CSF1 strategic fit: supports channel-shift objective": "partial",
+        "CSF2 achievable by 2027 with existing skills": "fails",
+        "CSF3 affordable within the capital envelope": "fails",
+        "CSF4 supplier market can deliver": "partial"
+      },
+      "reason": "fails CSF2 and CSF3"
+    }
+  ],
+  "five_case": {
+    "strategic": "Case for change: channel shift, legacy end-of-life (outline in business-case.md)",
+    "economic": "This appraisal (NPSV, switching values, non-monetised effects)",
+    "commercial": "Framework call-off vs open procurement - to be developed",
+    "financial": "Affordability vs capital envelope - to be developed",
+    "management": "Delivery plan, benefits realisation owner - to be developed"
+  },
+  "options": [
+    {
+      "id": "OPT-0",
+      "name": "Business as usual (counterfactual)",
+      "is_counterfactual": true,
+      "price_base_year": 2026,
+      "price_basis": "real",
+      "appraisal_period_years": 10,
+      "costs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "benefits": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "non_monetised_effects": [
+        {
+          "effect": "Continued long phone queues for residents",
+          "direction": "negative",
+          "significance": "medium",
+          "evidence": "synthetic complaints log"
+        }
+      ]
+    },
+    {
+      "id": "OPT-1",
+      "name": "Buy SaaS scheduling product",
+      "price_base_year": 2026,
+      "price_basis": "real",
+      "appraisal_period_years": 10,
+      "costs": [
+        200,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "benefits": [
+        0,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "optimism_bias": {
+        "costs_pct": 0.2,
+        "benefits_pct": 0.1,
+        "source": "project-team assumption pending check of current HM Treasury optimism bias guidance (synthetic)"
+      },
+      "non_monetised_effects": [
+        {
+          "effect": "Accessibility for residents who cannot phone during office hours",
+          "direction": "positive",
+          "significance": "high",
+          "evidence": "synthetic resident survey"
+        },
+        {
+          "effect": "Vendor lock-in risk",
+          "direction": "negative",
+          "significance": "medium",
+          "evidence": "market engagement notes"
+        }
+      ]
+    },
+    {
+      "id": "OPT-2",
+      "name": "Build in-house booking service",
+      "price_base_year": 2026,
+      "price_basis": "nominal",
+      "inflation_rate": 0.02,
+      "appraisal_period_years": 10,
+      "costs": [
+        600,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60
+      ],
+      "benefits": [
+        0,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160,
+        160
+      ],
+      "optimism_bias": {
+        "costs_pct": 0.4,
+        "benefits_pct": 0.1,
+        "source": "project-team assumption for novel in-house build (synthetic)"
+      },
+      "non_monetised_effects": [
+        {
+          "effect": "Builds internal digital capability",
+          "direction": "positive",
+          "significance": "medium",
+          "evidence": "workforce plan"
+        }
+      ]
+    }
+  ]
+}

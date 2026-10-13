@@ -1,0 +1,139 @@
+{
+  "source_id": "damodaran",
+  "status": "ACTIVE",
+  "notes": "Course page INACCESSIBLE (sources/audits/damodaran.md). Rows map standard corporate-finance concepts associated with the source; formulas written independently. SaaS metric definitions in finance-unit-economics are industry practice, not from this source.",
+  "rows": [
+    {
+      "source_element": "Investment decision: invest where returns exceed the hurdle rate (NPV)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-npv-irr"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "cashflow.py report",
+        "decision-memo.md"
+      ],
+      "tests": [
+        "tests/test_finance_npv_irr.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "IRR and its limitations (no/multiple IRR), MIRR",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-npv-irr"
+      ],
+      "agents": [
+        "financial-analyst"
+      ],
+      "artifacts": [
+        "cashflow.py report"
+      ],
+      "tests": [
+        "tests/test_finance_npv_irr.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Payback and profitability index as secondary measures",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-npv-irr"
+      ],
+      "agents": [
+        "financial-analyst"
+      ],
+      "artifacts": [
+        "cashflow.py report"
+      ],
+      "tests": [
+        "tests/test_finance_npv_irr.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Hurdle rate: cost of equity (CAPM) and cost of capital (WACC)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-npv-irr"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "cashflow.py report"
+      ],
+      "tests": [
+        "tests/test_finance_npv_irr.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Valuation: discounted cash flow with terminal value",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-npv-irr"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "cashflow.py report"
+      ],
+      "tests": [
+        "tests/test_finance_npv_irr.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Value creation at the unit level (lifetime contribution vs acquisition cost)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-unit-economics"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "unit_economics.py report",
+        "unit-economics-note.md"
+      ],
+      "tests": [
+        "tests/test_finance_unit_economics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Discounting logic for appraisal of options",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst"
+      ],
+      "artifacts": [
+        "options_appraisal.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

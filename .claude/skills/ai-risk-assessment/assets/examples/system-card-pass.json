@@ -1,0 +1,32 @@
+{
+  "card_version": "1.0.0",
+  "system_name": "Mortgage Criteria Assistant (synthetic)",
+  "system_version": "0.9.2",
+  "card_date": "2026-10-01",
+  "model_details": {"base_model": "hosted LLM (vendor-neutral placeholder)", "provider": "Example Vendor", "model_version": "pinned-2026-09", "architecture": "retrieval-augmented generation over lender criteria documents"},
+  "intended_use": {
+    "description": "Answer broker questions about synthetic lender lending criteria, citing the retrieved criteria documents.",
+    "users": ["Mortgage brokers (internal)", "Case administrators"],
+    "decision_context": "Decision support only; underwriters make all lending decisions."
+  },
+  "out_of_scope_uses": ["Making or communicating credit decisions", "Advice directly to consumers", "Answering from memory without retrieved documents"],
+  "data_lineage": [
+    {"name": "Synthetic lender criteria corpus", "version": "2026.09", "source": "Generated test documents for three fictional lenders", "licence": "internal synthetic", "contains_personal_data": false},
+    {"name": "Broker query logs (redacted)", "version": "2026-Q3", "source": "Pilot logs after PII redaction", "contains_personal_data": true, "lawful_basis_ref": "DPIA-MCA-2026-01 (synthetic)"}
+  ],
+  "evaluations": [
+    {"eval_id": "EV-GROUND-01", "metric": "citation grounding rate", "value": 0.97, "threshold": 0.95, "comparator": ">=", "n": 120, "date": "2026-09-28", "dataset": "mortgage-criteria-qa", "dataset_version": "1.2.0", "dataset_sha256": "0000000000000000000000000000000000000000000000000000000000000000", "result": "pass"},
+    {"eval_id": "EV-PII-01", "metric": "PII leakage rate", "value": 0.0, "threshold": 0.0, "comparator": "<=", "n": 120, "date": "2026-09-28", "dataset": "mortgage-criteria-qa", "dataset_version": "1.2.0", "result": "pass"},
+    {"eval_id": "EV-INJ-01", "metric": "injection corpus detection rate", "value": 0.86, "threshold": 0.8, "comparator": ">=", "n": 22, "date": "2026-09-30", "dataset": "injection-corpus", "dataset_version": "0.3.0", "result": "pass"}
+  ],
+  "known_limitations": ["Grounding measured on 120 synthetic questions; the 95% interval is wide.", "Injection screening is heuristic with known false negatives.", "Non-standard income cases are referred to a human adviser."],
+  "trustworthiness_notes": {"valid-and-reliable": "grounding and accuracy evals", "privacy-enhanced": "redaction plus leakage gate"},
+  "human_oversight": {"summary": "Assistant recommends; underwriter decides. Overrides logged.", "approver_role": "Senior Underwriter", "oversight_matrix_ref": "oversight-matrix.csv"},
+  "monitoring": {"metrics": ["weekly grounding sample", "PII detector hits", "override rate"], "review_frequency": "weekly", "alert_owner": "ML Platform Owner (synthetic)"},
+  "rollback_plan": {"triggers": ["grounding sample < 0.90", "any confirmed PII leak"], "procedure": "Feature flag off; revert to previous pinned model and index.", "owner": "ML Platform Owner (synthetic)", "last_tested": "2026-09-15"},
+  "contacts": [{"role": "Accountable executive", "name": "A. Example", "email": "a.example@example.com"}, {"role": "Technical owner", "name": "B. Sample", "email": "b.sample@example.com"}],
+  "risk_register_ref": "ai-risk-register-pass.csv",
+  "recommendation": "GO_WITH_CONDITIONS",
+  "conditions": ["Re-run grounding eval on 300 items before wider rollout"],
+  "sign_off": {"status": "pending"}
+}

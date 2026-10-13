@@ -1,0 +1,77 @@
+{
+  "source_id": "shape-up",
+  "status": "ACTIVE",
+  "notes": "Primary source (basecamp.com/shapeup) INACCESSIBLE in this environment (see sources/audits/shape-up.md). All concepts are from secondary summaries and unverified; six-week cycles are treated as optional. No quotations or chapter numbers used.",
+  "rows": [
+    {
+      "source_element": "Set boundaries: appetite (fixed time budget before the solution)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-shaping"],
+      "agents": ["product-lead", "independent-reviewer"],
+      "artifacts": ["pitch.md", "pitch-check.output.schema.json"],
+      "tests": ["tests/test_product_shaping.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Pitch ingredients: problem, appetite, solution, rabbit holes, no-gos",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-shaping", "product-requirements-brief"],
+      "agents": ["product-lead"],
+      "artifacts": ["pitch.md", "prd.md non-goals"],
+      "tests": ["tests/test_product_shaping.py", "tests/test_product_requirements_brief.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Rough out the elements: breadboarding and fat-marker sketches",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-shaping"],
+      "agents": ["product-lead"],
+      "artifacts": ["pitch.md solution section"],
+      "tests": ["tests/test_product_shaping.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Address risks and rabbit holes before betting",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-shaping"],
+      "agents": ["product-lead", "independent-reviewer"],
+      "artifacts": ["pitch.md rabbit holes with resolutions"],
+      "tests": ["tests/test_product_shaping.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Scopes and nice-to-haves marked with a tilde",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-shaping"],
+      "agents": ["product-lead"],
+      "artifacts": ["scopes.md"],
+      "tests": ["tests/test_product_shaping.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Betting table, six-week cycles with cool-down, circuit breaker",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-shaping"],
+      "agents": ["product-lead"],
+      "artifacts": ["bet decision record (procedure only)"],
+      "tests": [],
+      "status": "mapped"
+    },
+    {
+      "source_element": "Hill charts (uphill/downhill progress per scope)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [],
+      "agents": [],
+      "artifacts": [],
+      "tests": [],
+      "status": "mapped"
+    }
+  ]
+}

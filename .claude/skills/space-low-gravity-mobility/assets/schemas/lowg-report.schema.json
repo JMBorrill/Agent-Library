@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/space-low-gravity-mobility/lowg-report.schema.json",
+  "title": "lowg_calc.py --json output (single command or batch)",
+  "type": "object",
+  "required": ["command", "findings", "passed", "constants", "scope"],
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["id", "severity", "rule", "message"],
+      "properties": {
+        "severity": {"enum": ["error", "warning", "info"]},
+        "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+        "message": {"type": "string", "minLength": 1}
+      }
+    },
+    "single": {
+      "type": "object",
+      "required": ["command", "inputs", "results", "assumptions", "findings", "passed"],
+      "properties": {
+        "assumptions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}}
+      }
+    }
+  },
+  "properties": {
+    "command": {"enum": ["body", "hop", "impulse", "bounce", "rotation", "batch"]},
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "constants": {
+      "type": "object",
+      "required": ["G_m3_kg_s2", "G_source"],
+      "properties": {"G_m3_kg_s2": {"const": 6.6743e-11}}
+    },
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "cases": {"type": "array", "items": {"$ref": "#/$defs/single"}}
+  }
+}

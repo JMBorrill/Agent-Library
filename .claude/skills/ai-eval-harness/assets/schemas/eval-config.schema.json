@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/ai-eval-harness/eval-config.schema.json",
+  "title": "Threshold gates for run_eval.py",
+  "type": "object",
+  "$defs": {
+    "spec": {"type": "object", "minProperties": 1, "additionalProperties": false,
+             "properties": {"min": {"type": "number", "minimum": 0, "maximum": 1},
+                            "max": {"type": "number", "minimum": 0, "maximum": 1},
+                            "min_n": {"type": "integer", "minimum": 1}}},
+    "specs": {"type": "object",
+              "propertyNames": {"enum": ["pass_rate", "exact", "contains", "not_contains", "regex", "refusal",
+                                         "grounding", "json_valid", "pii_leakage", "pii_leakage_rate"]},
+              "additionalProperties": {"$ref": "#/$defs/spec"}}
+  },
+  "properties": {
+    "description": {"type": "string"},
+    "gate_on_interval": {"type": "boolean", "description": "true: min gates use the Wilson lower bound and max gates the upper bound"},
+    "thresholds": {"$ref": "#/$defs/specs"},
+    "tag_thresholds": {"type": "object", "additionalProperties": {"$ref": "#/$defs/specs"}}
+  }
+}

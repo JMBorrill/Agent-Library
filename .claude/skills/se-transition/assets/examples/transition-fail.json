@@ -1,0 +1,7 @@
+{
+  "transition_id": "DEMO-TRN-002",
+  "deliverables": [{"id": "D1", "name": "Rig", "version": "", "configuration_id": "", "acceptance_ref": "", "documentation": []}],
+  "open_verification": [{"activity_id": "DEMO-VER-002", "result": "fail", "waiver_ref": "", "waiver_approved_by": ""}],
+  "training": {"required": true, "completed": false},
+  "limitations_documented": false
+}

@@ -1,0 +1,19 @@
+{
+  "case_id": "SYN-CASE-0001",
+  "application_date": "2026-10-01",
+  "description": "Synthetic self-employed homeowner seeking a second charge for home improvements",
+  "facts": {
+    "cltv_pct": 72.5,
+    "loan_amount": 50000,
+    "employment_type": "self_employed",
+    "ccj_count_last_6y": 0,
+    "age_at_term_end": 68,
+    "property_type": "house",
+    "gross_annual_income": 60000
+  },
+  "units": {
+    "cltv_pct": "percent",
+    "loan_amount": "GBP",
+    "gross_annual_income": "GBP"
+  }
+}

@@ -1,0 +1,1 @@
+{"id": "q01", "input": "<question>", "context": [{"doc_id": "<DOC-ID>", "text": "<retrieved text>"}], "expected_contains": ["<required phrase>"], "must_not_contain": [], "expected_citations": ["<DOC-ID>"], "tags": ["<slice>"]}

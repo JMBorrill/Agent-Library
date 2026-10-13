@@ -1,0 +1,179 @@
+{
+  "source_id": "treasury-green",
+  "status": "ACTIVE",
+  "notes": "Primary Green Book 2026 text INACCESSIBLE (sources/audits/treasury-green.md). Elements named from public knowledge and secondary snippets; STPR 3.5/3.0/2.5% bands secondary-corroborated, tail bands and optimism-bias/switching-value guidance unconfirmed for 2026.",
+  "rows": [
+    {
+      "source_element": "Options appraisal: long list to short list against critical success factors",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "options.json",
+        "options_appraisal.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Counterfactual (business as usual / do minimum)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "options_appraisal.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Five case model (strategic, economic, commercial, financial, management)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst"
+      ],
+      "artifacts": [
+        "business-case-outline.md"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Real prices and price base year",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst"
+      ],
+      "artifacts": [
+        "options_appraisal.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Discounting: social time preference rate declining schedule",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "discount-schedule-default.json"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Optimism bias adjustment",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "options.json"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Net present social value and benefit-cost ratio",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst"
+      ],
+      "artifacts": [
+        "options_appraisal.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Switching values and sensitivity",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options",
+        "finance-npv-irr"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "options_appraisal.py report",
+        "cashflow.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py",
+        "tests/test_finance_npv_irr.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Non-monetised (unquantified) effects presented alongside monetised values",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-options"
+      ],
+      "agents": [
+        "financial-analyst",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "options_appraisal.py report"
+      ],
+      "tests": [
+        "tests/test_finance_options.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "change": "AIOPS-412: prevent cross-tenant slot conflicts in scheduling",
+  "reviewer": "reviewer-a (synthetic)",
+  "reviewed_at": "2026-10-12",
+  "scope": "Full change: src/scheduling/slots.py, tests/test_slots.py",
+  "decision": "lgtm-with-comments",
+  "findings": [
+    {"severity": "nit", "aspect": "naming", "location": "src/scheduling/slots.py:15",
+     "comment": "Consider naming the early return condition (e.g. different_tenants) for readability.", "status": "open"},
+    {"severity": "optional", "aspect": "tests", "location": "tests/test_slots.py:35",
+     "comment": "A boundary test where one slot ends exactly when the other starts would document intent.", "status": "open"},
+    {"severity": "fyi", "aspect": "design", "location": "src/scheduling/slots.py:12",
+     "comment": "A future change could move tenant scoping into the repository layer so callers cannot forget it.", "status": "open"},
+    {"severity": "required", "aspect": "documentation", "location": "docs/scheduling.md:40",
+     "comment": "The scheduling guide still says conflicts are global; update it so support staff are not misled.", "status": "resolved"},
+    {"severity": "fyi", "aspect": "good-things", "location": "tests/test_slots.py:33",
+     "comment": "Clear regression test that would fail if tenant scoping regressed.", "status": "open"}
+  ]
+}

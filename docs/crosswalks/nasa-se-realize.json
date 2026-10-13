@@ -1,0 +1,107 @@
+{
+  "source_id": "nasa-se-realize",
+  "status": "ACTIVE",
+  "notes": "NASA SE Handbook (NASA/SP-2016-6105 Rev 2) inaccessible in-session; mapping uses secondary corroboration of process names/sections. Procedures are original library text.",
+  "rows": [
+    {
+      "source_element": "\u00a75.1 Product Implementation",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-implementation-integration"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer",
+        "vv-engineer"
+      ],
+      "artifacts": [
+        "implementation-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_implementation_integration.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a75.2 Product Integration",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-implementation-integration"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer",
+        "vv-engineer"
+      ],
+      "artifacts": [
+        "integration-plan.json",
+        "integration-results.md"
+      ],
+      "tests": [
+        "tests/test_se_implementation_integration.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a75.3 Product Verification",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-verification-validation"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "vv-engineer"
+      ],
+      "artifacts": [
+        "verification-matrix.csv",
+        "test-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_verification_validation.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a75.4 Product Validation",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-verification-validation"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "vv-engineer"
+      ],
+      "artifacts": [
+        "verification-matrix.csv (type=validation)",
+        "validation-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_verification_validation.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a75.5 Product Transition",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-transition"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "transition.json"
+      ],
+      "tests": [
+        "tests/test_se_transition_and_data.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

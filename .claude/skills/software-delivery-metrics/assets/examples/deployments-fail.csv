@@ -1,0 +1,8 @@
+deploy_id,service,deployed_at,commit_times,status,is_rework,restored_at
+CRM-001,crm-api,2026-09-01T10:00:00Z,2026-09-01T08:00:00Z,success,no,
+CRM-002,crm-api,2026-09-02 10:00:00,2026-09-01T22:00:00Z,success,no,
+CRM-003,crm-api,2026-09-03T10:00:00Z,2026-09-03T12:00:00Z,success,no,
+CRM-004,crm-api,2026-09-04T10:00:00Z,2026-09-04T08:00:00Z,rolled-back,no,
+CRM-005,crm-api,2026-09-05T10:00:00Z,2026-09-05T07:00:00Z,failed,no,
+MTG-001,mortgage-criteria-web,2026-09-05T11:00:00+01:00,2026-09-04T16:00:00+01:00,success,no,
+CRM-001,crm-api,2026-09-06T10:00:00Z,2026-09-06T09:00:00Z,success,no,

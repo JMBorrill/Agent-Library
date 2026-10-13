@@ -1,0 +1,11 @@
+item_id,parent,budget,unit,cbe,maturity,quantity,mode,notes
+ROVER,,,,,,,,synthetic ASTER rover top node (all budgets)
+STR,ROVER,mass,kg,12.0,calculated,1,,primary structure from CAD mass properties
+RW,ROVER,mass,kg,0.9,heritage,4,,momentum wheel catalogue mass (synthetic)
+HAR,ROVER,mass,g,2500,estimated,1,,harness engineering estimate in grams -> converted
+CAM,ROVER,mass,kg,1.5,measured,1,,navigation camera weighed EM
+OBC-P,ROVER,power,W,8.0,measured,1,all,on-board computer always on
+MOT-P,ROVER,power,W,20.0,calculated,1,drive,wheel motors in drive mode
+HEAT-P,ROVER,power,W,10.0,estimated,1,safe,survival heaters
+SPR-P,ROVER,power,W,35.0,estimated,1,hop-prep,spring winding motor
+IMG-D,ROVER,data,Mbit,800,estimated,1,,images per pass

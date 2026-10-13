@@ -1,0 +1,13 @@
+deploy_id,service,deployed_at,commit_times,status,is_rework,restored_at
+SCH-001,scheduling-api,2026-09-01T09:00:00Z,2026-09-01T06:00:00Z;2026-08-31T13:00:00Z,success,no,
+SCH-002,scheduling-api,2026-09-02T09:00:00Z,2026-09-02T04:00:00Z,success,no,
+SCH-003,scheduling-api,2026-09-03T09:00:00Z,2026-09-03T07:00:00Z;2026-09-02T03:00:00Z,failed,no,2026-09-03T10:30:00Z
+SCH-004,scheduling-api,2026-09-03T13:48:00Z,2026-09-03T12:48:00Z,success,yes,
+SCH-005,scheduling-api,2026-09-05T09:00:00Z,2026-09-04T07:00:00Z;2026-09-05T01:00:00Z,success,no,
+SCH-006,scheduling-api,2026-09-08T09:00:00Z,2026-09-08T05:00:00Z,success,no,
+SCH-007,scheduling-api,2026-09-09T09:00:00Z,2026-09-07T07:00:00Z;2026-09-09T03:00:00Z,success,no,
+SCH-008,scheduling-api,2026-09-10T09:00:00Z,2026-09-10T06:00:00Z,failed,no,2026-09-10T09:45:00Z
+SCH-009,scheduling-api,2026-09-10T11:24:00Z,2026-09-10T10:24:00Z,success,yes,
+SCH-010,scheduling-api,2026-09-12T09:00:00Z,2026-09-11T21:00:00Z,success,no,
+SCH-011,scheduling-api,2026-09-15T09:00:00Z,2026-09-15T02:00:00Z;2026-09-15T00:00:00Z,success,no,
+SCH-012,scheduling-api,2026-09-16T09:00:00Z,2026-09-15T03:00:00Z,success,no,

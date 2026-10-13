@@ -1,0 +1,11 @@
+{
+  "calls": [
+    {
+      "call_id": "<id>",
+      "tool": "<tool>",
+      "args": {},
+      "provenance": "user",
+      "data_classification": "internal"
+    }
+  ]
+}

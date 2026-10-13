@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/software-code-review/review-report.schema.json",
+  "title": "Code review findings report (input to review_report_check.py)",
+  "type": "object",
+  "required": ["decision", "findings"],
+  "properties": {
+    "change": {"type": "string"},
+    "reviewer": {"type": "string"},
+    "reviewed_at": {"type": "string"},
+    "scope": {"type": "string"},
+    "decision": {"enum": ["lgtm", "lgtm-with-comments", "request-changes", "escalate"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "location", "comment"],
+        "properties": {
+          "severity": {"enum": ["required", "nit", "optional", "consider", "fyi"]},
+          "aspect": {"enum": ["design", "functionality", "complexity", "tests", "naming", "comments", "style",
+                               "consistency", "documentation", "every-line", "context", "good-things", "security"]},
+          "location": {"type": "string", "pattern": "^[^\\s:]+:\\d+(-\\d+)?$"},
+          "comment": {"type": "string", "minLength": 1},
+          "status": {"enum": ["open", "resolved", "fixed", "done", "wontfix"]}
+        }
+      }
+    }
+  }
+}

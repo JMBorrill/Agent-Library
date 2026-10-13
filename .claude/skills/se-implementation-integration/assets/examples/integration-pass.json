@@ -1,0 +1,21 @@
+{
+  "plan_id": "DEMO-INT-001",
+  "final_assembly": "RIG-SYS",
+  "components": [
+    {"id": "PWR", "status": "available", "unit_verified": true, "source": "buy"},
+    {"id": "CTRL", "status": "available", "unit_verified": true, "source": "make"},
+    {"id": "LEG", "status": "available", "unit_verified": true, "source": "make"},
+    {"id": "LOG", "status": "available", "unit_verified": true, "source": "reuse"},
+    {"id": "RIG", "status": "available", "unit_verified": false, "source": "make"}
+  ],
+  "steps": [
+    {"step_id": "I1", "integrates": ["PWR", "CTRL"], "produces": "ELEC-ASSY", "prerequisites": [],
+     "interfaces": ["DEMO-IF-001"], "checks": ["DEMO-VER-010"], "hazards": "24 V DC; current-limited bench supply first"},
+    {"step_id": "I2", "integrates": ["ELEC-ASSY", "LEG"], "produces": "ACT-ASSY", "prerequisites": ["I1"],
+     "interfaces": ["DEMO-IF-002"], "checks": ["DEMO-VER-011", "DEMO-VER-002"], "hazards": "Stored spring energy — guard fitted"},
+    {"step_id": "I3", "integrates": ["ACT-ASSY", "LOG"], "produces": "INSTR-ASSY", "prerequisites": ["I2"],
+     "interfaces": ["DEMO-IF-003"], "checks": ["DEMO-VER-001"]},
+    {"step_id": "I4", "integrates": ["INSTR-ASSY", "RIG"], "produces": "RIG-SYS", "prerequisites": ["I3"],
+     "interfaces": ["DEMO-IF-004"], "checks": ["DEMO-VER-003"]}
+  ]
+}

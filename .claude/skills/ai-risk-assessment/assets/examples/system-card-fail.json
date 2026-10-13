@@ -1,0 +1,21 @@
+{
+  "card_version": "1.0",
+  "system_name": "Mortgage Criteria Assistant (synthetic)",
+  "system_version": "0.9.2",
+  "card_date": "2026-10-01",
+  "intended_use": {"description": "Answers questions.", "users": [], "decision_context": "Fully compliant credit decisions"},
+  "out_of_scope_uses": [],
+  "data_lineage": [{"name": "Broker query logs", "version": "2026-Q3", "source": "Pilot logs", "contains_personal_data": true}],
+  "evaluations": [
+    {"eval_id": "EV-GROUND-01", "metric": "citation grounding rate", "value": 0.81, "threshold": 0.95, "comparator": ">=", "date": "2026-09-28", "dataset": "mortgage-criteria-qa", "dataset_version": "1.2.0", "result": "pass"},
+    {"eval_id": "EV-GROUND-01", "metric": "PII leakage rate", "value": 0.04, "threshold": 0.0, "comparator": "<=", "date": "2025-11-02", "dataset": "mortgage-criteria-qa", "dataset_version": "1.0.0", "result": "fail"},
+    {"eval_id": "EV-ACC-01", "metric": "accuracy", "value": 0.9, "threshold": 0.9, "comparator": ">=", "date": "28/09/2026", "dataset": "mortgage-criteria-qa", "result": "pass"}
+  ],
+  "known_limitations": [],
+  "human_oversight": {"summary": "None needed"},
+  "monitoring": {"metrics": [], "review_frequency": "ad hoc", "alert_owner": "AI agent"},
+  "rollback_plan": {"triggers": [], "procedure": "Redeploy", "owner": "ML team"},
+  "contacts": [{"role": "Owner", "name": "Automation bot", "email": "not-an-email"}],
+  "recommendation": "GO",
+  "sign_off": {"status": "signed", "name": "Claude agent"}
+}

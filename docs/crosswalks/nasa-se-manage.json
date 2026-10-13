@@ -1,0 +1,179 @@
+{
+  "source_id": "nasa-se-manage",
+  "status": "ACTIVE",
+  "notes": "NASA SE Handbook (NASA/SP-2016-6105 Rev 2) inaccessible in-session; mapping uses secondary corroboration of process names/sections. Procedures are original library text.",
+  "rows": [
+    {
+      "source_element": "\u00a76.1 Technical Planning",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-technical-planning"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "tailoring table",
+        "engineering-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_technical_planning.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.2 Requirements Management",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-requirements",
+        "se-change-control",
+        "se-configuration-management"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "requirements-engineer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "baselines",
+        "change-request.md"
+      ],
+      "tests": [
+        "tests/test_se_change_control.py",
+        "tests/test_se_configuration_management.py",
+        "tests/test_se_requirements.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.3 Interface Management",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-interface-control"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "requirements-engineer",
+        "systems-architect"
+      ],
+      "artifacts": [
+        "icd.csv",
+        "N2 matrix"
+      ],
+      "tests": [
+        "tests/test_se_interface_control.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.4 Technical Risk Management",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-risk-analysis"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "safety-risk-reviewer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "risk-register.csv",
+        "fmea.csv"
+      ],
+      "tests": [
+        "tests/test_se_risk_analysis.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.5 Configuration Management",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-configuration-management",
+        "se-change-control"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "requirements-engineer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "change-log.csv",
+        "baseline audit report"
+      ],
+      "tests": [
+        "tests/test_se_change_control.py",
+        "tests/test_se_configuration_management.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.6 Technical Data Management",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-technical-data-management"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "data-register.csv"
+      ],
+      "tests": [
+        "tests/test_se_transition_and_data.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.7 Technical Assessment",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-technical-assessment",
+        "se-review-gates"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "tpm.csv",
+        "review-package.md"
+      ],
+      "tests": [
+        "tests/test_se_review_gates.py",
+        "tests/test_se_technical_assessment.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "\u00a76.8 Decision Analysis",
+      "source_pointer": "unverified (secondary: handbook ToC via search results)",
+      "source_verification": "unverified",
+      "skills": [
+        "se-decision-analysis"
+      ],
+      "agents": [
+        "independent-reviewer",
+        "systems-architect",
+        "systems-engineer"
+      ],
+      "artifacts": [
+        "decision.json",
+        "decision-log.md"
+      ],
+      "tests": [
+        "tests/test_se_decision_analysis.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

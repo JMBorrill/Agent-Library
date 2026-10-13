@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <title>Error: Request a walk – Northgate Dog Walkers (synthetic)</title>
+</head>
+<body>
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+  <header><img src="logo.svg" alt="Northgate Dog Walkers (synthetic)"></header>
+  <div class="govuk-width-container">
+    <a href="/start" class="govuk-back-link">Back</a>
+    <main id="main-content">
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-error-summary__list">
+            <li><a href="#email">Enter an email address in the correct format, like name@example.com</a></li>
+            <li><a href="#walk-type">Select the type of walk you want</a></li>
+            <li><a href="#start-date-day">Start date must include a day</a></li>
+          </ul>
+        </div>
+      </div>
+      <h1 class="govuk-heading-l">Request a walk</h1>
+      <form action="/request" method="post" novalidate>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="full-name">Full name</label>
+          <input class="govuk-input" id="full-name" name="full-name" type="text" autocomplete="name" spellcheck="false" value="Sam Patel">
+        </div>
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="email">Email address</label>
+          <div id="email-hint" class="govuk-hint">We only use this to confirm walks</div>
+          <p id="email-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Enter an email address in the correct format, like name@example.com</p>
+          <input class="govuk-input govuk-input--error" id="email" name="email" type="email" autocomplete="email" spellcheck="false" aria-describedby="email-hint email-error" aria-invalid="true" value="sam.example.com">
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="phone">UK mobile number (optional)</label>
+          <input class="govuk-input" id="phone" name="phone" type="tel" autocomplete="tel" value="">
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address-postcode">Postcode</label>
+          <input class="govuk-input" id="address-postcode" name="address-postcode" type="text" autocomplete="postal-code" value="AB1 2CD">
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="dog-name">Your dog’s name</label>
+          <input class="govuk-input" id="dog-name" name="dog-name" type="text" value="Biscuit">
+        </div>
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" aria-describedby="walk-type-error">
+            <legend class="govuk-fieldset__legend">What type of walk do you want?</legend>
+            <p id="walk-type-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Select the type of walk you want</p>
+            <div class="govuk-radios">
+              <input class="govuk-radios__input" id="walk-type" name="walk-type" type="radio" value="solo">
+              <label class="govuk-label govuk-radios__label" for="walk-type">Solo walk</label>
+              <input class="govuk-radios__input" id="walk-type-2" name="walk-type" type="radio" value="group">
+              <label class="govuk-label govuk-radios__label" for="walk-type-2">Group walk</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="start-date-hint start-date-error">
+            <legend class="govuk-fieldset__legend">When would you like walks to start?</legend>
+            <div id="start-date-hint" class="govuk-hint">For example, 27 3 2027</div>
+            <p id="start-date-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Start date must include a day</p>
+            <label class="govuk-label" for="start-date-day">Day</label>
+            <input class="govuk-input govuk-input--error" id="start-date-day" name="start-date-day" type="text" inputmode="numeric" value="">
+            <label class="govuk-label" for="start-date-month">Month</label>
+            <input class="govuk-input" id="start-date-month" name="start-date-month" type="text" inputmode="numeric" value="3">
+            <label class="govuk-label" for="start-date-year">Year</label>
+            <input class="govuk-input" id="start-date-year" name="start-date-year" type="text" inputmode="numeric" value="2027">
+          </fieldset>
+        </div>
+        <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

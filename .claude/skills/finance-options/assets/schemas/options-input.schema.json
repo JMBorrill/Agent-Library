@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/finance-options/options-input.schema.json",
+  "title": "options_appraisal.py input",
+  "type": "object",
+  "required": ["appraisal", "options"],
+  "properties": {
+    "appraisal": {
+      "type": "object",
+      "required": ["price_base_year", "appraisal_period_years"],
+      "properties": {
+        "title": {"type": "string"},
+        "price_base_year": {"type": "integer"},
+        "price_basis": {"enum": ["real", "nominal"]},
+        "appraisal_period_years": {"type": "integer", "minimum": 1},
+        "inflation_rate": {"type": "number"},
+        "discount_schedule": {"oneOf": [{"const": "default"}, {"type": "array", "items": {"type": "object", "required": ["from_year", "to_year", "rate"]}}]}
+      }
+    },
+    "critical_success_factors": {"type": "array", "items": {"type": "string"}},
+    "long_list": {"type": "array", "items": {"type": "object", "required": ["id"], "properties": {"csf_assessment": {"type": "object", "additionalProperties": {"enum": ["meets", "partial", "fails"]}}}}},
+    "five_case": {"type": "object", "properties": {"strategic": {"type": "string"}, "economic": {"type": "string"}, "commercial": {"type": "string"}, "financial": {"type": "string"}, "management": {"type": "string"}}},
+    "options": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "costs", "benefits"],
+        "properties": {
+          "id": {"type": "string"},
+          "is_counterfactual": {"type": "boolean"},
+          "price_base_year": {"type": "integer"},
+          "price_basis": {"enum": ["real", "nominal"]},
+          "inflation_rate": {"type": "number"},
+          "appraisal_period_years": {"type": "integer"},
+          "costs": {"type": "array", "items": {"type": "number", "minimum": 0}},
+          "benefits": {"type": "array", "items": {"type": "number", "minimum": 0}},
+          "optimism_bias": {"type": "object", "properties": {"costs_pct": {"type": "number"}, "benefits_pct": {"type": "number"}, "source": {"type": "string"}}},
+          "non_monetised_effects": {"type": "array"}
+        }
+      }
+    }
+  }
+}

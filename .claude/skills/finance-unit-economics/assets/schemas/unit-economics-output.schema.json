@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/finance-unit-economics/unit-economics-output.schema.json",
+  "title": "unit_economics.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed", "scope"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "assumption_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["input", "value", "tag", "source"],
+        "properties": {
+          "input": {"type": "string"},
+          "value": {"type": ["number", "null"]},
+          "tag": {"type": ["string", "null"]},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "base": {"$ref": "#/$defs/metrics"},
+    "scenarios": {"type": "object", "additionalProperties": {"$ref": "#/$defs/metrics"}},
+    "sensitivity": {"type": "object"},
+    "cohort_retention": {
+      "type": "object",
+      "required": ["cohorts", "average_retention", "implied_monthly_churn"],
+      "properties": {"implied_monthly_churn": {"type": ["number", "null"]}}
+    },
+    "summary": {"type": "object", "required": ["errors", "warnings", "info"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "metrics": {
+      "type": "object",
+      "required": ["blended_cac", "contribution_per_account_monthly", "expected_lifetime_months",
+                   "lifetime_capped_at_horizon", "ltv", "ltv_to_cac", "cac_payback_months", "cac_payback_never"],
+      "properties": {
+        "blended_cac": {"type": ["number", "null"]},
+        "paid_cac": {"type": ["number", "null"]},
+        "ltv": {"type": "number"},
+        "ltv_discounted": {"type": ["number", "null"]},
+        "ltv_to_cac": {"type": ["number", "null"]},
+        "cac_payback_months": {"type": ["number", "null"]},
+        "cac_payback_never": {"type": "boolean"},
+        "lifetime_capped_at_horizon": {"type": "boolean"}
+      }
+    }
+  }
+}

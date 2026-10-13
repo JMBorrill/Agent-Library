@@ -1,0 +1,15 @@
+{
+  "name": "",
+  "currency": "GBP",
+  "price_basis": "nominal | real",
+  "convention": "t0",
+  "rate": 0.0,
+  "flows": [],
+  "finance_rate": null,
+  "reinvest_rate": null,
+  "capm": {"risk_free": null, "beta": null, "equity_risk_premium": null},
+  "wacc": {"equity_value": null, "debt_value": null, "cost_of_equity": "capm", "cost_of_debt": null, "tax_rate": null},
+  "dcf": {"fcf": [], "rate": "wacc", "terminal_growth": null},
+  "sensitivity": {"rate": [], "inflow_scale": [], "outflow_scale": []},
+  "breakeven": ["rate", "inflow_scale"]
+}

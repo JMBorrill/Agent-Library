@@ -1,0 +1,7 @@
+control_id,area,topic,description,owner,frequency,evidence_ref,last_tested,status,independent_of_origination,control_type,model_risk,last_validated
+HLF-CR-001,credit_granting,approval-authority,Loan approval by originating broker-relationship manager,Head of Sales,per-application,,2026-05-01,tested_effective,no,approval,no,
+HLF-CR-002,credit_granting,credit-limits,LTV limit enforced in origination system,,continuous,LIMIT-TEST,2024-11-30,tested_effective,yes,limit-monitoring,no,
+HLF-CR-003,administration_measurement_monitoring,internal-rating,Behavioural scorecard drives limit increases,Head of Analytics,continuous,SC-MON,2026-07-01,operating,yes,model,yes,
+HLF-CR-004,administration_measurement_monitoring,portfolio-reporting,Monthly arrears MI,Head of Collections,monthly,,,operating,yes,reporting,no,
+HLF-CR-005,controls,independent-credit-review,Credit review performed by origination team lead,Origination Team Lead,quarterly,CR-Q2,2026-06-30,tested_effective,no,credit-review,no,
+HLF-CR-005,controls,limit-breach-escalation,Duplicate id for breach escalation,CRO,sometimes,BR-LOG,2026-06-30,tested_effective,maybe,limit-monitoring,no,

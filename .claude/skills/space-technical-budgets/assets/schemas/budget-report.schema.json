@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/space-technical-budgets/budget-report.schema.json",
+  "title": "budget_calc.py --json output",
+  "type": "object",
+  "required": ["policy_label", "totals", "rollup", "findings", "summary", "passed", "scope"],
+  "properties": {
+    "policy_label": {"type": "string"},
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "summary": {"type": "object", "required": ["rows", "errors", "warnings", "info"]},
+    "totals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["budget", "mode", "unit", "cbe", "contingency", "predicted", "allocation", "margin", "margin_percent", "required_margin_percent", "status"],
+        "properties": {
+          "budget": {"type": "string"}, "mode": {"type": "string"}, "unit": {"type": "string"},
+          "cbe": {"type": "number"}, "contingency": {"type": "number"}, "predicted": {"type": "number"},
+          "allocation": {"type": ["number", "null"]}, "margin": {"type": ["number", "null"]},
+          "margin_percent": {"type": ["number", "null"]}, "required_margin_percent": {"type": "number"},
+          "status": {"enum": ["within-policy", "below-policy", "negative-margin", "no-allocation"]}
+        }
+      }
+    },
+    "rollup": {"type": "array", "items": {"type": "object", "required": ["node", "budget", "mode", "cbe", "contingency", "predicted"]}},
+    "trend": {"type": "array", "items": {"type": "object", "required": ["budget", "mode", "points", "slope_per_day", "project_to", "projected_predicted"]}},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "message": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

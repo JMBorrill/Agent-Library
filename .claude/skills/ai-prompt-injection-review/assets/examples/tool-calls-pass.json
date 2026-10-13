@@ -1,0 +1,49 @@
+{
+  "calls": [
+    {
+      "call_id": "c01",
+      "tool": "search_kb",
+      "args": {
+        "query": "Larkspur rental cover"
+      },
+      "provenance": "user",
+      "data_classification": "public",
+      "expected_decision": "allow",
+      "note": "read-only knowledge search"
+    },
+    {
+      "call_id": "c02",
+      "tool": "read_case_file",
+      "args": {
+        "case_id": "CASE-0042"
+      },
+      "provenance": "user",
+      "data_classification": "personal",
+      "expected_decision": "allow",
+      "note": "read personal data inside the firm"
+    },
+    {
+      "call_id": "c03",
+      "tool": "summarise_document",
+      "args": {
+        "doc_id": "PAYSLIP-0042"
+      },
+      "provenance": "retrieved_content",
+      "data_classification": "personal",
+      "expected_decision": "allow",
+      "note": "read-only processing of an uploaded document"
+    },
+    {
+      "call_id": "c11",
+      "tool": "create_task",
+      "args": {
+        "title": "Chase payslips for CASE-0042",
+        "assignee": "case-admin"
+      },
+      "provenance": "system",
+      "data_classification": "internal",
+      "expected_decision": "allow",
+      "note": "internal task creation, not side-effecting in this policy"
+    }
+  ]
+}

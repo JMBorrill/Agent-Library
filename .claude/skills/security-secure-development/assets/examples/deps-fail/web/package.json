@@ -1,0 +1,7 @@
+{
+  "name": "mortgage-criteria-web",
+  "version": "2.1.0",
+  "private": true,
+  "dependencies": {"react": "^18.3.1", "react-dom": "~18.3.1", "zod": "latest", "criteria-engine": "github:example-org/criteria-engine"},
+  "devDependencies": {"typescript": "*"}
+}

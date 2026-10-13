@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/product-experiment-design/experiment-plan.schema.json",
+  "title": "Two-proportion experiment plan (input to experiment_calc.py plan/evaluate)",
+  "description": "Structural schema only. Semantic rules (falsifiable prediction, power, pre-registration dates, stopping rule) are checked by experiment_calc.py plan.",
+  "type": "object",
+  "required": ["id", "hypothesis", "primary_metric", "baseline", "mde", "alpha", "power",
+               "duration_days", "stopping_rule", "ethics", "decision_rule"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-[0-9]{3,}$"},
+    "title": {"type": "string"},
+    "hypothesis": {
+      "type": "object",
+      "required": ["statement", "prediction"],
+      "properties": {"statement": {"type": "string", "minLength": 1}, "prediction": {"type": "string", "minLength": 1}}
+    },
+    "primary_metric": {
+      "type": "object",
+      "required": ["name", "definition"],
+      "properties": {"name": {"type": "string"}, "definition": {"type": "string", "minLength": 1}, "unit": {"type": "string"}}
+    },
+    "baseline": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "mde": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "direction": {"enum": ["increase", "decrease"]},
+    "alpha": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 0.5},
+    "power": {"type": "number", "exclusiveMinimum": 0.5, "exclusiveMaximum": 1},
+    "formula": {"enum": ["pooled", "unpooled"]},
+    "arms": {"type": "integer", "minimum": 2},
+    "randomisation_unit": {"type": "string"},
+    "sample_size_per_arm": {"type": "integer", "minimum": 1},
+    "expected_eligible_per_day": {"type": "number", "exclusiveMinimum": 0},
+    "duration_days": {"type": "number", "exclusiveMinimum": 0},
+    "launch_date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "stopping_rule": {"type": "string", "minLength": 1},
+    "ethics": {
+      "type": "object",
+      "required": ["consent_note"],
+      "properties": {"consent_note": {"type": "string", "minLength": 1}, "harm_review": {"type": "string"}}
+    },
+    "decision_rule": {
+      "type": "object",
+      "required": ["set_before_launch", "ship_if", "do_not_ship_if"],
+      "properties": {
+        "set_before_launch": {"const": true},
+        "recorded_on": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+        "ship_if": {"type": "string", "minLength": 1},
+        "do_not_ship_if": {"type": "string", "minLength": 1}
+      }
+    },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "direction", "max_abs_change"],
+        "properties": {
+          "name": {"type": "string"},
+          "direction": {"enum": ["must_not_increase", "must_not_decrease"]},
+          "max_abs_change": {"type": "number", "minimum": 0}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/finance-fca-scope-check/triage-output.schema.json",
+  "title": "reg_triage.py --json output",
+  "type": "object",
+  "required": ["status", "candidates", "findings", "summary", "passed", "scope"],
+  "properties": {
+    "status": {"enum": ["triage_complete_signoff_required", "refer", "escalate"]},
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string", "minLength": 1},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "area", "why", "confidence", "provenance", "verification",
+                     "verify_effective_version", "human_signoff_required", "in_fca_registry"],
+        "properties": {
+          "confidence": {"enum": ["high", "medium", "low"]},
+          "verify_effective_version": {"const": true},
+          "in_fca_registry": {"type": "boolean"},
+          "human_signoff_required": {
+            "type": "object",
+            "required": ["required", "role"],
+            "properties": {"required": {"const": true}, "role": {"type": "string", "minLength": 3}}
+          }
+        }
+      }
+    },
+    "summary": {"type": "object", "required": ["candidates", "errors", "warnings", "info"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  }
+}

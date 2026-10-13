@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/product-discovery/evidence-audit.output.schema.json",
+  "title": "evidence_audit.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "gate", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {
+      "type": "object",
+      "required": ["evidence_rows", "counted_evidence", "by_strength", "errors", "warnings"],
+      "properties": {
+        "evidence_rows": {"type": "integer", "minimum": 0},
+        "counted_evidence": {"type": "integer", "minimum": 0},
+        "by_strength": {
+          "type": "object",
+          "required": ["strong", "moderate", "weak"],
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "errors": {"type": "integer", "minimum": 0},
+        "warnings": {"type": "integer", "minimum": 0}
+      }
+    },
+    "gate": {
+      "type": "object",
+      "required": ["recommendation", "gate_equivalent", "target_phase", "reasons", "requires_human_decision"],
+      "properties": {
+        "recommendation": {"enum": ["PROCEED", "PROCEED_WITH_CONDITIONS", "DO_NOT_PROCEED"]},
+        "gate_equivalent": {"enum": ["GO", "GO_WITH_CONDITIONS", "NO_GO"]},
+        "target_phase": {"enum": ["alpha", "beta"]},
+        "reasons": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "requires_human_decision": {"const": true}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "message": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

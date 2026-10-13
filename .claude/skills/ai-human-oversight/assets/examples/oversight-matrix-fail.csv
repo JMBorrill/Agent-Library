@@ -1,0 +1,6 @@
+decision_type,about_individuals,impact,ai_role,human_role,approver_role,override_logged,explanation_provided,appeal_route,monitoring_metric,rollback_trigger,kill_switch_owner,notes
+Affordability decision,yes,high,act,Underwriter (after the fact),,no,no,,,,,AI sets final affordability; no approver; no appeal; no rollback
+Mortgage application decision (accept/decline),yes,critical,act,Underwriter,AI model,no,yes,Complaints,decline rate,,,approver is the model itself
+Credit limit increase,yes,medium,recommend,,Credit Manager,yes,no,,approval rate,,,no human role; no explanation or appeal
+Fraud flag,yes,high,recommend,Fraud analyst,Fraud analyst,no,no,Applicant may respond,precision,,,
+Fraud flag,yes,severe,decide,Fraud analyst,,maybe,yes,,precision,,,bad enums and duplicate

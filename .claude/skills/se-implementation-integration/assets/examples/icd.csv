@@ -1,0 +1,5 @@
+interface_id,from_component,to_component,type,parameter,value,units_from,units_to,tolerance,range_or_protocol,owner_from,owner_to,version,status,failure_behavior,requirement_ids,verification_id
+DEMO-IF-001,PWR,CTRL,electrical,supply voltage,24,V,V,±1,24 V DC bus,EPS lead,Controls lead,1.2,baselined,"Controller enters safe state below 20 V",DEMO-SYS-002,DEMO-VER-010
+DEMO-IF-002,CTRL,LEG,electrical,motor current limit,5,A,A,±0.2,PWM 20 kHz,Controls lead,Mech lead,1.1,agreed,"Current limit trips; motor coasts",DEMO-SYS-002,DEMO-VER-011
+DEMO-IF-003,CTRL,LOG,data,telemetry rate,200,Hz,Hz,0,"CAN 2.0B, 500 kbit/s, msg 0x120",Controls lead,Test lead,2.0,baselined,"Logger flags gap > 10 ms",DEMO-SYS-001,DEMO-VER-001
+DEMO-IF-004,LEG,RIG,mechanical,attachment load,150,N,N,±10,"M6 x4, 8 N·m torque",Mech lead,Test lead,1.0,draft,"Breakaway pin releases at 300 N",,

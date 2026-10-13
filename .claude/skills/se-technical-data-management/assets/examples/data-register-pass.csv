@@ -1,0 +1,4 @@
+data_id,title,type,owner,version,classification,location,retention,access_roles,source_of_truth,last_updated,contains_personal_data,lawful_basis,checksum
+DEMO-DAT-001,Requirements register,register,Requirements engineer,v1.3,internal,git:repo/requirements.csv,project+5y,engineering,yes,2026-10-01,no,,sha256:1a2b
+DEMO-DAT-002,Trial raw data,dataset,Test lead,2026-09-21,internal,s3://demo-lab/trials/,project+10y,engineering;research,yes,2026-09-21,no,,sha256:3c4d
+DEMO-DAT-003,Operator training records,records,Lab manager,2026-09,confidential,hr-system://training,employment+6y,lab-manager,yes,2026-09-30,yes,legal obligation (synthetic),

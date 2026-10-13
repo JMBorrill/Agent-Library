@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/security-code-checks/static-checks.output.schema.json",
+  "title": "static_checks.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed", "rules"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {"type": "object", "required": ["files_scanned", "by_rule", "errors"]},
+    "rules": {"type": "object", "patternProperties": {"^SC\\d{3}$": {"type": "object", "required": ["rule", "asvs_ref"]}}},
+    "findings": {"type": "array", "items": {
+      "type": "object",
+      "required": ["id", "severity", "rule", "message"],
+      "properties": {
+        "severity": {"enum": ["error", "warning", "info"]},
+        "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+        "rule_id": {"type": "string", "pattern": "^SC\\d{3}$"},
+        "asvs_ref": {"type": "string", "pattern": "^ASVS v5\\.0\\.0 V\\d+(\\.\\d+)? "},
+        "asvs_mapping": {"enum": ["section", "chapter"]},
+        "line": {"type": "integer", "minimum": 1}
+      }}}
+  }
+}

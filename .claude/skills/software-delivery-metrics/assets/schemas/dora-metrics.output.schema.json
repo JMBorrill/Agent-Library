@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/software-delivery-metrics/dora-metrics.output.schema.json",
+  "title": "dora_metrics.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "metrics", "definitions", "cautions", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "summary": {"type": "object", "required": ["deployments_in_window", "errors", "warnings"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {"severity": {"enum": ["error", "warning", "info"]},
+                       "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}}
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "propertyNames": {"enum": ["Change lead time", "Deployment frequency", "Failed deployment recovery time",
+                                 "Change fail rate", "Deployment rework rate"]}
+    },
+    "definitions": {"type": "object"},
+    "categories": {"type": "object"},
+    "cautions": {"type": "array", "minItems": 7, "items": {"type": "string"}}
+  }
+}

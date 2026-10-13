@@ -1,0 +1,18 @@
+{
+  "name": "",
+  "currency": "GBP",
+  "inputs": {
+    "sales_marketing_spend": {"value": null, "tag": "measured | estimate | benchmark", "source": "", "owner": "", "as_of": ""},
+    "new_customers": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "paid_spend": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "paid_new_customers": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "arpa_monthly": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "gross_margin_pct": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "variable_cost_per_account_monthly": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "monthly_churn": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "discount_rate_annual": {"value": null, "tag": "", "source": "", "owner": "", "as_of": ""},
+    "horizon_months": {"value": 60, "tag": "estimate", "source": "", "owner": "", "as_of": ""}
+  },
+  "scenarios": {"downside": {}, "upside": {}},
+  "sensitivity": {"monthly_churn": []}
+}

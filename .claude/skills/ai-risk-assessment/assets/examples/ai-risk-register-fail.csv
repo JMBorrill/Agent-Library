@@ -1,0 +1,7 @@
+risk_id,description,rmf_refs,harm_category,affected_party,trustworthiness,likelihood,impact,inherent_score,controls,eval_ids,owner,residual_likelihood,residual_impact,residual_score,status,accepted_by,review_date,notes
+MCA-RSK-001,Assistant invents lender criteria,AIRMF-1.0-MAP-7,people,Brokers,valid-and-reliable,4,4,12,Citation required,,Head of Broker Tools (synthetic),4,4,16,open,,2026-12-01,map category 7 does not exist; score wrong; no eval; high residual not accepted
+MCA-RSK-001,Duplicate identifier row,AIRMF-1.0-MEASURE-2,people,Applicants,privacy-enhanced,3,5,15,Redaction,EV-PII-01,Data Protection Lead (synthetic),1,5,5,mitigating,,2026-11-15,
+MCA-RSK-003,Prompt injection triggers email sends,NIST-MAP-4,organisation,Firm,secure-and-resilient,3,6,18,,EV-INJ-01,,2,4,8,mitigating,,2026-11-30,bad ref format; impact 6; no owner
+MCA-RSK-004,Residual risk accepted by the model itself,AIRMF-1.0-MANAGE-2,people,Applicants,safe,3,4,12,Monitoring,EV-OVR-01,Head of Underwriting (synthetic),4,4,16,accepted,AI agent,2026-12-15,
+MCA-RSK-005,Vendor model change,AIRMF-1.0-GOVERN-6,organisation,Firm,valid-and-reliable,3,4,12,Pinned version,EV-REG-01,ML Platform Owner (synthetic),3,4,12,mitigating,,2026-06-30,review overdue at 2026-10-13
+RISK-6,Bias in answers,AIRMF-1.0-MEASURE-2,people,,fairness,3,4,12,,EV-SLICE-01,Head of Broker Tools (synthetic),2,3,6,pending,,next month,

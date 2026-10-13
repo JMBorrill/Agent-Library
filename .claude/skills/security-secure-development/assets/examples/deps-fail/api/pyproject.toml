@@ -1,0 +1,4 @@
+[project]
+name = "aiops-api"
+version = "1.4.0"
+dependencies = ["fastapi>=0.100", "openai"]

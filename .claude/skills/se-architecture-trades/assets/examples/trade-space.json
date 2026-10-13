@@ -1,0 +1,20 @@
+{
+  "trade_id": "DEMO-TRADE-001",
+  "context": "Synthetic ASTER-style ground demonstrator. Options and TRLs are illustrative, not assessed.",
+  "trl_threshold": 4,
+  "functions": [
+    {"id": "F2", "name": "Release energy into hop", "options": [
+      {"id": "SPRING", "name": "Latched spring leg", "trl": 5},
+      {"id": "FLYWHEEL", "name": "Internal flywheel / reaction wheel", "trl": 4},
+      {"id": "WHEELS", "name": "Rolling wheels (no hop)", "trl": 7}]},
+    {"id": "F5", "name": "Supply and interrupt power", "options": [
+      {"id": "LIION", "name": "Li-ion pack + contactor", "trl": 7},
+      {"id": "SUPERCAP", "name": "Supercapacitor bank + contactor", "trl": 5}]},
+    {"id": "F7", "name": "Control attitude in flight", "options": [
+      {"id": "NONE", "name": "Passive (no control)", "trl": 9},
+      {"id": "RW", "name": "Reaction wheel", "trl": 4},
+      {"id": "COLDGAS", "name": "Cold-gas thrusters", "trl": 3}]}
+  ],
+  "incompatible": [["WHEELS", "RW"], ["WHEELS", "COLDGAS"], ["SUPERCAP", "COLDGAS"]],
+  "requires": [["FLYWHEEL", "LIION"]]
+}

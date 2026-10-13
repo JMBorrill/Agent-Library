@@ -1,0 +1,15 @@
+{
+  "name": "Synthetic CRM SaaS - online booking module build (illustrative, not real data)",
+  "currency": "GBP",
+  "price_basis": "nominal",
+  "convention": "t0",
+  "rate": 0.10,
+  "flows": [-1000, 300, 400, 500],
+  "finance_rate": 0.10,
+  "reinvest_rate": 0.10,
+  "capm": {"risk_free": 0.04, "beta": 1.2, "equity_risk_premium": 0.05},
+  "wacc": {"equity_value": 600, "debt_value": 400, "cost_of_equity": "capm", "cost_of_debt": 0.05, "tax_rate": 0.25},
+  "dcf": {"fcf": [100, 110, 121], "rate": 0.10, "terminal_growth": 0.02},
+  "sensitivity": {"rate": [0.06, 0.08, 0.10, 0.12], "inflow_scale": [0.9, 1.0, 1.1]},
+  "breakeven": ["rate", "inflow_scale", "outflow_scale"]
+}

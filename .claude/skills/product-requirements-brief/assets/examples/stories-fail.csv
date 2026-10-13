@@ -1,0 +1,5 @@
+id,job_story,acceptance_criteria,priority,evidence_ids,requirement_ids
+DWS-STY-101,"As a walker, I want AI scheduling so that it is easy.","Scheduling is fast and easy",must,,DWS-SW-101
+DWS-STY-101,"When I plan my week, I want to click the AI button, so I can save time.","Given I am logged in When I click plan Then the week is planned",must,DWS-EV-006,DWS-SW-101
+story-3,"When a walk is cancelled, I want to be offered a new time, so I can keep the routine.",,must,DWS-EV-404,bad-id
+DWS-STY-104,"When I am on holiday, I want my clients told, so I can relax.",,urgent,DWS-EV-001,

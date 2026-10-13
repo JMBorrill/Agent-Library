@@ -1,0 +1,5 @@
+{"charge": "first | second", "property_value": null, "loan_amount": null, "term_years": null, "product_rate_pct": null,
+ "stress_margin_pct": null, "stress_margin_source": "lender policy reference", "stress_floor_rate_pct": 0,
+ "repayment_type": "repayment", "gross_annual_income": null, "net_monthly_income": null,
+ "monthly_committed_expenditure": 0, "monthly_essential_expenditure": 0,
+ "existing_first_charge_balance": 0, "existing_first_charge_payment": 0}

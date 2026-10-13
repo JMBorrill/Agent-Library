@@ -1,0 +1,2 @@
+{"plan_id": "<PROJECT>-INT-NNN", "final_assembly": "", "components": [{"id": "", "status": "planned", "unit_verified": false, "source": "make|buy|reuse"}],
+ "steps": [{"step_id": "I1", "integrates": [], "produces": "", "prerequisites": [], "interfaces": [], "checks": [], "hazards": ""}]}

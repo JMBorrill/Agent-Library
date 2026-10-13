@@ -1,0 +1,11 @@
+{
+  "change": "",
+  "reviewer": "",
+  "reviewed_at": "YYYY-MM-DD",
+  "scope": "Which files/parts were reviewed; name any parts left to another reviewer",
+  "decision": "lgtm | lgtm-with-comments | request-changes | escalate",
+  "findings": [
+    {"severity": "required | nit | optional | fyi", "aspect": "design", "location": "path/to/file.py:42",
+     "comment": "What and why (comment on the code, not the person)", "status": "open"}
+  ]
+}

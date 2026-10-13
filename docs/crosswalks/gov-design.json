@@ -1,0 +1,236 @@
+{
+  "source_id": "gov-design",
+  "status": "ACTIVE",
+  "notes": "Primary source VERIFIED via official repository raw files (sources/audits/gov-design.md); rules from sources/extracts/gov-design-rules.json (local GDS-* IDs, paraphrased). Example markup was not downloaded, so markup-level wiring in html_a11y_check.py is the library's interpretation. LOCAL-* checks (lang, title, img alt, ARIA refs, duplicate ids) are not from this source.",
+  "rows": [
+    {
+      "source_element": "Error summary: show, heading, links, position, wording match, focus [GDS-ERR-01, GDS-ERR-02, GDS-ERR-03, GDS-ERR-04, GDS-ERR-06]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/error-summary/index.md § How it works; alphagov/govuk-design-system@main:src/components/error-summary/index.md § Linking from the error summary to each answer; alphagov/govuk-design-system@main:src/components/error-summary/index.md § When to use this component; alphagov/govuk-design-system@main:src/components/error-summary/index.md § Where to put the error summary",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Recover from validation errors: 'Error: ' title prefix, novalidate, no required attribute [GDS-ERR-07, GDS-VAL-01]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/patterns/validation/index.md § How to tell the user about validation errors; alphagov/govuk-design-system@main:src/patterns/validation/index.md § Turn off HTML5 validation",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Error message: hidden 'Error:' prefix, placement, wording (banned words, specificity) [GDS-ERR-09, GDS-ERR-11, GDS-ERR-12]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/error-message/index.md § Be clear and concise; alphagov/govuk-design-system@main:src/components/error-message/index.md § Be specific; alphagov/govuk-design-system@main:src/components/error-message/index.md § How it works",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Text input: labels, placeholder, numbers, paste, maxlength, spellcheck [GDS-INP-01, GDS-INP-02, GDS-INP-03, GDS-INP-04, GDS-INP-05, GDS-INP-06]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/text-input/index.md § Avoid placeholder text; alphagov/govuk-design-system@main:src/components/text-input/index.md § Avoid restricting the length of a user's input; alphagov/govuk-design-system@main:src/components/text-input/index.md § Do not disable copy and paste; alphagov/govuk-design-system@main:src/components/text-input/index.md § How and when to spellcheck a user’s input; alphagov/govuk-design-system@main:src/components/text-input/index.md § How it works; alphagov/govuk-design-system@main:src/components/text-input/index.md § Numbers",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Autocomplete on personal-data fields (WCAG 2.2 SC 1.3.5) [GDS-AC-01, GDS-AC-02, GDS-AC-03, GDS-AC-04, GDS-AC-05, GDS-AC-06]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/date-input/index.md § Use the autocomplete attribute for a date of birth; alphagov/govuk-design-system@main:src/components/text-input/index.md § Use the autocomplete attribute; alphagov/govuk-design-system@main:src/patterns/addresses/index.md § Use the autocomplete attribute on multiple address fields; alphagov/govuk-design-system@main:src/patterns/email-addresses/index.md § Help users to enter a valid email address; alphagov/govuk-design-system@main:src/patterns/names/index.md § Use the autocomplete attribute on name fields; alphagov/govuk-design-system@main:src/patterns/phone-numbers/index.md § Use the autocomplete attribute",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Fieldset/legend grouping and no pre-selection for radios and checkboxes [GDS-OPT-01, GDS-OPT-02]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/fieldset/index.md § How it works; alphagov/govuk-design-system@main:src/components/radios/index.md § How it works",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Date input: three fields in a fieldset [GDS-DATE-01]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/date-input/index.md § How it works",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Buttons: disabled buttons, 'Continue' wording [GDS-BTN-02, GDS-QP-05]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/button/index.md § Disabled buttons; alphagov/govuk-design-system@main:src/patterns/question-pages/index.md § Continue button",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Question pages: optional marking (no asterisks), range sliders [GDS-QP-03, GDS-QP-08]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md § Using range sliders; alphagov/govuk-design-system@main:src/patterns/question-pages/index.md § When to use this pattern",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "html_a11y_check.py findings",
+        "a11y-check.output.schema.json"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Runtime/manual-only rules: focus to summary, validation timing, server-side validation, back button, error copy templates [GDS-ERR-05, GDS-VAL-02, GDS-VAL-03, GDS-QP-07, GDS-ERR-10, GDS-ERR-14, GDS-ERR-15, GDS-ERR-16]",
+      "source_pointer": "alphagov/govuk-design-system@main:src/components/date-input/index.md § Error messages; alphagov/govuk-design-system@main:src/components/error-message/index.md § Match up error messages to labels; alphagov/govuk-design-system@main:src/components/error-summary/index.md § How it works; alphagov/govuk-design-system@main:src/components/radios/index.md § Error messages; alphagov/govuk-design-system@main:src/components/text-input/index.md § Error messages; alphagov/govuk-design-system@main:src/patterns/question-pages/index.md § Back link; alphagov/govuk-design-system@main:src/patterns/validation/index.md § Client side and server side validation; alphagov/govuk-design-system@main:src/patterns/validation/index.md § When to tell the user about validation errors",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "references/manual-checks.md",
+        "a11y-review.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Accessibility strategy/statement: WCAG 2.2 AA target; using the Design System does not by itself make a service accessible",
+      "source_pointer": "alphagov/govuk-design-system@main:src/accessibility/accessibility-strategy/index.md § Baseline WCAG accessibility compliance; alphagov/govuk-design-system@main:src/accessibility/index.md",
+      "source_verification": "verified",
+      "skills": [
+        "ux-accessibility-review",
+        "product-requirements-brief"
+      ],
+      "agents": [
+        "product-lead",
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "a11y-review.md",
+        "prd.md accessibility section"
+      ],
+      "tests": [
+        "tests/test_ux_accessibility_review.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

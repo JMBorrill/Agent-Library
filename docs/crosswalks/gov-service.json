@@ -1,0 +1,67 @@
+{
+  "source_id": "gov-service",
+  "status": "ACTIVE",
+  "notes": "Primary source (gov.uk/service-manual) INACCESSIBLE in this environment (see sources/audits/gov-service.md). Rows map secondary-corroborated concepts only; every row is unverified and no Service Standard point numbers are relied on. Re-check after primary access.",
+  "rows": [
+    {
+      "source_element": "Phases of agile delivery: discovery, alpha, beta, live, retirement",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-discovery"],
+      "agents": ["product-lead", "independent-reviewer"],
+      "artifacts": ["evidence-log.csv", "assumptions.csv", "discovery-report.md", "evidence-audit.output.schema.json"],
+      "tests": ["tests/test_product_discovery.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "How the discovery phase works: understand the problem, constraints and assumptions before building; decide whether to move to alpha",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-discovery"],
+      "agents": ["product-lead", "independent-reviewer"],
+      "artifacts": ["evidence_audit.py gate recommendation", "experiment-backlog.md"],
+      "tests": ["tests/test_product_discovery.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "User research in discovery: find likely users and their needs, include disabled people and people with low digital skills, use existing evidence",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-discovery", "product-requirements-brief"],
+      "agents": ["product-lead"],
+      "artifacts": ["evidence-log.csv", "prd.md"],
+      "tests": ["tests/test_product_discovery.py", "tests/test_product_requirements_brief.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Define what success looks like and measure performance (Service Standard point, number unverified)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-experiment-design", "product-requirements-brief"],
+      "agents": ["product-lead", "independent-reviewer"],
+      "artifacts": ["experiment-plan.json", "prd.md outcomes and metrics"],
+      "tests": ["tests/test_product_experiment_design.py", "tests/test_product_requirements_brief.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Iterate and improve frequently (Service Standard point, number unverified)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-experiment-design"],
+      "agents": ["product-lead"],
+      "artifacts": ["experiment_calc.py evaluate readout"],
+      "tests": ["tests/test_product_experiment_design.py"],
+      "status": "tested"
+    },
+    {
+      "source_element": "Make sure everyone can use the service; create a secure service which protects users' privacy (Service Standard points, numbers unverified)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": ["product-requirements-brief"],
+      "agents": ["product-lead", "independent-reviewer"],
+      "artifacts": ["prd.md accessibility and privacy sections"],
+      "tests": ["tests/test_product_requirements_brief.py"],
+      "status": "tested"
+    }
+  ]
+}

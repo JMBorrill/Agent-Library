@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/credit-criteria-modelling/affordability-output.schema.json",
+  "title": "affordability_calc.py --json output",
+  "type": "object",
+  "required": ["inputs", "results", "findings", "summary", "passed", "scope"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "results": {
+      "type": "object",
+      "required": ["ltv_pct", "cltv_pct", "lti", "monthly_payment_product_rate", "stressed_rate_pct",
+                   "stress_margin_basis", "monthly_payment_stressed", "dti_pct", "payment_to_net_income_pct",
+                   "net_disposable_income_monthly"],
+      "properties": {
+        "ltv_pct": {"type": "number"},
+        "cltv_pct": {"type": ["number", "null"]},
+        "lti": {"type": ["number", "null"]},
+        "dti_pct": {"type": ["number", "null"]},
+        "payment_to_net_income_pct": {"type": ["number", "null"]},
+        "stress_margin_basis": {"type": "string", "pattern": "^lender policy"}
+      }
+    },
+    "summary": {"type": "object", "required": ["errors", "warnings", "info"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  }
+}

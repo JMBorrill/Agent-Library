@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/credit-criteria-modelling/criteria-output.schema.json",
+  "title": "criteria_engine.py --json output",
+  "type": "object",
+  "required": ["findings", "summary", "passed", "scope"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["lender", "product", "outcome", "reasons"],
+        "properties": {
+          "outcome": {"enum": ["eligible_indicative", "ineligible_indicative", "refer"]},
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["rule_id", "criterion", "result", "reason", "source_document", "last_verified"],
+              "properties": {"result": {"enum": ["pass", "fail", "refer"]}}
+            }
+          }
+        }
+      }
+    },
+    "summary": {"type": "object", "required": ["rules", "errors", "warnings", "info"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  }
+}

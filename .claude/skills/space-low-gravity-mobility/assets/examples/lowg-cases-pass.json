@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic ASTER-target body (radius 250 m, density 1900 kg/m^3, 4 h rotation) — illustrative values, not a real asteroid",
+  "cases": [
+    {"id": "BODY-01", "command": "body", "params": {"preset": "aster-target"}},
+    {"id": "HOP-01", "command": "hop", "params": {"radius_m": 250, "density_kg_m3": 1900, "speed": 0.05, "angle_deg": 45}},
+    {"id": "IMP-01", "command": "impulse", "params": {"radius_m": 250, "density_kg_m3": 1900, "mass_kg": 20, "speed": 0.05, "angle_deg": 45, "push_time_s": 0.5, "friction_coefficient": 0.5}},
+    {"id": "BNC-01", "command": "bounce", "params": {"radius_m": 250, "density_kg_m3": 1900, "speed": 0.03, "restitution": 0.4, "threshold_speed": 0.002}},
+    {"id": "ROT-01", "command": "rotation", "params": {"preset": "aster-target", "latitude_deg": 30}}
+  ]
+}

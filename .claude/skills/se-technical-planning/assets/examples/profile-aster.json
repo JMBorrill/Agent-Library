@@ -1,0 +1,3 @@
+{"project": "ASTER-01 low-gravity locomotion demonstrator (synthetic)", "risk_class": "moderate", "safety_critical": true,
+ "regulated": false, "novel_technology": true, "hardware": true, "software": true, "team_size": 4,
+ "external_customer": false, "decision_owner": "Project lead (synthetic)", "safety_authority": "Lab safety officer (synthetic)"}

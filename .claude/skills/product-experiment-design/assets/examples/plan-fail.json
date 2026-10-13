@@ -1,0 +1,27 @@
+{
+  "id": "DWS-EXP-002",
+  "title": "AI route planner banner (synthetic, deliberately flawed)",
+  "hypothesis": {
+    "statement": "Walkers will love the AI route planner.",
+    "prediction": "Engagement will be better."
+  },
+  "primary_metric": [
+    {"name": "clicks", "definition": "banner clicks"},
+    {"name": "retention", "definition": ""}
+  ],
+  "baseline": 0,
+  "mde": -0.02,
+  "alpha": 0.05,
+  "power": 1.2,
+  "sample_size_per_arm": 500,
+  "duration_days": 3,
+  "launch_date": "2026-10-01",
+  "stopping_rule": "Check daily and stop as soon as the result is significant.",
+  "ethics": {"consent_note": ""},
+  "decision_rule": {
+    "set_before_launch": false,
+    "recorded_on": "2026-10-15",
+    "ship_if": "Looks positive"
+  },
+  "guardrails": []
+}

@@ -1,0 +1,15 @@
+item_id,parent,budget,unit,cbe,maturity,quantity,mode,notes
+ROVER,,,,,,,,synthetic ASTER rover top node
+STR,ROVER,mass,kg,12.0,calculated,1,,structure
+RW,ROVER,mass,kg,0.9,heritage,4,,wheels
+HAR,ROVER,mass,kg,2.5,estimated,1,,harness
+CAM,ROVER,mass,kg,1.5,measured,1,,camera
+DRL,ROVER,mass,W,3.0,estimated,1,,unit typo: W in a mass budget
+ARM,ROVER,mass,kg,4.0,,1,,maturity not recorded
+BOLT,ROVER,mass,kg,0.01,calculated,,,quantity not recorded
+MOT-P,ROVER,power,W,46.0,estimated,1,drive,motors
+OBC-P,ROVER,power,W,8.0,measured,1,all,computer
+SCI-P,ROVER,power,W,5.0,estimated,1,science,mode with no allocation
+COMMS,ROVER,thermal,W,2.0,estimated,1,,budget not in policy
+DUP,ROVER,mass,kg,0.0,calculated,1,,duplicate id
+DUP,ROVER,mass,kg,0.0,calculated,1,,duplicate id

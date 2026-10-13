@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/finance-options/options-output.schema.json",
+  "title": "options_appraisal.py --json output",
+  "type": "object",
+  "required": ["discount_schedule", "discount_factors", "options", "highest_npsv_option", "findings", "summary", "passed", "scope"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string"},
+    "discount_schedule": {"type": "object", "required": ["label", "bands"]},
+    "discount_factors": {"type": "array", "items": {"type": "number", "exclusiveMinimum": 0}},
+    "highest_npsv_option": {"type": ["string", "null"]},
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "pv_costs", "pv_benefits", "npsv", "is_counterfactual", "non_monetised_effects", "optimism_bias"],
+        "properties": {
+          "npsv": {"type": "number"},
+          "bcr": {"type": ["number", "null"]},
+          "non_monetised_effects": {"type": "array"},
+          "incremental": {
+            "type": "object",
+            "required": ["npsv", "switching_value_benefits_pct", "switching_value_costs_pct"]
+          }
+        }
+      }
+    },
+    "summary": {"type": "object", "required": ["errors", "warnings", "info"]},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "rule", "message"],
+        "properties": {
+          "severity": {"enum": ["error", "warning", "info"]},
+          "rule": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+        }
+      }
+    }
+  }
+}

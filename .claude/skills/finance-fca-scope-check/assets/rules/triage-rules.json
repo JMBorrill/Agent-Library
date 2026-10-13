@@ -1,0 +1,462 @@
+{
+  "version": "1.0.0",
+  "generated_for": "finance-fca-scope-check",
+  "as_of": "2026-10-13",
+  "note": "Triage rules written from general knowledge. The FCA Handbook was INACCESSIBLE in this environment (sources/audits/fca.md); every sourcebook reference must be checked against the point-in-time Handbook before reliance. Not legal advice.",
+  "verification_values": {
+    "unverified": "from memory/general knowledge only",
+    "partially_corroborated_secondary": "supported by secondary snippets recorded in the audit; primary text not read"
+  },
+  "rules": [
+    {
+      "rule_id": "TRI-PERG-001",
+      "area": "PERG",
+      "title": "Perimeter guidance - is the activity regulated and which permission applies",
+      "condition": {
+        "always": true
+      },
+      "why": "Every UK credit/mortgage-related service must first establish whether its activities (e.g. arranging, advising, lending, credit broking, operating an information/comparison service) are regulated activities and need permission.",
+      "confidence": "high",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook PERG (perimeter guidance manual); specific chapters for mortgages and consumer credit not checked - Handbook INACCESSIBLE in this environment",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel"
+    },
+    {
+      "rule_id": "TRI-PERG-002",
+      "area": "PERG",
+      "title": "Criteria-search / information service: arranging or advising boundary",
+      "condition": {
+        "field": "service_model",
+        "equals": "information_criteria_search"
+      },
+      "why": "A tool that matches customers to lenders' criteria may cross from information into arranging or advising depending on how results are presented and whether introductions are made; boundary needs a reasoned legal view.",
+      "confidence": "high",
+      "in_fca_registry": true,
+      "provenance": "General knowledge of the arranging/advising boundary under the Regulated Activities Order and PERG; article numbers deliberately not cited (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel"
+    },
+    {
+      "rule_id": "TRI-AUTH-001",
+      "area": "COND / SUP (permissions)",
+      "title": "Authorisation status and scope of Part 4A permission or appointed-representative arrangement",
+      "condition": {
+        "any": [
+          {
+            "field": "activities.arranges",
+            "equals": true
+          },
+          {
+            "field": "activities.advises",
+            "equals": true
+          },
+          {
+            "field": "activities.lends",
+            "equals": true
+          }
+        ]
+      },
+      "why": "The firm arranges, advises or lends, so its permissions (or principal firm's cover) must match each activity and product.",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FSMA Part 4A permissions and Threshold Conditions (COND) - from general knowledge (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-MCOB-001",
+      "area": "MCOB",
+      "title": "Mortgages and Home Finance: Conduct of Business sourcebook applies to regulated mortgage activity",
+      "condition": {
+        "all": [
+          {
+            "field": "products",
+            "contains_any": [
+              "first_charge_mortgage",
+              "second_charge_mortgage"
+            ]
+          },
+          {
+            "field": "customer_types",
+            "contains": "consumer"
+          }
+        ]
+      },
+      "why": "Consumer first- or second-charge mortgage products are in scope of MCOB conduct rules for firms carrying on regulated mortgage activities.",
+      "confidence": "high",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook MCOB; second-charge mortgages brought under FCA mortgage rules from 21 March 2016 (secondary corroboration - FCA factsheet snippet, see sources/audits/fca.md)",
+      "verification": "partially_corroborated_secondary",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-MCOB-002",
+      "area": "MCOB (responsible lending / affordability)",
+      "title": "Responsible lending and affordability assessment",
+      "condition": {
+        "all": [
+          {
+            "field": "products",
+            "contains_any": [
+              "first_charge_mortgage",
+              "second_charge_mortgage"
+            ]
+          },
+          {
+            "any": [
+              {
+                "field": "activities.lends",
+                "equals": true
+              },
+              {
+                "field": "performs_affordability_calculation",
+                "equals": true
+              }
+            ]
+          }
+        ]
+      },
+      "why": "Lenders must assess affordability before entering into or varying a regulated mortgage contract; a platform that computes affordability indicators must not misrepresent them as the lender's assessment.",
+      "confidence": "high",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook MCOB 11.6 (responsible lending) - partially corroborated by secondary snippets; possible carve-outs for some second-charge cases unresolved",
+      "verification": "partially_corroborated_secondary",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-MCOB-003",
+      "area": "MCOB (advice and selling standards)",
+      "title": "Advised vs non-advised (execution-only) sales standards",
+      "condition": {
+        "all": [
+          {
+            "field": "products",
+            "contains_any": [
+              "first_charge_mortgage",
+              "second_charge_mortgage"
+            ]
+          },
+          {
+            "field": "service_model",
+            "in": [
+              "advice",
+              "execution_only",
+              "information_criteria_search"
+            ]
+          }
+        ]
+      },
+      "why": "How the service interacts with the customer determines which selling standards apply (advice, execution-only, or neither).",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook MCOB chapter on advising and selling standards - chapter number not verified",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-MCOB-004",
+      "area": "MCOB (second charge specifics)",
+      "title": "Second-charge mortgage considerations incl. legacy/transitional provisions",
+      "condition": {
+        "field": "products",
+        "contains": "second_charge_mortgage"
+      },
+      "why": "Second-charge mortgages moved from consumer credit to mortgage regulation in 2016; some legacy contracts have transitional treatment and some MCOB provisions differ for second charges.",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA factsheet on second charge mortgages (secondary snippet) and MCOB 12 transitional snippets; not read in primary form",
+      "verification": "partially_corroborated_secondary",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-MCOB-005",
+      "area": "MCOB (financial promotions)",
+      "title": "Financial promotions for mortgage products",
+      "condition": {
+        "all": [
+          {
+            "field": "products",
+            "contains_any": [
+              "first_charge_mortgage",
+              "second_charge_mortgage"
+            ]
+          },
+          {
+            "field": "communicates_promotions",
+            "equals": true
+          }
+        ]
+      },
+      "why": "Marketing or displaying mortgage products to consumers is a financial promotion and must be fair, clear and not misleading and, where required, signed off by an authorised person (s21 approval regime - unverified).",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook MCOB financial promotion chapter and FSMA s21 - from general knowledge (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-CONC-001",
+      "area": "CONC",
+      "title": "Consumer Credit sourcebook for non-mortgage consumer credit and credit broking",
+      "condition": {
+        "all": [
+          {
+            "field": "customer_types",
+            "contains": "consumer"
+          },
+          {
+            "field": "products",
+            "contains_any": [
+              "unsecured_consumer_credit",
+              "bnpl"
+            ]
+          }
+        ]
+      },
+      "why": "Unsecured consumer credit lending or broking is within CONC (creditworthiness, pre-contract information, broking conduct).",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook CONC - scope NOT corroborated in this session (see sources/audits/fca.md)",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-CONC-002",
+      "area": "CONC / perimeter (BNPL)",
+      "title": "Deferred payment credit (BNPL) regulatory status",
+      "condition": {
+        "field": "products",
+        "contains": "bnpl"
+      },
+      "why": "The regulatory status of interest-free deferred payment credit has been subject to legislative change in the UK; current status and commencement dates must be checked before any conclusion.",
+      "confidence": "low",
+      "in_fca_registry": true,
+      "provenance": "General knowledge of UK BNPL regulation plans; dates and scope deliberately not stated (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel"
+    },
+    {
+      "rule_id": "TRI-PRIN-001",
+      "area": "PRIN (incl. Principle 12 / PRIN 2A Consumer Duty)",
+      "title": "Consumer Duty outcomes for retail customers",
+      "condition": {
+        "field": "customer_types",
+        "contains": "consumer"
+      },
+      "why": "Firms whose activities affect outcomes for retail customers must deliver good outcomes (products and services, price and value, consumer understanding, consumer support) and avoid foreseeable harm.",
+      "confidence": "high",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook PRIN 2A; in force 31 July 2023 for open products and 31 July 2024 for closed products (secondary corroboration, see sources/audits/fca.md)",
+      "verification": "partially_corroborated_secondary",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-PRIN-002",
+      "area": "PRIN 2A / FCA vulnerability guidance",
+      "title": "Customers in vulnerable circumstances",
+      "condition": {
+        "any": [
+          {
+            "field": "vulnerable_customers",
+            "equals": true
+          },
+          {
+            "all": [
+              {
+                "field": "customer_types",
+                "contains": "consumer"
+              },
+              {
+                "field": "products",
+                "contains_any": [
+                  "first_charge_mortgage",
+                  "second_charge_mortgage"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "why": "Vulnerable customers are expected in this market; design, communications and support must account for them and outcomes should be monitored.",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA guidance on fair treatment of vulnerable customers (reference number not verified) and PRIN 2A",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-SYSC-001",
+      "area": "SYSC",
+      "title": "Systems and controls, governance, record keeping and outsourcing",
+      "condition": {
+        "any": [
+          {
+            "field": "activities.arranges",
+            "equals": true
+          },
+          {
+            "field": "activities.advises",
+            "equals": true
+          },
+          {
+            "field": "activities.lends",
+            "equals": true
+          }
+        ]
+      },
+      "why": "Authorised firms need governance, risk management, record keeping and oversight of outsourced/critical services (including technology suppliers).",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook SYSC - from general knowledge (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-SYSC-002",
+      "area": "SYSC / PRIN 2A (AI in decisions)",
+      "title": "Governance of AI/automated decision components",
+      "condition": {
+        "field": "ai_in_decisions",
+        "equals": true
+      },
+      "why": "Use of AI in eligibility, affordability or recommendations needs model governance, explainability to staff and customers, testing for bias and clear accountability under existing FCA rules.",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "Existing FCA requirements (SYSC, Consumer Duty) applied to AI - general knowledge; no AI-specific FCA rule asserted (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-DISP-001",
+      "area": "DISP",
+      "title": "Complaints handling and Financial Ombudsman Service",
+      "condition": {
+        "any": [
+          {
+            "field": "handles_complaints",
+            "equals": true
+          },
+          {
+            "all": [
+              {
+                "field": "customer_types",
+                "contains": "consumer"
+              },
+              {
+                "any": [
+                  {
+                    "field": "activities.arranges",
+                    "equals": true
+                  },
+                  {
+                    "field": "activities.advises",
+                    "equals": true
+                  },
+                  {
+                    "field": "activities.lends",
+                    "equals": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "why": "Firms dealing with eligible complainants need complaint-handling procedures, time limits, FOS referral rights and reporting.",
+      "confidence": "medium",
+      "in_fca_registry": true,
+      "provenance": "FCA Handbook DISP - scope NOT corroborated in this session (see sources/audits/fca.md)",
+      "verification": "unverified",
+      "signoff_role": "Compliance officer"
+    },
+    {
+      "rule_id": "TRI-BUS-001",
+      "area": "PERG (business customers)",
+      "title": "Business customers: check whether any customers fall within consumer protections",
+      "condition": {
+        "field": "customer_types",
+        "contains": "business"
+      },
+      "why": "Lending to businesses is often unregulated, but some small businesses (e.g. sole traders, small partnerships) and some secured lending can fall within consumer credit or mortgage regulation; confirm per product.",
+      "confidence": "low",
+      "in_fca_registry": true,
+      "provenance": "General knowledge; thresholds deliberately not stated (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel"
+    },
+    {
+      "rule_id": "TRI-GDPR-001",
+      "area": "UK GDPR / Data Protection Act 2018 (ICO)",
+      "title": "Personal data processing, lawful basis, DPIA",
+      "condition": {
+        "field": "processes_personal_data",
+        "in": [
+          true,
+          null
+        ]
+      },
+      "why": "Customer financial data is personal data; lawful basis, transparency, minimisation, retention and a DPIA for high-risk processing must be considered.",
+      "confidence": "high",
+      "in_fca_registry": false,
+      "provenance": "UK GDPR / DPA 2018 - outside the FCA Handbook and outside this library's source registry (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel and Data Protection Officer"
+    },
+    {
+      "rule_id": "TRI-GDPR-002",
+      "area": "UK GDPR automated decision-making (ICO)",
+      "title": "Solely automated decisions with legal or similarly significant effects",
+      "condition": {
+        "field": "ai_in_decisions",
+        "equals": true
+      },
+      "why": "Automated eligibility or affordability outputs may engage restrictions on solely automated decision-making and require human review routes and explanations.",
+      "confidence": "medium",
+      "in_fca_registry": false,
+      "provenance": "UK GDPR Article 22-type provisions and ICO guidance - outside the source registry; article number and recent amendments not verified",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel and Data Protection Officer"
+    },
+    {
+      "rule_id": "TRI-EQA-001",
+      "area": "Equality Act 2010",
+      "title": "Indirect discrimination in criteria, models and journeys",
+      "condition": {
+        "all": [
+          {
+            "field": "customer_types",
+            "contains": "consumer"
+          },
+          {
+            "any": [
+              {
+                "field": "ai_in_decisions",
+                "equals": true
+              },
+              {
+                "field": "vulnerable_customers",
+                "equals": true
+              },
+              {
+                "field": "products",
+                "contains_any": [
+                  "first_charge_mortgage",
+                  "second_charge_mortgage",
+                  "unsecured_consumer_credit",
+                  "bnpl"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "why": "Criteria (age, employment type, income source) and models can disadvantage people with protected characteristics; justification and reasonable adjustments must be assessed.",
+      "confidence": "medium",
+      "in_fca_registry": false,
+      "provenance": "Equality Act 2010 - outside the FCA Handbook and outside the source registry (unverified)",
+      "verification": "unverified",
+      "signoff_role": "Legal counsel"
+    }
+  ]
+}

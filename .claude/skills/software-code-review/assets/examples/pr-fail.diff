@@ -1,0 +1,104 @@
+diff --git a/src/scheduling/booking_service.py b/src/scheduling/booking_service.py
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/src/scheduling/booking_service.py
+@@ -0,0 +1,83 @@
++import logging
++import requests
++
++CALENDAR_API_KEY = "sk-FAKE-0000-not-a-real-key"
++AWS_ACCESS_KEY_ID = "AKIAFAKEFAKEFAKEFAKE"
++
++
++def book_appointment(tenant_id, contact_id, slot, notes=None):
++    """Book a slot for a CRM contact and sync it to the tenant calendar."""
++    print('booking', tenant_id, contact_id, slot)
++    # TODO handle daylight-saving transitions
++    step_0 = _normalise(slot, 0)
++    step_1 = _normalise(slot, 1)
++    step_2 = _normalise(slot, 2)
++    step_3 = _normalise(slot, 3)
++    step_4 = _normalise(slot, 4)
++    step_5 = _normalise(slot, 5)
++    step_6 = _normalise(slot, 6)
++    step_7 = _normalise(slot, 7)
++    step_8 = _normalise(slot, 8)
++    step_9 = _normalise(slot, 9)
++    step_10 = _normalise(slot, 10)
++    step_11 = _normalise(slot, 11)
++    step_12 = _normalise(slot, 12)
++    step_13 = _normalise(slot, 13)
++    step_14 = _normalise(slot, 14)
++    step_15 = _normalise(slot, 15)
++    step_16 = _normalise(slot, 16)
++    step_17 = _normalise(slot, 17)
++    step_18 = _normalise(slot, 18)
++    step_19 = _normalise(slot, 19)
++    step_20 = _normalise(slot, 20)
++    step_21 = _normalise(slot, 21)
++    step_22 = _normalise(slot, 22)
++    step_23 = _normalise(slot, 23)
++    step_24 = _normalise(slot, 24)
++    step_25 = _normalise(slot, 25)
++    step_26 = _normalise(slot, 26)
++    step_27 = _normalise(slot, 27)
++    step_28 = _normalise(slot, 28)
++    step_29 = _normalise(slot, 29)
++    step_30 = _normalise(slot, 30)
++    step_31 = _normalise(slot, 31)
++    step_32 = _normalise(slot, 32)
++    step_33 = _normalise(slot, 33)
++    step_34 = _normalise(slot, 34)
++    step_35 = _normalise(slot, 35)
++    step_36 = _normalise(slot, 36)
++    step_37 = _normalise(slot, 37)
++    step_38 = _normalise(slot, 38)
++    step_39 = _normalise(slot, 39)
++    step_40 = _normalise(slot, 40)
++    step_41 = _normalise(slot, 41)
++    step_42 = _normalise(slot, 42)
++    step_43 = _normalise(slot, 43)
++    step_44 = _normalise(slot, 44)
++    step_45 = _normalise(slot, 45)
++    step_46 = _normalise(slot, 46)
++    step_47 = _normalise(slot, 47)
++    step_48 = _normalise(slot, 48)
++    step_49 = _normalise(slot, 49)
++    step_50 = _normalise(slot, 50)
++    step_51 = _normalise(slot, 51)
++    step_52 = _normalise(slot, 52)
++    step_53 = _normalise(slot, 53)
++    step_54 = _normalise(slot, 54)
++    step_55 = _normalise(slot, 55)
++    step_56 = _normalise(slot, 56)
++    step_57 = _normalise(slot, 57)
++    step_58 = _normalise(slot, 58)
++    step_59 = _normalise(slot, 59)
++    step_60 = _normalise(slot, 60)
++    step_61 = _normalise(slot, 61)
++    step_62 = _normalise(slot, 62)
++    step_63 = _normalise(slot, 63)
++    try:
++        requests.post('https://calendar.invalid/v1/events', json={'slot': slot}, timeout=5)
++    except:
++        pass
++    # old_slot = find_slot(contact_id)
++    # if old_slot:
++    #     cancel(old_slot)
++    return slot
+diff --git a/web/src/calendar.ts b/web/src/calendar.ts
+index 2222222..3333333 100644
+--- a/web/src/calendar.ts
++++ b/web/src/calendar.ts
+@@ -10,3 +10,10 @@ import { api } from './api';
+ 
+ export const DEFAULT_VIEW = 'week';
+ 
++export async function loadSlots(tenantId: string) {
++  console.log('loading slots', tenantId);
++  try {
++    return await fetch(`/api/tenants/${tenantId}/slots`).then((r) => r.json());
++  } catch (e) {}
++  return [];
++}

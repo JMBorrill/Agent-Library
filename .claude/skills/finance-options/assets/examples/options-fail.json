@@ -1,0 +1,112 @@
+{
+  "appraisal": {
+    "title": "Synthetic seeded-defect appraisal",
+    "price_base_year": 2026,
+    "price_basis": "real",
+    "appraisal_period_years": 5
+  },
+  "critical_success_factors": [],
+  "options": [
+    {
+      "id": "OPT-A",
+      "name": "Preferred supplier",
+      "price_base_year": 2026,
+      "appraisal_period_years": 5,
+      "costs": [
+        100,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "benefits": [
+        0,
+        50,
+        50,
+        50,
+        50,
+        50
+      ]
+    },
+    {
+      "id": "OPT-B",
+      "name": "Alternative with 7-year horizon",
+      "price_base_year": 2026,
+      "appraisal_period_years": 7,
+      "costs": [
+        80,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "benefits": [
+        0,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45
+      ],
+      "non_monetised_effects": []
+    },
+    {
+      "id": "OPT-C",
+      "name": "Priced in 2024 money",
+      "price_base_year": 2024,
+      "appraisal_period_years": 5,
+      "costs": [
+        90,
+        25,
+        25,
+        25,
+        25,
+        25
+      ],
+      "benefits": [
+        0,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "non_monetised_effects": []
+    },
+    {
+      "id": "OPT-D",
+      "name": "Nominal prices, no deflator",
+      "price_base_year": 2026,
+      "price_basis": "nominal",
+      "appraisal_period_years": 5,
+      "costs": [
+        70,
+        25,
+        25,
+        25,
+        25,
+        25
+      ],
+      "benefits": [
+        0,
+        35,
+        35,
+        35,
+        35,
+        35
+      ],
+      "non_monetised_effects": [
+        {
+          "effect": "Faster citizen response",
+          "direction": "positive"
+        }
+      ]
+    }
+  ]
+}

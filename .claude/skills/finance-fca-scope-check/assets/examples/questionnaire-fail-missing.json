@@ -1,0 +1,10 @@
+{
+  "product_name": "Synthetic BNPL add-on for a small-business scheduling SaaS (BookWell, synthetic)",
+  "assessment_date": "2026-10-13",
+  "jurisdiction": "UK",
+  "customer_types": ["consumer", "business"],
+  "products": ["bnpl"],
+  "activities": {"arranges": true},
+  "ai_in_decisions": false,
+  "handles_complaints": "not sure"
+}

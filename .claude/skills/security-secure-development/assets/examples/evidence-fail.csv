@@ -1,0 +1,10 @@
+practice_id,task_id,evidence_ref,evidence_date,owner,status,justification
+SSDF-v1.1-PO.1,SSDF-v1.1-PO.1.1,SEC-POL-001 v1,2024-01-10,ciso,verified,
+SSDF-v1.1-PW.3,,Legacy mapping from old spreadsheet,2026-02-01,security-lead,implemented,
+SSDF-v1.2-PO.6,,Draft v1.2 practice,2026-02-01,security-lead,planned,
+SSDF-v1.1-PW.7,SSDF-v1.1-PW.8.1,Code review records,2026-09-20,eng-director,verified,
+SSDF-v1.1-PS.1,,,2026-09-15,platform-lead,verified,
+SSDF-v1.1-PS.2,,Signing runbook,2027-01-01,platform-lead,implemented,
+SSDF-v1.1-RV.1,,,,security-lead,not_applicable,
+SSDF-v1.1-RV.2,,CVE SLA,15/03/2026,,implemented,
+PW.5,,Secure coding standard,2026-08-30,security-lead,done,

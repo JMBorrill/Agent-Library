@@ -1,0 +1,7 @@
+function_id,parent_function,name,inputs,outputs,allocated_to,requirement_ids
+F0,,Perform instrumented hop trial,EXT:operator command;EXT:offload force,EXT:trial data set,,DEMO-STK-001
+F1,F0,Store elastic energy,power;arm command,stored energy,LEG,DEMO-SYS-002
+F2,F0,Release energy into hop,stored energy;release command,body motion,LEG;CTRL,DEMO-SYS-002
+F3,F0,Measure vertical displacement,body motion,displacement samples,LOG,DEMO-SYS-001
+F4,F0,Sequence trial,EXT:operator command;displacement samples,arm command;release command;EXT:trial data set,CTRL,DEMO-SYS-001
+F5,F0,Supply and interrupt power,EXT:e-stop signal,power,PWR,DEMO-SYS-002

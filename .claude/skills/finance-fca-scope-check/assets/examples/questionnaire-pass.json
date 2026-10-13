@@ -1,0 +1,15 @@
+{
+  "product_name": "CriteriaLens (synthetic) - AI second-charge mortgage criteria search for brokers and consumers",
+  "assessment_date": "2026-10-13",
+  "jurisdiction": "UK",
+  "customer_types": ["consumer"],
+  "products": ["second_charge_mortgage", "first_charge_mortgage"],
+  "service_model": "information_criteria_search",
+  "activities": {"arranges": true, "advises": false, "lends": false},
+  "performs_affordability_calculation": true,
+  "communicates_promotions": true,
+  "ai_in_decisions": true,
+  "vulnerable_customers": true,
+  "handles_complaints": true,
+  "processes_personal_data": true
+}

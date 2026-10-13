@@ -1,5 +1,6 @@
 {
-  "notes": "Preliminary crosswalk based on NASA SE Handbook chapters 4\u20136. Verify titles, sections and applicability against live original. Proposed skills can be new or existing.",
+  "notes": "Process names and handbook section numbers are corroborated by SECONDARY sources only (search results of the NASA-hosted handbook table of contents); the primary handbook was inaccessible in this environment. See sources/audits/nasa-se.md and sources/extracts/nasa-se-processes-corroboration.json. Reviews (SRR, PDR, ...) are milestones served by SE-16, not additional processes.",
+  "source_verification": "unverified (secondary corroboration)",
   "processes": [
     {
       "id": "SE-01",
@@ -7,11 +8,18 @@
       "handbook_section": "4.1",
       "process": "Stakeholder Expectations Definition",
       "source_id": "nasa-se-design",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-stakeholder-conops"
       ],
-      "proposed_artifact": "ConOps/stakeholder-needs",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "conops.md",
+        "stakeholders.csv",
+        "needs.csv"
+      ],
+      "tests": [
+        "tests/test_se_stakeholder_conops.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-02",
@@ -19,11 +27,17 @@
       "handbook_section": "4.2",
       "process": "Technical Requirements Definition",
       "source_id": "nasa-se-design",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-requirements"
       ],
-      "proposed_artifact": "technical requirements and traceability",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "requirements.csv",
+        "requirements-review.md"
+      ],
+      "tests": [
+        "tests/test_se_requirements.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-03",
@@ -31,12 +45,16 @@
       "handbook_section": "4.3",
       "process": "Logical Decomposition",
       "source_id": "nasa-se-design",
-      "proposed_skill_ids": [
-        "se-logical-decomposition",
-        "se-architecture-trades"
+      "skill_ids": [
+        "se-logical-decomposition"
       ],
-      "proposed_artifact": "logical/functional architecture",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "functions.csv"
+      ],
+      "tests": [
+        "tests/test_se_logical_decomposition.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-04",
@@ -44,11 +62,19 @@
       "handbook_section": "4.4",
       "process": "Design Solution Definition",
       "source_id": "nasa-se-design",
-      "proposed_skill_ids": [
-        "se-architecture-trades"
+      "skill_ids": [
+        "se-architecture-trades",
+        "se-decision-analysis"
       ],
-      "proposed_artifact": "design alternatives/trade study",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "trade-space.json",
+        "design-solution.md"
+      ],
+      "tests": [
+        "tests/test_se_architecture_trades.py",
+        "tests/test_se_decision_analysis.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-05",
@@ -56,11 +82,16 @@
       "handbook_section": "5.1",
       "process": "Product Implementation",
       "source_id": "nasa-se-realize",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-implementation-integration"
       ],
-      "proposed_artifact": "implementation plan/build evidence",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "implementation-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_implementation_integration.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-06",
@@ -68,11 +99,17 @@
       "handbook_section": "5.2",
       "process": "Product Integration",
       "source_id": "nasa-se-realize",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-implementation-integration"
       ],
-      "proposed_artifact": "integration plan and records",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "integration-plan.json",
+        "integration-results.md"
+      ],
+      "tests": [
+        "tests/test_se_implementation_integration.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-07",
@@ -80,11 +117,17 @@
       "handbook_section": "5.3",
       "process": "Product Verification",
       "source_id": "nasa-se-realize",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-verification-validation"
       ],
-      "proposed_artifact": "verification matrix/procedures",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "verification-matrix.csv",
+        "test-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_verification_validation.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-08",
@@ -92,11 +135,17 @@
       "handbook_section": "5.4",
       "process": "Product Validation",
       "source_id": "nasa-se-realize",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-verification-validation"
       ],
-      "proposed_artifact": "validation scenarios/evidence",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "verification-matrix.csv (type=validation)",
+        "validation-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_verification_validation.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-09",
@@ -104,11 +153,16 @@
       "handbook_section": "5.5",
       "process": "Product Transition",
       "source_id": "nasa-se-realize",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-transition"
       ],
-      "proposed_artifact": "transition/acceptance plan",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "transition.json"
+      ],
+      "tests": [
+        "tests/test_se_transition_and_data.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-10",
@@ -116,11 +170,17 @@
       "handbook_section": "6.1",
       "process": "Technical Planning",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-technical-planning"
       ],
-      "proposed_artifact": "systems engineering management plan",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "tailoring table",
+        "engineering-plan.md"
+      ],
+      "tests": [
+        "tests/test_se_technical_planning.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-11",
@@ -128,12 +188,21 @@
       "handbook_section": "6.2",
       "process": "Requirements Management",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-requirements",
-        "se-change-control"
+        "se-change-control",
+        "se-configuration-management"
       ],
-      "proposed_artifact": "baseline and change traceability",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "baselines",
+        "change-request.md"
+      ],
+      "tests": [
+        "tests/test_se_change_control.py",
+        "tests/test_se_configuration_management.py",
+        "tests/test_se_requirements.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-12",
@@ -141,11 +210,17 @@
       "handbook_section": "6.3",
       "process": "Interface Management",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-interface-control"
       ],
-      "proposed_artifact": "interface control document",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "icd.csv",
+        "N2 matrix"
+      ],
+      "tests": [
+        "tests/test_se_interface_control.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-13",
@@ -153,11 +228,17 @@
       "handbook_section": "6.4",
       "process": "Technical Risk Management",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-risk-analysis"
       ],
-      "proposed_artifact": "technical risk register",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "risk-register.csv",
+        "fmea.csv"
+      ],
+      "tests": [
+        "tests/test_se_risk_analysis.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-14",
@@ -165,12 +246,19 @@
       "handbook_section": "6.5",
       "process": "Configuration Management",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-configuration-management",
         "se-change-control"
       ],
-      "proposed_artifact": "configuration status log",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "change-log.csv",
+        "baseline audit report"
+      ],
+      "tests": [
+        "tests/test_se_change_control.py",
+        "tests/test_se_configuration_management.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-15",
@@ -178,11 +266,16 @@
       "handbook_section": "6.6",
       "process": "Technical Data Management",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-technical-data-management"
       ],
-      "proposed_artifact": "data registry and access policy",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "data-register.csv"
+      ],
+      "tests": [
+        "tests/test_se_transition_and_data.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-16",
@@ -190,12 +283,19 @@
       "handbook_section": "6.7",
       "process": "Technical Assessment",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
+      "skill_ids": [
         "se-technical-assessment",
         "se-review-gates"
       ],
-      "proposed_artifact": "technical assessment/review package",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "tpm.csv",
+        "review-package.md"
+      ],
+      "tests": [
+        "tests/test_se_review_gates.py",
+        "tests/test_se_technical_assessment.py"
+      ],
+      "verification_status": "secondary_corroboration"
     },
     {
       "id": "SE-17",
@@ -203,12 +303,17 @@
       "handbook_section": "6.8",
       "process": "Decision Analysis",
       "source_id": "nasa-se-manage",
-      "proposed_skill_ids": [
-        "se-decision-analysis",
-        "se-architecture-trades"
+      "skill_ids": [
+        "se-decision-analysis"
       ],
-      "proposed_artifact": "decision analysis and rationale",
-      "verification_status": "mapping_needs_source_recheck"
+      "artifacts": [
+        "decision.json",
+        "decision-log.md"
+      ],
+      "tests": [
+        "tests/test_se_decision_analysis.py"
+      ],
+      "verification_status": "secondary_corroboration"
     }
   ]
 }

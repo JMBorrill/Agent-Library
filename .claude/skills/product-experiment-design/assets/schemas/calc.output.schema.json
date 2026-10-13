@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/product-experiment-design/calc.output.schema.json",
+  "title": "experiment_calc.py sample-size|mde|evaluate (quick) --json output",
+  "type": "object",
+  "required": ["calculation", "formula", "inputs", "result"],
+  "properties": {
+    "calculation": {"enum": ["sample-size", "mde", "evaluate"]},
+    "formula": {"type": "string"},
+    "inputs": {"type": "object"},
+    "result": {"type": "object"}
+  }
+}

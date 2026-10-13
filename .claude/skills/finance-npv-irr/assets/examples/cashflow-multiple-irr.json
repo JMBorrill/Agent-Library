@@ -1,0 +1,7 @@
+{
+  "name": "Synthetic mine-style profile (outflow, inflow, clean-up outflow) with two IRRs",
+  "currency": "GBP",
+  "price_basis": "real",
+  "rate": 0.15,
+  "flows": [-100, 230, -132]
+}

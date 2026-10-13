@@ -1,0 +1,40 @@
+{
+  "id": "DWS-EXP-001",
+  "title": "Suggested rebooking slot after a client cancels a walk (synthetic)",
+  "hypothesis": {
+    "statement": "Because walkers told us rebooking after a cancellation takes several messages (DWS-EV-002), we believe offering the client one suggested replacement slot will help more cancelled walks get rebooked.",
+    "prediction": "The share of cancelled walks rebooked within 48 hours increases from 30% to at least 35%."
+  },
+  "primary_metric": {
+    "name": "rebooked_within_48h",
+    "definition": "Cancelled walks with a replacement walk booked for the same client within 48 hours / all client-cancelled walks in the experiment window",
+    "unit": "proportion"
+  },
+  "baseline": 0.30,
+  "mde": 0.05,
+  "direction": "increase",
+  "alpha": 0.05,
+  "power": 0.8,
+  "formula": "pooled",
+  "arms": 2,
+  "randomisation_unit": "walker account (all of a walker's clients see the same variant)",
+  "sample_size_per_arm": 1400,
+  "expected_eligible_per_day": 110,
+  "duration_days": 28,
+  "launch_date": "2026-11-02",
+  "stopping_rule": "Run for the full 28 days or until 1,400 cancellations per arm, whichever is later; stop early only if a guardrail is breached.",
+  "ethics": {
+    "consent_note": "Covered by the product terms for service improvements; walkers can opt out of experiments in settings; no change to prices or walk availability.",
+    "harm_review": "Suggestion text reviewed so clients are never pressured to rebook."
+  },
+  "decision_rule": {
+    "set_before_launch": true,
+    "recorded_on": "2026-10-20",
+    "ship_if": "Two-sided p < 0.05, CI lower bound > 0 and no guardrail breached",
+    "do_not_ship_if": "Any guardrail breached, or CI upper bound < +0.02 absolute"
+  },
+  "guardrails": [
+    {"name": "client_complaint_rate", "direction": "must_not_increase", "max_abs_change": 0.01},
+    {"name": "walker_opt_out_rate", "direction": "must_not_increase", "max_abs_change": 0.005}
+  ]
+}

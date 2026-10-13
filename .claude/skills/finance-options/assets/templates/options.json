@@ -1,0 +1,19 @@
+{
+  "appraisal": {"title": "", "price_base_year": 2026, "price_basis": "real", "appraisal_period_years": 10,
+                "currency": "GBP", "discount_schedule": "default"},
+  "critical_success_factors": ["CSF1 ...", "CSF2 ..."],
+  "long_list": [
+    {"id": "OPT-0", "description": "Do minimum / business as usual", "shortlisted": true,
+     "csf_assessment": {"CSF1 ...": "meets | partial | fails", "CSF2 ...": ""}, "reason": "counterfactual"}
+  ],
+  "five_case": {"strategic": "", "economic": "", "commercial": "", "financial": "", "management": ""},
+  "options": [
+    {"id": "OPT-0", "name": "Do minimum (counterfactual)", "is_counterfactual": true,
+     "price_base_year": 2026, "price_basis": "real", "appraisal_period_years": 10,
+     "costs": [], "benefits": [], "non_monetised_effects": []},
+    {"id": "OPT-1", "name": "", "price_base_year": 2026, "price_basis": "real | nominal", "inflation_rate": null,
+     "appraisal_period_years": 10, "costs": [], "benefits": [],
+     "optimism_bias": {"costs_pct": null, "benefits_pct": null, "source": ""},
+     "non_monetised_effects": [{"effect": "", "direction": "positive | negative", "significance": "high | medium | low", "evidence": ""}]}
+  ]
+}

@@ -1,0 +1,5 @@
+# AI Operations Platform API (synthetic) - fully pinned
+fastapi==0.115.0
+psycopg[binary]==3.2.1
+pydantic==2.9.2  # validated models
+httpx==0.27.2

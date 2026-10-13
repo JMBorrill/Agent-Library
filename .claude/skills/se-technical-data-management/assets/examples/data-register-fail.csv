@@ -1,0 +1,5 @@
+data_id,title,type,owner,version,classification,location,retention,access_roles,source_of_truth,last_updated,contains_personal_data,lawful_basis,checksum
+DEMO-DAT-001,Requirements register,register,,v1.3,internal,git:repo/requirements.csv,,engineering,yes,2025-01-01,no,,
+DEMO-DAT-001,Requirements register copy,register,PM,v1.2,secret-ish,https://user:hunter2@files.example.com/req.csv,1y,,yes,2026-09-01,no,,
+DEMO-DAT-003,Customer list,dataset,Sales,1,restricted,s3://bucket/customers.csv,forever,,no,2026-09-01,yes,,
+DEMO-DAT-004,Actuator drawings,drawing,Mech,B,export_controlled,pdm://drawings/act,project+10y,mech,yes,2026-08-01,no,,

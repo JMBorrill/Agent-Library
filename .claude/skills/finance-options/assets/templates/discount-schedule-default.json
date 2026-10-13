@@ -1,0 +1,13 @@
+{
+  "label": "Commonly cited Green Book STPR schedule (real) - UNVERIFIED: confirm against Green Book 2026 and its discounting supplementary guidance before use",
+  "verification": "unverified",
+  "note": "Secondary sources (Feb 2026) corroborate 3.5% years 0-30, 3.0% years 31-75, 2.5% thereafter; the 2.0/1.5/1.0% tail bands are from earlier editions and are unconfirmed. A discount rate review reported in 2026; check whether HM Treasury has adopted any change.",
+  "bands": [
+    {"from_year": 0, "to_year": 30, "rate": 0.035},
+    {"from_year": 31, "to_year": 75, "rate": 0.030},
+    {"from_year": 76, "to_year": 125, "rate": 0.025},
+    {"from_year": 126, "to_year": 200, "rate": 0.020},
+    {"from_year": 201, "to_year": 300, "rate": 0.015},
+    {"from_year": 301, "to_year": null, "rate": 0.010}
+  ]
+}

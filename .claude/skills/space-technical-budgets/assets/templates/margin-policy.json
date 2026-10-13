@@ -1,0 +1,11 @@
+{
+  "label": "<programme name> margin policy, <document ID and issue> — values must come from your programme",
+  "is_example": false,
+  "policy_id": "<PROJECT>-POLICY-<NNN>",
+  "margin_basis": "allocation",
+  "contingency_percent": {"estimated": null, "calculated": null, "heritage": null, "measured": null},
+  "required_system_margin_percent": null,
+  "budgets": {
+    "mass": {"unit": "kg", "allocation": null, "required_system_margin_percent": null}
+  }
+}

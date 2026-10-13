@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-library/space-technical-budgets/margin-policy.schema.json",
+  "title": "Programme-supplied margin policy for budget_calc.py",
+  "type": "object",
+  "required": ["label", "contingency_percent", "budgets"],
+  "properties": {
+    "label": {"type": "string", "minLength": 1, "description": "Policy name, document ID/issue, or the example disclaimer"},
+    "is_example": {"type": "boolean"},
+    "policy_id": {"type": "string"},
+    "margin_basis": {"enum": ["allocation", "predicted"]},
+    "contingency_percent": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "number", "minimum": 0}},
+    "required_system_margin_percent": {"type": "number", "minimum": 0},
+    "budgets": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["unit"],
+        "properties": {
+          "unit": {"type": "string", "minLength": 1},
+          "allocation": {"type": "number", "exclusiveMinimum": 0},
+          "allocation_by_mode": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "number", "exclusiveMinimum": 0}},
+          "required_system_margin_percent": {"type": "number", "minimum": 0},
+          "combine": {"enum": ["sum", "rss"]},
+          "contingency_percent": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}}
+        }
+      }
+    }
+  }
+}

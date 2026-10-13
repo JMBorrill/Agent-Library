@@ -1,0 +1,18 @@
+{
+  "transition_id": "DEMO-TRN-001",
+  "receiving_organisation": "Locomotion research lab (synthetic)",
+  "deliverables": [
+    {"id": "D1", "name": "Low-gravity test rig", "version": "rev2", "configuration_id": "BL-3", "acceptance_ref": "SAR-2026-11 minutes",
+     "documentation": ["operator manual v1.0", "maintenance procedure v1.0", "hazard analysis HA-01 rev C"], "known_issues": ["Offload friction 3 % (characterised)"]},
+    {"id": "D2", "name": "Trial data set", "version": "2026-11-01", "configuration_id": "DATA-7", "acceptance_ref": "PI acceptance email 2026-11-02",
+     "documentation": ["data dictionary v1"], "known_issues": []}
+  ],
+  "open_verification": [
+    {"activity_id": "DEMO-VER-004", "result": "not_tested", "waiver_ref": "DEMO-WVR-001", "waiver_approved_by": "Project lead (synthetic)"}
+  ],
+  "training": {"required": true, "completed": true, "ref": "training record TR-12"},
+  "support_plan_ref": "support-plan.md v1",
+  "handling_storage": "Store with leg spring unloaded; transport in crate C-1",
+  "limitations_documented": true,
+  "receiver_signoff": {"name": "", "date": ""}
+}

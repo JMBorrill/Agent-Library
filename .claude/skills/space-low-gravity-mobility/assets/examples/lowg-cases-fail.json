@@ -1,0 +1,10 @@
+{
+  "description": "Seeded failures on synthetic bodies (illustrative values, not real asteroids)",
+  "cases": [
+    {"id": "HOP-ESC", "command": "hop", "params": {"radius_m": 250, "density_kg_m3": 1900, "speed": 0.3, "angle_deg": 60}},
+    {"id": "HOP-ORB", "command": "hop", "params": {"radius_m": 250, "density_kg_m3": 1900, "speed": 0.2, "angle_deg": 45}},
+    {"id": "HOP-APPROX", "command": "hop", "params": {"radius_m": 250, "density_kg_m3": 1900, "speed": 0.08, "angle_deg": 45}},
+    {"id": "ROT-FAST", "command": "rotation", "params": {"preset": "fast-rotator-synthetic"}},
+    {"id": "BNC-ESC", "command": "bounce", "params": {"radius_m": 250, "density_kg_m3": 1900, "speed": 0.5, "restitution": 0.6, "threshold_speed": 0.01}}
+  ]
+}

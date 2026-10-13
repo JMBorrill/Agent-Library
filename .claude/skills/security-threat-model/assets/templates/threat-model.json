@@ -1,0 +1,69 @@
+{
+ "system": "",
+ "version": "",
+ "owner": "",
+ "date": "YYYY-MM-DD",
+ "multi_tenant": false,
+ "asvs_target_level": 2,
+ "components": [
+  {
+   "id": "C1",
+   "name": "",
+   "type": "external_entity | process | data_store",
+   "trust_zone": ""
+  }
+ ],
+ "trust_boundaries": [
+  {
+   "id": "TB1",
+   "name": ""
+  }
+ ],
+ "assets": [
+  {
+   "id": "A1",
+   "name": "",
+   "classification": "public | internal | confidential | restricted"
+  }
+ ],
+ "data_flows": [
+  {
+   "id": "DF1",
+   "from": "C1",
+   "to": "C2",
+   "data": [
+    "A1"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB1",
+   "required_categories": "TID",
+   "not_applicable": {}
+  }
+ ],
+ "threats": [
+  {
+   "id": "T01",
+   "title": "",
+   "stride": "S | T | R | I | D | E",
+   "targets": [
+    "DF1"
+   ],
+   "likelihood": "low | medium | high",
+   "impact": "low | medium | high",
+   "status": "open | mitigated | accepted | transferred",
+   "tenant_isolation": false,
+   "mitigations": [
+    {
+     "description": "",
+     "asvs": [
+      "v5.0.0-<chapter>.<section>.<req>"
+     ],
+     "status": "planned | implemented | verified"
+    }
+   ],
+   "accepted_by": "",
+   "acceptance_rationale": ""
+  }
+ ]
+}

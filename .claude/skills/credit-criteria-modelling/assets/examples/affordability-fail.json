@@ -1,0 +1,17 @@
+{
+  "description": "Synthetic seeded-defect case: CLTV over 100% and zero income",
+  "charge": "second",
+  "property_value": 200000,
+  "loan_amount": 60000,
+  "term_years": 10,
+  "product_rate_pct": 8.0,
+  "stress_margin_pct": 2.0,
+  "stress_margin_source": "synthetic policy",
+  "repayment_type": "repayment",
+  "gross_annual_income": 0,
+  "net_monthly_income": 0,
+  "monthly_committed_expenditure": 0,
+  "monthly_essential_expenditure": 900,
+  "existing_first_charge_balance": 170000,
+  "existing_first_charge_payment": 950
+}

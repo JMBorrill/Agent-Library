@@ -1,0 +1,8 @@
+{
+  "name": "Synthetic seeded-defect case: cost-only flows and an impossible terminal growth",
+  "currency": "GBP",
+  "convention": "t0",
+  "rate": 0.08,
+  "flows": [-500, -100, -100, -100],
+  "dcf": {"fcf": [50, 55, 60], "rate": 0.05, "terminal_growth": 0.06}
+}

@@ -1,0 +1,142 @@
+{
+  "source_id": "fca",
+  "status": "ACTIVE",
+  "notes": "FCA Handbook INACCESSIBLE (sources/audits/fca.md). Secondary corroboration only for second-charge under MCOB from 21 Mar 2016, Consumer Duty dates and partly MCOB 11.6; CONC/DISP scope uncorroborated. Triage outputs require human sign-off.",
+  "rows": [
+    {
+      "source_element": "PERG perimeter guidance (regulated activities, arranging/advising boundary)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer"
+      ],
+      "artifacts": [
+        "reg_triage.py report",
+        "triage-rules.json"
+      ],
+      "tests": [
+        "tests/test_finance_fca_scope_check.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "MCOB conduct of business for regulated mortgages incl. second charge",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-fca-scope-check",
+        "credit-criteria-modelling"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "reg_triage.py report",
+        "criteria_engine.py report"
+      ],
+      "tests": [
+        "tests/test_finance_fca_scope_check.py",
+        "tests/test_credit_criteria_modelling.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "MCOB 11.6 responsible lending and affordability",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "credit-criteria-modelling",
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "affordability_calc.py report",
+        "reg_triage.py report"
+      ],
+      "tests": [
+        "tests/test_credit_criteria_modelling.py",
+        "tests/test_finance_fca_scope_check.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "PRIN incl. Principle 12 / PRIN 2A Consumer Duty",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer"
+      ],
+      "artifacts": [
+        "reg_triage.py report"
+      ],
+      "tests": [
+        "tests/test_finance_fca_scope_check.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "CONC consumer credit sourcebook",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer"
+      ],
+      "artifacts": [
+        "reg_triage.py report"
+      ],
+      "tests": [
+        "tests/test_finance_fca_scope_check.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "SYSC systems and controls",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer"
+      ],
+      "artifacts": [
+        "reg_triage.py report"
+      ],
+      "tests": [
+        "tests/test_finance_fca_scope_check.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "DISP dispute resolution: complaints",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "credit-regulatory-reviewer"
+      ],
+      "artifacts": [
+        "reg_triage.py report"
+      ],
+      "tests": [
+        "tests/test_finance_fca_scope_check.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}
