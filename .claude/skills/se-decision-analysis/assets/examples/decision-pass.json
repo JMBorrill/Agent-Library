@@ -1,0 +1,34 @@
+{
+  "decision_id": "DEMO-DEC-001",
+  "question": "Which locomotion concept should the low-gravity ground demonstrator carry into preliminary design?",
+  "decision_owner": "Project lead (synthetic)",
+  "context": "Synthetic example. Scores are illustrative engineering estimates for teaching the method, not real performance data.",
+  "criteria": [
+    {"id": "C1", "name": "Surface coverage per hour in 1e-4 g analogue", "weight": 0.30, "direction": "max", "unit": "m/h"},
+    {"id": "C2", "name": "Probability of escape-velocity loss per 100 moves (estimate)", "weight": 0.25, "direction": "min", "unit": "count", "must": {"max": 5}},
+    {"id": "C3", "name": "Mass", "weight": 0.15, "direction": "min", "unit": "kg", "must": {"max": 40}},
+    {"id": "C4", "name": "Technology readiness (TRL)", "weight": 0.15, "direction": "max", "unit": "TRL"},
+    {"id": "C5", "name": "Ground-testability with offload rig", "weight": 0.15, "direction": "max", "unit": "1-5"}
+  ],
+  "alternatives": [
+    {"id": "HOP", "name": "Internal-reaction-wheel hopper", "scores": {
+      "C1": {"value": 120, "basis": "analysis", "source": "ballistic hop model AN-001"},
+      "C2": {"value": 3, "basis": "estimate"},
+      "C3": {"value": 18, "basis": "estimate"},
+      "C4": {"value": 4, "basis": "heritage", "source": "published small-body hopper concepts (to verify)"},
+      "C5": {"value": 3, "basis": "judgement"}}},
+    {"id": "WHEEL", "name": "Four-wheel rover", "scores": {
+      "C1": {"value": 40, "basis": "analysis"},
+      "C2": {"value": 8, "basis": "estimate"},
+      "C3": {"value": 25, "basis": "estimate"},
+      "C4": {"value": 6, "basis": "heritage"},
+      "C5": {"value": 4, "basis": "judgement"}}},
+    {"id": "CRAWL", "name": "Anchored legged crawler", "scores": {
+      "C1": {"value": 15, "basis": "analysis"},
+      "C2": {"value": 1, "basis": "estimate"},
+      "C3": {"value": 32, "basis": "estimate"},
+      "C4": {"value": 3, "basis": "judgement"},
+      "C5": {"value": 5, "basis": "judgement"}}}
+  ],
+  "settings": {"sensitivity_pct": 20, "close_margin": 0.05}
+}

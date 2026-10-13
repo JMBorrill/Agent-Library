@@ -1,0 +1,6 @@
+interface_id,from_component,to_component,type,parameter,value,units_from,units_to,tolerance,range_or_protocol,owner_from,owner_to,version,status,failure_behavior,requirement_ids,verification_id
+DEMO-IF-001,PWR,CTRL,electrical,supply voltage,24,V,mV,±1,24 V DC,EPS lead,Controls lead,1.2,baselined,Safe state,,DEMO-VER-010
+DEMO-IF-002,CTRL,LEG,electrical,motor current limit,5,A,V,±0.2,PWM,Controls lead,,1.1,baselined,,,
+DEMO-IF-003,CTRL,CTRL,data,loopback,,Hz,Hz,,,Controls lead,Controls lead,1.0,draft,,,
+DEMO-IF-002,CTRL,LEG,electrical,motor current limit,5,A,A,±0.2,PWM,Controls lead,Mech lead,1.0,agreed,x,,
+DEMO-IF-005,CTRL,GHOST,data,command,,,,,,Controls lead,Unknown,1.0,quantum,,,

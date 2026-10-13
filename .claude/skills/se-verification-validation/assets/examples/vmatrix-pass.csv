@@ -1,0 +1,6 @@
+activity_id,type,requirement_id,need_id,method,level,configuration,procedure_ref,acceptance_criteria,result,evidence_ref,run_date,performed_by,reviewer,notes
+DEMO-VER-001,verification,DEMO-SYS-001,,test,system,RIG-A rev2 / FW 1.4.0,TP-001,"Sample interval <= 5.0 ms",pass,evidence/TP-001-run3.csv,2026-09-20,Test lead,Independent QA,
+DEMO-VER-002,verification,DEMO-SYS-002,,test,system,RIG-A rev2 / FW 1.4.0,TP-002,"Latency <= 100 ms in 10/10 trials",fail,evidence/TP-002-run1.csv,2026-09-21,Test lead,Independent QA,"8/10 within limit; NCR-004 raised"
+DEMO-VER-003,verification,DEMO-SYS-003,,inspection,system,RIG-A rev2,IP-003,"Scale reading <= 40 kg",not_tested,,,,,
+DEMO-VER-004,verification,DEMO-SYS-004,,analysis,system,FW 1.4.0,AN-004,"Clock analysis shows <= 1 ms",not_tested,,,,,
+DEMO-VAL-001,validation,,DEMO-STK-001,demonstration,system,RIG-A rev2 / FW 1.4.0,VP-001,"PI confirms data supports locomotion analysis",not_tested,,,,,

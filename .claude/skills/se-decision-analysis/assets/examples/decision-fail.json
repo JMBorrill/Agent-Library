@@ -1,0 +1,12 @@
+{
+  "decision_id": "DEMO-DEC-002",
+  "question": "Pick a battery",
+  "criteria": [
+    {"id": "C1", "name": "Energy", "weight": 0.7, "direction": "max"},
+    {"id": "C2", "name": "Cost", "weight": 0.3, "direction": "cheapest"}
+  ],
+  "alternatives": [
+    {"id": "LI", "scores": {"C1": {"value": 200, "basis": "vendor"}, "C2": {"value": 50}}},
+    {"id": "NIMH", "scores": {"C1": {"value": 90, "basis": "vendor"}}}
+  ]
+}

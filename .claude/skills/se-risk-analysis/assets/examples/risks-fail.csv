@@ -1,0 +1,5 @@
+risk_id,title,statement,category,likelihood,consequence,approach,mitigation,trigger,owner,residual_likelihood,residual_consequence,accepted_by,status,review_date,related_ids,evidence
+DEMO-RSK-001,Leg may break,The leg might break.,safety,4,5,accept,,,,4,5,,open,2026-01-01,,
+DEMO-RSK-002,Bad sensor,"Given X, there is a possibility of Y, resulting in Z.",technical,6,2,mitigate,Buy better sensor,,Test lead,3,3,,open,2026-09-15,,
+DEMO-RSK-002,Duplicate,"Given A, there is a possibility of B, resulting in C.",cost,2,2,watch,,,PM,2,2,,open,2026-09-15,,
+DEMO-RSK-004,Battery fire,"Given Li-ion cells, there is a possibility of thermal runaway, resulting in fire.",safety,3,5,mitigate,Fire bag,Cell temp > 50C,EPS,3,5,,open,,,

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "decision_matrix.py --json report",
+  "type": "object",
+  "required": ["findings", "summary", "passed"],
+  "properties": {
+    "passed": {"type": "boolean"},
+    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "rule", "message"],
+      "properties": {"severity": {"enum": ["error", "warning", "info"]}}}},
+    "weights": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+    "ranking": {"type": "array", "items": {"type": "object", "required": ["alternative", "score"],
+      "properties": {"alternative": {"type": "string"}, "score": {"type": "number", "minimum": 0, "maximum": 1.0000001}}}},
+    "screened": {"type": "object"},
+    "sensitivity": {"type": "array"},
+    "recommendation": {"type": "object", "required": ["alternative", "status"],
+      "properties": {"status": {"type": "string", "pattern": "^recommendation"}}},
+    "summary": {"type": "object", "required": ["errors"]}
+  }
+}

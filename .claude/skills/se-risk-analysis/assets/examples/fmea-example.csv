@@ -1,0 +1,4 @@
+fmea_id,item,function,failure_mode,effect,cause,severity,occurrence,detection,current_controls,recommended_action,owner,related_ids
+FM-001,Release latch,Hold leg spring,Fails open,Uncontrolled leg motion,Worn pawl,9,3,4,Visual check,Add proof-load test each session,Mech lead,DEMO-RSK-001
+FM-002,Encoder,Measure leg angle,Signal dropout,Controller loses state,Connector vibration,6,4,3,CRC + watchdog,Locking connector,Elec lead,
+FM-003,Logger,Record data,Clock drift,Timestamps misaligned,Oscillator tolerance,3,5,7,None,GPS-disciplined clock,Test lead,DEMO-SYS-004

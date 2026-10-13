@@ -1,0 +1,5 @@
+activity_id,type,requirement_id,need_id,method,level,configuration,procedure_ref,acceptance_criteria,result,evidence_ref,run_date,performed_by,reviewer,notes
+DEMO-VER-001,verification,DEMO-SYS-001,,test,system,,TP-001,"Sample interval <= 5.0 ms",pass,,2026-09-20,Test lead,Test lead,
+DEMO-VER-009,verification,DEMO-SYS-999,,test,system,RIG-A,TP-009,"x",not_tested,,,,,
+DEMO-VAL-002,validation,DEMO-SYS-002,,demonstration,system,RIG-A,VP-002,"Looks OK",pass,evidence/vp2.mp4,2026-09-22,PI,Ind QA,
+DEMO-VER-003,verification,DEMO-SYS-003,,simulation,system,RIG-A,IP-003,"Scale reading <= 40 kg",passed,evidence/x,2026-09-22,Mech,QA,

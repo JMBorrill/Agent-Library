@@ -1,0 +1,9 @@
+{
+  "decision_id": "<PROJECT>-DEC-NNN",
+  "question": "",
+  "decision_owner": "",
+  "context": "",
+  "criteria": [{"id": "C1", "name": "", "weight": 0.0, "direction": "max", "unit": "", "must": {}}],
+  "alternatives": [{"id": "", "name": "", "scores": {"C1": {"value": 0, "basis": "analysis", "source": ""}}}],
+  "settings": {"sensitivity_pct": 20, "close_margin": 0.05}
+}
