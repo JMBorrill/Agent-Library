@@ -8,3 +8,4 @@ evals/results/
 eval-results.json
 live-results.json
 .venv/
+plugin-evals/results/

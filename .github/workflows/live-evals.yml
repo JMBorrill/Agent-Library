@@ -11,6 +11,10 @@ on:
         description: "Model id"
         required: false
         default: "claude-sonnet-5-5"
+      native:
+        description: "Also run native Claude Code plugin evals (plugin-evals/)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -38,3 +42,31 @@ jobs:
           path: |
             live-results.json
             evals/results/
+
+  native-plugin-evals:
+    if: ${{ inputs.native }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - run: |
+          python -m pip install -r requirements-dev.txt
+          npm install -g @anthropic-ai/claude-code
+      - name: Run native plugin evals
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude plugin eval . --trust-plugin --allow-tools Bash --runs 1 --threshold 0.66 \
+            --max-cost-usd 10 --no-publish --json plugin-eval-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-plugin-eval-results
+          path: |
+            plugin-eval-results.json
+            plugin-evals/results/

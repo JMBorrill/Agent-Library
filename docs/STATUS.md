@@ -57,7 +57,7 @@ passes `agentlib evidence check` (enforced by `tests/test_content_quality.py`).
 ## Known gaps / next work
 
 - (done) Example citation pages verified against the PDF text.
-- Optional: native `claude plugin eval` cases in `plugin-evals/` (configured in plugin.json).
+- (done) Native `claude plugin eval` cases in `plugin-evals/` (10 skill-trigger cases), run on demand via live-evals.yml.
 - Not catalogued: NIST AI 600-1 GenAI profile, NPR 7123.1 review criteria (not bundled), ASVS appendices,
   NASA SE Appendices E/H/I/K-T, Green Book supplementary guidance values (optimism bias, carbon, QALY etc.).
 - Live evals not yet run in this session (no API key); offline goldens/negatives verify the checks.
