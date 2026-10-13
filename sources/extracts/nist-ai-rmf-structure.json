@@ -1,0 +1,191 @@
+{
+  "source_id": "nist-ai",
+  "evidence_level": "secondary",
+  "retrieved": "2026-10-13",
+  "version": "NIST AI 100-1, AI RMF 1.0 (January 2023); Generative AI Profile NIST AI 600-1 (July 2024)",
+  "functions": [
+    {
+      "id": "GOVERN",
+      "categories": [
+        {
+          "id": "GOVERN 1",
+          "title": "Organization-wide AI risk policies, processes, procedures and practices are in place, transparent and effective",
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "GOVERN 2",
+          "title": "Accountability structures exist; teams are trained and empowered for AI risk work",
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "GOVERN 3",
+          "title": "Workforce diversity, equity, inclusion and accessibility are prioritised in AI risk work",
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "GOVERN 4",
+          "title": "Organisational culture considers and communicates AI risk",
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "GOVERN 5",
+          "title": "Processes exist for robust engagement with relevant AI actors",
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "GOVERN 6",
+          "title": "Policies address risks from third-party software, data and supply chains",
+          "title_is_paraphrase": true,
+          "subcategories": []
+        }
+      ]
+    },
+    {
+      "id": "MAP",
+      "categories": [
+        {
+          "id": "MAP 1",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MAP 2",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MAP 3",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MAP 4",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MAP 5",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        }
+      ],
+      "topic_hints_paraphrase": "context and intended purpose; system categorisation; capabilities, benefits and costs; risks of components incl. third-party; impacts on individuals/groups/society"
+    },
+    {
+      "id": "MEASURE",
+      "categories": [
+        {
+          "id": "MEASURE 1",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MEASURE 2",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MEASURE 3",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MEASURE 4",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        }
+      ]
+    },
+    {
+      "id": "MANAGE",
+      "categories": [
+        {
+          "id": "MANAGE 1",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MANAGE 2",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MANAGE 3",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        },
+        {
+          "id": "MANAGE 4",
+          "title": null,
+          "title_is_paraphrase": true,
+          "subcategories": []
+        }
+      ]
+    }
+  ],
+  "counts_secondary": {
+    "categories": {
+      "GOVERN": 6,
+      "MAP": 5,
+      "MEASURE": 4,
+      "MANAGE": 4,
+      "total": 19
+    },
+    "subcategories": {
+      "GOVERN": 19,
+      "MAP": 18,
+      "MEASURE": 22,
+      "MANAGE": 13,
+      "total": 72
+    },
+    "confidence": "category counts corroborated by multiple secondary results; per-function subcategory counts from one or two third-party guides (MEASURE=22 only implied by 72 total) - verify against AI 100-1 Tables"
+  },
+  "trustworthiness_characteristics": [
+    "Valid and reliable",
+    "Safe",
+    "Secure and resilient",
+    "Accountable and transparent",
+    "Explainable and interpretable",
+    "Privacy-enhanced",
+    "Fair with harmful bias managed"
+  ],
+  "generative_ai_profile": {
+    "id": "NIST AI 600-1",
+    "published": "July 2024 (exact day not confirmed; NIST news items cite late July 2024)",
+    "risk_count": 12,
+    "risk_names_corroborated": [
+      "Confabulation",
+      "CBRN information or capabilities",
+      "Harmful bias",
+      "Data privacy",
+      "Human-AI configuration"
+    ],
+    "note": "Remaining risk names not corroborated in results this session."
+  },
+  "evidence_urls": [
+    "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/ (search snippet only)",
+    "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/ (search snippet only)",
+    "https://docs.modulos.ai/frameworks/nist-ai-rmf/govern",
+    "https://neuraltrust.ai/blog/nist-ai-rmf-implementation-guide",
+    "https://www.ispartnersllc.com/hubs/nist-ai-rmf/core-functions/",
+    "https://vorplabs.com/security-framework-changes/nist-ai-rmf"
+  ],
+  "notes": "No official NIST machine-readable AI RMF/Playbook data was found: guessed paths in usnistgov/oscal-content returned 404 and api.github.com directory listing is unavailable; nist.gov/airc.nist.gov blocked (CONNECT 403 / ENOTFOUND). Subcategory lists deliberately left EMPTY because they were not obtained from an official source. GOVERN category titles are paraphrases of secondary summaries; MAP/MEASURE/MANAGE titles are null because no reliable wording was seen. The seven trustworthiness characteristics were seen in a search snippet attributed to airc.nist.gov plus several secondary summaries. AI RMF is voluntary guidance, not law or certification; secondary sources report a revision in progress (unconfirmed)."
+}

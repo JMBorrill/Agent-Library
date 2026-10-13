@@ -1,0 +1,6 @@
+id,parent,level,statement,rationale,source,owner,status,verification_method,acceptance_criteria,verification_id
+DEMO-SYS-001,,system,"The robot shall be fast and robust and shall hop efficiently.",,,,approved,test,Works well,DEMO-VER-001
+DEMO-SYS-001,,system,"The robot should be user-friendly.",Usability,Workshop,TBD,proposed,,,
+demo-sys-3,DEMO-SYS-999,subsystem,"The leg shall withstand TBD N of load.",Strength,Analysis,Mech,approved,test,"Load of TBD N",DEMO-VER-003
+DEMO-SUB-004,DEMO-SUB-005,subsystem,"The controller shall respond in real time where practical.",Control,Derived,SW,proposed,simulation,"Responds in real time",DEMO-VER-004
+DEMO-SUB-005,DEMO-SUB-004,subsystem,"The battery shall provide power etc.",Power,Derived,EPS,proposed,analysis,"Enough power",DEMO-VER-005

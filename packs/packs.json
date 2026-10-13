@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "packs": {
+    "systems-engineering": {
+      "title": "Systems engineering (NASA-derived 17 processes)",
+      "description": "Stakeholder needs to transition: requirements, architecture, interfaces, risk, configuration, V&V and review gates, scaled to project risk.",
+      "skills": [
+        "se-stakeholder-conops",
+        "se-requirements",
+        "se-logical-decomposition",
+        "se-architecture-trades",
+        "se-implementation-integration",
+        "se-verification-validation",
+        "se-transition",
+        "se-technical-planning",
+        "se-interface-control",
+        "se-risk-analysis",
+        "se-configuration-management",
+        "se-change-control",
+        "se-technical-data-management",
+        "se-technical-assessment",
+        "se-decision-analysis",
+        "se-review-gates"
+      ],
+      "agents": [
+        "systems-engineer",
+        "requirements-engineer",
+        "systems-architect",
+        "vv-engineer",
+        "safety-risk-reviewer"
+      ],
+      "sources": [
+        "nasa-se",
+        "nasa-se-design",
+        "nasa-se-realize",
+        "nasa-se-manage"
+      ]
+    },
+    "space-engineering": {
+      "title": "Space engineering supplements",
+      "description": "Engineering budgets with margin policies and low-gravity mobility physics; supplements the systems-engineering pack (ECSS crosswalk pending source access).",
+      "skills": [
+        "space-technical-budgets",
+        "space-low-gravity-mobility"
+      ],
+      "agents": [
+        "systems-architect"
+      ],
+      "sources": [
+        "ecss-se",
+        "nasa-se"
+      ],
+      "requires": [
+        "systems-engineering"
+      ]
+    },
+    "software": {
+      "title": "Software engineering",
+      "description": "Code review, requirements-to-code-to-test traceability and delivery performance metrics.",
+      "skills": [
+        "software-code-review",
+        "software-requirements-traceability",
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "sources": [
+        "google-review",
+        "nasa-software",
+        "dora"
+      ]
+    },
+    "reliability-security": {
+      "title": "Reliability and security",
+      "description": "Threat modelling, OWASP ASVS control mapping, static security checks, secure development (SSDF), SLOs, incident response and production readiness.",
+      "skills": [
+        "security-threat-model",
+        "security-asvs-controls",
+        "security-code-checks",
+        "security-secure-development",
+        "sre-service-level-objectives",
+        "sre-incident-response",
+        "sre-production-readiness"
+      ],
+      "agents": [
+        "security-reviewer",
+        "reliability-engineer"
+      ],
+      "sources": [
+        "owasp-asvs",
+        "nist-ssdf",
+        "google-sre"
+      ]
+    },
+    "product": {
+      "title": "Product management",
+      "description": "Evidence-led discovery, experiment design, shaping bounded pitches and product requirement briefs.",
+      "skills": [
+        "product-discovery",
+        "product-experiment-design",
+        "product-shaping",
+        "product-requirements-brief"
+      ],
+      "agents": [
+        "product-lead"
+      ],
+      "sources": [
+        "gov-service",
+        "shape-up"
+      ]
+    },
+    "ux": {
+      "title": "UX and accessibility",
+      "description": "Accessible form and error-handling patterns with static HTML checks.",
+      "skills": [
+        "ux-accessibility-review"
+      ],
+      "agents": [
+        "product-lead"
+      ],
+      "sources": [
+        "gov-design"
+      ]
+    },
+    "finance-credit": {
+      "title": "Finance, investment and credit",
+      "description": "Options appraisal, NPV/IRR/DCF, unit economics, credit governance, criteria modelling and UK regulatory applicability triage.",
+      "skills": [
+        "finance-options",
+        "finance-npv-irr",
+        "finance-unit-economics",
+        "credit-risk-governance",
+        "credit-criteria-modelling",
+        "finance-fca-scope-check"
+      ],
+      "agents": [
+        "financial-analyst",
+        "credit-regulatory-reviewer"
+      ],
+      "sources": [
+        "treasury-green",
+        "damodaran",
+        "basel-credit",
+        "fca"
+      ]
+    },
+    "ai-governance": {
+      "title": "AI governance and evaluation",
+      "description": "NIST AI RMF risk assessment, evaluation harness, prompt-injection and tool-misuse testing, human oversight design.",
+      "skills": [
+        "ai-risk-assessment",
+        "ai-eval-harness",
+        "ai-prompt-injection-review",
+        "ai-human-oversight"
+      ],
+      "agents": [
+        "ai-evaluation-engineer",
+        "ai-governance-reviewer"
+      ],
+      "sources": [
+        "nist-ai"
+      ]
+    },
+    "orchestration": {
+      "title": "Orchestration and independent review",
+      "description": "Framework selection for a new project and independent challenge review usable across all packs.",
+      "skills": [
+        "select-frameworks",
+        "independent-review"
+      ],
+      "agents": [
+        "independent-reviewer"
+      ],
+      "sources": []
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "source_id": "google-review",
+  "retrieved": "2026-10-13",
+  "repo": "https://github.com/google/eng-practices (branch master)",
+  "licence": "CC BY 3.0 (Creative Commons Attribution 3.0 Unported) — verified from LICENSE and README.md in google/eng-practices",
+  "attribution": "Google Engineering Practices Documentation, Google, https://github.com/google/eng-practices, CC BY 3.0",
+  "note": "Paraphrases in original wording; headings quoted verbatim. Read the source for full text.",
+  "files_read": [
+    "README.md", "LICENSE", "review/index.md", "review/emergencies.md",
+    "review/reviewer/index.md", "review/reviewer/standard.md", "review/reviewer/looking-for.md",
+    "review/reviewer/navigate.md", "review/reviewer/speed.md", "review/reviewer/comments.md",
+    "review/reviewer/pushback.md", "review/developer/index.md", "review/developer/small-cls.md",
+    "review/developer/cl-descriptions.md", "review/developer/handling-comments.md"
+  ],
+  "core_standard": {
+    "paraphrase": "Approve once a change clearly improves overall code health, even if imperfect; seek continuous improvement rather than perfection; never accept changes that definitely worsen code health except in a genuine emergency.",
+    "source_file": "review/reviewer/standard.md",
+    "heading": "The Standard of Code Review"
+  },
+  "review_aspects": [
+    {"aspect": "design", "source_file": "review/reviewer/looking-for.md", "heading": "Design", "paraphrase": "Most important item: do the pieces interact sensibly, does the change belong here, does it integrate with the system, is now the right time."},
+    {"aspect": "functionality", "source_file": "review/reviewer/looking-for.md", "heading": "Functionality", "paraphrase": "Does it do what the author intended and is that good for end-users and future developers; think about edge cases, concurrency, UI impact."},
+    {"aspect": "complexity", "source_file": "review/reviewer/looking-for.md", "heading": "Complexity", "paraphrase": "Check every level (line, function, class) for being hard to understand quickly or easy to misuse; watch for over-engineering for speculative future needs."},
+    {"aspect": "tests", "source_file": "review/reviewer/looking-for.md", "heading": "Tests", "paraphrase": "Ask for appropriate unit/integration/e2e tests in the same change; check tests would fail when code breaks and are themselves maintainable."},
+    {"aspect": "naming", "source_file": "review/reviewer/looking-for.md", "heading": "Naming", "paraphrase": "Names should fully convey purpose without becoming unreadably long."},
+    {"aspect": "comments", "source_file": "review/reviewer/looking-for.md", "heading": "Comments", "paraphrase": "Comments should be clear, necessary and mostly explain why rather than what; prefer simplifying code over explaining it."},
+    {"aspect": "style", "source_file": "review/reviewer/looking-for.md", "heading": "Style", "paraphrase": "Follow the applicable style guide; mark non-guide preferences as Nit; keep large reformatting in a separate change."},
+    {"aspect": "consistency", "source_file": "review/reviewer/looking-for.md", "heading": "Consistency", "paraphrase": "Style guide requirements win; for recommendations, judge between guide and surrounding code; otherwise stay consistent with existing code and file cleanup bugs."},
+    {"aspect": "documentation", "source_file": "review/reviewer/looking-for.md", "heading": "Documentation", "paraphrase": "If build/test/use/release behaviour changes, related docs must be updated (or removed for deprecated code)."},
+    {"aspect": "every line", "source_file": "review/reviewer/looking-for.md", "heading": "Every Line", "paraphrase": "Read all human-written code assigned to you and understand it; if unqualified for an area (security, privacy, concurrency, a11y, i18n) ensure a qualified reviewer; note scope when reviewing only part ('Exceptions')."},
+    {"aspect": "context", "source_file": "review/reviewer/looking-for.md", "heading": "Context", "paraphrase": "Look beyond the diff to the whole file and the whole system; reject changes that degrade code health."},
+    {"aspect": "good things", "source_file": "review/reviewer/looking-for.md", "heading": "Good Things", "paraphrase": "Call out what was done well, as encouragement and mentoring."}
+  ],
+  "review_navigation": {
+    "paraphrase": "Three steps: take a broad view (does the change make sense, good description?), examine the main part first and send major design comments immediately, then go through the rest in a sensible order (tests first can help).",
+    "source_file": "review/reviewer/navigate.md",
+    "heading": "Navigating a CL in review"
+  },
+  "comment_labels": [
+    {"label": "Nit", "meaning_paraphrase": "Minor polish point; technically should be done but low impact; author may choose to ignore.", "source_file": "review/reviewer/comments.md", "heading": "Label comment severity"},
+    {"label": "Optional (or Consider)", "meaning_paraphrase": "Suggested as probably a good idea but not required.", "source_file": "review/reviewer/comments.md", "heading": "Label comment severity"},
+    {"label": "FYI", "meaning_paraphrase": "Not expected in this change; information for the author to consider in future.", "source_file": "review/reviewer/comments.md", "heading": "Label comment severity"}
+  ],
+  "comment_principles": {
+    "paraphrase": "Be kind; comment on the code not the person; explain reasoning; balance pointing out problems with direct guidance (fixing is the author's job); prefer code clarification over explanations that live only in the review tool.",
+    "source_file": "review/reviewer/comments.md",
+    "heading": "How to write code review comments"
+  },
+  "cl_size_guidance": {
+    "paraphrase": "A change should be one self-contained change addressing one thing, including its related tests, and leave the system working. No hard limit: roughly 100 lines is usually reasonable and 1000 usually too large, and file spread also counts; reviewers may reject a change solely for size. Split by stacking, by files, horizontally (layers) or vertically (features); keep refactorings separate.",
+    "source_file": "review/developer/small-cls.md",
+    "heading": "Small CLs / What is Small?"
+  },
+  "speed_guidance": {
+    "paraphrase": "Optimise for team velocity: respond shortly after a request unless mid focused task, and within at most one business day; individual response speed matters more than total review time; use LGTM-with-comments where appropriate; ask for large changes to be split; never trade review standards for imagined speed.",
+    "source_file": "review/reviewer/speed.md",
+    "heading": "Speed of Code Reviews"
+  },
+  "cl_description_guidance": {
+    "paraphrase": "Description states what changes and why; first line is a short standalone imperative summary followed by a blank line; body gives context, trade-offs, links; avoid vague descriptions like 'Fix bug'; re-check the description before submitting.",
+    "source_file": "review/developer/cl-descriptions.md",
+    "heading": "Writing good CL descriptions"
+  },
+  "pushback_guidance": {
+    "paraphrase": "Consider whether the author is right; if not, explain further and politely persist where code health benefits; insist on cleanup now rather than later unless an emergency, filing a bug for unavoidable follow-ups.",
+    "source_file": "review/reviewer/pushback.md",
+    "heading": "Handling pushback in code reviews"
+  },
+  "conflict_resolution": {
+    "paraphrase": "Seek consensus using the guide; move to a meeting/video call (record the outcome on the change); escalate to team, tech lead, maintainer or manager rather than letting the change stall.",
+    "source_file": "review/reviewer/standard.md",
+    "heading": "Resolving Conflicts"
+  },
+  "emergency_guidance": {
+    "paraphrase": "An emergency is a small change for e.g. preventing a launch rollback, a production bug badly affecting users, a pressing legal issue or a major security hole; soft deadlines, end-of-week pressure and rollbacks of test breakages are not emergencies; re-review thoroughly afterwards.",
+    "source_file": "review/emergencies.md",
+    "heading": "Emergencies"
+  }
+}

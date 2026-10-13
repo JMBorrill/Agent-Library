@@ -1,0 +1,2523 @@
+{
+ "source_id": "owasp-asvs",
+ "version": "5.0.0",
+ "licence": "CC BY-SA 4.0 (verified from LICENSE.md and README.md in OWASP/ASVS)",
+ "attribution": "OWASP Application Security Verification Standard 5.0.0, https://github.com/OWASP/ASVS",
+ "retrieved": "2026-10-13",
+ "pinned_ref": "git tag v5.0.0 (https://github.com/OWASP/ASVS/tree/v5.0.0); master is described by the README as bleeding edge",
+ "citation_format": "v5.0.0-<chapter>.<section>.<requirement>, e.g. v5.0.0-1.2.5",
+ "note": "IDs, levels and section titles only; requirement text not reproduced — read source. Level = minimum level at which the requirement applies (L2 includes L1, L3 includes L1+L2).",
+ "chapters": [
+  {
+   "id": "V1",
+   "title": "Encoding and Sanitization",
+   "file": "5.0/en/0x10-V1-Encoding-and-Sanitization.md",
+   "sections": [
+    {
+     "id": "V1.1",
+     "title": "Encoding and Sanitization Architecture"
+    },
+    {
+     "id": "V1.2",
+     "title": "Injection Prevention"
+    },
+    {
+     "id": "V1.3",
+     "title": "Sanitization"
+    },
+    {
+     "id": "V1.4",
+     "title": "Memory, String, and Unmanaged Code"
+    },
+    {
+     "id": "V1.5",
+     "title": "Safe Deserialization"
+    }
+   ]
+  },
+  {
+   "id": "V2",
+   "title": "Validation and Business Logic",
+   "file": "5.0/en/0x11-V2-Validation-and-Business-Logic.md",
+   "sections": [
+    {
+     "id": "V2.1",
+     "title": "Validation and Business Logic Documentation"
+    },
+    {
+     "id": "V2.2",
+     "title": "Input Validation"
+    },
+    {
+     "id": "V2.3",
+     "title": "Business Logic Security"
+    },
+    {
+     "id": "V2.4",
+     "title": "Anti-automation"
+    }
+   ]
+  },
+  {
+   "id": "V3",
+   "title": "Web Frontend Security",
+   "file": "5.0/en/0x12-V3-Web-Frontend-Security.md",
+   "sections": [
+    {
+     "id": "V3.1",
+     "title": "Web Frontend Security Documentation"
+    },
+    {
+     "id": "V3.2",
+     "title": "Unintended Content Interpretation"
+    },
+    {
+     "id": "V3.3",
+     "title": "Cookie Setup"
+    },
+    {
+     "id": "V3.4",
+     "title": "Browser Security Mechanism Headers"
+    },
+    {
+     "id": "V3.5",
+     "title": "Browser Origin Separation"
+    },
+    {
+     "id": "V3.6",
+     "title": "External Resource Integrity"
+    },
+    {
+     "id": "V3.7",
+     "title": "Other Browser Security Considerations"
+    }
+   ]
+  },
+  {
+   "id": "V4",
+   "title": "API and Web Service",
+   "file": "5.0/en/0x13-V4-API-and-Web-Service.md",
+   "sections": [
+    {
+     "id": "V4.1",
+     "title": "Generic Web Service Security"
+    },
+    {
+     "id": "V4.2",
+     "title": "HTTP Message Structure Validation"
+    },
+    {
+     "id": "V4.3",
+     "title": "GraphQL"
+    },
+    {
+     "id": "V4.4",
+     "title": "WebSocket"
+    }
+   ]
+  },
+  {
+   "id": "V5",
+   "title": "File Handling",
+   "file": "5.0/en/0x14-V5-File-Handling.md",
+   "sections": [
+    {
+     "id": "V5.1",
+     "title": "File Handling Documentation"
+    },
+    {
+     "id": "V5.2",
+     "title": "File Upload and Content"
+    },
+    {
+     "id": "V5.3",
+     "title": "File Storage"
+    },
+    {
+     "id": "V5.4",
+     "title": "File Download"
+    }
+   ]
+  },
+  {
+   "id": "V6",
+   "title": "Authentication",
+   "file": "5.0/en/0x15-V6-Authentication.md",
+   "sections": [
+    {
+     "id": "V6.1",
+     "title": "Authentication Documentation"
+    },
+    {
+     "id": "V6.2",
+     "title": "Password Security"
+    },
+    {
+     "id": "V6.3",
+     "title": "General Authentication Security"
+    },
+    {
+     "id": "V6.4",
+     "title": "Authentication Factor Lifecycle and Recovery"
+    },
+    {
+     "id": "V6.5",
+     "title": "General Multi-factor authentication requirements"
+    },
+    {
+     "id": "V6.6",
+     "title": "Out-of-Band authentication mechanisms"
+    },
+    {
+     "id": "V6.7",
+     "title": "Cryptographic authentication mechanism"
+    },
+    {
+     "id": "V6.8",
+     "title": "Authentication with an Identity Provider"
+    }
+   ]
+  },
+  {
+   "id": "V7",
+   "title": "Session Management",
+   "file": "5.0/en/0x16-V7-Session-Management.md",
+   "sections": [
+    {
+     "id": "V7.1",
+     "title": "Session Management Documentation"
+    },
+    {
+     "id": "V7.2",
+     "title": "Fundamental Session Management Security"
+    },
+    {
+     "id": "V7.3",
+     "title": "Session Timeout"
+    },
+    {
+     "id": "V7.4",
+     "title": "Session Termination"
+    },
+    {
+     "id": "V7.5",
+     "title": "Defenses Against Session Abuse"
+    },
+    {
+     "id": "V7.6",
+     "title": "Federated Re-authentication"
+    }
+   ]
+  },
+  {
+   "id": "V8",
+   "title": "Authorization",
+   "file": "5.0/en/0x17-V8-Authorization.md",
+   "sections": [
+    {
+     "id": "V8.1",
+     "title": "Authorization Documentation"
+    },
+    {
+     "id": "V8.2",
+     "title": "General Authorization Design"
+    },
+    {
+     "id": "V8.3",
+     "title": "Operation Level Authorization"
+    },
+    {
+     "id": "V8.4",
+     "title": "Other Authorization Considerations"
+    }
+   ]
+  },
+  {
+   "id": "V9",
+   "title": "Self-contained Tokens",
+   "file": "5.0/en/0x18-V9-Self-contained-Tokens.md",
+   "sections": [
+    {
+     "id": "V9.1",
+     "title": "Token source and integrity"
+    },
+    {
+     "id": "V9.2",
+     "title": "Token content"
+    }
+   ]
+  },
+  {
+   "id": "V10",
+   "title": "OAuth and OIDC",
+   "file": "5.0/en/0x19-V10-OAuth-and-OIDC.md",
+   "sections": [
+    {
+     "id": "V10.1",
+     "title": "Generic OAuth and OIDC Security"
+    },
+    {
+     "id": "V10.2",
+     "title": "OAuth Client"
+    },
+    {
+     "id": "V10.3",
+     "title": "OAuth Resource Server"
+    },
+    {
+     "id": "V10.4",
+     "title": "OAuth Authorization Server"
+    },
+    {
+     "id": "V10.5",
+     "title": "OIDC Client"
+    },
+    {
+     "id": "V10.6",
+     "title": "OpenID Provider"
+    },
+    {
+     "id": "V10.7",
+     "title": "Consent Management"
+    }
+   ]
+  },
+  {
+   "id": "V11",
+   "title": "Cryptography",
+   "file": "5.0/en/0x20-V11-Cryptography.md",
+   "sections": [
+    {
+     "id": "V11.1",
+     "title": "Cryptographic Inventory and Documentation"
+    },
+    {
+     "id": "V11.2",
+     "title": "Secure Cryptography Implementation"
+    },
+    {
+     "id": "V11.3",
+     "title": "Encryption Algorithms"
+    },
+    {
+     "id": "V11.4",
+     "title": "Hashing and Hash-based Functions"
+    },
+    {
+     "id": "V11.5",
+     "title": "Random Values"
+    },
+    {
+     "id": "V11.6",
+     "title": "Public Key Cryptography"
+    },
+    {
+     "id": "V11.7",
+     "title": "In-Use Data Cryptography"
+    }
+   ]
+  },
+  {
+   "id": "V12",
+   "title": "Secure Communication",
+   "file": "5.0/en/0x21-V12-Secure-Communication.md",
+   "sections": [
+    {
+     "id": "V12.1",
+     "title": "General TLS Security Guidance"
+    },
+    {
+     "id": "V12.2",
+     "title": "HTTPS Communication with External Facing Services"
+    },
+    {
+     "id": "V12.3",
+     "title": "General Service to Service Communication Security"
+    }
+   ]
+  },
+  {
+   "id": "V13",
+   "title": "Configuration",
+   "file": "5.0/en/0x22-V13-Configuration.md",
+   "sections": [
+    {
+     "id": "V13.1",
+     "title": "Configuration Documentation"
+    },
+    {
+     "id": "V13.2",
+     "title": "Backend Communication Configuration"
+    },
+    {
+     "id": "V13.3",
+     "title": "Secret Management"
+    },
+    {
+     "id": "V13.4",
+     "title": "Unintended Information Leakage"
+    }
+   ]
+  },
+  {
+   "id": "V14",
+   "title": "Data Protection",
+   "file": "5.0/en/0x23-V14-Data-Protection.md",
+   "sections": [
+    {
+     "id": "V14.1",
+     "title": "Data Protection Documentation"
+    },
+    {
+     "id": "V14.2",
+     "title": "General Data Protection"
+    },
+    {
+     "id": "V14.3",
+     "title": "Client-side Data Protection"
+    }
+   ]
+  },
+  {
+   "id": "V15",
+   "title": "Secure Coding and Architecture",
+   "file": "5.0/en/0x24-V15-Secure-Coding-and-Architecture.md",
+   "sections": [
+    {
+     "id": "V15.1",
+     "title": "Secure Coding and Architecture Documentation"
+    },
+    {
+     "id": "V15.2",
+     "title": "Security Architecture and Dependencies"
+    },
+    {
+     "id": "V15.3",
+     "title": "Defensive Coding"
+    },
+    {
+     "id": "V15.4",
+     "title": "Safe Concurrency"
+    }
+   ]
+  },
+  {
+   "id": "V16",
+   "title": "Security Logging and Error Handling",
+   "file": "5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md",
+   "sections": [
+    {
+     "id": "V16.1",
+     "title": "Security Logging Documentation"
+    },
+    {
+     "id": "V16.2",
+     "title": "General Logging"
+    },
+    {
+     "id": "V16.3",
+     "title": "Security Events"
+    },
+    {
+     "id": "V16.4",
+     "title": "Log Protection"
+    },
+    {
+     "id": "V16.5",
+     "title": "Error Handling"
+    }
+   ]
+  },
+  {
+   "id": "V17",
+   "title": "WebRTC",
+   "file": "5.0/en/0x26-V17-WebRTC.md",
+   "sections": [
+    {
+     "id": "V17.1",
+     "title": "TURN Server"
+    },
+    {
+     "id": "V17.2",
+     "title": "Media"
+    },
+    {
+     "id": "V17.3",
+     "title": "Signaling"
+    }
+   ]
+  }
+ ],
+ "requirements": [
+  {
+   "id": "1.1.1",
+   "chapter": "V1",
+   "section": "V1.1",
+   "level": 2
+  },
+  {
+   "id": "1.1.2",
+   "chapter": "V1",
+   "section": "V1.1",
+   "level": 2
+  },
+  {
+   "id": "1.2.1",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 1
+  },
+  {
+   "id": "1.2.2",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 1
+  },
+  {
+   "id": "1.2.3",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 1
+  },
+  {
+   "id": "1.2.4",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 1
+  },
+  {
+   "id": "1.2.5",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 1
+  },
+  {
+   "id": "1.2.6",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 2
+  },
+  {
+   "id": "1.2.7",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 2
+  },
+  {
+   "id": "1.2.8",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 2
+  },
+  {
+   "id": "1.2.9",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 2
+  },
+  {
+   "id": "1.2.10",
+   "chapter": "V1",
+   "section": "V1.2",
+   "level": 3
+  },
+  {
+   "id": "1.3.1",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 1
+  },
+  {
+   "id": "1.3.2",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 1
+  },
+  {
+   "id": "1.3.3",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.4",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.5",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.6",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.7",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.8",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.9",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.10",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.11",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 2
+  },
+  {
+   "id": "1.3.12",
+   "chapter": "V1",
+   "section": "V1.3",
+   "level": 3
+  },
+  {
+   "id": "1.4.1",
+   "chapter": "V1",
+   "section": "V1.4",
+   "level": 2
+  },
+  {
+   "id": "1.4.2",
+   "chapter": "V1",
+   "section": "V1.4",
+   "level": 2
+  },
+  {
+   "id": "1.4.3",
+   "chapter": "V1",
+   "section": "V1.4",
+   "level": 2
+  },
+  {
+   "id": "1.5.1",
+   "chapter": "V1",
+   "section": "V1.5",
+   "level": 1
+  },
+  {
+   "id": "1.5.2",
+   "chapter": "V1",
+   "section": "V1.5",
+   "level": 2
+  },
+  {
+   "id": "1.5.3",
+   "chapter": "V1",
+   "section": "V1.5",
+   "level": 3
+  },
+  {
+   "id": "2.1.1",
+   "chapter": "V2",
+   "section": "V2.1",
+   "level": 1
+  },
+  {
+   "id": "2.1.2",
+   "chapter": "V2",
+   "section": "V2.1",
+   "level": 2
+  },
+  {
+   "id": "2.1.3",
+   "chapter": "V2",
+   "section": "V2.1",
+   "level": 2
+  },
+  {
+   "id": "2.2.1",
+   "chapter": "V2",
+   "section": "V2.2",
+   "level": 1
+  },
+  {
+   "id": "2.2.2",
+   "chapter": "V2",
+   "section": "V2.2",
+   "level": 1
+  },
+  {
+   "id": "2.2.3",
+   "chapter": "V2",
+   "section": "V2.2",
+   "level": 2
+  },
+  {
+   "id": "2.3.1",
+   "chapter": "V2",
+   "section": "V2.3",
+   "level": 1
+  },
+  {
+   "id": "2.3.2",
+   "chapter": "V2",
+   "section": "V2.3",
+   "level": 2
+  },
+  {
+   "id": "2.3.3",
+   "chapter": "V2",
+   "section": "V2.3",
+   "level": 2
+  },
+  {
+   "id": "2.3.4",
+   "chapter": "V2",
+   "section": "V2.3",
+   "level": 2
+  },
+  {
+   "id": "2.3.5",
+   "chapter": "V2",
+   "section": "V2.3",
+   "level": 3
+  },
+  {
+   "id": "2.4.1",
+   "chapter": "V2",
+   "section": "V2.4",
+   "level": 2
+  },
+  {
+   "id": "2.4.2",
+   "chapter": "V2",
+   "section": "V2.4",
+   "level": 3
+  },
+  {
+   "id": "3.1.1",
+   "chapter": "V3",
+   "section": "V3.1",
+   "level": 3
+  },
+  {
+   "id": "3.2.1",
+   "chapter": "V3",
+   "section": "V3.2",
+   "level": 1
+  },
+  {
+   "id": "3.2.2",
+   "chapter": "V3",
+   "section": "V3.2",
+   "level": 1
+  },
+  {
+   "id": "3.2.3",
+   "chapter": "V3",
+   "section": "V3.2",
+   "level": 3
+  },
+  {
+   "id": "3.3.1",
+   "chapter": "V3",
+   "section": "V3.3",
+   "level": 1
+  },
+  {
+   "id": "3.3.2",
+   "chapter": "V3",
+   "section": "V3.3",
+   "level": 2
+  },
+  {
+   "id": "3.3.3",
+   "chapter": "V3",
+   "section": "V3.3",
+   "level": 2
+  },
+  {
+   "id": "3.3.4",
+   "chapter": "V3",
+   "section": "V3.3",
+   "level": 2
+  },
+  {
+   "id": "3.3.5",
+   "chapter": "V3",
+   "section": "V3.3",
+   "level": 3
+  },
+  {
+   "id": "3.4.1",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 1
+  },
+  {
+   "id": "3.4.2",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 1
+  },
+  {
+   "id": "3.4.3",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 2
+  },
+  {
+   "id": "3.4.4",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 2
+  },
+  {
+   "id": "3.4.5",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 2
+  },
+  {
+   "id": "3.4.6",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 2
+  },
+  {
+   "id": "3.4.7",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 3
+  },
+  {
+   "id": "3.4.8",
+   "chapter": "V3",
+   "section": "V3.4",
+   "level": 3
+  },
+  {
+   "id": "3.5.1",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 1
+  },
+  {
+   "id": "3.5.2",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 1
+  },
+  {
+   "id": "3.5.3",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 1
+  },
+  {
+   "id": "3.5.4",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 2
+  },
+  {
+   "id": "3.5.5",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 2
+  },
+  {
+   "id": "3.5.6",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 3
+  },
+  {
+   "id": "3.5.7",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 3
+  },
+  {
+   "id": "3.5.8",
+   "chapter": "V3",
+   "section": "V3.5",
+   "level": 3
+  },
+  {
+   "id": "3.6.1",
+   "chapter": "V3",
+   "section": "V3.6",
+   "level": 3
+  },
+  {
+   "id": "3.7.1",
+   "chapter": "V3",
+   "section": "V3.7",
+   "level": 2
+  },
+  {
+   "id": "3.7.2",
+   "chapter": "V3",
+   "section": "V3.7",
+   "level": 2
+  },
+  {
+   "id": "3.7.3",
+   "chapter": "V3",
+   "section": "V3.7",
+   "level": 3
+  },
+  {
+   "id": "3.7.4",
+   "chapter": "V3",
+   "section": "V3.7",
+   "level": 3
+  },
+  {
+   "id": "3.7.5",
+   "chapter": "V3",
+   "section": "V3.7",
+   "level": 3
+  },
+  {
+   "id": "4.1.1",
+   "chapter": "V4",
+   "section": "V4.1",
+   "level": 1
+  },
+  {
+   "id": "4.1.2",
+   "chapter": "V4",
+   "section": "V4.1",
+   "level": 2
+  },
+  {
+   "id": "4.1.3",
+   "chapter": "V4",
+   "section": "V4.1",
+   "level": 2
+  },
+  {
+   "id": "4.1.4",
+   "chapter": "V4",
+   "section": "V4.1",
+   "level": 3
+  },
+  {
+   "id": "4.1.5",
+   "chapter": "V4",
+   "section": "V4.1",
+   "level": 3
+  },
+  {
+   "id": "4.2.1",
+   "chapter": "V4",
+   "section": "V4.2",
+   "level": 2
+  },
+  {
+   "id": "4.2.2",
+   "chapter": "V4",
+   "section": "V4.2",
+   "level": 3
+  },
+  {
+   "id": "4.2.3",
+   "chapter": "V4",
+   "section": "V4.2",
+   "level": 3
+  },
+  {
+   "id": "4.2.4",
+   "chapter": "V4",
+   "section": "V4.2",
+   "level": 3
+  },
+  {
+   "id": "4.2.5",
+   "chapter": "V4",
+   "section": "V4.2",
+   "level": 3
+  },
+  {
+   "id": "4.3.1",
+   "chapter": "V4",
+   "section": "V4.3",
+   "level": 2
+  },
+  {
+   "id": "4.3.2",
+   "chapter": "V4",
+   "section": "V4.3",
+   "level": 2
+  },
+  {
+   "id": "4.4.1",
+   "chapter": "V4",
+   "section": "V4.4",
+   "level": 1
+  },
+  {
+   "id": "4.4.2",
+   "chapter": "V4",
+   "section": "V4.4",
+   "level": 2
+  },
+  {
+   "id": "4.4.3",
+   "chapter": "V4",
+   "section": "V4.4",
+   "level": 2
+  },
+  {
+   "id": "4.4.4",
+   "chapter": "V4",
+   "section": "V4.4",
+   "level": 2
+  },
+  {
+   "id": "5.1.1",
+   "chapter": "V5",
+   "section": "V5.1",
+   "level": 2
+  },
+  {
+   "id": "5.2.1",
+   "chapter": "V5",
+   "section": "V5.2",
+   "level": 1
+  },
+  {
+   "id": "5.2.2",
+   "chapter": "V5",
+   "section": "V5.2",
+   "level": 1
+  },
+  {
+   "id": "5.2.3",
+   "chapter": "V5",
+   "section": "V5.2",
+   "level": 2
+  },
+  {
+   "id": "5.2.4",
+   "chapter": "V5",
+   "section": "V5.2",
+   "level": 3
+  },
+  {
+   "id": "5.2.5",
+   "chapter": "V5",
+   "section": "V5.2",
+   "level": 3
+  },
+  {
+   "id": "5.2.6",
+   "chapter": "V5",
+   "section": "V5.2",
+   "level": 3
+  },
+  {
+   "id": "5.3.1",
+   "chapter": "V5",
+   "section": "V5.3",
+   "level": 1
+  },
+  {
+   "id": "5.3.2",
+   "chapter": "V5",
+   "section": "V5.3",
+   "level": 1
+  },
+  {
+   "id": "5.3.3",
+   "chapter": "V5",
+   "section": "V5.3",
+   "level": 3
+  },
+  {
+   "id": "5.4.1",
+   "chapter": "V5",
+   "section": "V5.4",
+   "level": 2
+  },
+  {
+   "id": "5.4.2",
+   "chapter": "V5",
+   "section": "V5.4",
+   "level": 2
+  },
+  {
+   "id": "5.4.3",
+   "chapter": "V5",
+   "section": "V5.4",
+   "level": 2
+  },
+  {
+   "id": "6.1.1",
+   "chapter": "V6",
+   "section": "V6.1",
+   "level": 1
+  },
+  {
+   "id": "6.1.2",
+   "chapter": "V6",
+   "section": "V6.1",
+   "level": 2
+  },
+  {
+   "id": "6.1.3",
+   "chapter": "V6",
+   "section": "V6.1",
+   "level": 2
+  },
+  {
+   "id": "6.2.1",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.2",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.3",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.4",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.5",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.6",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.7",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.8",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 1
+  },
+  {
+   "id": "6.2.9",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 2
+  },
+  {
+   "id": "6.2.10",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 2
+  },
+  {
+   "id": "6.2.11",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 2
+  },
+  {
+   "id": "6.2.12",
+   "chapter": "V6",
+   "section": "V6.2",
+   "level": 2
+  },
+  {
+   "id": "6.3.1",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 1
+  },
+  {
+   "id": "6.3.2",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 1
+  },
+  {
+   "id": "6.3.3",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 2
+  },
+  {
+   "id": "6.3.4",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 2
+  },
+  {
+   "id": "6.3.5",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 3
+  },
+  {
+   "id": "6.3.6",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 3
+  },
+  {
+   "id": "6.3.7",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 3
+  },
+  {
+   "id": "6.3.8",
+   "chapter": "V6",
+   "section": "V6.3",
+   "level": 3
+  },
+  {
+   "id": "6.4.1",
+   "chapter": "V6",
+   "section": "V6.4",
+   "level": 1
+  },
+  {
+   "id": "6.4.2",
+   "chapter": "V6",
+   "section": "V6.4",
+   "level": 1
+  },
+  {
+   "id": "6.4.3",
+   "chapter": "V6",
+   "section": "V6.4",
+   "level": 2
+  },
+  {
+   "id": "6.4.4",
+   "chapter": "V6",
+   "section": "V6.4",
+   "level": 2
+  },
+  {
+   "id": "6.4.5",
+   "chapter": "V6",
+   "section": "V6.4",
+   "level": 3
+  },
+  {
+   "id": "6.4.6",
+   "chapter": "V6",
+   "section": "V6.4",
+   "level": 3
+  },
+  {
+   "id": "6.5.1",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 2
+  },
+  {
+   "id": "6.5.2",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 2
+  },
+  {
+   "id": "6.5.3",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 2
+  },
+  {
+   "id": "6.5.4",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 2
+  },
+  {
+   "id": "6.5.5",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 2
+  },
+  {
+   "id": "6.5.6",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 3
+  },
+  {
+   "id": "6.5.7",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 3
+  },
+  {
+   "id": "6.5.8",
+   "chapter": "V6",
+   "section": "V6.5",
+   "level": 3
+  },
+  {
+   "id": "6.6.1",
+   "chapter": "V6",
+   "section": "V6.6",
+   "level": 2
+  },
+  {
+   "id": "6.6.2",
+   "chapter": "V6",
+   "section": "V6.6",
+   "level": 2
+  },
+  {
+   "id": "6.6.3",
+   "chapter": "V6",
+   "section": "V6.6",
+   "level": 2
+  },
+  {
+   "id": "6.6.4",
+   "chapter": "V6",
+   "section": "V6.6",
+   "level": 3
+  },
+  {
+   "id": "6.7.1",
+   "chapter": "V6",
+   "section": "V6.7",
+   "level": 3
+  },
+  {
+   "id": "6.7.2",
+   "chapter": "V6",
+   "section": "V6.7",
+   "level": 3
+  },
+  {
+   "id": "6.8.1",
+   "chapter": "V6",
+   "section": "V6.8",
+   "level": 2
+  },
+  {
+   "id": "6.8.2",
+   "chapter": "V6",
+   "section": "V6.8",
+   "level": 2
+  },
+  {
+   "id": "6.8.3",
+   "chapter": "V6",
+   "section": "V6.8",
+   "level": 2
+  },
+  {
+   "id": "6.8.4",
+   "chapter": "V6",
+   "section": "V6.8",
+   "level": 2
+  },
+  {
+   "id": "7.1.1",
+   "chapter": "V7",
+   "section": "V7.1",
+   "level": 2
+  },
+  {
+   "id": "7.1.2",
+   "chapter": "V7",
+   "section": "V7.1",
+   "level": 2
+  },
+  {
+   "id": "7.1.3",
+   "chapter": "V7",
+   "section": "V7.1",
+   "level": 2
+  },
+  {
+   "id": "7.2.1",
+   "chapter": "V7",
+   "section": "V7.2",
+   "level": 1
+  },
+  {
+   "id": "7.2.2",
+   "chapter": "V7",
+   "section": "V7.2",
+   "level": 1
+  },
+  {
+   "id": "7.2.3",
+   "chapter": "V7",
+   "section": "V7.2",
+   "level": 1
+  },
+  {
+   "id": "7.2.4",
+   "chapter": "V7",
+   "section": "V7.2",
+   "level": 1
+  },
+  {
+   "id": "7.3.1",
+   "chapter": "V7",
+   "section": "V7.3",
+   "level": 2
+  },
+  {
+   "id": "7.3.2",
+   "chapter": "V7",
+   "section": "V7.3",
+   "level": 2
+  },
+  {
+   "id": "7.4.1",
+   "chapter": "V7",
+   "section": "V7.4",
+   "level": 1
+  },
+  {
+   "id": "7.4.2",
+   "chapter": "V7",
+   "section": "V7.4",
+   "level": 1
+  },
+  {
+   "id": "7.4.3",
+   "chapter": "V7",
+   "section": "V7.4",
+   "level": 2
+  },
+  {
+   "id": "7.4.4",
+   "chapter": "V7",
+   "section": "V7.4",
+   "level": 2
+  },
+  {
+   "id": "7.4.5",
+   "chapter": "V7",
+   "section": "V7.4",
+   "level": 2
+  },
+  {
+   "id": "7.5.1",
+   "chapter": "V7",
+   "section": "V7.5",
+   "level": 2
+  },
+  {
+   "id": "7.5.2",
+   "chapter": "V7",
+   "section": "V7.5",
+   "level": 2
+  },
+  {
+   "id": "7.5.3",
+   "chapter": "V7",
+   "section": "V7.5",
+   "level": 3
+  },
+  {
+   "id": "7.6.1",
+   "chapter": "V7",
+   "section": "V7.6",
+   "level": 2
+  },
+  {
+   "id": "7.6.2",
+   "chapter": "V7",
+   "section": "V7.6",
+   "level": 2
+  },
+  {
+   "id": "8.1.1",
+   "chapter": "V8",
+   "section": "V8.1",
+   "level": 1
+  },
+  {
+   "id": "8.1.2",
+   "chapter": "V8",
+   "section": "V8.1",
+   "level": 2
+  },
+  {
+   "id": "8.1.3",
+   "chapter": "V8",
+   "section": "V8.1",
+   "level": 3
+  },
+  {
+   "id": "8.1.4",
+   "chapter": "V8",
+   "section": "V8.1",
+   "level": 3
+  },
+  {
+   "id": "8.2.1",
+   "chapter": "V8",
+   "section": "V8.2",
+   "level": 1
+  },
+  {
+   "id": "8.2.2",
+   "chapter": "V8",
+   "section": "V8.2",
+   "level": 1
+  },
+  {
+   "id": "8.2.3",
+   "chapter": "V8",
+   "section": "V8.2",
+   "level": 2
+  },
+  {
+   "id": "8.2.4",
+   "chapter": "V8",
+   "section": "V8.2",
+   "level": 3
+  },
+  {
+   "id": "8.3.1",
+   "chapter": "V8",
+   "section": "V8.3",
+   "level": 1
+  },
+  {
+   "id": "8.3.2",
+   "chapter": "V8",
+   "section": "V8.3",
+   "level": 3
+  },
+  {
+   "id": "8.3.3",
+   "chapter": "V8",
+   "section": "V8.3",
+   "level": 3
+  },
+  {
+   "id": "8.4.1",
+   "chapter": "V8",
+   "section": "V8.4",
+   "level": 2
+  },
+  {
+   "id": "8.4.2",
+   "chapter": "V8",
+   "section": "V8.4",
+   "level": 3
+  },
+  {
+   "id": "9.1.1",
+   "chapter": "V9",
+   "section": "V9.1",
+   "level": 1
+  },
+  {
+   "id": "9.1.2",
+   "chapter": "V9",
+   "section": "V9.1",
+   "level": 1
+  },
+  {
+   "id": "9.1.3",
+   "chapter": "V9",
+   "section": "V9.1",
+   "level": 1
+  },
+  {
+   "id": "9.2.1",
+   "chapter": "V9",
+   "section": "V9.2",
+   "level": 1
+  },
+  {
+   "id": "9.2.2",
+   "chapter": "V9",
+   "section": "V9.2",
+   "level": 2
+  },
+  {
+   "id": "9.2.3",
+   "chapter": "V9",
+   "section": "V9.2",
+   "level": 2
+  },
+  {
+   "id": "9.2.4",
+   "chapter": "V9",
+   "section": "V9.2",
+   "level": 2
+  },
+  {
+   "id": "10.1.1",
+   "chapter": "V10",
+   "section": "V10.1",
+   "level": 2
+  },
+  {
+   "id": "10.1.2",
+   "chapter": "V10",
+   "section": "V10.1",
+   "level": 2
+  },
+  {
+   "id": "10.2.1",
+   "chapter": "V10",
+   "section": "V10.2",
+   "level": 2
+  },
+  {
+   "id": "10.2.2",
+   "chapter": "V10",
+   "section": "V10.2",
+   "level": 2
+  },
+  {
+   "id": "10.2.3",
+   "chapter": "V10",
+   "section": "V10.2",
+   "level": 3
+  },
+  {
+   "id": "10.3.1",
+   "chapter": "V10",
+   "section": "V10.3",
+   "level": 2
+  },
+  {
+   "id": "10.3.2",
+   "chapter": "V10",
+   "section": "V10.3",
+   "level": 2
+  },
+  {
+   "id": "10.3.3",
+   "chapter": "V10",
+   "section": "V10.3",
+   "level": 2
+  },
+  {
+   "id": "10.3.4",
+   "chapter": "V10",
+   "section": "V10.3",
+   "level": 2
+  },
+  {
+   "id": "10.3.5",
+   "chapter": "V10",
+   "section": "V10.3",
+   "level": 3
+  },
+  {
+   "id": "10.4.1",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 1
+  },
+  {
+   "id": "10.4.2",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 1
+  },
+  {
+   "id": "10.4.3",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 1
+  },
+  {
+   "id": "10.4.4",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 1
+  },
+  {
+   "id": "10.4.5",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 1
+  },
+  {
+   "id": "10.4.6",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 2
+  },
+  {
+   "id": "10.4.7",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 2
+  },
+  {
+   "id": "10.4.8",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 2
+  },
+  {
+   "id": "10.4.9",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 2
+  },
+  {
+   "id": "10.4.10",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 2
+  },
+  {
+   "id": "10.4.11",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 2
+  },
+  {
+   "id": "10.4.12",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 3
+  },
+  {
+   "id": "10.4.13",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 3
+  },
+  {
+   "id": "10.4.14",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 3
+  },
+  {
+   "id": "10.4.15",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 3
+  },
+  {
+   "id": "10.4.16",
+   "chapter": "V10",
+   "section": "V10.4",
+   "level": 3
+  },
+  {
+   "id": "10.5.1",
+   "chapter": "V10",
+   "section": "V10.5",
+   "level": 2
+  },
+  {
+   "id": "10.5.2",
+   "chapter": "V10",
+   "section": "V10.5",
+   "level": 2
+  },
+  {
+   "id": "10.5.3",
+   "chapter": "V10",
+   "section": "V10.5",
+   "level": 2
+  },
+  {
+   "id": "10.5.4",
+   "chapter": "V10",
+   "section": "V10.5",
+   "level": 2
+  },
+  {
+   "id": "10.5.5",
+   "chapter": "V10",
+   "section": "V10.5",
+   "level": 2
+  },
+  {
+   "id": "10.6.1",
+   "chapter": "V10",
+   "section": "V10.6",
+   "level": 2
+  },
+  {
+   "id": "10.6.2",
+   "chapter": "V10",
+   "section": "V10.6",
+   "level": 2
+  },
+  {
+   "id": "10.7.1",
+   "chapter": "V10",
+   "section": "V10.7",
+   "level": 2
+  },
+  {
+   "id": "10.7.2",
+   "chapter": "V10",
+   "section": "V10.7",
+   "level": 2
+  },
+  {
+   "id": "10.7.3",
+   "chapter": "V10",
+   "section": "V10.7",
+   "level": 2
+  },
+  {
+   "id": "11.1.1",
+   "chapter": "V11",
+   "section": "V11.1",
+   "level": 2
+  },
+  {
+   "id": "11.1.2",
+   "chapter": "V11",
+   "section": "V11.1",
+   "level": 2
+  },
+  {
+   "id": "11.1.3",
+   "chapter": "V11",
+   "section": "V11.1",
+   "level": 3
+  },
+  {
+   "id": "11.1.4",
+   "chapter": "V11",
+   "section": "V11.1",
+   "level": 3
+  },
+  {
+   "id": "11.2.1",
+   "chapter": "V11",
+   "section": "V11.2",
+   "level": 2
+  },
+  {
+   "id": "11.2.2",
+   "chapter": "V11",
+   "section": "V11.2",
+   "level": 2
+  },
+  {
+   "id": "11.2.3",
+   "chapter": "V11",
+   "section": "V11.2",
+   "level": 2
+  },
+  {
+   "id": "11.2.4",
+   "chapter": "V11",
+   "section": "V11.2",
+   "level": 3
+  },
+  {
+   "id": "11.2.5",
+   "chapter": "V11",
+   "section": "V11.2",
+   "level": 3
+  },
+  {
+   "id": "11.3.1",
+   "chapter": "V11",
+   "section": "V11.3",
+   "level": 1
+  },
+  {
+   "id": "11.3.2",
+   "chapter": "V11",
+   "section": "V11.3",
+   "level": 1
+  },
+  {
+   "id": "11.3.3",
+   "chapter": "V11",
+   "section": "V11.3",
+   "level": 2
+  },
+  {
+   "id": "11.3.4",
+   "chapter": "V11",
+   "section": "V11.3",
+   "level": 3
+  },
+  {
+   "id": "11.3.5",
+   "chapter": "V11",
+   "section": "V11.3",
+   "level": 3
+  },
+  {
+   "id": "11.4.1",
+   "chapter": "V11",
+   "section": "V11.4",
+   "level": 1
+  },
+  {
+   "id": "11.4.2",
+   "chapter": "V11",
+   "section": "V11.4",
+   "level": 2
+  },
+  {
+   "id": "11.4.3",
+   "chapter": "V11",
+   "section": "V11.4",
+   "level": 2
+  },
+  {
+   "id": "11.4.4",
+   "chapter": "V11",
+   "section": "V11.4",
+   "level": 2
+  },
+  {
+   "id": "11.5.1",
+   "chapter": "V11",
+   "section": "V11.5",
+   "level": 2
+  },
+  {
+   "id": "11.5.2",
+   "chapter": "V11",
+   "section": "V11.5",
+   "level": 3
+  },
+  {
+   "id": "11.6.1",
+   "chapter": "V11",
+   "section": "V11.6",
+   "level": 2
+  },
+  {
+   "id": "11.6.2",
+   "chapter": "V11",
+   "section": "V11.6",
+   "level": 3
+  },
+  {
+   "id": "11.7.1",
+   "chapter": "V11",
+   "section": "V11.7",
+   "level": 3
+  },
+  {
+   "id": "11.7.2",
+   "chapter": "V11",
+   "section": "V11.7",
+   "level": 3
+  },
+  {
+   "id": "12.1.1",
+   "chapter": "V12",
+   "section": "V12.1",
+   "level": 1
+  },
+  {
+   "id": "12.1.2",
+   "chapter": "V12",
+   "section": "V12.1",
+   "level": 2
+  },
+  {
+   "id": "12.1.3",
+   "chapter": "V12",
+   "section": "V12.1",
+   "level": 2
+  },
+  {
+   "id": "12.1.4",
+   "chapter": "V12",
+   "section": "V12.1",
+   "level": 3
+  },
+  {
+   "id": "12.1.5",
+   "chapter": "V12",
+   "section": "V12.1",
+   "level": 3
+  },
+  {
+   "id": "12.2.1",
+   "chapter": "V12",
+   "section": "V12.2",
+   "level": 1
+  },
+  {
+   "id": "12.2.2",
+   "chapter": "V12",
+   "section": "V12.2",
+   "level": 1
+  },
+  {
+   "id": "12.3.1",
+   "chapter": "V12",
+   "section": "V12.3",
+   "level": 2
+  },
+  {
+   "id": "12.3.2",
+   "chapter": "V12",
+   "section": "V12.3",
+   "level": 2
+  },
+  {
+   "id": "12.3.3",
+   "chapter": "V12",
+   "section": "V12.3",
+   "level": 2
+  },
+  {
+   "id": "12.3.4",
+   "chapter": "V12",
+   "section": "V12.3",
+   "level": 2
+  },
+  {
+   "id": "12.3.5",
+   "chapter": "V12",
+   "section": "V12.3",
+   "level": 3
+  },
+  {
+   "id": "13.1.1",
+   "chapter": "V13",
+   "section": "V13.1",
+   "level": 2
+  },
+  {
+   "id": "13.1.2",
+   "chapter": "V13",
+   "section": "V13.1",
+   "level": 3
+  },
+  {
+   "id": "13.1.3",
+   "chapter": "V13",
+   "section": "V13.1",
+   "level": 3
+  },
+  {
+   "id": "13.1.4",
+   "chapter": "V13",
+   "section": "V13.1",
+   "level": 3
+  },
+  {
+   "id": "13.2.1",
+   "chapter": "V13",
+   "section": "V13.2",
+   "level": 2
+  },
+  {
+   "id": "13.2.2",
+   "chapter": "V13",
+   "section": "V13.2",
+   "level": 2
+  },
+  {
+   "id": "13.2.3",
+   "chapter": "V13",
+   "section": "V13.2",
+   "level": 2
+  },
+  {
+   "id": "13.2.4",
+   "chapter": "V13",
+   "section": "V13.2",
+   "level": 2
+  },
+  {
+   "id": "13.2.5",
+   "chapter": "V13",
+   "section": "V13.2",
+   "level": 2
+  },
+  {
+   "id": "13.2.6",
+   "chapter": "V13",
+   "section": "V13.2",
+   "level": 3
+  },
+  {
+   "id": "13.3.1",
+   "chapter": "V13",
+   "section": "V13.3",
+   "level": 2
+  },
+  {
+   "id": "13.3.2",
+   "chapter": "V13",
+   "section": "V13.3",
+   "level": 2
+  },
+  {
+   "id": "13.3.3",
+   "chapter": "V13",
+   "section": "V13.3",
+   "level": 3
+  },
+  {
+   "id": "13.3.4",
+   "chapter": "V13",
+   "section": "V13.3",
+   "level": 3
+  },
+  {
+   "id": "13.4.1",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 1
+  },
+  {
+   "id": "13.4.2",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 2
+  },
+  {
+   "id": "13.4.3",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 2
+  },
+  {
+   "id": "13.4.4",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 2
+  },
+  {
+   "id": "13.4.5",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 2
+  },
+  {
+   "id": "13.4.6",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 3
+  },
+  {
+   "id": "13.4.7",
+   "chapter": "V13",
+   "section": "V13.4",
+   "level": 3
+  },
+  {
+   "id": "14.1.1",
+   "chapter": "V14",
+   "section": "V14.1",
+   "level": 2
+  },
+  {
+   "id": "14.1.2",
+   "chapter": "V14",
+   "section": "V14.1",
+   "level": 2
+  },
+  {
+   "id": "14.2.1",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 1
+  },
+  {
+   "id": "14.2.2",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 2
+  },
+  {
+   "id": "14.2.3",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 2
+  },
+  {
+   "id": "14.2.4",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 2
+  },
+  {
+   "id": "14.2.5",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 3
+  },
+  {
+   "id": "14.2.6",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 3
+  },
+  {
+   "id": "14.2.7",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 3
+  },
+  {
+   "id": "14.2.8",
+   "chapter": "V14",
+   "section": "V14.2",
+   "level": 3
+  },
+  {
+   "id": "14.3.1",
+   "chapter": "V14",
+   "section": "V14.3",
+   "level": 1
+  },
+  {
+   "id": "14.3.2",
+   "chapter": "V14",
+   "section": "V14.3",
+   "level": 2
+  },
+  {
+   "id": "14.3.3",
+   "chapter": "V14",
+   "section": "V14.3",
+   "level": 2
+  },
+  {
+   "id": "15.1.1",
+   "chapter": "V15",
+   "section": "V15.1",
+   "level": 1
+  },
+  {
+   "id": "15.1.2",
+   "chapter": "V15",
+   "section": "V15.1",
+   "level": 2
+  },
+  {
+   "id": "15.1.3",
+   "chapter": "V15",
+   "section": "V15.1",
+   "level": 2
+  },
+  {
+   "id": "15.1.4",
+   "chapter": "V15",
+   "section": "V15.1",
+   "level": 3
+  },
+  {
+   "id": "15.1.5",
+   "chapter": "V15",
+   "section": "V15.1",
+   "level": 3
+  },
+  {
+   "id": "15.2.1",
+   "chapter": "V15",
+   "section": "V15.2",
+   "level": 1
+  },
+  {
+   "id": "15.2.2",
+   "chapter": "V15",
+   "section": "V15.2",
+   "level": 2
+  },
+  {
+   "id": "15.2.3",
+   "chapter": "V15",
+   "section": "V15.2",
+   "level": 2
+  },
+  {
+   "id": "15.2.4",
+   "chapter": "V15",
+   "section": "V15.2",
+   "level": 3
+  },
+  {
+   "id": "15.2.5",
+   "chapter": "V15",
+   "section": "V15.2",
+   "level": 3
+  },
+  {
+   "id": "15.3.1",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 1
+  },
+  {
+   "id": "15.3.2",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 2
+  },
+  {
+   "id": "15.3.3",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 2
+  },
+  {
+   "id": "15.3.4",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 2
+  },
+  {
+   "id": "15.3.5",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 2
+  },
+  {
+   "id": "15.3.6",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 2
+  },
+  {
+   "id": "15.3.7",
+   "chapter": "V15",
+   "section": "V15.3",
+   "level": 2
+  },
+  {
+   "id": "15.4.1",
+   "chapter": "V15",
+   "section": "V15.4",
+   "level": 3
+  },
+  {
+   "id": "15.4.2",
+   "chapter": "V15",
+   "section": "V15.4",
+   "level": 3
+  },
+  {
+   "id": "15.4.3",
+   "chapter": "V15",
+   "section": "V15.4",
+   "level": 3
+  },
+  {
+   "id": "15.4.4",
+   "chapter": "V15",
+   "section": "V15.4",
+   "level": 3
+  },
+  {
+   "id": "16.1.1",
+   "chapter": "V16",
+   "section": "V16.1",
+   "level": 2
+  },
+  {
+   "id": "16.2.1",
+   "chapter": "V16",
+   "section": "V16.2",
+   "level": 2
+  },
+  {
+   "id": "16.2.2",
+   "chapter": "V16",
+   "section": "V16.2",
+   "level": 2
+  },
+  {
+   "id": "16.2.3",
+   "chapter": "V16",
+   "section": "V16.2",
+   "level": 2
+  },
+  {
+   "id": "16.2.4",
+   "chapter": "V16",
+   "section": "V16.2",
+   "level": 2
+  },
+  {
+   "id": "16.2.5",
+   "chapter": "V16",
+   "section": "V16.2",
+   "level": 2
+  },
+  {
+   "id": "16.3.1",
+   "chapter": "V16",
+   "section": "V16.3",
+   "level": 2
+  },
+  {
+   "id": "16.3.2",
+   "chapter": "V16",
+   "section": "V16.3",
+   "level": 2
+  },
+  {
+   "id": "16.3.3",
+   "chapter": "V16",
+   "section": "V16.3",
+   "level": 2
+  },
+  {
+   "id": "16.3.4",
+   "chapter": "V16",
+   "section": "V16.3",
+   "level": 2
+  },
+  {
+   "id": "16.4.1",
+   "chapter": "V16",
+   "section": "V16.4",
+   "level": 2
+  },
+  {
+   "id": "16.4.2",
+   "chapter": "V16",
+   "section": "V16.4",
+   "level": 2
+  },
+  {
+   "id": "16.4.3",
+   "chapter": "V16",
+   "section": "V16.4",
+   "level": 2
+  },
+  {
+   "id": "16.5.1",
+   "chapter": "V16",
+   "section": "V16.5",
+   "level": 2
+  },
+  {
+   "id": "16.5.2",
+   "chapter": "V16",
+   "section": "V16.5",
+   "level": 2
+  },
+  {
+   "id": "16.5.3",
+   "chapter": "V16",
+   "section": "V16.5",
+   "level": 2
+  },
+  {
+   "id": "16.5.4",
+   "chapter": "V16",
+   "section": "V16.5",
+   "level": 3
+  },
+  {
+   "id": "17.1.1",
+   "chapter": "V17",
+   "section": "V17.1",
+   "level": 2
+  },
+  {
+   "id": "17.1.2",
+   "chapter": "V17",
+   "section": "V17.1",
+   "level": 3
+  },
+  {
+   "id": "17.2.1",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 2
+  },
+  {
+   "id": "17.2.2",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 2
+  },
+  {
+   "id": "17.2.3",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 2
+  },
+  {
+   "id": "17.2.4",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 2
+  },
+  {
+   "id": "17.2.5",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 3
+  },
+  {
+   "id": "17.2.6",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 3
+  },
+  {
+   "id": "17.2.7",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 3
+  },
+  {
+   "id": "17.2.8",
+   "chapter": "V17",
+   "section": "V17.2",
+   "level": 3
+  },
+  {
+   "id": "17.3.1",
+   "chapter": "V17",
+   "section": "V17.3",
+   "level": 2
+  },
+  {
+   "id": "17.3.2",
+   "chapter": "V17",
+   "section": "V17.3",
+   "level": 2
+  }
+ ]
+}

@@ -1,0 +1,416 @@
+{
+  "source_id": "gov-design",
+  "retrieved": "2026-10-13",
+  "source_repository": "https://github.com/alphagov/govuk-design-system (branch main, fetched via raw.githubusercontent.com; commit SHA not obtainable because api.github.com is blocked)",
+  "licence": "Repository LICENSE: MIT License, Copyright (c) 2017 Crown Copyright (Government Digital Service); package.json \"license\": \"MIT\". Website footer (views/partials/_footer.njk) uses the govuk-frontend govukFooter macro without a contentLicence override, whose default text states content is available under the Open Government Licence v3.0 except where otherwise stated. The repo does not contain a separate content-licence file.",
+  "wcag_reference": "WCAG 2.2 level AA (src/accessibility-statement.md: compliance status; src/accessibility/accessibility-strategy/index.md: 'Baseline WCAG accessibility compliance' aims for AA on the latest WCAG version published for at least a year). Component guidance cites WCAG 2.2 SC 1.3.5, 1.4.3, 2.5.1, 4.1.2. Legal context: Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
+  "id_note": "Rule IDs (GDS-*) are local to this library, not official GOV.UK identifiers. rule_paraphrase is our own wording, not quotation.",
+  "rules": [
+    {
+      "id": "GDS-ERR-01",
+      "rule_paraphrase": "When validation fails, show an error summary at the top of the page as well as an inline error message beside each answer with an error; show the summary even when there is only one error.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-summary/index.md",
+      "heading": "When to use this component"
+    },
+    {
+      "id": "GDS-ERR-02",
+      "rule_paraphrase": "The error summary uses the heading 'There is a problem'.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-summary/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-ERR-03",
+      "rule_paraphrase": "Each entry in the error summary links to the answer it relates to: the field itself for single-field questions; the first field in error for multi-field questions such as date input (or the first field if unknown); the first radio or checkbox for option lists.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-summary/index.md",
+      "heading": "Linking from the error summary to each answer"
+    },
+    {
+      "id": "GDS-ERR-04",
+      "rule_paraphrase": "Place the error summary at the top of the main container, below any breadcrumbs or back link and above the h1.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-summary/index.md",
+      "heading": "Where to put the error summary"
+    },
+    {
+      "id": "GDS-ERR-05",
+      "rule_paraphrase": "Move keyboard focus to the error summary when it is shown (govuk-frontend JavaScript does this).",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-summary/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-ERR-06",
+      "rule_paraphrase": "Error text in the summary must be worded identically to the inline message next to the field.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-summary/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-ERR-07",
+      "rule_paraphrase": "On a page re-shown after failed validation, prefix the document <title> with 'Error: '.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/validation/index.md",
+      "heading": "How to tell the user about validation errors"
+    },
+    {
+      "id": "GDS-ERR-08",
+      "rule_paraphrase": "Re-show the page with the user's answers as entered; do not clear either passing or failing fields.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-message/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-ERR-09",
+      "rule_paraphrase": "Inline error messages sit after the question and hint text and include a visually hidden 'Error:' prefix for screen reader users (the prefix may be translated).",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-message/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-ERR-10",
+      "rule_paraphrase": "Error messages reuse wording from the question label or legend so the message can be matched to the field.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-message/index.md",
+      "heading": "Match up error messages to labels"
+    },
+    {
+      "id": "GDS-ERR-11",
+      "rule_paraphrase": "Error wording avoids technical jargon, blame words such as 'forbidden', 'illegal' or 'you forgot', and the words 'please', 'sorry', 'valid'/'invalid' and informal terms like 'oops'.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-message/index.md",
+      "heading": "Be clear and concise"
+    },
+    {
+      "id": "GDS-ERR-12",
+      "rule_paraphrase": "Avoid generic errors such as 'An error occurred' or 'This field is required'; give a specific message per error state (empty, too long, too short, disallowed characters, wrong format).",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-message/index.md",
+      "heading": "Be specific"
+    },
+    {
+      "id": "GDS-ERR-13",
+      "rule_paraphrase": "Do not use error messages for eligibility, permission or service-capacity problems; send the user to a page explaining the problem and next steps.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/error-message/index.md",
+      "heading": "When not to use this component"
+    },
+    {
+      "id": "GDS-ERR-14",
+      "rule_paraphrase": "Empty text input error follows the template 'Enter [whatever it is]'; other states (length, numbers, money) have their own templates.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Error messages"
+    },
+    {
+      "id": "GDS-ERR-15",
+      "rule_paraphrase": "Radios errors: yes/no questions use 'Select yes if ...'; two non-yes/no options use 'Select if ...'; more than two options use 'Select [whatever it is]'.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/radios/index.md",
+      "heading": "Error messages"
+    },
+    {
+      "id": "GDS-ERR-16",
+      "rule_paraphrase": "Date input: when several errors apply show only the highest priority (missing/incomplete, then impossible values, then other validation failures); highlight only the field(s) at fault, or the whole date where the guidance says so.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/date-input/index.md",
+      "heading": "Error messages"
+    },
+    {
+      "id": "GDS-VAL-01",
+      "rule_paraphrase": "Turn off browser HTML5 validation by adding novalidate to the form, and do not put the required attribute on inputs.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/validation/index.md",
+      "heading": "Turn off HTML5 validation"
+    },
+    {
+      "id": "GDS-VAL-02",
+      "rule_paraphrase": "Always validate server side, even when client side validation is also used.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/validation/index.md",
+      "heading": "Client side and server side validation"
+    },
+    {
+      "id": "GDS-VAL-03",
+      "rule_paraphrase": "Do not validate when the user leaves a field; validate when they try to continue or submit, unless research supports live validation.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/validation/index.md",
+      "heading": "When to tell the user about validation errors"
+    },
+    {
+      "id": "GDS-VAL-04",
+      "rule_paraphrase": "Ignore unwanted characters (spaces, hyphens, brackets, punctuation, leading/trailing characters) in numbers and codes rather than raising an error, unless it makes the data unusable.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/validation/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-QP-01",
+      "rule_paraphrase": "Start with one question per page; where a page has a single question, the label or legend can be set as the page heading.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "Start by asking one question per page"
+    },
+    {
+      "id": "GDS-QP-02",
+      "rule_paraphrase": "Question pages include a back link, a page heading and a continue button.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-QP-03",
+      "rule_paraphrase": "Never mark mandatory fields with asterisks; mark optional fields with '(optional)' in the label (or legend for radios/checkboxes).",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "When to use this pattern"
+    },
+    {
+      "id": "GDS-QP-04",
+      "rule_paraphrase": "Hint text is one short sentence without full stops and contains no links.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "Hint text"
+    },
+    {
+      "id": "GDS-QP-05",
+      "rule_paraphrase": "The continue button reads 'Continue' (not 'Next') and is left-aligned.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "Continue button"
+    },
+    {
+      "id": "GDS-QP-06",
+      "rule_paraphrase": "Do not reuse the same page heading across multiple pages.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "Page headings"
+    },
+    {
+      "id": "GDS-QP-07",
+      "rule_paraphrase": "Do not break the browser back button; it should return users to the previous page in the state they left it.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "Back link"
+    },
+    {
+      "id": "GDS-QP-08",
+      "rule_paraphrase": "Avoid range sliders; if one is used, provide a way to answer without click-and-drag (WCAG 2.2 SC 2.5.1).",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/question-pages/index.md",
+      "heading": "Using range sliders"
+    },
+    {
+      "id": "GDS-INP-01",
+      "rule_paraphrase": "Every text input has a label, normally visible, placed above the input, in sentence case without a trailing colon.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-INP-02",
+      "rule_paraphrase": "Do not use placeholder text as a label, hint or example.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Avoid placeholder text"
+    },
+    {
+      "id": "GDS-INP-03",
+      "rule_paraphrase": "For whole numbers use inputmode='numeric' (or 'decimal' for decimals); avoid input type='number' unless research shows a need.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Numbers"
+    },
+    {
+      "id": "GDS-INP-04",
+      "rule_paraphrase": "Do not block copy and paste into text inputs.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Do not disable copy and paste"
+    },
+    {
+      "id": "GDS-INP-05",
+      "rule_paraphrase": "Avoid the maxlength attribute; if a limit is needed, state it in the hint and only error on values that are still too long after normalisation.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Avoid restricting the length of a user's input"
+    },
+    {
+      "id": "GDS-INP-06",
+      "rule_paraphrase": "Set spellcheck='false' on inputs where spellcheck is inappropriate, such as names, email addresses and reference numbers.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "How and when to spellcheck a user’s input"
+    },
+    {
+      "id": "GDS-INP-07",
+      "rule_paraphrase": "Prefixes/suffixes must not be the only indication of required units; say it in the label or hint too, because screen readers do not announce them.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Prefixes and suffixes"
+    },
+    {
+      "id": "GDS-AC-01",
+      "rule_paraphrase": "In production, set an autocomplete attribute on inputs that collect user data with a WCAG input purpose (WCAG 2.2 SC 1.3.5, level AA).",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/text-input/index.md",
+      "heading": "Use the autocomplete attribute"
+    },
+    {
+      "id": "GDS-AC-02",
+      "rule_paraphrase": "Name fields: autocomplete='name' for a single full-name field; 'given-name' and 'family-name' for split fields.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/names/index.md",
+      "heading": "Use the autocomplete attribute on name fields"
+    },
+    {
+      "id": "GDS-AC-03",
+      "rule_paraphrase": "Email fields use type='email', autocomplete='email', spellcheck='false', allow pasting, and accept up to 254 characters.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/email-addresses/index.md",
+      "heading": "Help users to enter a valid email address"
+    },
+    {
+      "id": "GDS-AC-04",
+      "rule_paraphrase": "Phone number inputs use autocomplete='tel' and accept spaces, hyphens, brackets and country/area codes.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/phone-numbers/index.md",
+      "heading": "Use the autocomplete attribute"
+    },
+    {
+      "id": "GDS-AC-05",
+      "rule_paraphrase": "Date of birth inputs set autocomplete to bday-day, bday-month and bday-year on the three fields.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/date-input/index.md",
+      "heading": "Use the autocomplete attribute for a date of birth"
+    },
+    {
+      "id": "GDS-AC-06",
+      "rule_paraphrase": "Address fields: each separate field gets its matching input purpose; a single textarea address uses autocomplete='street-address'.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/addresses/index.md",
+      "heading": "Use the autocomplete attribute on multiple address fields"
+    },
+    {
+      "id": "GDS-NAME-01",
+      "rule_paraphrase": "Middle names field is optional and its label does not include '(optional)'; avoid asking for title, and if you must, use an optional text input not a select.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/names/index.md",
+      "heading": "Middle names"
+    },
+    {
+      "id": "GDS-ADDR-01",
+      "rule_paraphrase": "Accept postcodes in any case, with or without spaces, and with stray punctuation; make county optional.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/addresses/index.md",
+      "heading": "Allow different postcode formats"
+    },
+    {
+      "id": "GDS-PHONE-01",
+      "rule_paraphrase": "Avoid input masking and do not reformat phone numbers shown back to users.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/phone-numbers/index.md",
+      "heading": "Avoid input masking"
+    },
+    {
+      "id": "GDS-OPT-01",
+      "rule_paraphrase": "Group radios and checkboxes in a fieldset with a legend describing them; the legend is the first element inside the fieldset.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/fieldset/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-OPT-02",
+      "rule_paraphrase": "Do not pre-select radio or checkbox options; place controls to the left of labels.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/radios/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-OPT-03",
+      "rule_paraphrase": "Conditionally reveal only simple questions (never non-question content) and never from inline radios.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/radios/index.md",
+      "heading": "Conditionally revealing a related question"
+    },
+    {
+      "id": "GDS-OPT-04",
+      "rule_paraphrase": "Where 'none' is valid for checkboxes, add a 'none' option last, separated by an 'or' divider, with a label repeating the question.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/checkboxes/index.md",
+      "heading": "Add an option for ‘none’"
+    },
+    {
+      "id": "GDS-DATE-01",
+      "rule_paraphrase": "Date input is three fields (day, month, year) in a fieldset; never auto-advance focus between fields; accept month names.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/date-input/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-DATE-02",
+      "rule_paraphrase": "A JavaScript calendar picker must never be the only way to enter a date; also allow text entry.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/dates/index.md",
+      "heading": "Helping users to pick a date"
+    },
+    {
+      "id": "GDS-BTN-01",
+      "rule_paraphrase": "Button text is sentence case and describes the action; primary button aligned left; avoid multiple default (primary) buttons on a page.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/button/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-BTN-02",
+      "rule_paraphrase": "Avoid disabled buttons unless research shows they make the interface easier to understand.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/button/index.md",
+      "heading": "Disabled buttons"
+    },
+    {
+      "id": "GDS-BTN-03",
+      "rule_paraphrase": "Start buttons use a link element rather than a button element, since they do not submit data.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/components/button/index.md",
+      "heading": "Start buttons"
+    },
+    {
+      "id": "GDS-BTN-04",
+      "rule_paraphrase": "Warning buttons are reserved for serious irreversible actions, ideally after a confirmation step, and must not rely on red colour alone.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/components/button/index.md",
+      "heading": "Warning buttons"
+    },
+    {
+      "id": "GDS-CYA-01",
+      "rule_paraphrase": "Check answers page: 'Change' link per item with visually hidden text describing what it changes; skipped optional answers shown as 'Not provided'; submit button text describes the action.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/check-answers/index.md",
+      "heading": "Let users go back and change their answers"
+    },
+    {
+      "id": "GDS-CYA-02",
+      "rule_paraphrase": "After changing an answer, 'Continue' returns the user to the check answers page with answers pre-populated.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/check-answers/index.md",
+      "heading": "Let users go back and change their answers"
+    },
+    {
+      "id": "GDS-CONF-01",
+      "rule_paraphrase": "Confirmation page includes reference number (if any), what happens next, service contact details, likely next links, a feedback link and a way to save a record.",
+      "testable_in_static_html": true,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/confirmation-pages/index.md",
+      "heading": "How it works"
+    },
+    {
+      "id": "GDS-START-01",
+      "rule_paraphrase": "A service start point explains what the service does, has a start button whose text matches the action, lists cost/time and other ways to access the service, and avoids complex eligibility rules.",
+      "testable_in_static_html": false,
+      "source_file": "alphagov/govuk-design-system@main:src/patterns/start-using-a-service/index.md",
+      "heading": "How it works"
+    }
+  ]
+}

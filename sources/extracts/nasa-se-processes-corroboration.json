@@ -1,0 +1,304 @@
+{
+  "source_id": "nasa-se",
+  "evidence_level": "secondary",
+  "retrieved": "2026-10-13",
+  "edition": "NASA/SP-2016-6105 Rev 2 (2016/2017 printing); no newer edition found in search results",
+  "governing_requirement": "NPR 7123.1 (NASA Systems Engineering Processes and Requirements); secondary results indicate NPR 7123.1D, effective 5 July 2023, with later changes (Change 2 noted by SWEHB); NPR 7123.1C effective 14 Feb 2020 was its predecessor. Not verified on NODIS.",
+  "processes": [
+    {
+      "section": "4.1",
+      "name": "Stakeholder Expectations Definition",
+      "group": "System Design",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "4.2",
+      "name": "Technical Requirements Definition",
+      "group": "System Design",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "4.3",
+      "name": "Logical Decomposition",
+      "group": "System Design",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "4.4",
+      "name": "Design Solution Definition",
+      "group": "System Design",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "5.1",
+      "name": "Product Implementation",
+      "group": "Product Realization",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "5.2",
+      "name": "Product Integration",
+      "group": "Product Realization",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "5.3",
+      "name": "Product Verification",
+      "group": "Product Realization",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "5.4",
+      "name": "Product Validation",
+      "group": "Product Realization",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "5.5",
+      "name": "Product Transition",
+      "group": "Product Realization",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "6.1",
+      "name": "Technical Planning",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.nasa.gov/seh/6-1-technical-planning"
+      ]
+    },
+    {
+      "section": "6.2",
+      "name": "Requirements Management",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "6.3",
+      "name": "Interface Management",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.nasa.gov/seh/6-3-interface-management"
+      ]
+    },
+    {
+      "section": "6.4",
+      "name": "Technical Risk Management",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.nasa.gov/seh/6-4-technical-risk-management"
+      ]
+    },
+    {
+      "section": "6.5",
+      "name": "Configuration Management",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "6.6",
+      "name": "Technical Data Management",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "6.7",
+      "name": "Technical Assessment",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    },
+    {
+      "section": "6.8",
+      "name": "Decision Analysis",
+      "group": "Technical Management (Crosscutting)",
+      "evidence_urls": [
+        "https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook_0.pdf",
+        "https://www.bookfusion.com/books/2237951-nasa-systems-engineering-handbook-nasa-sp-2016-6105-rev2"
+      ]
+    }
+  ],
+  "se_engine": {
+    "description": "Handbook section 2.1 presents the 17 common technical processes of NPR 7123.1 as three sets illustrated by the 'SE engine' (Figure 2.1-1); processes 1-9 are project execution tasks, 10-17 crosscutting management tools; not intended to be strictly sequential.",
+    "evidence_urls": [
+      "https://www.nasa.gov/seh/2-1_technical-processes"
+    ]
+  },
+  "life_cycle_phases": {
+    "formulation": [
+      "Pre-Phase A",
+      "Phase A",
+      "Phase B"
+    ],
+    "implementation": [
+      "Phase C",
+      "Phase D",
+      "Phase E",
+      "Phase F"
+    ],
+    "evidence_urls": [
+      "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf",
+      "https://www.nasa.gov/?p=262929"
+    ],
+    "note": "Phase titles not individually confirmed in results; KDPs separate phases."
+  },
+  "reviews": [
+    {
+      "acronym": "MCR",
+      "name": "Mission Concept Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "SRR",
+      "name": "System Requirements Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "MDR",
+      "name": "Mission Definition Review (robotic missions; alternative to SDR)",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "SDR",
+      "name": "System Definition Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "PDR",
+      "name": "Preliminary Design Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "CDR",
+      "name": "Critical Design Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "PRR",
+      "name": "Production Readiness Review (conditional, multiple copies)",
+      "evidence_urls": [
+        "https://www.nasa.gov/?p=262929",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "SIR",
+      "name": "System Integration Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "TRR",
+      "name": "Test Readiness Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7"
+      ]
+    },
+    {
+      "acronym": "SAR",
+      "name": "System Acceptance Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "ORR",
+      "name": "Operational Readiness Review",
+      "evidence_urls": [
+        "https://swehb.nasa.gov/x/WwD7",
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "FRR",
+      "name": "Flight Readiness Review",
+      "evidence_urls": [
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "CERR",
+      "name": "Critical Events Readiness Review (discretionary)",
+      "evidence_urls": [
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "PLAR",
+      "name": "Post-Launch Assessment Review (expansion not confirmed in results)",
+      "evidence_urls": [
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    },
+    {
+      "acronym": "DR",
+      "name": "Decommissioning Review (expansion seen in an acronym list only)",
+      "evidence_urls": [
+        "https://dspace.mit.edu/bitstream/handle/1721.1/103819/16-842-fall-2009/contents/lecture-notes/MIT16_842F09_lec09.pdf"
+      ]
+    }
+  ],
+  "notes": "All entries are SECONDARY corroboration from search-engine result snippets (table-of-contents text of the NASA-hosted PDF and nasa.gov/seh pages, SWEHB, MIT OCW). Primary hosts (nasa.gov, ntrs.nasa.gov, swehb.nasa.gov) returned 'curl: (56) CONNECT tunnel failed, response 403' and WebFetch 'getaddrinfo ENOTFOUND'. No primary text was read. Section numbers/names are consistent across multiple result sets; the exact review-to-phase mapping, review entry/exit criteria and optional reviews must be checked against NPR 7123.1 (current letter) before use."
+}

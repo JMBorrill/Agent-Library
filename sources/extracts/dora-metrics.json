@@ -1,0 +1,63 @@
+{
+  "source_id": "dora",
+  "retrieved": "2026-10-13",
+  "repo": "https://github.com/dora-team/dora.dev (branch main)",
+  "licence": "Documentation/non-code content: CC BY 4.0; source code: Apache-2.0 (verified from README.md, CC-BY-4.0 and LICENSE in dora-team/dora.dev)",
+  "attribution": "DORA (Google LLC), dora.dev, https://github.com/dora-team/dora.dev, CC BY 4.0",
+  "files_read": [
+    "README.md",
+    "LICENSE",
+    "CC-BY-4.0",
+    "firebase.json",
+    "hugo/config.toml",
+    "hugo/content/_index.md",
+    "hugo/content/guides/_index.md",
+    "hugo/content/guides/dora-metrics/_index.md",
+    "hugo/content/insights/dora-metrics-history/index.md",
+    "hugo/content/capabilities/_index.md",
+    "hugo/content/research/_index.md",
+    "hugo/content/research/2025/_index.md",
+    "hugo/content/faq/_index.md",
+    "docs/publishing-content.md"
+  ],
+  "metrics_guide": {
+    "title": "DORA’s software delivery performance metrics",
+    "source_file": "hugo/content/guides/dora-metrics/_index.md",
+    "front_matter_updated": "2026-01-05",
+    "public_url": "https://dora.dev/guides/dora-metrics/ (redirect from /guides/dora-metrics-four-keys per firebase.json)",
+    "model": "Five metrics in two factors: throughput and instability (replaces the earlier 'four keys')."
+  },
+  "metrics": [
+    {"name": "Change lead time", "definition_paraphrase": "Elapsed time for a change to travel from being committed to version control to running in production.", "category": "throughput", "source_file": "hugo/content/guides/dora-metrics/_index.md"},
+    {"name": "Deployment frequency", "definition_paraphrase": "Count of deployments within a period, or alternatively the interval between deployments.", "category": "throughput", "source_file": "hugo/content/guides/dora-metrics/_index.md"},
+    {"name": "Failed deployment recovery time", "definition_paraphrase": "How long it takes to recover after a deployment fails and needs immediate intervention. Replaced MTTR / time to restore service in 2023 so that only change-induced failures count. Note: the current guide lists it under throughput; the history page also groups it with throughput.", "category": "throughput", "source_file": "hugo/content/guides/dora-metrics/_index.md"},
+    {"name": "Change fail rate", "definition_paraphrase": "Proportion of deployments that need immediate intervention afterwards, typically a rollback or hotfix.", "category": "instability", "source_file": "hugo/content/guides/dora-metrics/_index.md"},
+    {"name": "Deployment rework rate", "definition_paraphrase": "Proportion of deployments that are unplanned and occur because of a production incident. Introduced as the fifth metric in 2024.", "category": "instability", "source_file": "hugo/content/guides/dora-metrics/_index.md"}
+  ],
+  "historical_names": {
+    "source_file": "hugo/content/insights/dora-metrics-history/index.md",
+    "paraphrase": "2014 used deployment frequency, lead time for changes, MTTR and change fail rate (CFR excluded from the 2014 construct statistically); 2015 grouped throughput vs stability; 2018 added availability (SDO performance); 2021 availability broadened to reliability (described as operational, not delivery, performance); 2023 MTTR renamed/redefined as failed deployment recovery time; 2024 added deployment rework rate, giving five metrics in throughput and instability factors."
+  },
+  "usage_cautions": [
+    "Do not turn metrics into targets (Goodhart's law); mandates like 'everyone deploys daily' invite gaming. [Common pitfalls: Setting metrics as a goal]",
+    "Do not rely on a single metric; use several, some deliberately in tension. [Having one metric to rule them all]",
+    "Do not use industry or regulation as an excuse not to improve. [Using industry as a shield against improving]",
+    "Apply at the application/service level; comparing very different applications (e.g. mobile app vs mainframe) misleads. [Making disparate comparisons]",
+    "Share all five metrics across dev, ops and release rather than assigning metrics to silos. [Having siloed ownership]",
+    "Aim to improve your own team over time, not to compete with other teams or organisations. [Competing]",
+    "Do not over-invest in precise measurement plumbing at the expense of improvement; conversations or the Quick Check may suffice to start. [Focusing on measurement at the expense of improvement]",
+    "Context matters: blending metrics across teams or a whole organisation can be problematic because contexts differ. [Key insights]",
+    "Metrics are best suited to one application or service at a time. [Key insights]"
+  ],
+  "improvement_loop": {
+    "source_file": "hugo/content/guides/dora-metrics/_index.md",
+    "heading": "Next steps",
+    "steps": ["Set a baseline", "Have a conversation", "Have the whole team commit to making an improvement", "Turn that commitment into a plan", "Do the work", "Check your progress", "Repeat"]
+  },
+  "most_recent_report_referenced": {
+    "year": 2025,
+    "title": "State of AI-assisted Software Development 2025",
+    "source_files": ["hugo/content/faq/_index.md", "hugo/content/research/2025/_index.md"],
+    "note": "hugo/content/research/2026/_index.md returned 404 on 2026-10-13. The FAQ also references the ROI of AI-assisted Software Development report and the DORA AI Capabilities Model (years not captured)."
+  }
+}
