@@ -3,7 +3,7 @@ name: sre-production-readiness
 description: Run a production or launch readiness review covering SLOs, monitoring, alerting, capacity, dependencies, rollback, runbooks, on-call, security sign-off, backup/restore testing and feature flags, with evidence references per item, and produce a GO / GO_WITH_CONDITIONS / NO_GO recommendation where no tested rollback, no staffed on-call, no SLO or an untested restore always block. Use before launching a new service or major feature, before moving a beta to general availability, or when auditing whether a service is still fit to run in production.
 metadata:
   pack: reliability-security
-  version: "1.0.0"
+  version: "1.1.0"
   sources: "google-sre"
 ---
 
@@ -30,6 +30,9 @@ Required
   status (`done | partial | not_done | na`), evidence reference, owner and due date for open items.
 - Named reviewers (service owner, SRE/reliability, security).
 Optional
+- `blocking_items` in the checklist (or `--blocking key,key` on the command line): project-defined
+  launch blockers by item key or id, e.g. `security_isolation_tested`, `tool_enforcement_tested`,
+  `dpia_complete` for a multi-tenant AI product.
 - Launch date, traffic forecast, SLO spec, threat model, restore test record, rollback drill record.
 
 ## Procedure
@@ -43,11 +46,14 @@ Optional
    - `rollback` (key `rollback_tested`): rollback rehearsed and timed, including data/schema changes.
    - `runbooks`: for top alerts and known failure modes.
    - `oncall` (key `oncall_staffed`): rota staffed, trained, with escalation path.
-   - `security`: threat model reviewed and security sign-off recorded.
+   - `security`: threat model reviewed and security sign-off recorded. Split it into separate keyed
+     items (tenant isolation tested, tool enforcement tested, DPIA complete) and list the ones that
+     must block in `blocking_items` — by default security gaps only add conditions.
    - `backup_restore` (key `restore_tested`): restore actually performed and timed (RPO/RTO);
      `na` only with justification (stateless service).
    - `feature_flags`: launch behind a flag/kill switch, with the flag's owner and removal plan.
 3. **Check**: `python3 scripts/readiness_check.py readiness-checklist.json`
+   (add `--blocking security_isolation_tested,dpia_complete` to try extra blockers without editing the file).
 4. **Review meeting**: walk blocking items first, then conditions. Every condition needs an owner and
    a date; agree which conditions must close before launch vs after.
 5. **Record the human decision** (who decided, when, which conditions) next to the script's
@@ -57,17 +63,21 @@ Optional
 | Situation | Recommendation |
 |---|---|
 | Any of: no SLO, rollback not tested, on-call not staffed, restore not tested (or blocking item done without evidence) | NO_GO |
-| Checklist invalid (unknown area/status, duplicate IDs) | NO_GO until corrected |
+| Any project blocking item (`blocking_items` / `--blocking`) missing, not done, N/A, or done without evidence | NO_GO |
+| Checklist invalid (unknown area/status, duplicate IDs, `blocking_items` not a list of strings) | NO_GO until corrected |
+| No security item done with evidence | warning `no-security-evidence` + condition (GO_WITH_CONDITIONS at best) |
 | Non-blocking item partial/not done, done without evidence, unjustified N/A, area not reviewed | GO_WITH_CONDITIONS |
 | Everything done with evidence (justified N/A allowed) | GO |
 | Launch date pressure vs NO_GO | Escalate to the accountable executive; the script's recommendation does not change. |
 
-Blocking items are fixed by this skill; organisations may add their own (e.g. data protection
-assessment) as additional reviewed conditions.
+The four library blocking items are fixed; projects add their own with `blocking_items` or
+`--blocking` (a project blocker can never be satisfied by `na`). Unless a project lists them, an
+open security item is a condition, not a blocker — decide this explicitly for products handling
+personal data, multiple tenants or agent tools.
 
 ## Outputs
 - Readiness report (`--json`), schema `assets/schemas/readiness.output.schema.json`: recommendation,
-  blocking failures, conditions with owner/due, `requires_human_signoff: true`.
+  blocking failures, project blocking items, conditions with owner/due, `requires_human_signoff: true`.
 - `readiness-review.md` — decision record with reviewer names and agreed conditions.
 
 ## Validation
@@ -83,6 +93,8 @@ assessment) as additional reviewed conditions.
 - `assets/examples/readiness-fail.json` (AI call summaries) → NO_GO, exit 1: `blocking-item-not-done`
   (slo_defined, rollback_tested), `blocking-no-evidence` (restore_tested), `blocking-item-missing`
   (oncall_staffed); warnings `condition-no-owner`, `area-not-covered`.
+- `readiness-pass.json --blocking dpia_complete` → NO_GO, exit 1 (`blocking-item-missing`): the
+  same checklist fails once the project makes a DPIA a launch blocker.
 
 ## Escalation and stop conditions
 - NO_GO with a fixed launch date → escalate to the service owner's manager and the accountable

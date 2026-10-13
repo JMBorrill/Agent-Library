@@ -21,13 +21,17 @@ untrusted-provenance instructions can cause — with detection as an early-warni
 | concealment (medium) | "do not tell the user/underwriter/anyone" | rare |
 | encoded-payload | base64 run ≥ 40 chars decoding to printable text; high if decoded text itself matches | signed tokens, data URIs (binary data is skipped) |
 | addressed-to-ai (low) | "Note to AI assistant:", "AI model:" | AI product documentation |
+| authority-bypass (medium) | a third party's approval claimed ("the owner has already okayed this") **and** a verification bypass ("no need to check", "can skip") in the same document | genuine delegated instructions from a colleague |
+| bulk-personal-data-request (medium) | send/text/email/export ... every/each/all clients' names, addresses, phone numbers | an owner legitimately asking for their own route sheet (expected `review`) |
 
 Text is normalised (invisible characters removed, NFKC) before matching, so zero-width splitting
 does not evade the override rule. Scores: high = 4, medium = 2, low = 1; any high or score ≥ 4 →
 `flag`; score ≥ 2 → `review`.
 
 ## Known false negatives (by design, documented in the corpus)
-Paraphrased social engineering without trigger phrases; non-English instructions; instructions
+Paraphrased social engineering without trigger phrases (the two social-engineering rules catch
+only claimed-authority-plus-bypass and bulk personal-data requests, and were written with corpus
+samples m13/m15 in view); non-English instructions; instructions
 inside images or PDFs that were not text-extracted; multi-turn attacks split across documents;
 novel encodings (hex, rot13, homoglyph-heavy text beyond NFKC). Treat the detection rate as
 specific to this corpus.
@@ -41,6 +45,12 @@ specific to this corpus.
    destinations need approval.
 5. Human approval shows the complete arguments and the provenance chain, not a model summary.
 6. Log every decision with its reasons for audit.
+7. Taint, do not trust labels: a call proposed in a turn whose context held untrusted content
+   inherits that provenance (`turn_context_provenance`), whatever the session label says. A user
+   clicking "draft reply" on a malicious thread must not turn the thread's text into user intent.
+8. Bind recipients to the thread's recipients of record (from the customer record, never the
+   inbound sender, which an attacker controls); default-deny unlisted destinations for
+   side-effecting tools; derive data classification from the tool rather than the caller.
 
 ## Corpus design
 Label every sample; include benign samples from the same channels as the attacks (otherwise the

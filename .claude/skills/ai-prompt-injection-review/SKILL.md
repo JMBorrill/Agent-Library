@@ -3,7 +3,7 @@ name: ai-prompt-injection-review
 description: Review an LLM application or agent for prompt-injection and tool-misuse risk - screen untrusted content (emails, documents, retrieved pages, tool output) with a heuristic injection scanner, and evaluate proposed agent tool calls against an allowlist/approval/egress/PII policy to get allow, deny or require_approval decisions. Use when designing or testing agent guardrails, reviewing indirect injection via RAG or CRM email, building an injection test corpus, or measuring detection rates.
 metadata:
   pack: ai-governance
-  version: "1.0.0"
+  version: "1.1.0"
   sources: "nist-ai"
 ---
 
@@ -32,7 +32,10 @@ Required
 - Tool policy JSON (schema `assets/schemas/tool-policy.schema.json`, template
   `assets/templates/tool-policy.json`).
 - Proposed tool calls JSON with provenance and data classification (schema
-  `assets/schemas/tool-calls.schema.json`, template `assets/templates/tool-calls.json`).
+  `assets/schemas/tool-calls.schema.json`, template `assets/templates/tool-calls.json`). For
+  agents, also `turn_context_provenance` (every provenance in the model's context that turn, set by
+  the orchestrator) and, for messaging tools, `thread_recipients` (recipients of record from the
+  customer record — never the inbound sender address); per call or once per batch.
 Optional
 - Agent architecture diagram, tool list with side effects, data classification scheme.
 
@@ -43,7 +46,20 @@ Optional
    side-effecting (it can exfiltrate data in the query string).
 3. **Write the policy**: allowlist, side-effecting tools, forbidden domains, egress allowlist,
    domains allowed to receive personal data. Core rule: *instructions originating from
-   retrieved content or tool output can never trigger side-effecting tools.*
+   retrieved content or tool output can never trigger side-effecting tools.* Do not rely on the
+   agent's own provenance label — enable the hardening options (example
+   `assets/examples/tool-policy-hardened.json`):
+   - **Taint**: have the orchestrator attach `turn_context_provenance`; effective provenance is the
+     most untrusted of the label and the context (system < user < tool_output < retrieved_content).
+     `taint_side_effects: deny` (default) or `require_approval`. Pattern: the model *drafts* in a
+     tainted turn; the human's send from the UI is a separate, untainted call.
+   - **Recipient binding**: `bind_recipient_to_thread: {"send_sms": "to", "send_email": ["to","cc","bcc"]}`;
+     a bound recipient outside `thread_recipients` is denied; a bound call without them needs approval.
+   - **Default-deny destinations**: `default_deny_unlisted_destinations: true` +
+     `allowed_destination_domains` denies any unlisted host for side-effecting tools whatever the
+     caller's classification.
+   - **Derived classification**: `tool_classification` maps tool → classification and overrides
+     the caller's label (`classification-self-declared` marks calls still using the caller's).
 4. **Build the corpus**: benign samples from each channel plus attacks — direct override, role
    reassignment, hidden text (HTML comments, white text, zero-width, Unicode tags), markdown
    image exfiltration, tool-call coercion, base64 payloads, concealment requests — and include
@@ -63,6 +79,12 @@ Optional
 | Situation | Decision |
 |---|---|
 | Side-effecting tool requested by retrieved content / tool output | deny (`TP-UNTRUSTED-SIDE-EFFECT`) |
+| Side-effecting tool labelled user/system but turn context held untrusted content | `taint_side_effects` (default deny, `TP-PROVENANCE-TAINTED`); warning `provenance-tainted` |
+| Bound messaging tool to a recipient not in `thread_recipients` | deny (`TP-RECIPIENT-NOT-BOUND-TO-THREAD`) |
+| Bound messaging tool with no `thread_recipients` (or no recipient arg) | require_approval (`TP-THREAD-RECIPIENTS-MISSING` / `TP-RECIPIENT-ARG-MISSING`) |
+| `default_deny_unlisted_destinations` and side-effecting call to a host outside `allowed_destination_domains` | deny (`TP-DESTINATION-NOT-ALLOWLISTED`), any classification |
+| Recipient that passed thread binding | exempt from destination-domain checks (forbidden domains still deny) |
+| No `turn_context_provenance` | decision as before; info `provenance-untainted-trust` (labels trusted as given) |
 | Personal data to a domain not allowed for personal data | deny (`TP-PII-EGRESS`) |
 | Destination on forbidden list, or tool not allowlisted, or unknown provenance | deny |
 | Side-effecting tool requested by user/system | require_approval (human sees full args) |
@@ -83,19 +105,30 @@ Optional
   `assets/examples/crm-email-injection-fail.txt` → exit 1.
 - `python3 scripts/tool_policy_check.py assets/examples/tool-calls-pass.json --policy assets/examples/tool-policy.json` → exit 0;
   `tool-calls-fail.json` → exit 1; `tool-calls-corpus.json --expect` → exit 0 (17/17 match).
+- `python3 scripts/tool_policy_check.py assets/examples/tool-calls-hardened-corpus.json --policy assets/examples/tool-policy-hardened.json --expect` → exit 0 (10/10 match).
 - PASS for the scanner means no pattern matched; it does **not** mean the content is safe.
-  PASS for the policy means each reported call met the policy given its labels; it cannot detect
-  mislabelled provenance or calls the agent did not report.
+  PASS for the policy means each reported call met the policy given its labels and the reported
+  turn context and thread recipients; it cannot detect a context list or recipient list the
+  orchestrator got wrong, or calls the agent did not report.
 
 ## Examples
-- `assets/examples/injection-corpus.jsonl` — 24 synthetic documents (10 benign, 14 malicious)
+- `assets/examples/injection-corpus.jsonl` — 28 synthetic documents (13 benign, 15 malicious)
   including indirect injection in a CRM email for an AI operations platform (hidden HTML comment,
-  image exfiltration) and in mortgage documents (white-text payslip instruction, valuation
-  addendum with concealment). Current result: 12/14 malicious detected (85.7%); misses are the
-  paraphrased social-engineering and French-language samples (labelled `known_false_negative`);
-  1/10 benign flagged (security-training text quoting an attack); 1 benign sent to review.
+  image exfiltration), in mortgage documents (white-text payslip instruction, valuation
+  addendum with concealment) and a reviewer-crafted paraphrased SMS (`m15`: claimed owner approval
+  plus a request for every client's name, address and phone number). Current result: 14/15
+  malicious detected (93.3%; m13 only at `review`); the miss is the French-language sample
+  (`known_false_negative`); 1/13 benign flagged (security-training text quoting an attack); 2 benign
+  sent to review. Before the `authority-bypass` / `bulk-personal-data-request` rules: 12/15 (80%),
+  same 1/13 false positive. Those rules were written with m13/m15 in view, so their hits are
+  in-sample, not evidence of robustness to new paraphrases.
 - `assets/examples/tool-calls-corpus.json` + `tool-policy.json` — 17 calls: 4 allow,
   6 require_approval, 7 deny, all matching `expected_decision`.
+- `assets/examples/tool-calls-hardened-corpus.json` + `tool-policy-hardened.json` — reviewer cases
+  RV-01..RV-04 plus variants: RV-01/RV-02 (SMS of other clients' details to the crafted sender,
+  labelled user/system) deny by taint and recipient binding; RV-03 (owner's reply to the thread
+  customer) require_approval (was deny); RV-03b (same send proposed in a tainted turn) deny; RV-04
+  (exfil to an unlisted domain, self-declared internal) deny; 1 allow, 3 require_approval, 6 deny.
 
 ## Escalation and stop conditions
 - Stop and escalate if an agent can perform irreversible or financial actions on content from
