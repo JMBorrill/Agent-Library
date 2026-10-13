@@ -9,7 +9,7 @@
 |---|---|---|
 | source-id | An `id` from `sources/pdf-manifest.json` (`sources` or `linked_sources`) or a `framework_aliases` key | `nist-ssdf` |
 | locator | Optional. Requirement/control id, section, paragraph, table or figure. Prefer the most specific stable id. | `PW.7.1`, `para 5.32`, `Table 4.2-1`, `Appendix C` |
-| page | PDF page index (1-based) in the pinned file. Printed page labels differ in most of the NASA and Treasury PDFs; give the printed page inside the locator if a reader needs it. | `p. 23`, `pp. 52-54` |
+| page | PDF page index (1-based) in the pinned file. Printed page labels differ from PDF indices in the NASA SE Handbook, Green Book, SSDF, ASVS and AI RMF (they match in NPR 7150.2D and NASA-STD-8739.8B); give the printed page inside the locator if a reader needs it. | `p. 23`, `pp. 52-54` |
 
 ## Examples
 

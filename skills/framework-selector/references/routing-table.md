@@ -19,7 +19,9 @@
   security properties the application must have and how to verify them* (product). SSDF PW tasks on
   security requirements and testing are naturally satisfied with ASVS as the requirement set.
 - **NPR 7150.2D + NASA-STD-8739.8B:** the NPR sets engineering requirements by software class; the
-  standard sets the assurance and safety tasks that check them. Use both for Class A-C or safety-critical software.
+  standard sets the assurance and safety tasks that check them. The NPR requires software assurance per
+  NASA-STD-8739.8 for Classes A-E [nasa-software-requirements SWE-022, p. 25] (Appendix C, p. 62), so apply
+  both, scaling assurance rigour by class and safety-criticality.
 - **AI RMF + SSDF/ASVS:** an AI system is also software; AI RMF covers socio-technical risk, SSDF/ASVS
   cover the conventional security of the software that hosts the model.
 - **NASA SE + Green Book:** NASA SE structures technical alternatives and trade studies; the Green Book

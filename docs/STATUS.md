@@ -33,6 +33,7 @@ sub-command, `tests/test_<module>.py`, skill(s) with references/templates, subag
 | Native Claude Code plugin evals `plugin-evals/` (10 skill-firing cases) | done; run on demand (costs money) |
 | SessionStart hook `.claude/settings.json` (deps + validation summary) | done |
 | Independent correctness review: 12 reproduced defects (trade-study mandatory screening, NPR matrix %, trace root inference, BOM handling, validator/grader false negatives, router, installer lock) all fixed with regression tests | done |
+| Independent content-accuracy audit: 52 skill claims checked against the PDFs; 49 correct, 2 corrected (8739.8B applies to Classes A-E; printed-page note), 1 auditor finding rejected after re-checking the PDF (software TRL text is on p. 265) | done |
 | CI green on PR #1 (Python 3.10 + 3.13, catalog reproduction, install smoke test) | done |
 
 ## Framework builds

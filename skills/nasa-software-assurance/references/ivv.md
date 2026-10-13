@@ -8,6 +8,8 @@ Pages: NASA-STD-8739.8B section 4.4 (pp. 48-56) unless marked NPR.
   program manager ensures software IV&V for (a) Category 1 projects per NPR 7120.5, (b) Category 2
   projects with Class A or Class B payload risk classification per NPR 8705.4, (c) projects selected by
   the Mission Directorate Associate Administrator.
+  Note: the NPR body (p. 25) names the MDAA as selecting projects for IV&V, while the Appendix C row
+  (p. 62) lists the NASA Chief, Safety and Mission Assurance as authority; confirm the current process with OSMA.
 - The NASA Chief, SMA makes the final decision on tailoring of SWE-141 (SWE-223, NPR p. 12).
 - If IV&V is required: an IPEP is developed, approved, maintained and executed with NASA IV&V (SWE-131,
   NPR p. 25); IV&V gets access to artefacts, source code and data (SWE-178, NPR p. 25); the project
