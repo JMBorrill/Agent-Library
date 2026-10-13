@@ -122,6 +122,15 @@ To run a workflow as a tracked review folder: `python -m agentlib workflow init 
 fill the artefact stubs, check progress with `workflow status reviews/x`, and record each gate decision with
 `workflow gate reviews/x <stage> --result pass --by "<decision-maker>"`.
 
+## A completed review (fictional)
+
+[`sample-review/`](sample-review/) is a finished `secure-software-delivery` review of a fictional payments API,
+produced with the workflow runner and the real tools: ASVS plan and verification report, SSDF assessment and
+pipeline map, evidence audit, an assurance case (deliberately *incomplete*: one undeveloped claim) and the
+board decision record. Start at [`sample-review/PLAN.md`](sample-review/PLAN.md) and
+[`sample-review/release-recommendation.md`](sample-review/release-recommendation.md). Regenerate with
+`python examples/build_sample_review.py`; `tests/test_sample_review.py` keeps it complete and valid.
+
 ## Claude Agent SDK
 
 [`agent_sdk_review.py`](agent_sdk_review.py) loads this library as a local plugin and runs a skill or

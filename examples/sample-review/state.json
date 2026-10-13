@@ -1,0 +1,232 @@
+{
+  "workflow": {
+    "id": "secure-software-delivery",
+    "title": "Secure software delivery review (SSDF + ASVS)",
+    "version": "1.0.0",
+    "description": "Combines a NIST SSDF process gap assessment of how software is built with an OWASP ASVS verification of the application itself, then audits the evidence and produces a release-readiness recommendation.",
+    "sources": [
+      "nist-ssdf",
+      "owasp-asvs"
+    ],
+    "inputs": [
+      {
+        "name": "system-description",
+        "description": "Application purpose, architecture, data sensitivity, exposure and users.",
+        "required": true
+      },
+      {
+        "name": "pipeline-description",
+        "description": "YAML description of the CI/CD pipeline and development controls.",
+        "required": true
+      },
+      {
+        "name": "codebase",
+        "description": "Repository path or URL and commit under review.",
+        "required": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "release-recommendation",
+        "description": "Board decision record for release readiness.",
+        "template": "templates/review-board-decision.md"
+      }
+    ],
+    "stages": [
+      {
+        "id": "scope",
+        "title": "Security scope and ASVS level selection",
+        "agent": "application-security-verifier",
+        "skills": [
+          "owasp-asvs"
+        ],
+        "consumes": [
+          "system-description"
+        ],
+        "produces": [
+          "asvs-verification-plan"
+        ],
+        "tools": [
+          "python -m agentlib asvs checklist --level <n>"
+        ],
+        "gate": {
+          "criteria": [
+            "ASVS level chosen with documented rationale (data sensitivity, exposure, consequences).",
+            "In-scope chapters and exclusions are justified."
+          ],
+          "decision": "human"
+        }
+      },
+      {
+        "id": "process",
+        "title": "SSDF process gap assessment",
+        "agent": "secure-development-reviewer",
+        "skills": [
+          "nist-ssdf"
+        ],
+        "depends_on": [
+          "scope"
+        ],
+        "consumes": [
+          "pipeline-description",
+          "codebase"
+        ],
+        "produces": [
+          "ssdf-assessment",
+          "ssdf-pipeline-map"
+        ],
+        "tools": [
+          "python -m agentlib ssdf map-pipeline <file>",
+          "python -m agentlib ssdf check-assessment <file>"
+        ],
+        "gate": {
+          "criteria": [
+            "Every SSDF task has a status; implemented tasks cite evidence."
+          ],
+          "decision": "automated",
+          "check": "python -m agentlib ssdf check-assessment <ssdf-assessment>"
+        }
+      },
+      {
+        "id": "verify",
+        "title": "ASVS verification",
+        "agent": "application-security-verifier",
+        "skills": [
+          "owasp-asvs"
+        ],
+        "depends_on": [
+          "process"
+        ],
+        "consumes": [
+          "asvs-verification-plan",
+          "codebase"
+        ],
+        "produces": [
+          "asvs-assessment",
+          "asvs-verification-report"
+        ],
+        "tools": [
+          "python -m agentlib asvs check-assessment <file> --level <n>"
+        ],
+        "gate": {
+          "criteria": [
+            "Every in-scope requirement has a result; failures reference findings."
+          ],
+          "decision": "automated",
+          "check": "python -m agentlib asvs check-assessment <asvs-assessment> --level <n>"
+        }
+      },
+      {
+        "id": "evidence-audit",
+        "title": "Independent evidence audit",
+        "agent": "evidence-auditor",
+        "skills": [
+          "evidence-and-citation"
+        ],
+        "depends_on": [
+          "verify"
+        ],
+        "consumes": [
+          "ssdf-assessment",
+          "asvs-verification-report"
+        ],
+        "produces": [
+          "evidence-audit-report"
+        ],
+        "gate": {
+          "criteria": [
+            "No checker errors; spot-checks recorded."
+          ],
+          "decision": "agent-review"
+        }
+      },
+      {
+        "id": "decision",
+        "title": "Release-readiness recommendation",
+        "agent": "review-board-chair",
+        "skills": [
+          "nist-ssdf",
+          "owasp-asvs",
+          "evidence-and-citation"
+        ],
+        "depends_on": [
+          "evidence-audit"
+        ],
+        "consumes": [
+          "ssdf-assessment",
+          "asvs-verification-report",
+          "evidence-audit-report"
+        ],
+        "produces": [
+          "release-recommendation"
+        ],
+        "gate": {
+          "criteria": [
+            "Open high-severity findings have owners and either fixes or explicit risk acceptance by the accountable authority."
+          ],
+          "decision": "human"
+        }
+      }
+    ]
+  },
+  "created": "2026-10-13",
+  "inputs": {
+    "system-description": "system.md",
+    "pipeline-description": "data/pipeline.yaml",
+    "codebase": "acme-checkout@a1b2c3d"
+  },
+  "missing_required_inputs": [],
+  "gates": {
+    "scope": {
+      "result": "pass",
+      "by": "Head of Security Assurance (fictional)",
+      "note": "illustrative sample",
+      "decision_type": "human",
+      "date": "2026-10-13T00:00:00+00:00",
+      "criteria": [
+        "ASVS level chosen with documented rationale (data sensitivity, exposure, consequences).",
+        "In-scope chapters and exclusions are justified."
+      ]
+    },
+    "process": {
+      "result": "pass",
+      "by": "automated check",
+      "note": "illustrative sample",
+      "decision_type": "automated",
+      "date": "2026-10-13T00:00:00+00:00",
+      "criteria": [
+        "Every SSDF task has a status; implemented tasks cite evidence."
+      ]
+    },
+    "verify": {
+      "result": "pass",
+      "by": "automated check",
+      "note": "illustrative sample",
+      "decision_type": "automated",
+      "date": "2026-10-13T00:00:00+00:00",
+      "criteria": [
+        "Every in-scope requirement has a result; failures reference findings."
+      ]
+    },
+    "evidence-audit": {
+      "result": "pass",
+      "by": "evidence-auditor",
+      "note": "illustrative sample",
+      "decision_type": "agent-review",
+      "date": "2026-10-13T00:00:00+00:00",
+      "criteria": [
+        "No checker errors; spot-checks recorded."
+      ]
+    },
+    "decision": {
+      "result": "pass",
+      "by": "Head of Security Assurance (fictional)",
+      "note": "illustrative sample",
+      "decision_type": "human",
+      "date": "2026-10-13T00:00:00+00:00",
+      "criteria": [
+        "Open high-severity findings have owners and either fixes or explicit risk acceptance by the accountable authority."
+      ]
+    }
+  }
+}
