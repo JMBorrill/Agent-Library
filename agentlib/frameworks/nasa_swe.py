@@ -527,7 +527,7 @@ def load_matrix(path: Path) -> tuple[str | None, list[dict]]:
         raise NasaSweError(f"file not found: {path}")
     ext = path.suffix.lower().lstrip(".")
     fmt = {"markdown": "md", "yml": "yaml"}.get(ext, ext)
-    return parse_matrix_text(path.read_text(encoding="utf-8"), fmt)
+    return parse_matrix_text(path.read_text(encoding="utf-8-sig"), fmt)
 
 
 def normalise_status(raw: str) -> str | None:
@@ -559,6 +559,7 @@ def check_matrix(rows: list[dict], cls: str | None) -> dict:
     statuses: dict[str, int] = {s: 0 for s in STATUSES}
     with_evidence = 0
     valid_rows = 0
+    compliant_applicable = 0
     for n, row in enumerate(rows, 1):
         raw_id = row.get("swe_id", "")
         try:
@@ -570,8 +571,10 @@ def check_matrix(rows: list[dict], cls: str | None) -> dict:
             add("error", sid, f"unknown requirement id {sid}: not in NPR 7150.2D")
             continue
         seen[sid] = seen.get(sid, 0) + 1
-        if seen[sid] == 2:
-            add("error", sid, f"{sid} appears more than once")
+        if seen[sid] >= 2:
+            if seen[sid] == 2:
+                add("error", sid, f"{sid} appears more than once")
+            continue
         item = index[sid]
         if item.get("applicability") is None:
             add("warning", sid, f"{sid} is a Chapter 2 institutional requirement; Chapter 2 requirements are not part "
@@ -590,6 +593,8 @@ def check_matrix(rows: list[dict], cls: str | None) -> dict:
             add("error", sid, f"{sid}: invalid status '{row.get('status')}' (allowed: {', '.join(STATUSES)})")
             continue
         statuses[st] += 1
+        if st == "Compliant" and cls and is_applicable(item, cls):
+            compliant_applicable += 1
         if evidence:
             with_evidence += 1
         if st in NEEDS_EVIDENCE and not evidence:
@@ -624,7 +629,7 @@ def check_matrix(rows: list[dict], cls: str | None) -> dict:
         "status_counts": statuses,
         "rows_with_evidence": with_evidence,
         "evidence_coverage_pct": round(100 * with_evidence / addressed, 1) if addressed else 0.0,
-        "compliant_pct_of_applicable": (round(100 * statuses["Compliant"] / applicable_n, 1) if applicable_n else None),
+        "compliant_pct_of_applicable": (round(100 * compliant_applicable / applicable_n, 1) if applicable_n else None),
         "errors": sum(f["level"] == "error" for f in findings),
         "warnings": sum(f["level"] == "warning" for f in findings),
         "infos": sum(f["level"] == "info" for f in findings),
@@ -899,7 +904,7 @@ def _load_answers(path: str) -> dict:
     p = Path(path)
     if not p.is_file():
         raise NasaSweError(f"answers file not found: {path}")
-    data = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    data = yaml.safe_load(p.read_text(encoding="utf-8-sig")) or {}
     if not isinstance(data, dict):
         raise NasaSweError("answers file must be a mapping of question id -> yes/no")
     if "answers" in data and isinstance(data["answers"], dict):

@@ -122,8 +122,10 @@ def exists(raw: str) -> bool:
         return False
 
 
-def normalize_scope(tokens: list[str] | None) -> list[str]:
+def normalize_scope(tokens: list[str] | str | None) -> list[str]:
     """Normalise chapter/section filters: ``V1``, ``1``, ``v6.2``, ``6.2`` -> ``V1``, ``V6.2``."""
+    if isinstance(tokens, (str, int)):  # scalar such as YAML ``scope: V6``
+        tokens = [str(tokens)]
     out = []
     for tok in tokens or []:
         for part in re.split(r"[,\s]+", str(tok).strip()):
@@ -284,7 +286,12 @@ def check_assessment(data: object, level: int | None = None, scope: list[str] | 
         raise AsvsError("target level not given (use --level or a 'level' key)") from None
     if scope is None:
         raw_scope = meta.get("chapters", meta.get("scope"))
-        scope = raw_scope if isinstance(raw_scope, list) else []
+        if isinstance(raw_scope, (str, int)) and not isinstance(raw_scope, bool):
+            # scalar such as ``scope: V6`` (or ``V6, V7``); "all chapters" written by the checklist means no filter
+            text = str(raw_scope).strip()
+            scope = [] if not text or text.lower() in ("all", "all chapters") else [text]
+        else:
+            scope = raw_scope if isinstance(raw_scope, list) else []
     scope = normalize_scope(scope)
     in_scope = {r["id"]: r for r in select(level, scope)}
 

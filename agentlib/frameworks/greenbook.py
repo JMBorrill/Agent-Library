@@ -208,6 +208,14 @@ def _year(value, base_year: int | None, calendar: bool, where: str) -> int:
     return y
 
 
+def _int_year(value, where: str) -> int:
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        raise GreenBookError(f"{where}: year must be an integer (e.g. 2027, not a financial year like "
+                             f"'2027/28'), got {value!r}") from None
+
+
 def _norm_kind(v, where):
     k = KIND_ALIASES.get(str(v).strip().lower())
     if not k:
@@ -296,12 +304,20 @@ def load_flows(path: str | Path, base_year: int | None = None) -> Appraisal:
         base_year = base_year if base_year is not None else data.get("base_year")
         meta = {k: data[k] for k in ("base_year", "price_year", "title", "units") if k in data}
         for oi, opt in enumerate(data["options"]):
+            if not isinstance(opt, dict):
+                raise GreenBookError(f"{p.name}: option {oi} must be a mapping with 'name' and 'flows', "
+                                     f"got {opt!r}")
             name = str(opt.get("name") or "").strip()
             if not name:
                 raise GreenBookError(f"{p.name}: option {oi} has no name")
             order.append(name)
-            for fi, fl in enumerate(opt.get("flows") or []):
+            opt_flows = opt.get("flows") or []
+            if not isinstance(opt_flows, list):
+                raise GreenBookError(f"{p.name}: option '{name}': 'flows' must be a list")
+            for fi, fl in enumerate(opt_flows):
                 where = f"{p.name}: option '{name}' flow {fi}"
+                if not isinstance(fl, dict):
+                    raise GreenBookError(f"{where}: flow must be a mapping (item, type, values), got {fl!r}")
                 kind = _norm_kind(fl.get("type"), where)
                 vals = fl.get("values")
                 calendar = bool(fl.get("calendar_years", False))
@@ -669,11 +685,14 @@ def read_table(path: str | Path) -> list[dict]:
     if p.suffix.lower() == ".csv":
         return [{k.strip(): (v or "").strip() for k, v in r.items() if k} for r in csv.DictReader(io.StringIO(text))]
     if p.suffix.lower() in (".yaml", ".yml", ".json"):
-        data = json.loads(text) if p.suffix.lower() == ".json" else yaml.safe_load(text)
+        try:
+            data = json.loads(text) if p.suffix.lower() == ".json" else yaml.safe_load(text)
+        except (json.JSONDecodeError, yaml.YAMLError) as exc:
+            raise GreenBookError(f"{p.name}: cannot parse: {exc}") from None
         if isinstance(data, dict):
             data = data.get("rows") or data.get("deflators") or data.get("data")
-        if not isinstance(data, list):
-            raise GreenBookError(f"{p.name}: expected a list of rows")
+        if not isinstance(data, list) or not all(isinstance(r, dict) for r in data):
+            raise GreenBookError(f"{p.name}: expected a list of rows (mappings)")
         return [dict(r) for r in data]
     raise GreenBookError(f"{p.name}: unsupported file type")
 
@@ -690,7 +709,7 @@ def deflator_index(rows: list[dict]) -> dict[int, float]:
     growth_col = cols.get("growth_pct") or cols.get("inflation_pct")
     if not level_col and not growth_col:
         raise GreenBookError("deflator series needs an 'index'/'deflator' level column or a 'growth_pct' column")
-    parsed = sorted(((int(str(r[cols["year"]]).strip()), r) for r in rows), key=lambda t: t[0])
+    parsed = sorted(((_int_year(r.get(cols["year"]), "deflator series"), r) for r in rows), key=lambda t: t[0])
     years = [y for y, _ in parsed]
     if len(set(years)) != len(years):
         raise GreenBookError("duplicate years in deflator series")
@@ -722,7 +741,7 @@ def nominal_to_real(rows: list[dict], deflators: dict[int, float], price_year: i
         raise GreenBookError("no rows to convert")
     if year_col not in rows[0]:
         raise GreenBookError(f"input has no '{year_col}' column (use --year-col)")
-    years = [int(str(r[year_col]).strip()) for r in rows]
+    years = [_int_year(r.get(year_col), f"row {n}") for n, r in enumerate(rows, start=1)]
     price_year = min(years) if price_year is None else price_year
     if price_year not in deflators:
         raise GreenBookError(f"no deflator for price year {price_year}")
@@ -1197,7 +1216,7 @@ def _cmd_check(a) -> int:
     p = Path(a.file)
     if not p.is_file():
         raise GreenBookError(f"file not found: {p}")
-    rep = check_case_text(p.read_text(encoding="utf-8"))
+    rep = check_case_text(p.read_text(encoding="utf-8-sig"))
     _emit(json.dumps(rep, indent=2) + "\n" if a.format == "json" else check_case_markdown(rep), a.out)
     return 1 if (a.strict and rep["summary"]["failed"]) else 0
 

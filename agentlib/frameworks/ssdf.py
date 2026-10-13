@@ -298,7 +298,7 @@ def load_assessment(path: str | Path) -> tuple[dict, list[dict]]:
     p = Path(path)
     if not p.is_file():
         raise SSDFError(f"assessment file not found: {p}")
-    text = p.read_text(encoding="utf-8")
+    text = p.read_text(encoding="utf-8-sig")
     suffix = p.suffix.lower()
     meta: dict = {}
     if suffix in (".yaml", ".yml", ".json"):
@@ -762,7 +762,7 @@ def load_pipeline(path: str | Path) -> dict:
     if not p.is_file():
         raise SSDFError(f"pipeline file not found: {p}")
     try:
-        data = yaml.safe_load(p.read_text(encoding="utf-8"))
+        data = yaml.safe_load(p.read_text(encoding="utf-8-sig"))
     except yaml.YAMLError as exc:
         raise SSDFError(f"cannot parse {p.name}: {exc}") from exc
     if not isinstance(data, dict):

@@ -603,6 +603,35 @@ class TraceFinding:
     message: str
 
 
+# Conventional NASA hierarchy names, highest first; used only to break ties when links cannot.
+_LEVEL_RANK = {"program": 0, "mission": 0, "project": 1, "system": 2, "segment": 3, "element": 4,
+               "subsystem": 5, "sub": 5, "sub-system": 5, "assembly": 6, "component": 7, "subassembly": 7,
+               "sub-assembly": 7, "unit": 7, "part": 8}
+
+
+def _infer_top_levels(by_id: dict[str, Requirement], children: dict[str, list[str]]) -> set[str]:
+    """Infer the top level(s) without depending on row order.
+
+    A level is a candidate when none of its requirements traces to a parent defined in the set. If several
+    candidates remain, prefer those whose requirements have children; then, if all remaining names are
+    conventional hierarchy names, the highest of them."""
+    linked: dict[str, bool] = {}
+    has_children: dict[str, bool] = {}
+    for rid, r in by_id.items():
+        if not r.level:
+            continue
+        lv = r.level.lower()
+        linked[lv] = linked.get(lv, False) or any(p in by_id and p != rid for p in r.parents)
+        has_children[lv] = has_children.get(lv, False) or bool(children.get(rid))
+    cands = {lv for lv, has_parent in linked.items() if not has_parent}
+    if len(cands) > 1 and any(has_children[lv] for lv in cands):
+        cands = {lv for lv in cands if has_children[lv]}
+    if len(cands) > 1 and all(lv in _LEVEL_RANK for lv in cands):
+        best = min(_LEVEL_RANK[lv] for lv in cands)
+        cands = {lv for lv in cands if _LEVEL_RANK[lv] == best}
+    return cands
+
+
 def trace(reqs: list[Requirement], top_levels: list[str] | None = None, external_prefixes: list[str] | None = None,
           require_verification: bool = True) -> dict:
     external_prefixes = [p for p in (external_prefixes or []) if p]
@@ -620,10 +649,8 @@ def trace(reqs: list[Requirement], top_levels: list[str] | None = None, external
     levels = [r.level for r in reqs if r.level]
     if top_levels:
         tops = {t.lower() for t in top_levels}
-    elif levels:
-        tops = {levels[0].lower()}
     else:
-        tops = set()
+        tops = None  # inferred below, once parent/child links are known
     inferred_children: dict[str, list[str]] = {rid: [] for rid in by_id}
     self_derived, external_links, dangling = [], 0, 0
     for rid, r in by_id.items():
@@ -657,6 +684,8 @@ def trace(reqs: list[Requirement], top_levels: list[str] | None = None, external
                                                  f"'{c}' traces to '{rid}' but '{rid}' does not list it as a child."))
     all_children = {rid: sorted(set(inferred_children[rid]) | {c for c in by_id[rid].children if c in by_id})
                     for rid in by_id}
+    if tops is None:
+        tops = _infer_top_levels(by_id, all_children)
     roots, orphans = [], []
     for rid, r in by_id.items():
         is_top = (r.level.lower() in tops) if tops else False
@@ -910,11 +939,19 @@ def _trade_from_rows(rows: list[list[str]]) -> dict:
         if label.lower() in ("weight", "weights"):
             weights = vals
         elif label.lower() in ("mandatory", "must"):
+            if len(vals) < len(crit_names):
+                raise InputError(f"'{label}' row must have a yes/no cell for every criterion "
+                                 f"({len(crit_names)} expected, {len(vals)} given)")
             mandatory = {c: v.lower() in ("yes", "y", "true", "1", "mandatory") for c, v in zip(crit_names, vals)}
         else:
             alts.append({"name": label, "scores": dict(zip(crit_names, vals))})
     if weights is None:
         raise InputError("CSV needs a row labelled 'weight'")
+    missing_w = [c for i, c in enumerate(crit_names)
+                 if (i >= len(weights) or weights[i] == "") and not mandatory.get(c, False)]
+    if missing_w:
+        raise InputError(f"'weight' row has no weight for criterion: {', '.join(missing_w)}")
+    weights = weights + [""] * (len(crit_names) - len(weights))
     criteria = [{"name": c, "weight": w, "mandatory": mandatory.get(c, False)} for c, w in zip(crit_names, weights)]
     return {"criteria": criteria, "alternatives": alts}
 
@@ -1311,11 +1348,12 @@ def _cmd_lint(args) -> int:
         return 2
     findings = lint_requirements(reqs, not args.no_rationale, not args.no_verification)
     floor = SEVERITY_RANK[args.min_severity]
-    findings = [f for f in findings if SEVERITY_RANK[f.severity] >= floor]
-    summary = summarise(findings, len(reqs))
-    _emit(render_findings(findings, summary, args.format), args.output)
+    shown = [f for f in findings if SEVERITY_RANK[f.severity] >= floor]
+    summary = summarise(shown, len(reqs))
+    _emit(render_findings(shown, summary, args.format), args.output)
     if args.fail_on == "never":
         return 0
+    # --min-severity only filters what is displayed; the exit status reflects every finding.
     threshold = SEVERITY_RANK[args.fail_on]
     return 1 if any(SEVERITY_RANK[f.severity] >= threshold for f in findings) else 0
 

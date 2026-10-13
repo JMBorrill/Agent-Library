@@ -315,7 +315,7 @@ def load_rows(path: Path, list_key: str) -> tuple[list[dict], dict]:
     path = Path(path)
     if not path.is_file():
         raise AIRMFError(f"file not found: {path}")
-    text = path.read_text(encoding="utf-8")
+    text = path.read_text(encoding="utf-8-sig")
     suffix = path.suffix.lower()
     if suffix in (".yaml", ".yml", ".json"):
         try:
@@ -439,6 +439,8 @@ def check_profile(rows: list[dict], functions: Iterable[str] | None = None) -> d
     Returns a report dict with ``errors``, ``warnings``, ``gaps`` and ``summary``."""
     errors: list[str] = []
     warnings: list[str] = []
+    if isinstance(functions, str):  # scalar (e.g. YAML ``functions: MAP`` or "MAP, MEASURE")
+        functions = [f for f in re.split(r"[,\s]+", functions) if f]
     scope = [normalise_function(f) for f in functions] if functions else list(FUNCTIONS)
     expected = [s["id"] for s in subcategories(scope)]
     seen: dict[str, dict] = {}
@@ -927,7 +929,7 @@ def _dispatch(args) -> int:
         p = Path(args.file)
         if not p.is_file():
             raise AIRMFError(f"file not found: {p}")
-        rep = scan_text(p.read_text(encoding="utf-8"))
+        rep = scan_text(p.read_text(encoding="utf-8-sig"))
         if args.json:
             print(json.dumps(rep, indent=2))
         else:

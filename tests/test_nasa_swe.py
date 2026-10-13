@@ -232,7 +232,7 @@ def test_check_matrix_complete_and_errors():
     rep = ns.check_matrix(rows, "E")
     assert rep["summary"]["errors"] == 0
     assert rep["summary"]["compliant_pct_of_applicable"] == 100.0
-    bad = rows[1:] + [
+    bad = rows[1:-1] + [  # drop SWE-033 (missing) and SWE-156 (re-added below as Tailored)
         {"swe_id": "SWE-999", "status": "Compliant", "evidence": "x"},
         {"swe_id": rows[1]["swe_id"], "status": "Compliant", "evidence": "x"},
         {"swe_id": "SWE-134", "status": "Done", "evidence": ""},
