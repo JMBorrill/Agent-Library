@@ -71,9 +71,22 @@ def catalog_index(root: Path) -> dict[str, dict[str, int]]:
         data = json.loads(path.read_text(encoding="utf-8"))
         bucket = index.setdefault(data["source_id"], {})
         for entry in data.get("groups", []) + data.get("items", []):
+            if entry.get("status") == "retired":
+                continue  # retired ids (e.g. SSDF PW.3.1) must not be cited as current
             cit = entry.get("citation") or {}
             bucket.setdefault(str(entry["id"]), cit.get("pdf_page", 0))
     return index
+
+
+def retired_ids(root: Path) -> dict[str, str]:
+    """id -> replacement note for catalog entries marked ``status: retired``."""
+    out: dict[str, str] = {}
+    for path in sorted((root / "catalog").glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for entry in data.get("groups", []) + data.get("items", []):
+            if entry.get("status") == "retired":
+                out[str(entry["id"])] = str(entry.get("moved_to", "see change log"))
+    return out
 
 
 def _normalise_id(raw: str) -> list[str]:
@@ -104,6 +117,7 @@ def check_document(text: str, root: Path | None = None, require_citations: bool 
     known = set(pages) | {s["id"] for s in manifest.get("linked_sources", [])}
     aliases = manifest.get("framework_aliases", {})
     index = catalog_index(root)
+    retired = retired_ids(root)
     findings: list[Finding] = []
     lines = text.splitlines()
     n_citations = 0
@@ -138,7 +152,9 @@ def check_document(text: str, root: Path | None = None, require_citations: bool 
                 buckets = [index[s] for s in sources if s in index]
                 if not buckets:
                     continue  # catalog not available: cannot judge
-                if not any(_id_exists(ident, b) for b in buckets):
+                if ident in retired:
+                    findings.append(Finding("error", lineno, f"{family} identifier '{ident}' is retired (moved to {retired[ident]})"))
+                elif not any(_id_exists(ident, b) for b in buckets):
                     findings.append(Finding("error", lineno, f"{family} identifier '{ident}' does not exist in the catalog"))
         for pat in OVERCLAIM_PATTERNS:
             for m in re.finditer(pat, line, re.I):

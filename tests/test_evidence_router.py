@@ -106,3 +106,11 @@ def test_asvs_identifier_forms(root):
     assert evidence.check_document("Covers V6.2.1 and v5.0.0-6.2.1.", root) == []
     msgs = [f.message for f in evidence.check_document("Covers V6.99.1 and v5.0.0-6.99.2.", root)]
     assert any("V6.99.1" in m for m in msgs) and any("6.99.2" in m for m in msgs)
+
+
+def test_retired_ssdf_id_flagged(root):
+    if not (root / "catalog" / "nist-ssdf.json").is_file():
+        pytest.skip("SSDF catalog not present")
+    msgs = [f.message for f in evidence.check_document("We do PW.3.1 and PW.4.4.", root)]
+    assert any("retired" in m and "PW.3.1" in m for m in msgs)
+    assert not any("PW.4.4" in m for m in msgs)
