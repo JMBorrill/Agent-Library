@@ -24,7 +24,7 @@ Actions: <what we are doing>. Next update: <time>.`
   relied on a manual reindex step with no check that it ran".
 - Look for: missing guardrails, misleading signals, unclear ownership, time pressure, defaults.
 - Phrases the checker flags (heuristic): "human/operator error", "should have known", "careless",
-  "negligent", "at fault", "<Name> forgot/neglected/ignored/failed to".
+  "negligent", "at fault", *<Name> forgot/neglected/ignored/failed to*.
 
 ## Good action items
 - Change the system: automated checks, safer defaults, alerts on the leading signal, runbooks.

@@ -38,7 +38,7 @@ This is a coarse, explainable rating for prioritisation, not a quantitative risk
 - ASVS v4 and v5 IDs differ throughout; never carry a v4 ID forward without re-mapping.
 
 ## Common review challenges
-- "Which flow carries the session token, and where is it validated?"
-- "What happens to tenant context when this job is retried?"
-- "What does the AI provider keep, for how long, and who agreed to it?"
-- "Who owns this accepted risk, and when is it revisited?"
+- *Which flow carries the session token, and where is it validated?*
+- *What happens to tenant context when this job is retried?*
+- *What does the AI provider keep, for how long, and who agreed to it?*
+- *Who owns this accepted risk, and when is it revisited?*

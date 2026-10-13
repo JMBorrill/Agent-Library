@@ -49,5 +49,12 @@ class ClaimCheckTests(unittest.TestCase):
         self.assertEqual(run_cli(SKILL, "claim_check", "no-such-dir").returncode, 2)
 
 
+class ClaimCheckFalsePositiveTests(unittest.TestCase):
+    def test_domain_terms_not_flagged(self):
+        self.assertEqual(rules(mod.scan_text("Escalate to a qualified human reviewer.")), set())
+        self.assertEqual(rules(mod.scan_text("Use the risk-free rate from a cited curve.")), set())
+        self.assertIn("assurance-claim", rules(mod.scan_text("The rig is now qualified.")))
+
+
 if __name__ == "__main__":
     unittest.main()

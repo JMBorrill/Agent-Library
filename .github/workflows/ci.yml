@@ -1,0 +1,24 @@
+name: library-quality-gates
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install optional test dependencies (pinned)
+        run: pip install -r requirements-dev.txt
+      - name: Run all quality gates
+        run: python scripts/run_all_checks.py
+      - name: Source freshness (informational)
+        continue-on-error: true
+        run: python scripts/source_freshness.py

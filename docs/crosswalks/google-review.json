@@ -1,0 +1,148 @@
+{
+  "source_id": "google-review",
+  "status": "ACTIVE",
+  "notes": "Google eng-practices (CC BY 3.0) read from google/eng-practices master on 2026-10-13; paraphrased with attribution in the skill. Scanner rules other than size heuristics are library additions.",
+  "rows": [
+    {
+      "source_element": "The Standard of Code Review",
+      "source_pointer": "review/reviewer/standard.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "code-review.md",
+        "review-report.json"
+      ],
+      "tests": [
+        "tests/test_software_code_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "What to look for (12 aspects)",
+      "source_pointer": "review/reviewer/looking-for.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "review-report.json"
+      ],
+      "tests": [
+        "tests/test_software_code_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Navigating a CL in review",
+      "source_pointer": "review/reviewer/navigate.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "code-review.md"
+      ],
+      "tests": [
+        "tests/test_software_code_review.py"
+      ],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Label comment severity (Nit / Optional / FYI)",
+      "source_pointer": "review/reviewer/comments.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "review-report.json"
+      ],
+      "tests": [
+        "tests/test_software_code_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Speed of Code Reviews",
+      "source_pointer": "review/reviewer/speed.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "code-review.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Small CLs / What is Small?",
+      "source_pointer": "review/developer/small-cls.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "diff-scan.json"
+      ],
+      "tests": [
+        "tests/test_software_code_review.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Handling pushback / Resolving Conflicts",
+      "source_pointer": "review/reviewer/pushback.md; review/reviewer/standard.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "code-review.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Emergencies",
+      "source_pointer": "review/emergencies.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-code-review"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "code-review.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    }
+  ]
+}

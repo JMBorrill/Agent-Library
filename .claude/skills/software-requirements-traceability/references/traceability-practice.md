@@ -5,7 +5,7 @@ be read in this environment, so nothing here is attributed to it; treat any rese
 requirements as *(unverified)* general practice.
 
 ## Why bidirectional trace
-- **Forward** (requirement → code → test): shows nothing approved was forgotten.
+- **Forward** (requirement → code → test): shows no baselined requirement was forgotten.
 - **Backward** (test/code → requirement): shows nothing is built or tested that no longer has a
   reason to exist (gold-plating, stale tests after a requirement was retired).
 

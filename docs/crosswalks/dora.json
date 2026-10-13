@@ -1,0 +1,166 @@
+{
+  "source_id": "dora",
+  "status": "ACTIVE",
+  "notes": "DORA metrics guide (updated 2026-01-05) read from dora-team/dora.dev main; CC BY 4.0. Operational formulas are library choices (DORA does not prescribe them). Capability catalog not mapped.",
+  "rows": [
+    {
+      "source_element": "Change lead time",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Throughput and instability",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Deployment frequency",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Throughput and instability",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Failed deployment recovery time",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Throughput and instability",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Change fail rate",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Throughput and instability",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Deployment rework rate",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Throughput and instability",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Common pitfalls (7)",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Common pitfalls",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Key insights (per application/service; context matters)",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Key insights",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "dora-metrics.json"
+      ],
+      "tests": [
+        "tests/test_software_delivery_metrics.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Next steps improvement loop",
+      "source_pointer": "hugo/content/guides/dora-metrics/_index.md \u00a7 Next steps",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "delivery-metrics-baseline.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Metric history (MTTR renamed 2023; rework rate 2024)",
+      "source_pointer": "hugo/content/insights/dora-metrics-history/index.md",
+      "source_verification": "verified",
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "delivery-metrics-baseline.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    }
+  ]
+}

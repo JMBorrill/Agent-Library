@@ -1,6 +1,6 @@
 ---
 name: software-requirements-traceability
-description: Build and check a requirement-to-code-to-test traceability matrix by scanning source and test files for requirement IDs (comments, docstrings, test names, @req markers) and attaching JUnit results per requirement. Use when proving every approved software requirement has a test, finding tests that cite unknown or retired requirement IDs, preparing verification evidence for a review or release, or auditing trace links after a change.
+description: Build and check a requirement-to-code-to-test traceability matrix by scanning source and test files for requirement IDs (comments, docstrings, test names, @req markers) and attaching JUnit results per requirement. Use when proving every baselined software requirement (status `approved` in the register) has a test, finding tests that cite unknown or retired requirement IDs, preparing verification evidence for a review or release, or auditing trace links after a change.
 metadata:
   pack: software
   version: "1.0.0"
@@ -10,7 +10,7 @@ metadata:
 # Software requirements traceability (requirement → code → test)
 
 ## Purpose
-Show, for every approved software requirement, where it is implemented and which tests verify it,
+Show, for every software requirement with status `approved`, where it is implemented and which tests verify it,
 with the latest test result — and surface the gaps: approved requirements with no test, tests that
 cite IDs that do not exist or are retired, code tagged but untested, and failing tests. The
 matrix is evidence for a verification review, not a substitute for one.
@@ -72,7 +72,7 @@ Optional
 - `traceability-review.md` — sample-check record, accepted warnings with justification.
 
 ## Validation
-- `python3 scripts/trace_scan.py ... --json` → exit 0 = every approved code-level requirement has
+- `python3 scripts/trace_scan.py ... --json` → exit 0 = every code-level requirement with status `approved` has
   at least one linked test, no test cites unknown/retired IDs and no linked test failed.
   `--strict` also blocks on warnings. Exit 2 = unreadable input or missing directory.
 - PASS does **not** mean the requirements are verified: tags can be wrong, tests can be weak, and
@@ -81,7 +81,7 @@ Optional
   source code are ignored by design.
 
 ## Examples
-- `assets/examples/project-pass/` — booking/reminder service, three approved requirements, all
+- `assets/examples/project-pass/` — booking/reminder service, three requirements with status `approved`, all
   linked and passing → exit 0:
   `python3 scripts/trace_scan.py assets/examples/project-pass/requirements.csv --src assets/examples/project-pass/src --tests assets/examples/project-pass/tests --junit assets/examples/project-pass/results-junit.xml`
 - `assets/examples/project-fail/` — same project with the reminder test missing → exit 1 with one

@@ -1,0 +1,97 @@
+{
+  "source_id": "nist-ssdf",
+  "status": "ACTIVE",
+  "notes": "SP 800-218 v1.1 via official OSCAL catalog (PARTIALLY_VERIFIED: PDF narrative not read). Practices file bundled in security-secure-development. Dependency pinning check is a library control mapped by judgement to PW.4 and PS practices.",
+  "rows": [
+    {
+      "source_element": "PO Prepare the Organization (PO.1-PO.5)",
+      "source_pointer": "usnistgov/oscal-content nist.gov/SP800-218/ver1/json/NIST_SP800-218_ver1_catalog.json (group PO)",
+      "source_verification": "partially_verified",
+      "skills": [
+        "security-secure-development"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "ssdf-evidence.csv"
+      ],
+      "tests": [
+        "tests/test_security_secure_development.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "PS Protect Software (PS.1-PS.3)",
+      "source_pointer": "usnistgov/oscal-content nist.gov/SP800-218/ver1/json/NIST_SP800-218_ver1_catalog.json (group PS)",
+      "source_verification": "partially_verified",
+      "skills": [
+        "security-secure-development"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "ssdf-evidence.csv"
+      ],
+      "tests": [
+        "tests/test_security_secure_development.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "PW Produce Well-Secured Software (PW.1, PW.2, PW.4-PW.9)",
+      "source_pointer": "usnistgov/oscal-content nist.gov/SP800-218/ver1/json/NIST_SP800-218_ver1_catalog.json (group PW)",
+      "source_verification": "partially_verified",
+      "skills": [
+        "security-secure-development"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "ssdf-evidence.csv"
+      ],
+      "tests": [
+        "tests/test_security_secure_development.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "RV Respond to Vulnerabilities (RV.1-RV.3)",
+      "source_pointer": "usnistgov/oscal-content nist.gov/SP800-218/ver1/json/NIST_SP800-218_ver1_catalog.json (group RV)",
+      "source_verification": "partially_verified",
+      "skills": [
+        "security-secure-development"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "ssdf-evidence.csv"
+      ],
+      "tests": [
+        "tests/test_security_secure_development.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "PW.4 Reuse Existing, Well-Secured Software (dependency pinning support)",
+      "source_pointer": "usnistgov/oscal-content nist.gov/SP800-218/ver1/json/NIST_SP800-218_ver1_catalog.json (PW.4)",
+      "source_verification": "partially_verified",
+      "skills": [
+        "security-secure-development"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "dependency-pin-report.json"
+      ],
+      "tests": [
+        "tests/test_security_secure_development.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

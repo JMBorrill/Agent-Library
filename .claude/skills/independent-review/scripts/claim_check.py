@@ -27,11 +27,11 @@ from pathlib import Path
 
 ASSURANCE = re.compile(
     r"\b(approved|certified|certification granted|accredited|compliant|in compliance|fully compliant|"
-    r"qualified for flight|flight[- ]qualified|qualified|production[- ]ready|ready for production|"
+    r"qualified for flight|flight[- ]qualified|(?:is|are|was|been|now) qualified|production[- ]ready|ready for production|"
     r"safe to (?:operate|launch|deploy|use|fly)|is safe|are safe|passes nasa|nasa[- ]approved|"
     r"fca[- ](?:approved|compliant)|meets all requirements|signed off|guaranteed?|loan approved|credit approved)\b",
     re.I)
-ABSOLUTE = re.compile(r"\b(zero risk|no risk|risk[- ]free|100\s?% (?:safe|accurate|secure|reliable)|cannot fail|"
+ABSOLUTE = re.compile(r"\b(zero risk|no risk|risk[- ]free(?! (?:rate|return|asset|bond))|100\s?% (?:safe|accurate|secure|reliable)|cannot fail|"
                       r"fully secure|completely secure|never fails)\b", re.I)
 RESEARCH = re.compile(r"\b(interviews?|users?|customers?|participants?|stakeholders?|operators?)\s+"
                       r"(showed|show|said|say|told us|confirmed|love|loved|want|wanted|asked for)\b", re.I)

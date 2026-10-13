@@ -1,0 +1,181 @@
+{
+  "source_id": "owasp-asvs",
+  "status": "ACTIVE",
+  "notes": "ASVS 5.0.0 tag v5.0.0; index bundled (CC BY-SA 4.0) in security-threat-model and security-asvs-controls. security-code-checks maps rules by chapter/section title only. STRIDE is not from this source.",
+  "rows": [
+    {
+      "source_element": "How to Reference ASVS Requirements (v5.0.0-x.y.z)",
+      "source_pointer": "5.0/en/0x03-What-is-the-ASVS.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-threat-model",
+        "security-asvs-controls"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "threat-model.json",
+        "control-map.csv"
+      ],
+      "tests": [
+        "tests/test_security_threat_model.py",
+        "tests/test_security_asvs_controls.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Application Security Verification Levels / Which level to achieve",
+      "source_pointer": "5.0/en/0x03-What-is-the-ASVS.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-asvs-controls"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "control-map.csv",
+        "asvs-verification-report.md"
+      ],
+      "tests": [
+        "tests/test_security_asvs_controls.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "The structure of the ASVS (chapter filtering)",
+      "source_pointer": "5.0/en/0x03-What-is-the-ASVS.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-asvs-controls"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "control-map.csv"
+      ],
+      "tests": [
+        "tests/test_security_asvs_controls.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Assessment and Certification (no certification; report scope, N/A)",
+      "source_pointer": "5.0/en/0x04-Assessment_and_Certification.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-asvs-controls"
+      ],
+      "agents": [
+        "security-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "asvs-verification-report.md"
+      ],
+      "tests": [
+        "tests/test_security_asvs_controls.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Requirement index V1-V17 (345 IDs, levels)",
+      "source_pointer": "sources/extracts/owasp-asvs-5.0.0-index.json (from tag v5.0.0 chapter files)",
+      "source_verification": "verified",
+      "skills": [
+        "security-threat-model",
+        "security-asvs-controls",
+        "security-code-checks"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "asvs-5.0.0-index.json"
+      ],
+      "tests": [
+        "tests/test_security_asvs_controls.py",
+        "tests/test_security_threat_model.py",
+        "tests/test_security_code_checks.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "V8 Authorization (tenant isolation mitigations)",
+      "source_pointer": "5.0/en/0x17-V8-Authorization.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-threat-model",
+        "security-code-checks"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "threat-model.json",
+        "static-checks.json"
+      ],
+      "tests": [
+        "tests/test_security_threat_model.py",
+        "tests/test_security_code_checks.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "V1.2 Injection Prevention / V1.5 Safe Deserialization",
+      "source_pointer": "5.0/en/0x10-V1-Encoding-and-Sanitization.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-code-checks"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "static-checks.json"
+      ],
+      "tests": [
+        "tests/test_security_code_checks.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "V13.3 Secret Management / V13.4 Unintended Information Leakage",
+      "source_pointer": "5.0/en/0x22-V13-Configuration.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-code-checks"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "static-checks.json"
+      ],
+      "tests": [
+        "tests/test_security_code_checks.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "V3.5 Browser Origin Separation; V9.1 Token source and integrity; V11.4 Hashing; V12 Secure Communication",
+      "source_pointer": "5.0/en/0x12-V3-Web-Frontend-Security.md; 0x18-V9-Self-contained-Tokens.md; 0x20-V11-Cryptography.md; 0x21-V12-Secure-Communication.md",
+      "source_verification": "verified",
+      "skills": [
+        "security-code-checks"
+      ],
+      "agents": [
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "static-checks.json"
+      ],
+      "tests": [
+        "tests/test_security_code_checks.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

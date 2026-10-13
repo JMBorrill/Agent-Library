@@ -21,7 +21,7 @@ not NIST examples).
 | PS.1 | Branch-protection export; repository access review |
 | PS.2 | Signing runbook and a verification log for a recent release |
 | PW.1 / PW.2 | Threat model (`security-threat-model`) and design review record |
-| PW.4 | Approved component list; `dependency_pin_check.py` report |
+| PW.4 | Allow-listed component register; `dependency_pin_check.py` report |
 | PW.5 / PW.7 | Coding standard; `security-code-checks` reports; code review records (`software-code-review`) |
 | PW.8 | Pen-test report; ASVS verification map (`security-asvs-controls`) |
 | RV.1–RV.3 | CVE monitoring dashboard export; vulnerability SLA; postmortems with root-cause analysis |

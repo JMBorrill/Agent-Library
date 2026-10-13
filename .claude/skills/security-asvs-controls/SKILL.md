@@ -104,9 +104,9 @@ risk analysis):
 - Any external statement of conformance requires human sign-off; OWASP does not certify.
 
 ## References
-- `owasp-asvs` — OWASP ASVS 5.0.0, tag `v5.0.0`: `0x03-What-is-the-ASVS.md` (levels, "Which level to
-  achieve", "The structure of the ASVS", "How to Reference ASVS Requirements", "Documented security
-  decisions"); `0x04-Assessment_and_Certification.md` (no certification; tools alone insufficient;
+- `owasp-asvs` — OWASP ASVS 5.0.0, tag `v5.0.0`: `0x03-What-is-the-ASVS.md` (levels, Which level to
+  achieve, The structure of the ASVS, How to Reference ASVS Requirements, Documented security
+  decisions); `0x04-Assessment_and_Certification.md` (no certification; tools alone insufficient;
   report scope, level, exceptions, N/A). Verified: `sources/audits/owasp-asvs.md`. Source ID: `owasp-asvs`.
 - Index: `assets/data/asvs-5.0.0-index.json` — 345 requirements, L1 70 / L2 183 / L3 92; level is
   the lowest level at which a requirement applies. Adaptation of OWASP ASVS 5.0.0 © The OWASP

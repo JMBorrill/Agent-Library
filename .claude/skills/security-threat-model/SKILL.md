@@ -1,6 +1,6 @@
 ---
 name: security-threat-model
-description: Build and check a STRIDE-style data-flow threat model - components, assets, trust boundaries, boundary-crossing data flows, threats rated by likelihood and impact, and mitigations mapped to version-qualified OWASP ASVS 5.0.0 requirement IDs - including tenant-isolation threats for multi-tenant SaaS. Use when designing or changing a system's architecture, adding an external integration (LLM provider, webhooks, payment), preparing a security design review, or checking that every trust-boundary crossing has analysed threats and that cited ASVS IDs exist.
+description: Build and check a STRIDE-style data-flow threat model - components, assets, trust boundaries, boundary-crossing data flows, threats rated by likelihood and impact, and mitigations mapped to version-prefixed OWASP ASVS 5.0.0 requirement IDs - including tenant-isolation threats for multi-tenant SaaS. Use when designing or changing a system's architecture, adding an external integration (LLM provider, webhooks, payment), preparing a security design review, or checking that every trust-boundary crossing has analysed threats and that cited ASVS IDs exist.
 license: CC BY-SA 4.0 applies to assets/data/asvs-5.0.0-index.json (OWASP ASVS 5.0.0); other files per repository licence
 metadata:
   pack: reliability-security
@@ -103,8 +103,8 @@ Optional
 - Use `independent-reviewer` for a challenge review of models protecting high-impact assets.
 
 ## References
-- `owasp-asvs` — OWASP ASVS 5.0.0 (tag `v5.0.0`): `0x03-What-is-the-ASVS.md` § "How to Reference ASVS
-  Requirements" (version-qualified IDs) and level sections; chapter files for V1–V17. Index:
+- `owasp-asvs` — OWASP ASVS 5.0.0 (tag `v5.0.0`): `0x03-What-is-the-ASVS.md` § How to Reference ASVS
+  Requirements (version-prefixed IDs) and level sections; chapter files for V1–V17. Index:
   `assets/data/asvs-5.0.0-index.json` (345 requirements: L1 70, L2 183, L3 92), copied from
   `sources/extracts/owasp-asvs-5.0.0-index.json`. Verified: `sources/audits/owasp-asvs.md`.
   Source ID: `owasp-asvs`.

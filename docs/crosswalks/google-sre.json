@@ -1,0 +1,97 @@
+{
+  "source_id": "google-sre",
+  "status": "ACTIVE",
+  "notes": "Source INACCESSIBLE (sources/audits/google-sre.md); claimed licence CC BY-NC-ND 4.0, so no text adapted. Chapter names from search snippets only. SLO maths is generic; example alert thresholds labelled as unverified examples.",
+  "rows": [
+    {
+      "source_element": "Service Level Objectives (SRE book ch. 4)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "sre-service-level-objectives"
+      ],
+      "agents": [
+        "reliability-engineer"
+      ],
+      "artifacts": [
+        "slo-spec.json"
+      ],
+      "tests": [
+        "tests/test_sre_service_level_objectives.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Alerting on SLOs - multiwindow multi-burn-rate (Workbook ch. 5)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "sre-service-level-objectives"
+      ],
+      "agents": [
+        "reliability-engineer"
+      ],
+      "artifacts": [
+        "alert-policy.json"
+      ],
+      "tests": [
+        "tests/test_sre_service_level_objectives.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Managing Incidents / Emergency Response (SRE book ch. 13-14)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "sre-incident-response"
+      ],
+      "agents": [
+        "reliability-engineer"
+      ],
+      "artifacts": [
+        "incident-log.md"
+      ],
+      "tests": [],
+      "status": "implemented"
+    },
+    {
+      "source_element": "Postmortem Culture: Learning from Failure (SRE book ch. 15)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "sre-incident-response"
+      ],
+      "agents": [
+        "reliability-engineer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "postmortem.md"
+      ],
+      "tests": [
+        "tests/test_sre_incident_response.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Launch / production readiness practices",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "sre-production-readiness"
+      ],
+      "agents": [
+        "reliability-engineer",
+        "security-reviewer"
+      ],
+      "artifacts": [
+        "readiness-checklist.json"
+      ],
+      "tests": [
+        "tests/test_sre_production_readiness.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

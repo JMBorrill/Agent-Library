@@ -94,9 +94,9 @@ Optional
   definitions; `reliability-engineer` for recovery-time and incident data questions.
 
 ## References
-- `dora` — DORA, "DORA's software delivery performance metrics" (`hugo/content/guides/dora-metrics/_index.md`,
-  updated 2026-01-05): § "Throughput and instability" (five metric names and definitions), § "Key
-  insights", § "Common pitfalls" (seven pitfalls), § "Next steps" (improvement loop); history page
+- `dora` — DORA, *DORA's software delivery performance metrics* (`hugo/content/guides/dora-metrics/_index.md`,
+  updated 2026-01-05): § Throughput and instability (five metric names and definitions), § Key
+  insights, § Common pitfalls (seven pitfalls), § Next steps (improvement loop); history page
   `hugo/content/insights/dora-metrics-history/index.md` (MTTR → Failed deployment recovery time,
   2023; rework rate added 2024). Verified: `sources/audits/dora.md`. Source ID: `dora`.
 - Note: the current guide groups Failed deployment recovery time under throughput; this skill

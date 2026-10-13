@@ -69,6 +69,7 @@
       "skills": [
         "software-delivery-metrics",
         "sre-incident-response",
+        "sre-production-readiness",
         "sre-service-level-objectives"
       ]
     },
@@ -589,7 +590,7 @@
       ]
     },
     "security-threat-model": {
-      "description": "Build and check a STRIDE-style data-flow threat model - components, assets, trust boundaries, boundary-crossing data flows, threats rated by likelihood and impact, and mitigations mapped to version-qualified OWASP ASVS 5.0.0 requirement IDs - including tenant-isolation threats for multi-tenant SaaS. Use when designing or changing a system's architecture, adding an external integration (LLM provider, webhooks, payment), preparing a security design review, or checking that every trust-boundary crossing has analysed threats and that cited ASVS IDs exist.",
+      "description": "Build and check a STRIDE-style data-flow threat model - components, assets, trust boundaries, boundary-crossing data flows, threats rated by likelihood and impact, and mitigations mapped to version-prefixed OWASP ASVS 5.0.0 requirement IDs - including tenant-isolation threats for multi-tenant SaaS. Use when designing or changing a system's architecture, adding an external integration (LLM provider, webhooks, payment), preparing a security design review, or checking that every trust-boundary crossing has analysed threats and that cited ASVS IDs exist.",
       "pack": "reliability-security",
       "sources": [
         "owasp-asvs"
@@ -619,7 +620,7 @@
       ]
     },
     "software-requirements-traceability": {
-      "description": "Build and check a requirement-to-code-to-test traceability matrix by scanning source and test files for requirement IDs (comments, docstrings, test names, @req markers) and attaching JUnit results per requirement. Use when proving every approved software requirement has a test, finding tests that cite unknown or retired requirement IDs, preparing verification evidence for a review or release, or auditing trace links after a change.",
+      "description": "Build and check a requirement-to-code-to-test traceability matrix by scanning source and test files for requirement IDs (comments, docstrings, test names, @req markers) and attaching JUnit results per requirement. Use when proving every baselined software requirement (status `approved` in the register) has a test, finding tests that cite unknown or retired requirement IDs, preparing verification evidence for a review or release, or auditing trace links after a change.",
       "pack": "software",
       "sources": [
         "nasa-software"
@@ -643,6 +644,13 @@
     },
     "sre-incident-response": {
       "description": "Run and learn from production incidents - classify severity, assign incident roles (incident commander, operations lead, communications lead, scribe), keep a communication cadence, stabilise first, then write and check a blameless postmortem (summary, quantified impact, ordered UTC timeline, root causes and contributing factors, detection, response, what went well/badly, owned and tracked action items). Use when an incident is declared or suspected, when drafting or reviewing a postmortem, or when checking that postmortem action items have owners, priorities, due dates and tracking IDs.",
+      "pack": "reliability-security",
+      "sources": [
+        "google-sre"
+      ]
+    },
+    "sre-production-readiness": {
+      "description": "Run a production or launch readiness review covering SLOs, monitoring, alerting, capacity, dependencies, rollback, runbooks, on-call, security sign-off, backup/restore testing and feature flags, with evidence references per item, and produce a GO / GO_WITH_CONDITIONS / NO_GO recommendation where no tested rollback, no staffed on-call, no SLO or an untested restore always block. Use before launching a new service or major feature, before moving a beta to general availability, or when auditing whether a service is still fit to run in production.",
       "pack": "reliability-security",
       "sources": [
         "google-sre"

@@ -1,0 +1,45 @@
+{
+  "source_id": "nasa-software",
+  "status": "ACTIVE",
+  "notes": "Source INACCESSIBLE in this environment (sources/audits/nasa-software.md). Rows map general bidirectional traceability practice only; no SWE requirement IDs or handbook sections are cited. Re-map when swehb.nasa.gov can be read.",
+  "rows": [
+    {
+      "source_element": "Bidirectional requirements-to-test traceability (general practice)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "software-requirements-traceability"
+      ],
+      "agents": [
+        "software-quality-reviewer",
+        "independent-reviewer"
+      ],
+      "artifacts": [
+        "trace-matrix.csv"
+      ],
+      "tests": [
+        "tests/test_software_requirements_traceability.py"
+      ],
+      "status": "tested"
+    },
+    {
+      "source_element": "Verification results recorded per requirement (general practice)",
+      "source_pointer": "unverified",
+      "source_verification": "unverified",
+      "skills": [
+        "software-requirements-traceability"
+      ],
+      "agents": [
+        "software-quality-reviewer"
+      ],
+      "artifacts": [
+        "trace-matrix.csv",
+        "results-junit.xml"
+      ],
+      "tests": [
+        "tests/test_software_requirements_traceability.py"
+      ],
+      "status": "tested"
+    }
+  ]
+}

@@ -26,7 +26,7 @@ V8.2/V8.3 for tenant scoping). A human should pick the exact requirement when re
 - ORM/query-builder injection, stored procedures, dynamic table names.
 - Secrets split across lines, base64-encoded or in non-scanned file types (YAML, .env, JSON).
 - Tenant scoping implemented in middleware/RLS (the rule may flag queries that are actually safe —
-  suppress with the reason "RLS policy X enforces tenant_id").
+  suppress with the reason *RLS policy X enforces tenant_id*).
 - Framework defaults (e.g. Django `DEBUG` from environment) and runtime configuration.
 
 ## Suppression format

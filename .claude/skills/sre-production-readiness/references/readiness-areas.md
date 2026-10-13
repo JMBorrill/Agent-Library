@@ -4,12 +4,12 @@ Original to this library (general industry practice; the `google-sre` source was
 
 | Area | Key questions | Evidence that counts | Weak evidence |
 |---|---|---|---|
-| slo (blocking) | Which user journey? SLI, target, window, owner, exclusions, budget policy? | Validated SLO spec; dashboard of the SLI | "We aim for high availability" |
+| slo (blocking) | Which user journey? SLI, target, window, owner, exclusions, budget policy? | Validated SLO spec; dashboard of the SLI | *We aim for high availability* |
 | monitoring | Can you see the SLI, saturation, errors, queue ages per tenant? | Dashboard links; synthetic checks | Default host metrics only |
 | alerting | Do burn-rate alerts page the right rota? Tested? | Alert test record with synthetic errors | Alert rules never fired |
 | capacity | Forecast peak, headroom, scaling limits, quotas (incl. third-party rate limits)? | Load test report vs forecast | Back-of-envelope estimate |
 | dependencies | Failure modes, timeouts, retries with backoff, fallbacks, contacts? | Dependency table; game-day notes | Happy-path diagram |
-| rollback (blocking) | How fast can we undo, including schema/data migrations? | Timed drill in staging and production canary | "We can redeploy the old version" |
+| rollback (blocking) | How fast can we undo, including schema/data migrations? | Timed drill in staging and production canary | *We can redeploy the old version* |
 | runbooks | Top alerts and failure modes covered and linked from alerts? | Runbook links in alert definitions | Wiki page with TODOs |
 | oncall (blocking) | Who is on call from launch, trained, escalation path? | Rota export; training record | "The team will watch it" |
 | security | Threat model reviewed, ASVS map status, sign-off? | Signed security review record | Scan report alone |

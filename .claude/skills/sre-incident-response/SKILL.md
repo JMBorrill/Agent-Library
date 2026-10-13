@@ -107,9 +107,9 @@ Severity (library defaults — adapt to your organisation):
   postmortems.
 
 ## References
-- `google-sre` — *Site Reliability Engineering* (2016) Ch. 13 "Emergency Response", Ch. 14 "Managing
-  Incidents", Ch. 15 "Postmortem Culture: Learning from Failure"; *Workbook* Ch. 9 "Incident
-  Response" and Ch. 10 "Postmortem Culture" *(chapter titles from search snippets — unverified)*.
+- `google-sre` — *Site Reliability Engineering* (2016) Ch. 13 Emergency Response, Ch. 14 Managing
+  Incidents, Ch. 15 Postmortem Culture: Learning from Failure; *Workbook* Ch. 9 Incident
+  Response and Ch. 10 Postmortem Culture *(chapter titles from search snippets — unverified)*.
   Source **INACCESSIBLE** here (`sources/audits/google-sre.md`); claimed licence CC BY-NC-ND 4.0, so
   no book text is adapted — roles, severity table, cadence and checks are written independently from
   general industry practice. Source ID: `google-sre`.

@@ -1,0 +1,4 @@
+# Optional, test-only dependencies (skills and library scripts are stdlib-only).
+# Used to cross-check JSON outputs against published schemas and YAML parsing parity.
+jsonschema==4.23.0
+PyYAML==6.0.2
