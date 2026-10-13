@@ -1,0 +1,283 @@
+option,year,item,type,stream,bearer,value
+Business as usual,0,Operating costs,cost,standard,public,12.0
+Business as usual,1,Operating costs,cost,standard,public,12.0
+Business as usual,1,Service benefits,benefit,standard,,10.0
+Business as usual,2,Operating costs,cost,standard,public,12.0
+Business as usual,2,Service benefits,benefit,standard,,10.0
+Business as usual,3,Operating costs,cost,standard,public,12.0
+Business as usual,3,Service benefits,benefit,standard,,10.0
+Business as usual,4,Operating costs,cost,standard,public,12.0
+Business as usual,4,Service benefits,benefit,standard,,10.0
+Business as usual,5,Operating costs,cost,standard,public,12.0
+Business as usual,5,Service benefits,benefit,standard,,10.0
+Business as usual,6,Operating costs,cost,standard,public,12.0
+Business as usual,6,Service benefits,benefit,standard,,10.0
+Business as usual,7,Operating costs,cost,standard,public,12.0
+Business as usual,7,Service benefits,benefit,standard,,10.0
+Business as usual,8,Operating costs,cost,standard,public,12.0
+Business as usual,8,Service benefits,benefit,standard,,10.0
+Business as usual,9,Operating costs,cost,standard,public,12.0
+Business as usual,9,Service benefits,benefit,standard,,10.0
+Business as usual,10,Operating costs,cost,standard,public,12.0
+Business as usual,10,Service benefits,benefit,standard,,10.0
+Business as usual,11,Operating costs,cost,standard,public,12.0
+Business as usual,11,Service benefits,benefit,standard,,10.0
+Business as usual,12,Operating costs,cost,standard,public,12.0
+Business as usual,12,Service benefits,benefit,standard,,10.0
+Business as usual,13,Operating costs,cost,standard,public,12.0
+Business as usual,13,Service benefits,benefit,standard,,10.0
+Business as usual,14,Operating costs,cost,standard,public,12.0
+Business as usual,14,Service benefits,benefit,standard,,10.0
+Business as usual,15,Operating costs,cost,standard,public,12.0
+Business as usual,15,Service benefits,benefit,standard,,10.0
+Business as usual,16,Operating costs,cost,standard,public,12.0
+Business as usual,16,Service benefits,benefit,standard,,10.0
+Business as usual,17,Operating costs,cost,standard,public,12.0
+Business as usual,17,Service benefits,benefit,standard,,10.0
+Business as usual,18,Operating costs,cost,standard,public,12.0
+Business as usual,18,Service benefits,benefit,standard,,10.0
+Business as usual,19,Operating costs,cost,standard,public,12.0
+Business as usual,19,Service benefits,benefit,standard,,10.0
+Business as usual,20,Operating costs,cost,standard,public,12.0
+Business as usual,20,Service benefits,benefit,standard,,10.0
+Business as usual,21,Operating costs,cost,standard,public,12.0
+Business as usual,21,Service benefits,benefit,standard,,10.0
+Business as usual,22,Operating costs,cost,standard,public,12.0
+Business as usual,22,Service benefits,benefit,standard,,10.0
+Business as usual,23,Operating costs,cost,standard,public,12.0
+Business as usual,23,Service benefits,benefit,standard,,10.0
+Business as usual,24,Operating costs,cost,standard,public,12.0
+Business as usual,24,Service benefits,benefit,standard,,10.0
+Business as usual,25,Operating costs,cost,standard,public,12.0
+Business as usual,25,Service benefits,benefit,standard,,10.0
+Business as usual,26,Operating costs,cost,standard,public,12.0
+Business as usual,26,Service benefits,benefit,standard,,10.0
+Business as usual,27,Operating costs,cost,standard,public,12.0
+Business as usual,27,Service benefits,benefit,standard,,10.0
+Business as usual,28,Operating costs,cost,standard,public,12.0
+Business as usual,28,Service benefits,benefit,standard,,10.0
+Business as usual,29,Operating costs,cost,standard,public,12.0
+Business as usual,29,Service benefits,benefit,standard,,10.0
+Business as usual,30,Operating costs,cost,standard,public,12.0
+Business as usual,30,Service benefits,benefit,standard,,10.0
+Business as usual,31,Operating costs,cost,standard,public,12.0
+Business as usual,31,Service benefits,benefit,standard,,10.0
+Business as usual,32,Operating costs,cost,standard,public,12.0
+Business as usual,32,Service benefits,benefit,standard,,10.0
+Business as usual,33,Operating costs,cost,standard,public,12.0
+Business as usual,33,Service benefits,benefit,standard,,10.0
+Business as usual,34,Operating costs,cost,standard,public,12.0
+Business as usual,34,Service benefits,benefit,standard,,10.0
+Business as usual,35,Operating costs,cost,standard,public,12.0
+Business as usual,35,Service benefits,benefit,standard,,10.0
+Business as usual,36,Operating costs,cost,standard,public,12.0
+Business as usual,36,Service benefits,benefit,standard,,10.0
+Business as usual,37,Operating costs,cost,standard,public,12.0
+Business as usual,37,Service benefits,benefit,standard,,10.0
+Business as usual,38,Operating costs,cost,standard,public,12.0
+Business as usual,38,Service benefits,benefit,standard,,10.0
+Business as usual,39,Operating costs,cost,standard,public,12.0
+Business as usual,39,Service benefits,benefit,standard,,10.0
+Business as usual,40,Operating costs,cost,standard,public,12.0
+Business as usual,40,Service benefits,benefit,standard,,10.0
+Do minimum,0,Capital costs,cost,standard,public,60.0
+Do minimum,1,Construction disruption,cost,standard,non-public,4.0
+Do minimum,1,Operating costs,cost,standard,public,7.0
+Do minimum,2,Operating costs,cost,standard,public,7.0
+Do minimum,2,Service benefits,benefit,standard,,15.0
+Do minimum,3,Operating costs,cost,standard,public,7.0
+Do minimum,3,Service benefits,benefit,standard,,15.0
+Do minimum,4,Operating costs,cost,standard,public,7.0
+Do minimum,4,Service benefits,benefit,standard,,15.0
+Do minimum,5,Operating costs,cost,standard,public,7.0
+Do minimum,5,Service benefits,benefit,standard,,15.0
+Do minimum,6,Operating costs,cost,standard,public,7.0
+Do minimum,6,Service benefits,benefit,standard,,15.0
+Do minimum,7,Operating costs,cost,standard,public,7.0
+Do minimum,7,Service benefits,benefit,standard,,15.0
+Do minimum,8,Operating costs,cost,standard,public,7.0
+Do minimum,8,Service benefits,benefit,standard,,15.0
+Do minimum,9,Operating costs,cost,standard,public,7.0
+Do minimum,9,Service benefits,benefit,standard,,15.0
+Do minimum,10,Operating costs,cost,standard,public,7.0
+Do minimum,10,Service benefits,benefit,standard,,15.0
+Do minimum,11,Operating costs,cost,standard,public,7.0
+Do minimum,11,Service benefits,benefit,standard,,15.0
+Do minimum,12,Operating costs,cost,standard,public,7.0
+Do minimum,12,Service benefits,benefit,standard,,15.0
+Do minimum,13,Operating costs,cost,standard,public,7.0
+Do minimum,13,Service benefits,benefit,standard,,15.0
+Do minimum,14,Operating costs,cost,standard,public,7.0
+Do minimum,14,Service benefits,benefit,standard,,15.0
+Do minimum,15,Operating costs,cost,standard,public,7.0
+Do minimum,15,Service benefits,benefit,standard,,15.0
+Do minimum,16,Operating costs,cost,standard,public,7.0
+Do minimum,16,Service benefits,benefit,standard,,15.0
+Do minimum,17,Operating costs,cost,standard,public,7.0
+Do minimum,17,Service benefits,benefit,standard,,15.0
+Do minimum,18,Operating costs,cost,standard,public,7.0
+Do minimum,18,Service benefits,benefit,standard,,15.0
+Do minimum,19,Operating costs,cost,standard,public,7.0
+Do minimum,19,Service benefits,benefit,standard,,15.0
+Do minimum,20,Operating costs,cost,standard,public,7.0
+Do minimum,20,Service benefits,benefit,standard,,15.0
+Do minimum,21,Operating costs,cost,standard,public,7.0
+Do minimum,21,Service benefits,benefit,standard,,15.0
+Do minimum,22,Operating costs,cost,standard,public,7.0
+Do minimum,22,Service benefits,benefit,standard,,15.0
+Do minimum,23,Operating costs,cost,standard,public,7.0
+Do minimum,23,Service benefits,benefit,standard,,15.0
+Do minimum,24,Operating costs,cost,standard,public,7.0
+Do minimum,24,Service benefits,benefit,standard,,15.0
+Do minimum,25,Operating costs,cost,standard,public,7.0
+Do minimum,25,Service benefits,benefit,standard,,15.0
+Do minimum,26,Operating costs,cost,standard,public,7.0
+Do minimum,26,Service benefits,benefit,standard,,15.0
+Do minimum,27,Operating costs,cost,standard,public,7.0
+Do minimum,27,Service benefits,benefit,standard,,15.0
+Do minimum,28,Operating costs,cost,standard,public,7.0
+Do minimum,28,Service benefits,benefit,standard,,15.0
+Do minimum,29,Operating costs,cost,standard,public,7.0
+Do minimum,29,Service benefits,benefit,standard,,15.0
+Do minimum,30,Operating costs,cost,standard,public,7.0
+Do minimum,30,Service benefits,benefit,standard,,15.0
+Do minimum,31,Operating costs,cost,standard,public,7.0
+Do minimum,31,Service benefits,benefit,standard,,15.0
+Do minimum,32,Operating costs,cost,standard,public,7.0
+Do minimum,32,Service benefits,benefit,standard,,15.0
+Do minimum,33,Operating costs,cost,standard,public,7.0
+Do minimum,33,Service benefits,benefit,standard,,15.0
+Do minimum,34,Operating costs,cost,standard,public,7.0
+Do minimum,34,Service benefits,benefit,standard,,15.0
+Do minimum,35,Operating costs,cost,standard,public,7.0
+Do minimum,35,Service benefits,benefit,standard,,15.0
+Do minimum,36,Operating costs,cost,standard,public,7.0
+Do minimum,36,Service benefits,benefit,standard,,15.0
+Do minimum,37,Operating costs,cost,standard,public,7.0
+Do minimum,37,Service benefits,benefit,standard,,15.0
+Do minimum,38,Operating costs,cost,standard,public,7.0
+Do minimum,38,Service benefits,benefit,standard,,15.0
+Do minimum,39,Operating costs,cost,standard,public,7.0
+Do minimum,39,Service benefits,benefit,standard,,15.0
+Do minimum,40,Operating costs,cost,standard,public,7.0
+Do minimum,40,Service benefits,benefit,standard,,15.0
+New build,0,Capital costs,cost,standard,public,55.0
+New build,1,Capital costs,cost,standard,public,55.0
+New build,1,Construction disruption,cost,standard,non-public,6.0
+New build,2,Operating costs,cost,standard,public,5.0
+New build,2,Service benefits,benefit,standard,,17.0
+New build,2,Health benefits (QALY-valued),benefit,health,,4.0
+New build,3,Operating costs,cost,standard,public,5.0
+New build,3,Service benefits,benefit,standard,,17.0
+New build,3,Health benefits (QALY-valued),benefit,health,,4.0
+New build,4,Operating costs,cost,standard,public,5.0
+New build,4,Service benefits,benefit,standard,,17.0
+New build,4,Health benefits (QALY-valued),benefit,health,,4.0
+New build,5,Operating costs,cost,standard,public,5.0
+New build,5,Service benefits,benefit,standard,,17.0
+New build,5,Health benefits (QALY-valued),benefit,health,,4.0
+New build,6,Operating costs,cost,standard,public,5.0
+New build,6,Service benefits,benefit,standard,,17.0
+New build,6,Health benefits (QALY-valued),benefit,health,,4.0
+New build,7,Operating costs,cost,standard,public,5.0
+New build,7,Service benefits,benefit,standard,,17.0
+New build,7,Health benefits (QALY-valued),benefit,health,,4.0
+New build,8,Operating costs,cost,standard,public,5.0
+New build,8,Service benefits,benefit,standard,,17.0
+New build,8,Health benefits (QALY-valued),benefit,health,,4.0
+New build,9,Operating costs,cost,standard,public,5.0
+New build,9,Service benefits,benefit,standard,,17.0
+New build,9,Health benefits (QALY-valued),benefit,health,,4.0
+New build,10,Operating costs,cost,standard,public,5.0
+New build,10,Service benefits,benefit,standard,,17.0
+New build,10,Health benefits (QALY-valued),benefit,health,,4.0
+New build,11,Operating costs,cost,standard,public,5.0
+New build,11,Service benefits,benefit,standard,,17.0
+New build,11,Health benefits (QALY-valued),benefit,health,,4.0
+New build,12,Operating costs,cost,standard,public,5.0
+New build,12,Service benefits,benefit,standard,,17.0
+New build,12,Health benefits (QALY-valued),benefit,health,,4.0
+New build,13,Operating costs,cost,standard,public,5.0
+New build,13,Service benefits,benefit,standard,,17.0
+New build,13,Health benefits (QALY-valued),benefit,health,,4.0
+New build,14,Operating costs,cost,standard,public,5.0
+New build,14,Service benefits,benefit,standard,,17.0
+New build,14,Health benefits (QALY-valued),benefit,health,,4.0
+New build,15,Operating costs,cost,standard,public,5.0
+New build,15,Service benefits,benefit,standard,,17.0
+New build,15,Health benefits (QALY-valued),benefit,health,,4.0
+New build,16,Operating costs,cost,standard,public,5.0
+New build,16,Service benefits,benefit,standard,,17.0
+New build,16,Health benefits (QALY-valued),benefit,health,,4.0
+New build,17,Operating costs,cost,standard,public,5.0
+New build,17,Service benefits,benefit,standard,,17.0
+New build,17,Health benefits (QALY-valued),benefit,health,,4.0
+New build,18,Operating costs,cost,standard,public,5.0
+New build,18,Service benefits,benefit,standard,,17.0
+New build,18,Health benefits (QALY-valued),benefit,health,,4.0
+New build,19,Operating costs,cost,standard,public,5.0
+New build,19,Service benefits,benefit,standard,,17.0
+New build,19,Health benefits (QALY-valued),benefit,health,,4.0
+New build,20,Operating costs,cost,standard,public,5.0
+New build,20,Service benefits,benefit,standard,,17.0
+New build,20,Health benefits (QALY-valued),benefit,health,,4.0
+New build,21,Operating costs,cost,standard,public,5.0
+New build,21,Service benefits,benefit,standard,,17.0
+New build,21,Health benefits (QALY-valued),benefit,health,,4.0
+New build,22,Operating costs,cost,standard,public,5.0
+New build,22,Service benefits,benefit,standard,,17.0
+New build,22,Health benefits (QALY-valued),benefit,health,,4.0
+New build,23,Operating costs,cost,standard,public,5.0
+New build,23,Service benefits,benefit,standard,,17.0
+New build,23,Health benefits (QALY-valued),benefit,health,,4.0
+New build,24,Operating costs,cost,standard,public,5.0
+New build,24,Service benefits,benefit,standard,,17.0
+New build,24,Health benefits (QALY-valued),benefit,health,,4.0
+New build,25,Operating costs,cost,standard,public,5.0
+New build,25,Service benefits,benefit,standard,,17.0
+New build,25,Health benefits (QALY-valued),benefit,health,,4.0
+New build,26,Operating costs,cost,standard,public,5.0
+New build,26,Service benefits,benefit,standard,,17.0
+New build,26,Health benefits (QALY-valued),benefit,health,,4.0
+New build,27,Operating costs,cost,standard,public,5.0
+New build,27,Service benefits,benefit,standard,,17.0
+New build,27,Health benefits (QALY-valued),benefit,health,,4.0
+New build,28,Operating costs,cost,standard,public,5.0
+New build,28,Service benefits,benefit,standard,,17.0
+New build,28,Health benefits (QALY-valued),benefit,health,,4.0
+New build,29,Operating costs,cost,standard,public,5.0
+New build,29,Service benefits,benefit,standard,,17.0
+New build,29,Health benefits (QALY-valued),benefit,health,,4.0
+New build,30,Operating costs,cost,standard,public,5.0
+New build,30,Service benefits,benefit,standard,,17.0
+New build,30,Health benefits (QALY-valued),benefit,health,,4.0
+New build,31,Operating costs,cost,standard,public,5.0
+New build,31,Service benefits,benefit,standard,,17.0
+New build,31,Health benefits (QALY-valued),benefit,health,,4.0
+New build,32,Operating costs,cost,standard,public,5.0
+New build,32,Service benefits,benefit,standard,,17.0
+New build,32,Health benefits (QALY-valued),benefit,health,,4.0
+New build,33,Operating costs,cost,standard,public,5.0
+New build,33,Service benefits,benefit,standard,,17.0
+New build,33,Health benefits (QALY-valued),benefit,health,,4.0
+New build,34,Operating costs,cost,standard,public,5.0
+New build,34,Service benefits,benefit,standard,,17.0
+New build,34,Health benefits (QALY-valued),benefit,health,,4.0
+New build,35,Operating costs,cost,standard,public,5.0
+New build,35,Service benefits,benefit,standard,,17.0
+New build,35,Health benefits (QALY-valued),benefit,health,,4.0
+New build,36,Operating costs,cost,standard,public,5.0
+New build,36,Service benefits,benefit,standard,,17.0
+New build,36,Health benefits (QALY-valued),benefit,health,,4.0
+New build,37,Operating costs,cost,standard,public,5.0
+New build,37,Service benefits,benefit,standard,,17.0
+New build,37,Health benefits (QALY-valued),benefit,health,,4.0
+New build,38,Operating costs,cost,standard,public,5.0
+New build,38,Service benefits,benefit,standard,,17.0
+New build,38,Health benefits (QALY-valued),benefit,health,,4.0
+New build,39,Operating costs,cost,standard,public,5.0
+New build,39,Service benefits,benefit,standard,,17.0
+New build,39,Health benefits (QALY-valued),benefit,health,,4.0
+New build,40,Operating costs,cost,standard,public,5.0
+New build,40,Service benefits,benefit,standard,,17.0
+New build,40,Health benefits (QALY-valued),benefit,health,,4.0

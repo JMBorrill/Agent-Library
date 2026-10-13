@@ -1,0 +1,116 @@
+skill: green-book-appraisal
+description: >-
+  Checks that the Green Book 2026 appraisal skill gives numerically correct, edition-accurate appraisal outputs:
+  NPSV/BCR recomputed from the fixture with the 2026 STPR bands (compounded across the year-30 boundary) and the
+  1.5% health rate; the 2026 discount schedule with no imported earlier-edition bands; optimism bias applied from
+  user-supplied percentages attributed to supplementary guidance; switching values; review of a flawed business case
+  (BCR thresholds, missing BAU, sunk costs, inflation added before discounting); and a five-case SOC outline.
+cases:
+  - id: npsv-ranking
+    prompt: |
+      Using the Green Book 2026, appraise the three shortlisted options in the attached real-terms cash flows
+      (£m, appraisal year 0 = first year). The health benefits row is QALY-valued. Report PVB, PVC, NPSV and BCR
+      for each option, rank them, state the discount parameters you used with citations, and say what this ranking
+      does and does not tell the decision maker.
+    fixtures: [fixtures/appraisal_flows.csv]
+    golden: golden/npsv-ranking.md
+    negative: golden/npsv-ranking.bad.md
+    checks:
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_npsv_matches
+        fixture: evals/green-book-appraisal/fixtures/appraisal_flows.csv
+        metrics: [npsv, bcr]
+        tolerance: 0.005
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_ranking
+        fixture: evals/green-book-appraisal/fixtures/appraisal_flows.csv
+      - {type: table, columns: ["Option", "NPSV", "BCR"]}
+      - {type: regex, pattern: "1\\.5\\s*%"}
+      - {type: any_of, values: ["balanced judgement", "not sufficient", "initial ranking"]}
+      - {type: cites, values: ["treasury-green"]}
+      - {type: regex, pattern: "6\\.98|BCR threshold"}
+
+  - id: discount-schedule
+    prompt: |
+      Under the 2026 Green Book, what discount rates apply in years 30, 31 and 76 of a 90-year infrastructure
+      appraisal, and what rate applies to health effects? Give the discount factors for years 30, 31 and 76, and the
+      health discount factor for year 10.
+    golden: golden/discount-schedule.md
+    negative: golden/discount-schedule.bad.md
+    checks:
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_stpr_2026
+        health: true
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_discount_factors
+        years: [30, 31, 76]
+        health_years: [10]
+      - {type: any_of, values: ["6.54", "PDF p.46"]}
+      - {type: contains, values: ["real"]}
+
+  - id: optimism-bias
+    prompt: |
+      Our depot rebuild has a base capital cost estimate of £120m. We have no historical forecast-error data of our
+      own, so we will use an upper-bound optimism bias of 66% taken from the supplementary guidance table for our
+      project type. We have evidence that 40% of that upper bound has been mitigated. Apply the adjustment under
+      the 2026 Green Book and explain what happens to the residual.
+    golden: golden/optimism-bias.md
+    negative: golden/optimism-bias.bad.md
+    checks:
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_optimism_bias
+        capex: 120
+        upper_pct: 66
+        mitigation_pct: 40
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_no_hardcoded_optimism_bias
+      - {type: contains, values: ["contingency"]}
+      - {type: any_of, values: ["6.81", "6.80", "6.79"]}
+
+  - id: switching-values
+    prompt: |
+      For the attached shortlist cash flows (£m, real), calculate switching values for the preferred option (by how
+      much would total benefits have to fall, or total costs rise, for its NPSV to reach zero, and for it to lose
+      first place), and give a +/-10% and +/-20% sensitivity table. Use Green Book 2026 discounting.
+    fixtures: [fixtures/appraisal_flows.csv]
+    golden: golden/switching-values.md
+    negative: golden/switching-values.bad.md
+    checks:
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_switching_value
+        fixture: evals/green-book-appraisal/fixtures/appraisal_flows.csv
+        measures: [benefits, costs]
+      - {type: contains, values: ["switching value", "sensitivity"]}
+      - {type: regex, pattern: "33\\.3\\s*%"}
+      - {type: any_of, values: ["6.104", "6.103"]}
+
+  - id: case-review
+    prompt: |
+      Review the attached Outline Business Case against the HM Treasury Green Book 2026. List the critical issues
+      with the paragraph references they breach, and say whether it is ready for approval.
+    fixtures: [fixtures/flawed_business_case.md]
+    golden: golden/case-review.md
+    negative: golden/case-review.bad.md
+    checks:
+      - {type: contains, values: ["business as usual", "sunk cost", "switching value", "optimism bias", "management case", "commercial case"]}
+      - {type: regex, pattern: "6\\.98"}
+      - {type: regex, pattern: "6\\.56|real (terms|rate)"}
+      - {type: any_of, values: ["not ready", "not yet ready", "should not be approved"]}
+      - {type: any_of, values: ["do minimum", "do-minimum"]}
+      - {type: any_of, values: ["monitoring and evaluation", "evaluation plan"]}
+      - {type: not_contains, values: ["meets Green Book requirements", "clears the departmental BCR threshold"]}
+
+  - id: soc-outline
+    prompt: |
+      Draft a Strategic Outline Case outline for a new community diagnostic centre in North Shire, structured on
+      the Five Case Model of the Green Book 2026. Include SMART objectives, BAU, CSFs, the longlist method, a
+      shortlist, the preferred way forward with justification, and what the commercial, financial and management
+      cases will contain. Include a risk register and an assumptions log with sources.
+    golden: golden/soc-outline.md
+    negative: golden/soc-outline.bad.md
+    checks:
+      - type: python
+        function: agentlib.frameworks.greenbook:grade_case_structure
+      - {type: sections, values: ["Strategic case", "Economic case", "Commercial case", "Financial case", "Management case"]}
+      - {type: any_of, values: ["options framework filter", "options framework"]}
+      - {type: contains, values: ["SMART", "do minimum", "critical success factors"]}

@@ -1,0 +1,89 @@
+id: public-investment-business-case
+title: Public investment business case (Green Book five case model)
+version: 1.0.0
+description: >-
+  Develops and assures a business case under the HM Treasury Green Book: strategic case, long-list and
+  technical option definition, economic appraisal with deterministic NPSV/BCR and sensitivity, the
+  commercial/financial/management cases, an evidence audit and a panel recommendation.
+sources: [treasury-green, nasa-se]
+inputs:
+  - name: spending-proposal
+    description: Problem statement, objectives (SMART), constraints, dependencies and stakeholders.
+    required: true
+  - name: cost-benefit-data
+    description: Real-terms annual costs and benefits per option (CSV/YAML) with sources.
+    required: true
+outputs:
+  - name: panel-recommendation
+    description: Business case panel decision record.
+    template: templates/review-board-decision.md
+stages:
+  - id: strategic
+    title: Strategic case and long-list
+    agent: economic-appraisal-analyst
+    skills: [green-book-appraisal]
+    consumes: [spending-proposal]
+    produces: [strategic-case, options-long-list]
+    gate:
+      criteria:
+        - Case for change, SMART objectives and a long-list including business as usual / do-minimum.
+      decision: agent-review
+  - id: technical-options
+    title: Technical definition of short-listed options
+    agent: systems-engineer
+    skills: [nasa-systems-engineering]
+    depends_on: [strategic]
+    consumes: [options-long-list]
+    produces: [technical-option-definitions]
+    gate:
+      criteria:
+        - Each short-listed option has scope, key requirements, technical risks and maturity stated.
+      decision: agent-review
+  - id: economic
+    title: Economic case
+    agent: economic-appraisal-analyst
+    skills: [green-book-appraisal]
+    depends_on: [technical-options]
+    consumes: [cost-benefit-data, technical-option-definitions]
+    produces: [economic-case, npv-results, sensitivity-results]
+    tools: ["python -m agentlib greenbook npv <file>", "python -m agentlib greenbook switching <file>"]
+    gate:
+      criteria:
+        - NPSV/BCR computed by the deterministic tool with parameters cited; sensitivity and switching values reported.
+      decision: automated
+      check: python -m agentlib greenbook npv <cost-benefit-data>
+  - id: delivery-cases
+    title: Commercial, financial and management cases
+    agent: economic-appraisal-analyst
+    skills: [green-book-appraisal]
+    depends_on: [economic]
+    consumes: [strategic-case, economic-case]
+    produces: [business-case-document]
+    tools: ["python -m agentlib greenbook check-case <file>"]
+    gate:
+      criteria:
+        - All five cases present; benefits realisation and monitoring and evaluation plan included.
+      decision: automated
+      check: python -m agentlib greenbook check-case <business-case-document>
+  - id: evidence-audit
+    title: Independent evidence audit
+    agent: evidence-auditor
+    skills: [evidence-and-citation]
+    depends_on: [delivery-cases]
+    consumes: [business-case-document, npv-results]
+    produces: [evidence-audit-report]
+    gate:
+      criteria:
+        - No checker errors; every numeric parameter traceable to a source.
+      decision: agent-review
+  - id: panel
+    title: Panel recommendation
+    agent: review-board-chair
+    skills: [green-book-appraisal, evidence-and-citation]
+    depends_on: [evidence-audit]
+    consumes: [business-case-document, sensitivity-results, evidence-audit-report]
+    produces: [panel-recommendation]
+    gate:
+      criteria:
+        - Recommendation states value-for-money judgement, key uncertainties and the approving authority.
+      decision: human

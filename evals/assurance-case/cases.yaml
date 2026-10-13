@@ -1,0 +1,48 @@
+skill: assurance-case
+description: >-
+  Checks that the skill produces machine-valid assurance cases, marks evidence gaps as undeveloped rather than
+  padding them, respects criticality-based evidence strength, and does not over-claim.
+cases:
+  - id: release-case
+    prompt: >-
+      Build an assurance case (YAML, in a ```yaml block) that payments-api commit a1b2c3d is acceptably secure
+      for release. We have: an ASVS L2 V6 verification report (reports/asvs-v6.md, tested, all pass), an SSDF
+      gap assessment showing code review enforced (reports/ssdf.md, inspected branch protection and 20 PRs).
+      Dependency scanning results are not available yet. Decision authority: Head of Security Assurance.
+    golden: golden/release-case.md
+    negative: golden/release-case.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.assurance_case:grade_case"}
+      - {type: regex, pattern: "status:\\s*undeveloped"}
+      - {type: contains, values: ["decision_authority", "a1b2c3d"]}
+      - {type: python, function: "agentlib.frameworks.evidence:grade_no_overclaim"}
+  - id: weak-evidence-high-claim
+    prompt: >-
+      A high-criticality claim "the AI model's outputs are not discriminatory" is supported only by the vendor's
+      statement in a sales deck. Is that acceptable in our assurance case? What should the case say?
+    golden: golden/weak-evidence-high-claim.md
+    negative: golden/weak-evidence-high-claim.bad.md
+    checks:
+      - {type: regex, pattern: "\\bE1\\b"}
+      - {type: regex, pattern: "\\bE3\\b"}
+      - {type: any_of, values: ["undeveloped", "not acceptable", "insufficient"]}
+      - {type: not_contains, values: ["acceptable as is"]}
+  - id: review-flawed-case
+    prompt: >-
+      Review this assurance case structure: C1 (top) has subclaims C1.1 and C1.2; C1.2 has subclaim C1; C1.1 has
+      no evidence and no status. Evidence EV-3 is listed but not used. What is wrong?
+    golden: golden/review-flawed-case.md
+    negative: golden/review-flawed-case.bad.md
+    checks:
+      - {type: contains, values: ["cycle", "C1.1", "EV-3"]}
+      - {type: any_of, values: ["undeveloped", "no evidence"], min: 2}
+      - {type: regex, pattern: "python -m agentlib assurance-case check"}
+  - id: decision-package
+    prompt: >-
+      How should an incomplete assurance case (two undeveloped claims) feed into the review board decision record?
+    golden: golden/decision-package.md
+    negative: golden/decision-package.bad.md
+    checks:
+      - {type: any_of, values: ["condition", "residual risk"], min: 2}
+      - {type: contains, values: ["decision authority"]}
+      - {type: python, function: "agentlib.frameworks.evidence:grade_no_overclaim"}

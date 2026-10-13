@@ -1,0 +1,26 @@
+{
+  "name": "professional-agent-library",
+  "version": "0.1.0",
+  "description": "Professional AI agents, skills and workflows grounded in NASA systems/software engineering, NIST AI RMF, NIST SSDF, OWASP ASVS and the HM Treasury Green Book.",
+  "author": {
+    "name": "JMBorrill"
+  },
+  "homepage": "https://github.com/JMBorrill/Agent-Library",
+  "repository": "https://github.com/JMBorrill/Agent-Library",
+  "license": "MIT",
+  "keywords": [
+    "systems-engineering",
+    "nasa",
+    "nist",
+    "ai-rmf",
+    "ssdf",
+    "owasp",
+    "asvs",
+    "green-book",
+    "appraisal",
+    "assurance"
+  ],
+  "experimental": {
+    "evals": "plugin-evals"
+  }
+}

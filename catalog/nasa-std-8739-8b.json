@@ -1,0 +1,4329 @@
+{
+  "catalog_id": "nasa-std-8739-8b",
+  "source_id": "nasa-software-assurance",
+  "title": "NASA-STD-8739.8B Software Assurance and Software Safety Standard",
+  "edition": "NASA-STD-8739.8B (approved 2022-09-08)",
+  "description": "SASS-01 and the Table 1 Software Assurance and Software Safety Requirements Mapping Matrix (SA/SS tasks per NPR 7150.2 SWE), safety-critical software criteria (4.2), IV&V requirements (4.4.2.1-4.4.2.49), tailoring principles (4.5) and Appendix A Table 2 software hazard cause areas.",
+  "extraction": {
+    "method": "scripts/extract/nasa_swe.py: pdfplumber word positions for Table 1 (columns: section x<120, SWE# 120-160, NPR text 160-415, SA/SS tasks x>=415; tasks split on '<n>.' at line start in sequence) and Table 2 (area column x<180); pdftotext -layout for sections 4.2-4.5. A supplier watermark in the page margin (x<40 / y>565) is excluded.",
+    "date": "2026-10-13",
+    "fidelity": "verbatim-normalised-whitespace",
+    "pages_reviewed": "2, 5-6, 12-13, 15-65",
+    "notes": "103 Table 1 rows covering 100 SWEs (198 SA/SS tasks); SWE-065 is split into 065a-065d in the standard. Table 1 lists NPR section numbers from the standard (e.g. SWE-032 as 3.9.3, SWE-086 as 5.2.1) which differ slightly from NPR 7150.2D (3.9.2, 5.2); both are kept (npr_section_in_table vs npr_section). 'safety_related_tasks' is a library keyword flag (task text mentions safety/hazard), not a classification in the standard. Ids SC-4.2-x, 4.5-n and HAZ-* are assigned by this library (the standard does not number them); 4.4.2.n and SASS-01 are the standard's own identifiers. Printed page = PDF page ('N of 65')."
+  },
+  "parameters": {
+    "safety_critical_definition": {
+      "pdf_page": 15,
+      "rule": "Software is classified as safety-critical if it meets at least one of the following criteria (4.2 a-e).",
+      "note": "Software is classified as safety-critical if the software is determined by and traceable to hazard analysis (Note to 4.2, p.16). See SWE-205."
+    },
+    "ivv_independence": {
+      "pdf_page": 48,
+      "text": "Three parameters define the independence of IV&V: technical independence, managerial independence, and financial independence."
+    },
+    "tailoring_levels": [
+      {
+        "level": 1,
+        "text": "The first level of tailoring is the Software Classification Decision, see NPR 7150.2.",
+        "pdf_page": 56
+      },
+      {
+        "level": 2,
+        "text": "The second level of tailoring is the project's Software Requirements Mapping Matrix, see NPR 7150.2.",
+        "pdf_page": 57
+      },
+      {
+        "level": 3,
+        "text": "The third level of tailoring is the tailoring by the Software Assurance TA of the Software Assurance and Software Safety Standard requirements that correspond to the project's Software Requirements Mapping Matrix requirements.",
+        "pdf_page": 57
+      }
+    ],
+    "counts": {
+      "sa_rows": 103,
+      "sa_swes": 100,
+      "sa_tasks": 198,
+      "ivv": 49,
+      "hazard_cause_areas": 12
+    }
+  },
+  "groups": [
+    {
+      "id": "4.1",
+      "title": "Software Assurance Description",
+      "parent": null,
+      "citation": {
+        "pdf_page": 15,
+        "printed_page": 15,
+        "section": "4.1"
+      }
+    },
+    {
+      "id": "4.2",
+      "title": "Safety-Critical Software Determination",
+      "parent": null,
+      "citation": {
+        "pdf_page": 15,
+        "printed_page": 15,
+        "section": "4.2"
+      }
+    },
+    {
+      "id": "4.3",
+      "title": "Software Assurance and Software Safety Requirements",
+      "parent": null,
+      "citation": {
+        "pdf_page": 16,
+        "printed_page": 16,
+        "section": "4.3"
+      }
+    },
+    {
+      "id": "4.4",
+      "title": "Independent Verification & Validation",
+      "parent": null,
+      "citation": {
+        "pdf_page": 48,
+        "printed_page": 48,
+        "section": "4.4"
+      }
+    },
+    {
+      "id": "4.5",
+      "title": "Principles Related to Tailoring the Standard Requirements",
+      "parent": null,
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.5"
+      }
+    },
+    {
+      "id": "A",
+      "title": "Guidelines for the Hazard Development Involving Software",
+      "parent": null,
+      "citation": {
+        "pdf_page": 58,
+        "printed_page": 58,
+        "section": "A"
+      }
+    },
+    {
+      "id": "table-1",
+      "title": "Table 1. Software Assurance and Software Safety Requirements Mapping Matrix",
+      "parent": "4.3",
+      "citation": {
+        "pdf_page": 17,
+        "printed_page": 17,
+        "section": "4.3, Table 1"
+      }
+    },
+    {
+      "id": "table-2",
+      "title": "Table 2. Additional considerations when identifying software causes in hazard analysis",
+      "parent": "A",
+      "citation": {
+        "pdf_page": 59,
+        "printed_page": 59,
+        "section": "A.1.4, Table 2"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "SASS-01",
+      "kind": "requirement",
+      "group": "4.3",
+      "text": "The responsible project manager shall perform the software assurance and software safety activities defined in Table 1 per the requirements marked applicable in the software engineering requirements mapping matrix for the software component.",
+      "actor": "Project manager (SA/SS tasks may be delegated within the project)",
+      "citation": {
+        "pdf_page": 16,
+        "printed_page": 16,
+        "section": "4.3"
+      }
+    },
+    {
+      "id": "SC-4.2-a",
+      "kind": "safety-critical-criterion",
+      "group": "4.2",
+      "criterion": "a",
+      "text": "Causes or contributes to a system hazardous condition/event",
+      "citation": {
+        "pdf_page": 15,
+        "printed_page": 15,
+        "section": "4.2 a."
+      }
+    },
+    {
+      "id": "SC-4.2-b",
+      "kind": "safety-critical-criterion",
+      "group": "4.2",
+      "criterion": "b",
+      "text": "Provides control or mitigation for a system hazardous condition/event",
+      "citation": {
+        "pdf_page": 15,
+        "printed_page": 15,
+        "section": "4.2 b."
+      }
+    },
+    {
+      "id": "SC-4.2-c",
+      "kind": "safety-critical-criterion",
+      "group": "4.2",
+      "criterion": "c",
+      "text": "Controls safety-critical functions",
+      "citation": {
+        "pdf_page": 16,
+        "printed_page": 16,
+        "section": "4.2 c."
+      }
+    },
+    {
+      "id": "SC-4.2-d",
+      "kind": "safety-critical-criterion",
+      "group": "4.2",
+      "criterion": "d",
+      "text": "Mitigates damage if a hazardous condition/event occurs",
+      "citation": {
+        "pdf_page": 16,
+        "printed_page": 16,
+        "section": "4.2 d."
+      }
+    },
+    {
+      "id": "SC-4.2-e",
+      "kind": "safety-critical-criterion",
+      "group": "4.2",
+      "criterion": "e",
+      "text": "Detects, reports, and takes corrective action if the system reaches a potentially hazardous state.",
+      "citation": {
+        "pdf_page": 16,
+        "printed_page": 16,
+        "section": "4.2 e."
+      }
+    },
+    {
+      "id": "SA-SWE-033",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-033",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.2",
+      "npr_section": "3.1.2",
+      "text": "1. Confirm that the options for software acquisition versus development have been evaluated. 2. Confirm the flow down of applicable software engineering, software assurance, and software safety requirements on all acquisition activities. (NPR 7150.2 and NASA-STD-8739.8). 3. Assess any risks with acquisition versus development decision(s).",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the options for software acquisition versus development have been evaluated."
+        },
+        {
+          "n": 2,
+          "text": "Confirm the flow down of applicable software engineering, software assurance, and software safety requirements on all acquisition activities. (NPR 7150.2 and NASA-STD-8739.8)."
+        },
+        {
+          "n": 3,
+          "text": "Assess any risks with acquisition versus development decision(s)."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 17,
+        "printed_page": 17,
+        "section": "Table 1, 3.1.2"
+      },
+      "pages": [
+        17
+      ]
+    },
+    {
+      "id": "SA-SWE-013",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-013",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.3",
+      "npr_section": "3.1.3",
+      "text": "1. Confirm that all plans, including security plans, are in place and have expected content for the life-cycle events, with proper tailoring for the classification of the software. 2. Develop and maintain a Software Assurance Plan following the content defined in NASA-HDBK-2203 for a software assurance plan, including software safety.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that all plans, including security plans, are in place and have expected content for the life-cycle events, with proper tailoring for the classification of the software."
+        },
+        {
+          "n": 2,
+          "text": "Develop and maintain a Software Assurance Plan following the content defined in NASA-HDBK-2203 for a software assurance plan, including software safety."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 17,
+        "printed_page": 17,
+        "section": "Table 1, 3.1.3"
+      },
+      "pages": [
+        17
+      ]
+    },
+    {
+      "id": "SA-SWE-024",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-024",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.4",
+      "npr_section": "3.1.4",
+      "text": "1. Assess plans for compliance with NPR 7150.2 requirements, NASA-STD-8739.8, including changes to commitments. 2. Confirm that closure of corrective actions associated with the performance of software activities against the software plans, including closure rationale.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess plans for compliance with NPR 7150.2 requirements, NASA-STD-8739.8, including changes to commitments."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that closure of corrective actions associated with the performance of software activities against the software plans, including closure rationale."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 17,
+        "printed_page": 17,
+        "section": "Table 1, 3.1.4"
+      },
+      "pages": [
+        17
+      ]
+    },
+    {
+      "id": "SA-SWE-034",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-034",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.5",
+      "npr_section": "3.1.5",
+      "text": "1. Confirm software acceptance criteria are defined and assess the criteria based on guidance in the NASA Software Engineering Handbook, NASA-HDBK-2203.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm software acceptance criteria are defined and assess the criteria based on guidance in the NASA Software Engineering Handbook, NASA-HDBK-2203."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 18,
+        "printed_page": 18,
+        "section": "Table 1, 3.1.5"
+      },
+      "pages": [
+        18
+      ]
+    },
+    {
+      "id": "SA-SWE-036",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-036",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.6",
+      "npr_section": "3.1.6",
+      "text": "1. Confirm the following are approved, implemented, and updated per requirements: a. Software processes, including software assurance, software safety, and IV&V processes. b. Software documentation plans, c. List of developed electronic products, deliverables, and d. List of tasks required or needed for the project's software development. 2. Confirm that any required government actions are established and maintained upon receipt of deliverables (e.g., approvals, reviews).",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the following are approved, implemented, and updated per requirements: a. Software processes, including software assurance, software safety, and IV&V processes. b. Software documentation plans, c. List of developed electronic products, deliverables, and d. List of tasks required or needed for the project's software development."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that any required government actions are established and maintained upon receipt of deliverables (e.g., approvals, reviews)."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 18,
+        "printed_page": 18,
+        "section": "Table 1, 3.1.6"
+      },
+      "pages": [
+        18
+      ]
+    },
+    {
+      "id": "SA-SWE-037",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-037",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.7",
+      "npr_section": "3.1.7",
+      "text": "1. Confirm that milestones for reviewing and auditing software developer progress are defined and documented. 2. Participate in project milestones reviews.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that milestones for reviewing and auditing software developer progress are defined and documented."
+        },
+        {
+          "n": 2,
+          "text": "Participate in project milestones reviews."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 18,
+        "printed_page": 18,
+        "section": "Table 1, 3.1.7"
+      },
+      "pages": [
+        18
+      ]
+    },
+    {
+      "id": "SA-SWE-039",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-039",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.8",
+      "npr_section": "3.1.8",
+      "text": "1. Confirm that software developer(s) periodically report status and provide insight to the project manager. 2. Monitor product integration. 3. Analyze the verification activities to ensure adequacy. 4. Assess trade studies, source data, software reviews, and technical interchange meetings. 5. Perform audits on software development processes and practices at least once every two years. 6. Develop and provide status reports. 7. Develop and maintain a list of all software assurance review discrepancies, risks, issues, findings, and concerns. 8. Confirm that the project manager provides responses to software assurance and software safety submitted issues, findings, and risks and that the project manager tracks software assurance and software safety issues, findings, and risks to closure.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software developer(s) periodically report status and provide insight to the project manager."
+        },
+        {
+          "n": 2,
+          "text": "Monitor product integration."
+        },
+        {
+          "n": 3,
+          "text": "Analyze the verification activities to ensure adequacy."
+        },
+        {
+          "n": 4,
+          "text": "Assess trade studies, source data, software reviews, and technical interchange meetings."
+        },
+        {
+          "n": 5,
+          "text": "Perform audits on software development processes and practices at least once every two years."
+        },
+        {
+          "n": 6,
+          "text": "Develop and provide status reports."
+        },
+        {
+          "n": 7,
+          "text": "Develop and maintain a list of all software assurance review discrepancies, risks, issues, findings, and concerns."
+        },
+        {
+          "n": 8,
+          "text": "Confirm that the project manager provides responses to software assurance and software safety submitted issues, findings, and risks and that the project manager tracks software assurance and software safety issues, findings, and risks to closure."
+        }
+      ],
+      "safety_related_tasks": [
+        8
+      ],
+      "citation": {
+        "pdf_page": 18,
+        "printed_page": 18,
+        "section": "Table 1, 3.1.8"
+      },
+      "pages": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "SA-SWE-040",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-040",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.9",
+      "npr_section": "3.1.9",
+      "text": "1. Confirm that software artifacts are available in electronic format to NASA.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software artifacts are available in electronic format to NASA."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 19,
+        "printed_page": 19,
+        "section": "Table 1, 3.1.9"
+      },
+      "pages": [
+        19
+      ]
+    },
+    {
+      "id": "SA-SWE-042",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-042",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.10",
+      "npr_section": "3.1.10",
+      "text": "1. Confirm that software developers provide NASA with electronic access to the source code generated for the project in a modifiable form.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software developers provide NASA with electronic access to the source code generated for the project in a modifiable form."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 19,
+        "printed_page": 19,
+        "section": "Table 1, 3.1.10"
+      },
+      "pages": [
+        19
+      ]
+    },
+    {
+      "id": "SA-SWE-139",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-139",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.11",
+      "npr_section": "3.1.11",
+      "text": "1. Assess that the project's software requirements, products, procedures, and processes are compliant with the NPR 7150.2 requirements per the software classification and safety criticality for software.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess that the project's software requirements, products, procedures, and processes are compliant with the NPR 7150.2 requirements per the software classification and safety criticality for software."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 19,
+        "printed_page": 19,
+        "section": "Table 1, 3.1.11"
+      },
+      "pages": [
+        19
+      ]
+    },
+    {
+      "id": "SA-SWE-121",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-121",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.12",
+      "npr_section": "3.1.12",
+      "text": "1. Confirm that any requirement tailoring in the Requirements Mapping Matrix has the required approvals. 2. Develop a tailoring matrix of software assurance and software safety requirements.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that any requirement tailoring in the Requirements Mapping Matrix has the required approvals."
+        },
+        {
+          "n": 2,
+          "text": "Develop a tailoring matrix of software assurance and software safety requirements."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 20,
+        "section": "Table 1, 3.1.12"
+      },
+      "pages": [
+        20
+      ]
+    },
+    {
+      "id": "SA-SWE-125",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-125",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.13",
+      "npr_section": "3.1.13",
+      "text": "1. Confirm that the project maintains a requirements mapping matrix (matrices) for all requirements in NPR 7150.2. 2. Maintain the requirements mapping matrix (matrices) for requirements in NASA-STD-8739.8.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project maintains a requirements mapping matrix (matrices) for all requirements in NPR 7150.2."
+        },
+        {
+          "n": 2,
+          "text": "Maintain the requirements mapping matrix (matrices) for requirements in NASA-STD-8739.8."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 20,
+        "section": "Table 1, 3.1.13"
+      },
+      "pages": [
+        20
+      ]
+    },
+    {
+      "id": "SA-SWE-027",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-027",
+      "swe_part": null,
+      "npr_section_in_table": "3.1.14",
+      "npr_section": "3.1.14",
+      "text": "1. Confirm that the conditions listed in \"a\" through \"f\" are complete for any COTS, GOTS, MOTS, OSS, or reused software that is acquired or used.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the conditions listed in \"a\" through \"f\" are complete for any COTS, GOTS, MOTS, OSS, or reused software that is acquired or used."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 20,
+        "printed_page": 20,
+        "section": "Table 1, 3.1.14"
+      },
+      "pages": [
+        20
+      ]
+    },
+    {
+      "id": "SA-SWE-015",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-015",
+      "swe_part": null,
+      "npr_section_in_table": "3.2.1",
+      "npr_section": "3.2.1",
+      "text": "1. Confirm that the required number of software cost estimates are complete and include software assurance cost estimate(s) for the project, including a cost estimate associated with handling safety-critical software and safety-critical data.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the required number of software cost estimates are complete and include software assurance cost estimate(s) for the project, including a cost estimate associated with handling safety-critical software and safety-critical data."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 22,
+        "printed_page": 22,
+        "section": "Table 1, 3.2.1"
+      },
+      "pages": [
+        22
+      ]
+    },
+    {
+      "id": "SA-SWE-151",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-151",
+      "swe_part": null,
+      "npr_section_in_table": "3.2.2",
+      "npr_section": "3.2.2",
+      "text": "1. Assess the project's software cost estimate(s) to determine if the stated criteria listed in \"a\" through \"f\" are satisfied.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess the project's software cost estimate(s) to determine if the stated criteria listed in \"a\" through \"f\" are satisfied."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 23,
+        "printed_page": 23,
+        "section": "Table 1, 3.2.2"
+      },
+      "pages": [
+        23
+      ]
+    },
+    {
+      "id": "SA-SWE-174",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-174",
+      "swe_part": null,
+      "npr_section_in_table": "3.2.3",
+      "npr_section": "3.2.3",
+      "text": "1. Confirm that all the software planning parameters, including size and effort estimates, milestones, and characteristics, are submitted to a Center repository. 2. Confirm that all software assurance and software safety software estimates and planning parameters are submitted to an organizational repository.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that all the software planning parameters, including size and effort estimates, milestones, and characteristics, are submitted to a Center repository."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that all software assurance and software safety software estimates and planning parameters are submitted to an organizational repository."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 23,
+        "printed_page": 23,
+        "section": "Table 1, 3.2.3"
+      },
+      "pages": [
+        23
+      ]
+    },
+    {
+      "id": "SA-SWE-016",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-016",
+      "swe_part": null,
+      "npr_section_in_table": "3.3.1",
+      "npr_section": "3.3.1",
+      "text": "1. Assess that the software schedule satisfies the conditions in the requirement. 2. Develop a software assurance schedule, including software assurance products, audits, reporting, and reviews.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess that the software schedule satisfies the conditions in the requirement."
+        },
+        {
+          "n": 2,
+          "text": "Develop a software assurance schedule, including software assurance products, audits, reporting, and reviews."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 24,
+        "printed_page": 24,
+        "section": "Table 1, 3.3.1"
+      },
+      "pages": [
+        24
+      ]
+    },
+    {
+      "id": "SA-SWE-018",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-018",
+      "swe_part": null,
+      "npr_section_in_table": "3.3.2",
+      "npr_section": "3.3.2",
+      "text": "1. Confirm the generation and distribution of periodic reports on software schedule activities, metrics, and status, including reports of software assurance and software safety schedule activities, metrics, and status. 2. Confirm closure of any project software schedule issues.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the generation and distribution of periodic reports on software schedule activities, metrics, and status, including reports of software assurance and software safety schedule activities, metrics, and status."
+        },
+        {
+          "n": 2,
+          "text": "Confirm closure of any project software schedule issues."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 24,
+        "printed_page": 24,
+        "section": "Table 1, 3.3.2"
+      },
+      "pages": [
+        24
+      ]
+    },
+    {
+      "id": "SA-SWE-046",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-046",
+      "swe_part": null,
+      "npr_section_in_table": "3.3.3",
+      "npr_section": "3.3.3",
+      "text": "1. Confirm the project's schedules including the software assurance's/software safety's schedules are updated.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the project's schedules including the software assurance's/software safety's schedules are updated."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 24,
+        "printed_page": 24,
+        "section": "Table 1, 3.3.3"
+      },
+      "pages": [
+        24
+      ]
+    },
+    {
+      "id": "SA-SWE-017",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-017",
+      "swe_part": null,
+      "npr_section_in_table": "3.4.1",
+      "npr_section": "3.4.1",
+      "text": "1. Confirm that any project-specific software training has been planned, tracked, and completed for project personnel, including software assurance and software safety personnel. 2. Confirm that software assurance and software safety personnel have completed the basic software assurance and/or software safety training.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that any project-specific software training has been planned, tracked, and completed for project personnel, including software assurance and software safety personnel."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that software assurance and software safety personnel have completed the basic software assurance and/or software safety training."
+        }
+      ],
+      "safety_related_tasks": [
+        1,
+        2
+      ],
+      "citation": {
+        "pdf_page": 24,
+        "printed_page": 24,
+        "section": "Table 1, 3.4.1"
+      },
+      "pages": [
+        24
+      ]
+    },
+    {
+      "id": "SA-SWE-020",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-020",
+      "swe_part": null,
+      "npr_section_in_table": "3.5.1",
+      "npr_section": "3.5.1",
+      "text": "1. Perform a software classification or concur with the engineering software classification of software per the descriptions in NPR 7150.2.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Perform a software classification or concur with the engineering software classification of software per the descriptions in NPR 7150.2."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 25,
+        "printed_page": 25,
+        "section": "Table 1, 3.5.1"
+      },
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "SA-SWE-176",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-176",
+      "swe_part": null,
+      "npr_section_in_table": "3.5.2",
+      "npr_section": "3.5.2",
+      "text": "1. Confirm that records of the software Requirements Mapping Matrix and each software classification are maintained and updated for the life of the project.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that records of the software Requirements Mapping Matrix and each software classification are maintained and updated for the life of the project."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 25,
+        "printed_page": 25,
+        "section": "Table 1, 3.5.2"
+      },
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "SA-SWE-022",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-022",
+      "swe_part": null,
+      "npr_section_in_table": "3.6.1",
+      "npr_section": "3.6.1",
+      "text": "1. Perform software assurance, software safety and IV&V (if required) according to the software assurance and software safety standard requirements in NASA-STD-8739.8, Software Assurance and Software Safety Standard and the Project's software assurance plan.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Perform software assurance, software safety and IV&V (if required) according to the software assurance and software safety standard requirements in NASA-STD-8739.8, Software Assurance and Software Safety Standard and the Project's software assurance plan."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 25,
+        "printed_page": 25,
+        "section": "Table 1, 3.6.1"
+      },
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "SA-SWE-141",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-141",
+      "swe_part": null,
+      "npr_section_in_table": "3.6.2",
+      "npr_section": "3.6.2",
+      "text": "1. Confirm that IV&V requirements (section 4.4) are complete on projects required to have IV&V.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that IV&V requirements (section 4.4) are complete on projects required to have IV&V."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 25,
+        "printed_page": 25,
+        "section": "Table 1, 3.6.2"
+      },
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "SA-SWE-131",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-131",
+      "swe_part": null,
+      "npr_section_in_table": "3.6.3",
+      "npr_section": "3.6.3",
+      "text": "1. Confirm that the IV&V Project Execution Plan (IPEP) exists.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the IV&V Project Execution Plan (IPEP) exists."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 26,
+        "section": "Table 1, 3.6.3"
+      },
+      "pages": [
+        26
+      ]
+    },
+    {
+      "id": "SA-SWE-178",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-178",
+      "swe_part": null,
+      "npr_section_in_table": "3.6.4",
+      "npr_section": "3.6.4",
+      "text": "1. Confirm that IV&V has access to the software development artifacts, products, source code, and data required to perform the IV&V analysis efficiently and effectively.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that IV&V has access to the software development artifacts, products, source code, and data required to perform the IV&V analysis efficiently and effectively."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 26,
+        "section": "Table 1, 3.6.4"
+      },
+      "pages": [
+        26
+      ]
+    },
+    {
+      "id": "SA-SWE-179",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-179",
+      "swe_part": null,
+      "npr_section_in_table": "3.6.5",
+      "npr_section": "3.6.5",
+      "text": "1. Confirm that the project manager responds to IV&V submitted issues, findings, and risks and that the project manager tracks IV&V issues, findings, and risks to closure.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project manager responds to IV&V submitted issues, findings, and risks and that the project manager tracks IV&V issues, findings, and risks to closure."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 26,
+        "section": "Table 1, 3.6.5"
+      },
+      "pages": [
+        26
+      ]
+    },
+    {
+      "id": "SA-SWE-205",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-205",
+      "swe_part": null,
+      "npr_section_in_table": "3.7.1",
+      "npr_section": "3.7.1",
+      "text": "1. Confirm that the hazard reports or safety data packages contain all known software contributions or events where software, either by its action, inaction, or incorrect action, leads to a hazard. 2. Assess that the hazard reports identify the software components associated with the system hazards per the criteria defined in NASA-STD- 8739.8, Appendix A. 3. Assess that hazard analyses (including hazard reports) identify the software components associated with the system hazards per the criteria defined in NASA-STD- 8739.8, Appendix A. 4. Confirm that the traceability between software requirements and hazards with software contributions exists. 5. Develop and maintain a software safety analysis throughout the software development life-cycle.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the hazard reports or safety data packages contain all known software contributions or events where software, either by its action, inaction, or incorrect action, leads to a hazard."
+        },
+        {
+          "n": 2,
+          "text": "Assess that the hazard reports identify the software components associated with the system hazards per the criteria defined in NASA-STD- 8739.8, Appendix A."
+        },
+        {
+          "n": 3,
+          "text": "Assess that hazard analyses (including hazard reports) identify the software components associated with the system hazards per the criteria defined in NASA-STD- 8739.8, Appendix A."
+        },
+        {
+          "n": 4,
+          "text": "Confirm that the traceability between software requirements and hazards with software contributions exists."
+        },
+        {
+          "n": 5,
+          "text": "Develop and maintain a software safety analysis throughout the software development life-cycle."
+        }
+      ],
+      "safety_related_tasks": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "citation": {
+        "pdf_page": 26,
+        "printed_page": 26,
+        "section": "Table 1, 3.7.1"
+      },
+      "pages": [
+        26,
+        27
+      ]
+    },
+    {
+      "id": "SA-SWE-023",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-023",
+      "swe_part": null,
+      "npr_section_in_table": "3.7.2",
+      "npr_section": "3.7.2",
+      "text": "1. Confirm that the identified safety-critical software components and data have implemented the safety-critical software assurance requirements listed in this standard.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the identified safety-critical software components and data have implemented the safety-critical software assurance requirements listed in this standard."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 27,
+        "printed_page": 27,
+        "section": "Table 1, 3.7.2"
+      },
+      "pages": [
+        27
+      ]
+    },
+    {
+      "id": "SA-SWE-134",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-134",
+      "swe_part": null,
+      "npr_section_in_table": "3.7.3",
+      "npr_section": "3.7.3",
+      "text": "1. Analyze the software requirements and the software design and work with the project to implement NPR 7150.2 requirement items \"a\" through \"l.\" 2. Assess that the source code satisfies the conditions in the NPR 7150.2 requirement \"a\" through \"l\" for safety-critical and mission-critical software at each code inspection, test review, safety review, and project review milestone. 3. Confirm that the values of the safety-critical loaded data, uplinked data, rules, and scripts that affect hazardous system behavior have been tested. 4. Analyze the software design to ensure: a. Use of partitioning or isolation methods in the design and code, b. That the design logically isolates the safety-critical design elements and data from those that are non-safety-critical. 5. Participate in software reviews affecting safety-critical software products.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Analyze the software requirements and the software design and work with the project to implement NPR 7150.2 requirement items \"a\" through \"l.\""
+        },
+        {
+          "n": 2,
+          "text": "Assess that the source code satisfies the conditions in the NPR 7150.2 requirement \"a\" through \"l\" for safety-critical and mission-critical software at each code inspection, test review, safety review, and project review milestone."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that the values of the safety-critical loaded data, uplinked data, rules, and scripts that affect hazardous system behavior have been tested."
+        },
+        {
+          "n": 4,
+          "text": "Analyze the software design to ensure: a. Use of partitioning or isolation methods in the design and code, b. That the design logically isolates the safety-critical design elements and data from those that are non-safety-critical."
+        },
+        {
+          "n": 5,
+          "text": "Participate in software reviews affecting safety-critical software products."
+        }
+      ],
+      "safety_related_tasks": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "citation": {
+        "pdf_page": 27,
+        "printed_page": 27,
+        "section": "Table 1, 3.7.3"
+      },
+      "pages": [
+        27,
+        28
+      ]
+    },
+    {
+      "id": "SA-SWE-219",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-219",
+      "swe_part": null,
+      "npr_section_in_table": "3.7.4",
+      "npr_section": "3.7.4",
+      "text": "1. Confirm that 100% code test coverage is addressed for all identified software safety-critical software components or that software developers provide a risk assessment explaining why the test coverage is not possible for the safety-critical code component.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that 100% code test coverage is addressed for all identified software safety-critical software components or that software developers provide a risk assessment explaining why the test coverage is not possible for the safety-critical code component."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 28,
+        "printed_page": 28,
+        "section": "Table 1, 3.7.4"
+      },
+      "pages": [
+        28
+      ]
+    },
+    {
+      "id": "SA-SWE-220",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-220",
+      "swe_part": null,
+      "npr_section_in_table": "3.7.5",
+      "npr_section": "3.7.5",
+      "text": "1. Confirm that all identified safety-critical software components have a cyclomatic complexity value of 15 or lower. If not, assure that software developers provide a risk assessment explaining why the cyclomatic complexity value needs to be higher than 15 and why the software component cannot be structured to be lower than 15.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that all identified safety-critical software components have a cyclomatic complexity value of 15 or lower. If not, assure that software developers provide a risk assessment explaining why the cyclomatic complexity value needs to be higher than 15 and why the software component cannot be structured to be lower than 15."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 28,
+        "printed_page": 28,
+        "section": "Table 1, 3.7.5"
+      },
+      "pages": [
+        28
+      ]
+    },
+    {
+      "id": "SA-SWE-146",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-146",
+      "swe_part": null,
+      "npr_section_in_table": "3.8.1",
+      "npr_section": "3.8.1",
+      "text": "1. Assess that the approach for the auto-generation software source code is defined, and the approach satisfies at least the conditions \"a\" through \"g.\"",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess that the approach for the auto-generation software source code is defined, and the approach satisfies at least the conditions \"a\" through \"g.\""
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 29,
+        "printed_page": 29,
+        "section": "Table 1, 3.8.1"
+      },
+      "pages": [
+        29
+      ]
+    },
+    {
+      "id": "SA-SWE-206",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-206",
+      "swe_part": null,
+      "npr_section_in_table": "3.8.2",
+      "npr_section": "3.8.2",
+      "text": "1. Confirm that NASA, engineering, project, software assurance, and IV&V have electronic access to the models, simulations, and associated data used as inputs for auto-generation of software.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that NASA, engineering, project, software assurance, and IV&V have electronic access to the models, simulations, and associated data used as inputs for auto-generation of software."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 29,
+        "printed_page": 29,
+        "section": "Table 1, 3.8.2"
+      },
+      "pages": [
+        29
+      ]
+    },
+    {
+      "id": "SA-SWE-032",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-032",
+      "swe_part": null,
+      "npr_section_in_table": "3.9.3",
+      "npr_section": "3.9.2",
+      "text": "1. Confirm that Class A and B software acquired, developed, and maintained by NASA is performed by an organization with a non-expired CMMI-DEV rating, as per the NPR 7150.2 requirement. 2. Assess potential process-related issues, findings, or risks identified from the CMMI assessment findings. 3. Perform audits on the software development and software assurances processes.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that Class A and B software acquired, developed, and maintained by NASA is performed by an organization with a non-expired CMMI-DEV rating, as per the NPR 7150.2 requirement."
+        },
+        {
+          "n": 2,
+          "text": "Assess potential process-related issues, findings, or risks identified from the CMMI assessment findings."
+        },
+        {
+          "n": 3,
+          "text": "Perform audits on the software development and software assurances processes."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 30,
+        "section": "Table 1, 3.9.3"
+      },
+      "pages": [
+        30
+      ]
+    },
+    {
+      "id": "SA-SWE-147",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-147",
+      "swe_part": null,
+      "npr_section_in_table": "3.10.1",
+      "npr_section": "3.10.1",
+      "text": "1. Confirm that the project has considered reusability for its software development activities.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project has considered reusability for its software development activities."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 30,
+        "printed_page": 30,
+        "section": "Table 1, 3.10.1"
+      },
+      "pages": [
+        30
+      ]
+    },
+    {
+      "id": "SA-SWE-148",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-148",
+      "swe_part": null,
+      "npr_section_in_table": "3.10.2",
+      "npr_section": "3.10.2",
+      "text": "1. Confirm that any project software contributed as a reuse candidate has the identified information in items \"a\" through \"e.\"",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that any project software contributed as a reuse candidate has the identified information in items \"a\" through \"e.\""
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 31,
+        "printed_page": 31,
+        "section": "Table 1, 3.10.2"
+      },
+      "pages": [
+        31
+      ]
+    },
+    {
+      "id": "SA-SWE-156",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-156",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.2",
+      "npr_section": "3.11.2",
+      "text": "1. Confirm the project has performed a software cybersecurity assessment on the software components per the Agency security policies and the project requirements, including risks posed by the use of COTS, GOTS, MOTS, OSS, or reused software components.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the project has performed a software cybersecurity assessment on the software components per the Agency security policies and the project requirements, including risks posed by the use of COTS, GOTS, MOTS, OSS, or reused software components."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "section": "Table 1, 3.11.2"
+      },
+      "pages": [
+        32
+      ]
+    },
+    {
+      "id": "SA-SWE-154",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-154",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.3",
+      "npr_section": "3.11.3",
+      "text": "1. Confirm that cybersecurity risks, along with their mitigations, are identified and managed.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that cybersecurity risks, along with their mitigations, are identified and managed."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "section": "Table 1, 3.11.3"
+      },
+      "pages": [
+        32
+      ]
+    },
+    {
+      "id": "SA-SWE-157",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-157",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.4",
+      "npr_section": "3.11.4",
+      "text": "1. For software products with communications capabilities, confirm that the software requirements and software design documentation and software implementation address unauthorized access per the requirements contained in the Space System Protection Standard, NASA-STD-1006.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "For software products with communications capabilities, confirm that the software requirements and software design documentation and software implementation address unauthorized access per the requirements contained in the Space System Protection Standard, NASA-STD-1006."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "section": "Table 1, 3.11.4"
+      },
+      "pages": [
+        32
+      ]
+    },
+    {
+      "id": "SA-SWE-159",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-159",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.5",
+      "npr_section": "3.11.5",
+      "text": "1. Confirm that testing is complete for the cybersecurity mitigation. 2. Assess the quality of the cybersecurity mitigation implementation testing and the test results.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that testing is complete for the cybersecurity mitigation."
+        },
+        {
+          "n": 2,
+          "text": "Assess the quality of the cybersecurity mitigation implementation testing and the test results."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "section": "Table 1, 3.11.5"
+      },
+      "pages": [
+        32
+      ]
+    },
+    {
+      "id": "SA-SWE-207",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-207",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.6",
+      "npr_section": "3.11.6",
+      "text": "1. Assess that the software coding guidelines (e.g., coding standards) includes secure coding practices.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess that the software coding guidelines (e.g., coding standards) includes secure coding practices."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "section": "Table 1, 3.11.6"
+      },
+      "pages": [
+        32
+      ]
+    },
+    {
+      "id": "SA-SWE-185",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-185",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.7",
+      "npr_section": "3.11.7",
+      "text": "1. Analyze the engineering data or perform independent static code analysis to verify that the code meets the project's secure coding standard requirements.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Analyze the engineering data or perform independent static code analysis to verify that the code meets the project's secure coding standard requirements."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "section": "Table 1, 3.11.7"
+      },
+      "pages": [
+        32
+      ]
+    },
+    {
+      "id": "SA-SWE-210",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-210",
+      "swe_part": null,
+      "npr_section_in_table": "3.11.8",
+      "npr_section": "3.11.8",
+      "text": "1. Confirm that the software requirements exist for collecting, reporting, and storing data relating to the detection of adversarial actions.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the software requirements exist for collecting, reporting, and storing data relating to the detection of adversarial actions."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 33,
+        "printed_page": 33,
+        "section": "Table 1, 3.11.8"
+      },
+      "pages": [
+        33
+      ]
+    },
+    {
+      "id": "SA-SWE-052",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-052",
+      "swe_part": null,
+      "npr_section_in_table": "3.12.1",
+      "npr_section": "3.12.1",
+      "text": "1. Confirm that bi-directional traceability has been completed, recorded, and maintained. 2. Confirm that the software traceability includes traceability to any hazard that includes software.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that bi-directional traceability has been completed, recorded, and maintained."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the software traceability includes traceability to any hazard that includes software."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 33,
+        "printed_page": 33,
+        "section": "Table 1, 3.12.1"
+      },
+      "pages": [
+        33
+      ]
+    },
+    {
+      "id": "SA-SWE-050",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-050",
+      "swe_part": null,
+      "npr_section_in_table": "4.1.2",
+      "npr_section": "4.1.2",
+      "text": "1. Confirm that all software requirements are established, captured, and documented as part of the technical specification, including requirements for COTS, GOTS, MOTS, OSS, or reused software components.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that all software requirements are established, captured, and documented as part of the technical specification, including requirements for COTS, GOTS, MOTS, OSS, or reused software components."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 33,
+        "printed_page": 33,
+        "section": "Table 1, 4.1.2"
+      },
+      "pages": [
+        33,
+        34
+      ]
+    },
+    {
+      "id": "SA-SWE-051",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-051",
+      "swe_part": null,
+      "npr_section_in_table": "4.1.3",
+      "npr_section": "4.1.3",
+      "text": "1. Perform a software assurance analysis on the detailed software requirements to analyze the software requirement sources and identify any incorrect, missing, or incomplete requirements.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Perform a software assurance analysis on the detailed software requirements to analyze the software requirement sources and identify any incorrect, missing, or incomplete requirements."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 34,
+        "section": "Table 1, 4.1.3"
+      },
+      "pages": [
+        34
+      ]
+    },
+    {
+      "id": "SA-SWE-184",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-184",
+      "swe_part": null,
+      "npr_section_in_table": "4.1.4",
+      "npr_section": "4.1.4",
+      "text": "1. Analyze that the software requirements documentation contains the software related safety constraints, controls, mitigations, and assumptions between the hardware, operator, and the software.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Analyze that the software requirements documentation contains the software related safety constraints, controls, mitigations, and assumptions between the hardware, operator, and the software."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 34,
+        "section": "Table 1, 4.1.4"
+      },
+      "pages": [
+        34
+      ]
+    },
+    {
+      "id": "SA-SWE-053",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-053",
+      "swe_part": null,
+      "npr_section_in_table": "4.1.5",
+      "npr_section": "4.1.5",
+      "text": "1. Confirm the software requirements changes are documented, tracked, approved, and maintained throughout the project life-cycle.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the software requirements changes are documented, tracked, approved, and maintained throughout the project life-cycle."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 34,
+        "section": "Table 1, 4.1.5"
+      },
+      "pages": [
+        34
+      ]
+    },
+    {
+      "id": "SA-SWE-054",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-054",
+      "swe_part": null,
+      "npr_section_in_table": "4.1.6",
+      "npr_section": "4.1.6",
+      "text": "1. Monitor identified differences among requirements, project plans, and software products to confirm they are addressed.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Monitor identified differences among requirements, project plans, and software products to confirm they are addressed."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 34,
+        "section": "Table 1, 4.1.6"
+      },
+      "pages": [
+        34
+      ]
+    },
+    {
+      "id": "SA-SWE-055",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-055",
+      "swe_part": null,
+      "npr_section_in_table": "4.1.7",
+      "npr_section": "4.1.7",
+      "text": "1. Confirm that the project software testing has shown that software functions as expected in the customer environment.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project software testing has shown that software functions as expected in the customer environment."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 34,
+        "section": "Table 1, 4.1.7"
+      },
+      "pages": [
+        34
+      ]
+    },
+    {
+      "id": "SA-SWE-057",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-057",
+      "swe_part": null,
+      "npr_section_in_table": "4.2.3",
+      "npr_section": "4.2.3",
+      "text": "1. Assess that the software architecture addresses or contains the software structure, qualities, interfaces, and external/internal components. 2. Analyze the software architecture to assess whether software safety and mission assurance requirements are met.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess that the software architecture addresses or contains the software structure, qualities, interfaces, and external/internal components."
+        },
+        {
+          "n": 2,
+          "text": "Analyze the software architecture to assess whether software safety and mission assurance requirements are met."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 34,
+        "printed_page": 34,
+        "section": "Table 1, 4.2.3"
+      },
+      "pages": [
+        34,
+        35
+      ]
+    },
+    {
+      "id": "SA-SWE-143",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-143",
+      "swe_part": null,
+      "npr_section_in_table": "4.2.4",
+      "npr_section": "4.2.4",
+      "text": "1. Assess the results of or participate in software architecture review activities held by the project.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess the results of or participate in software architecture review activities held by the project."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 35,
+        "printed_page": 35,
+        "section": "Table 1, 4.2.4"
+      },
+      "pages": [
+        35
+      ]
+    },
+    {
+      "id": "SA-SWE-058",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-058",
+      "swe_part": null,
+      "npr_section_in_table": "4.3.2",
+      "npr_section": "4.3.2",
+      "text": "1. Assess the software design against the hardware and software requirements and identify any gaps. 2. Assess the software design to verify that the design is consistent with the software architectural design concepts and that the software design describes the lower-level units to be coded, compiled, and tested. 3. Assess that the design does not introduce undesirable behaviors or unnecessary capabilities. 4. Confirm that the software design implements all of the required safety-critical functions and requirements. 5. Perform a software assurance design analysis.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess the software design against the hardware and software requirements and identify any gaps."
+        },
+        {
+          "n": 2,
+          "text": "Assess the software design to verify that the design is consistent with the software architectural design concepts and that the software design describes the lower-level units to be coded, compiled, and tested."
+        },
+        {
+          "n": 3,
+          "text": "Assess that the design does not introduce undesirable behaviors or unnecessary capabilities."
+        },
+        {
+          "n": 4,
+          "text": "Confirm that the software design implements all of the required safety-critical functions and requirements."
+        },
+        {
+          "n": 5,
+          "text": "Perform a software assurance design analysis."
+        }
+      ],
+      "safety_related_tasks": [
+        4
+      ],
+      "citation": {
+        "pdf_page": 35,
+        "printed_page": 35,
+        "section": "Table 1, 4.3.2"
+      },
+      "pages": [
+        35
+      ]
+    },
+    {
+      "id": "SA-SWE-060",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-060",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.2",
+      "npr_section": "4.4.2",
+      "text": "1. Confirm that the software code implements the software designs. 2. Confirm that the code does not contain functionality not defined in the design or requirements.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the software code implements the software designs."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the code does not contain functionality not defined in the design or requirements."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 35,
+        "printed_page": 35,
+        "section": "Table 1, 4.4.2"
+      },
+      "pages": [
+        35
+      ]
+    },
+    {
+      "id": "SA-SWE-061",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-061",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.3",
+      "npr_section": "4.4.3",
+      "text": "1. Analyze that the software code conforms to all required software coding methods, rules, and principles.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Analyze that the software code conforms to all required software coding methods, rules, and principles."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 36,
+        "printed_page": 36,
+        "section": "Table 1, 4.4.3"
+      },
+      "pages": [
+        36
+      ]
+    },
+    {
+      "id": "SA-SWE-135",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-135",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.4",
+      "npr_section": "4.4.4",
+      "text": "1. Confirm the static analysis tool(s) are used with checkers to identify security and coding errors and defects. 2. Assess that the project addresses the results from the static analysis tools used by software assurance, software safety, engineering, or the project. 3. Confirm that the software code has been scanned for security defects and confirm the result. 4. Confirm the code coverage data, per SWE-219. 5. Confirm the software complexity data, per SWE-220.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the static analysis tool(s) are used with checkers to identify security and coding errors and defects."
+        },
+        {
+          "n": 2,
+          "text": "Assess that the project addresses the results from the static analysis tools used by software assurance, software safety, engineering, or the project."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that the software code has been scanned for security defects and confirm the result."
+        },
+        {
+          "n": 4,
+          "text": "Confirm the code coverage data, per SWE-219."
+        },
+        {
+          "n": 5,
+          "text": "Confirm the software complexity data, per SWE-220."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 36,
+        "printed_page": 36,
+        "section": "Table 1, 4.4.4"
+      },
+      "pages": [
+        36
+      ]
+    },
+    {
+      "id": "SA-SWE-062",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-062",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.5",
+      "npr_section": "4.4.5",
+      "text": "1. Confirm that the project successfully executes the required unit tests, particularly those testing safety-critical functions. 2. Confirm that the project addresses or otherwise tracks to closure errors, defects, or problem reports found during unit tests.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project successfully executes the required unit tests, particularly those testing safety-critical functions."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project addresses or otherwise tracks to closure errors, defects, or problem reports found during unit tests."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 36,
+        "printed_page": 36,
+        "section": "Table 1, 4.4.5"
+      },
+      "pages": [
+        36
+      ]
+    },
+    {
+      "id": "SA-SWE-186",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-186",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.6",
+      "npr_section": "4.4.6",
+      "text": "1. Confirm that the project maintains the procedures, scripts, results, and data needed to repeat the unit testing (e.g., as-run scripts, test procedures, results).",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project maintains the procedures, scripts, results, and data needed to repeat the unit testing (e.g., as-run scripts, test procedures, results)."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 36,
+        "printed_page": 36,
+        "section": "Table 1, 4.4.6"
+      },
+      "pages": [
+        36
+      ]
+    },
+    {
+      "id": "SA-SWE-063",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-063",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.7",
+      "npr_section": "4.4.7",
+      "text": "1. Confirm that the project creates a correct software version description for each software release. 2. For each software release, confirm that the software has been scanned for security defects and coding standard compliance and confirm the results.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project creates a correct software version description for each software release."
+        },
+        {
+          "n": 2,
+          "text": "For each software release, confirm that the software has been scanned for security defects and coding standard compliance and confirm the results."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 36,
+        "printed_page": 36,
+        "section": "Table 1, 4.4.7"
+      },
+      "pages": [
+        36
+      ]
+    },
+    {
+      "id": "SA-SWE-136",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-136",
+      "swe_part": null,
+      "npr_section_in_table": "4.4.8",
+      "npr_section": "4.4.8",
+      "text": "1. Confirm that the software tool(s) needed to create and maintain software is validated and accredited.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the software tool(s) needed to create and maintain software is validated and accredited."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 37,
+        "printed_page": 37,
+        "section": "Table 1, 4.4.8"
+      },
+      "pages": [
+        37
+      ]
+    },
+    {
+      "id": "SA-SWE-065a",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-065",
+      "swe_part": "a",
+      "npr_section_in_table": "4.5.2",
+      "npr_section": "4.5.2",
+      "text": "1. Confirm that software test plans have been established, contain correct content, and are maintained. 2. Confirm that the software test plan addresses the verification of safety-critical software, specifically the off-nominal scenarios.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software test plans have been established, contain correct content, and are maintained."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the software test plan addresses the verification of safety-critical software, specifically the off-nominal scenarios."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 37,
+        "printed_page": 37,
+        "section": "Table 1, 4.5.2"
+      },
+      "pages": [
+        37
+      ]
+    },
+    {
+      "id": "SA-SWE-065b",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-065",
+      "swe_part": "b",
+      "npr_section_in_table": "4.5.2",
+      "npr_section": "4.5.2",
+      "text": "1. Confirm that the test procedures have been established and are updated when changes to tests or requirements occur. 2. Analyze the software test procedures for: a. Coverage of the software requirements. b. Acceptance or pass/fail criteria, c. The inclusion of operational and off-nominal conditions, including boundary conditions, d. Requirements coverage and hazards per SWE-066 and SWE-192, respectively. e. Requirements coverage for cybersecurity per SWE-157 and SWE-210.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the test procedures have been established and are updated when changes to tests or requirements occur."
+        },
+        {
+          "n": 2,
+          "text": "Analyze the software test procedures for: a. Coverage of the software requirements. b. Acceptance or pass/fail criteria, c. The inclusion of operational and off-nominal conditions, including boundary conditions, d. Requirements coverage and hazards per SWE-066 and SWE-192, respectively. e. Requirements coverage for cybersecurity per SWE-157 and SWE-210."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 37,
+        "printed_page": 37,
+        "section": "Table 1, 4.5.2"
+      },
+      "pages": [
+        37
+      ]
+    },
+    {
+      "id": "SA-SWE-065c",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-065",
+      "swe_part": "c",
+      "npr_section_in_table": "4.5.2",
+      "npr_section": "4.5.2",
+      "text": "1. Confirm that the project creates and maintains any code specifically written to perform test procedures in a software configuration management system. 2. Confirm that the project records all issues and discrepancies in code specifically written to perform test procedures. 3. Confirm that the project tracks closure errors and defects found in code specifically written to perform test procedures.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project creates and maintains any code specifically written to perform test procedures in a software configuration management system."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project records all issues and discrepancies in code specifically written to perform test procedures."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that the project tracks closure errors and defects found in code specifically written to perform test procedures."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 37,
+        "printed_page": 37,
+        "section": "Table 1, 4.5.2"
+      },
+      "pages": [
+        37,
+        38
+      ]
+    },
+    {
+      "id": "SA-SWE-065d",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-065",
+      "swe_part": "d",
+      "npr_section_in_table": "4.5.2",
+      "npr_section": "4.5.2",
+      "text": "1. Confirm that the project creates and maintains the test reports throughout software integration and test. 2. Confirm that the project records the test report data and contains the as-run test data, the test results, and required approvals. 3. Confirm that the project records all issues and discrepancies found during each test. 4. Confirm that the project tracks to closure errors and defects found during testing.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project creates and maintains the test reports throughout software integration and test."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project records the test report data and contains the as-run test data, the test results, and required approvals."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that the project records all issues and discrepancies found during each test."
+        },
+        {
+          "n": 4,
+          "text": "Confirm that the project tracks to closure errors and defects found during testing."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 38,
+        "section": "Table 1, 4.5.2"
+      },
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "SA-SWE-066",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-066",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.3",
+      "npr_section": "4.5.3",
+      "text": "1. Confirm test coverage of the requirements through the execution of the test procedures. 2. Perform test witnessing for safety-criticality software. 3. Confirm that any newly identified software contributions to hazards, events, or conditions found during testing are in the system safety data package.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm test coverage of the requirements through the execution of the test procedures."
+        },
+        {
+          "n": 2,
+          "text": "Perform test witnessing for safety-criticality software."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that any newly identified software contributions to hazards, events, or conditions found during testing are in the system safety data package."
+        }
+      ],
+      "safety_related_tasks": [
+        2,
+        3
+      ],
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 38,
+        "section": "Table 1, 4.5.3"
+      },
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "SA-SWE-187",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-187",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.4",
+      "npr_section": "4.5.4",
+      "text": "1. Confirm that software items to be tested are under configuration management before the start of testing. 2. Confirm the project maintains the software items under configuration management through the completion of testing.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software items to be tested are under configuration management before the start of testing."
+        },
+        {
+          "n": 2,
+          "text": "Confirm the project maintains the software items under configuration management through the completion of testing."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 38,
+        "section": "Table 1, 4.5.4"
+      },
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "SA-SWE-068",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-068",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.5",
+      "npr_section": "4.5.5",
+      "text": "1. Confirm that test results are assessed and recorded. 2. Confirm that the project documents software non-conformances in a tracking system. 3. Confirm that test results are sufficient verification artifacts for the hazard reports.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that test results are assessed and recorded."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project documents software non-conformances in a tracking system."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that test results are sufficient verification artifacts for the hazard reports."
+        }
+      ],
+      "safety_related_tasks": [
+        3
+      ],
+      "citation": {
+        "pdf_page": 38,
+        "printed_page": 38,
+        "section": "Table 1, 4.5.5"
+      },
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "SA-SWE-070",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-070",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.6",
+      "npr_section": "4.5.6",
+      "text": "1. Confirm that the software models, simulations, and analysis tools used to achieve the qualification of flight software or flight equipment have been validated and accredited.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the software models, simulations, and analysis tools used to achieve the qualification of flight software or flight equipment have been validated and accredited."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 39,
+        "section": "Table 1, 4.5.6"
+      },
+      "pages": [
+        39
+      ]
+    },
+    {
+      "id": "SA-SWE-071",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-071",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.7",
+      "npr_section": "4.5.7",
+      "text": "1. Analyze that software test plans and software test procedures cover the software requirements and provide adequate verification of hazard controls, specifically the off-nominal scenarios.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Analyze that software test plans and software test procedures cover the software requirements and provide adequate verification of hazard controls, specifically the off-nominal scenarios."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 39,
+        "section": "Table 1, 4.5.7"
+      },
+      "pages": [
+        39
+      ]
+    },
+    {
+      "id": "SA-SWE-073",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-073",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.8",
+      "npr_section": "4.5.8",
+      "text": "1. Confirm that the project validates the software components on the targeted platform or a high-fidelity simulation.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project validates the software components on the targeted platform or a high-fidelity simulation."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 39,
+        "section": "Table 1, 4.5.8"
+      },
+      "pages": [
+        39
+      ]
+    },
+    {
+      "id": "SA-SWE-189",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-189",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.9",
+      "npr_section": "4.5.9",
+      "text": "1. Confirm that code coverage measurements have been selected, performed, tracked, recorded, and communicated with each release.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that code coverage measurements have been selected, performed, tracked, recorded, and communicated with each release."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 39,
+        "section": "Table 1, 4.5.9"
+      },
+      "pages": [
+        39
+      ]
+    },
+    {
+      "id": "SA-SWE-190",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-190",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.10",
+      "npr_section": "4.5.10",
+      "text": "1. Confirm that the project performs code coverage analysis using the results of the tests or a code coverage tool. 2. Analyze the code coverage measurements for uncovered software code. 3. Assess any uncovered software code for potential risk, issues, or findings.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project performs code coverage analysis using the results of the tests or a code coverage tool."
+        },
+        {
+          "n": 2,
+          "text": "Analyze the code coverage measurements for uncovered software code."
+        },
+        {
+          "n": 3,
+          "text": "Assess any uncovered software code for potential risk, issues, or findings."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 39,
+        "section": "Table 1, 4.5.10"
+      },
+      "pages": [
+        39
+      ]
+    },
+    {
+      "id": "SA-SWE-191",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-191",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.11",
+      "npr_section": "4.5.11",
+      "text": "1. Confirm that the project plans regression testing and that the regression testing is adequate and includes retesting of all safety-critical code components. 2. Confirm that the project performs the planned regression testing. 3. Identify any risks and issues associated with the regression test set selection and execution. 4. Confirm that the regression test procedures are updated to incorporate tests that validate the correction of critical anomalies.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project plans regression testing and that the regression testing is adequate and includes retesting of all safety-critical code components."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project performs the planned regression testing."
+        },
+        {
+          "n": 3,
+          "text": "Identify any risks and issues associated with the regression test set selection and execution."
+        },
+        {
+          "n": 4,
+          "text": "Confirm that the regression test procedures are updated to incorporate tests that validate the correction of critical anomalies."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 39,
+        "printed_page": 39,
+        "section": "Table 1, 4.5.11"
+      },
+      "pages": [
+        39,
+        40
+      ]
+    },
+    {
+      "id": "SA-SWE-192",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-192",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.12",
+      "npr_section": "4.5.12",
+      "text": "1. Confirm that the project verifies the software requirements through testing, which trace to a hazardous event, cause, or mitigation techniques.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project verifies the software requirements through testing, which trace to a hazardous event, cause, or mitigation techniques."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 40,
+        "printed_page": 40,
+        "section": "Table 1, 4.5.12"
+      },
+      "pages": [
+        40
+      ]
+    },
+    {
+      "id": "SA-SWE-193",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-193",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.13",
+      "npr_section": "4.5.13",
+      "text": "1. Confirm that the project develops acceptance tests for loaded or uplinked data, rules, and code that affect software and software system behavior. 2. Confirm that the loaded or uplinked data, rules, scripts, or code that affects software and software system behavior are baselined in the software configuration system. 3. Confirm that loaded or uplinked data, rules, scripts are verified as correct during operations, particularly for safety-critical operations.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project develops acceptance tests for loaded or uplinked data, rules, and code that affect software and software system behavior."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the loaded or uplinked data, rules, scripts, or code that affects software and software system behavior are baselined in the software configuration system."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that loaded or uplinked data, rules, scripts are verified as correct during operations, particularly for safety-critical operations."
+        }
+      ],
+      "safety_related_tasks": [
+        3
+      ],
+      "citation": {
+        "pdf_page": 40,
+        "printed_page": 40,
+        "section": "Table 1, 4.5.13"
+      },
+      "pages": [
+        40
+      ]
+    },
+    {
+      "id": "SA-SWE-211",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-211",
+      "swe_part": null,
+      "npr_section_in_table": "4.5.14",
+      "npr_section": "4.5.14",
+      "text": "1. Confirm that the project is testing COTS, GOTS, MOTS, OSS, or reused software components to the same level as developed software for its intended use.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project is testing COTS, GOTS, MOTS, OSS, or reused software components to the same level as developed software for its intended use."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 40,
+        "printed_page": 40,
+        "section": "Table 1, 4.5.14"
+      },
+      "pages": [
+        40
+      ]
+    },
+    {
+      "id": "SA-SWE-075",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-075",
+      "swe_part": null,
+      "npr_section_in_table": "4.6.2",
+      "npr_section": "4.6.2",
+      "text": "1. Assess the maintenance, operations, and retirement plans for completeness of the required software engineering and software assurance activities. 2. Confirm that the project implements software operations, software maintenance, and software retirement plans.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess the maintenance, operations, and retirement plans for completeness of the required software engineering and software assurance activities."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project implements software operations, software maintenance, and software retirement plans."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 40,
+        "printed_page": 40,
+        "section": "Table 1, 4.6.2"
+      },
+      "pages": [
+        40,
+        41
+      ]
+    },
+    {
+      "id": "SA-SWE-077",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-077",
+      "swe_part": null,
+      "npr_section_in_table": "4.6.3",
+      "npr_section": "4.6.3",
+      "text": "1. Confirm that the correct version of the products is provided, including as-built documentation and project records. 2. Perform audits for all deliveries on the configuration management processes to verify that all products are being delivered and are the correct versions.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the correct version of the products is provided, including as-built documentation and project records."
+        },
+        {
+          "n": 2,
+          "text": "Perform audits for all deliveries on the configuration management processes to verify that all products are being delivered and are the correct versions."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 41,
+        "printed_page": 41,
+        "section": "Table 1, 4.6.3"
+      },
+      "pages": [
+        41
+      ]
+    },
+    {
+      "id": "SA-SWE-194",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-194",
+      "swe_part": null,
+      "npr_section_in_table": "4.6.4",
+      "npr_section": "4.6.4",
+      "text": "1. Confirm that the project has identified the software requirements to be met, the approved changes to be implemented, and defects to be resolved for each delivery. 2. Confirm that the project has met all software requirements identified for delivery. 3. Confirm that approved changes have been implemented and tested. 4. Confirm that the approved changes to be implemented and the defects to be resolved have been resolved. 5. Approve or sign-off on the projects delivered products.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project has identified the software requirements to be met, the approved changes to be implemented, and defects to be resolved for each delivery."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project has met all software requirements identified for delivery."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that approved changes have been implemented and tested."
+        },
+        {
+          "n": 4,
+          "text": "Confirm that the approved changes to be implemented and the defects to be resolved have been resolved."
+        },
+        {
+          "n": 5,
+          "text": "Approve or sign-off on the projects delivered products."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 41,
+        "printed_page": 41,
+        "section": "Table 1, 4.6.4"
+      },
+      "pages": [
+        41
+      ]
+    },
+    {
+      "id": "SA-SWE-195",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-195",
+      "swe_part": null,
+      "npr_section_in_table": "4.6.5",
+      "npr_section": "4.6.5",
+      "text": "1. Perform audits on the standards and processes used throughout maintenance based on the software classification.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Perform audits on the standards and processes used throughout maintenance based on the software classification."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 41,
+        "printed_page": 41,
+        "section": "Table 1, 4.6.5"
+      },
+      "pages": [
+        41
+      ]
+    },
+    {
+      "id": "SA-SWE-196",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-196",
+      "swe_part": null,
+      "npr_section_in_table": "4.6.6",
+      "npr_section": "4.6.6",
+      "text": "1. Confirm that the project has identified the records and software tools for archival. 2. Confirm the project has an archival location and the procedures for archiving and accessing software retirement or disposal products. 3. Confirm that the project archives all software and records as planned.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project has identified the records and software tools for archival."
+        },
+        {
+          "n": 2,
+          "text": "Confirm the project has an archival location and the procedures for archiving and accessing software retirement or disposal products."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that the project archives all software and records as planned."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 42,
+        "printed_page": 42,
+        "section": "Table 1, 4.6.6"
+      },
+      "pages": [
+        42
+      ]
+    },
+    {
+      "id": "SA-SWE-079",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-079",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.2",
+      "npr_section": "5.1.2",
+      "text": "1. Assess that a software configuration management plan has been developed and complies with the requirements in NPR 7150.2 and Center/project guidance.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Assess that a software configuration management plan has been developed and complies with the requirements in NPR 7150.2 and Center/project guidance."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 42,
+        "printed_page": 42,
+        "section": "Table 1, 5.1.2"
+      },
+      "pages": [
+        42
+      ]
+    },
+    {
+      "id": "SA-SWE-080",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-080",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.3",
+      "npr_section": "5.1.3",
+      "text": "1. Analyze proposed software and hardware changes to software products for impacts, particularly safety and security. 2. Confirm: a. that the project tracks the changes, b. that the changes are approved and documented before implementation, c. that the implementation of changes is complete, and d. that the project tests the changes. 3. Confirm software changes follow the software change control process.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Analyze proposed software and hardware changes to software products for impacts, particularly safety and security."
+        },
+        {
+          "n": 2,
+          "text": "Confirm: a. that the project tracks the changes, b. that the changes are approved and documented before implementation, c. that the implementation of changes is complete, and d. that the project tests the changes."
+        },
+        {
+          "n": 3,
+          "text": "Confirm software changes follow the software change control process."
+        }
+      ],
+      "safety_related_tasks": [
+        1
+      ],
+      "citation": {
+        "pdf_page": 42,
+        "printed_page": 42,
+        "section": "Table 1, 5.1.3"
+      },
+      "pages": [
+        42
+      ]
+    },
+    {
+      "id": "SA-SWE-081",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-081",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.4",
+      "npr_section": "5.1.4",
+      "text": "1. Confirm that the project has identified the configuration items and their versions to be controlled. 2. Assess that the software safety-critical items are configuration managed, including hazard reports and safety analysis.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project has identified the configuration items and their versions to be controlled."
+        },
+        {
+          "n": 2,
+          "text": "Assess that the software safety-critical items are configuration managed, including hazard reports and safety analysis."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 43,
+        "section": "Table 1, 5.1.4"
+      },
+      "pages": [
+        43
+      ]
+    },
+    {
+      "id": "SA-SWE-082",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-082",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.5",
+      "npr_section": "5.1.5",
+      "text": "1. Confirm that software assurance has participation in software control activities. 2. Perform an audit against the configuration management procedures to confirm that the project follows the established procedures.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software assurance has participation in software control activities."
+        },
+        {
+          "n": 2,
+          "text": "Perform an audit against the configuration management procedures to confirm that the project follows the established procedures."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 43,
+        "section": "Table 1, 5.1.5"
+      },
+      "pages": [
+        43
+      ]
+    },
+    {
+      "id": "SA-SWE-083",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-083",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.6",
+      "npr_section": "5.1.6",
+      "text": "1. Confirm that the project maintains records of the configuration status of the configuration items.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project maintains records of the configuration status of the configuration items."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 43,
+        "section": "Table 1, 5.1.6"
+      },
+      "pages": [
+        43
+      ]
+    },
+    {
+      "id": "SA-SWE-084",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-084",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.7",
+      "npr_section": "5.1.7",
+      "text": "1. Confirm that the project manager performed software configuration audits to determine the correct version of the software configuration items and verify that the results of the audit conform to the records that define them.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project manager performed software configuration audits to determine the correct version of the software configuration items and verify that the results of the audit conform to the records that define them."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 43,
+        "section": "Table 1, 5.1.7"
+      },
+      "pages": [
+        43
+      ]
+    },
+    {
+      "id": "SA-SWE-085",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-085",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.8",
+      "npr_section": "5.1.8",
+      "text": "1. Confirm that the project establishes procedures for storage, processing, distribution, release, and support of deliverable software products. 2. Perform audits on the project to ensure that the project follows defined procedures for deliverable software products.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project establishes procedures for storage, processing, distribution, release, and support of deliverable software products."
+        },
+        {
+          "n": 2,
+          "text": "Perform audits on the project to ensure that the project follows defined procedures for deliverable software products."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 43,
+        "printed_page": 43,
+        "section": "Table 1, 5.1.8"
+      },
+      "pages": [
+        43
+      ]
+    },
+    {
+      "id": "SA-SWE-045",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-045",
+      "swe_part": null,
+      "npr_section_in_table": "5.1.9",
+      "npr_section": "5.1.9",
+      "text": "1. Participate in or assess the results from any joint NASA/developer audits. Track any findings to closure.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Participate in or assess the results from any joint NASA/developer audits. Track any findings to closure."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 44,
+        "printed_page": 44,
+        "section": "Table 1, 5.1.9"
+      },
+      "pages": [
+        44
+      ]
+    },
+    {
+      "id": "SA-SWE-086",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-086",
+      "swe_part": null,
+      "npr_section_in_table": "5.2.1",
+      "npr_section": "5.2",
+      "text": "1. Confirm and assess that a risk management process includes recording, analyzing, planning, tracking, controlling, and communicating all software risks and mitigation plans. 2. Perform audits on the risk management process for the software activities.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm and assess that a risk management process includes recording, analyzing, planning, tracking, controlling, and communicating all software risks and mitigation plans."
+        },
+        {
+          "n": 2,
+          "text": "Perform audits on the risk management process for the software activities."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 44,
+        "printed_page": 44,
+        "section": "Table 1, 5.2.1"
+      },
+      "pages": [
+        44
+      ]
+    },
+    {
+      "id": "SA-SWE-087",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-087",
+      "swe_part": null,
+      "npr_section_in_table": "5.3.2",
+      "npr_section": "5.3.2",
+      "text": "1. Confirm that software peer reviews are performed and reported on for project activities. 2. Confirm that the project addresses the accepted software peer review findings. 3. Perform peer reviews on software assurance and software safety plans. 4. Confirm that the source code satisfies the conditions in the NPR 7150.2 requirement SWE-134, \"a\" through \"l,\" based upon the software functionality for the applicable safety-critical requirements at each code inspection/review. 5. For code peer reviews, confirm that all identified software safety-critical components have a cyclomatic complexity value of 15 or lower or develop a risk for the software safety-critical components with a cyclomatic complexity value over 15.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that software peer reviews are performed and reported on for project activities."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project addresses the accepted software peer review findings."
+        },
+        {
+          "n": 3,
+          "text": "Perform peer reviews on software assurance and software safety plans."
+        },
+        {
+          "n": 4,
+          "text": "Confirm that the source code satisfies the conditions in the NPR 7150.2 requirement SWE-134, \"a\" through \"l,\" based upon the software functionality for the applicable safety-critical requirements at each code inspection/review."
+        },
+        {
+          "n": 5,
+          "text": "For code peer reviews, confirm that all identified software safety-critical components have a cyclomatic complexity value of 15 or lower or develop a risk for the software safety-critical components with a cyclomatic complexity value over 15."
+        }
+      ],
+      "safety_related_tasks": [
+        3,
+        4,
+        5
+      ],
+      "citation": {
+        "pdf_page": 44,
+        "printed_page": 44,
+        "section": "Table 1, 5.3.2"
+      },
+      "pages": [
+        44
+      ]
+    },
+    {
+      "id": "SA-SWE-088",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-088",
+      "swe_part": null,
+      "npr_section_in_table": "5.3.3",
+      "npr_section": "5.3.3",
+      "text": "1. Confirm that the project meets the NPR 7150.2 criteria in \"a\" through \"d\" for each software peer review. 2. Confirm that the project resolves the actions identified from the software peer reviews. 3. Perform audits on the peer-review process.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project meets the NPR 7150.2 criteria in \"a\" through \"d\" for each software peer review."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project resolves the actions identified from the software peer reviews."
+        },
+        {
+          "n": 3,
+          "text": "Perform audits on the peer-review process."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 45,
+        "section": "Table 1, 5.3.3"
+      },
+      "pages": [
+        45
+      ]
+    },
+    {
+      "id": "SA-SWE-089",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-089",
+      "swe_part": null,
+      "npr_section_in_table": "5.3.4",
+      "npr_section": "5.3.4",
+      "text": "1. Confirm that the project records the software peer reviews or software inspection results measurements.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project records the software peer reviews or software inspection results measurements."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 45,
+        "section": "Table 1, 5.3.4"
+      },
+      "pages": [
+        45
+      ]
+    },
+    {
+      "id": "SA-SWE-090",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-090",
+      "swe_part": null,
+      "npr_section_in_table": "5.4.2",
+      "npr_section": "5.4.2",
+      "text": "1. Confirm that a measurement program establishes, records, maintains, reports, and uses software assurance, management, and technical measures. 2. Perform trending and analyses on metrics (quality metrics, defect metrics) and report. 3. Collect any identified Center/organizational metrics and submit them to the Center/organizational repository.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that a measurement program establishes, records, maintains, reports, and uses software assurance, management, and technical measures."
+        },
+        {
+          "n": 2,
+          "text": "Perform trending and analyses on metrics (quality metrics, defect metrics) and report."
+        },
+        {
+          "n": 3,
+          "text": "Collect any identified Center/organizational metrics and submit them to the Center/organizational repository."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 45,
+        "section": "Table 1, 5.4.2"
+      },
+      "pages": [
+        45
+      ]
+    },
+    {
+      "id": "SA-SWE-093",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-093",
+      "swe_part": null,
+      "npr_section_in_table": "5.4.3",
+      "npr_section": "5.4.3",
+      "text": "1. Confirm software measurement data analysis conforms to documented analysis procedures. 2. Analyze software assurance measurement data collected.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm software measurement data analysis conforms to documented analysis procedures."
+        },
+        {
+          "n": 2,
+          "text": "Analyze software assurance measurement data collected."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 45,
+        "section": "Table 1, 5.4.3"
+      },
+      "pages": [
+        45
+      ]
+    },
+    {
+      "id": "SA-SWE-094",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-094",
+      "swe_part": null,
+      "npr_section_in_table": "5.4.4",
+      "npr_section": "5.4.4",
+      "text": "1. Confirm access to software measurement data, analysis, and status as requested to the following entities: - Sponsoring Mission Directorate - NASA Chief Engineer - Center Technical Authorities - Headquarters SMA",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm access to software measurement data, analysis, and status as requested to the following entities: - Sponsoring Mission Directorate - NASA Chief Engineer - Center Technical Authorities - Headquarters SMA"
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 45,
+        "printed_page": 45,
+        "section": "Table 1, 5.4.4"
+      },
+      "pages": [
+        45,
+        46
+      ]
+    },
+    {
+      "id": "SA-SWE-199",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-199",
+      "swe_part": null,
+      "npr_section_in_table": "5.4.5",
+      "npr_section": "5.4.5",
+      "text": "1. Confirm that the project monitors and updates planned measurements to ensure the software meets o r exceeds performance and functionality requirements, including satisfying constraints. 2. Monitor and track any performance or functionality requirements that are not being met or are at risk of not being met.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project monitors and updates planned measurements to ensure the software meets o r exceeds performance and functionality requirements, including satisfying constraints."
+        },
+        {
+          "n": 2,
+          "text": "Monitor and track any performance or functionality requirements that are not being met or are at risk of not being met."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 46,
+        "section": "Table 1, 5.4.5"
+      },
+      "pages": [
+        46
+      ]
+    },
+    {
+      "id": "SA-SWE-200",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-200",
+      "swe_part": null,
+      "npr_section_in_table": "5.4.6",
+      "npr_section": "5.4.6",
+      "text": "1. Confirm that the project collects, tracks, and reports on the software volatility metrics. 2. Analyze software volatility measures to evaluate requirements stability as an early indicator of project problems.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that the project collects, tracks, and reports on the software volatility metrics."
+        },
+        {
+          "n": 2,
+          "text": "Analyze software volatility measures to evaluate requirements stability as an early indicator of project problems."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 46,
+        "section": "Table 1, 5.4.6"
+      },
+      "pages": [
+        46
+      ]
+    },
+    {
+      "id": "SA-SWE-201",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-201",
+      "swe_part": null,
+      "npr_section_in_table": "5.5.1",
+      "npr_section": "5.5.1",
+      "text": "1. Confirm that all software non-conformances are recorded and tracked to resolution. 2. Confirm that accepted non-conformances include the rationale for the non-conformance.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that all software non-conformances are recorded and tracked to resolution."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that accepted non-conformances include the rationale for the non-conformance."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 46,
+        "section": "Table 1, 5.5.1"
+      },
+      "pages": [
+        46
+      ]
+    },
+    {
+      "id": "SA-SWE-202",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-202",
+      "swe_part": null,
+      "npr_section_in_table": "5.5.2",
+      "npr_section": "5.5.2",
+      "text": "1. Confirm that all software non-conformances severity levels are defined. 2. Assess the application and accuracy of the defined severity levels to software non-conformances. 3. Confirm that the project assigns severity levels to non-conformances associated with tools, COTS, GOTS, MOTS, OSS, reused software components, and applicable ground systems. 4. Maintain or access the number of software nonconformances at each severity level for each software configuration item.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm that all software non-conformances severity levels are defined."
+        },
+        {
+          "n": 2,
+          "text": "Assess the application and accuracy of the defined severity levels to software non-conformances."
+        },
+        {
+          "n": 3,
+          "text": "Confirm that the project assigns severity levels to non-conformances associated with tools, COTS, GOTS, MOTS, OSS, reused software components, and applicable ground systems."
+        },
+        {
+          "n": 4,
+          "text": "Maintain or access the number of software nonconformances at each severity level for each software configuration item."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 46,
+        "printed_page": 46,
+        "section": "Table 1, 5.5.2"
+      },
+      "pages": [
+        46,
+        47
+      ]
+    },
+    {
+      "id": "SA-SWE-203",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-203",
+      "swe_part": null,
+      "npr_section_in_table": "5.5.3",
+      "npr_section": "5.5.3",
+      "text": "1. Confirm the evaluations of reported non-conformances for all COTS, GOTS, MOTS, OSS, or reused software components are occurring throughout the project life-cycle. 2. Assess the impact of non-conformances on the project software's safety, quality, and reliability.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Confirm the evaluations of reported non-conformances for all COTS, GOTS, MOTS, OSS, or reused software components are occurring throughout the project life-cycle."
+        },
+        {
+          "n": 2,
+          "text": "Assess the impact of non-conformances on the project software's safety, quality, and reliability."
+        }
+      ],
+      "safety_related_tasks": [
+        2
+      ],
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 47,
+        "section": "Table 1, 5.5.3"
+      },
+      "pages": [
+        47
+      ]
+    },
+    {
+      "id": "SA-SWE-204",
+      "kind": "sa-task-set",
+      "group": "table-1",
+      "swe": "SWE-204",
+      "swe_part": null,
+      "npr_section_in_table": "5.5.4",
+      "npr_section": "5.5.4",
+      "text": "1. Perform or confirm that a root cause analysis has been completed on all identified high severity software nonconformances, the results are recorded, and the results have been assessed for adequacy. 2. Confirm that the project analyzed the processes identified in the root cause analysis associated with the high severity software non-conformances. 3. Assess opportunities for improvement on the processes identified in the root cause analysis associated with the high severity software non-conformances. 4. Perform or confirm tracking of corrective actions to closure on high severity software non-conformances.",
+      "tasks": [
+        {
+          "n": 1,
+          "text": "Perform or confirm that a root cause analysis has been completed on all identified high severity software nonconformances, the results are recorded, and the results have been assessed for adequacy."
+        },
+        {
+          "n": 2,
+          "text": "Confirm that the project analyzed the processes identified in the root cause analysis associated with the high severity software non-conformances."
+        },
+        {
+          "n": 3,
+          "text": "Assess opportunities for improvement on the processes identified in the root cause analysis associated with the high severity software non-conformances."
+        },
+        {
+          "n": 4,
+          "text": "Perform or confirm tracking of corrective actions to closure on high severity software non-conformances."
+        }
+      ],
+      "safety_related_tasks": [],
+      "citation": {
+        "pdf_page": 47,
+        "printed_page": 47,
+        "section": "Table 1, 5.5.4"
+      },
+      "pages": [
+        47
+      ]
+    },
+    {
+      "id": "4.4.2.1",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall conduct planning and risk assessments to determine the specific system/software behaviors (including the software components responsible for implementing the behaviors) to be analyzed.",
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 50,
+        "section": "4.4.2.1"
+      },
+      "notes": "Note: IV&V is a focused activity that prioritizes IV&V analysis to address the highest developmental and operational software risks. IV&V priority is based on the combination of the potential for software impacts to safety and mission success and the probability factors for latent defects. IV&V analysis activities provide coverage with a degree of rigor that reflects the priority level. The initial planning and scoping effort based on the risk assessment define the starting point for the IV&V analysis. Throughout each IV&V project, continuous and iterative feedback, through the execution of analysis, identification of issues and risks, and the collection of deeper mission understanding, allows IV&V projects to \"Follow The Risk\" and adjust plans. The planning and scoping effort also aid in establishing the initial relationships between the IV&V Provider, the Acquirer, and the Provider."
+    },
+    {
+      "id": "4.4.2.2",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall develop and negotiate with the project an IV&V IPEP.",
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 50,
+        "section": "4.4.2.2"
+      },
+      "notes": "Note: The IPEP documents the activities, methods, level of rigor, environments, tailoring (if any) of the IV&V requirements, and criteria to be used in performing verification and validation of in-scope system/software behaviors (including responsible software components) determined by the planning and scoping effort. A Provider should use a documented analysis approach to track and manage the IV&V effort aligned with ongoing development project efforts. The IPEP documents which software products are subject to which analyses and analysis requirements are wholly, partially, or not applied following the risk assessment and resource constraints. The IPEP also serves as a communication tool between the project and IV&V to set expectations for the IV&V products produced throughout the life-cycle. The IPEP may require updating throughout the life cycle."
+    },
+    {
+      "id": "4.4.2.3",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "NASA SMA Technical Authority",
+      "text": "The NASA SMA Technical Authority (TA) shall review and concur with the IPEP.",
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 50,
+        "section": "4.4.2.3"
+      }
+    },
+    {
+      "id": "4.4.2.4",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall provide analysis results, risks, and assurance statements and data to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 50,
+        "printed_page": 50,
+        "section": "4.4.2.4"
+      },
+      "notes": "Note: While independent, the IV&V Provider is still a part of a project's overall safety and risk mitigation software assurance strategy. The results of IV&V analysis need to be incorporated into the overall software assurance assessment of the project and provided to the project management. . IV&V Provider should support project milestone reviews and provide the project with an evaluation of the lifecycle review artifacts to assist development management decisions on whether the review criteria have been met and how to proceed going forward."
+    },
+    {
+      "id": "4.4.2.5",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall participate in project reviews of software activities. Participation includes providing status and results of software IV&V activities including, but not limited to, upcoming analysis activities, artifacts needed from the project, the results of the current or completed analysis, defects, and risks to stakeholders, customers, and development project personnel.",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 51,
+        "section": "4.4.2.5"
+      },
+      "notes": "Note: The most significant positive impact of IV&V analysis is when the analysis results are in phase with the development effort. Communicating defects after development artifacts are baselined increases the cost to make the changes. Additionally, the inclusion of the IV&V Provider in ongoing technical meetings keeps the IV&V Provider informed of possible changes that may affect future IV&V tasking. Supporting the ongoing technical meetings allows the IV&V Provider an opportunity to provide real-time feedback on these changes."
+    },
+    {
+      "id": "4.4.2.6",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall provide the responsible organizations' project management, engineering, and software assurance personnel shall insight into the software IV&V and IV&V test activities. At a minimum, the IV&V Provider will be required to allow the responsible organizations' project management, engineering, and software assurance personnel to: a. Monitor the IV&V activities and plans. b. Review the verification activities to ensure adequacy. c. Review IV&V studies and source data. d. Audit the software IV&V processes and practices. e. Participate in IV&V software reviews and technical interchange meetings",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 51,
+        "section": "4.4.2.6"
+      }
+    },
+    {
+      "id": "4.4.2.7",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall participate in planned software peer reviews or software inspections guided by the planning and scoping risk analysis documented in the IV&V Project Execution Plan and NASA-HDBK-2203.",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 51,
+        "section": "4.4.2.7"
+      },
+      "notes": "Note: The IV&V Provider should be involved in the review/inspection process for all system/software items within the scope of their analysis."
+    },
+    {
+      "id": "4.4.2.8",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall establish, record, maintain, report, and utilize IV&V management and technical measurements.",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 51,
+        "section": "4.4.2.8"
+      },
+      "notes": "Note: The IV&V Provider gathers and analyzes metrics on a periodic basis to perform continuous improvement of IV&V processes and identify indicators of IV&V and project risks."
+    },
+    {
+      "id": "4.4.2.9",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall assess and track software activities' actual results and performance against the software plans and identify and report any risks or findings to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 51,
+        "printed_page": 51,
+        "section": "4.4.2.9"
+      }
+    },
+    {
+      "id": "4.4.2.10",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall track and evaluate changes to software products to evaluate for possible changes in the IV&V Provider's risk analysis and potential adverse impacts to the software system and the development effort.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.10"
+      }
+    },
+    {
+      "id": "4.4.2.11",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall assess the software development lifecycle for suitability for the problem to be solved and identify and communicate any risks associated with the chosen life cycle to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.11"
+      }
+    },
+    {
+      "id": "4.4.2.12",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall identify, analyze, track, communicate, and record risks to the software and development project in accordance with NPR 8000.4, Agency Risk Management Procedural Requirements to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.12"
+      }
+    },
+    {
+      "id": "4.4.2.13",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify the project implements the requirements for software listed in NPR 7150.2 and communicate any risks to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.13"
+      }
+    },
+    {
+      "id": "4.4.2.14",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall track, record, and communicate defects/issues and other results found during the execution of IV&V analysis and independent IV&V testing to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.14"
+      }
+    },
+    {
+      "id": "4.4.2.15",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that the identified defects and issues are addressed by the project.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.15"
+      }
+    },
+    {
+      "id": "4.4.2.16",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that software planned for reuse meets the fit, form, and function as a component within the new application.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.16"
+      }
+    },
+    {
+      "id": "4.4.2.17",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that the system architecture contains the computing-related items (subsystems, components, etc.) to carry out the system's mission and satisfy user needs and operational scenarios or use cases.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.17"
+      }
+    },
+    {
+      "id": "4.4.2.18",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that a basis for the engineering and planning of computing-related functions is the operations, mission objectives (including mission retirement), and the system.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.18"
+      }
+    },
+    {
+      "id": "4.4.2.19",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that feasibility and trade studies provide the results to confidently support the critical decisions that drove the need for the study.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.19"
+      }
+    },
+    {
+      "id": "4.4.2.20",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that known software-based hazard causes, contributors, and controls are identified, documented, and trace to the project requirements.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.20"
+      }
+    },
+    {
+      "id": "4.4.2.21",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that known security threats and risks are identified, appropriately documented, and updated throughout the mission lifecycle and communicated to the responsible organizations' project management, engineering, and software assurance personnel.",
+      "citation": {
+        "pdf_page": 52,
+        "printed_page": 52,
+        "section": "4.4.2.21"
+      }
+    },
+    {
+      "id": "4.4.2.22",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the in-scope software requirements and system requirements are, at a minimum, correct, consistent, complete, accurate, readable, traceable, and testable.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.22"
+      },
+      "notes": "Note: Software usually provides the interface between the user and the system hardware and the interface between system hardware components and other systems. These interfaces are critical to the successful operation and use of the system."
+    },
+    {
+      "id": "4.4.2.23",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the mitigations for identified security risks are in the software requirements.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.23"
+      },
+      "notes": "Note: Security is an essential aspect of any system development effort. In most systems, software provides the primary user interface. The user interface is an element of the system that can provide undesired access. A system concept design should address known security risks through various features in the system."
+    },
+    {
+      "id": "4.4.2.24",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that software requirements meet the dependability and fault tolerance required by the system.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.24"
+      }
+    },
+    {
+      "id": "4.4.2.25",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall ensure that software requirements provide the capability of controlling identified hazards and do not create hazardous conditions.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.25"
+      }
+    },
+    {
+      "id": "4.4.2.26",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate the relationship between the in-scope system/software requirements and the associated architectural elements is traceable correct, consistent, and complete.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.26"
+      },
+      "notes": "Note: Architectural elements are responsible for implementing specific behaviors within the software and the overall system. The interactions between these architectural elements result in the realization of the desired behaviors as well as possible undesired behaviors."
+    },
+    {
+      "id": "4.4.2.27",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the software architecture meets the user's safety and mission-critical needs as defined in the requirements.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.27"
+      },
+      "notes": "Note: The architecture provides the foundation for the development of the software. It also significantly impacts how the software deals with faults and failures and how the software interfaces with the user and system components. Analysis of the architecture provides early insight into how the software is structured and how that structure can implement the requirements."
+    },
+    {
+      "id": "4.4.2.28",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the detailed design products are traceable, consistent, complete, accurate, and testable.",
+      "citation": {
+        "pdf_page": 53,
+        "printed_page": 53,
+        "section": "4.4.2.28"
+      },
+      "notes": "Note: Detailed design is the implementation of the algorithms that control and monitor the different parts of the system and allow for interaction between the system and the user and other systems. The detailed design defines how the architectural components behave to support the interactions defined in the architecture. Analysis of the detailed design includes looking at the low-level software components in the software system."
+    },
+    {
+      "id": "4.4.2.29",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate the interfaces between the detailed design components and the hardware, users, operators, other software, and external systems are correct, consistent, complete, accurate, and testable.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.29"
+      },
+      "notes": "Note: While the architecture defines the interactions between the architectural elements, each element is generally composed of lower-level components defined by the detailed design. The interfaces between these components are important in ensuring that the architectural element meets its assigned responsibilities."
+    },
+    {
+      "id": "4.4.2.30",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate the relationship between the software requirements and the associated detailed design components is correct, consistent, and complete.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.30"
+      },
+      "notes": "Note: The detailed design components capture the approach to implementing the software requirements, including the requirements associated with fault management, security, and safety. Analysis of the relationship between the detailed design and the software requirements provides evidence that all requirements are in the detailed design."
+    },
+    {
+      "id": "4.4.2.31",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the software code products are consistent with architecture, complete with respect to requirements, and testable.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.31"
+      }
+    },
+    {
+      "id": "4.4.2.32",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the software code meets the industry best practices and software coding standards.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.32"
+      }
+    },
+    {
+      "id": "4.4.2.33",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the security risks in the software code are identified and mitigated.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.33"
+      },
+      "notes": "Note: This includes software developed by NASA, software developed for NASA, software maintained by or for NASA, COTS, GOTS, MOTS, OSS, reused software components, auto-generated code, embedded software, the software executed on processors embedded in programmable logic devices, legacy, heritage, applications, freeware, shareware, trial or demonstration software, and open-source software components."
+    },
+    {
+      "id": "4.4.2.34",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate appropriate use of off-the-shelf software, including ensuring that the project has identified all open-source software used, and that the security risks are identified and mitigated by the use of the open-source software.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.34"
+      }
+    },
+    {
+      "id": "4.4.2.35",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the project assesses the software systems for possible security vulnerabilities and weaknesses.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.35"
+      }
+    },
+    {
+      "id": "4.4.2.36",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate the project implements the required software security risk mitigations to ensure that security objectives for software are satisfied.",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.36"
+      }
+    },
+    {
+      "id": "4.4.2.37",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate the source code through the use of analysis tools (including but not limited to static, dynamic, composition, and formal analysis tools).",
+      "citation": {
+        "pdf_page": 54,
+        "printed_page": 54,
+        "section": "4.4.2.37"
+      },
+      "notes": "Note: The use of analysis tools may include the verification and validation of the analysis tools used by the development project in the process of developing the software. The results may be from static code analysis, software composition analysis, dynamic code analysis, cyclomatic complexity, or other code quality analysis tools."
+    },
+    {
+      "id": "4.4.2.38",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate the relationship between the software design elements and the associated software units is correct, consistent, and complete.",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 55,
+        "section": "4.4.2.38"
+      }
+    },
+    {
+      "id": "4.4.2.39",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the relationship between software code components and corresponding requirements is correct, complete, and consistent.",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 55,
+        "section": "4.4.2.39"
+      },
+      "notes": "Note: For all of the implementation requirements, it is with code that the development of software reaches its lowest level of abstraction and that the software capabilities are implemented. Evaluating the relationship between the source code and the design components and requirements provides evidence that only the specified requirements and components are in the system. Evaluating the relationship between the source code and the design components and requirements helps minimize one aspect of the emergence of unexpected behaviors: the inclusion of behaviors not specified in the requirements. The overall analysis of the code is essential in assuring that the code does implement the required software behaviors. From a safety perspective, it is important to evaluate the code and assure that known software safety and security issues such as buffer overflows and type mismatches, among many others, are not used in safety-critical aspects of the software."
+    },
+    {
+      "id": "4.4.2.40",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that test plans, test procedures, test cases, test environment (including simulations), and test design at all levels of testing (unit, integration, system, acceptance, etc.) are correct, complete, and consistent for verification and validation of the source code and system functions allocated to the software.",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 55,
+        "section": "4.4.2.40"
+      }
+    },
+    {
+      "id": "4.4.2.41",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify and validate that the relationships between the test plans, test procedures, test cases, test design, and source code and system functions allocated to the software are correct, complete, and consistent.",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 55,
+        "section": "4.4.2.41"
+      }
+    },
+    {
+      "id": "4.4.2.42",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify that the test plans, test cases, test design, and test procedures contain objective acceptance criteria that support the verification of the associated requirements for both nominal and off-nominal conditions.",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 55,
+        "section": "4.4.2.42"
+      }
+    },
+    {
+      "id": "4.4.2.43",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify that the software test results meet the associated acceptance criteria to ensure that the software correctly implements the associated requirements.",
+      "citation": {
+        "pdf_page": 55,
+        "printed_page": 55,
+        "section": "4.4.2.43"
+      },
+      "notes": "Note: The IV&V Provider assesses the testing artifacts within the system's meaning concerning the desired capabilities and expected operational system environment. The assessment includes an examination of testing at system boundary conditions to include unexpected conditions. The testing analysis assures that the project tests all requirements and that the system does what the requirements state it should do. The testing analysis also includes analysis of the traceability information between the tests and the requirements."
+    },
+    {
+      "id": "4.4.2.44",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify that the project tests the required software security risk mitigations to ensure that the security objectives for the software are satisfied.",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.4.2.44"
+      }
+    },
+    {
+      "id": "4.4.2.45",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify that code coverage is measured by analysis of the results of the execution of tests.",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.4.2.45"
+      }
+    },
+    {
+      "id": "4.4.2.46",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify through independent testing each of the software requirements that trace to a hazardous event, cause, or mitigation technique.",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.4.2.46"
+      }
+    },
+    {
+      "id": "4.4.2.47",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall verify the project's acceptance tests for loaded or uplinked data, rules, and code that affects software and software system behavior.",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.4.2.47"
+      }
+    },
+    {
+      "id": "4.4.2.48",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall participate in all NASA quality audits, assessment and reviews associated with the project.",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.4.2.48"
+      }
+    },
+    {
+      "id": "4.4.2.49",
+      "kind": "ivv-requirement",
+      "group": "4.4",
+      "actor": "IV&V Provider",
+      "text": "The IV&V Provider shall assess the software maintenance and operational risks concerning software elements to support the planning of IV&V activities during the maintenance phase.",
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.4.2.49"
+      },
+      "notes": "Note 1: The approach to software development on some projects results in different parts of the software going into operation at different times in the overall project life-cycle. For example, a lander mission to Mars may complete the software needed for the cruise phase to Mars while continuing to work on the entry, descent, landing, and surface operations software. Some software may also have an extended lifetime such that operational updates are anytime during the operational use of the software. Note 2: In some cases, software anomalies cause changes to the software. IV&V is important because software changes can often have ripple effects throughout the system and cause emergent behaviors. The IV&V analysis provides insight into these possible effects and provides an overall assessment of the impact of the change."
+    },
+    {
+      "id": "4.5-1",
+      "kind": "tailoring-requirement",
+      "group": "4.5",
+      "text": "The SMA TA for the project shall review and concur with any tailored Software Assurance and Software Safety Standard requirements.",
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 56,
+        "printed_page": 56,
+        "section": "4.5"
+      }
+    },
+    {
+      "id": "4.5-2",
+      "kind": "tailoring-requirement",
+      "group": "4.5",
+      "text": "If a system or subsystem development evolves to meet a higher or lower software classification defined in NPR 7150.2, the software assurance, software safety, and IV&V organizations shall update their plan(s) to fulfill the applicable requirements per the Requirements Mapping Matrix and any approved changes and initiate adjustments to applicable contracts to meet the modified requirements.",
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 57,
+        "printed_page": 57,
+        "section": "4.5"
+      }
+    },
+    {
+      "id": "HAZ-data-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Data errors",
+      "text": "Data errors: Asynchronous communications; Single or double event upset/bit flip or Hardware induced error; Communication to/from an unexpected system on the network; An out-of-range input value, value above or below range; Start-up or hardware initiation data errors; Data from an antenna gets corrupted; Failure of Software Interface to Memory; Failure of flight software to suppress outputs from a failed component; Failure of software to monitor Bus Controller Rates to ensure communication with all remote terminals on the bus schedule's avionics buses; Ground or Onboard database error, error in tag name database I/O configuration; Interface error; Latent data (Data delayed or not provided in required time); Communication bus overload; Missing or failed integrity checks on inputs, failure to check the validity of input/output data; Noise, babbling Node - keeps the node so busy it inhibits communication from other nodes; Sensors or actuators stuck at some value (all zeros, all ones, some other value); Wrong software state for the input",
+      "causes": [
+        "Asynchronous communications",
+        "Single or double event upset/bit flip or Hardware induced error",
+        "Communication to/from an unexpected system on the network",
+        "An out-of-range input value, value above or below range",
+        "Start-up or hardware initiation data errors",
+        "Data from an antenna gets corrupted",
+        "Failure of Software Interface to Memory",
+        "Failure of flight software to suppress outputs from a failed component",
+        "Failure of software to monitor Bus Controller Rates to ensure communication with all remote terminals on the bus schedule's avionics buses",
+        "Ground or Onboard database error, error in tag name database I/O configuration",
+        "Interface error",
+        "Latent data (Data delayed or not provided in required time)",
+        "Communication bus overload",
+        "Missing or failed integrity checks on inputs, failure to check the validity of input/output data",
+        "Noise, babbling Node - keeps the node so busy it inhibits communication from other nodes",
+        "Sensors or actuators stuck at some value (all zeros, all ones, some other value)",
+        "Wrong software state for the input"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 59,
+        "printed_page": 59,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-commanding-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Commanding errors",
+      "text": "Commanding errors: Command buffer error or overflow; Corrupted software load; Error in real-time command build or sequence build; Failure to command during hazardous operations; Failure to perform prerequisite checks before the execution of safety-critical software commands.; Ground or Onboard database error for command structure,; Error in Command Data introduced by Command Server error; The operator gives wrong commands,; Wrong command or a miscalculated command sent,; Sequencing error (Failure to issue commands in the correct sequence); Command send in wrong software state or software in an incorrect or unanticipated state; An incorrect timestamp on the command; Missing software error handling on incorrect commands; Status messages on command execution not provided; Memory corruption, critical data variables overwritten in memory; Inconsistent syntax; Inconsistent command options; Similarly named commands; Inconsistent error handling rules",
+      "causes": [
+        "Command buffer error or overflow",
+        "Corrupted software load",
+        "Error in real-time command build or sequence build",
+        "Failure to command during hazardous operations",
+        "Failure to perform prerequisite checks before the execution of safety-critical software commands.",
+        "Ground or Onboard database error for command structure,",
+        "Error in Command Data introduced by Command Server error",
+        "The operator gives wrong commands,",
+        "Wrong command or a miscalculated command sent,",
+        "Sequencing error (Failure to issue commands in the correct sequence)",
+        "Command send in wrong software state or software in an incorrect or unanticipated state",
+        "An incorrect timestamp on the command",
+        "Missing software error handling on incorrect commands",
+        "Status messages on command execution not provided",
+        "Memory corruption, critical data variables overwritten in memory",
+        "Inconsistent syntax",
+        "Inconsistent command options",
+        "Similarly named commands",
+        "Inconsistent error handling rules"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 59,
+        "printed_page": 59,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-flight-computer-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Flight computer errors",
+      "text": "Flight computer errors: Board support package software error; Boot load software error; Boot PROM corruption preventing reset; Buffer overrun – A buffer overflow (or buffer overrun) occurs when the volume of data exceeds the storage capacity of the memory buffer. As a result, the program attempting to write the data to the buffer overwrites adjacent memory locations.; CPU overload; Cycle jitter; Cycle over-run; Deadlock (trying to write to the same memory at the same time or trying to update while reading it); Reset during program upload (PROM corruption); Reset with no restart; Single or double event upset/bit flip or Hardware induced error; Time to reset greater than time to failure; Unintended persistent data/configuration on reset; Watchdog active during reboot causing infinite boot loop; Watchdog failure; Failure to detect and transition to redundant or backup computer; Incorrect or stale data in redundant or backup computer",
+      "causes": [
+        "Board support package software error",
+        "Boot load software error",
+        "Boot PROM corruption preventing reset",
+        "Buffer overrun – A buffer overflow (or buffer overrun) occurs when the volume of data exceeds the storage capacity of the memory buffer. As a result, the program attempting to write the data to the buffer overwrites adjacent memory locations.",
+        "CPU overload",
+        "Cycle jitter",
+        "Cycle over-run",
+        "Deadlock (trying to write to the same memory at the same time or trying to update while reading it)",
+        "Reset during program upload (PROM corruption)",
+        "Reset with no restart",
+        "Single or double event upset/bit flip or Hardware induced error",
+        "Time to reset greater than time to failure",
+        "Unintended persistent data/configuration on reset",
+        "Watchdog active during reboot causing infinite boot loop",
+        "Watchdog failure",
+        "Failure to detect and transition to redundant or backup computer",
+        "Incorrect or stale data in redundant or backup computer"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 59,
+        "printed_page": 59,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-operating-systems-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Operating systems errors",
+      "text": "Operating systems errors: Application software incompatibility with upgrades/patches to an operating system; Cyclomatic Complexity levels, the complexity of software components (preventing thorough testing and increasing likelihood of coding errors); Defects in Real-Time Operating System (RTOS) Board Support software; Defects in the Real-Time Operating System (RTOS) Commercial-Off-The-Shelf (COTS) Software; Missing or incorrect software error handling; Partitioning errors; Shared resource errors; Single or double event upset/bit flip; Doesn't do what the user expects; Excessive functionality; Missing function; Wrong function; Inadequate protection against operating system bugs",
+      "causes": [
+        "Application software incompatibility with upgrades/patches to an operating system",
+        "Cyclomatic Complexity levels, the complexity of software components (preventing thorough testing and increasing likelihood of coding errors)",
+        "Defects in Real-Time Operating System (RTOS) Board Support software",
+        "Defects in the Real-Time Operating System (RTOS) Commercial-Off-The-Shelf (COTS) Software",
+        "Missing or incorrect software error handling",
+        "Partitioning errors",
+        "Shared resource errors",
+        "Single or double event upset/bit flip",
+        "Doesn't do what the user expects",
+        "Excessive functionality",
+        "Missing function",
+        "Wrong function",
+        "Inadequate protection against operating system bugs"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 60,
+        "printed_page": 60,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-programmable-logic-device-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Programmable logic device errors",
+      "text": "Programmable logic device errors: Cyclomatic Complexity levels, the complexity of software components (preventing thorough testing and increasing likelihood of coding errors); Errors in programming and simulation tools used for PLC development; Errors in the Programmable Logic Device interfaces; Errors in the Software/Firmware Logic Design; Missing software error handling in the Software/Firmware Logic Design; Programmable Logic Controller (PLC) logic/sequence error; Single or double event upset/bit flip or hardware induced error; Timing errors; Doesn't do what the user expects; Excessive functionality; Missing function; Wrong function",
+      "causes": [
+        "Cyclomatic Complexity levels, the complexity of software components (preventing thorough testing and increasing likelihood of coding errors)",
+        "Errors in programming and simulation tools used for PLC development",
+        "Errors in the Programmable Logic Device interfaces",
+        "Errors in the Software/Firmware Logic Design",
+        "Missing software error handling in the Software/Firmware Logic Design",
+        "Programmable Logic Controller (PLC) logic/sequence error",
+        "Single or double event upset/bit flip or hardware induced error",
+        "Timing errors",
+        "Doesn't do what the user expects",
+        "Excessive functionality",
+        "Missing function",
+        "Wrong function"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 60,
+        "printed_page": 60,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-flight-system-time-management-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Flight system time management errors",
+      "text": "Flight system time management errors: Incorrect data latency/sampling rates; Failure to terminate/complete process in a given time; Incorrect time sync; Latent data (Data delayed or not provided in required time) MET timing issues and distribution; Incorrect function execution, performing a function at the wrong time, out of sequence, or when the program is in the wrong state; Race Conditions; The software cannot respond to an off-nominal condition within the time needed to prevent a hazardous event.; Time function runs fast/slow; Time skips (e.g., Global Positioning System time correction); Loss or incorrect time sync across flight system components; Loss or incorrect time Synchronization between ground and spacecraft Interfaces; Unclear software timing requirements; Asynchronous systems or components",
+      "causes": [
+        "Incorrect data latency/sampling rates",
+        "Failure to terminate/complete process in a given time",
+        "Incorrect time sync",
+        "Latent data (Data delayed or not provided in required time) MET timing issues and distribution",
+        "Incorrect function execution, performing a function at the wrong time, out of sequence, or when the program is in the wrong state",
+        "Race Conditions",
+        "The software cannot respond to an off-nominal condition within the time needed to prevent a hazardous event.",
+        "Time function runs fast/slow",
+        "Time skips (e.g., Global Positioning System time correction)",
+        "Loss or incorrect time sync across flight system components",
+        "Loss or incorrect time Synchronization between ground and spacecraft Interfaces",
+        "Unclear software timing requirements",
+        "Asynchronous systems or components"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 60,
+        "printed_page": 60,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-coding-logic-and-algorithm-failures-algorithm-specification-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Coding, logic, and algorithm failures, algorithm specification errors",
+      "text": "Coding, logic, and algorithm failures, algorithm specification errors: Auto-Coding errors as a cause; Bad configuration data/no checks on external input files and data; Division by zero,; Wrong sign,; Syntax errors,; Error coding software algorithm,; Error in positioning algorithm,; Case/type/conversion error/unit mismatch; Buffer overflows; High Cyclomatic Complexity levels (above 15), the complexity of software components (preventing thorough testing and increasing likelihood of coding errors); Dead code or used code; Endless do loops; Erroneous Outputs; Failure of Flight Computer Software to Transition to or Operate in a Correct Mode or State; Failure to check safety-critical outputs for reasonableness and hazardous values and correct timing.; Failure to generate a process error upon detection of arithmetic error (such as divide-by-zero).; Failure to open a software problem report when an unexpected event occurs; Inadvertent memory modification; Incorrect \"if-then\" and incorrect \"else.\"; Missing default case in a switch statement; Incorrect implementation of a software change, software defect, or software non-conformance; Incorrect passes (too many or too few or not at the correct time); Incorrect software operation if no commands are received or if a loss of commanding capability exists (Inability to issue commands); Insufficient or poor coding reviews, inadequate software peer reviews; Insufficient use of coding standards; Interface errors; Missing or inadequate static analysis checks on code; Missing or incorrect parameter range & boundary checking; Non-functional loops; Overflow or underflow in the calculation; Precision mismatch; Resource contention (e.g., thrashing: two or more processes accessing a shared resource); Rounding or truncation fault; Sequencing error (Failure to issue commands in the correct sequence); Software is initialized to an unknown state; failure to properly initialize all system and local variables are upon startup, including clocks.; Too many or too few parameters for the called function; Undefined or non-initialized data; Unfound defects in the software; Untested COTS, MOTS, or reused code; Incomplete end-to-end testing; Incomplete or missing software stress test; Errors in the data dictionary or data dictionary processes; Confusing feature names; More than one name for the same feature; Repeated code modules; Failure to initialize a loop-control; Failure to initialize (or reinitialize) pointers; Failure to initialize (or reinitialize) registers; Failure to clear a flag",
+      "causes": [
+        "Auto-Coding errors as a cause",
+        "Bad configuration data/no checks on external input files and data",
+        "Division by zero,",
+        "Wrong sign,",
+        "Syntax errors,",
+        "Error coding software algorithm,",
+        "Error in positioning algorithm,",
+        "Case/type/conversion error/unit mismatch",
+        "Buffer overflows",
+        "High Cyclomatic Complexity levels (above 15), the complexity of software components (preventing thorough testing and increasing likelihood of coding errors)",
+        "Dead code or used code",
+        "Endless do loops",
+        "Erroneous Outputs",
+        "Failure of Flight Computer Software to Transition to or Operate in a Correct Mode or State",
+        "Failure to check safety-critical outputs for reasonableness and hazardous values and correct timing.",
+        "Failure to generate a process error upon detection of arithmetic error (such as divide-by-zero).",
+        "Failure to open a software problem report when an unexpected event occurs",
+        "Inadvertent memory modification",
+        "Incorrect \"if-then\" and incorrect \"else.\"",
+        "Missing default case in a switch statement",
+        "Incorrect implementation of a software change, software defect, or software non-conformance",
+        "Incorrect passes (too many or too few or not at the correct time)",
+        "Incorrect software operation if no commands are received or if a loss of commanding capability exists (Inability to issue commands)",
+        "Insufficient or poor coding reviews, inadequate software peer reviews",
+        "Insufficient use of coding standards",
+        "Interface errors",
+        "Missing or inadequate static analysis checks on code",
+        "Missing or incorrect parameter range & boundary checking",
+        "Non-functional loops",
+        "Overflow or underflow in the calculation",
+        "Precision mismatch",
+        "Resource contention (e.g., thrashing: two or more processes accessing a shared resource)",
+        "Rounding or truncation fault",
+        "Sequencing error (Failure to issue commands in the correct sequence)",
+        "Software is initialized to an unknown state; failure to properly initialize all system and local variables are upon startup, including clocks.",
+        "Too many or too few parameters for the called function",
+        "Undefined or non-initialized data",
+        "Unfound defects in the software",
+        "Untested COTS, MOTS, or reused code",
+        "Incomplete end-to-end testing",
+        "Incomplete or missing software stress test",
+        "Errors in the data dictionary or data dictionary processes",
+        "Confusing feature names",
+        "More than one name for the same feature",
+        "Repeated code modules",
+        "Failure to initialize a loop-control",
+        "Failure to initialize (or reinitialize) pointers",
+        "Failure to initialize (or reinitialize) registers",
+        "Failure to clear a flag"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 61,
+        "printed_page": 61,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-fault-tolerance-and-fault-management-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Fault tolerance and fault management errors",
+      "text": "Fault tolerance and fault management errors: Missing software error handling; Missing or incorrect fault detection logic; Missing or incorrect fault recovery logic; Problems with the execution of emergency safing operations; Failure to halt all hazard functions after an interlock failure; The software cannot respond to an off-nominal condition within the time needed to prevent a hazardous event.; Common mode software faults o Lack of backup flight software o Lack of dissimilar software o Lack of dissimilar control algorithms; A hazard causal factor occurrence isn't detected o Software fails to sense a change in the condition of the hardware o Failure to detect a problem o Failure to detect and react to a system failure (Examples of system failures: Aural Warning System Failure, Communication System Failure, Facility Fire and Gas Detection System Failure, Critical Sensor Failure, Facility Control System Failure, Control System Failure, Common Control System Failure); False positives in Fault Detection Algorithms; Failure to perform prerequisite checks before the execution of safety-critical software commands. o Failure to verify operator input commands; Failure to terminate/complete process in a given time; Memory corruption, critical data variables overwritten in memory; Single or double event upset/bit flip or Hardware induced error; Incorrect interfaces, errors in interfaces; Missing self-test capabilities; Failing to consider stress on the hardware; Incomplete end-to-end testing; Incomplete or missing software stress test; Errors in the data dictionary or data dictionary processes; Failure to provide or ensure secure access for input data, commanding, and software modifications.",
+      "causes": [
+        "Missing software error handling",
+        "Missing or incorrect fault detection logic",
+        "Missing or incorrect fault recovery logic",
+        "Problems with the execution of emergency safing operations",
+        "Failure to halt all hazard functions after an interlock failure",
+        "The software cannot respond to an off-nominal condition within the time needed to prevent a hazardous event.",
+        "Common mode software faults o Lack of backup flight software o Lack of dissimilar software o Lack of dissimilar control algorithms",
+        "A hazard causal factor occurrence isn't detected o Software fails to sense a change in the condition of the hardware o Failure to detect a problem o Failure to detect and react to a system failure (Examples of system failures: Aural Warning System Failure, Communication System Failure, Facility Fire and Gas Detection System Failure, Critical Sensor Failure, Facility Control System Failure, Control System Failure, Common Control System Failure)",
+        "False positives in Fault Detection Algorithms",
+        "Failure to perform prerequisite checks before the execution of safety-critical software commands. o Failure to verify operator input commands",
+        "Failure to terminate/complete process in a given time",
+        "Memory corruption, critical data variables overwritten in memory",
+        "Single or double event upset/bit flip or Hardware induced error",
+        "Incorrect interfaces, errors in interfaces",
+        "Missing self-test capabilities",
+        "Failing to consider stress on the hardware",
+        "Incomplete end-to-end testing",
+        "Incomplete or missing software stress test",
+        "Errors in the data dictionary or data dictionary processes",
+        "Failure to provide or ensure secure access for input data, commanding, and software modifications."
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 62,
+        "printed_page": 62,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-software-processes-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Software processes errors",
+      "text": "Software processes errors: Failure to implement software development processes or implementing inadequate processes; Inadequate software assurance support and reviews; Missing or inadequate software assurance audits; Failure to follow the documented software development processes; Missing, tailored, or incomplete implementation of the safety-critical software requirements in NPR 7150.2; Missing, tailored, or incomplete implementation of the safety-critical software requirements in SSP 50038, Computer-Based Control System Safety Requirements,; Incorrect or incomplete HW/SW Lab Testing; Inadequate testing of reused or heritage software; Failure to open a software problem report when an unexpected event occurs; Failure to include hardware personnel in reviews of software changes, software implementation, peer reviews, and software testing; Failure to perform a safety review on all software changes and software defects.; Defects in Commercial and Modification of Off-The-Shelf (OTS) Software, failure to perform assessments of available bug fixes and updates available in Commercial-Off-The-Shelf (COTS) software (Consider: operating systems, runtime libraries, device drivers packaged with the OS, third-party FPGA libraries); Insufficient use of coding standards; Missing or inadequate static analysis checks on code; Incorrect version loaded; Incorrect configuration values or data; No checks on external input files and data; Errors in configuration data changes being uploaded to spacecraft; Software/avionics simulator/emulator errors and defects; Unverified software; Unverified COTS software; High Cyclomatic Complexity levels (over 15), the complexity of software components (preventing thorough testing and increasing likelihood of coding errors); Incomplete or inadequate software requirements analysis; Compound software requirements; Incomplete or inadequate software hazard analysis; Incomplete or inadequate software safety analysis; Incomplete or inadequate software static analyses; Incomplete or inadequate software test data analysis; Unrecorded software defects found during informal and formal software testing; Auto-Coding tool faults and defects; Errors in UML design models; Software errors in hardware simulators due to lack of understanding of hardware requirements; Incomplete or inadequate software test data analysis; Inadequate BIT (Built- in-Test) coverage; Inadequate regression testing and unit test coverage of flight software application-level source code (especially safety-critical software); Failure to test all nominal and planned contingency scenarios (breakout and re-rendezvous, launch abort) and complete mission duration (launch to docking to splashdown) in the hardware in the loop environment o Incomplete testing of unexpected conditions, boundary conditions, and software/interface inputs.; Use or persistence of test data, files, or config files in an operational scenario; Failure to provide multiple paths or triggers from safe states to hazardous states; Interface Control Documents (ICD) and Interface Requirements Documents (IRD) Errors; System requirements errors; Misunderstanding of hardware configuration and operation; Hardware requirements and interface errors, Incorrect description of the software/hardware functions and how they are to perform; Missing or incorrect software requirements or specifications; Missing software error handling; Requirements/design errors not fully defined, detected, and corrected); Failure to identify the safety-critical software items; Cyclomatic Complexity levels; Failure to perform a function, performing the wrong function, performing the function incompletely; An inadvertent/unauthorized event, an unexpected, unwanted event, an out-of-sequence event, the failure of a planned event to occur; The magnitude or direction of an event is wrong; Out-of-sequence event protection; Multiple events/actions trigger simultaneously (when not expected); Error/Exception handling missing or incomplete; Inadvertent or incorrect mode transition for required vehicle functional operation; undefined or incorrect mode transition criteria; unauthorized mode transition; Failure of flight software to correctly initiate proper transition mode; Software state transition error; Software termination is an unknown state.; Errors in the software data dictionary values (typical components of a data dictionary entry are: Channelization data, e.g., bus mapping, vehicle wiring mapping, hardware channelization, description of each I/O variable, formats, unit of measure, and definition, Rate group data, calibrated sensor data describes the format, units of measure, and definition of each sensor, Specify data reduction for transforming raw data into calibrated data, Sensor data qualification criteria and senor data disqualification criteria, Telemetry format/layout and data describe the telemetry mode, format, packetization, and definition, Specify what types of packets are allowed to be sent for each of the telemetry modes, Specify maximum data rate for each mode, Data recorder format/layout and data, Command definition, e.g., onboard, ground, test specific, describes each of the commands processed by the software work package. Effecter command information provides information about the setting of names or flags that cause command executions in the software work products, Operational limits, Scheduling procedures, Partitioning methods, means of preventing partition breaches, partitioning faults, and partitioning metric data.",
+      "causes": [
+        "Failure to implement software development processes or implementing inadequate processes",
+        "Inadequate software assurance support and reviews",
+        "Missing or inadequate software assurance audits",
+        "Failure to follow the documented software development processes",
+        "Missing, tailored, or incomplete implementation of the safety-critical software requirements in NPR 7150.2",
+        "Missing, tailored, or incomplete implementation of the safety-critical software requirements in SSP 50038, Computer-Based Control System Safety Requirements,",
+        "Incorrect or incomplete HW/SW Lab Testing",
+        "Inadequate testing of reused or heritage software",
+        "Failure to open a software problem report when an unexpected event occurs",
+        "Failure to include hardware personnel in reviews of software changes, software implementation, peer reviews, and software testing",
+        "Failure to perform a safety review on all software changes and software defects.",
+        "Defects in Commercial and Modification of Off-The-Shelf (OTS) Software, failure to perform assessments of available bug fixes and updates available in Commercial-Off-The-Shelf (COTS) software (Consider: operating systems, runtime libraries, device drivers packaged with the OS, third-party FPGA libraries)",
+        "Insufficient use of coding standards",
+        "Missing or inadequate static analysis checks on code",
+        "Incorrect version loaded",
+        "Incorrect configuration values or data",
+        "No checks on external input files and data",
+        "Errors in configuration data changes being uploaded to spacecraft",
+        "Software/avionics simulator/emulator errors and defects",
+        "Unverified software",
+        "Unverified COTS software",
+        "High Cyclomatic Complexity levels (over 15), the complexity of software components (preventing thorough testing and increasing likelihood of coding errors)",
+        "Incomplete or inadequate software requirements analysis",
+        "Compound software requirements",
+        "Incomplete or inadequate software hazard analysis",
+        "Incomplete or inadequate software safety analysis",
+        "Incomplete or inadequate software static analyses",
+        "Incomplete or inadequate software test data analysis",
+        "Unrecorded software defects found during informal and formal software testing",
+        "Auto-Coding tool faults and defects",
+        "Errors in UML design models",
+        "Software errors in hardware simulators due to lack of understanding of hardware requirements",
+        "Incomplete or inadequate software test data analysis",
+        "Inadequate BIT (Built- in-Test) coverage",
+        "Inadequate regression testing and unit test coverage of flight software application-level source code (especially safety-critical software)",
+        "Failure to test all nominal and planned contingency scenarios (breakout and re-rendezvous, launch abort) and complete mission duration (launch to docking to splashdown) in the hardware in the loop environment o Incomplete testing of unexpected conditions, boundary conditions, and software/interface inputs.",
+        "Use or persistence of test data, files, or config files in an operational scenario",
+        "Failure to provide multiple paths or triggers from safe states to hazardous states",
+        "Interface Control Documents (ICD) and Interface Requirements Documents (IRD) Errors",
+        "System requirements errors",
+        "Misunderstanding of hardware configuration and operation",
+        "Hardware requirements and interface errors, Incorrect description of the software/hardware functions and how they are to perform",
+        "Missing or incorrect software requirements or specifications",
+        "Missing software error handling",
+        "Requirements/design errors not fully defined, detected, and corrected)",
+        "Failure to identify the safety-critical software items",
+        "Cyclomatic Complexity levels",
+        "Failure to perform a function, performing the wrong function, performing the function incompletely",
+        "An inadvertent/unauthorized event, an unexpected, unwanted event, an out-of-sequence event, the failure of a planned event to occur",
+        "The magnitude or direction of an event is wrong",
+        "Out-of-sequence event protection",
+        "Multiple events/actions trigger simultaneously (when not expected)",
+        "Error/Exception handling missing or incomplete",
+        "Inadvertent or incorrect mode transition for required vehicle functional operation; undefined or incorrect mode transition criteria; unauthorized mode transition",
+        "Failure of flight software to correctly initiate proper transition mode",
+        "Software state transition error",
+        "Software termination is an unknown state.",
+        "Errors in the software data dictionary values (typical components of a data dictionary entry are: Channelization data, e.g., bus mapping, vehicle wiring mapping, hardware channelization, description of each I/O variable, formats, unit of measure, and definition, Rate group data, calibrated sensor data describes the format, units of measure, and definition of each sensor, Specify data reduction for transforming raw data into calibrated data, Sensor data qualification criteria and senor data disqualification criteria, Telemetry format/layout and data describe the telemetry mode, format, packetization, and definition, Specify what types of packets are allowed to be sent for each of the telemetry modes, Specify maximum data rate for each mode, Data recorder format/layout and data, Command definition, e.g., onboard, ground, test specific, describes each of the commands processed by the software work package. Effecter command information provides information about the setting of names or flags that cause command executions in the software work products, Operational limits, Scheduling procedures, Partitioning methods, means of preventing partition breaches, partitioning faults, and partitioning metric data."
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 62,
+        "printed_page": 62,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-human-machine-interface-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Human-machine interface errors",
+      "text": "Human-machine interface errors: Incorrect Data (unit conversion, incorrect variable type); Stale Data; Poor design of Human Machine Interface (HMI) o Warnings for system failures are not evident on HMI o Timing issues result in warnings not being displayed soon enough to allow for human intervention o Operator data display overload; Too much, too little, incorrect data displayed; Ambiguous or incorrect messages; User display locks up/fails; Missing software error handling o Failure to check the validity of input/output data o Failure to check for constraints in algorithms/specifications and valid boundaries; Unsolicited command (Command issued inadvertently, cybersecurity issue or without cause); Wrong Command or a Miscalculated Command to be Sent; Failure of human interface software to check operator inputs; Failure to pass along information or messages; Display refresh rate leads to an incorrect operator response; Lack of ordering scheme for hazardous event queues (such as alerts) in the human-computer interface (i.e., priority versus time of arrival, for example, when an abort must go to the top of the queue); Incorrect labeling of operator controls in the human interface software; Failure to check for constraints in algorithms/specifications and valid boundaries; Failure of human interface software to check operator inputs; Failure to pass along information or messages; Stale data; Display refresh rate leads to an incorrect operator response; Lack of ordering scheme for hazardous event queues (such as alerts) in the human-computer interface (i.e., priority versus time of arrival, for example, when an abort must go to the top of the queue); No onscreen instructions; Undocumented features; States that appear impossible to exit; No cursor; Failure to acknowledge an input; Failure to advise when a change takes effect; Wrong, misleading, or confusing information; Poor aesthetics in the screen layout; Menu layout errors; Dialog box layout errors; Obscured instructions; Misuse of color",
+      "causes": [
+        "Incorrect Data (unit conversion, incorrect variable type)",
+        "Stale Data",
+        "Poor design of Human Machine Interface (HMI) o Warnings for system failures are not evident on HMI o Timing issues result in warnings not being displayed soon enough to allow for human intervention o Operator data display overload",
+        "Too much, too little, incorrect data displayed",
+        "Ambiguous or incorrect messages",
+        "User display locks up/fails",
+        "Missing software error handling o Failure to check the validity of input/output data o Failure to check for constraints in algorithms/specifications and valid boundaries",
+        "Unsolicited command (Command issued inadvertently, cybersecurity issue or without cause)",
+        "Wrong Command or a Miscalculated Command to be Sent",
+        "Failure of human interface software to check operator inputs",
+        "Failure to pass along information or messages",
+        "Display refresh rate leads to an incorrect operator response",
+        "Lack of ordering scheme for hazardous event queues (such as alerts) in the human-computer interface (i.e., priority versus time of arrival, for example, when an abort must go to the top of the queue)",
+        "Incorrect labeling of operator controls in the human interface software",
+        "Failure to check for constraints in algorithms/specifications and valid boundaries",
+        "Failure of human interface software to check operator inputs",
+        "Failure to pass along information or messages",
+        "Stale data",
+        "Display refresh rate leads to an incorrect operator response",
+        "Lack of ordering scheme for hazardous event queues (such as alerts) in the human-computer interface (i.e., priority versus time of arrival, for example, when an abort must go to the top of the queue)",
+        "No onscreen instructions",
+        "Undocumented features",
+        "States that appear impossible to exit",
+        "No cursor",
+        "Failure to acknowledge an input",
+        "Failure to advise when a change takes effect",
+        "Wrong, misleading, or confusing information",
+        "Poor aesthetics in the screen layout",
+        "Menu layout errors",
+        "Dialog box layout errors",
+        "Obscured instructions",
+        "Misuse of color"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 64,
+        "printed_page": 64,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-security-and-virus-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Security and virus errors",
+      "text": "Security and virus errors: Denial/Interruption of Service; Spoofed/Jammed inputs; Missing capabilities to defect insider threat activities; Inadvertent or intentional memory modification; Inadvertent or unplanned mode transition; Missing software error handling or defect handling; Unsolicited command (Command issued inadvertently, cybersecurity issue or without cause); Stack-based buffer overflows are common and leverage stack memory that only exists during the execution time.; Heap-based attacks are harder to carry out and involve flooding the memory space allocated for a program beyond memory used for current runtime operations; Cybersecurity vulnerability or computer virus o Virus infection in console PC; Inadvertent access to ground system software; Destruct commands incorrectly allowed in a hands-off zone",
+      "causes": [
+        "Denial/Interruption of Service",
+        "Spoofed/Jammed inputs",
+        "Missing capabilities to defect insider threat activities",
+        "Inadvertent or intentional memory modification",
+        "Inadvertent or unplanned mode transition",
+        "Missing software error handling or defect handling",
+        "Unsolicited command (Command issued inadvertently, cybersecurity issue or without cause)",
+        "Stack-based buffer overflows are common and leverage stack memory that only exists during the execution time.",
+        "Heap-based attacks are harder to carry out and involve flooding the memory space allocated for a program beyond memory used for current runtime operations",
+        "Cybersecurity vulnerability or computer virus o Virus infection in console PC",
+        "Inadvertent access to ground system software",
+        "Destruct commands incorrectly allowed in a hands-off zone"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 65,
+        "printed_page": 65,
+        "section": "Appendix A, Table 2"
+      }
+    },
+    {
+      "id": "HAZ-unknown-unknowns-errors",
+      "kind": "hazard-cause-area",
+      "group": "table-2",
+      "title": "Unknown/Unknowns errors",
+      "text": "Unknown/Unknowns errors: Undetected software defects; Unknown limitations for COTS (operational, environmental, stress); COTS extra capabilities; Incomplete or inadequate software safety analysis for COTS components; Compiler behavior errors or undefined compiler behavior; Software defects and investigations that are unresolved before the flight",
+      "causes": [
+        "Undetected software defects",
+        "Unknown limitations for COTS (operational, environmental, stress)",
+        "COTS extra capabilities",
+        "Incomplete or inadequate software safety analysis for COTS components",
+        "Compiler behavior errors or undefined compiler behavior",
+        "Software defects and investigations that are unresolved before the flight"
+      ],
+      "id_assigned_by_library": true,
+      "citation": {
+        "pdf_page": 65,
+        "printed_page": 65,
+        "section": "Appendix A, Table 2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+application: Customer portal 3.2 (commit 9f2c1ab)
+level: 1
+chapters: [V2, V5]
+results:
+  - {id: 2.1.1, status: pass, evidence: "docs/security/input-validation.md v1.4 reviewed 2026-09-30"}
+  - {id: 2.2.1, status: pass, evidence: "Schema validation in api/validators.py; negative tests in tests/test_validation.py"}
+  - {id: 2.2.2, status: fail, evidence: "Price field validated only in the browser"}
+  - {id: 2.3.1, status: partially, evidence: "Checkout steps can be skipped via direct POST to /checkout/confirm"}
+  - {id: 2.1.4, status: pass, evidence: "Business rules documented"}
+  - {id: 5.2.1, status: pass, evidence: "Upload limit 10 MB enforced at gateway and app"}
+  - {id: 5.3.1, status: not-applicable}
+  - {id: 5.3.2, status: pass, evidence: "Storage keys are UUIDs; user file names never used in paths"}
+  - {id: 5.4.3, status: fail, finding_ref: F-07, evidence: "No antivirus scanning of uploads"}

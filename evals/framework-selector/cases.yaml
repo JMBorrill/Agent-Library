@@ -1,0 +1,43 @@
+skill: framework-selector
+description: >-
+  Checks that problems are routed to the right skills, workflows and agents, that frameworks are combined by
+  role, and that mandatory versus advisory status is not over-stated.
+cases:
+  - id: ai-public-service
+    prompt: >-
+      A government department wants to deploy an LLM-based assistant to help citizens complete benefit
+      applications. They need funding approval and want to know the risks. Which frameworks and library
+      components apply?
+    golden: golden/ai-public-service.md
+    negative: golden/ai-public-service.bad.md
+    checks:
+      - {type: contains, values: ["nist-ai-rmf", "green-book-appraisal", "owasp-asvs"]}
+      - {type: any_of, values: ["ai-system-assurance", "public-investment-business-case"], min: 2}
+      - {type: any_of, values: ["mandatory", "advisory"]}
+      - {type: sections, values: ["Selected frameworks"]}
+  - id: nasa-flight-software
+    prompt: >-
+      We are building attitude-control flight software for a NASA science mission. What should we use from the
+      library?
+    golden: golden/nasa-flight-software.md
+    negative: golden/nasa-flight-software.bad.md
+    checks:
+      - {type: contains, values: ["nasa-software-engineering", "nasa-software-assurance", "software-assurance-audit"]}
+      - {type: any_of, values: ["classification", "class"]}
+      - {type: any_of, values: ["responsible organisation", "responsible organization", "accountable authority"]}
+  - id: web-api-security
+    prompt: >-
+      We need a security review of a public payments REST API before release, including how our pipeline builds it.
+    golden: golden/web-api-security.md
+    negative: golden/web-api-security.bad.md
+    checks:
+      - {type: contains, values: ["owasp-asvs", "nist-ssdf", "secure-software-delivery"]}
+      - {type: any_of, values: ["process", "product"], min: 2}
+  - id: selection-record
+    prompt: >-
+      Produce a framework selection record for a PDR of a new ground-station antenna subsystem.
+    golden: golden/selection-record.md
+    checks:
+      - {type: sections, values: ["Problem characterisation", "Selected frameworks", "Plan"]}
+      - {type: contains, values: ["nasa-systems-engineering", "technical-review-gate", "requirements-engineering"]}
+      - {type: table, columns: ["Framework", "Role", "Mandatory"]}

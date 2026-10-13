@@ -1,0 +1,10 @@
+id,level,requirement,parent,verification
+SYS-001,system,The spacecraft shall downlink at least 1.2 Gbit of science data per day.,NGO-1,Test
+SYS-002,system,The spacecraft shall maintain pointing accuracy of 0.1 deg (3 sigma) during science operations.,NGO-2,Analysis
+SUB-001,subsystem,The transmitter shall provide a downlink data rate of at least 2 Mbps.,SYS-001,Test
+SUB-002,subsystem,The C&DH shall store at least 4 Gbit of science data.,SYS-001,Test
+SUB-003,subsystem,The star tracker shall provide attitude at no less than 5 Hz.,SYS-099,Test
+SUB-004,subsystem,The structure shall provide two spare payload mounting points.,,Inspection
+SUB-005,subsystem,The flight software shall use the project coding standard FSW-STD-01.,self-derived,Inspection
+SUB-006,subsystem,The reaction wheels shall provide at least 4 mNms of momentum storage.,SYS-002,
+SUB-007,subsystem,The ADCS shall estimate attitude with an error of no more than 0.05 deg (3 sigma).,SYS-002,Simulation

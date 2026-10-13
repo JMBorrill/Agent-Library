@@ -1,0 +1,79 @@
+skill: nasa-systems-engineering
+description: >-
+  Checks that the nasa-systems-engineering skill places life-cycle reviews in the right phases with the right
+  outcomes and NPR 7123.1 criteria references, names all 17 SE engine processes, distinguishes tailoring
+  (waiver/deviation) from customisation, produces arithmetically correct decision matrices that respect
+  mandatory criteria, and applies the Appendix G TRL rules (heritage drop, lowest-element system TRL).
+cases:
+  - id: pdr-readiness
+    prompt: >-
+      We are a small team building LunaSat-12, a 12U lunar CubeSat. Our system PDR is in six weeks. Using the
+      NASA SE Handbook, assess our readiness from the document list below: state the review's purpose, timing
+      and expected result, where its entrance/success criteria come from, which SE products are expected at
+      PDR and at what maturity, our gaps (say which block the review), and a recommendation. Cite the handbook.
+    fixtures: [fixtures/cubesat-pdr-package.md]
+    golden: golden/pdr-readiness.md
+    negative: golden/pdr-readiness.bad.md
+    checks:
+      - {type: contains, values: ["design-to baseline", "Table G-6", "Phase B", "Interface"]}
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_review_phase_consistency", min_reviews: 2}
+      - {type: regex, pattern: "\\[nasa-se [^\\],]*, p\\. 20[01]\\]"}
+      - {type: sections, values: ["Gaps", "Recommendation"]}
+      - {type: any_of, values: ["advisory", "does not replace", "decision authority"]}
+      - {type: not_contains, values: ["PDR passed", "approved to proceed", "Table G-7"]}
+  - id: se-engine-mapping
+    prompt: >-
+      Map what our engineering team does today onto the NASA SE engine. Show every common technical process
+      with its group, what we do now and the gap, then give the top three priorities.
+    fixtures: [fixtures/startup-activities.md]
+    golden: golden/se-engine-mapping.md
+    negative: golden/se-engine-mapping.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_process_coverage", min: 17}
+      - {type: table, columns: ["Process", "Group"]}
+      - {type: contains, values: ["System Design", "Product Realization", "Technical Management"]}
+      - {type: regex, pattern: "\\b17\\b[^\\n]*process"}
+      - {type: not_contains, values: ["fully compliant"]}
+  - id: tailoring-small-project
+    prompt: >-
+      Our university smallsat project follows NPR 7123.1. To save effort we want to (1) combine the SRR and the
+      MDR, (2) not write a stand-alone SEMP and put that content in the project plan, and (3) skip the PDR.
+      Which of these is tailoring and which is customization, which need a waiver or deviation, and how should
+      we document them?
+    golden: golden/tailoring-small-project.md
+    negative: golden/tailoring-small-project.bad.md
+    checks:
+      - {type: contains, values: ["Compliance Matrix", "SEMP"]}
+      - {type: any_of, values: ["customization", "customisation"]}
+      - {type: regex, pattern: "SRR[^\\n]*MDR[^\\n]*(no waiver|without a waiver|not require a waiver)"}
+      - {type: regex, pattern: "PDR[^\\n]*(waiver or deviation|waiver/deviation)"}
+      - {type: regex, pattern: "\\[nasa-se 3\\.11[^\\]]*, p\\. 5[2-9]\\]"}
+      - {type: not_contains, values: ["the same thing", "PDR is optional"]}
+  - id: trade-study-solar-array
+    prompt: >-
+      Run a trade study for the LunaSat-12 solar array using the attached criteria, weights and scores and write
+      the decision report following the NASA SE Handbook decision analysis guidance, including the decision
+      matrix, how mandatory criteria were handled, sensitivity/uncertainty and any dissent.
+    fixtures: [fixtures/solar-array-trade.yaml]
+    golden: golden/trade-study-solar-array.md
+    negative: golden/trade-study-solar-array.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_decision_matrix", tolerance: 0.02}
+      - {type: sections, values: ["Executive Summary", "Decision Matrix", "Dissent", "Recommendation"]}
+      - {type: contains, values: ["mandatory", "Body-mounted panels"]}
+      - {type: any_of, values: ["closely ranked", "sensitivity"], min: 2}
+      - {type: regex, pattern: "(disregard|screened out|excluded)[^\\n]*(Roll-out|mandatory)|Roll-out[^\\n]*(disregard|screened out|fails)"}
+  - id: trl-heritage
+    prompt: >-
+      Assess the Technology Readiness Level of each attitude determination element of the Selene Pathfinder
+      lunar orbiter and of the subsystem as a whole, using the NASA SE Handbook TRL scale and rules.
+      Explain the basis for each level.
+    fixtures: [fixtures/heritage-star-tracker.md]
+    golden: golden/trl-heritage.md
+    negative: golden/trl-heritage.bad.md
+    checks:
+      - {type: regex, pattern: "star tracker[^\\n]*TRL 5"}
+      - {type: regex, pattern: "system TRL[^\\n]*TRL 4"}
+      - {type: contains, values: ["lowest", "breadboard"]}
+      - {type: regex, pattern: "\\[nasa-se G\\.4, p\\. 26[4-8]\\]"}
+      - {type: not_contains, values: ["remains TRL 9", "average"]}

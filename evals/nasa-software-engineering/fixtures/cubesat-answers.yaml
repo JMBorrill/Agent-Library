@@ -1,0 +1,7 @@
+# Appendix D answers for the CubeSat flight software (question ids from `nasa-swe classify --list-questions`)
+B-scope: yes      # non-human-rated space system flight software
+B-1a: yes         # required to operate the spacecraft
+B-1b: yes         # required to achieve the primary mission objectives
+B-x3: yes         # mission is a NASA Class D payload (NPR 8705.4)
+C-5: yes          # software for NASA Class D payloads
+safety_critical: no

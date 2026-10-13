@@ -1,0 +1,581 @@
+{
+  "schema_version": 1,
+  "skills": [
+    {
+      "name": "assurance-case",
+      "path": "skills/assurance-case",
+      "description": "Builds and checks a structured assurance case (claims, arguments, evidence) that ties framework results together for a decision-maker: e.g. \"the payments API is acceptably secure for release\", argued through ASVS verification, SSDF process evidence and residual-risk acceptance. A deterministic checker (python -m agentlib assurance-case check) enforces one root claim, no cycles, every leaf claim backed by evidence of adequate strength or explicitly undeveloped with justification, and real framework identifiers. Use when preparing a release, safety, security or AI deployment decision package, or when a review board needs one argument that integrates several assessments.",
+      "category": "quality",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-se",
+        "nasa-software-assurance",
+        "owasp-asvs"
+      ],
+      "catalogs": [],
+      "tools": [
+        "python -m agentlib assurance-case template",
+        "python -m agentlib assurance-case check",
+        "python -m agentlib assurance-case render"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "evidence-and-citation",
+      "path": "skills/evidence-and-citation",
+      "description": "Disciplined evidence handling for professional assessments produced with AI assistance: how to cite the pinned framework sources (source id, locator, PDF page), how to record evidence, how to grade claim strength, and how to avoid over-claiming compliance or certification. Includes a deterministic checker (python -m agentlib evidence check) that validates citations, page ranges and framework identifiers (SSDF tasks, AI RMF subcategories, NPR 7150.2D SWE ids, ASVS requirements) against the catalogs. Use when writing or reviewing any assessment, gap analysis, review package, business case or report that relies on the library's frameworks, and always before delivering such a document.",
+      "category": "quality",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-se",
+        "nasa-software-requirements",
+        "nasa-software-assurance",
+        "nist-ai",
+        "nist-ai-playbook",
+        "nist-ssdf",
+        "treasury-green",
+        "owasp-asvs"
+      ],
+      "catalogs": [],
+      "tools": [
+        "python -m agentlib evidence check",
+        "python -m agentlib evidence sources"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "framework-selector",
+      "path": "skills/framework-selector",
+      "description": "Routes a professional engineering, security, AI-governance or investment problem to the right frameworks, skills, subagents and workflows in this library, and explains how they combine (e.g. SSDF for the process plus ASVS for the product; NASA SE lifecycle reviews plus Green Book business case). Use when starting a new piece of work, when a request spans several disciplines, or when unsure which skill or workflow applies.",
+      "category": "meta",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-se",
+        "nasa-software-requirements",
+        "nasa-software-assurance",
+        "nist-ai",
+        "nist-ssdf",
+        "owasp-asvs",
+        "treasury-green"
+      ],
+      "catalogs": [],
+      "tools": [
+        "python -m agentlib list",
+        "python -m agentlib route"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "green-book-appraisal",
+      "path": "skills/green-book-appraisal",
+      "description": "Structures, calculates and quality-checks UK public-sector economic appraisals and business cases under the HM Treasury Green Book 2026 edition and the Five Case Model. Covers rationale, SMART objectives, BAU, longlist appraisal with critical success factors and the options framework filter, and shortlist social CBA. It runs deterministic tools for NPSV, BCR, RPSC, real-terms conversion, the 2026 STPR bands and the 1.5% health rate, optimism bias, switching values and sensitivity, and checks business case structure. Use when drafting or reviewing a Strategic Outline Case, Outline Business Case or Full Business Case, building an options appraisal or appraisal summary table, discounting cash flows to Green Book rules, or checking that an appraisal follows Green Book 2026.",
+      "category": "economic-appraisal",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "treasury-green"
+      ],
+      "catalogs": [
+        "green-book"
+      ],
+      "tools": [
+        "python -m agentlib greenbook npv",
+        "python -m agentlib greenbook real",
+        "python -m agentlib greenbook switching",
+        "python -m agentlib greenbook optimism-bias",
+        "python -m agentlib greenbook check-case",
+        "python -m agentlib greenbook params",
+        "python -m agentlib greenbook factors",
+        "python -m agentlib greenbook welfare-weight"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "nasa-software-assurance",
+      "path": "skills/nasa-software-assurance",
+      "description": "Applies NASA-STD-8739.8B Software Assurance and Software Safety Standard: derives the software assurance (SA) and software safety tasks that apply to a project from its NPR 7150.2D class and Requirements Mapping Matrix (SASS-01, Table 1), plans SA work (SA plan, schedule, tailoring), performs the software safety-criticality assessment (4.2 criteria a-e), supports software hazard analysis with the Appendix A cause checklist, scopes IV&V (4.4 requirements and IPEP), and records SA audits and non-conformances. Use when writing or reviewing a software assurance plan, deciding whether software is safety-critical, preparing hazard-analysis inputs, checking IV&V applicability or IPEP content, auditing a software project against NPR 7150.2D / NASA-STD-8739.8B, or recording SA findings.",
+      "category": "software-assurance",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-software-assurance",
+        "nasa-software-requirements",
+        "nasa-software"
+      ],
+      "catalogs": [
+        "nasa-std-8739-8b",
+        "npr-7150-2d"
+      ],
+      "tools": [
+        "python -m agentlib nasa-swe sa-tasks",
+        "python -m agentlib nasa-swe sc-assess",
+        "python -m agentlib nasa-swe hazard-causes",
+        "python -m agentlib nasa-swe matrix",
+        "python -m agentlib nasa-swe check-matrix",
+        "python -m agentlib nasa-swe show"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "nasa-software-engineering",
+      "path": "skills/nasa-software-engineering",
+      "description": "Applies NPR 7150.2D NASA Software Engineering Requirements to a project: proposes a software classification (Classes A-F, Appendix D) with cited rationale, generates and checks the Appendix C Requirements Mapping Matrix (compliance matrix with status, tailoring and evidence), and plans the life-cycle work the SWE requirements demand (planning, cost and schedule, requirements, architecture, design, implementation, testing, configuration management, risk, peer reviews, measurement, non-conformances, safety-critical software, cybersecurity). Use when a NASA or NASA-contracted software project needs a classification, a compliance/requirements mapping matrix, a tailoring request, a software development/management plan, a test plan, a requirements specification outline, or an answer about which SWE requirements apply and where they are in the NPR.",
+      "category": "software-engineering",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-software-requirements",
+        "nasa-software-assurance",
+        "nasa-software"
+      ],
+      "catalogs": [
+        "npr-7150-2d",
+        "nasa-std-8739-8b"
+      ],
+      "tools": [
+        "python -m agentlib nasa-swe classify",
+        "python -m agentlib nasa-swe matrix",
+        "python -m agentlib nasa-swe check-matrix",
+        "python -m agentlib nasa-swe show",
+        "python -m agentlib nasa-swe sa-tasks",
+        "python -m agentlib nasa-swe sc-assess"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "nasa-systems-engineering",
+      "path": "skills/nasa-systems-engineering",
+      "description": "Applies the NASA Systems Engineering Handbook (NASA/SP-2016-6105 Rev 2): the SE engine of 17 common technical processes, the project life cycle (Pre-Phase A to F) with Key Decision Points, life-cycle technical reviews (MCR, SRR, MDR/SDR, PDR, CDR, PRR, SIR, TRR, SAR, ORR, FRR, PLAR, CERR, PFAR, DR, DRR), SE product maturity per review, the SEMP, tailoring/customisation, trade studies (decision analysis), technical risk records, ConOps and Technology Readiness Levels. Deterministic tools emit review readiness checklists, list processes/phases/reviews/TRLs and compute weighted decision matrices. Use when planning or assessing a system/mission/product development, preparing or judging a life-cycle review package, writing a SEMP or ConOps, tailoring SE practice for a small project, running a trade study, assessing technology maturity, or defining technical options for a business case.",
+      "category": "systems-engineering",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-se"
+      ],
+      "catalogs": [
+        "nasa-se-processes",
+        "nasa-se-lifecycle",
+        "nasa-requirements-checklist"
+      ],
+      "tools": [
+        "python -m agentlib nasa-se processes",
+        "python -m agentlib nasa-se lifecycle",
+        "python -m agentlib nasa-se review-checklist",
+        "python -m agentlib nasa-se trade-study",
+        "python -m agentlib nasa-se lint-requirements",
+        "python -m agentlib nasa-se trace"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "nist-ai-rmf",
+      "path": "skills/nist-ai-rmf",
+      "description": "AI system risk assessment and AI governance with the NIST AI Risk Management Framework (AI RMF 1.0, NIST AI 100-1) and the NIST AI RMF Playbook: mapping context and impacts (MAP), measuring and testing trustworthiness (MEASURE), prioritising and treating risk (MANAGE) and organisational governance (GOVERN) across the 72 subcategories and the seven trustworthy-AI characteristics. Produces impact assessments / context records, AI risk registers, current/target profiles with gap analysis, model/ system cards and monitoring & incident plans, validated by deterministic tools. Use when asked to assess or govern an AI/ML or generative-AI system, write an AI impact assessment, build or review an AI risk register, create an AI RMF profile or gap analysis, map controls to AI RMF subcategories, or look up what a subcategory or the Playbook says.",
+      "category": "ai-governance",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nist-ai",
+        "nist-ai-playbook"
+      ],
+      "catalogs": [
+        "nist-ai-rmf",
+        "nist-ai-rmf-playbook"
+      ],
+      "tools": [
+        "python -m agentlib ai-rmf list",
+        "python -m agentlib ai-rmf show",
+        "python -m agentlib ai-rmf characteristics",
+        "python -m agentlib ai-rmf profile-template",
+        "python -m agentlib ai-rmf check-profile",
+        "python -m agentlib ai-rmf register-template",
+        "python -m agentlib ai-rmf check-register",
+        "python -m agentlib ai-rmf scan"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "nist-ssdf",
+      "path": "skills/nist-ssdf",
+      "description": "Secure software development lifecycle assessment and implementation planning with the NIST Secure Software Development Framework (SSDF) v1.1, NIST SP 800-218: scoping, task-by-task gap assessment across the 4 practice groups (PO, PS, PW, RV), 19 practices and 42 tasks, evidence collection, scoring and prioritised remediation roadmaps, attestation-style evidence matrices, and mapping a CI/CD pipeline's controls (SAST, SCA/SBOM, secret scanning, code review, signing, pinning) to the tasks they support. Also drafts secure development policies, vulnerability response/disclosure procedures, release integrity checklists and SBOM/provenance records. Use when asked to assess or improve a secure SDLC against SSDF / SP 800-218, prepare for a secure software development attestation or supplier questionnaire, explain an SSDF practice or task, or check which SSDF tasks a build pipeline covers.",
+      "category": "software-assurance",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nist-ssdf"
+      ],
+      "catalogs": [
+        "nist-ssdf"
+      ],
+      "tools": [
+        "python -m agentlib ssdf list",
+        "python -m agentlib ssdf show",
+        "python -m agentlib ssdf assessment-template",
+        "python -m agentlib ssdf check-assessment",
+        "python -m agentlib ssdf evidence-matrix",
+        "python -m agentlib ssdf map-pipeline",
+        "python -m agentlib ssdf pipeline-controls"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "owasp-asvs",
+      "path": "skills/owasp-asvs",
+      "description": "Application security verification and security requirements definition with the OWASP Application Security Verification Standard (ASVS) 5.0.0: scoping and level selection, building a verification plan/checklist, performing and structuring verification with evidence, mapping security findings to ASVS requirements, checking a filled assessment and writing the verification report. Deterministic tools generate level-filtered checklists, validate assessments (unknown ids, missing requirements, fail without finding, N/A without justification) and compute per-chapter compliance. Use when asked to verify, assess, pentest-scope or report on a web application or API against ASVS, to map pentest or scanner findings to ASVS, or to define security requirements for a new application or feature.",
+      "category": "security",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "owasp-asvs"
+      ],
+      "catalogs": [
+        "owasp-asvs-5"
+      ],
+      "tools": [
+        "python -m agentlib asvs chapters",
+        "python -m agentlib asvs show",
+        "python -m agentlib asvs search",
+        "python -m agentlib asvs checklist",
+        "python -m agentlib asvs check-assessment",
+        "python -m agentlib asvs map-findings"
+      ],
+      "has_eval_suite": true
+    },
+    {
+      "name": "requirements-engineering",
+      "path": "skills/requirements-engineering",
+      "description": "Writes, reviews, validates, traces and plans verification of technical requirements using the NASA Systems Engineering Handbook (NASA/SP-2016-6105 Rev 2): single-\"shall\" statements with rationale, the Appendix C \"How to Write a Good Requirement\" checklist (unverifiable and ambiguous terms, TBD/TBR, positive and active statements, one thought per statement), requirement metadata (Table 4.2-2), the six requirements-validation questions, bidirectional traceability and self-derived requirements (Section 6.2), verification methods (test, analysis, inspection, demonstration) and the Appendix D requirements verification matrix. Deterministic tools lint requirement sets (CSV/YAML/JSON/Markdown) and check traceability and verification coverage. Use when drafting or rewriting requirements or specifications, reviewing a requirements document before SRR/PDR, building a traceability matrix or VCRM, or auditing orphans, TBDs and unverifiable requirements in any engineering project.",
+      "category": "systems-engineering",
+      "version": "1.0.0",
+      "maturity": "beta",
+      "sources": [
+        "nasa-se"
+      ],
+      "catalogs": [
+        "nasa-requirements-checklist",
+        "nasa-se-processes"
+      ],
+      "tools": [
+        "python -m agentlib nasa-se lint-requirements",
+        "python -m agentlib nasa-se trace",
+        "python -m agentlib nasa-se req-checklist"
+      ],
+      "has_eval_suite": true
+    }
+  ],
+  "agents": [
+    {
+      "name": "ai-governance-advisor",
+      "path": "agents/ai-governance-advisor.md",
+      "description": "AI governance advisor using the NIST AI RMF 1.0 GOVERN function, AI RMF profiles and the Playbook. Designs or reviews organisational AI governance (policies, accountability, inventory, training, third-party AI, decommissioning, incident sharing), builds current/target profiles with gap analysis and action plans, and reviews system-level risk decisions for escalation and sign-off. Use when asked to set up or assess an AI governance programme, produce an AI RMF profile or gap analysis, prepare a governance review for a board or risk committee, or check that AI risk acceptance is properly governed.",
+      "model": "inherit"
+    },
+    {
+      "name": "ai-risk-assessor",
+      "path": "agents/ai-risk-assessor.md",
+      "description": "AI system risk assessor using the NIST AI RMF 1.0 and Playbook. Maps an AI system's context and impacts (MAP), identifies and rates risks across the seven trustworthy-AI characteristics, plans measurement/TEVV (MEASURE), proposes treatments and monitoring (MANAGE), and produces a validated impact assessment / context record, AI risk register, model/system card and monitoring & incident plan. Use when a specific AI/ML or generative-AI system (new, changed or in operation) needs an impact assessment, risk register, pre-deployment risk review or post-incident re-assessment.",
+      "model": "inherit"
+    },
+    {
+      "name": "application-security-verifier",
+      "path": "agents/application-security-verifier.md",
+      "description": "Application security verifier for web applications and APIs using OWASP ASVS 5.0.0. Scopes the verification and target level, generates the level-filtered checklist, verifies requirements with evidence, maps pentest/scanner findings to ASVS requirement ids, validates the filled assessment and writes the verification report; also drafts ASVS-based security requirements for new designs. Use when a task mentions ASVS, application security verification, pentest scoping or reporting against a standard, mapping security findings to requirements, or defining web/API security requirements.",
+      "model": "inherit"
+    },
+    {
+      "name": "economic-appraisal-analyst",
+      "path": "agents/economic-appraisal-analyst.md",
+      "description": "UK public-sector economic appraisal analyst that applies the HM Treasury Green Book 2026 edition and the Five Case Model. Delegate to it to draft or review Strategic Outline, Outline or Full Business Cases, build options long-lists and shortlists, compute NPSV/BCR/RPSC with the 2026 discount schedule, convert nominal values to real terms, apply optimism bias, produce switching values, sensitivity tables and appraisal summary tables, or check a business case for Green Book compliance.",
+      "model": "inherit"
+    },
+    {
+      "name": "evidence-auditor",
+      "path": "agents/evidence-auditor.md",
+      "description": "Independent auditor of documents produced by people or other agents: checks that every framework claim is cited to the pinned sources with a valid page, that requirement/control identifiers exist, that conclusions are backed by recorded evidence of adequate strength, and that nothing over-claims compliance or approval. Use before delivering any assessment, review package, compliance matrix, risk register or business case, and as the agent-review gate in library workflows.",
+      "model": "inherit"
+    },
+    {
+      "name": "requirements-engineer",
+      "path": "agents/requirements-engineer.md",
+      "description": "Requirements engineer applying NASA SE Handbook Rev 2 guidance (Appendix C checklist, Table 4.2-2 metadata, verification methods, Appendix D verification matrix, Section 6.2 bidirectional traceability). Writes and rewrites \"shall\" requirements, lints requirement sets, audits traceability (orphans, dangling links, gold plating) and builds verification matrices. Delegate when a task involves drafting, reviewing, validating or tracing requirements, a VCRM, or the requirements-audit stage of a technical review.",
+      "model": "inherit"
+    },
+    {
+      "name": "review-board-chair",
+      "path": "agents/review-board-chair.md",
+      "description": "Orchestrates multi-stage professional reviews (technical review gates, secure delivery reviews, AI assurance reviews, business case panels, software assurance audits) by running a library workflow, delegating each stage to the right specialist subagent, enforcing stage gates and producing a board decision record. Use when a request needs several disciplines, a formal gate decision, or when the user invokes a workflow from workflows/.",
+      "model": "inherit"
+    },
+    {
+      "name": "secure-development-reviewer",
+      "path": "agents/secure-development-reviewer.md",
+      "description": "Reviews an organisation's secure software development lifecycle against NIST SP 800-218 (SSDF v1.1): runs task-by-task gap assessments with evidence, validates and scores filled SSDF worksheets, maps CI/CD pipeline controls to SSDF tasks, prioritises remediation and drafts policies, vulnerability response procedures, release integrity checklists and SBOM/provenance records. Delegate when a user wants an SSDF assessment, an attestation-readiness review, a secure SDLC improvement plan, or an analysis of which SSDF tasks a build pipeline supports.",
+      "model": "inherit"
+    },
+    {
+      "name": "software-assurance-engineer",
+      "path": "agents/software-assurance-engineer.md",
+      "description": "NASA software assurance and software safety engineer applying NASA-STD-8739.8B with NPR 7150.2D: derives the SA/SS tasks that apply to a project (SASS-01, Table 1), assesses software safety-criticality against criteria 4.2 a-e, supports software hazard analysis with the Appendix A cause checklist, scopes IV&V and reviews IPEPs, writes SA plans, performs SA audits of compliance matrices and processes, and records non-conformances. Delegate for SA plans, safety-criticality assessments, hazard-analysis inputs, IV&V applicability, or SA audits/findings.",
+      "model": "inherit"
+    },
+    {
+      "name": "software-engineering-lead",
+      "path": "agents/software-engineering-lead.md",
+      "description": "NASA software engineering lead for NPR 7150.2D work: proposes software classifications (Appendix D Classes A-F) with cited rationale, builds and checks the Appendix C Requirements Mapping Matrix, prepares tailoring requests, and drafts software development/management plans, software requirements specifications and software test plans that satisfy the applicable SWE requirements. Delegate when a NASA or NASA-contracted software project needs classification, a compliance matrix, a plan or an answer about which SWE requirements apply.",
+      "model": "inherit"
+    },
+    {
+      "name": "systems-engineer",
+      "path": "agents/systems-engineer.md",
+      "description": "NASA-style systems engineer for technical planning and life-cycle reviews. Applies the NASA Systems Engineering Handbook (SP-2016-6105 Rev 2): SE engine (17 processes), Pre-Phase A to F life cycle and KDPs, review readiness (MCR, SRR, MDR/SDR, PDR, CDR, SIR, TRR, ORR, FRR ...), SEMP and tailoring, ConOps, trade studies, technical risk and TRL assessment. Delegate when a task needs a review readiness assessment, a SEMP or ConOps, a trade study, technical option definitions for a business case, or systems-level planning for a new system, mission or product.",
+      "model": "inherit"
+    }
+  ],
+  "commands": [
+    {
+      "name": "ai-assurance",
+      "path": "commands/ai-assurance.md",
+      "description": "Run an AI system risk assessment and assurance review using the NIST AI RMF and Playbook."
+    },
+    {
+      "name": "business-case",
+      "path": "commands/business-case.md",
+      "description": "Develop and assure a Green Book five-case business case with deterministic NPSV, BCR and sensitivity analysis."
+    },
+    {
+      "name": "check-evidence",
+      "path": "commands/check-evidence.md",
+      "description": "Audit documents for valid citations, real framework identifiers, adequate evidence and no over-claiming."
+    },
+    {
+      "name": "secure-delivery-review",
+      "path": "commands/secure-delivery-review.md",
+      "description": "Run a secure software delivery review combining a NIST SSDF process assessment with OWASP ASVS verification."
+    },
+    {
+      "name": "select-frameworks",
+      "path": "commands/select-frameworks.md",
+      "description": "Recommend which frameworks, skills, subagents and workflow apply to a problem and record the selection."
+    },
+    {
+      "name": "software-assurance-audit",
+      "path": "commands/software-assurance-audit.md",
+      "description": "Run an NPR 7150.2D compliance and NASA-STD-8739.8B software assurance audit for a software product."
+    },
+    {
+      "name": "technical-review",
+      "path": "commands/technical-review.md",
+      "description": "Run a NASA-style technical life-cycle review gate (readiness, requirements audit, evidence audit, board recommendation)."
+    }
+  ],
+  "workflows": [
+    {
+      "id": "ai-system-assurance",
+      "path": "workflows/ai-system-assurance.yaml",
+      "title": "AI system risk assessment and assurance (NIST AI RMF)",
+      "version": "1.0.0",
+      "stages": [
+        "map",
+        "risk",
+        "security",
+        "governance",
+        "evidence-audit",
+        "decision"
+      ]
+    },
+    {
+      "id": "public-investment-business-case",
+      "path": "workflows/public-investment-business-case.yaml",
+      "title": "Public investment business case (Green Book five case model)",
+      "version": "1.0.0",
+      "stages": [
+        "strategic",
+        "technical-options",
+        "economic",
+        "delivery-cases",
+        "evidence-audit",
+        "panel"
+      ]
+    },
+    {
+      "id": "secure-software-delivery",
+      "path": "workflows/secure-software-delivery.yaml",
+      "title": "Secure software delivery review (SSDF + ASVS)",
+      "version": "1.0.0",
+      "stages": [
+        "scope",
+        "process",
+        "verify",
+        "evidence-audit",
+        "decision"
+      ]
+    },
+    {
+      "id": "software-assurance-audit",
+      "path": "workflows/software-assurance-audit.yaml",
+      "title": "Software engineering compliance and assurance audit (NPR 7150.2D + NASA-STD-8739.8B)",
+      "version": "1.0.0",
+      "stages": [
+        "classify",
+        "compliance",
+        "assurance",
+        "evidence-audit",
+        "board"
+      ]
+    },
+    {
+      "id": "technical-review-gate",
+      "path": "workflows/technical-review-gate.yaml",
+      "title": "NASA-style technical life-cycle review gate",
+      "version": "1.0.0",
+      "stages": [
+        "readiness",
+        "requirements-audit",
+        "evidence-audit",
+        "board"
+      ]
+    }
+  ],
+  "catalogs": [
+    {
+      "id": "green-book",
+      "path": "catalog/green-book.json",
+      "source_id": "treasury-green",
+      "edition": "2026 edition (HM Treasury, ISBN 978-1-918417-12-8, PU3608)",
+      "items": 121,
+      "fidelity": "paraphrased"
+    },
+    {
+      "id": "nasa-requirements-checklist",
+      "path": "catalog/nasa-requirements-checklist.json",
+      "source_id": "nasa-se",
+      "edition": "NASA/SP-2016-6105 Rev 2 (2016)",
+      "items": 72,
+      "fidelity": "verbatim-normalised-whitespace"
+    },
+    {
+      "id": "nasa-se-lifecycle",
+      "path": "catalog/nasa-se-lifecycle.json",
+      "source_id": "nasa-se",
+      "edition": "NASA/SP-2016-6105 Rev 2 (2016)",
+      "items": 38,
+      "fidelity": "paraphrased"
+    },
+    {
+      "id": "nasa-se-processes",
+      "path": "catalog/nasa-se-processes.json",
+      "source_id": "nasa-se",
+      "edition": "NASA/SP-2016-6105 Rev 2 (2016)",
+      "items": 17,
+      "fidelity": "paraphrased"
+    },
+    {
+      "id": "nasa-std-8739-8b",
+      "path": "catalog/nasa-std-8739-8b.json",
+      "source_id": "nasa-software-assurance",
+      "edition": "NASA-STD-8739.8B (approved 2022-09-08)",
+      "items": 172,
+      "fidelity": "verbatim-normalised-whitespace"
+    },
+    {
+      "id": "nist-ai-rmf-playbook",
+      "path": "catalog/nist-ai-rmf-playbook.json",
+      "source_id": "nist-ai-playbook",
+      "edition": "NIST AI RMF Playbook (companion to AI RMF 1.0; 142 numbered pages)",
+      "items": 754,
+      "fidelity": "verbatim-normalised-whitespace"
+    },
+    {
+      "id": "nist-ai-rmf",
+      "path": "catalog/nist-ai-rmf.json",
+      "source_id": "nist-ai",
+      "edition": "NIST AI 100-1, AI RMF 1.0, January 2023",
+      "items": 72,
+      "fidelity": "verbatim-normalised-whitespace"
+    },
+    {
+      "id": "nist-ssdf",
+      "path": "catalog/nist-ssdf.json",
+      "source_id": "nist-ssdf",
+      "edition": "NIST SP 800-218, SSDF Version 1.1 (February 2022)",
+      "items": 67,
+      "fidelity": "verbatim-normalised-whitespace"
+    },
+    {
+      "id": "npr-7150-2d",
+      "path": "catalog/npr-7150-2d.json",
+      "source_id": "nasa-software-requirements",
+      "edition": "NPR 7150.2D (effective 2022-03-08, expires 2027-03-08)",
+      "items": 130,
+      "fidelity": "verbatim-normalised-whitespace"
+    },
+    {
+      "id": "owasp-asvs-5",
+      "path": "catalog/owasp-asvs-5.json",
+      "source_id": "owasp-asvs",
+      "edition": "5.0.0 (May 2025)",
+      "items": 345,
+      "fidelity": "verbatim-normalised-whitespace"
+    }
+  ],
+  "eval_suites": [
+    {
+      "skill": "assurance-case",
+      "path": "evals/assurance-case/cases.yaml",
+      "cases": 4
+    },
+    {
+      "skill": "evidence-and-citation",
+      "path": "evals/evidence-and-citation/cases.yaml",
+      "cases": 4
+    },
+    {
+      "skill": "framework-selector",
+      "path": "evals/framework-selector/cases.yaml",
+      "cases": 4
+    },
+    {
+      "skill": "green-book-appraisal",
+      "path": "evals/green-book-appraisal/cases.yaml",
+      "cases": 6
+    },
+    {
+      "skill": "nasa-software-assurance",
+      "path": "evals/nasa-software-assurance/cases.yaml",
+      "cases": 5
+    },
+    {
+      "skill": "nasa-software-engineering",
+      "path": "evals/nasa-software-engineering/cases.yaml",
+      "cases": 5
+    },
+    {
+      "skill": "nasa-systems-engineering",
+      "path": "evals/nasa-systems-engineering/cases.yaml",
+      "cases": 5
+    },
+    {
+      "skill": "nist-ai-rmf",
+      "path": "evals/nist-ai-rmf/cases.yaml",
+      "cases": 5
+    },
+    {
+      "skill": "nist-ssdf",
+      "path": "evals/nist-ssdf/cases.yaml",
+      "cases": 5
+    },
+    {
+      "skill": "owasp-asvs",
+      "path": "evals/owasp-asvs/cases.yaml",
+      "cases": 6
+    },
+    {
+      "skill": "requirements-engineering",
+      "path": "evals/requirements-engineering/cases.yaml",
+      "cases": 5
+    }
+  ]
+}

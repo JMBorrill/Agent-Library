@@ -1,0 +1,76 @@
+skill: nist-ssdf
+description: >-
+  Checks that the SSDF skill reports tool-computed assessment figures faithfully, flags validation problems
+  and prioritised gaps, maps pipelines conservatively (support != compliance), cites only valid SSDF v1.1
+  task ids with correct PDF pages, handles retired identifiers, and never claims SSDF compliance.
+cases:
+  - id: assessment-summary
+    prompt: >-
+      We filled in the SSDF v1.1 gap assessment worksheet for our checkout platform and ran the checker
+      (output attached). Write the assessment summary report for our CISO: overall result, results by
+      practice group, validation issues to fix, prioritised gaps with owners and target dates, a short
+      roadmap and limitations. Also tell us if any applicability decision looks wrong.
+    fixtures: [fixtures/acme-assessment.yaml, fixtures/acme-check-output.md]
+    golden: golden/assessment-summary.md
+    negative: golden/assessment-summary.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_assessment_numbers", fixture: evals/nist-ssdf/fixtures/acme-assessment.yaml, today: "2026-10-13"}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_ids_valid", min: 8}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_no_overclaim"}
+      - {type: sections, values: ["Overall", "Prioritised gaps", "Limitations"]}
+      - {type: contains, values: ["heuristic", "interpreter"]}
+      - {type: any_of, values: ["does not replace", "not a compliance", "not replace"]}
+  - id: pipeline-gaps
+    prompt: >-
+      Here is a description of our CI/CD pipeline. Which SSDF v1.1 tasks does it support, and which
+      technical tasks have no supporting control at all? Suggest controls for the gaps. Be precise about
+      what the pipeline does and does not prove.
+    fixtures: [fixtures/acme-pipeline.yaml]
+    golden: golden/pipeline-gaps.md
+    negative: golden/pipeline-gaps.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_pipeline_gaps", fixture: evals/nist-ssdf/fixtures/acme-pipeline.yaml, min_fraction: 0.8}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_no_overclaim"}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_ids_valid", min: 10}
+      - {type: any_of, values: ["support != compliance", "not proof", "does not prove", "not evidence that"]}
+      - {type: any_of, values: ["disabled", "enabled: false"]}
+      - {type: any_of, values: ["unmapped", "no SSDF mapping", "earns no credit"]}
+  - id: explain-ps-3-2
+    prompt: >-
+      Explain SSDF task PS.3.2 to our engineering managers: what it requires, how the notional examples
+      should be treated, which related tasks matter, and what evidence an assessor should ask for. Cite the
+      PDF pages.
+    golden: golden/explain-ps-3-2.md
+    negative: golden/explain-ps-3-2.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_page_citations", min: 2}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_ids_valid", min: 2}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_no_overclaim"}
+      - {type: contains, values: ["provenance", "SBOM", "acquirers"]}
+      - {type: any_of, values: ["not requirements", "not required", "optional", "notional"]}
+      - {type: table, columns: ["Evidence"]}
+  - id: retired-ids
+    prompt: >-
+      Our 2020 supplier security questionnaire asks suppliers about SSDF PW.3.1, PW.4.5 and PW.5.2. Are
+      these still valid in SSDF v1.1? Map them to the current identifiers.
+    golden: golden/retired-ids.md
+    negative: golden/retired-ids.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_ids_valid", allow_retired: true, min: 3}
+      - {type: contains, values: ["PO.1.3", "PW.4.1", "PW.4.4", "PW.5.1"]}
+      - {type: regex, pattern: "retired|moved"}
+      - {type: not_contains, values: ["no changes are needed", "unchanged"]}
+  - id: vuln-procedure
+    prompt: >-
+      Draft a vulnerability response and disclosure procedure for Acme Payments that addresses the SSDF
+      v1.1 Respond to Vulnerabilities practices, using the skill template. Map each section to the SSDF
+      tasks it supports and cite pages.
+    golden: golden/vuln-procedure.md
+    negative: golden/vuln-procedure.bad.md
+    checks:
+      - {type: contains, values: ["RV.1.1", "RV.1.2", "RV.1.3", "RV.2.1", "RV.2.2", "RV.3.1"]}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_ids_valid", min: 6}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_page_citations", min: 3}
+      - {type: python, function: "agentlib.frameworks.ssdf:grade_no_overclaim"}
+      - {type: sections, values: ["Intake", "Root cause"]}
+      - {type: not_contains, values: ["guarantee"]}

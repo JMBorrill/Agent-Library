@@ -1,0 +1,13 @@
+{
+  "name": "jmborrill-agent-library",
+  "owner": {"name": "JMBorrill"},
+  "metadata": {"description": "Professional agent and skills library marketplace."},
+  "plugins": [
+    {
+      "name": "professional-agent-library",
+      "source": "./",
+      "version": "0.1.0",
+      "description": "Framework-grounded professional skills, subagents, slash commands and workflows."
+    }
+  ]
+}

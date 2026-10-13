@@ -1,0 +1,76 @@
+skill: nasa-software-engineering
+description: >-
+  NPR 7150.2D application: Appendix D classification with exclusions, Appendix C Requirements Mapping
+  Matrix generation and checking, routing of tailoring to the right Authority, and safety-critical
+  coverage/complexity rules - all with correct SWE ids and PDF page citations.
+cases:
+  - id: classify-cubesat
+    prompt: |
+      We are building the flight software for a 6U CubeSat science mission. The software commands the bus
+      and operates the single science instrument; the mission cannot meet its objectives without it. The
+      mission is not human-rated and has been designated a NASA Class D payload under NPR 8705.4. Propose
+      the NPR 7150.2D software classification with cited rationale. Our Appendix D answers are attached.
+    fixtures: [fixtures/cubesat-answers.yaml]
+    golden: golden/classify-cubesat.md
+    negative: golden/classify-cubesat.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_candidate_class", expected: C}
+      - {type: contains, values: ["Class D payload", "8705.4"]}
+      - {type: regex, pattern: "Technical Authorit"}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 2}
+      - {type: cites, values: ["nasa-software-requirements"]}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_swe_ids_valid", min: 1}
+
+  - id: matrix-class-d-safety
+    prompt: |
+      Produce the NPR 7150.2D Requirements Mapping Matrix for a Class D ground software tool that the SMA
+      organization has determined to be safety-critical. Include status, tailoring/waiver, approval and
+      evidence columns ready for the project to fill.
+    golden: golden/matrix-class-d-safety.md
+    negative: golden/matrix-class-d-safety.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_matrix_coverage", class: D, forbid: [SWE-051, SWE-141]}
+      - {type: table, columns: [SWE, Status, Evidence, Authority]}
+      - {type: contains, values: ["SWE-134", "SWE-219", "SWE-220"]}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_swe_ids_valid", min: 60}
+
+  - id: check-matrix-review
+    prompt: |
+      Review this filled-in NPR 7150.2D Requirements Mapping Matrix before it goes to the Technical
+      Authorities. List every problem that must be fixed and anything that needs a different approver.
+    fixtures: [fixtures/rmm-class-c.csv]
+    golden: golden/check-matrix-review.md
+    negative: golden/check-matrix-review.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_check_matrix_fixture", fixture: evals/nasa-software-engineering/fixtures/rmm-class-c.csv}
+      - {type: any_of, values: ["SAISO", "CISO"]}
+      - {type: regex, pattern: "missing"}
+      - {type: not_contains, values: ["ready for signature"]}
+
+  - id: tailoring-hq-authority
+    prompt: |
+      Our Class B robotic mission wants relief from the software IV&V requirement and from the CMMI-DEV
+      rating requirement in NPR 7150.2D. Who has to approve each request and what must the request
+      contain? Cite the NPR with PDF page numbers.
+    golden: golden/tailoring-hq-authority.md
+    negative: golden/tailoring-hq-authority.bad.md
+    checks:
+      - {type: contains, values: ["SWE-141", "SWE-032", "HQ OSMA", "HQ OCE", "rationale", "risk"]}
+      - {type: contains, values: ["SWE-223"]}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 4}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_swe_ids_valid", min: 4}
+      - {type: not_contains, values: ["HQ does not need", "Center is sufficient"]}
+
+  - id: safety-critical-thresholds
+    prompt: |
+      Our flight software has components the SMA organization classed as safety-critical. What does
+      NPR 7150.2D require for code coverage and code complexity on those components, and what does
+      software assurance confirm? Give requirement ids and PDF pages.
+    golden: golden/safety-critical-thresholds.md
+    negative: golden/safety-critical-thresholds.bad.md
+    checks:
+      - {type: contains, values: ["SWE-219", "SWE-220", "MC/DC"]}
+      - {type: regex, pattern: "100\\s*(%|percent)"}
+      - {type: regex, pattern: "\\b15\\b"}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 3}
+      - {type: not_contains, values: ["statement coverage"]}

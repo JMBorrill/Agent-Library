@@ -1,0 +1,1073 @@
+{
+  "catalog_id": "nasa-requirements-checklist",
+  "source_id": "nasa-se",
+  "title": "NASA SE Handbook: How to Write a Good Requirement (Appendix C) and requirement metadata",
+  "edition": "NASA/SP-2016-6105 Rev 2 (2016)",
+  "description": "Appendix C 'How to Write a Good Requirement - Checklist' (C.1 terms, C.2 editorial, C.3 general goodness, C.4 requirements validation checklist), Table 4.2-2 requirements metadata, the four verification methods and the requirements validation steps of 4.2.1.2.4. Drives `python -m agentlib nasa-se lint-requirements` and `trace`.",
+  "extraction": {
+    "method": "pdftotext -layout; Appendix C items sliced verbatim between ordered anchors (footers removed, whitespace/quotes normalised); other items located by anchor (scripts/extract/nasa_se.py)",
+    "date": "2026-10-13",
+    "fidelity": "verbatim-normalised-whitespace",
+    "notes": "Item ids are catalog-assigned (the handbook does not number checklist items). Checkbox glyphs are not rendered. Verification-method texts are the first sentence of each definition. The handbook says 'five steps' for requirements validation but lists six; all six are kept. 'Unverifiable' and 'ambiguous' term lists in parameters are verbatim from C.4.",
+    "pages_reviewed": "79-85, 121-122, 163-168, 249-255"
+  },
+  "groups": [
+    {
+      "id": "appendix-c",
+      "title": "Appendix C: How to Write a Good Requirement - Checklist",
+      "parent": null,
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c1-terms",
+      "title": "C.1 Use of Correct Terms",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c2-editorial",
+      "title": "C.2 Editorial Checklist",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c3-general-goodness",
+      "title": "C.3 General Goodness Checklist",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-clarity",
+      "title": "C.4 Validation: Clarity",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-completeness",
+      "title": "C.4 Validation: Completeness",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-compliance",
+      "title": "C.4 Validation: Compliance",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-consistency",
+      "title": "C.4 Validation: Consistency",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-traceability",
+      "title": "C.4 Validation: Traceability",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-correctness",
+      "title": "C.4 Validation: Correctness",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-functionality",
+      "title": "C.4 Validation: Functionality",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-performance",
+      "title": "C.4 Validation: Performance",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-interfaces",
+      "title": "C.4 Validation: Interfaces",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-maintainability",
+      "title": "C.4 Validation: Maintainability",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-reliability",
+      "title": "C.4 Validation: Reliability",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-verifiability",
+      "title": "C.4 Validation: Verifiability/Testability",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "c4-data-usage",
+      "title": "C.4 Validation: Data Usage",
+      "parent": "appendix-c",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C"
+      }
+    },
+    {
+      "id": "metadata",
+      "title": "Table 4.2-2 Requirements Metadata",
+      "parent": null,
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2.1.2.3"
+      }
+    },
+    {
+      "id": "verification-methods",
+      "title": "Methods of Verification",
+      "parent": null,
+      "citation": {
+        "pdf_page": 121,
+        "printed_page": 108,
+        "section": "5.3"
+      }
+    },
+    {
+      "id": "validation-steps",
+      "title": "Validate Technical Requirements (4.2.1.2.4)",
+      "parent": null,
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2.1.2.4"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "c1-shall",
+      "group": "c1-terms",
+      "text": "Shall = requirement",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.1"
+      }
+    },
+    {
+      "id": "c1-will",
+      "group": "c1-terms",
+      "text": "Will = facts or declaration of purpose",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.1"
+      }
+    },
+    {
+      "id": "c1-should",
+      "group": "c1-terms",
+      "text": "Should = goal",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.1"
+      }
+    },
+    {
+      "id": "c2-personnel-active-voice",
+      "group": "c2-editorial",
+      "text": "The requirement is in the form \"responsible party shall perform such and such.\" In other words, use the active, rather than the passive voice. A requirement should state who shall (do, perform, provide, weigh, or other verb) followed by a description of what should be performed.",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.2"
+      }
+    },
+    {
+      "id": "c2-product-form",
+      "group": "c2-editorial",
+      "text": "The requirement is in the form \"product ABC shall XYZ.\" A requirement should state \"The product shall\" (do, perform, provide, weigh, or other verb) followed by a description of what should be done.",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.2"
+      }
+    },
+    {
+      "id": "c2-consistent-terminology",
+      "group": "c2-editorial",
+      "text": "The requirement uses consistent terminology to refer to the product and its lower-level entities.",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.2"
+      }
+    },
+    {
+      "id": "c2-tolerances",
+      "group": "c2-editorial",
+      "text": "Complete with tolerances for qualitative/performance values (e.g., less than, greater than or equal to, plus or minus, 3 sigma root sum squares).",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.2"
+      }
+    },
+    {
+      "id": "c2-free-of-implementation",
+      "group": "c2-editorial",
+      "text": "Is the requirement free of implementation? (Requirements should state WHAT is needed, NOT HOW to provide it; i.e., state the problem not the solution. Ask, \"Why do you need the requirement?\" The answer may point to the real requirement.)",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.2"
+      }
+    },
+    {
+      "id": "c2-free-of-operations",
+      "group": "c2-editorial",
+      "text": "Free of descriptions of operations? (Is this a need the product should satisfy or an activity involving the product? Sentences like \"The operator shall...\" are almost always operational statements not requirements.)",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.2"
+      }
+    },
+    {
+      "id": "c3-grammar",
+      "group": "c3-general-goodness",
+      "text": "The requirement is grammatically correct.",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c3-typos",
+      "group": "c3-general-goodness",
+      "text": "The requirement is free of typos, misspellings, and punctuation errors.",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c3-template",
+      "group": "c3-general-goodness",
+      "text": "The requirement complies with the project's template and style rules.",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c3-positive",
+      "group": "c3-general-goodness",
+      "text": "The requirement is stated positively (as opposed to negatively, i.e., \"shall not\").",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c3-tbd-tbr",
+      "group": "c3-general-goodness",
+      "text": "The use of \"To Be Determined\" (TBD) values should be minimized. It is better to use a best estimate for a value and mark it \"To Be Resolved\" (TBR) with the rationale along with what should be done to eliminate the TBR, who is responsible for its elimination, and by when it should be eliminated.",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c3-rationale",
+      "group": "c3-general-goodness",
+      "text": "The requirement is accompanied by an intelligible rationale, including any assumptions. Can you validate (concur with) the assumptions? Assumptions should be confirmed before baselining.",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c3-location",
+      "group": "c3-general-goodness",
+      "text": "The requirement is located in the proper section of the document (e.g., not in an appendix).",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.3"
+      }
+    },
+    {
+      "id": "c4-clarity-unambiguous",
+      "group": "c4-clarity",
+      "text": "Are the requirements clear and unambiguous? (Are all aspects of the requirement understandable and not subject to misinterpretation? Is the requirement free from indefinite pronouns (this, these) and ambiguous terms (e.g., \"as appropriate,\" \"etc.,\" \"and/or,\" \"but not limited to\")?)",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-clarity-concise",
+      "group": "c4-clarity",
+      "text": "Are the requirements concise and simple?",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-clarity-one-thought",
+      "group": "c4-clarity",
+      "text": "Do the requirements express only one thought per requirement statement, a stand-alone statement as opposed to multiple requirements in a single statement, or a paragraph that contains both requirements and rationale?",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-clarity-one-subject-predicate",
+      "group": "c4-clarity",
+      "text": "Does the requirement statement have one subject and one predicate?",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-completeness-tbd-tbr",
+      "group": "c4-completeness",
+      "text": "Are requirements stated as completely as possible? Have all incomplete requirements been captured as TBDs or TBRs and a complete listing of them maintained with the requirements?",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-completeness-missing",
+      "group": "c4-completeness",
+      "text": "Are any requirements missing? For example, have any of the following requirements areas been overlooked: functional, performance, interface, environment (development, manufacturing, test, transport, storage, and operations), facility (manufacturing, test, storage, and operations), transportation (among areas for manufacturing, assembling, delivery points, within storage facilities, loading), training, personnel, operability, safety, security, appearance and physical characteristics, and design.",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-completeness-assumptions",
+      "group": "c4-completeness",
+      "text": "Have all assumptions been explicitly stated?",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-compliance-level",
+      "group": "c4-compliance",
+      "text": "Are all requirements at the correct level (e.g., system, segment, element, subsystem)?",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-compliance-implementation",
+      "group": "c4-compliance",
+      "text": "Are requirements free of implementation specifics? (Requirements should state what is needed, not how to provide it.)",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-compliance-operations",
+      "group": "c4-compliance",
+      "text": "Are requirements free of descriptions of operations? (Don't mix operation with requirements: update the ConOps instead.)",
+      "citation": {
+        "pdf_page": 250,
+        "printed_page": 237,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-compliance-personnel",
+      "group": "c4-compliance",
+      "text": "Are requirements free of personnel or task assignments? (Don't mix personnel/task with product requirements: update the SOW or Task Order instead.)",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-consistency-no-contradiction",
+      "group": "c4-consistency",
+      "text": "Are the requirements stated consistently without contradicting themselves or the requirements of related systems?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-consistency-user-terminology",
+      "group": "c4-consistency",
+      "text": "Is the terminology consistent with the user and sponsor's terminology? With the project glossary?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-consistency-document-terminology",
+      "group": "c4-consistency",
+      "text": "Is the terminology consistently used throughout the document? Are the key terms included in the project's glossary?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-traceability-needed",
+      "group": "c4-traceability",
+      "text": "Are all requirements needed? Is each requirement necessary to meet the parent requirement? Is each requirement a needed function or characteristic? Distinguish between needs and wants. If it is not necessary, it is not a requirement. Ask, \"What is the worst that could happen if the requirement was not included?\"",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-traceability-bidirectional",
+      "group": "c4-traceability",
+      "text": "Are all requirements (functions, structures, and constraints) bidirectionally traceable to higher-level requirements or mission or system-of-interest scope (i.e., need(s), goals, objectives, constraints, or concept of operations)?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-traceability-unique-id",
+      "group": "c4-traceability",
+      "text": "Is each requirement stated in such a manner that it can be uniquely referenced (e.g., each requirement is uniquely numbered) in subordinate documents?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-correctness-correct",
+      "group": "c4-correctness",
+      "text": "Is each requirement correct?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-correctness-assumptions",
+      "group": "c4-correctness",
+      "text": "Is each stated assumption correct? Assumptions should be confirmed before the document can be baselined.",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-correctness-feasible",
+      "group": "c4-correctness",
+      "text": "Are the requirements technically feasible?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-functionality-sufficient",
+      "group": "c4-functionality",
+      "text": "Are all described functions necessary and together sufficient to meet mission and system goals and objectives?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-performance-margins",
+      "group": "c4-performance",
+      "text": "Are all required performance specifications and margins listed (e.g., consider timing, throughput, storage size, latency, accuracy and precision)?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-performance-realistic",
+      "group": "c4-performance",
+      "text": "Is each performance requirement realistic?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-performance-tolerances",
+      "group": "c4-performance",
+      "text": "Are the tolerances overly tight? Are the tolerances defendable and cost-effective? Ask, \"What is the worst thing that could happen if the tolerance was doubled or tripled?\"",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-interfaces-external",
+      "group": "c4-interfaces",
+      "text": "Are all external interfaces clearly defined?",
+      "citation": {
+        "pdf_page": 251,
+        "printed_page": 238,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-interfaces-internal",
+      "group": "c4-interfaces",
+      "text": "Are all internal interfaces clearly defined?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-interfaces-consistent",
+      "group": "c4-interfaces",
+      "text": "Are all interfaces necessary, sufficient, and consistent with each other?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-maintainability-measurable",
+      "group": "c4-maintainability",
+      "text": "Have the requirements for maintainability of the system been specified in a measurable, verifiable manner?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-maintainability-ripple",
+      "group": "c4-maintainability",
+      "text": "Are requirements written so that ripple effects from changes are minimized (i.e., requirements are as weakly coupled as possible)?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-reliability-measurable",
+      "group": "c4-reliability",
+      "text": "Are clearly defined, measurable, and verifiable reliability requirements specified?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-reliability-error-handling",
+      "group": "c4-reliability",
+      "text": "Are there error detection, reporting, handling, and recovery requirements?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-reliability-undesired-events",
+      "group": "c4-reliability",
+      "text": "Are undesired events (e.g., single-event upset, data loss or scrambling, operator error) considered and their required responses specified?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-reliability-sequences",
+      "group": "c4-reliability",
+      "text": "Have assumptions about the intended sequence of functions been stated? Are these sequences required?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-reliability-survivability",
+      "group": "c4-reliability",
+      "text": "Do these requirements adequately address the survivability after a software or hardware fault of the system from the point of view of hardware, software, operations, personnel and procedures?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-verifiability-method",
+      "group": "c4-verifiability",
+      "text": "Can the system be tested, demonstrated, inspected, or analyzed to show that it satisfies requirements? Can this be done at the level of the system at which the requirement is stated?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-verifiability-measure",
+      "group": "c4-verifiability",
+      "text": "Does a means exist to measure the accomplishment of the requirement and verify compliance? Can the criteria for verification be stated?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-verifiability-precise",
+      "group": "c4-verifiability",
+      "text": "Are the requirements stated precisely to facilitate specification of system test success criteria and requirements?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-verifiability-unverifiable-terms",
+      "group": "c4-verifiability",
+      "text": "Are the requirements free of unverifiable terms (e.g., flexible, easy, sufficient, safe, ad hoc, adequate, accommodate, user-friendly, usable, when required, if required, appropriate, fast, portable, light-weight, small, large, maximize, minimize, sufficient, robust, quickly, easily, clearly, other \"ly\" words, other \"ize\" words)?",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "c4-data-usage-dont-care",
+      "group": "c4-data-usage",
+      "text": "Where applicable, are \"don't care\" conditions truly \"don't care\"? (\"Don't care\" values identify cases when the value of a condition or flag is irrelevant, even though the value may be important for other cases.) Are \"don't care\" conditions values explicitly stated? (Correct identification of \"don't care\" values may improve a design's portability.)",
+      "citation": {
+        "pdf_page": 252,
+        "printed_page": 239,
+        "section": "Appendix C.4"
+      }
+    },
+    {
+      "id": "md-requirement-id",
+      "group": "metadata",
+      "title": "Requirement ID",
+      "text": "Provides a unique numbering system for sorting and tracking.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "md-rationale",
+      "group": "metadata",
+      "title": "Rationale",
+      "text": "Provides additional information to help clarify the intent of the requirements at the time they were written.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "md-traced-from",
+      "group": "metadata",
+      "title": "Traced from",
+      "text": "Captures the bidirectional traceability between parent requirements and lower level (derived) requirements and the relationships between requirements.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "md-owner",
+      "group": "metadata",
+      "title": "Owner",
+      "text": "Person or group responsible for writing, managing, and/or approving changes to this requirement.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "md-verification-method",
+      "group": "metadata",
+      "title": "Verification method",
+      "text": "Captures the method of verification (test, inspection, analysis, demonstration) and should be determined as the requirements are developed.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "md-verification-lead",
+      "group": "metadata",
+      "title": "Verification lead",
+      "text": "Person or group assigned responsibility for verifying the requirement.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "md-verification-level",
+      "group": "metadata",
+      "title": "Verification level",
+      "text": "Specifies the level in the hierarchy at which the requirements will be verified (e.g., system, subsystem, element).",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2 (Table 4.2-2)"
+      }
+    },
+    {
+      "id": "vm-analysis",
+      "group": "verification-methods",
+      "title": "Analysis",
+      "text": "The use of mathematical modeling and analytical techniques to predict the suitability of a design to stakeholder expectations based on calculated data or data derived from lower system structure end product verifications.",
+      "citation": {
+        "pdf_page": 121,
+        "printed_page": 108,
+        "section": "5.3 (Methods of Verification box)"
+      }
+    },
+    {
+      "id": "vm-demonstration",
+      "group": "verification-methods",
+      "title": "Demonstration",
+      "text": "Showing that the use of an end product achieves the individual specified requirement.",
+      "citation": {
+        "pdf_page": 121,
+        "printed_page": 108,
+        "section": "5.3 (Methods of Verification box)"
+      }
+    },
+    {
+      "id": "vm-inspection",
+      "group": "verification-methods",
+      "title": "Inspection",
+      "text": "The visual examination of a realized end product.",
+      "citation": {
+        "pdf_page": 121,
+        "printed_page": 108,
+        "section": "5.3 (Methods of Verification box)"
+      }
+    },
+    {
+      "id": "vm-test",
+      "group": "verification-methods",
+      "title": "Test",
+      "text": "The use of an end product to obtain detailed data needed to verify performance or provide sufficient information to verify performance through further analysis.",
+      "citation": {
+        "pdf_page": 121,
+        "printed_page": 108,
+        "section": "5.3 (Methods of Verification box)"
+      }
+    },
+    {
+      "id": "vs-1",
+      "group": "validation-steps",
+      "title": "Are the Requirements Written Correctly?",
+      "text": "Identify and correct requirements \"shall\" statement format errors and editorial errors.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2.1.2.4"
+      }
+    },
+    {
+      "id": "vs-2",
+      "group": "validation-steps",
+      "title": "Are the Requirements Technically Correct?",
+      "text": "A few trained reviewers from the technical team identify and remove as many technical errors as possible before having all the relevant stakeholders review the requirements.",
+      "citation": {
+        "pdf_page": 83,
+        "printed_page": 70,
+        "section": "4.2.1.2.4"
+      }
+    },
+    {
+      "id": "vs-3",
+      "group": "validation-steps",
+      "title": "Do the Requirements Satisfy Stakeholders?",
+      "text": "All relevant stakeholder groups identify and remove defects.",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 71,
+        "section": "4.2.1.2.4"
+      }
+    },
+    {
+      "id": "vs-4",
+      "group": "validation-steps",
+      "title": "Are the Requirements Feasible?",
+      "text": "All requirements should make technical sense and be possible to achieve.",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 71,
+        "section": "4.2.1.2.4"
+      }
+    },
+    {
+      "id": "vs-5",
+      "group": "validation-steps",
+      "title": "Are the Requirements Verifiable?",
+      "text": "All requirements should be stated in a fashion and with enough information that it will be possible to verify the requirement after the end product is implemented.",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 71,
+        "section": "4.2.1.2.4"
+      }
+    },
+    {
+      "id": "vs-6",
+      "group": "validation-steps",
+      "title": "Are the Requirements Redundant or Over-specified?",
+      "text": "All requirements should be unique (not redundant to other requirements) and necessary to meet the required functions, performance, or behaviors.",
+      "citation": {
+        "pdf_page": 84,
+        "printed_page": 71,
+        "section": "4.2.1.2.4"
+      }
+    }
+  ],
+  "parameters": {
+    "term_usage": {
+      "shall": "requirement",
+      "will": "facts or declaration of purpose",
+      "should": "goal",
+      "citation": {
+        "pdf_page": 249,
+        "printed_page": 236,
+        "section": "C.1"
+      }
+    },
+    "unverifiable_terms": [
+      "accommodate",
+      "ad hoc",
+      "adequate",
+      "appropriate",
+      "clearly",
+      "easily",
+      "easy",
+      "fast",
+      "flexible",
+      "if required",
+      "large",
+      "light-weight",
+      "maximize",
+      "minimize",
+      "portable",
+      "quickly",
+      "robust",
+      "safe",
+      "small",
+      "sufficient",
+      "usable",
+      "user-friendly",
+      "when required"
+    ],
+    "unverifiable_patterns_note": "C.4 also lists 'other \"ly\" words, other \"ize\" words'.",
+    "unverifiable_terms_citation": {
+      "pdf_page": 252,
+      "printed_page": 239,
+      "section": "C.4 Verifiability/Testability"
+    },
+    "ambiguous_terms": [
+      "as appropriate",
+      "etc.",
+      "and/or",
+      "but not limited to"
+    ],
+    "indefinite_pronouns": [
+      "this",
+      "these"
+    ],
+    "ambiguous_terms_citation": {
+      "pdf_page": 250,
+      "printed_page": 237,
+      "section": "C.4 Clarity"
+    },
+    "verification_methods": [
+      "Test",
+      "Analysis",
+      "Inspection",
+      "Demonstration"
+    ],
+    "single_shall_citation": {
+      "pdf_page": 81,
+      "printed_page": 68,
+      "section": "4.2.1.2.3"
+    },
+    "bidirectional_traceability_definition": {
+      "text": "The ability to trace any given requirement/expectation to its parent requirement/expectation and to its allocated children requirements/expectations.",
+      "citation": {
+        "pdf_page": 163,
+        "printed_page": 150,
+        "section": "6.2"
+      }
+    },
+    "self_derived": {
+      "text": "Each requirement should trace to a parent/source in a baselined document or be identified as self-derived with concurrence sought from the next higher level; a requirement with no parent that is not an acceptable self-derived requirement indicates flawed traceability or 'gold plating'.",
+      "citation": {
+        "pdf_page": 165,
+        "printed_page": 152,
+        "section": "6.2.1.2.3"
+      },
+      "gold_plating_citation": {
+        "pdf_page": 165,
+        "printed_page": 152,
+        "section": "6.2.1.2.3"
+      }
+    },
+    "verification_matrix": {
+      "title": "Table D-1 Requirements Verification Matrix",
+      "columns": [
+        "Requirement No.",
+        "Document",
+        "Paragraph",
+        "Shall Statement",
+        "Verification Success Criteria",
+        "Verification Method",
+        "Facility or Lab",
+        "Phase",
+        "Acceptance Requirement?",
+        "Preflight Acceptance?",
+        "Performing Organization",
+        "Results"
+      ],
+      "note": "Only 'shall' requirements should be included in verification matrices.",
+      "citation": {
+        "pdf_page": 254,
+        "printed_page": 241,
+        "section": "Appendix D"
+      },
+      "only_shall_citation": {
+        "pdf_page": 253,
+        "printed_page": 240,
+        "section": "Appendix D"
+      }
+    }
+  }
+}

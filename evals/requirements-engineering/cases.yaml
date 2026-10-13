@@ -1,0 +1,84 @@
+skill: requirements-engineering
+description: >-
+  Checks that the requirements-engineering skill rewrites requirements to pass the Appendix C linter with
+  rationale and valid verification methods, identifies the specific checklist violations in a draft set,
+  finds orphans/dangling links/missing methods in a traceability audit, builds an Appendix D verification
+  matrix with only "shall" requirements and valid methods, and produces an error-free bidirectional
+  traceability matrix.
+cases:
+  - id: rewrite-weak-requirements
+    prompt: >-
+      Rewrite these electrical power subsystem requirements so they meet the NASA SE Handbook guidance for good
+      requirements. Return a table with ID, Requirement, Rationale and Verification method, explain what you
+      changed, and list any TBRs with owner and due date.
+    fixtures: [fixtures/weak-reqs.csv]
+    golden: golden/rewrite-weak-requirements.md
+    negative: golden/rewrite-weak-requirements.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_requirements_quality", min_requirements: 6,
+         require_rationale: true, require_verification: true,
+         fail_on_warnings: [tbd, passive-voice, negative-statement, operational-statement]}
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_verification_methods", min_rows: 6}
+      - {type: table, columns: ["ID", "Requirement", "Rationale", "Verification"]}
+      - {type: contains, values: ["TBR"]}
+      - {type: not_contains, values: ["user-friendly to", "as appropriate.", "Simulation |"]}
+  - id: lint-review
+    prompt: >-
+      Review this draft communications requirements set against the NASA SE Handbook requirement-writing
+      checklist. For each requirement say what is wrong (or that it has no findings), how severe it is, the
+      handbook basis, and suggest a rewrite.
+    fixtures: [fixtures/review-reqs.md]
+    golden: golden/lint-review.md
+    negative: golden/lint-review.bad.md
+    checks:
+      - {type: regex, pattern: "COM-002[^\\n]*(\"will\"|'will'|\\bwill\\b)[^\\n]*(not a requirement|fact)"}
+      - {type: regex, pattern: "COM-003[^\\n]*(shall not|negative)"}
+      - {type: regex, pattern: "COM-004[^\\n]*(two|multiple|single|compound)"}
+      - {type: regex, pattern: "COM-005[^\\n]*TBD[^\\n]*TBR"}
+      - {type: regex, pattern: "COM-006[^\\n]*(user-friendly|etc)"}
+      - {type: regex, pattern: "COM-001[^\\n]*(no findings|no issues|keep)"}
+      - {type: regex, pattern: "\\[nasa-se C\\.[1-4], p\\. 2(49|5[0-2])\\]", count: 2}
+      - {type: not_contains, values: ["ready for baseline"]}
+  - id: trace-audit
+    prompt: >-
+      Audit traceability and verification coverage of this requirements set. Stakeholder needs NGO-1 and NGO-2
+      are in the baselined needs document. List every problem with its handbook basis and the action to take,
+      and give coverage statistics.
+    fixtures: [fixtures/trace-set.csv]
+    golden: golden/trace-audit.md
+    negative: golden/trace-audit.bad.md
+    checks:
+      - {type: regex, pattern: "SUB-003[^\\n]*(SYS-099|dangling|does not exist|undefined)"}
+      - {type: regex, pattern: "SUB-004[^\\n]*(orphan|no parent)"}
+      - {type: regex, pattern: "SUB-005[^\\n]*self-derived[^\\n]*concurrence"}
+      - {type: regex, pattern: "SUB-006[^\\n]*(no verification method|missing verification method|no method)"}
+      - {type: regex, pattern: "SUB-007[^\\n]*Simulation[^\\n]*Analysis"}
+      - {type: contains, values: ["gold plating"]}
+      - {type: regex, pattern: "77\\.8\\s*%"}
+  - id: build-vcrm
+    prompt: >-
+      Build the requirements verification matrix for these ADCS requirements following the NASA SE Handbook
+      Appendix D format: requirement number, document, paragraph, shall statement, verification success
+      criteria, verification method, facility or lab, phase and performing organization.
+    fixtures: [fixtures/vcrm-reqs.md]
+    golden: golden/build-vcrm.md
+    negative: golden/build-vcrm.bad.md
+    checks:
+      - {type: table, columns: ["Requirement No", "Shall Statement", "Success Criteria", "Verification Method", "Phase"]}
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_verification_methods", min_rows: 5}
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_requirements_quality", min_requirements: 5,
+         require_verification: true}
+      - {type: regex, pattern: "ADCS-006[^\\n]*(goal|should)[^\\n]*(excluded|not included)"}
+      - {type: regex, pattern: "\\[nasa-se Appendix D, p\\. 25[3-5]\\]"}
+  - id: traceability-matrix
+    prompt: >-
+      Turn these MDR allocation notes into a bidirectional traceability matrix (ID, level, requirement, parent,
+      children, verification method). NGO-3 and NGO-4 are stakeholder needs in the baselined needs document.
+    fixtures: [fixtures/allocation-notes.md]
+    golden: golden/traceability-matrix.md
+    negative: golden/traceability-matrix.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_se:grade_trace", external_prefixes: ["NGO-"],
+         min_requirements: 6}
+      - {type: table, columns: ["ID", "Parent", "Children", "Verification"]}
+      - {type: contains, values: ["NGO-3", "NGO-4"]}

@@ -1,0 +1,77 @@
+# Executable tour of the library's deterministic tools on realistic sample inputs.
+# Every step is run by tests/test_examples.py, so this file cannot drift from the code.
+# Non-zero exit codes are expected where the sample input is deliberately defective:
+# the point of these tools is to catch the defects.
+steps:
+  - title: Route a problem to skills
+    argv: [route, "security review of a payments API and its CI/CD pipeline with SBOM"]
+    exit: 0
+    expect: [nist-ssdf, owasp-asvs]
+  - title: Lint weak requirements (NASA SE Appendix C)
+    argv: [nasa-se, lint-requirements, evals/requirements-engineering/fixtures/weak-reqs.csv]
+    exit: 1
+    expect: [ambiguous-term, unverifiable-term]
+  - title: Check bidirectional traceability and verification methods
+    argv: [nasa-se, trace, evals/requirements-engineering/fixtures/trace-set.csv]
+    exit: 1
+    expect: [orphans, "Methods: Test"]
+  - title: Generate a PDR readiness checklist
+    argv: [nasa-se, review-checklist, PDR]
+    exit: 0
+    expect: [Preliminary Design Review]
+  - title: Propose a NASA software class (candidate only)
+    argv: [nasa-swe, classify, --answers, evals/nasa-software-engineering/fixtures/cubesat-answers.yaml]
+    exit: 0
+    expect: [Candidate class]
+  - title: Validate an NPR 7150.2D compliance matrix
+    argv: [nasa-swe, check-matrix, evals/nasa-software-engineering/fixtures/rmm-class-c.csv]
+    exit: 1
+    expect: [missing applicable]
+  - title: Validate an AI risk register (NIST AI RMF)
+    argv: [ai-rmf, check-register, evals/nist-ai-rmf/fixtures/hiring-risk-register.csv]
+    exit: 1
+    expect: [AI risk register check]
+  - title: AI RMF GOVERN profile gap analysis
+    argv: [ai-rmf, check-profile, evals/nist-ai-rmf/fixtures/govern-profile.yaml]
+    exit: 1
+    expect: [gaps]
+  - title: Map a CI/CD pipeline to SSDF tasks (support, not compliance)
+    argv: [ssdf, map-pipeline, evals/nist-ssdf/fixtures/acme-pipeline.yaml]
+    exit: 0
+    expect: ["Support != compliance"]
+  - title: Score an SSDF gap assessment
+    argv: [ssdf, check-assessment, evals/nist-ssdf/fixtures/acme-assessment.yaml]
+    exit: 1
+    expect: [SSDF v1.1 assessment check]
+  - title: Generate an ASVS Level 2 checklist for authentication
+    argv: [asvs, checklist, --level, "2", --chapters, V6, --format, md]
+    exit: 0
+    expect: [V6 Authentication]
+  - title: Validate an ASVS Level 1 assessment
+    argv: [asvs, check-assessment, evals/owasp-asvs/fixtures/assessment-l1.yaml, --level, "1"]
+    exit: 1
+    expect: [INVALID]
+  - title: Suggest ASVS requirements for pentest findings
+    argv: [asvs, map-findings, evals/owasp-asvs/fixtures/pentest-findings.json]
+    exit: 0
+    expect: [SUGGESTIONS ONLY]
+  - title: Green Book NPSV and BCR with the 2026 discount schedule
+    argv: [greenbook, npv, evals/green-book-appraisal/fixtures/appraisal_flows.csv]
+    exit: 0
+    expect: [NPSV, "3.50%"]
+  - title: Switching values and sensitivity
+    argv: [greenbook, switching, evals/green-book-appraisal/fixtures/appraisal_flows.csv]
+    exit: 0
+    expect: [Switching values]
+  - title: Structural check of a flawed business case (strict mode fails)
+    argv: [greenbook, check-case, evals/green-book-appraisal/fixtures/flawed_business_case.md, --strict]
+    exit: 1
+    expect: [failed]
+  - title: Audit citations and identifiers in a report
+    argv: [evidence, check, evals/evidence-and-citation/fixtures/flawed-report.md]
+    exit: 1
+    expect: [SWE-999, out of range, iso-made-up]
+  - title: Show a workflow plan (stages, agents, skills, gates)
+    argv: [workflow, show, secure-software-delivery]
+    exit: 0
+    expect: [Gate (human), application-security-verifier]

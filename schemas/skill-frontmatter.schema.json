@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JMBorrill/Agent-Library/schemas/skill-frontmatter.schema.json",
+  "title": "Agent Skill front matter (SKILL.md)",
+  "description": "Agent Skills front matter restricted to the portable key set (name, description, license, compatibility, metadata, allowed-tools) accepted by Claude Code, claude.ai uploads and the Skills API. Library metadata lives under `metadata`. Unknown keys are rejected.",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "metadata"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "description": {
+      "type": "string",
+      "minLength": 60,
+      "maxLength": 1024
+    },
+    "license": {
+      "type": "string"
+    },
+    "allowed-tools": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "version",
+        "category",
+        "sources",
+        "maturity"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "category": {
+          "enum": [
+            "systems-engineering",
+            "software-engineering",
+            "software-assurance",
+            "security",
+            "ai-governance",
+            "economic-appraisal",
+            "quality",
+            "meta"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maturity": {
+          "enum": [
+            "draft",
+            "beta",
+            "stable"
+          ]
+        },
+        "catalogs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}

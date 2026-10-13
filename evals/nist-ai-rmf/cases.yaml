@@ -1,0 +1,100 @@
+skill: nist-ai-rmf
+description: >-
+  NIST AI RMF 1.0 + Playbook: AI impact assessment (MAP), risk register review (MANAGE/MEASURE),
+  GOVERN current/target profile gap analysis, monitoring & incident plan, and governance programme
+  design. Checks enforce valid subcategory and Playbook ids, coverage of functions and trustworthy
+  characteristics, register/profile validity (via agentlib.frameworks.ai_rmf graders) and no
+  over-claiming (certification, NIST-set thresholds or tolerances).
+cases:
+  - id: hiring-impact-assessment
+    prompt: |
+      We are a 2,000-employee logistics company. HR wants to deploy "TalentRank", a vendor SaaS tool
+      that uses a fine-tuned language model to rank résumés for warehouse and office vacancies
+      (~6,000 vacancies a year). Recruiters would review the top-ranked applicants first. Using the
+      NIST AI RMF, produce an AI system impact assessment / context record for this system covering
+      intended purpose and context, affected stakeholders, risk tolerance, system categorisation,
+      trustworthiness characteristics, impacts with likelihood and magnitude, and a go/no-go input.
+      Cite AI RMF subcategories with PDF pages.
+    golden: golden/hiring-impact-assessment.md
+    negative: golden/hiring-impact-assessment.bad.md
+    checks:
+      - {type: sections, values: ["Intended purpose", "Affected stakeholders", "Risk tolerance", "Trustworthiness", "Impacts", "Go/no-go"]}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_valid_subcategory_ids", min: 10}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_function_coverage", functions: [MAP], min_per_function: 8}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_trustworthy_characteristics", min: 7}
+      - {type: regex, pattern: "\\[nist-ai MAP \\d\\.\\d, p\\. \\d+\\]", count: 5}
+      - {type: regex, pattern: "does not (prescribe|set)[^.]{0,40}(risk )?tolerance"}
+      - {type: any_of, values: ["not users", "not always direct users", "non-user"]}
+      - {type: not_contains, values: ["AI RMF certified", "certified against", "NIST threshold", "set by NIST"]}
+
+  - id: risk-register-review
+    prompt: |
+      Review the attached AI risk register for the TalentRank résumé-screening system against the NIST
+      AI RMF. Identify every defect (invalid identifiers, missing sign-offs, rating inconsistencies),
+      explain why each matters with AI RMF citations, and return a corrected register as a Markdown
+      table with the same columns. Use the library's deterministic checker.
+    fixtures: [fixtures/hiring-risk-register.csv]
+    golden: golden/risk-register-review.md
+    negative: golden/risk-register-review.bad.md
+    checks:
+      - {type: contains, values: ["R-02", "R-03", "R-04", "R-05", "MAP 6.1", "check-register"]}
+      - {type: regex, pattern: "MAP 6\\.1[^\\n]{0,40}(does not exist|invalid|not (a )?valid)"}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_register_table", min_risks: 5}
+      - {type: any_of, values: ["escalat", "sign-off", "accepted_by"]}
+      - {type: contains, values: ["MANAGE 1.3", "MANAGE 1.4"]}
+      - {type: regex, pattern: "residual[^\\n]{0,60}(exceeds|higher than)[^\\n]{0,30}inherent"}
+
+  - id: govern-profile-gap-analysis
+    prompt: |
+      Attached is our current/target AI RMF profile for the GOVERN function (enterprise AI governance).
+      Validate it, correct anything that should not pass, and produce a gap analysis: the corrected
+      profile table (all 19 GOVERN subcategories with current status, target status, priority, owner,
+      evidence), a gap summary by category, and a prioritised action plan that cites specific NIST AI
+      RMF Playbook suggested actions.
+    fixtures: [fixtures/govern-profile.yaml]
+    golden: golden/govern-profile-gap-analysis.md
+    negative: golden/govern-profile-gap-analysis.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_profile_table", functions: [GOVERN], require_complete: true, min_gaps: 10}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_playbook_refs", min: 6}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_valid_subcategory_ids", min: 19}
+      - {type: sections, values: ["Gap summary", "Action plan"]}
+      - {type: table, columns: ["Gap", "Action", "Owner", "Due"]}
+      - {type: regex, pattern: "GOVERN 1\\.1[^\\n]{0,200}(no evidence|without evidence|evidence)"}
+      - {type: not_contains, values: ["% compliant", "compliant with the AI RMF"]}
+
+  - id: chatbot-monitoring-plan
+    prompt: |
+      Our energy utility has launched "Ask Aurora", a customer-service assistant built with retrieval-
+      augmented generation on a third-party foundation model accessed by API. Using the NIST AI RMF and
+      Playbook, write the post-deployment monitoring and incident response plan: metrics and triggers
+      per trustworthiness characteristic, feedback and appeal, third-party model updates, incident
+      severity, who may disengage or deactivate the system, communication, and decommissioning.
+    golden: golden/chatbot-monitoring-plan.md
+    negative: golden/chatbot-monitoring-plan.bad.md
+    checks:
+      - {type: contains, values: ["MANAGE 2.4", "MANAGE 4.1", "MANAGE 4.3", "MEASURE 2.4", "MANAGE 3.2"]}
+      - {type: sections, values: ["Monitoring", "Incident", "Decommission"]}
+      - {type: table, columns: ["Metric", "Threshold", "Owner"]}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_valid_subcategory_ids", min: 8}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_function_coverage", functions: [MEASURE, MANAGE], min_per_function: 2}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_playbook_refs", min: 3}
+      - {type: regex, pattern: "(disengage|deactivate)[^\\n]{0,120}(authority|may|without further approval)|(authority|may)[^\\n]{0,60}(disengage|deactivate)"}
+      - {type: not_contains, values: ["NIST requires", "stays online during investigation"]}
+
+  - id: governance-programme-design
+    prompt: |
+      Harbour Community Bank (900 staff, about 25 models including credit scoring, fraud detection,
+      marketing propensity and a generative-AI pilot) wants to set up an AI governance programme aligned
+      with the NIST AI RMF. Design it: policies and processes, accountability and training, oversight
+      roles, documentation and incidents, stakeholder engagement, third-party AI, how governance drives
+      the MAP/MEASURE/MANAGE work for each system, and an implementation roadmap.
+    golden: golden/governance-programme-design.md
+    negative: golden/governance-programme-design.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_function_coverage", min_per_function: 2}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_function_coverage", functions: [GOVERN], min_per_function: 15}
+      - {type: python, function: "agentlib.frameworks.ai_rmf:grade_valid_subcategory_ids", min: 20}
+      - {type: contains, values: ["voluntary", "GOVERN 1.6", "GOVERN 1.7", "GOVERN 2.3", "GOVERN 6.1", "inventory"]}
+      - {type: sections, values: ["Third parties", "roadmap"]}
+      - {type: not_contains, values: ["mandatory federal standard", "must implement all 72"]}

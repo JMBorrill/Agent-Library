@@ -1,0 +1,45 @@
+case:
+  id: AC-ACME-1
+  title: Acme Checkout API is acceptable for release (fictional)
+  scope: Acme Checkout API (fictional), commit a1b2c3d
+  decision_authority: Head of Security Assurance (fictional)
+claims:
+- id: C1
+  text: The checkout API is acceptably secure for release.
+  criticality: high
+  argument: Product security (ASVS V6 at L1) and secure development process (SSDF)
+    both hold, with open findings treated as release conditions.
+  subclaims:
+  - C1.1
+  - C1.2
+  - C1.3
+- id: C1.1
+  text: Authentication requirements at ASVS L1 (V6) are met except F-01, F-02.
+  criticality: high
+  frameworks:
+  - V6.3.1
+  evidence:
+  - EV-1
+- id: C1.2
+  text: Code is reviewed before merge.
+  criticality: medium
+  frameworks:
+  - PW.7.1
+  evidence:
+  - EV-2
+- id: C1.3
+  text: Release integrity can be verified by consumers.
+  status: undeveloped
+  justification: PS.2.1 is planned (target 2026-12-15); release signing not yet in
+    place.
+evidence:
+- id: EV-1
+  description: ASVS V6 L1 verification results
+  artefact: data/asvs-v6-l1.yaml
+  method: Test
+  strength: E3
+- id: EV-2
+  description: SSDF assessment row PW.7.1 and branch protection settings
+  artefact: data/ssdf-assessment.yaml
+  method: Inspection
+  strength: E2

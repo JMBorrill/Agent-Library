@@ -1,0 +1,166 @@
+standard: OWASP ASVS 5.0.0
+target_level: 1
+scope:
+- V6
+requirement_count: 13
+note: 'Levels are cumulative: all requirements at or below the target level are in
+  scope.'
+statuses:
+- pass
+- fail
+- not-applicable
+- not-verified
+license: ASVS content (c) The OWASP Foundation, CC BY-SA 4.0
+results:
+- id: 6.1.1
+  chapter: V6 Authentication
+  section: V6.1 Authentication Documentation
+  level: 1
+  requirement: Verify that application documentation defines how controls such as
+    rate limiting, anti-automation, and adaptive response, are used to defend against
+    attacks such as credential stuffing and password brute force. The documentation
+    must make clear how these controls are configured and prevent malicious account
+    lockout.
+  status: pass
+  evidence: Test record T-6.1.1 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 45
+- id: 6.2.1
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that user set passwords are at least 8 characters in length
+    although a minimum of 15 characters is strongly recommended.
+  status: pass
+  evidence: Test record T-6.2.1 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.2
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that users can change their password.
+  status: pass
+  evidence: Test record T-6.2.2 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.3
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that password change functionality requires the user’s current
+    and new password.
+  status: pass
+  evidence: Test record T-6.2.3 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.4
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that passwords submitted during account registration or password
+    change are checked against an available set of, at least, the top 3000 passwords
+    which match the application’s password policy, e.g. minimum length.
+  status: pass
+  evidence: Test record T-6.2.4 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.5
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that passwords of any composition can be used, without rules
+    limiting the type of characters permitted. There must be no requirement for a
+    minimum number of upper or lower case characters, numbers, or special characters.
+  status: pass
+  evidence: Test record T-6.2.5 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.6
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that password input fields use type=password to mask the entry.
+    Applications may allow the user to temporarily view the entire masked password,
+    or the last typed character of the password.
+  status: pass
+  evidence: Test record T-6.2.6 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.7
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that “paste”functionality, browser password helpers, and external
+    password managers are permitted.
+  status: pass
+  evidence: Test record T-6.2.7 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 46
+- id: 6.2.8
+  chapter: V6 Authentication
+  section: V6.2 Password Security
+  level: 1
+  requirement: Verify that the application verifies the user’s password exactly as
+    received from the user, without any modifications such as truncation or case transformation.
+  status: pass
+  evidence: Test record T-6.2.8 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 47
+- id: 6.3.1
+  chapter: V6 Authentication
+  section: V6.3 General Authentication Security
+  level: 1
+  requirement: Verify that controls to prevent attacks such as credential stuffing
+    and password brute force are implemented according to the application’s security
+    documentation.
+  status: fail
+  evidence: see finding
+  finding_ref: F-01
+  justification: ''
+  pdf_page: 47
+- id: 6.3.2
+  chapter: V6 Authentication
+  section: V6.3 General Authentication Security
+  level: 1
+  requirement: Verify that default user accounts (e.g., “root”, “admin”, or “sa”)
+    are not present in the application or are disabled.
+  status: pass
+  evidence: Test record T-6.3.2 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 47
+- id: 6.4.1
+  chapter: V6 Authentication
+  section: V6.4 Authentication Factor Lifecycle and Recovery
+  level: 1
+  requirement: Verify that system generated initial passwords or activation codes
+    are securely randomly generated, follow the existing password policy, and expire
+    after a short period of time or after they are initially used. These initial secrets
+    must not be permitted to become the long term password.
+  status: fail
+  evidence: see finding
+  finding_ref: F-02
+  justification: ''
+  pdf_page: 49
+- id: 6.4.2
+  chapter: V6 Authentication
+  section: V6.4 Authentication Factor Lifecycle and Recovery
+  level: 1
+  requirement: Verify that password hints or knowledge-based authentication (so-called
+    “secret questions”) are not present.
+  status: pass
+  evidence: Test record T-6.4.2 (illustrative)
+  finding_ref: ''
+  justification: ''
+  pdf_page: 49
+application: Acme Checkout API (fictional), commit a1b2c3d
