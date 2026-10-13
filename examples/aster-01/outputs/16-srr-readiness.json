@@ -1,33 +1,33 @@
 {
   "review": "SRR",
-  "recommendation": "GO_WITH_CONDITIONS",
-  "blocking": [],
+  "recommendation": "NO_GO",
+  "blocking": [
+    "ASTER-RID-003",
+    "ASTER-RID-006",
+    "ASTER-RID-007",
+    "ASTER-RID-008",
+    "ASTER-RID-009",
+    "ASTER-RID-010",
+    "ASTER-RID-011",
+    "ASTER-RID-012"
+  ],
   "conditions": [
     "ASTER-RID-001",
     "ASTER-RID-002",
-    "ASTER-RID-003",
     "ASTER-RID-004",
     "ASTER-RID-005",
     "SRR-01",
     "SRR-04",
     "SRR-05",
-    "SRR-06",
-    "independent-review-record"
+    "SRR-06"
   ],
   "decision": "pending \u2014 only ASTER Phase 1 project lead (synthetic) can record the gate decision",
   "criteria_provenance": "Library-defined GENERIC readiness criteria written for this repository, inspired by common systems-engineering review practice. They are NOT the entrance/success criteria of NASA NPR 7123.1 or any other standard (primary sources were inaccessible in-session). Replace or extend with your programme's approved criteria via --criteria.",
-  "findings": [
-    {
-      "id": "-",
-      "severity": "warning",
-      "rule": "review-not-evidenced",
-      "message": "independent reviewers are named but no review record (independent_review_ref) is cited"
-    }
-  ],
+  "findings": [],
   "summary": {
     "criteria": 6,
     "errors": 0,
-    "warnings": 1
+    "warnings": 0
   },
-  "passed": true
+  "passed": false
 }

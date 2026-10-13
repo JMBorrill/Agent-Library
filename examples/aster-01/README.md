@@ -70,7 +70,7 @@ space-engineering). Exit codes and outputs: **[outputs/RUN-SUMMARY.md](outputs/R
 | 02 | se-technical-planning `tailor_process.py` | 0 | 7 rigorous processes; SRR–SAR; safety authority named |
 | 03 | se-stakeholder-conops `conops_check.py` | 0 | 0 errors, 0 warnings |
 | 04a | space-low-gravity-mobility `lowg_calc.py` (draft) | **1** | `exceeds-orbital-speed`: a single 500 m hop needs 0.31 m/s > v_circ 0.2991 m/s |
-| 04b | `lowg_calc.py` (fixed) | 0 | body, rotation, hop, impulse and bounce cases; info findings only |
+| 04b | `lowg_calc.py` (fixed) | 0 | body, rotation, hop, impulse and bounce cases; 2 `surface-rotation-speed-significant` warnings — worst-case inertial launch speed 0.2014 m/s = 47.6 % of v_esc (corrected after independent review F-05) |
 | 05a | se-requirements `req_lint.py` (draft) | **1** | 6 errors: duplicate ID, TBR in an `approved` row, ID format, unknown parent, invalid method `simulation`; 11 warnings (ambiguous `safe`/`robust`/`quickly`, escape clause, non-atomic) |
 | 05b | `req_lint.py` (fixed) | 0 | 0 errors; 10 `tbd-open` warnings (TBR values tracked) |
 | 06 | se-logical-decomposition `function_check.py` | 0 | 12 functions, 11 leaves allocated, flows closed |
@@ -83,7 +83,7 @@ space-engineering). Exit codes and outputs: **[outputs/RUN-SUMMARY.md](outputs/R
 | 13 | se-verification-validation `vmatrix_check.py` | 0 | 100 % planned coverage; 0 % passed; every result `not_tested` |
 | 14 | se-implementation-integration `integration_check.py` | 0 | 5-step sequence; 12 warnings (no component exists or is unit-verified) |
 | 15 | se-technical-assessment `tpm_track.py` | 0 | settle-time TPM in alert (3.7 %); mass TPM projects 12.9 kg at PDR |
-| 16 | se-review-gates `review_readiness.py` | 0 | **GO_WITH_CONDITIONS** recommendation (SRR); decision pending |
+| 16 | se-review-gates `review_readiness.py` | **1** | **NO_GO** recommendation after the independent review added 7 major safety-design actions (F-01–F-07); see `review/lead-response.md`; decision pending |
 | 17 | independent-review `claim_check.py` | 0 | language screen of this README and `inputs/` |
 
 **Draft → fix pairs**

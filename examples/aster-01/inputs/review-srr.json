@@ -1,33 +1,211 @@
 {
-  "review": "SRR", "project": "ASTER-01 low-gravity locomotion demonstrator (synthetic)", "date": "2026-10-13",
+  "review": "SRR",
+  "project": "ASTER-01 low-gravity locomotion demonstrator (synthetic)",
+  "date": "2026-10-13",
   "note": "Readiness assessment of recorded evidence only, using the library's generic SRR criteria (not NPR 7123.1). Listed independent reviewers are the planned reviewers; at the time of this run the independent review in review/ is still pending. The gate decision belongs to the gate authority and has not been made.",
-  "authors": ["systems-engineer", "requirements-engineer", "systems-architect", "vv-engineer"],
-  "independent_reviewers": ["independent-reviewer", "safety-risk-reviewer"],
+  "authors": [
+    "systems-engineer",
+    "requirements-engineer",
+    "systems-architect",
+    "vv-engineer"
+  ],
+  "independent_reviewers": [
+    "independent-reviewer",
+    "safety-risk-reviewer"
+  ],
   "gate_authority": "ASTER Phase 1 project lead (synthetic)",
   "evidence": [
-    {"criterion_id": "SRR-01", "status": "partial", "evidence_ref": "inputs/conops.md; outputs/03-conops-check.json (0 errors)", "justification": "ConOps passes the completeness check but has not been walked through with or validated by the stakeholders"},
-    {"criterion_id": "SRR-02", "status": "met", "evidence_ref": "outputs/05b-req-lint.json (0 errors, every SYS/SUB requirement traced to an ASTER-STK need)"},
-    {"criterion_id": "SRR-03", "status": "met", "evidence_ref": "outputs/13-vmatrix-check.json (--include-proposed, 100 % planned coverage, all results not_tested)"},
-    {"criterion_id": "SRR-04", "status": "partial", "evidence_ref": "inputs/requirements.csv notes column", "justification": "10 requirements carry TBR values with owners but no closure dates"},
-    {"criterion_id": "SRR-05", "status": "partial", "evidence_ref": "outputs/11-risk-check.json; outputs/12-fmea.json", "justification": "High risk ASTER-RSK-001 has a mitigation plan; five safety-escalation warnings and three severity >= 9 FMEA modes still await review by the laboratory test-safety authority"},
-    {"criterion_id": "SRR-06", "status": "partial", "evidence_ref": "outputs/02-process-tailoring.md", "justification": "Tailoring proposed by tailor_process.py; not yet agreed by the decision owner"}
+    {
+      "criterion_id": "SRR-01",
+      "status": "partial",
+      "evidence_ref": "inputs/conops.md; outputs/03-conops-check.json (0 errors)",
+      "justification": "ConOps passes the completeness check but has not been walked through with or validated by the stakeholders"
+    },
+    {
+      "criterion_id": "SRR-02",
+      "status": "met",
+      "evidence_ref": "outputs/05b-req-lint.json (0 errors, every SYS/SUB requirement traced to an ASTER-STK need)"
+    },
+    {
+      "criterion_id": "SRR-03",
+      "status": "met",
+      "evidence_ref": "outputs/13-vmatrix-check.json (--include-proposed, 100 % planned coverage, all results not_tested)"
+    },
+    {
+      "criterion_id": "SRR-04",
+      "status": "partial",
+      "evidence_ref": "inputs/requirements.csv notes column",
+      "justification": "10 requirements carry TBR values with owners but no closure dates"
+    },
+    {
+      "criterion_id": "SRR-05",
+      "status": "partial",
+      "evidence_ref": "outputs/11-risk-check.json; outputs/12-fmea.json",
+      "justification": "High risk ASTER-RSK-001 has a mitigation plan; five safety-escalation warnings and three severity >= 9 FMEA modes still await review by the laboratory test-safety authority"
+    },
+    {
+      "criterion_id": "SRR-06",
+      "status": "partial",
+      "evidence_ref": "outputs/02-process-tailoring.md",
+      "justification": "Tailoring proposed by tailor_process.py; not yet agreed by the decision owner"
+    }
   ],
   "checks": [
-    {"name": "conops_check", "exit_code": 0, "report": "outputs/03-conops-check.json"},
-    {"name": "lowg_calc batch (fixed sizing)", "exit_code": 0, "report": "outputs/04b-lowg-sizing.json"},
-    {"name": "req_lint (fixed register)", "exit_code": 0, "report": "outputs/05b-req-lint.json"},
-    {"name": "function_check", "exit_code": 0, "report": "outputs/06-function-check.json"},
-    {"name": "icd_check", "exit_code": 0, "report": "outputs/09-icd-check.md"},
-    {"name": "budget_calc", "exit_code": 0, "report": "outputs/10-budget.json"},
-    {"name": "risk_check", "exit_code": 0, "report": "outputs/11-risk-check.json"},
-    {"name": "vmatrix_check", "exit_code": 0, "report": "outputs/13-vmatrix-check.json"},
-    {"name": "tpm_track", "exit_code": 0, "report": "outputs/15-tpm.json"}
+    {
+      "name": "conops_check",
+      "exit_code": 0,
+      "report": "outputs/03-conops-check.json"
+    },
+    {
+      "name": "lowg_calc batch (fixed sizing)",
+      "exit_code": 0,
+      "report": "outputs/04b-lowg-sizing.json"
+    },
+    {
+      "name": "req_lint (fixed register)",
+      "exit_code": 0,
+      "report": "outputs/05b-req-lint.json"
+    },
+    {
+      "name": "function_check",
+      "exit_code": 0,
+      "report": "outputs/06-function-check.json"
+    },
+    {
+      "name": "icd_check",
+      "exit_code": 0,
+      "report": "outputs/09-icd-check.md"
+    },
+    {
+      "name": "budget_calc",
+      "exit_code": 0,
+      "report": "outputs/10-budget.json"
+    },
+    {
+      "name": "risk_check",
+      "exit_code": 0,
+      "report": "outputs/11-risk-check.json"
+    },
+    {
+      "name": "vmatrix_check",
+      "exit_code": 0,
+      "report": "outputs/13-vmatrix-check.json"
+    },
+    {
+      "name": "tpm_track",
+      "exit_code": 0,
+      "report": "outputs/15-tpm.json"
+    }
   ],
   "actions": [
-    {"id": "ASTER-RID-001", "severity": "minor", "owner": "Requirements engineer (synthetic)", "due": "2026-11-13", "status": "open", "closure_evidence": "", "text": "Add closure dates for all 10 TBRs"},
-    {"id": "ASTER-RID-002", "severity": "minor", "owner": "Electrical lead (synthetic)", "due": "2026-11-13", "status": "open", "closure_evidence": "", "text": "Define power interfaces PWR->CTRL, PWR->EST, PWR->LOG and the EST mechanical mount (empty N2 cells)"},
-    {"id": "ASTER-RID-003", "severity": "minor", "owner": "Laboratory test-safety authority (synthetic)", "due": "2026-11-30", "status": "open", "closure_evidence": "", "text": "Review safety risks ASTER-RSK-001..004 and -008 and FMEA modes FM-001, FM-002, FM-006 before any hardware work"},
-    {"id": "ASTER-RID-004", "severity": "minor", "owner": "ASTER Phase 1 project lead (synthetic)", "due": "2026-11-13", "status": "open", "closure_evidence": "", "text": "Confirm or change the ASTER-DEC-001 criteria weights before scores are refined"},
-    {"id": "ASTER-RID-005", "severity": "minor", "owner": "Systems architect (synthetic)", "due": "2026-12-15", "status": "open", "closure_evidence": "", "text": "Mass TPM projects 12.9 kg at PDR (limit 12 kg); propose mass-reduction options"}
-  ]
+    {
+      "id": "ASTER-RID-001",
+      "severity": "minor",
+      "owner": "Requirements engineer (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Add closure dates for all 10 TBRs"
+    },
+    {
+      "id": "ASTER-RID-002",
+      "severity": "minor",
+      "owner": "Electrical lead (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Define power interfaces PWR->CTRL, PWR->EST, PWR->LOG and the EST mechanical mount (empty N2 cells)"
+    },
+    {
+      "id": "ASTER-RID-003",
+      "severity": "major",
+      "owner": "Laboratory test-safety authority (synthetic)",
+      "due": "2026-11-30",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Review safety risks ASTER-RSK-001..004 and -008 and FMEA modes FM-001, FM-002, FM-006 before any hardware work [re-rated major per independent review F-08; hard precondition for any hardware build, energised integration or physical test]"
+    },
+    {
+      "id": "ASTER-RID-004",
+      "severity": "minor",
+      "owner": "ASTER Phase 1 project lead (synthetic)",
+      "due": "2026-11-13",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Confirm or change the ASTER-DEC-001 criteria weights before scores are refined"
+    },
+    {
+      "id": "ASTER-RID-005",
+      "severity": "minor",
+      "owner": "Systems architect (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Mass TPM projects 12.9 kg at PDR (limit 12 kg); propose mass-reduction options"
+    },
+    {
+      "id": "ASTER-RID-006",
+      "severity": "major",
+      "owner": "Mechanisms and Electrical leads (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Define e-stop/power-loss end state per concept and an unpowered energy dump path; add requirement + VER; re-score RSK-001/002 (independent review F-01)"
+    },
+    {
+      "id": "ASTER-RID-007",
+      "severity": "major",
+      "owner": "Systems engineer (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Convert hazard controls behind low residuals into requirements with VER links, or mark residuals unsubstantiated (independent review F-02)"
+    },
+    {
+      "id": "ASTER-RID-008",
+      "severity": "major",
+      "owner": "Electrical lead (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Extend battery hazard coverage: FMEA rows, protection and temperature-monitoring requirements, post-drop inspection (independent review F-03)"
+    },
+    {
+      "id": "ASTER-RID-009",
+      "severity": "major",
+      "owner": "Mechanisms and Controls leads (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Independent confirmation of stored-energy state before approach; zone-interlock requirement; sensor FMEA mode (independent review F-04)"
+    },
+    {
+      "id": "ASTER-RID-010",
+      "severity": "major",
+      "owner": "Systems architect (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "State inertial worst-case launch speed (47.6 % v_esc) in SYS-001 rationale; heading constraint; rotation in RSK-005 (independent review F-05)"
+    },
+    {
+      "id": "ASTER-RID-011",
+      "severity": "major",
+      "owner": "Requirements engineer and Controls lead (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Speed budget: nominal + actuator tolerance + estimator 3-sigma <= limit; derive inhibit threshold and impulse bound (independent review F-06)"
+    },
+    {
+      "id": "ASTER-RID-012",
+      "severity": "major",
+      "owner": "Mechanisms lead and Test lead (synthetic)",
+      "due": "2026-12-15",
+      "status": "open",
+      "closure_evidence": "",
+      "text": "Bound maximum credible stored energy per concept; rig drop height/mass; re-score FM-001/004/005; action FM-004 (independent review F-07)"
+    }
+  ],
+  "independent_review_ref": "review/independent-review.md (safety-risk-reviewer agent, 2026-10-13)"
 }
