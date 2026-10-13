@@ -803,6 +803,23 @@ def grade_trustworthy_characteristics(output: str, check: dict) -> tuple[bool, s
     return True, f"{len(found)} characteristics named"
 
 
+PLAYBOOK_REF_RE = re.compile(r"\b((?:GOVERN|MAP|MEASURE|MANAGE) \d{1,2}\.\d{1,2})/(action|question)-(\d+)\b")
+
+
+def grade_playbook_refs(output: str, check: dict) -> tuple[bool, str]:
+    """Playbook item references like ``MAP 1.1/action-4`` exist in the Playbook catalog;
+    at least ``min`` (default 1) distinct references."""
+    known = {i["id"] for i in playbook()["items"]}
+    refs = list(dict.fromkeys(f"{m.group(1)}/{m.group(2)}-{m.group(3)}" for m in PLAYBOOK_REF_RE.finditer(output)))
+    bad = [r for r in refs if r not in known]
+    need = int(check.get("min", 1))
+    if bad:
+        return False, f"unknown Playbook item ids: {bad}"
+    if len(refs) < need:
+        return False, f"{len(refs)} Playbook item references (need {need})"
+    return True, f"{len(refs)} valid Playbook item references"
+
+
 def grade_register_table(output: str, check: dict) -> tuple[bool, str]:
     """The largest Markdown table that looks like a risk register passes ``check_register`` (no errors).
 

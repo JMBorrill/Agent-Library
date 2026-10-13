@@ -356,6 +356,7 @@ CLASS_DEFS = {
         "title": "Non-Human Space Rated Software Systems or Large Scale Aeronautics Vehicles",
         "page": 80,
         "scope": (80, "Space Systems involve flight and ground software that should perform reliably to accomplish primary mission objectives or major function(s) in non-human space rated systems."),
+        "scope_2": (81, "Aeronautic Vehicles include large scale aeronautic software systems unique to NASA"),
         "criteria": [
             ("B-1a", 81, "Required to operate the vehicle or space asset (e.g., orbiter, lander, probe, flyby spacecraft, rover, launch vehicle, or primary instrument) such as commanding of the vehicle or asset;"),
             ("B-1b", 81, "Required to achieve the primary mission objectives; or"),
@@ -540,8 +541,11 @@ def build_npr() -> dict:
             src = pages[page - 1] + ("\n" + pages[page] if page < 89 else "")
             probe = re.sub(r"\s*\(a\).*", "", txt) if cid in ("C-2",) else txt
             assert_in(probe, src, f"p.{page} ({cid})")
-        if "scope" in d:
-            assert_in(d["scope"][1], pages[d["scope"][0] - 1], f"p.{d['scope'][0]}")
+        for key in ("scope", "scope_2"):
+            if key in d:
+                # the PDF has a footnote marker after "large scale" ("large scale2"), so probe the prefix
+                probe = d[key][1] if key == "scope" else "Aeronautic Vehicles include large scale"
+                assert_in(probe, pages[d[key][0] - 1], f"p.{d[key][0]}")
         for page, txt in d.get("notes", []):
             assert_in(txt.split(". ")[0], pages[page - 1], f"p.{page}")
     for page, txt in CLASSIFICATION_RULES:
@@ -603,11 +607,20 @@ def build_npr() -> dict:
             "title": d["title"],
             "citation": {"pdf_page": d["page"], "printed_page": d["page"], "section": f"Appendix D, Class {cls}"},
             "engineering": cls != "F",
-            "criteria": [{"id": cid, "text": txt, "pdf_page": p} for cid, p, txt in d["criteria"]],
+            "criteria": [{"id": cid, "text": txt.replace("habitable1 ", "habitable "), "pdf_page": p,
+                          **({"requires_scope": f"{cls}-scope" + ("-2" if cid.startswith("B-2") else "")}
+                             if cls in ("A", "B") else {})}
+                         for cid, p, txt in d["criteria"]],
             "exclusions": [{"id": cid, "text": txt, "pdf_page": p} for cid, p, txt in d["exclusions"]],
         }
+        scopes = []
         if "scope" in d:
-            classes[cls]["scope"] = {"text": d["scope"][1], "pdf_page": d["scope"][0]}
+            scopes.append({"id": f"{cls}-scope", "text": d["scope"][1], "pdf_page": d["scope"][0]})
+        if "scope_2" in d:
+            scopes.append({"id": f"{cls}-scope-2", "text": d["scope_2"][1] + " (large scale: life cycle cost exceeding $250M)",
+                           "pdf_page": d["scope_2"][0]})
+        if scopes:
+            classes[cls]["scopes"] = scopes
         if d.get("notes"):
             classes[cls]["notes"] = [{"text": t, "pdf_page": p} for p, t in d["notes"]]
 

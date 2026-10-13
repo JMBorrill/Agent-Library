@@ -420,3 +420,10 @@ def test_grade_profile_table():
     assert not rmf.grade_profile_table(good.replace("context record v1", ""), {})[0]
     assert not rmf.grade_profile_table(good, {"require_complete": True})[0]
     assert not rmf.grade_profile_table("nothing", {})[0]
+
+
+def test_grade_playbook_refs():
+    assert rmf.grade_playbook_refs("see GOVERN 1.6/action-1 and MAP 1.1/question-2", {"min": 2})[0]
+    ok, msg = rmf.grade_playbook_refs("see GOVERN 1.6/action-99", {})
+    assert not ok and "GOVERN 1.6/action-99" in msg
+    assert not rmf.grade_playbook_refs("no refs", {})[0]

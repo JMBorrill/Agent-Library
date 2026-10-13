@@ -905,8 +905,9 @@ def check_case_text(text: str) -> dict:
     # ---- anti-patterns
     sents = _sentences(text)
 
-    def anti(fid, rx_all, msg, ref, severity="error"):
-        hits = [s for s in sents if all(re.search(r, s, re.I) for r in rx_all) and not _NEG.search(s)]
+    def anti(fid, rx_all, msg, ref, severity="error", exclude=None):
+        hits = [s for s in sents if all(re.search(r, s, re.I) for r in rx_all) and not _NEG.search(s)
+                and not (exclude and re.search(exclude, s, re.I))]
         if hits:
             findings.append(Finding(fid, "fail" if severity == "error" else "warn", severity,
                                     f"{msg} Evidence: \"{hits[0][:160]}\"", ref))
@@ -918,12 +919,13 @@ def check_case_text(text: str) -> dict:
                                 r"reject|discard|exclud|rul\w* out|drop|fail|unacceptable|not progress|threshold"],
          "Options appear to be judged against a BCR threshold, which the Green Book rules out.",
          "metrics.no-bcr-thresholds")
-    anti("anti.sunk-costs", [r"sunk cost", r"includ"], "Sunk costs appear to be included in the appraisal.",
+    anti("anti.sunk-costs", [r"sunk cost|already (been )?(spent|incurred|paid)|spent to date", r"includ"], "Sunk costs appear to be included in the appraisal.",
          "shortlist.sunk-costs")
     anti("anti.multipliers", [r"multiplier|GVA|GDP", r"benefit"],
          "Keynesian multipliers or GDP/GVA appear to be counted as social benefits.", "shortlist.no-macro", "warning")
-    anti("anti.nominal-discounting", [r"discount", r"nominal"],
-         "Discounting appears to be applied to nominal values (STPR is a real rate).", "discount.real-only", "warning")
+    anti("anti.nominal-discounting", [r"discount", r"nominal|includ\w* (general )?inflation|inflation[- ]adjusted cash"],
+         "Discounting appears to be applied to nominal / inflation-inclusive values (the STPR is a real rate).",
+         "discount.real-only", "error", exclude=r"\breal\b|remov|deflat|strip|net of|financial case")
     anti("anti.bau-normalised", [r"BAU|business as usual", r"normalis|set to zero|= ?0\b"],
          "BAU appears normalised to zero; present options in absolute terms.", "rationale.bau-absolute", "warning")
 
@@ -1019,7 +1021,7 @@ def grade_npsv_matches(output: str, check: dict) -> tuple[bool, str]:
             if exp is None:
                 continue
             target = exp / scale if m not in ("bcr", "rpsc") else exp
-            abs_tol = 0.006 if m in ("bcr", "rpsc") else max(0.5 / scale, 1e-9) if scale == 1 else 0.05
+            abs_tol = 0.006 if m in ("bcr", "rpsc") else max(0.5 / scale, 0.006)
             if not any(_close(n, target, rel, abs_tol) for n in nums):
                 problems.append(f"{r.option}: {m} {target:,.3f} not found")
     return (not problems, "all recomputed figures present" if not problems else "; ".join(problems))
@@ -1092,6 +1094,30 @@ def grade_stpr_2026(output: str, check: dict) -> tuple[bool, str]:
     if re.search(r"\b(126|201|301)\b\s*(-|to)|\b76\s*(-|to)\s*125\b", t):
         problems.append("earlier-edition band boundaries (125/126/200/201/300) cited")
     return (not problems, "2026 STPR schedule stated" if not problems else "; ".join(problems))
+
+
+def grade_discount_factors(output: str, check: dict) -> tuple[bool, str]:
+    """Each STPR factor for ``years`` and health factor for ``health_years`` must appear (to ``tolerance``,
+    default 0.0005) on a line that mentions that year number."""
+    tol = float(check.get("tolerance", 0.0005))
+    lines = output.splitlines()
+    problems = []
+
+    def found(year: int, exp: float) -> bool:
+        for ln in lines:
+            if re.search(rf"\b{year}\b", ln) and any(abs(n - exp) <= tol for n in parse_amounts(ln)):
+                return True
+        return False
+
+    for y in check.get("years", []):
+        exp = discount_factor(int(y))
+        if not found(int(y), exp):
+            problems.append(f"year {y} STPR factor {exp:.4f} not found")
+    for y in check.get("health_years", []):
+        exp = health_discount_factor(int(y))
+        if not found(int(y), exp):
+            problems.append(f"year {y} health factor {exp:.4f} not found")
+    return (not problems, "discount factors correct" if not problems else "; ".join(problems))
 
 
 def grade_no_hardcoded_optimism_bias(output: str, check: dict) -> tuple[bool, str]:

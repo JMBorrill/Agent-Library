@@ -1,0 +1,141 @@
+profile:
+  system: Northfield Mutual - enterprise AI governance
+  type: current-and-target
+  functions:
+  - GOVERN
+  date: '2026-10-01'
+  prepared_by: Enterprise Risk
+subcategories:
+- id: GOVERN 1.1
+  current_status: implemented
+  target_status: implemented
+  priority: high
+  owner: General Counsel
+  evidence: ''
+  notes: Legal team tracks AI laws informally
+- id: GOVERN 1.2
+  current_status: partially-implemented
+  target_status: implemented
+  priority: high
+  owner: Chief Risk Officer
+  evidence: Draft AI policy v0.3
+  notes: ''
+- id: GOVERN 1.3
+  current_status: not-implemented
+  target_status: implemented
+  priority: high
+  owner: Chief Risk Officer
+  evidence: ''
+  notes: ''
+- id: GOVERN 1.4
+  current_status: partially-implemented
+  target_status: largely-implemented
+  priority: medium
+  owner: Chief Risk Officer
+  evidence: ERM policy section 4
+  notes: ''
+- id: GOVERN 1.5
+  current_status: not-implemented
+  target_status: implemented
+  priority: medium
+  owner: AI Risk Committee secretary
+  evidence: ''
+  notes: ''
+- id: GOVERN 1.6
+  current_status: partially-implemented
+  target_status: implemented
+  priority: high
+  owner: CIO
+  evidence: Spreadsheet of 14 models (incomplete)
+  notes: ''
+- id: GOVERN 1.7
+  current_status: not-implemented
+  target_status: largely-implemented
+  priority: low
+  owner: CIO
+  evidence: ''
+  notes: ''
+- id: GOVERN 2.1
+  current_status: partially-implemented
+  target_status: implemented
+  priority: high
+  owner: COO
+  evidence: RACI draft
+  notes: ''
+- id: GOVERN 2.2
+  current_status: not-implemented
+  target_status: implemented
+  priority: medium
+  owner: HR Learning lead
+  evidence: ''
+  notes: ''
+- id: GOVERN 2.3
+  current_status: largely-implemented
+  target_status: implemented
+  priority: high
+  owner: CEO
+  evidence: Board risk committee ToR 2026
+  notes: ''
+- id: GOVERN 3.1
+  current_status: partially-implemented
+  target_status: largely-implemented
+  priority: medium
+  owner: Head of Data Science
+  evidence: ''
+  notes: ''
+- id: GOVERN 3.2
+  current_status: not-implemented
+  target_status: implemented
+  priority: high
+  owner: COO
+  evidence: ''
+  notes: ''
+- id: GOVERN 4.1
+  current_status: partially-implemented
+  target_status: largely-implemented
+  priority: low
+  owner: CTO
+  evidence: Engineering principles page
+  notes: ''
+- id: GOVERN 4.2
+  current_status: partially-implemented
+  target_status: implemented
+  priority: medium
+  owner: Head of Data Science
+  evidence: Model documentation standard
+  notes: ''
+- id: GOVERN 4.3
+  current_status: not-implemented
+  target_status: implemented
+  priority: high
+  owner: CISO
+  evidence: ''
+  notes: ''
+- id: GOVERN 5.1
+  current_status: not-implemented
+  target_status: partially-implemented
+  priority: low
+  owner: Head of Customer Experience
+  evidence: ''
+  notes: ''
+- id: GOVERN 5.2
+  current_status: not-implemented
+  target_status: partially-implemented
+  priority: low
+  owner: Head of Data Science
+  evidence: ''
+  notes: ''
+- id: GOVERN 6.1
+  current_status: partially-implemented
+  target_status: implemented
+  priority: high
+  owner: Head of Procurement
+  evidence: Standard supplier contract (no AI clauses)
+  notes: ''
+- id: GOVERN 6.2
+  current_status: not-implemented
+  target_status: implemented
+  priority: medium
+  owner: Head of Procurement
+  evidence: ''
+  notes: ''

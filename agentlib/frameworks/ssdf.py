@@ -863,7 +863,7 @@ def render_rules() -> str:
            "the listed extra tasks. Support != compliance.", "",
            "| Control | Aliases | Tasks (basis) | If scheduled | If blocking |", "|---|---|---|---|---|"]
     for r in PIPELINE_RULES:
-        fmt = lambda d: "; ".join(f"{k} ({v[0]})" for k, v in d.items()) or "-"
+        fmt = lambda d: "; ".join(f"{k} ({v[0]}: {v[1]})" for k, v in d.items()) or "-"
         out.append(f"| {r.control} | {', '.join(r.aliases)} | {fmt(r.tasks)} | {fmt(r.scheduled_tasks)} | {fmt(r.blocking_tasks)} |")
     return "\n".join(out) + "\n"
 

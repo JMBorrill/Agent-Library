@@ -43,22 +43,26 @@
           {
             "id": "A-1a",
             "text": "Required to operate the vehicle or space asset (e.g., spacesuit, rover, or outpost), including commanding of the vehicle or asset.",
-            "pdf_page": 79
+            "pdf_page": 79,
+            "requires_scope": "A-scope"
           },
           {
             "id": "A-1b",
-            "text": "Required to sustain a safe, habitable1 environment for the crew.",
-            "pdf_page": 79
+            "text": "Required to sustain a safe, habitable environment for the crew.",
+            "pdf_page": 79,
+            "requires_scope": "A-scope"
           },
           {
             "id": "A-1c",
             "text": "Required to achieve the primary mission objectives.",
-            "pdf_page": 79
+            "pdf_page": 79,
+            "requires_scope": "A-scope"
           },
           {
             "id": "A-1d",
             "text": "Required to directly prepare resources (e.g., data, fuel, power) that are consumed by the above functions.",
-            "pdf_page": 79
+            "pdf_page": 79,
+            "requires_scope": "A-scope"
           }
         ],
         "exclusions": [
@@ -78,10 +82,13 @@
             "pdf_page": 80
           }
         ],
-        "scope": {
-          "text": "Ground and flight software systems developed or operated by or for NASA needed to perform a primary mission objective of human space flight and directly interact with human space flight systems.",
-          "pdf_page": 79
-        }
+        "scopes": [
+          {
+            "id": "A-scope",
+            "text": "Ground and flight software systems developed or operated by or for NASA needed to perform a primary mission objective of human space flight and directly interact with human space flight systems.",
+            "pdf_page": 79
+          }
+        ]
       },
       "B": {
         "title": "Non-Human Space Rated Software Systems or Large Scale Aeronautics Vehicles",
@@ -95,32 +102,38 @@
           {
             "id": "B-1a",
             "text": "Required to operate the vehicle or space asset (e.g., orbiter, lander, probe, flyby spacecraft, rover, launch vehicle, or primary instrument) such as commanding of the vehicle or asset;",
-            "pdf_page": 81
+            "pdf_page": 81,
+            "requires_scope": "B-scope"
           },
           {
             "id": "B-1b",
             "text": "Required to achieve the primary mission objectives; or",
-            "pdf_page": 81
+            "pdf_page": 81,
+            "requires_scope": "B-scope"
           },
           {
             "id": "B-1c",
             "text": "Required to directly prepare resources (data, fuel, power) that are consumed by the above functions.",
-            "pdf_page": 81
+            "pdf_page": 81,
+            "requires_scope": "B-scope"
           },
           {
             "id": "B-2a",
             "text": "Is integral to the control of an airborne vehicle;",
-            "pdf_page": 81
+            "pdf_page": 81,
+            "requires_scope": "B-scope-2"
           },
           {
             "id": "B-2b",
             "text": "Monitors and controls the cabin environment; or",
-            "pdf_page": 81
+            "pdf_page": 81,
+            "requires_scope": "B-scope-2"
           },
           {
             "id": "B-2c",
             "text": "Monitors and controls the vehicle's emergency systems.",
-            "pdf_page": 81
+            "pdf_page": 81,
+            "requires_scope": "B-scope-2"
           }
         ],
         "exclusions": [
@@ -140,10 +153,18 @@
             "pdf_page": 82
           }
         ],
-        "scope": {
-          "text": "Space Systems involve flight and ground software that should perform reliably to accomplish primary mission objectives or major function(s) in non-human space rated systems.",
-          "pdf_page": 80
-        },
+        "scopes": [
+          {
+            "id": "B-scope",
+            "text": "Space Systems involve flight and ground software that should perform reliably to accomplish primary mission objectives or major function(s) in non-human space rated systems.",
+            "pdf_page": 80
+          },
+          {
+            "id": "B-scope-2",
+            "text": "Aeronautic Vehicles include large scale aeronautic software systems unique to NASA (large scale: life cycle cost exceeding $250M)",
+            "pdf_page": 81
+          }
+        ],
         "notes": [
           {
             "text": "Large-scale (life cycle cost exceeding $250M) fully integrated technology development system",
