@@ -156,7 +156,7 @@ def check_document(text: str, root: Path | None = None, require_citations: bool 
                     findings.append(Finding("warning", lineno,
                                             f"{m.group(0)}: catalog places {key} on p. {bucket[key]}"))
         for family, (pattern, sources) in ID_FAMILIES.items():
-            for ident in pattern.findall(line):
+            for ident in dict.fromkeys(pattern.findall(line)):  # de-duplicate, keep order
                 buckets = [index[s] for s in sources if s in index]
                 if not buckets:
                     continue  # catalog not available: cannot judge

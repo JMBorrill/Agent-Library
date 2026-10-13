@@ -39,7 +39,7 @@ SIGNALS: dict[str, list[tuple[float, list[str]]]] = {
     "owasp-asvs": [
         (3, ["asvs", "application security verification", "penetration test", "pentest", "web application security",
              "api security", "owasp"]),
-        (1.5, ["authentication", "session", "access control", "injection", "xss", "csrf", "tls", "oauth", "jwt",
+        (1.5, ["security review", "security testing", "threat model", "authentication", "session", "access control", "injection", "xss", "csrf", "tls", "oauth", "jwt",
                "web app", "api", "security requirements"]),
     ],
     "nist-ai-rmf": [
