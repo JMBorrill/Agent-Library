@@ -1,0 +1,1431 @@
+{
+  "run_tests": true,
+  "skills": [
+    {
+      "skill": "ai-eval-harness",
+      "pack": "ai-governance",
+      "scripts": [
+        "run_eval.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_ai_eval_harness"
+      ],
+      "tests_run": 21,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nist-ai"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "ai-human-oversight",
+      "pack": "ai-governance",
+      "scripts": [
+        "oversight_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_ai_human_oversight",
+        "test_select_frameworks"
+      ],
+      "tests_run": 21,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nist-ai"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "ai-prompt-injection-review",
+      "pack": "ai-governance",
+      "scripts": [
+        "injection_scan.py",
+        "tool_policy_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_ai_prompt_injection_review"
+      ],
+      "tests_run": 18,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nist-ai"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "ai-risk-assessment",
+      "pack": "ai-governance",
+      "scripts": [
+        "ai_risk_register_check.py",
+        "system_card_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_ai_risk_assessment"
+      ],
+      "tests_run": 24,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nist-ai"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "credit-criteria-modelling",
+      "pack": "finance-credit",
+      "scripts": [
+        "affordability_calc.py",
+        "criteria_engine.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_credit_criteria_modelling",
+        "test_select_frameworks"
+      ],
+      "tests_run": 39,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "basel-credit",
+        "fca"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "credit-risk-governance",
+      "pack": "finance-credit",
+      "scripts": [
+        "governance_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_credit_risk_governance"
+      ],
+      "tests_run": 16,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "basel-credit"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "finance-fca-scope-check",
+      "pack": "finance-credit",
+      "scripts": [
+        "reg_triage.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_finance_fca_scope_check",
+        "test_select_frameworks"
+      ],
+      "tests_run": 23,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "fca"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "finance-npv-irr",
+      "pack": "finance-credit",
+      "scripts": [
+        "cashflow.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_finance_npv_irr",
+        "test_select_frameworks"
+      ],
+      "tests_run": 36,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "damodaran"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "finance-options",
+      "pack": "finance-credit",
+      "scripts": [
+        "options_appraisal.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_finance_options"
+      ],
+      "tests_run": 18,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "treasury-green",
+        "damodaran"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "finance-unit-economics",
+      "pack": "finance-credit",
+      "scripts": [
+        "unit_economics.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_finance_unit_economics",
+        "test_select_frameworks"
+      ],
+      "tests_run": 29,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "damodaran"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "independent-review",
+      "pack": "orchestration",
+      "scripts": [
+        "claim_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_independent_review",
+        "test_select_frameworks"
+      ],
+      "tests_run": 17,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "google-review",
+        "nist-ai"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "product-discovery",
+      "pack": "product",
+      "scripts": [
+        "evidence_audit.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_product_discovery"
+      ],
+      "tests_run": 15,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "gov-service"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "product-experiment-design",
+      "pack": "product",
+      "scripts": [
+        "experiment_calc.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_product_experiment_design"
+      ],
+      "tests_run": 20,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "gov-service"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "product-requirements-brief",
+      "pack": "product",
+      "scripts": [
+        "prd_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_product_requirements_brief"
+      ],
+      "tests_run": 11,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "gov-service",
+        "shape-up"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "product-shaping",
+      "pack": "product",
+      "scripts": [
+        "pitch_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_product_shaping"
+      ],
+      "tests_run": 11,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "shape-up"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-architecture-trades",
+      "pack": "systems-engineering",
+      "scripts": [
+        "trade_space.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_architecture_trades"
+      ],
+      "tests_run": 5,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-design",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-change-control",
+      "pack": "systems-engineering",
+      "scripts": [
+        "change_impact.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_change_control"
+      ],
+      "tests_run": 6,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-configuration-management",
+      "pack": "systems-engineering",
+      "scripts": [
+        "baseline_diff.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_configuration_management"
+      ],
+      "tests_run": 6,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-decision-analysis",
+      "pack": "systems-engineering",
+      "scripts": [
+        "decision_matrix.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_decision_analysis"
+      ],
+      "tests_run": 14,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-implementation-integration",
+      "pack": "systems-engineering",
+      "scripts": [
+        "integration_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_implementation_integration"
+      ],
+      "tests_run": 6,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-realize",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-interface-control",
+      "pack": "systems-engineering",
+      "scripts": [
+        "icd_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_interface_control"
+      ],
+      "tests_run": 8,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-logical-decomposition",
+      "pack": "systems-engineering",
+      "scripts": [
+        "function_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_logical_decomposition"
+      ],
+      "tests_run": 5,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-design",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-requirements",
+      "pack": "systems-engineering",
+      "scripts": [
+        "req_lint.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_install_packs",
+        "test_product_requirements_brief",
+        "test_se_requirements"
+      ],
+      "tests_run": 31,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-design",
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-review-gates",
+      "pack": "systems-engineering",
+      "scripts": [
+        "review_readiness.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_review_gates"
+      ],
+      "tests_run": 11,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-risk-analysis",
+      "pack": "systems-engineering",
+      "scripts": [
+        "fmea_calc.py",
+        "risk_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_risk_analysis"
+      ],
+      "tests_run": 14,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-stakeholder-conops",
+      "pack": "systems-engineering",
+      "scripts": [
+        "conops_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_stakeholder_conops"
+      ],
+      "tests_run": 5,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-design",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-technical-assessment",
+      "pack": "systems-engineering",
+      "scripts": [
+        "tpm_track.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_technical_assessment"
+      ],
+      "tests_run": 7,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-technical-data-management",
+      "pack": "systems-engineering",
+      "scripts": [
+        "data_register_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_transition_and_data"
+      ],
+      "tests_run": 5,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-technical-planning",
+      "pack": "systems-engineering",
+      "scripts": [
+        "tailor_process.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_technical_planning"
+      ],
+      "tests_run": 7,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-manage",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-transition",
+      "pack": "systems-engineering",
+      "scripts": [
+        "transition_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_library_validator",
+        "test_se_transition_and_data"
+      ],
+      "tests_run": 25,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-realize",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "se-verification-validation",
+      "pack": "systems-engineering",
+      "scripts": [
+        "vmatrix_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_se_logical_decomposition",
+        "test_se_verification_validation"
+      ],
+      "tests_run": 15,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se-realize",
+        "nasa-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "security-asvs-controls",
+      "pack": "reliability-security",
+      "scripts": [
+        "asvs_coverage.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_security_asvs_controls"
+      ],
+      "tests_run": 11,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "owasp-asvs"
+      ],
+      "weakest_source_status": "VERIFIED",
+      "human_review": "pending"
+    },
+    {
+      "skill": "security-code-checks",
+      "pack": "reliability-security",
+      "scripts": [
+        "static_checks.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_security_code_checks"
+      ],
+      "tests_run": 10,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "owasp-asvs"
+      ],
+      "weakest_source_status": "VERIFIED",
+      "human_review": "pending"
+    },
+    {
+      "skill": "security-secure-development",
+      "pack": "reliability-security",
+      "scripts": [
+        "dependency_pin_check.py",
+        "ssdf_evidence_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_security_secure_development"
+      ],
+      "tests_run": 14,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nist-ssdf"
+      ],
+      "weakest_source_status": "PARTIALLY_VERIFIED",
+      "human_review": "pending"
+    },
+    {
+      "skill": "security-threat-model",
+      "pack": "reliability-security",
+      "scripts": [
+        "threat_model_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_security_threat_model"
+      ],
+      "tests_run": 10,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "owasp-asvs"
+      ],
+      "weakest_source_status": "VERIFIED",
+      "human_review": "pending"
+    },
+    {
+      "skill": "select-frameworks",
+      "pack": "orchestration",
+      "scripts": [
+        "select_frameworks.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_select_frameworks"
+      ],
+      "tests_run": 9,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se",
+        "gov-service",
+        "nist-ai"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "software-code-review",
+      "pack": "software",
+      "scripts": [
+        "diff_risk_scan.py",
+        "review_report_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_software_code_review"
+      ],
+      "tests_run": 17,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "google-review"
+      ],
+      "weakest_source_status": "VERIFIED",
+      "human_review": "pending"
+    },
+    {
+      "skill": "software-delivery-metrics",
+      "pack": "software",
+      "scripts": [
+        "dora_metrics.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_software_delivery_metrics"
+      ],
+      "tests_run": 9,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "dora"
+      ],
+      "weakest_source_status": "VERIFIED",
+      "human_review": "pending"
+    },
+    {
+      "skill": "software-requirements-traceability",
+      "pack": "software",
+      "scripts": [
+        "trace_scan.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_software_requirements_traceability"
+      ],
+      "tests_run": 11,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-software"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "space-low-gravity-mobility",
+      "pack": "space-engineering",
+      "scripts": [
+        "lowg_calc.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_select_frameworks",
+        "test_space_low_gravity_mobility"
+      ],
+      "tests_run": 31,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se",
+        "ecss-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "space-technical-budgets",
+      "pack": "space-engineering",
+      "scripts": [
+        "budget_calc.py",
+        "link_budget.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_space_technical_budgets"
+      ],
+      "tests_run": 23,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "nasa-se",
+        "ecss-se"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "sre-incident-response",
+      "pack": "reliability-security",
+      "scripts": [
+        "postmortem_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_sre_incident_response"
+      ],
+      "tests_run": 9,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "google-sre"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "sre-production-readiness",
+      "pack": "reliability-security",
+      "scripts": [
+        "readiness_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_select_frameworks",
+        "test_sre_production_readiness"
+      ],
+      "tests_run": 17,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "google-sre"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "sre-service-level-objectives",
+      "pack": "reliability-security",
+      "scripts": [
+        "slo_calc.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_select_frameworks",
+        "test_sre_service_level_objectives"
+      ],
+      "tests_run": 22,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "google-sre"
+      ],
+      "weakest_source_status": "INACCESSIBLE",
+      "human_review": "pending"
+    },
+    {
+      "skill": "ux-accessibility-review",
+      "pack": "ux",
+      "scripts": [
+        "html_a11y_check.py"
+      ],
+      "fixtures_pass": true,
+      "fixtures_fail": true,
+      "test_modules": [
+        "test_ux_accessibility_review"
+      ],
+      "tests_run": 14,
+      "tests_pass": true,
+      "status": "tested",
+      "sources": [
+        "gov-design"
+      ],
+      "weakest_source_status": "VERIFIED",
+      "human_review": "pending"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "nasa-se",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 18,
+      "row_verification": {
+        "unverified": 18
+      },
+      "skills": [
+        "se-architecture-trades",
+        "se-change-control",
+        "se-configuration-management",
+        "se-decision-analysis",
+        "se-implementation-integration",
+        "se-interface-control",
+        "se-logical-decomposition",
+        "se-requirements",
+        "se-review-gates",
+        "se-risk-analysis",
+        "se-stakeholder-conops",
+        "se-technical-assessment",
+        "se-technical-data-management",
+        "se-technical-planning",
+        "se-transition",
+        "se-verification-validation"
+      ],
+      "skills_tested": 16
+    },
+    {
+      "source_id": "nasa-se-design",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 4,
+      "row_verification": {
+        "unverified": 4
+      },
+      "skills": [
+        "se-architecture-trades",
+        "se-decision-analysis",
+        "se-logical-decomposition",
+        "se-requirements",
+        "se-stakeholder-conops"
+      ],
+      "skills_tested": 5
+    },
+    {
+      "source_id": "nasa-se-realize",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 5,
+      "row_verification": {
+        "unverified": 5
+      },
+      "skills": [
+        "se-implementation-integration",
+        "se-transition",
+        "se-verification-validation"
+      ],
+      "skills_tested": 3
+    },
+    {
+      "source_id": "nasa-se-manage",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 8,
+      "row_verification": {
+        "unverified": 8
+      },
+      "skills": [
+        "se-change-control",
+        "se-configuration-management",
+        "se-decision-analysis",
+        "se-interface-control",
+        "se-requirements",
+        "se-review-gates",
+        "se-risk-analysis",
+        "se-technical-assessment",
+        "se-technical-data-management",
+        "se-technical-planning"
+      ],
+      "skills_tested": 10
+    },
+    {
+      "source_id": "ecss-se",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 3,
+      "row_verification": {
+        "unverified": 3
+      },
+      "skills": [
+        "space-low-gravity-mobility",
+        "space-technical-budgets"
+      ],
+      "skills_tested": 2
+    },
+    {
+      "source_id": "gov-service",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 6,
+      "row_verification": {
+        "unverified": 6
+      },
+      "skills": [
+        "product-discovery",
+        "product-experiment-design",
+        "product-requirements-brief"
+      ],
+      "skills_tested": 3
+    },
+    {
+      "source_id": "gov-design",
+      "access_status": "VERIFIED",
+      "crosswalk_rows": 11,
+      "row_verification": {
+        "verified": 11
+      },
+      "skills": [
+        "product-requirements-brief",
+        "ux-accessibility-review"
+      ],
+      "skills_tested": 2
+    },
+    {
+      "source_id": "shape-up",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 7,
+      "row_verification": {
+        "unverified": 7
+      },
+      "skills": [
+        "product-requirements-brief",
+        "product-shaping"
+      ],
+      "skills_tested": 2
+    },
+    {
+      "source_id": "nasa-software",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 2,
+      "row_verification": {
+        "unverified": 2
+      },
+      "skills": [
+        "software-requirements-traceability"
+      ],
+      "skills_tested": 1
+    },
+    {
+      "source_id": "google-review",
+      "access_status": "VERIFIED",
+      "crosswalk_rows": 8,
+      "row_verification": {
+        "verified": 8
+      },
+      "skills": [
+        "software-code-review"
+      ],
+      "skills_tested": 1
+    },
+    {
+      "source_id": "google-sre",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 5,
+      "row_verification": {
+        "unverified": 5
+      },
+      "skills": [
+        "sre-incident-response",
+        "sre-production-readiness",
+        "sre-service-level-objectives"
+      ],
+      "skills_tested": 3
+    },
+    {
+      "source_id": "owasp-asvs",
+      "access_status": "VERIFIED",
+      "crosswalk_rows": 9,
+      "row_verification": {
+        "verified": 9
+      },
+      "skills": [
+        "security-asvs-controls",
+        "security-code-checks",
+        "security-threat-model"
+      ],
+      "skills_tested": 3
+    },
+    {
+      "source_id": "nist-ai",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 17,
+      "row_verification": {
+        "unverified": 17
+      },
+      "skills": [
+        "ai-eval-harness",
+        "ai-human-oversight",
+        "ai-prompt-injection-review",
+        "ai-risk-assessment"
+      ],
+      "skills_tested": 4
+    },
+    {
+      "source_id": "treasury-green",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 9,
+      "row_verification": {
+        "unverified": 9
+      },
+      "skills": [
+        "finance-npv-irr",
+        "finance-options"
+      ],
+      "skills_tested": 2
+    },
+    {
+      "source_id": "damodaran",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 7,
+      "row_verification": {
+        "unverified": 7
+      },
+      "skills": [
+        "finance-npv-irr",
+        "finance-options",
+        "finance-unit-economics"
+      ],
+      "skills_tested": 3
+    },
+    {
+      "source_id": "basel-credit",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 4,
+      "row_verification": {
+        "unverified": 4
+      },
+      "skills": [
+        "credit-criteria-modelling",
+        "credit-risk-governance"
+      ],
+      "skills_tested": 2
+    },
+    {
+      "source_id": "fca",
+      "access_status": "INACCESSIBLE",
+      "crosswalk_rows": 7,
+      "row_verification": {
+        "unverified": 7
+      },
+      "skills": [
+        "credit-criteria-modelling",
+        "finance-fca-scope-check"
+      ],
+      "skills_tested": 2
+    },
+    {
+      "source_id": "dora",
+      "access_status": "VERIFIED",
+      "crosswalk_rows": 9,
+      "row_verification": {
+        "verified": 9
+      },
+      "skills": [
+        "software-delivery-metrics"
+      ],
+      "skills_tested": 1
+    },
+    {
+      "source_id": "nist-ssdf",
+      "access_status": "PARTIALLY_VERIFIED",
+      "crosswalk_rows": 5,
+      "row_verification": {
+        "partially_verified": 5
+      },
+      "skills": [
+        "security-secure-development"
+      ],
+      "skills_tested": 1
+    }
+  ],
+  "nasa_processes": [
+    {
+      "id": "SE-01",
+      "process": "Stakeholder Expectations Definition",
+      "section": "4.1",
+      "skills": [
+        "se-stakeholder-conops"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-02",
+      "process": "Technical Requirements Definition",
+      "section": "4.2",
+      "skills": [
+        "se-requirements"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-03",
+      "process": "Logical Decomposition",
+      "section": "4.3",
+      "skills": [
+        "se-logical-decomposition"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-04",
+      "process": "Design Solution Definition",
+      "section": "4.4",
+      "skills": [
+        "se-architecture-trades",
+        "se-decision-analysis"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-05",
+      "process": "Product Implementation",
+      "section": "5.1",
+      "skills": [
+        "se-implementation-integration"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-06",
+      "process": "Product Integration",
+      "section": "5.2",
+      "skills": [
+        "se-implementation-integration"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-07",
+      "process": "Product Verification",
+      "section": "5.3",
+      "skills": [
+        "se-verification-validation"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-08",
+      "process": "Product Validation",
+      "section": "5.4",
+      "skills": [
+        "se-verification-validation"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-09",
+      "process": "Product Transition",
+      "section": "5.5",
+      "skills": [
+        "se-transition"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-10",
+      "process": "Technical Planning",
+      "section": "6.1",
+      "skills": [
+        "se-technical-planning"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-11",
+      "process": "Requirements Management",
+      "section": "6.2",
+      "skills": [
+        "se-requirements",
+        "se-change-control",
+        "se-configuration-management"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-12",
+      "process": "Interface Management",
+      "section": "6.3",
+      "skills": [
+        "se-interface-control"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-13",
+      "process": "Technical Risk Management",
+      "section": "6.4",
+      "skills": [
+        "se-risk-analysis"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-14",
+      "process": "Configuration Management",
+      "section": "6.5",
+      "skills": [
+        "se-configuration-management",
+        "se-change-control"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-15",
+      "process": "Technical Data Management",
+      "section": "6.6",
+      "skills": [
+        "se-technical-data-management"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-16",
+      "process": "Technical Assessment",
+      "section": "6.7",
+      "skills": [
+        "se-technical-assessment",
+        "se-review-gates"
+      ],
+      "all_tested": true
+    },
+    {
+      "id": "SE-17",
+      "process": "Decision Analysis",
+      "section": "6.8",
+      "skills": [
+        "se-decision-analysis"
+      ],
+      "all_tested": true
+    }
+  ],
+  "packs": {
+    "ai-governance": {
+      "tested": 4
+    },
+    "finance-credit": {
+      "tested": 6
+    },
+    "orchestration": {
+      "tested": 2
+    },
+    "product": {
+      "tested": 4
+    },
+    "systems-engineering": {
+      "tested": 16
+    },
+    "reliability-security": {
+      "tested": 7
+    },
+    "software": {
+      "tested": 3
+    },
+    "space-engineering": {
+      "tested": 2
+    },
+    "ux": {
+      "tested": 1
+    }
+  },
+  "totals": {
+    "skills": 45,
+    "by_status": {
+      "tested": 45
+    },
+    "tests_run": 594,
+    "test_modules_failed": [],
+    "sources_by_access": {
+      "INACCESSIBLE": 14,
+      "VERIFIED": 4,
+      "PARTIALLY_VERIFIED": 1
+    },
+    "nasa_processes_all_tested": 17
+  }
+}

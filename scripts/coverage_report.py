@@ -52,9 +52,15 @@ def build(run_tests: bool) -> dict:
         meta = fm.get("metadata", {})
         scripts = sorted(p.name for p in (d / "scripts").glob("*.py")) if (d / "scripts").is_dir() else []
         templates = list((d / "assets" / "templates").glob("*")) if (d / "assets" / "templates").is_dir() else []
-        ex = [p.name.lower() for p in (d / "assets" / "examples").rglob("*") if p.is_file()] if (d / "assets" / "examples").is_dir() else []
-        has_pass = any("pass" in e or "good" in e or "benign" in e for e in ex)
-        has_fail = any("fail" in e or "bad" in e or "malicious" in e or "vulnerable" in e for e in ex)
+        exd = d / "assets" / "examples"
+        ex = [p.relative_to(exd).as_posix().lower() for p in exd.rglob("*") if p.is_file()] if exd.is_dir() else []
+        has_pass = any(k in e for e in ex for k in ("pass", "good", "benign", "fixed"))
+        has_fail = any(k in e for e in ex for k in ("fail", "bad", "malicious", "vulnerable", "draft"))
+        manifest = exd / "fixtures.json"
+        if manifest.is_file():
+            m = json.loads(manifest.read_text(encoding="utf-8"))
+            has_pass = has_pass or any((exd / x).exists() for x in m.get("pass", []))
+            has_fail = has_fail or any((exd / x).exists() for x in m.get("fail", []))
         refs = [m for m, txt in mods.items() if re.search(rf"['\"]{re.escape(d.name)}['\"]", txt)]
         tests_pass = None
         n_tests = 0

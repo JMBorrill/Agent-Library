@@ -1,0 +1,9 @@
+{
+  "cr_id": "DEMO-CR-002",
+  "title": "Change an item that is not under configuration control",
+  "changed_ids": [
+    "DEMO-SYS-404"
+  ],
+  "reason": "synthetic negative fixture",
+  "requested_by": "Test (synthetic)"
+}

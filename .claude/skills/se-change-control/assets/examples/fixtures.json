@@ -1,0 +1,9 @@
+{
+  "_note": "Declares which examples are expected to pass (exit 0) and fail (exit 1); used by scripts/coverage_report.py and tests.",
+  "pass": [
+    "change-request.json"
+  ],
+  "fail": [
+    "change-request-unknown-fail.json"
+  ]
+}

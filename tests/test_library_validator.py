@@ -157,5 +157,16 @@ class ValidatorMutationTests(unittest.TestCase):
         self.assertIn("source_verification must be", self.errors())
 
 
+
+class FixtureManifestTests(unittest.TestCase):
+    def test_declared_fixtures_exist(self):
+        for m in (ROOT / ".claude/skills").glob("*/assets/examples/fixtures.json"):
+            d = json.loads(m.read_text())
+            for kind in ("pass", "fail"):
+                self.assertTrue(d.get(kind), f"{m}: no {kind} fixtures declared")
+                for f in d[kind]:
+                    self.assertTrue((m.parent / f).exists(), f"{m}: missing {f}")
+
+
 if __name__ == "__main__":
     unittest.main()

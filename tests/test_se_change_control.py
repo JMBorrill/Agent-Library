@@ -33,6 +33,10 @@ class ChangeImpactTests(unittest.TestCase):
         # not_tested result -> no re-verify action
         self.assertNotIn(("re-verify", "DEMO-VER-003"), {(x["action"], x["id"]) for x in out["actions"]})
 
+    def test_declared_fail_fixture(self):
+        code, out = run_json(SKILL, "change_impact", "--cr", EX / "change-request-unknown-fail.json", *ARGS)
+        self.assertEqual(code, 1)
+
     def test_unknown_id_exit_1(self):
         code, out = run_json(SKILL, "change_impact", "--changed", "DEMO-SYS-404", *ARGS)
         self.assertEqual(code, 1)

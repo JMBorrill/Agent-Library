@@ -1,0 +1,11 @@
+{
+  "_note": "Declares which examples are expected to pass (exit 0) and fail (exit 1); used by scripts/coverage_report.py and tests.",
+  "pass": [
+    "profile-aster.json",
+    "profile-mortgage.json",
+    "profile-aiops.json"
+  ],
+  "fail": [
+    "profile-fail.json"
+  ]
+}
