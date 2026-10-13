@@ -1,0 +1,71 @@
+skill: nasa-software-assurance
+description: >-
+  NASA-STD-8739.8B application: safety-criticality determination against 4.2 a-e, IV&V applicability and
+  IPEP roles, SA plan content tied to Table 1 tasks, non-conformance handling (SWE-201..204 tasks) and the
+  Appendix A hazard cause checklist - with valid identifiers and PDF page citations.
+cases:
+  - id: sc-assessment
+    prompt: |
+      Perform the software safety-criticality assessment for the component described below and state what
+      it triggers under NPR 7150.2D and NASA-STD-8739.8B.
+    fixtures: [fixtures/valve-controller.md]
+    golden: golden/sc-assessment.md
+    negative: golden/sc-assessment.bad.md
+    checks:
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_safety_critical_determination", expected: "yes", criteria: [b, e]}
+      - {type: contains, values: ["SWE-134", "SWE-219", "SWE-220", "HR-07"]}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 3}
+      - {type: regex, pattern: "SMA"}
+
+  - id: ivv-applicability
+    prompt: |
+      Our mission is a Category 1 project with Class A flight software approaching KDP A. Does software
+      IV&V apply, who develops and who concurs with the IV&V Project Execution Plan, and what must software
+      assurance confirm? Cite requirement ids and pages.
+    golden: golden/ivv-applicability.md
+    negative: golden/ivv-applicability.bad.md
+    checks:
+      - {type: contains, values: ["SWE-141", "SWE-131", "IPEP", "4.4.2.3"]}
+      - {type: any_of, values: ["SMA Technical Authority", "SMA TA"]}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_ivv_refs_valid", min: 3}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 3}
+
+  - id: sa-plan-outline
+    prompt: |
+      Draft the outline of a software assurance and software safety plan for a Class C ground data system
+      (Category 3 project). Tie sections to the NASA-STD-8739.8B tasks, including the audit frequency the
+      standard sets and how SA tailoring is approved.
+    golden: golden/sa-plan-outline.md
+    negative: golden/sa-plan-outline.bad.md
+    checks:
+      - {type: sections, values: ["Safety", "Audit", "IV&V", "Tailoring"]}
+      - {type: regex, pattern: "two years"}
+      - {type: contains, values: ["SWE-039", "SWE-013", "SASS-01"]}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_swe_ids_valid", min: 5}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_ivv_refs_valid", min: 0}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 3}
+
+  - id: nonconformance-cots
+    prompt: |
+      Testing found a high-severity defect in the COTS real-time operating system used by our Class B
+      flight software. What must software assurance do under NASA-STD-8739.8B? Cite the tasks and pages.
+    golden: golden/nonconformance-cots.md
+    negative: golden/nonconformance-cots.bad.md
+    checks:
+      - {type: contains, values: ["SWE-204", "SWE-203", "root cause"]}
+      - {type: any_of, values: ["SWE-201", "SWE-202"], min: 2}
+      - {type: python, function: "agentlib.frameworks.nasa_swe:grade_page_citations", min: 3}
+      - {type: not_contains, values: ["no SA action is needed"]}
+
+  - id: hazard-causes
+    prompt: |
+      We are starting the Phase 1 hazard analysis for a robotic lander. Which software cause areas does
+      NASA-STD-8739.8B tell us to consider, and how does the software safety analysis progress through the
+      safety review phases?
+    golden: golden/hazard-causes.md
+    negative: golden/hazard-causes.bad.md
+    checks:
+      - {type: any_of, min: 9, values: ["Data errors", "Commanding errors", "Flight computer errors", "Operating systems errors", "Programmable logic device errors", "time management errors", "algorithm failures", "Fault tolerance and fault management", "Software processes errors", "Human-machine interface errors", "Security and virus errors", "Unknown/Unknowns"]}
+      - {type: contains, values: ["Table 2", "Phase 1", "Phase 3"]}
+      - {type: cites, values: ["nasa-software-assurance"]}
+      - {type: regex, pattern: "\\[nasa-software-assurance [^\\]]*, p\\. 5[89]\\]"}

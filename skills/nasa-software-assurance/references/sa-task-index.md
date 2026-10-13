@@ -52,7 +52,7 @@ standard). Run `python -m agentlib nasa-swe sa-tasks --swe SWE-xxx` for the full
 | SWE-210 | 3.11.8 | 33 | 1 | - | Confirm that the software requirements exist for collecting, reporting, and storing data relating to the detection of adversarial actions. |
 | SWE-052 | 3.12.1 | 33 | 2 | 2 | Confirm that bi-directional traceability has been completed, recorded, and maintained. |
 | SWE-050 | 4.1.2 | 33-34 | 1 | - | Confirm that all software requirements are established, captured, and documented as part of the technical specification, including … |
-| SWE-051 | 4.1.3 | 34 | 1 | - | Perform a software assurance analysis on the detailed software requirements to analyze the software requirement sources and identify any i … |
+| SWE-051 | 4.1.3 | 34 | 1 | - | Perform a software assurance analysis on the detailed software requirements to analyze the software requirement sources and identify any … |
 | SWE-184 | 4.1.4 | 34 | 1 | 1 | Analyze that the software requirements documentation contains the software related safety constraints, controls, mitigations, and … |
 | SWE-053 | 4.1.5 | 34 | 1 | - | Confirm the software requirements changes are documented, tracked, approved, and maintained throughout the project life-cycle. |
 | SWE-054 | 4.1.6 | 34 | 1 | - | Monitor identified differences among requirements, project plans, and software products to confirm they are addressed. |
@@ -77,7 +77,7 @@ standard). Run `python -m agentlib nasa-swe sa-tasks --swe SWE-xxx` for the full
 | SWE-070 | 4.5.6 | 39 | 1 | - | Confirm that the software models, simulations, and analysis tools used to achieve the qualification of flight software or flight equipment … |
 | SWE-071 | 4.5.7 | 39 | 1 | 1 | Analyze that software test plans and software test procedures cover the software requirements and provide adequate verification of hazard … |
 | SWE-073 | 4.5.8 | 39 | 1 | - | Confirm that the project validates the software components on the targeted platform or a high-fidelity simulation. |
-| SWE-189 | 4.5.9 | 39 | 1 | - | Confirm that code coverage measurements have been selected, performed, tracked, recorded, and c ommunicated with each release. |
+| SWE-189 | 4.5.9 | 39 | 1 | - | Confirm that code coverage measurements have been selected, performed, tracked, recorded, and communicated with each release. |
 | SWE-190 | 4.5.10 | 39 | 3 | - | Confirm that the project performs code coverage analysis using the results of the tests or a code coverage tool. |
 | SWE-191 | 4.5.11 | 39-40 | 4 | 1 | Confirm that the project plans regression testing and that the regression testing is adequate and includes retesting of all … |
 | SWE-192 | 4.5.12 | 40 | 1 | 1 | Confirm that the project verifies the software requirements through testing, which trace to a hazardous event, cause, or mitigation … |

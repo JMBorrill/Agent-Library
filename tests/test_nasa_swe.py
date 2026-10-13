@@ -394,3 +394,22 @@ def test_grade_sc_and_ivv_and_pages():
     ok = "[nasa-software-requirements SWE-219, p. 27] [nasa-software-assurance 4.4.2.3, p. 50] [nasa-software-assurance Table 1 SWE-039, p. 19]"
     assert ns.grade_page_citations(ok, {"min": 3})[0]
     assert not ns.grade_page_citations("[nasa-software-requirements SWE-219, p. 40]", {})[0]
+
+
+def test_grade_check_matrix_fixture():
+    chk = {"fixture": "evals/nasa-software-engineering/fixtures/rmm-class-c.csv"}
+    named = "SWE-999 SWE-191 SWE-202 SWE-219 SWE-087 SWE-071"
+    assert ns.grade_check_matrix_fixture(named, chk)[0]
+    assert not ns.grade_check_matrix_fixture("SWE-999 only", chk)[0]
+
+
+def test_skill_reference_indexes_cover_catalogs(root):
+    req_index = (root / "skills/nasa-software-engineering/references/requirements-index.md").read_text()
+    for it in load_catalog("npr-7150-2d")["items"]:
+        assert f"| {it['id']} | {it['section']} | {it['citation']['pdf_page']} |" in req_index, it["id"]
+    sa_index = (root / "skills/nasa-software-assurance/references/sa-task-index.md").read_text()
+    for it in load_catalog("nasa-std-8739-8b")["items"]:
+        if it["kind"] == "sa-task-set":
+            assert f"| {it['swe']}{it['swe_part'] or ''} | {it['npr_section']} |" in sa_index, it["id"]
+        if it["kind"] == "ivv-requirement":
+            assert f"| {it['id']} | {it['citation']['pdf_page']} |" in sa_index, it["id"]

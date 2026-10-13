@@ -867,21 +867,23 @@ def grade_page_citations(output: str, check: dict) -> tuple[bool, str]:
 
 
 def grade_check_matrix_fixture(output: str, check: dict) -> tuple[bool, str]:
-    """Output reports every error the tool finds in fixture ``fixture`` (paths relative to the eval suite)."""
+    """Output reports every error ``check-matrix`` finds in ``fixture`` (path relative to the repo root).
+
+    Each SWE id with an error must be named; when more than ``max_named_missing`` (default 10) applicable
+    requirements are missing, naming their count instead of every id is accepted.
+    """
     from agentlib.paths import repo_root
 
-    path = repo_root() / check["fixture"]
-    cls, rows = load_matrix(path)
+    cls, rows = load_matrix(repo_root() / check["fixture"])
     report = check_matrix(rows, check.get("class") or cls)
-    expected = sorted({f["swe"] for f in report["findings"] if f["level"] == "error"} - {"-"})
-    # missing applicable rows can be summarised as a count; individual ids for the rest must appear
-    named = [s for s in expected if not any(f["swe"] == s and "missing from the matrix" in f["message"]
-                                            for f in report["findings"])]
-    missing_named = [s for s in named if s not in output and s.replace("SWE-", "SWE ") not in output]
-    n_missing = report["summary"]["missing_applicable"]
-    count_ok = n_missing == 0 or re.search(rf"\b{n_missing}\b", output) is not None
-    return not missing_named and count_ok, (f"tool errors on {named}; not mentioned: {missing_named}; "
-                                            f"missing-applicable count {n_missing} mentioned: {count_ok}")
+    errors = [f for f in report["findings"] if f["level"] == "error" and f["swe"] != "-"]
+    missing_rows = {f["swe"] for f in errors if "missing from the matrix" in f["message"]}
+    n_missing = len(missing_rows)
+    must_name = {f["swe"] for f in errors} - (missing_rows if n_missing > int(check.get("max_named_missing", 10)) else set())
+    not_named = sorted(s for s in must_name if s not in output)
+    count_ok = n_missing <= int(check.get("max_named_missing", 10)) or re.search(rf"\b{n_missing}\b", output)
+    return not not_named and bool(count_ok), (f"tool errors on {sorted(must_name)}; not mentioned: {not_named}; "
+                                              f"missing applicable rows: {n_missing}")
 
 
 # ------------------------------------------------------------------ CLI

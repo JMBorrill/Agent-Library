@@ -695,7 +695,7 @@ GARBAGE = re.compile(r"--[‘',\-]{6,}---")
 def std_words(page) -> list[dict]:
     bottom = page.height - 45  # above the "N of 65" page number and the supplier watermark
     out = []
-    for w in page.extract_words():
+    for w in page.extract_words(x_tolerance=3.5):
         if w["x0"] < 40 or w["top"] < 60 or w["top"] > bottom:
             continue
         text = GARBAGE.sub("", w["text"])
@@ -738,6 +738,25 @@ def lines_of(words: list[dict]) -> dict[int, list[dict]]:
     return result
 
 
+def heal_splits(text: str, reference: str) -> str:
+    """Re-join words that pdfplumber split inside a glyph run ("i ncorrect") when the pdftotext rendering
+    of the same pages has the joined word and never the split form."""
+    ref = norm(reference)
+    ref_words = set(re.findall(r"[A-Za-z]+", ref))
+    toks = text.split(" ")
+    out: list[str] = []
+    for tok in toks:
+        if out:
+            a, b = out[-1], tok
+            joined = re.sub(r"[^A-Za-z]", "", a + b)
+            if (re.fullmatch(r"[A-Za-z]{1,3}", a) and re.match(r"[a-z]", b) and joined in ref_words
+                    and f"{a} {re.sub(r'[^A-Za-z].*', '', b)}" not in ref):
+                out[-1] = a + b
+                continue
+        out.append(tok)
+    return " ".join(out)
+
+
 def join_line(prev: str, nxt: str) -> str:
     """Join two wrapped table lines; a trailing hyphen after a letter is a compound-word break."""
     if re.search(r"[A-Za-z]-$", prev):
@@ -745,7 +764,7 @@ def join_line(prev: str, nxt: str) -> str:
     return prev + " " + nxt
 
 
-def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
+def extract_sa_table(pdf: pdfplumber.PDF, text_pages: list[str]) -> tuple[list[dict], list[dict]]:
     """Table 1 rows: SWE -> SA/SS tasks. Columns: section x<120, SWE# 120-160, NPR text 160-415, tasks >=415."""
     stream: list[tuple[int, int, list[dict]]] = []
     for pno in range(17, 48):
@@ -793,9 +812,10 @@ def extract_sa_table(pdf: pdfplumber.PDF) -> tuple[list[dict], list[dict]]:
                 tasks[-1] = join_line(tasks[-1], ln)
             else:
                 raise AssertionError(f"SWE-{r['num']}: task text before task 1: {ln!r}")
+        ref = "\n".join(text_pages[p - 1] for p in sorted(r["pages"] | {r["pdf_page"]}))
         out.append({
             "num": r["num"], "section": r["section"], "pdf_page": r["pdf_page"], "pages": sorted(r["pages"]),
-            "tasks": [norm(t) for t in tasks],
+            "tasks": [heal_splits(norm(t), ref) for t in tasks],
         })
     return out, headings
 
@@ -832,7 +852,7 @@ def extract_ivv(pages: list[str]) -> list[dict]:
     return out
 
 
-def extract_hazard_causes(pdf: pdfplumber.PDF) -> list[dict]:
+def extract_hazard_causes(pdf: pdfplumber.PDF, text_pages: list[str]) -> list[dict]:
     areas: list[dict] = []
     cur = None
     pending_area: list[str] = []
@@ -860,7 +880,8 @@ def extract_hazard_causes(pdf: pdfplumber.PDF) -> list[dict]:
                 cur["causes"][-1] = join_line(cur["causes"][-1], body)
     for a in areas:
         a["area"] = norm(a["area"])
-        a["causes"] = [norm(c) for c in a["causes"]]
+        ref = "\n".join(text_pages[58:65])
+        a["causes"] = [heal_splits(norm(c), ref) for c in a["causes"]]
     return areas
 
 
@@ -913,8 +934,8 @@ def build_std(npr: dict) -> dict:
         assert_in(title.split(" &")[0], pages[page - 1], f"p.{page} ({sid})")
 
     with pdfplumber.open(STD_PDF) as pdf:
-        sa_rows, _ = extract_sa_table(pdf)
-        hazards = extract_hazard_causes(pdf)
+        sa_rows, _ = extract_sa_table(pdf, pages)
+        hazards = extract_hazard_causes(pdf, pages)
     ivv = extract_ivv(pages)
 
     assert len(sa_rows) == EXPECTED_SA_ROWS, f"expected {EXPECTED_SA_ROWS} Table 1 rows, got {len(sa_rows)}"
