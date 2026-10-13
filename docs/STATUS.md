@@ -45,6 +45,6 @@ Workflows reference these exact names; they validate once all agents/skills exis
 ## Known gaps / next work
 
 - Update `README.md` with final inventory and plugin install line.
-- Fix example page numbers in `skills/evidence-and-citation/references/citation-format.md` against catalogs.
+- (done) Example citation pages verified against the PDF text.
 - Optional: native `claude plugin eval` cases in `plugin-evals/` (configured in plugin.json).
 - Run live evals (`live-evals.yml`) once an API key secret exists; record results here.

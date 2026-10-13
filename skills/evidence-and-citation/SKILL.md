@@ -35,7 +35,7 @@ evidence standard they share. Load it alongside any framework skill.
 2. **Read before citing.** Open the relevant pages of the pinned PDF (see `sources/README.md` for
    `pdftotext -f N -l N`). Possession of a PDF is not evidence that it was read; cite only pages you read.
 3. **Cite in the library format** — `[<source-id> <locator>, p. <pdf-page>]`, for example
-   `[nist-ssdf PW.7.1, p. 23]`, `[treasury-green para 5.33, p. 52]`. The page is the *PDF* page of the
+   `[nist-ssdf PW.7.1, p. 23]`, `[treasury-green para 5.32, p. 35]`. The page is the *PDF* page of the
    pinned file; add the printed page in the locator if it differs. Full rules:
    [references/citation-format.md](references/citation-format.md).
 4. **Record evidence, not assertions.** For every assessed control/requirement, record what was

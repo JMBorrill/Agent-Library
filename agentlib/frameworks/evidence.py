@@ -4,9 +4,9 @@ Citation syntax used throughout the library (human-readable, machine-checkable):
 
     [<source-id> <locator>, p. <pdf-page>]
     [nist-ssdf PW.7.1, p. 23]
-    [owasp-asvs V6.2.1, p. 41]
-    [treasury-green para 5.33, p. 52]
-    [nasa-se 6.3, p. 155]
+    [owasp-asvs V6.2.1, p. 46]
+    [treasury-green para 5.32, p. 35]
+    [nasa-se 6.7, p. 196]
 
 ``<locator>`` is optional (``[nist-ai, p. 12]``). The page is the PDF page
 (1-based) of the pinned file in ``sources/pdfs``; add a printed page in the
