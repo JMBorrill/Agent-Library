@@ -66,7 +66,7 @@ def unit_relation(a: str, b: str) -> str:
     return "convertible"
 
 
-def check(cols, rows, components: set[str] | None = None) -> dict:
+def check(cols, rows, components: set[str] | None = None, requirement_ids: set[str] | None = None) -> dict:
     findings = []
     missing = [c for c in REQUIRED if c not in cols]
     if missing:
@@ -116,6 +116,10 @@ def check(cols, rows, components: set[str] | None = None) -> dict:
                 findings.append(_f(iid, "warning", "no-requirement-link", "interface not linked to any requirement"))
             if not r.get("value") and not r.get("range_or_protocol"):
                 findings.append(_f(iid, "error", "undefined-parameter", "no value or range/protocol defined"))
+        if requirement_ids is not None:
+            for q in [x.strip() for x in re.split(r"[;,]", r.get("requirement_ids", "")) if x.strip()]:
+                if q not in requirement_ids:
+                    findings.append(_f(iid, "error", "unknown-requirement", f"requirement '{q}' not in register"))
         if not r["version"]:
             findings.append(_f(iid, "error", "no-version", "interface definition has no version"))
     sev = Counter(f["severity"] for f in findings)
@@ -152,6 +156,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="Check an ICD register.")
     ap.add_argument("csv", type=Path)
     ap.add_argument("--components", type=Path)
+    ap.add_argument("--requirements", type=Path, help="requirements CSV to validate requirement_ids")
     ap.add_argument("--n2", action="store_true", help="print N-squared matrix (Markdown)")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args(argv)
@@ -164,10 +169,14 @@ def main(argv=None):
         if a.components:
             with a.components.open(newline="", encoding="utf-8-sig") as fh:
                 comps = {r["component_id"].strip() for r in csv.DictReader(fh)}
+        reqs = None
+        if a.requirements:
+            with a.requirements.open(newline="", encoding="utf-8-sig") as fh:
+                reqs = {r["id"].strip() for r in csv.DictReader(fh) if r.get("id")}
     except (OSError, KeyError, csv.Error) as exc:
         print(f"cannot read input: {exc}", file=sys.stderr)
         return 2
-    res = check(cols, rows, comps)
+    res = check(cols, rows, comps, reqs)
     res["passed"] = res["summary"].get("errors", 1) == 0
     if a.json:
         print(json.dumps(res, indent=2))

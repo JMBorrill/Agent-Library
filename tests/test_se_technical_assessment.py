@@ -43,6 +43,12 @@ class TpmTests(unittest.TestCase):
         res = mod.assess(COLS, rows, date(2026, 6, 1))
         self.assertIn("projected-breach", rules(res["findings"], "warning"))
 
+    def test_negative_projection_flagged(self):  # raised by ASTER demo builder
+        rows = [r("2026-01-01", 0.30, direction="lower_limit", limit="0.05"), r("2026-02-01", 0.20, direction="lower_limit", limit="0.05"),
+                r("2026-03-01", 0.10, direction="lower_limit", limit="0.05")]
+        res = mod.assess(COLS, rows, date(2026, 6, 1))
+        self.assertIn("projection-implausible", rules(res["findings"], "warning"))
+
     def test_fixtures(self):
         code, out = run_json(SKILL, "tpm_track", EX / "tpm-pass.csv", "--milestone", "2027-01-15")
         self.assertEqual(code, 0)

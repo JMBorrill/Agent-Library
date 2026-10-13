@@ -4,7 +4,8 @@
 Each examples/<demo>/demo.json lists steps:
   {"id": "03-req-lint", "skill": "se-requirements", "script": "req_lint.py",
    "args": ["inputs/requirements.csv", "--json"], "expect_exit": 0,
-   "output": "outputs/03-req-lint.json", "purpose": "why this step exists"}
+   "output": "outputs/03-req-lint.json", "purpose": "why this step exists",
+   "extra_outputs": ["outputs/decision.json"]}   # optional: files a step writes; snapshot drift-checked
 Steps run with the demo directory as working directory; stdout is saved to `output`.
 A step "passes" when its exit code equals expect_exit (an expected 1 demonstrates a check catching a
 seeded or real defect). outputs/RUN-SUMMARY.md records every step.
@@ -54,6 +55,14 @@ def run_demo(demo_dir: Path, check: bool) -> list[dict]:
         else:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(out if out.endswith("\n") else out + "\n", encoding="utf-8")
+        for extra in step.get("extra_outputs", []):
+            ep = demo_dir / extra
+            snap = demo_dir / (extra + ".expected")
+            if check:
+                if not ep.is_file() or not snap.is_file() or norm(ep.read_text(encoding="utf-8")) != norm(snap.read_text(encoding="utf-8")):
+                    drift = True
+            elif ep.is_file():
+                snap.write_text(ep.read_text(encoding="utf-8"), encoding="utf-8")
         results.append({"id": step["id"], "skill": step["skill"], "script": step["script"],
                         "expected": step["expect_exit"], "actual": code, "ok": code == step["expect_exit"],
                         "drift": drift, "output": step["output"], "purpose": step.get("purpose", "")})

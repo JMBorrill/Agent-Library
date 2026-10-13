@@ -50,6 +50,10 @@ class IcdTests(unittest.TestCase):
         self.assertEqual(res["summary"]["errors"], 0)
         self.assertEqual(res["summary"]["warnings"], 0)
 
+    def test_unknown_requirement_link(self):  # raised by ASTER demo builder
+        res = mod.check(COLS, [row(requirement_ids="P-SYS-001;P-SYS-404")], None, {"P-SYS-001"})
+        self.assertIn("unknown-requirement", rules(res["findings"], "error"))
+
     def test_n2_markdown_diagonal(self):
         md = mod.n2_markdown(mod.n2([row()]))
         self.assertIn("**A**", md)

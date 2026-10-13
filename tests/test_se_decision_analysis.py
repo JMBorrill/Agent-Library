@@ -97,6 +97,16 @@ class DecisionTests(unittest.TestCase):
         res = mod.analyse(simple(normalisation="none", scale_max=5))  # scores of 10 exceed 5
         self.assertIn("score-out-of-scale", rules(res["findings"], "error"))
 
+    def test_no_switching_weight_for_non_discriminating(self):  # raised by ASTER demo builder
+        d = simple()
+        d["criteria"].append({"id": "C3", "weight": 0.2, "direction": "max"})
+        for a in d["alternatives"]:
+            a["scores"]["C3"] = {"value": 3, "basis": "measured"}
+        res = mod.analyse(d)
+        c3 = next(x for x in res["sensitivity"] if x["criterion"] == "C3")
+        self.assertIsNone(c3["switching_weight"])
+        self.assertEqual(c3["flips_within_pct"], [])
+
     def test_too_few_alternatives_and_unreadable(self):
         d = simple()
         d["alternatives"] = d["alternatives"][:1]

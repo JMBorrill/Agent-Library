@@ -182,15 +182,16 @@ def analyse(d: dict) -> dict:
     pct = settings["sensitivity_pct"] / 100.0
     for c in crit:
         cid = c["id"]
+        discriminating = len(set(norm[cid].values())) > 1
         flips = []
-        for factor in (1 - pct, 1 + pct):
+        for factor in ((1 - pct, 1 + pct) if discriminating else ()):
             nw = min(1.0, max(0.0, weights[cid] * factor))
             w2 = reweight(weights, cid, nw)
             wn = winner(totals(norm, w2))
             if wn != best:
                 flips.append({"weight": round(nw, 4), "winner": wn})
         switch = None
-        if len(feasible) > 1:
+        if len(feasible) > 1 and discriminating:
             for step in range(0, 1001):
                 nw = step / 1000
                 wn = winner(totals(norm, reweight(weights, cid, nw)))

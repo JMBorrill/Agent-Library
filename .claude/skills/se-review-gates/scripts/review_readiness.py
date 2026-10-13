@@ -89,6 +89,10 @@ def evaluate(review: dict, criteria_doc: dict) -> dict:
     if not independent:
         findings.append(_f("-", "error", "no-independent-review", "no reviewer independent of the authors"))
         blocking.append("independence")
+    elif not review.get("independent_review_ref"):
+        findings.append(_f("-", "warning", "review-not-evidenced",
+                           "independent reviewers are named but no review record (independent_review_ref) is cited"))
+        conditions.append("independent-review-record")
     if not review.get("gate_authority"):
         findings.append(_f("-", "warning", "no-gate-authority", "name the human gate authority who will decide"))
     rec = "NO_GO" if blocking else "GO_WITH_CONDITIONS" if conditions else "GO"

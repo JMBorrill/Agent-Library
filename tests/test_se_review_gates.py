@@ -11,7 +11,7 @@ CRIT = json.loads(skill_path(SKILL, "assets", "data", "review-criteria.json").re
 
 def srr(**kw):
     ev = [{"criterion_id": c["id"], "status": "met", "evidence_ref": "ref"} for c in CRIT["reviews"]["SRR"]["criteria"]]
-    d = {"review": "SRR", "authors": ["a"], "independent_reviewers": ["b"], "gate_authority": "g", "evidence": ev,
+    d = {"review": "SRR", "authors": ["a"], "independent_reviewers": ["b"], "gate_authority": "g", "independent_review_ref": "review/rid-log.md", "evidence": ev,
          "checks": [], "actions": []}
     d.update(kw)
     return d
@@ -48,6 +48,13 @@ class ReviewTests(unittest.TestCase):
     def test_closed_action_needs_evidence(self):
         res = mod.evaluate(srr(actions=[{"id": "A1", "severity": "minor", "status": "closed"}]), CRIT)
         self.assertIn("closed-without-evidence", rules(res["findings"], "error"))
+
+    def test_named_reviewer_without_record_is_condition(self):  # raised by ASTER demo builder
+        d = srr()
+        del d["independent_review_ref"]
+        res = mod.evaluate(d, CRIT)
+        self.assertEqual(res["recommendation"], "GO_WITH_CONDITIONS")
+        self.assertIn("review-not-evidenced", rules(res["findings"], "warning"))
 
     def test_unknown_review(self):
         res = mod.evaluate({"review": "XYZ"}, CRIT)

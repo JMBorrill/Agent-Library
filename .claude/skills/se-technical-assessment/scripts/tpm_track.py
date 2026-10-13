@@ -108,6 +108,9 @@ def assess(cols, rows, milestone: date | None = None) -> dict:
         line = fit([(p[0].toordinal(), p[1]) for p in pts[-3:]])
         if milestone and line:
             projection = line[0] * milestone.toordinal() + line[1]
+            if projection < 0 <= min(p[1] for p in pts):
+                findings.append(_f(tid, "warning", "projection-implausible",
+                            f"linear trend projects a negative value ({projection:.3g}) — extrapolation not physically meaningful"))
             pm = margin_pct(projection, lim, direction)
             if pm < 0 <= m:
                 findings.append(_f(tid, "warning", "projected-breach",
