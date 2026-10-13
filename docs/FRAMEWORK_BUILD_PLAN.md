@@ -1,5 +1,13 @@
 # Framework implementation plan
 
+> **Status (2026-10-13):** the queue below has been implemented as 45 skills in 9 packs. The proposed skill
+> names were consolidated where duplicates added no value (e.g. `software-maintainability` folded into
+> `software-code-review`; `security-release-gate` into `sre-production-readiness`; `finance-appraisal`/
+> `finance-five-cases` into `finance-options`; `space-mission-assurance`/`space-qualification-planning`
+> not built — ECSS inaccessible, qualification guidance lives in `se-verification-validation`).
+> Actual mappings: `sources/framework-build-plan.json` (`implemented_skills`), `docs/crosswalks/`;
+> measured status: `docs/coverage.md`.
+
 **This is a proposed build queue, not a claim that capabilities have been implemented or that all source sections have been reviewed.** Canonical source URLs and versions live in `sources/registry.json`. Each row must end with a source audit, source-to-skill crosswalk, working artifacts and tests or an explicit access block.
 
 | Phase | Framework / source ID | Proposed reusable capabilities | Evidence target |

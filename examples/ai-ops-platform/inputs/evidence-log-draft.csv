@@ -1,0 +1,7 @@
+id,claim,type,source_ref,method,date,participants,segment,confidence,linked_assumption
+AIOPS-EV-001,"7 of 9 sole-trader service owners (dog walkers and cleaners) reply to booking texts by hand in the evening after work",observation,INT-01..INT-09 (synthetic interview notes),interview,2026-09-08,9,sole-trader service businesses,medium,AIOPS-AS-001
+AIOPS-EV-002,"Owner of Paws & Pace Dog Walking (synthetic) described rescheduling as ""an hour of back-and-forth texts every rainy day""",observation,INT-04 transcript 09:15 (synthetic),interview,2026-09-10,1,sole-trader service businesses,medium,AIOPS-AS-001
+AIOPS-EV-003,"Median 4.2 booking changes per business per week in a pilot calendar export",observation,Pilot export PX-AIOPS-2026-09 (synthetic dataset),analytics,2026-09-21,23,small multi-staff service businesses,medium,AIOPS-AS-002
+AIOPS-EV-004,"Customers said ""I'd happily let the AI send messages without checking them"" — it saves so much time",observation,Customer feedback summary (synthetic),survey,2026-09-24,12,sole-trader service businesses,medium,AIOPS-AS-003
+AIOPS-EV-005,"Owners will pay GBP 29 per month for an AI assistant that drafts replies and proposes schedules",hypothesis,,none,,,sole-trader service businesses,low,AIOPS-AS-004
+AIOPS-EV-006,"Industry desk note suggests most UK micro service businesses use consumer messaging apps for bookings",desk_research,Desk note DN-AIOPS-02 (synthetic citation),desk,2026-08-30,,all segments,low,AIOPS-AS-001

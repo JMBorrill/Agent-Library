@@ -1,5 +1,9 @@
 # Framework reading list and direct URLs
 
+> Note: "verified" in this file's name refers to URL curation in the starter kit. Actual access results
+> from this build (most hosts were blocked by the session's network policy) are recorded per source in
+> `sources/registry.json` (`access_status`) and `sources/audits/<id>.md`.
+
 Curated 2026-10-13. These are entry points, not proofs of specific sub-section coverage. Claude must open current official material, capture exact section references and confirm any version, licence, applicability and accessibility before claiming a framework is researched. **Do not attach full third-party books by default.**
 
 ## Agent and skill authoring standards

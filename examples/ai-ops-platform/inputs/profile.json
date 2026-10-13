@@ -1,0 +1,9 @@
+{
+  "name": "AI Operations Platform",
+  "description": "Multi-tenant AI-powered CRM, communication and scheduling SaaS for small service businesses such as dog walkers and cleaners, with an AI assistant that drafts customer messages and proposes schedules.",
+  "objectives": ["Validate demand with small service businesses", "Ship a secure MVP", "Reach positive unit economics"],
+  "stage": "mvp", "risk_class": "moderate", "jurisdiction": "UK",
+  "flags": {"hardware": false, "software": true, "ai": true, "agentic_tools": true, "finance": true, "lending": false,
+            "personal_data": true, "multi_tenant": true, "online_service": true, "payments": true, "ui": true,
+            "external_users": true, "safety_critical": false, "regulated": false, "decisions_about_individuals": false}
+}

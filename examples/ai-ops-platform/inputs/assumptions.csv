@@ -1,0 +1,6 @@
+id,assumption,category,risk,evidence_ids,status
+AIOPS-AS-001,Handling booking messages by hand is a significant recurring pain for sole-trader service owners,desirability,high,AIOPS-EV-001;AIOPS-EV-002;AIOPS-EV-006,supported
+AIOPS-AS-002,Booking changes are frequent enough that AI-proposed schedules save time,desirability,medium,AIOPS-EV-003,supported
+AIOPS-AS-003,Owners will trust AI-drafted customer messages enough to approve them quickly without unsafe auto-send,ethics,high,,experiment_planned
+AIOPS-AS-004,Owners will pay a monthly subscription of about GBP 29,viability,high,,experiment_planned
+AIOPS-AS-005,Tenant isolation can be enforced in a shared-schema database for the MVP,feasibility,medium,,experiment_planned

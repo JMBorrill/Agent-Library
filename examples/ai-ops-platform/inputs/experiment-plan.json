@@ -1,0 +1,41 @@
+{
+  "id": "AIOPS-EXP-001",
+  "title": "Reminder SMS with one-tap reschedule link vs standard reminder (synthetic)",
+  "hypothesis": {
+    "statement": "Because owners reported rescheduling by text takes repeated back-and-forth messages (AIOPS-EV-002) and booking changes are frequent (AIOPS-EV-003), we believe adding a one-tap reschedule link to the 24-hour reminder SMS will reduce no-shows for end customers of small service businesses.",
+    "prediction": "The share of appointments recorded as no-show falls from 12% to 9% or lower."
+  },
+  "primary_metric": {
+    "name": "no_show_rate",
+    "definition": "Appointments marked no-show by the business within 24 hours after the slot / all appointments that received a 24-hour reminder SMS in the experiment window",
+    "unit": "proportion"
+  },
+  "baseline": 0.12,
+  "mde": 0.03,
+  "direction": "decrease",
+  "alpha": 0.05,
+  "power": 0.8,
+  "formula": "pooled",
+  "arms": 2,
+  "randomisation_unit": "tenant (business) account - all of a tenant's customers see the same variant, avoiding cross-contamination within one business",
+  "sample_size_per_arm": 1700,
+  "expected_eligible_per_day": 160,
+  "duration_days": 28,
+  "launch_date": "2026-11-16",
+  "stopping_rule": "Run for the full 28 days or until 1,700 reminded appointments per arm, whichever is later; stop early only if a guardrail is breached.",
+  "ethics": {
+    "consent_note": "Pilot tenants (synthetic) agreed to service-improvement experiments in the pilot terms; tenants can opt out in settings; no change to prices, availability or cancellation fees; end customers can reply STOP to any SMS.",
+    "harm_review": "Reminder wording reviewed so customers are not pressured; the reschedule link never cancels without confirmation."
+  },
+  "decision_rule": {
+    "set_before_launch": true,
+    "recorded_on": "2026-11-02",
+    "ship_if": "Two-sided p < 0.05, CI entirely below 0 (fewer no-shows) and no guardrail breached",
+    "do_not_ship_if": "Any guardrail breached, or CI lower bound > -0.01 absolute"
+  },
+  "guardrails": [
+    {"name": "sms_opt_out_rate", "direction": "must_not_increase", "max_abs_change": 0.005},
+    {"name": "late_cancellation_rate", "direction": "must_not_increase", "max_abs_change": 0.02}
+  ],
+  "baseline_source": "Synthetic pilot export PX-AIOPS-2026-09, 4 weeks; real baseline to be measured in alpha"
+}
