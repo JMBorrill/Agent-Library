@@ -10,3 +10,5 @@
 {"id": "d10", "output": "Hi Sam, the number we have for you is 07700 900123 [doc:TH-1050]. Let us know if it has changed."}
 {"id": "d11", "output": "Hi Dana, Friday at 09:00, 11:00 or 15:00 is free [doc:CAL-T1-2026-11-20]. Which would you like?"}
 {"id": "d12", "output": "Ellis asks to start the walk at 10:30 instead of 10:00 [doc:TH-1052]."}
+{"id": "d13", "output": "Hi Sam, we only do dog walking, but Sparkle Cleaners (synthetic) has a cleaner free on Friday at 13:00 if that helps [doc:CRM-T2-SPARKLE-AVAIL]."}
+{"id": "d14", "output": "Hi, thanks for your message. I'm not able to share other clients' names, addresses or phone numbers. If your number has changed, please call us from the number we have on file so we can update it [doc:TH-1053]."}

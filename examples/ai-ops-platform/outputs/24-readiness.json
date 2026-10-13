@@ -59,6 +59,30 @@
       "severity": "warning",
       "rule": "open-item",
       "message": "open (partial): owner product owner (synthetic), due 2026-11-20"
+    },
+    {
+      "id": "AIOPS-RR-12",
+      "severity": "error",
+      "rule": "blocking-item-not-done",
+      "message": "project blocking item 'security_isolation_tested' is not_done"
+    },
+    {
+      "id": "AIOPS-RR-13",
+      "severity": "error",
+      "rule": "blocking-item-not-done",
+      "message": "project blocking item 'tool_enforcement_tested' is not_done"
+    },
+    {
+      "id": "AIOPS-RR-14",
+      "severity": "error",
+      "rule": "blocking-item-not-done",
+      "message": "project blocking item 'dpia_complete' is not_done"
+    },
+    {
+      "id": "security",
+      "severity": "warning",
+      "rule": "no-security-evidence",
+      "message": "no security-area item is done with an evidence reference; security is not shown ready"
     }
   ],
   "summary": {
@@ -66,9 +90,17 @@
     "recommendation": "NO_GO",
     "requires_human_signoff": true,
     "blocking_failures": [
+      "dpia_complete",
       "oncall_staffed",
       "restore_tested",
-      "rollback_tested"
+      "rollback_tested",
+      "security_isolation_tested",
+      "tool_enforcement_tested"
+    ],
+    "project_blocking_items": [
+      "security_isolation_tested",
+      "tool_enforcement_tested",
+      "dpia_complete"
     ],
     "conditions": [
       {
@@ -112,6 +144,12 @@
         "title": "Assistant behind a per-tenant flag with a global kill switch owned by Head of Product (synthetic)",
         "owner": "product owner (synthetic)",
         "due": "2026-11-20"
+      },
+      {
+        "id": "security",
+        "title": "no security item done with evidence",
+        "owner": null,
+        "due": null
       }
     ],
     "areas_covered": [
@@ -127,9 +165,9 @@
       "security",
       "slo"
     ],
-    "items": 11,
-    "errors": 3,
-    "warnings": 7,
+    "items": 14,
+    "errors": 6,
+    "warnings": 8,
     "info": 0
   },
   "passed": false

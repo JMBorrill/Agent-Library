@@ -53,26 +53,98 @@
       "severity": "warning",
       "rule": "high-mitigation-planned-only",
       "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T20",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T21",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T24",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T25",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T26",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T27",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T29",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T30",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T32",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T33",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T34",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
+    },
+    {
+      "id": "AIOPS-TM-T35",
+      "severity": "warning",
+      "rule": "high-mitigation-planned-only",
+      "message": "high-risk threat mitigations are only planned"
     }
   ],
   "summary": {
     "system": "AI Operations Platform MVP (synthetic): multi-tenant AI CRM, messaging and scheduling SaaS with a tool-calling assistant",
-    "components": 7,
-    "data_flows": 6,
-    "boundary_crossing_flows": 5,
-    "threats": 19,
+    "components": 8,
+    "data_flows": 11,
+    "boundary_crossing_flows": 10,
+    "threats": 35,
     "by_stride": {
-      "E": 1,
-      "I": 5,
-      "S": 2,
-      "T": 5,
-      "D": 5,
+      "E": 5,
+      "I": 10,
+      "S": 3,
+      "T": 9,
+      "D": 7,
       "R": 1
     },
     "by_risk": {
-      "high": 9,
-      "low": 5,
-      "medium": 5
+      "high": 21,
+      "low": 6,
+      "medium": 8
     },
     "asvs_ids_cited": [
       "v5.0.0-1.2.4",
@@ -106,23 +178,48 @@
         "missing": ""
       },
       "DF3": {
-        "required": "TID",
-        "covered": "DIT",
+        "required": "STIDE",
+        "covered": "DEIST",
         "missing": ""
       },
       "DF4": {
         "required": "STID",
-        "covered": "DST",
+        "covered": "DIST",
         "missing": ""
       },
       "DF5": {
+        "required": "STIDE",
+        "covered": "DEIST",
+        "missing": ""
+      },
+      "DF7": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF8": {
+        "required": "TID",
+        "covered": "DEIT",
+        "missing": ""
+      },
+      "DF9": {
+        "required": "STIDE",
+        "covered": "DEIST",
+        "missing": ""
+      },
+      "DF10": {
+        "required": "TID",
+        "covered": "DIT",
+        "missing": ""
+      },
+      "DF11": {
         "required": "TID",
         "covered": "DIT",
         "missing": ""
       }
     },
     "errors": 0,
-    "warnings": 9,
+    "warnings": 21,
     "info": 0
   },
   "passed": true

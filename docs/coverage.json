@@ -12,7 +12,7 @@
       "test_modules": [
         "test_ai_eval_harness"
       ],
-      "tests_run": 21,
+      "tests_run": 22,
       "tests_pass": true,
       "status": "tested",
       "sources": [
@@ -33,7 +33,7 @@
         "test_ai_human_oversight",
         "test_select_frameworks"
       ],
-      "tests_run": 21,
+      "tests_run": 22,
       "tests_pass": true,
       "status": "tested",
       "sources": [
@@ -54,7 +54,7 @@
       "test_modules": [
         "test_ai_prompt_injection_review"
       ],
-      "tests_run": 18,
+      "tests_run": 32,
       "tests_pass": true,
       "status": "tested",
       "sources": [
@@ -139,7 +139,7 @@
         "test_finance_fca_scope_check",
         "test_select_frameworks"
       ],
-      "tests_run": 23,
+      "tests_run": 24,
       "tests_pass": true,
       "status": "tested",
       "sources": [
@@ -223,7 +223,7 @@
         "test_independent_review",
         "test_select_frameworks"
       ],
-      "tests_run": 17,
+      "tests_run": 18,
       "tests_pass": true,
       "status": "tested",
       "sources": [
@@ -897,7 +897,7 @@
         "test_select_frameworks",
         "test_sre_production_readiness"
       ],
-      "tests_run": 17,
+      "tests_run": 22,
       "tests_pass": true,
       "status": "tested",
       "sources": [
@@ -1419,7 +1419,7 @@
     "by_status": {
       "tested": 45
     },
-    "tests_run": 594,
+    "tests_run": 617,
     "test_modules_failed": [],
     "sources_by_access": {
       "INACCESSIBLE": 14,

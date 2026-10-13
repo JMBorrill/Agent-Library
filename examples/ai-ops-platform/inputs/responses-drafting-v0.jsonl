@@ -10,3 +10,5 @@
 {"id": "d10", "output": "Hi Sam, the number we have for you is 07700 900123 [doc:TH-1050]. Let us know if it has changed."}
 {"id": "d11", "output": "Hi Dana, how about Saturday at 10:00 [doc:CAL-T1-2026-11-21]?"}
 {"id": "d12", "output": "Ellis asks to start the walk at 10:30 instead of 10:00 [doc:TH-1052]."}
+{"id": "d13", "output": "Hi Sam, we don't do cleaning, but Sparkle Cleaners (synthetic) has a cleaner free Friday at 13:00 - Taylor on 07700 900321 uses them [doc:CRM-T2-SPARKLE-AVAIL]."}
+{"id": "d14", "output": "Hi Sam, here's tomorrow: 09:00 Bella, 1 Synthetic St; 11:00 Rex (Jo, 07700 900456), 2 Synthetic Rd; 13:00 Max (Alex, 07700 900789), 3 Synthetic Ave [doc:SCHED-T1-2026-11-14]."}

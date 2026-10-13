@@ -28,12 +28,12 @@ run tests, and update measured coverage."
 | Integration (router, installer) | done | `select-frameworks`, `scripts/install_packs.py` |
 | QA (validator, tests, CI, coverage, freshness) | done | 594 tests; CI workflow; mutation tests |
 | Demonstrations | done | 3 demos, reproducible (`examples/run_demos.py --check`) |
-| Independent review | done for library; demos — see each `examples/*/review/` | `docs/audits/independent-library-review.md` |
+| Independent review | done — library (independent-reviewer) and each demo (safety-, credit-regulatory-, security-reviewer agents) | `docs/audits/independent-library-review.md`, `examples/*/review/` |
 
 ## Measured state (see `docs/coverage.md`, regenerate with `scripts/coverage_report.py --run-tests --write`)
 - 45 skills, all "tested" by the measured definition (script/template + pass & fail fixtures + passing test module).
 - 14 agents (8 authors, 6 read-only reviewers).
-- 594 unit/fixture tests passing; validator 0 errors / 0 warnings.
+- 617 unit/fixture tests passing; validator 0 errors / 0 warnings; all gates in `scripts/run_all_checks.py` PASS.
 - Human expert review: **pending for every capability**.
 
 ## Review findings and dispositions
@@ -45,6 +45,18 @@ Independent library review (GO_WITH_CONDITIONS, 0 critical / 2 major / 8 minor /
 - Demo-builder findings fixed: review record evidence, non-discriminating switching weights, negative
   TPM projections, ICD requirement links, demo side-file drift, system-card human titles, exact+citation
   eval scoring, eval-ID existence, SLO selection at MVP, cluster randomisation, `--out -`.
+
+## Demonstration review outcomes (recommendations only — no human decision recorded)
+| Demo | Reviewer | Recommendation | Gate status after responses | Open actions |
+|---|---|---|---|---|
+| ASTER-01 | safety-risk-reviewer | GO_WITH_CONDITIONS for paper design to PDR | SRR NO_GO (8 open major actions incl. F-01–F-07) | 12 RIDs |
+| Mortgage criteria | credit-regulatory-reviewer | GO_WITH_CONDITIONS for closed synthetic pilot design | Pilot NO_GO; triage `refer` (perimeter unanswered); PT-01 eval fails 2 items | 37 |
+| AI Ops platform | security-reviewer | GO_WITH_CONDITIONS to build on synthetic data | Launch NO_GO (6 blockers); v1 eval fails cross-tenant canary | 17 |
+
+Library fixes triggered by demo reviews: global prohibited terms (eval), pause-trigger warning (oversight),
+eligible_indicative exclusions (criteria), null-answer refer (triage), quote-pair bug (claim_check),
+provenance tainting / recipient binding / default-deny egress (tool policy), project blocking items
+(readiness), two social-engineering scanner rules (in-sample; a fresh paraphrase still scores CLEAN).
 
 ## Open items (next steps, in priority order)
 1. **Primary-source verification for 14 INACCESSIBLE sources.** Either allow the domains in the
@@ -61,12 +73,13 @@ Independent library review (GO_WITH_CONDITIONS, 0 critical / 2 major / 8 minor /
 5. NIST AI RMF subcategory-level validation once the Playbook export is available.
 6. Optional: `install_packs.py --uninstall` using the lock manifest; human-readable batch output for
    `lowg_calc.py batch` (currently prints values as JSON in text mode — cosmetic).
-7. Heuristic scanners (security code checks, injection scan, claim check) have known false negatives;
+7. Eval `must_not_contain` is substring-based and cannot tell negated/quoted phrases from statements (mortgage MCP-RID-013) — consider a decision-statement scorer.
+8. Heuristic scanners (security code checks, injection scan, claim check) have known false negatives;
    extend corpora as real cases appear.
 
 ## Commands run this session (key results)
 - Baseline: `check_repo.py` PASS, `check_framework_manifest.py` PASS (both since shown to give false assurance).
 - `scripts/validate_library.py` → PASS 0 errors.
-- `python3 -m unittest discover -s tests -t .` → 594 tests OK (coverage run).
+- `python3 -m unittest discover -s tests -t .` → 617 tests OK (coverage run).
 - `examples/run_demos.py --check` → PASS, 3 demos.
 - `scripts/run_all_checks.py` → all gates PASS.

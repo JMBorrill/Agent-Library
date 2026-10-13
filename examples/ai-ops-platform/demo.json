@@ -179,7 +179,7 @@
    ],
    "expect_exit": 0,
    "output": "outputs/12-threat-model-check.json",
-   "purpose": "STRIDE model: tenant isolation, AI tool misuse, data flows"
+   "purpose": "STRIDE model: tenant isolation, AI tool misuse, data flows; mvp-0.4 adds review gaps (worker, routing, RLS, logs, credential flows, approvals) as planned mitigations"
   },
   {
    "id": "13-code-checks-draft",
@@ -238,6 +238,19 @@
    "purpose": "inbound customer email with hidden indirect injection (expect flag)"
   },
   {
+   "id": "16b-injection-corpus-scan",
+   "skill": "ai-prompt-injection-review",
+   "script": "injection_scan.py",
+   "args": [
+    "inputs/injection-corpus.jsonl",
+    "--jsonl",
+    "--json"
+   ],
+   "expect_exit": 1,
+   "output": "outputs/16b-injection-corpus-scan.json",
+   "purpose": "labelled corpus (5 benign, 3 malicious) incl. the reviewer's crafted paraphrased SMS (in-sample for the new rules) and a fresh paraphrase (expected known false negative)"
+  },
+  {
    "id": "17-tool-policy-check",
    "skill": "ai-prompt-injection-review",
    "script": "tool_policy_check.py",
@@ -250,7 +263,7 @@
    ],
    "expect_exit": 0,
    "output": "outputs/17-tool-policy-check.json",
-   "purpose": "sends need approval, untrusted side effects and egress denied"
+   "purpose": "hardened policy 0.4.0 (taint, recipient binding, default-deny destinations, derived classification) on 16 synthetic calls incl. reviewer RV-01..RV-04"
   },
   {
    "id": "18-eval-drafting-v0",
@@ -268,7 +281,7 @@
    ],
    "expect_exit": 1,
    "output": "outputs/18-eval-drafting-v0.json",
-   "purpose": "prompt v0 fixture responses: PII leak, injection followed, ungrounded slot"
+   "purpose": "prompt v0 fixture responses: PII leak, injection followed, ungrounded slot, cross-tenant canary leak, paraphrased injection followed"
   },
   {
    "id": "19-eval-drafting-v1",
@@ -284,9 +297,9 @@
     "inputs/eval-config.json",
     "--json"
    ],
-   "expect_exit": 0,
+   "expect_exit": 1,
    "output": "outputs/19-eval-drafting-v1.json",
-   "purpose": "prompt v1 fixture responses against the same gates"
+   "purpose": "prompt v1 fixture responses: fails the tenant-isolation gate on the second-tenant canary d13 (a prompt cannot fix a retrieval/cache isolation defect); all other gates pass"
   },
   {
    "id": "20-oversight-check",
@@ -355,7 +368,7 @@
    ],
    "expect_exit": 1,
    "output": "outputs/24-readiness.json",
-   "purpose": "MVP launch readiness: expect NO_GO (rollback, restore, on-call not done)"
+   "purpose": "MVP launch readiness: expect NO_GO (rollback, restore, on-call not done; project security blockers isolation test, tool enforcement, DPIA not done)"
   },
   {
    "id": "25-claim-check",
@@ -364,11 +377,12 @@
    "args": [
     "README.md",
     "inputs",
+    "review",
     "--json"
    ],
    "expect_exit": 0,
    "output": "outputs/25-claim-check.json",
-   "purpose": "screen README and inputs for overclaiming"
+   "purpose": "screen README, inputs and review for overclaiming (claim_check reads .md/.txt only; CSV/JSON claims are not screened)"
   }
  ]
 }

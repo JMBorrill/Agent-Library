@@ -43,6 +43,17 @@ Built from the `standards-agent-factory-kit` starter (imported unmodified as com
 - Registry enriched (access status, licence, normative status, check/review dates, audit pointer);
   Green Book URL variant discrepancy recorded.
 
+### Review cycle (same release)
+- Independent library review (GO_WITH_CONDITIONS; 0 critical, 2 major, 8 minor): all actioned findings
+  fixed with regression tests proven to fail on pre-fix code.
+- Three demo reviews by separate read-only reviewer agents; findings either fixed in the library,
+  closed in the demo, or recorded as owned open actions (see `examples/*/review/lead-response.md`).
+- Library changes from reviews: rotating-frame escape check, affordability refer signal, unit-economics
+  lifetime consistency and warnings, cashflow CSV periods, SLO threshold tolerance, decision-matrix input
+  checks, review-record evidence, TPM projection sanity, ICD requirement links, system-card human titles,
+  eval citation/exact scoring, global prohibited terms, oversight pause triggers, triage null answers,
+  claim-check quote pairing, tool-policy tainting/recipient binding/default-deny, readiness blocking items.
+
 ### Known limitations
 See `docs/progress.md` → "Open items". Notably: 14 sources need primary re-verification; no human
 expert has reviewed any capability; heuristic scanners (security, injection, claims) have false

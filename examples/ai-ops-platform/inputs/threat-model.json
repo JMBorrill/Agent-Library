@@ -1,11 +1,11 @@
 {
  "system": "AI Operations Platform MVP (synthetic): multi-tenant AI CRM, messaging and scheduling SaaS with a tool-calling assistant",
- "version": "mvp-0.3",
+ "version": "mvp-0.4",
  "owner": "security owner (synthetic)",
  "date": "2026-10-13",
  "multi_tenant": true,
  "asvs_target_level": 2,
- "notes": "Synthetic, pre-build design model. Mitigation statuses are mostly 'planned' because the MVP is not built. ASVS IDs were chosen by chapter/section title from the bundled 5.0.0 index and must be confirmed against the requirement text before use.",
+ "notes": "Synthetic, pre-build design model. Mitigation statuses are mostly 'planned' because the MVP is not built. ASVS IDs were chosen by chapter/section title from the bundled 5.0.0 index and must be confirmed against the requirement text before use. mvp-0.4 (2026-10-13) adds the modelling gaps raised by the independent security review (review/independent-review.md SR-01, SR-03..SR-08, SR-10, SR-12, SR-17, SR-18): worker/scheduler, inbound routing, RLS/exports/cache, log PII, credential flows, completions as untrusted input, approval fatigue and replay, provenance mislabelling. Every added mitigation is 'planned'; none is implemented. ASVS IDs on added mitigations reuse IDs already cited and are subject to the SR-13 re-map against the requirement text.",
  "components": [
   {
    "id": "C1",
@@ -48,6 +48,12 @@
    "name": "SMS/email delivery gateway",
    "type": "external_entity",
    "trust_zone": "third_party"
+  },
+  {
+   "id": "C8",
+   "name": "Background worker and scheduler (automatic reminder SMS, inbound triage labels)",
+   "type": "process",
+   "trust_zone": "app"
   }
  ],
  "trust_boundaries": [
@@ -66,6 +72,10 @@
   {
    "id": "TB4",
    "name": "Platform to messaging gateway (data egress)"
+  },
+  {
+   "id": "TB5",
+   "name": "Request context to asynchronous job context (tenant context must be re-established)"
   }
  ],
  "assets": [
@@ -93,6 +103,16 @@
    "id": "A5",
    "name": "Gateway API key (stored in secret manager; placeholder sk-FAKE-0000 in examples)",
    "classification": "restricted"
+  },
+  {
+   "id": "A6",
+   "name": "LLM provider API key (secret manager; placeholder sk-FAKE-0000 in examples)",
+   "classification": "restricted"
+  },
+  {
+   "id": "A7",
+   "name": "Prompt, completion and activity logs (contain end-customer personal data)",
+   "classification": "confidential"
   }
  ],
  "data_flows": [
@@ -127,11 +147,13 @@
    "from": "C6",
    "to": "C4",
    "data": [
-    "A4"
+    "A4",
+    "A6"
    ],
    "protocol": "HTTPS",
    "crosses_boundary": true,
-   "boundary": "TB2"
+   "boundary": "TB2",
+   "required_categories": "STIDE"
   },
   {
    "id": "DF4",
@@ -158,7 +180,8 @@
    ],
    "protocol": "HTTPS",
    "crosses_boundary": true,
-   "boundary": "TB4"
+   "boundary": "TB4",
+   "required_categories": "STIDE"
   },
   {
    "id": "DF6",
@@ -170,6 +193,67 @@
    ],
    "protocol": "internal queue",
    "crosses_boundary": false
+  },
+  {
+   "id": "DF7",
+   "from": "C2",
+   "to": "C8",
+   "data": [
+    "A1",
+    "A2"
+   ],
+   "protocol": "internal job queue",
+   "crosses_boundary": true,
+   "boundary": "TB5"
+  },
+  {
+   "id": "DF8",
+   "from": "C8",
+   "to": "C3",
+   "data": [
+    "A1",
+    "A2"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF9",
+   "from": "C8",
+   "to": "C7",
+   "data": [
+    "A1",
+    "A5"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB4",
+   "required_categories": "STIDE"
+  },
+  {
+   "id": "DF10",
+   "from": "C6",
+   "to": "C3",
+   "data": [
+    "A1",
+    "A2",
+    "A7"
+   ],
+   "protocol": "PostgreSQL over TLS",
+   "crosses_boundary": true,
+   "boundary": "TB3"
+  },
+  {
+   "id": "DF11",
+   "from": "C4",
+   "to": "C6",
+   "data": [
+    "A4"
+   ],
+   "protocol": "HTTPS",
+   "crosses_boundary": true,
+   "boundary": "TB2"
   }
  ],
  "threats": [
@@ -201,7 +285,8 @@
    "title": "Query missing the tenant filter returns another tenant's customers",
    "stride": "I",
    "targets": [
-    "DF2"
+    "DF2",
+    "DF10"
    ],
    "likelihood": "medium",
    "impact": "high",
@@ -266,7 +351,8 @@
    "stride": "I",
    "targets": [
     "DF3",
-    "C6"
+    "C6",
+    "DF11"
    ],
    "likelihood": "medium",
    "impact": "high",
@@ -295,7 +381,7 @@
    "status": "open",
    "mitigations": [
     {
-     "description": "Inbound content labelled retrieved_content; side-effecting tools denied from untrusted provenance (tool policy)",
+     "description": "Orchestrator assigns provenance as taint: every tool call carries turn_context_provenance, and a side-effecting call proposed in a turn whose context held retrieved_content is denied (taint_side_effects deny in inputs/tool-policy.json; exercised on synthetic calls in step 17 only; orchestrator not built). The model drafts; the owner's send from the UI is a separate call",
      "asvs": [
       "v5.0.0-8.3.1"
      ],
@@ -403,7 +489,15 @@
    "likelihood": "low",
    "impact": "medium",
    "status": "accepted",
-   "mitigations": [],
+   "mitigations": [
+    {
+     "description": "Statement timeout of 5 s on reporting queries, recorded as a planned control (SR-17); acceptance still awaits the security owner's decision",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
    "accepted_by": "CTO (synthetic) - acceptance pending human sign-off",
    "acceptance_rationale": "Statement timeout of 5 s on reporting queries; revisit before 200 tenants"
   },
@@ -432,7 +526,8 @@
    "title": "LLM provider outage blocks owners from replying",
    "stride": "D",
    "targets": [
-    "DF3"
+    "DF3",
+    "DF11"
    ],
    "likelihood": "medium",
    "impact": "low",
@@ -452,7 +547,8 @@
    "title": "Completion altered in transit between platform and LLM provider",
    "stride": "T",
    "targets": [
-    "DF3"
+    "DF3",
+    "DF11"
    ],
    "likelihood": "low",
    "impact": "medium",
@@ -504,6 +600,13 @@
       "v5.0.0-2.4.1"
      ],
      "status": "planned"
+    },
+    {
+     "description": "Reconcile with the oversight matrix (SR-18): inbound triage labels run on every inbound message unattended, so drafts are not the only model call; per-tenant rate limit and daily cap on triage calls",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
     }
    ]
   },
@@ -513,14 +616,15 @@
    "stride": "I",
    "targets": [
     "DF5",
-    "C6"
+    "C6",
+    "DF9"
    ],
    "likelihood": "medium",
    "impact": "high",
    "status": "open",
    "mitigations": [
     {
-     "description": "Tool policy: recipients restricted to the thread's own customer; data egress to non-allowlisted domains denied; approval shows full arguments",
+     "description": "Tool policy binds send_sms.to_number and send_email.to/cc/bcc to the thread's recipients of record (from the customer record, never the inbound sender) and default-denies unlisted destinations (inputs/tool-policy.json, exercised on synthetic calls in step 17). Server-side enforcement in the tool executor is NOT designed in code yet: code-fixed/tool_executor.py send_sms still accepts any to_number (SR-02)",
      "asvs": [
       "v5.0.0-8.3.1"
      ],
@@ -533,7 +637,8 @@
    "title": "Message content altered between platform and gateway",
    "stride": "T",
    "targets": [
-    "DF5"
+    "DF5",
+    "DF9"
    ],
    "likelihood": "low",
    "impact": "medium",
@@ -554,7 +659,8 @@
    "title": "SMS pumping or runaway tool loop sends large message volumes (cost and spam)",
    "stride": "D",
    "targets": [
-    "DF5"
+    "DF5",
+    "DF9"
    ],
    "likelihood": "medium",
    "impact": "medium",
@@ -568,6 +674,396 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "AIOPS-TM-T20",
+   "title": "Background job (reminder SMS, triage) runs without tenant context or under a privileged database role, bypassing row-level security",
+   "stride": "E",
+   "targets": [
+    "DF8",
+    "C8"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Worker connects with a non-owner role subject to forced RLS; tenant context set per job transaction from the job record, never defaulted",
+     "asvs": [
+      "v5.0.0-8.4.1",
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-05",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T21",
+   "title": "Wrong-tenant job: reminder or triage job reads one tenant's customers and sends to or labels another tenant's data",
+   "stride": "I",
+   "targets": [
+    "DF7",
+    "DF8",
+    "DF9",
+    "C8"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Tenant ID carried in every job payload and re-asserted against the booking/customer rows before any read or send; reminder job included in isolation suite AIOPS-VER-101",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-05",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T22",
+   "title": "Job payload tampered or forged on the queue (tenant_id or recipient changed)",
+   "stride": "T",
+   "targets": [
+    "DF7",
+    "DF8"
+   ],
+   "likelihood": "low",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Queue reachable only by the platform service identity; jobs reference IDs, not recipients, and the worker re-reads recipients from the tenant's records",
+     "asvs": [
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-05",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T23",
+   "title": "Job flood or retry storm from one tenant delays reminders for all tenants",
+   "stride": "D",
+   "targets": [
+    "DF7",
+    "DF8"
+   ],
+   "likelihood": "medium",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-tenant job quotas, bounded retries with backoff, dead-letter queue",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-05"
+  },
+  {
+   "id": "AIOPS-TM-T24",
+   "title": "Row-level security ineffective in practice: table owner or privileged role bypasses it, pooled connection keeps a previous request's tenant context",
+   "stride": "I",
+   "targets": [
+    "DF2",
+    "DF8",
+    "DF10",
+    "C3"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "FORCE ROW LEVEL SECURITY on tenant tables; application uses a non-owner role; tenant context set per transaction (SET LOCAL) and reset on connection return; pooled-connection leak test in AIOPS-VER-101",
+     "asvs": [
+      "v5.0.0-8.4.1",
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-07",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T25",
+   "title": "Exports, reports or a later shared cache return or serve rows across tenants",
+   "stride": "I",
+   "targets": [
+    "DF2",
+    "C2"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Exports and reports go through the tenant-filtered repository; requirement 'no shared cross-tenant cache in MVP' with a test; any cache key includes tenant_id",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-07",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T26",
+   "title": "Inbound SMS/email routed to the wrong tenant (shared sender ID, recycled number, mapping error)",
+   "stride": "I",
+   "targets": [
+    "DF4",
+    "C5"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-tenant inbound numbers and addresses; number-to-tenant mapping under change control; unmatched or ambiguous inbound messages quarantined, not delivered",
+     "asvs": [
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-06",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T27",
+   "title": "Tool executor creates a booking for a customer_id that belongs to another tenant",
+   "stride": "T",
+   "targets": [
+    "DF10",
+    "C6"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Composite foreign key (tenant_id, customer_id) or explicit ownership check in create_booking; case added to AIOPS-VER-101 (code-fixed/booking_repository.py does not do this yet)",
+     "asvs": [
+      "v5.0.0-8.2.2",
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-08",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T28",
+   "title": "Runaway assistant tool loop issues unbounded database reads from the orchestrator",
+   "stride": "D",
+   "targets": [
+    "DF10"
+   ],
+   "likelihood": "low",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Per-turn tool-call budget and statement timeout on orchestrator queries",
+     "asvs": [
+      "v5.0.0-2.4.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "engineering lead (synthetic)",
+   "review_ref": "SR-12"
+  },
+  {
+   "id": "AIOPS-TM-T29",
+   "title": "Personal data in prompt, completion and activity logs is disclosed to staff or retained beyond 24 months; append-only log conflicts with erasure",
+   "stride": "I",
+   "targets": [
+    "C2",
+    "C6",
+    "DF10"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Redact or tokenise personal data in prompt logs; role-based access to logs; 24-month retention enforced; erasure approach for append-only logs (e.g. per-customer crypto-shredding) decided in the DPIA; eval logs synthetic only",
+     "asvs": [
+      "v5.0.0-16.2.1",
+      "v5.0.0-14.2.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "data-protection lead (synthetic)",
+   "review_ref": "SR-10"
+  },
+  {
+   "id": "AIOPS-TM-T30",
+   "title": "Stolen gateway or LLM provider API key used to send messages or call the provider as the platform",
+   "stride": "S",
+   "targets": [
+    "DF3",
+    "DF5",
+    "DF9"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Keys in the secret manager only, scoped per environment, rotated, usage alerting; never in prompts, logs or code",
+     "asvs": [
+      "v5.0.0-13.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-12"
+  },
+  {
+   "id": "AIOPS-TM-T31",
+   "title": "Over-privileged gateway or provider key lets a compromised orchestrator or worker perform account-level actions (bulk send, sender-ID changes)",
+   "stride": "E",
+   "targets": [
+    "DF3",
+    "DF5",
+    "DF9"
+   ],
+   "likelihood": "low",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Least-privilege provider keys: send-only for the gateway, inference-only for the LLM provider; separate keys for orchestrator and worker",
+     "asvs": [
+      "v5.0.0-13.3.1",
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-12"
+  },
+  {
+   "id": "AIOPS-TM-T32",
+   "title": "Model completion treated as trusted: injected or hallucinated content in a completion flows into drafts or tool arguments",
+   "stride": "T",
+   "targets": [
+    "DF11",
+    "C6"
+   ],
+   "likelihood": "high",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Completions handled as untrusted input: tool arguments validated against the thread and tenant records; tool policy applied to every model-proposed call",
+     "asvs": [
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-12"
+  },
+  {
+   "id": "AIOPS-TM-T33",
+   "title": "Provenance mislabelled: the orchestrator labels a model-proposed call as user/system or omits turn context or thread recipients, so untrusted content's calls reach approval or execution",
+   "stride": "E",
+   "targets": [
+    "C6"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Provenance assigned by the orchestrator as taint (not by the model); turn_context_provenance and thread_recipients attached to every call; missing metadata fails closed; logged and sampled in review",
+     "asvs": [
+      "v5.0.0-8.3.1",
+      "v5.0.0-16.2.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-01"
+  },
+  {
+   "id": "AIOPS-TM-T34",
+   "title": "Approval replayed or arguments swapped after approval (approval not bound to tenant, tool, arguments, single use or expiry)",
+   "stride": "T",
+   "targets": [
+    "C6",
+    "DF1"
+   ],
+   "likelihood": "medium",
+   "impact": "high",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Server-verified, single-use, short-lived approval tokens bound to a hash of (tenant, user, tool, canonical arguments); every side effect's arguments shown at approval; AIOPS-STY-002 approval covers each side effect separately",
+     "asvs": [
+      "v5.0.0-8.3.1",
+      "v5.0.0-8.2.2"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "security owner (synthetic)",
+   "review_ref": "SR-03",
+   "tenant_isolation": true
+  },
+  {
+   "id": "AIOPS-TM-T35",
+   "title": "Approval fatigue: owner approves a malicious or wrong draft without inspecting recipient or content, while product metrics reward fast approval",
+   "stride": "E",
+   "targets": [
+    "C1",
+    "C6"
+   ],
+   "likelihood": "high",
+   "impact": "medium",
+   "status": "open",
+   "mitigations": [
+    {
+     "description": "Edit and inspection rates tracked as safety signals, not only speed; drafts whose recipient or content departs from the thread are highlighted and cannot be one-tap approved",
+     "asvs": [
+      "v5.0.0-8.3.1"
+     ],
+     "status": "planned"
+    }
+   ],
+   "owner": "product owner (synthetic)",
+   "review_ref": "SR-04"
   }
  ]
 }

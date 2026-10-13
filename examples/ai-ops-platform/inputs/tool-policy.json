@@ -1,12 +1,26 @@
 {
   "policy_id": "AIOPS-TOOL-POLICY-MVP",
-  "version": "0.3.0",
-  "description": "Synthetic tool policy for the AI Operations Platform MVP scheduling assistant. Sending messages and creating bookings require owner approval; data egress outside the platform and its messaging gateway is denied.",
+  "version": "0.4.0",
+  "description": "Synthetic tool policy for the AI Operations Platform MVP scheduling assistant. Sending messages and creating bookings require owner approval. Hardened after independent review SR-01/SR-02/SR-09: provenance taint from the turn context (side effects proposed in a turn that read inbound content are denied; the model drafts, the owner sends from the UI as a separate call), send_sms.to_number and send_email.to/cc/bcc bound to the thread's recipients of record, default-deny for unlisted destinations, and data classification derived from the tool rather than the caller's label. This is a policy file checked by tool_policy_check.py on synthetic calls; the orchestrator and executor that would enforce it are not built.",
   "allowed_tools": ["read_thread", "read_calendar", "draft_reply", "propose_slots", "send_sms", "send_email", "create_booking"],
   "side_effecting_tools": ["send_sms", "send_email", "create_booking"],
   "untrusted_provenance": ["retrieved_content", "tool_output"],
   "forbidden_domains": ["data-harvest.example", "pastebin.com", "webhook.site", "ngrok.io"],
   "allowed_egress_domains": ["aiops-platform.invalid", "sms-gateway.invalid"],
   "personal_data_classifications": ["personal"],
-  "pii_egress_allowed_domains": ["sms-gateway.invalid"]
+  "pii_egress_allowed_domains": ["sms-gateway.invalid"],
+  "taint_side_effects": "deny",
+  "bind_recipient_to_thread": {
+    "send_sms": "to_number",
+    "send_email": ["to", "cc", "bcc"]
+  },
+  "default_deny_unlisted_destinations": true,
+  "allowed_destination_domains": ["aiops-platform.invalid", "sms-gateway.invalid"],
+  "tool_classification": {
+    "read_thread": "personal",
+    "draft_reply": "personal",
+    "send_sms": "personal",
+    "send_email": "personal",
+    "create_booking": "personal"
+  }
 }

@@ -1,6 +1,6 @@
 # Agent Library — professional skills and specialist agents
 
-A modular, tested library of **45 Agent Skills** and **14 Claude Code subagents** that turn recognised
+A modular, tested library of **45 Agent Skills** and **14 Claude Code subagents** (617 tests) that turn recognised
 engineering, software, product, finance and AI-governance frameworks into practical procedures backed
 by **deterministic, stdlib-only Python tools**, schemas, templates and pass/fail fixtures.
 
@@ -46,7 +46,11 @@ Reproducible with `python3 examples/run_demos.py --check`:
 - [`examples/ai-ops-platform/`](examples/ai-ops-platform/) — **AI Operations Platform**, multi-tenant AI CRM/scheduling SaaS.
 
 Each shows framework selection, agents, skill execution (including draft → fix cycles where checks
-catch real defects), specifications, verification plans, independent review and limitations.
+catch real defects), specifications, verification plans, independent review and limitations. Each was
+reviewed by a separate read-only reviewer agent; current recommendations are deliberately sober —
+ASTER SRR **NO_GO** pending 7 safety-design actions, mortgage pilot **NO_GO** pending compliance and
+perimeter answers, AI Ops launch **NO_GO** pending rollback/on-call/security evidence. No human decision
+is recorded in any of them.
 
 ## How quality is controlled
 | Gate | Command | What a PASS means — and does not mean |

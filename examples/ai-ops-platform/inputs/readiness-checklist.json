@@ -117,6 +117,42 @@
    "evidence_ref": "inputs/oversight-matrix.csv (kill-switch owner named; flag not built)",
    "owner": "product owner (synthetic)",
    "due": "2026-11-20"
+  },
+  {
+   "id": "AIOPS-RR-12",
+   "area": "security",
+   "key": "security_isolation_tested",
+   "title": "Tenant-isolation suite AIOPS-VER-101 (2 synthetic tenants; every tenant-scoped endpoint, background jobs, exports, pooled connections) run against the built system",
+   "status": "not_done",
+   "evidence_ref": "",
+   "owner": "security owner (synthetic)",
+   "due": "2026-11-30"
+  },
+  {
+   "id": "AIOPS-RR-13",
+   "area": "security",
+   "key": "tool_enforcement_tested",
+   "title": "Server-side tool enforcement tests AIOPS-VER-103/104 (approval binding, provenance taint, recipient binding, default-deny destinations) run against the built orchestrator and executor; step 17 checks the policy file on synthetic calls only",
+   "status": "not_done",
+   "evidence_ref": "",
+   "owner": "security owner (synthetic)",
+   "due": "2026-11-30"
+  },
+  {
+   "id": "AIOPS-RR-14",
+   "area": "security",
+   "key": "dpia_complete",
+   "title": "DPIA completed, including LLM-provider processing terms and retention, prompt-log retention and erasure",
+   "status": "not_done",
+   "evidence_ref": "",
+   "owner": "data-protection lead (synthetic)",
+   "due": "2026-11-30"
   }
- ]
+ ],
+ "blocking_items": [
+  "security_isolation_tested",
+  "tool_enforcement_tested",
+  "dpia_complete"
+ ],
+ "blocking_items_note": "Project launch blockers added after independent review SR-15 (review/independent-review.md); proposed by the authoring team, to be confirmed by the security owner (synthetic). No decision recorded."
 }

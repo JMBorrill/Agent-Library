@@ -1,9 +1,16 @@
 {
-  "findings": [],
+  "findings": [
+    {
+      "id": "review/independent-review.md:42",
+      "severity": "warning",
+      "rule": "unverified-citation",
+      "message": "precise source reference without a verification marker \u2014 mark '(unverified)' or cite the audit"
+    }
+  ],
   "summary": {
-    "files": 5,
+    "files": 9,
     "errors": 0,
-    "warnings": 0
+    "warnings": 1
   },
   "passed": true
 }

@@ -9,7 +9,7 @@ Source access is reported separately: a tested skill built on an INACCESSIBLE so
 *mechanics* but unverified *source fidelity*.
 
 - Skills: **45** — tested: 45
-- Unit tests executed in this run: **594**; failing modules: none
+- Unit tests executed in this run: **617**; failing modules: none
 - Sources by access status: INACCESSIBLE: 14, PARTIALLY_VERIFIED: 1, VERIFIED: 4
 - NASA processes whose mapped skills are all tested: **17/17**
 
@@ -29,17 +29,17 @@ Source access is reported separately: a tested skill built on an INACCESSIBLE so
 ## Skills
 | Skill | Pack | Status | Scripts | Pass/fail fixtures | Tests run | Weakest source | Human review |
 |---|---|---|---|---|---|---|---|
-| `ai-eval-harness` | ai-governance | tested | 1 | ✓/✓ | 21 | INACCESSIBLE | pending |
-| `ai-human-oversight` | ai-governance | tested | 1 | ✓/✓ | 21 | INACCESSIBLE | pending |
-| `ai-prompt-injection-review` | ai-governance | tested | 2 | ✓/✓ | 18 | INACCESSIBLE | pending |
+| `ai-eval-harness` | ai-governance | tested | 1 | ✓/✓ | 22 | INACCESSIBLE | pending |
+| `ai-human-oversight` | ai-governance | tested | 1 | ✓/✓ | 22 | INACCESSIBLE | pending |
+| `ai-prompt-injection-review` | ai-governance | tested | 2 | ✓/✓ | 32 | INACCESSIBLE | pending |
 | `ai-risk-assessment` | ai-governance | tested | 2 | ✓/✓ | 24 | INACCESSIBLE | pending |
 | `credit-criteria-modelling` | finance-credit | tested | 2 | ✓/✓ | 39 | INACCESSIBLE | pending |
 | `credit-risk-governance` | finance-credit | tested | 1 | ✓/✓ | 16 | INACCESSIBLE | pending |
-| `finance-fca-scope-check` | finance-credit | tested | 1 | ✓/✓ | 23 | INACCESSIBLE | pending |
+| `finance-fca-scope-check` | finance-credit | tested | 1 | ✓/✓ | 24 | INACCESSIBLE | pending |
 | `finance-npv-irr` | finance-credit | tested | 1 | ✓/✓ | 36 | INACCESSIBLE | pending |
 | `finance-options` | finance-credit | tested | 1 | ✓/✓ | 18 | INACCESSIBLE | pending |
 | `finance-unit-economics` | finance-credit | tested | 1 | ✓/✓ | 29 | INACCESSIBLE | pending |
-| `independent-review` | orchestration | tested | 1 | ✓/✓ | 17 | INACCESSIBLE | pending |
+| `independent-review` | orchestration | tested | 1 | ✓/✓ | 18 | INACCESSIBLE | pending |
 | `product-discovery` | product | tested | 1 | ✓/✓ | 15 | INACCESSIBLE | pending |
 | `product-experiment-design` | product | tested | 1 | ✓/✓ | 20 | INACCESSIBLE | pending |
 | `product-requirements-brief` | product | tested | 1 | ✓/✓ | 11 | INACCESSIBLE | pending |
@@ -71,7 +71,7 @@ Source access is reported separately: a tested skill built on an INACCESSIBLE so
 | `space-low-gravity-mobility` | space-engineering | tested | 1 | ✓/✓ | 31 | INACCESSIBLE | pending |
 | `space-technical-budgets` | space-engineering | tested | 2 | ✓/✓ | 23 | INACCESSIBLE | pending |
 | `sre-incident-response` | reliability-security | tested | 1 | ✓/✓ | 9 | INACCESSIBLE | pending |
-| `sre-production-readiness` | reliability-security | tested | 1 | ✓/✓ | 17 | INACCESSIBLE | pending |
+| `sre-production-readiness` | reliability-security | tested | 1 | ✓/✓ | 22 | INACCESSIBLE | pending |
 | `sre-service-level-objectives` | reliability-security | tested | 1 | ✓/✓ | 22 | INACCESSIBLE | pending |
 | `ux-accessibility-review` | ux | tested | 1 | ✓/✓ | 14 | VERIFIED | pending |
 
