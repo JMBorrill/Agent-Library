@@ -40,6 +40,10 @@ metadata:
 ---
 ```
 
+Only the portable keys `name`, `description`, `license`, `compatibility`, `metadata` and
+`allowed-tools` are allowed, so skills also upload to claude.ai and the Skills API (other keys such as
+`argument-hint` or `model` are hard errors there). Library metadata goes under `metadata`.
+
 Required `##` sections in the body (prefix match, any order):
 `When to use`, `Workflow`, `Outputs`, `Sources`, `Limitations`.
 
