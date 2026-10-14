@@ -1,0 +1,114 @@
+{
+ "experiment": "exp0_baseline_rerun",
+ "environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "numba": "0.68.0",
+  "platform": "Linux-6.18.44-fc-v130-x86_64-with-glibc2.39",
+  "git_commit": "6bfd39de2beb5b96c5ea000a1746034b18a665e2"
+ },
+ "baseline_integrity_sha256": {
+  "files": 41,
+  "all_match": true
+ },
+ "runs": {
+  "unittest": {
+   "returncode": 0,
+   "wall_seconds": 6.75,
+   "tail": [
+    "Ran 4 tests in 4.299s",
+    "",
+    "OK"
+   ]
+  },
+  "toda_benchmark": {
+   "returncode": 0,
+   "wall_seconds": 0.77,
+   "tail": [
+    "  \"function_evaluations_rk45\": 1634,",
+    "  \"boundary_conditions\": \"exact infinite-lattice soliton sampled at finite lattice endpoints\"",
+    "}"
+   ]
+  },
+  "floquet": {
+   "returncode": 0,
+   "wall_seconds": 6.28,
+   "tail": [
+    "m=8, F=0.0055, max |mu|=1.010771003, leading=0.9950037+0.1778363j, residual=1.6e-15",
+    "m=8, F=0.0060, max |mu|=1.015171514, leading=0.9991888+0.1794297j, residual=5.1e-15",
+    "solver cross check {'4': {'independent_solver_success': True, 'state_difference_RK4_vs_DOP853': 8.695197627167639e-06, 'monodromy_difference_RK4_vs_DOP853': 4.4276638700990745e-05, 'nfev': 1106}, '8': {'independent_solver_success': True, 'state_difference_RK4_vs_DOP853': 1.3790915474085064e-05, 'monodromy_difference_RK4_vs_DOP853': 0.0005633545305105958, 'nfev': 1862}}"
+   ]
+  },
+  "refine": {
+   "returncode": 0,
+   "wall_seconds": 16.68,
+   "tail": [
+    "Attractor from rest {'F': 0.0046, 'max_floquet_abs': 0.9982490658491343, 'root_residual': 6.661338147750939e-16, 'late_mode1_range_1000': 0.4429751199600306, 'late_mode2_range_1000': 0.847495774465241, 'trajectory_terminal_distance_to_locked_orbit': 0.6792391086531864}",
+    "Attractor from rest {'F': 0.0048, 'max_floquet_abs': 1.0018228802651497, 'root_residual': 1.887379141862766e-15, 'late_mode1_range_1000': 0.4670954058959519, 'late_mode2_range_1000': 0.9045679624916574, 'trajectory_terminal_distance_to_locked_orbit': 0.7825991484673693}",
+    "Attractor from rest {'F': 0.005, 'max_floquet_abs': 1.0048304288663674, 'root_residual': 3.1086244689504383e-15, 'late_mode1_range_1000': 0.4850977953499328, 'late_mode2_range_1000': 0.953676481241529, 'trajectory_terminal_distance_to_locked_orbit': 0.8543432444039161}"
+   ]
+  },
+  "basin_check": {
+   "returncode": 0,
+   "wall_seconds": 12.59,
+   "tail": [
+    "{'initial_state': 'zero', 'periods': 3500, 'steps_per_period': 320, 'mode1_last750_range': 0.4295205852840628, 'mode2_last750_range': 0.815025539532216, 'last_state_supdist_from_drive_locked_fixed_point': 1.2273699713707014, 'max_locked_branch_floquet_modulus': 0.9961537252217432}",
+    "{'initial_state': 'locked_plus_1e-3', 'periods': 3500, 'steps_per_period': 320, 'mode1_last750_range': 5.107568867845913e-09, 'mode2_last750_range': 5.46343950635908e-09, 'last_state_supdist_from_drive_locked_fixed_point': 2.040221623644811e-06, 'max_locked_branch_floquet_modulus': 0.9961537252217432}",
+    "{'initial_state': 'locked_plus_1e-2', 'periods': 3500, 'steps_per_period': 320, 'mode1_last750_range': 5.105865218124617e-08, 'mode2_last750_range': 4.807321599131775e-08, 'last_state_supdist_from_drive_locked_fixed_point': 2.042514767541803e-06, 'max_locked_branch_floquet_modulus': 0.9961537252217432}"
+   ]
+  }
+ },
+ "output_comparison": {
+  "floquet_scan.csv": {
+   "n_values": 924,
+   "max_abs_diff": 4.107825191113079e-15,
+   "max_rel_diff_values_gt_1e-6": 6.202032039735305e-14,
+   "byte_identical": false
+  },
+  "floquet_detailed.json": {
+   "n_values": 444,
+   "max_abs_diff": 4.440892098500626e-15,
+   "max_rel_diff_values_gt_1e-6": 7.803688944413603e-15,
+   "byte_identical": false
+  },
+  "floquet_refined.json": {
+   "n_values": 56,
+   "max_abs_diff": 1.3100631690576847e-14,
+   "max_rel_diff_values_gt_1e-6": 3.529948397750666e-14,
+   "byte_identical": false
+  },
+  "rest_initial_condition_test.json": {
+   "n_values": 30,
+   "max_abs_diff": 1.2212453270876722e-15,
+   "max_rel_diff_values_gt_1e-6": 1.2289243111977443e-15,
+   "byte_identical": false
+  },
+  "basin_check.json": {
+   "n_values": 20,
+   "max_abs_diff": 1.2212453270876722e-15,
+   "max_rel_diff_values_gt_1e-6": 1.2259607088412235e-15,
+   "byte_identical": false
+  },
+  "solver_crosscheck.json": {
+   "n_values": 6,
+   "max_abs_diff": 0.0,
+   "max_rel_diff_values_gt_1e-6": 0.0,
+   "byte_identical": true
+  },
+  "toda_validation.json": {
+   "n_values": 10,
+   "max_abs_diff": 0.0,
+   "max_rel_diff_values_gt_1e-6": 0.0,
+   "byte_identical": true
+  }
+ },
+ "wall_seconds": {
+  "unittest": 6.756,
+  "toda_benchmark": 7.528,
+  "floquet": 13.804,
+  "refine": 30.48,
+  "basin_check": 43.071,
+  "total": 43.104
+ }
+}

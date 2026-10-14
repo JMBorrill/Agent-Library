@@ -1,0 +1,86 @@
+A full [('branch', 31, 0, 0.1138, {'upper': 0.006, 'lower': 0.003}), ('stable_0', 8, 0, 1.2855, {'upper': 0.006075, 'lower': 0.0031148437}), ('saddle1_1', 2, 1, 0.3128, {'upper': 0.006, 'lower': 0.0031148437})]
+A modes1234 [('branch', 32, 0, 0.1341, {'upper': 0.006, 'lower': 0.003}), ('saddle1_0', 5, 1, 1.1757, {'upper': 0.006075, 'lower': 0.00305}), ('stable_1', 1, 0, 3.0914, {'upper': 0.0060875, 'lower': 0.00305})]
+B {'R|modulated': 28, 'R|locked:branch': 20, 'L|locked:branch': 10, 'L|modulated': 11, 'E|locked:branch': 12, 'E|modulated': 1, 'r|modulated': 1}
+up None 0.0043 locked:branch 0.0
+up None 0.0044 locked:branch 2e-05
+up None 0.0045 locked:branch 0.0
+up None 0.0046 locked:branch 1e-06
+up None 0.0047 modulated 0.454261
+up None 0.0048 modulated 0.467078
+up None 0.0049 modulated 0.477196
+up None 0.005 modulated 0.485074
+up None 0.0051 modulated 0.491029
+up None 0.0052 modulated 0.49529
+up None 0.0053 modulated 0.497975
+down None 0.0053 modulated 0.497972
+down None 0.0052 modulated 0.495288
+down None 0.0051 modulated 0.491037
+down None 0.005 modulated 0.485073
+down None 0.0049 modulated 0.477194
+down None 0.0048 modulated 0.467084
+down None 0.0047 modulated 0.454252
+down None 0.0046 modulated 0.442789
+down None 0.0045 modulated 0.429518
+down None 0.0044 modulated 0.437966
+down None 0.0043 modulated 0.446261
+down None 0.0042 locked:branch 0.0
+up (1, 2, 3, 4) 0.0043 locked:branch 0.0
+up (1, 2, 3, 4) 0.0044 locked:branch 0.0
+up (1, 2, 3, 4) 0.0045 locked:branch 0.0
+up (1, 2, 3, 4) 0.0046 locked:branch 0.0
+up (1, 2, 3, 4) 0.0047 locked:branch 0.0
+up (1, 2, 3, 4) 0.0048 locked:branch 1.2e-05
+up (1, 2, 3, 4) 0.0049 locked:branch 0.0
+up (1, 2, 3, 4) 0.005 locked:branch 1e-06
+up (1, 2, 3, 4) 0.0051 modulated 0.715
+up (1, 2, 3, 4) 0.0052 modulated 0.739916
+up (1, 2, 3, 4) 0.0053 modulated 0.75528
+down (1, 2, 3, 4) 0.0053 modulated 0.760087
+down (1, 2, 3, 4) 0.0052 modulated 0.739917
+down (1, 2, 3, 4) 0.0051 modulated 0.714999
+down (1, 2, 3, 4) 0.005 modulated 0.683345
+down (1, 2, 3, 4) 0.0049 modulated 0.658958
+down (1, 2, 3, 4) 0.0048 modulated 0.665768
+down (1, 2, 3, 4) 0.0047 locked:branch 0.000224
+down (1, 2, 3, 4) 0.0046 locked:branch 0.0
+down (1, 2, 3, 4) 0.0045 locked:branch 0.0
+down (1, 2, 3, 4) 0.0044 locked:branch 0.0
+down (1, 2, 3, 4) 0.0043 locked:branch 0.0
+down (1, 2, 3, 4) 0.0042 locked:branch 0.0
+D1 0.0042 0.9871197628878141 [1.9952623149688795, None]
+D1 0.0043 0.9908750034537751 [0.9374105232841797, 0.9800045006276942]
+D1 0.0044 0.9937479367706972 [1.9952623149688795, None]
+D1 0.0045 0.9961506622844751 [0.6284136559286961, 0.6569674606472586]
+D1 0.0046 0.9982463260695764 [0.4604239376758779, 0.48134464027378643]
+D1 0.00465 0.9992070195194627 [0.33734181360472304, 0.3526699214174659]
+D1 0.00468 0.9997599012757739 [0.19792070445826532, 0.20691380811147886]
+D2 0.0048 modulated 0.46707587953334934
+D2 0.005 modulated 0.48507282875992197
+D2 0.0052 modulated 0.49528873015139113
+{
+ "points": [
+  [
+   0.0043,
+   0.9584709342250594
+  ],
+  [
+   0.0045,
+   0.6425319632294845
+  ],
+  [
+   0.0046,
+   0.4707680900974871
+  ],
+  [
+   0.00465,
+   0.34492073132069506
+  ],
+  [
+   0.00468,
+   0.20236730631099042
+  ]
+ ],
+ "loglog_slope_all": 0.4489806687230628,
+ "loglog_slope_F_ge_0.0045": 0.4288505154549722,
+ "subcritical_prediction": 0.5
+}

@@ -1,0 +1,4 @@
+__pycache__/
+.numba_cache/
+*.pyc
+.pytest_cache/
