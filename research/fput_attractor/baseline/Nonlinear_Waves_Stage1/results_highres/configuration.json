@@ -1,0 +1,10 @@
+{
+  "n": 8,
+  "alpha": 0.25,
+  "eta": 0.0025,
+  "F": 0.005,
+  "Omega": 0.347,
+  "periods": 2500,
+  "steps_per_period": 320,
+  "window_periods": 500
+}

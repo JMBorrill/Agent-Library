@@ -1,0 +1,14 @@
+{
+  "method": "DOP853",
+  "sites": 120,
+  "t_end": 45.0,
+  "kappa": 0.4,
+  "soliton_speed": 1.0268808145070387,
+  "analytic_equations_residual": 9.802749293846674e-15,
+  "max_absolute_displacement_or_momentum_error": 4.6241718787420893e-10,
+  "max_absolute_strain_error": 3.818757532414452e-10,
+  "DOP853_vs_RK45_terminal_state_max_abs_difference": 7.084938613566294e-08,
+  "function_evaluations_dop853": 1679,
+  "function_evaluations_rk45": 1634,
+  "boundary_conditions": "exact infinite-lattice soliton sampled at finite lattice endpoints"
+}

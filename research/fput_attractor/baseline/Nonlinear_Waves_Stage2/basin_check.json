@@ -1,0 +1,31 @@
+[
+  {
+    "initial_state": "zero",
+    "periods": 3500,
+    "steps_per_period": 320,
+    "mode1_last750_range": 0.4295205852840628,
+    "mode2_last750_range": 0.815025539532216,
+    "last_state_supdist_from_drive_locked_fixed_point": 1.2273699713707014,
+    "max_locked_branch_floquet_modulus": 0.996153725221742,
+    "short_forward_crosscheck_DOP853_vs_RK4_320_terminal_supnorm": 1.091509372508348e-05,
+    "short_forward_crosscheck_DOP853_nfev": 34970
+  },
+  {
+    "initial_state": "locked_plus_1e-3",
+    "periods": 3500,
+    "steps_per_period": 320,
+    "mode1_last750_range": 5.107568867845913e-09,
+    "mode2_last750_range": 5.46343950635908e-09,
+    "last_state_supdist_from_drive_locked_fixed_point": 2.040221623644811e-06,
+    "max_locked_branch_floquet_modulus": 0.996153725221742
+  },
+  {
+    "initial_state": "locked_plus_1e-2",
+    "periods": 3500,
+    "steps_per_period": 320,
+    "mode1_last750_range": 5.105865218124617e-08,
+    "mode2_last750_range": 4.807321599131775e-08,
+    "last_state_supdist_from_drive_locked_fixed_point": 2.042514767541803e-06,
+    "max_locked_branch_floquet_modulus": 0.996153725221742
+  }
+]

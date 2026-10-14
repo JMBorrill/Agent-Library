@@ -1,0 +1,14 @@
+{
+  "4": {
+    "independent_solver_success": true,
+    "state_difference_RK4_vs_DOP853": 8.695197627167639e-06,
+    "monodromy_difference_RK4_vs_DOP853": 4.4276638700990745e-05,
+    "nfev": 1106
+  },
+  "8": {
+    "independent_solver_success": true,
+    "state_difference_RK4_vs_DOP853": 1.3790915474085064e-05,
+    "monodromy_difference_RK4_vs_DOP853": 0.0005633545305105958,
+    "nfev": 1862
+  }
+}

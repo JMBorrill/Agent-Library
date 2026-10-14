@@ -1,0 +1,42 @@
+[
+  {
+    "F": 0.0044,
+    "max_floquet_abs": 0.9937514588652022,
+    "root_residual": 6.661338147750939e-16,
+    "late_mode1_range_1000": 0.43803291719500964,
+    "late_mode2_range_1000": 0.7760294853683615,
+    "trajectory_terminal_distance_to_locked_orbit": 0.7062650657506104
+  },
+  {
+    "F": 0.0045,
+    "max_floquet_abs": 0.996153725221742,
+    "root_residual": 4.440892098500626e-16,
+    "late_mode1_range_1000": 0.4295168238223361,
+    "late_mode2_range_1000": 0.814988803252804,
+    "trajectory_terminal_distance_to_locked_orbit": 0.9903012968274499
+  },
+  {
+    "F": 0.0046,
+    "max_floquet_abs": 0.9982490658491354,
+    "root_residual": 6.661338147750939e-16,
+    "late_mode1_range_1000": 0.4429751199600306,
+    "late_mode2_range_1000": 0.847495774465241,
+    "trajectory_terminal_distance_to_locked_orbit": 0.6792391086531864
+  },
+  {
+    "F": 0.0048,
+    "max_floquet_abs": 1.0018228802651494,
+    "root_residual": 1.887379141862766e-15,
+    "late_mode1_range_1000": 0.4670954058959519,
+    "late_mode2_range_1000": 0.9045679624916574,
+    "trajectory_terminal_distance_to_locked_orbit": 0.7825991484673693
+  },
+  {
+    "F": 0.005,
+    "max_floquet_abs": 1.0048304288663676,
+    "root_residual": 3.1086244689504383e-15,
+    "late_mode1_range_1000": 0.4850977953499328,
+    "late_mode2_range_1000": 0.953676481241529,
+    "trajectory_terminal_distance_to_locked_orbit": 0.8543432444039161
+  }
+]

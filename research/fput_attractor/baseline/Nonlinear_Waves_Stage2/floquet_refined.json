@@ -1,0 +1,92 @@
+[
+  {
+    "modes": 4,
+    "steps_per_period": 180,
+    "critical_F": 0.005084858936085712,
+    "max_multiplier_modulus": 1.0000000000407527,
+    "max_multiplier_real": 0.9833261934835045,
+    "max_multiplier_imag": 0.1818504805898152,
+    "fixed_point_residual": 2.220446049250313e-15,
+    "adaptive_at_RK4_threshold": null
+  },
+  {
+    "modes": 4,
+    "steps_per_period": 360,
+    "critical_F": 0.005084657452697163,
+    "max_multiplier_modulus": 1.00000000004039,
+    "max_multiplier_real": 0.9833268318715627,
+    "max_multiplier_imag": 0.18184702857680965,
+    "fixed_point_residual": 2.220446049250313e-15,
+    "adaptive_at_RK4_threshold": null
+  },
+  {
+    "modes": 4,
+    "steps_per_period": 720,
+    "critical_F": 0.005084645431509398,
+    "max_multiplier_modulus": 1.0000000000403657,
+    "max_multiplier_real": 0.9833268715490582,
+    "max_multiplier_imag": 0.1818468140228839,
+    "fixed_point_residual": 1.3322676295501878e-15,
+    "adaptive_at_RK4_threshold": {
+      "residual": 6.38378239159465e-16,
+      "max_multiplier_modulus": 1.0000000165917662,
+      "max_multiplier": [
+        [
+          0.9833268896117834,
+          0.18184680736803788
+        ],
+        [
+          0.9833268896117834,
+          -0.18184680736803788
+        ]
+      ],
+      "root_success": true,
+      "root_state_difference_from_seed": 1.449145994314449e-07
+    }
+  },
+  {
+    "modes": 8,
+    "steps_per_period": 180,
+    "critical_F": 0.004693396639125138,
+    "max_multiplier_modulus": 1.000000000035117,
+    "max_multiplier_real": 0.9849134489305948,
+    "max_multiplier_imag": 0.17304767604875404,
+    "fixed_point_residual": 2.220446049250313e-15,
+    "adaptive_at_RK4_threshold": null
+  },
+  {
+    "modes": 8,
+    "steps_per_period": 360,
+    "critical_F": 0.004693171686557684,
+    "max_multiplier_modulus": 1.0000000000349507,
+    "max_multiplier_real": 0.984914127719112,
+    "max_multiplier_imag": 0.1730438126290617,
+    "fixed_point_residual": 2.220446049250313e-15,
+    "adaptive_at_RK4_threshold": null
+  },
+  {
+    "modes": 8,
+    "steps_per_period": 720,
+    "critical_F": 0.004693159029218384,
+    "max_multiplier_modulus": 1.0000000000349412,
+    "max_multiplier_real": 0.9849141698017079,
+    "max_multiplier_imag": 0.1730435731071654,
+    "fixed_point_residual": 1.5543122344752192e-15,
+    "adaptive_at_RK4_threshold": {
+      "residual": 6.938893903907228e-16,
+      "max_multiplier_modulus": 1.0000000142728478,
+      "max_multiplier": [
+        [
+          0.9849141859468831,
+          0.17304356349279373
+        ],
+        [
+          0.9849141859468831,
+          -0.17304356349279373
+        ]
+      ],
+      "root_success": false,
+      "root_state_difference_from_seed": 2.0970317970991914e-07
+    }
+  }
+]

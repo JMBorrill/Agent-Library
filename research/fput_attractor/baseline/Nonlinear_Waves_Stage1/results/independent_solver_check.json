@@ -1,0 +1,10 @@
+{
+  "periods": 60,
+  "dop853_nfev": 43661,
+  "rtol": 1e-09,
+  "atol": 1e-11,
+  "rk4_steps_per_period": 320,
+  "max_abs_state_diff": 2.2900255720548213e-05,
+  "scaled_state_diff": 1.914437534314817e-05,
+  "wall_sec": 1.4031357200001366
+}
