@@ -1,0 +1,243 @@
+{
+ "experiment": "exp8b_fold_scaling",
+ "environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "numba": "0.68.0",
+  "platform": "Linux-6.18.44-fc-v130-x86_64-with-glibc2.39",
+  "git_commit": "f2b07c9e7abe3a156b063a1aa58a4db9c096509b"
+ },
+ "config": {
+  "rk4_steps": 200,
+  "offsets_above_HI": [
+   0.0001,
+   3e-05,
+   1e-05,
+   3e-06,
+   1e-06,
+   3e-07
+  ]
+ },
+ "results": {
+  "fold_side": [
+   {
+    "F": 0.0043165625,
+    "lambda2_per_time": -0.0012497569105677788,
+    "lambda2_q3_q4": [
+     -0.0012496493262408755,
+     -0.0012498644948946821
+    ],
+    "lambda1": -4.209310960627379e-06,
+    "torus_E1_range": 0.4451955123361387,
+    "edge": {
+     "is_fixed_point": false,
+     "abs_z_mean": 1.4169195689579777,
+     "rotation_number_critical_plane": 0.024999892670339318,
+     "abs_rho_naff": 0.024935543871956893,
+     "distance_to_stable_torus_min_median": [
+      0.28388849837066665,
+      0.39814264463804616
+     ],
+     "instability_rate_per_period": 0.00651887536919625,
+     "error": null,
+     "start": "critical direction"
+    }
+   },
+   {
+    "F": 0.0042465624999999995,
+    "lambda2_per_time": -0.0005232913239296623,
+    "lambda2_q3_q4": [
+     -0.0005254219735601027,
+     -0.000521160674299222
+    ],
+    "lambda1": 3.435278247433679e-06,
+    "torus_E1_range": 0.44740611713700235,
+    "edge": {
+     "is_fixed_point": false,
+     "abs_z_mean": 1.9353091024685203,
+     "rotation_number_critical_plane": 0.02449838762229613,
+     "abs_rho_naff": 0.024429923910467215,
+     "distance_to_stable_torus_min_median": [
+      0.15623533371143242,
+      0.22719712673206274
+     ],
+     "instability_rate_per_period": 0.004813983824478805,
+     "error": null,
+     "start": "critical direction"
+    }
+   },
+   {
+    "F": 0.004226562499999999,
+    "lambda2_per_time": -0.0002563683324920776,
+    "lambda2_q3_q4": [
+     -0.00025663846684805235,
+     -0.00025609819813610286
+    ],
+    "lambda1": -7.089988676372935e-06,
+    "torus_E1_range": 0.4450252528437238,
+    "edge": {
+     "is_fixed_point": false,
+     "abs_z_mean": 2.1919449364529235,
+     "rotation_number_critical_plane": 0.024249987627872213,
+     "abs_rho_naff": 0.024250769906304644,
+     "distance_to_stable_torus_min_median": [
+      0.09062036151693291,
+      0.13326802083334194
+     ],
+     "instability_rate_per_period": 0.0031253344320408827,
+     "error": null,
+     "start": "locked->torus segment (fallback)"
+    }
+   },
+   {
+    "F": 0.0042195625,
+    "lambda2_per_time": -0.00012999316808280328,
+    "lambda2_q3_q4": [
+     -0.00013147117977200918,
+     -0.0001285151563935974
+    ],
+    "lambda1": 1.4436721587100676e-06,
+    "torus_E1_range": 0.4422193467731976,
+    "edge": {
+     "is_fixed_point": false,
+     "abs_z_mean": 2.3239449689209732,
+     "rotation_number_critical_plane": 0.024195743997511232,
+     "abs_rho_naff": 0.024163686696005687,
+     "distance_to_stable_torus_min_median": [
+      0.05015304241194176,
+      0.07418571582766578
+     ],
+     "instability_rate_per_period": 0.0019124673245811646,
+     "error": null,
+     "start": "locked->torus segment (fallback)"
+    }
+   },
+   {
+    "F": 0.0042175625,
+    "lambda2_per_time": -7.157161564269887e-05,
+    "lambda2_q3_q4": [
+     -7.873255615478522e-05,
+     -6.441067513061252e-05
+    ],
+    "lambda1": 4.013936453264606e-06,
+    "torus_E1_range": 0.4403899725881838,
+    "edge": {
+     "is_fixed_point": false,
+     "abs_z_mean": 2.383153124613449,
+     "rotation_number_critical_plane": 0.02405618014076059,
+     "abs_rho_naff": 0.024125941886100257,
+     "distance_to_stable_torus_min_median": [
+      0.029756826651140853,
+      0.04405597996880514
+     ],
+     "instability_rate_per_period": 0.0012349786690423214,
+     "error": null,
+     "start": "critical direction"
+    }
+   },
+   {
+    "F": 0.0042168625,
+    "lambda2_per_time": -4.4556680123194036e-05,
+    "lambda2_q3_q4": [
+     -4.307055832050755e-05,
+     -4.604280192588052e-05
+    ],
+    "lambda1": 5.538931052210857e-06,
+    "torus_E1_range": 0.4391768193697568,
+    "edge": {
+     "is_fixed_point": false,
+     "abs_z_mean": 2.4133724178059937,
+     "rotation_number_critical_plane": 0.02405133526163122,
+     "abs_rho_naff": 0.02410552677670572,
+     "distance_to_stable_torus_min_median": [
+      0.017725504348222145,
+      0.026298743008687578
+     ],
+     "instability_rate_per_period": 0.0008359670268212646,
+     "error": null,
+     "start": "critical direction"
+    }
+   }
+  ],
+  "fits": {
+   "lambda2_squared": {
+    "slope": 2.1844383496904243,
+    "F_low_from_zero_crossing": 0.004216770506711564,
+    "n_points": 4,
+    "loglog_exponent_vs_F_minus_HI": null,
+    "loglog_exponent_vs_F_minus_Flow": 1.2462467822971064
+   },
+   "sigma_u_squared": {
+    "slope": 0.9231944350090614,
+    "F_low_from_zero_crossing": 0.004215899698305912,
+    "n_points": 4,
+    "loglog_exponent_vs_F_minus_HI": null,
+    "loglog_exponent_vs_F_minus_Flow": 0.7890386686275522
+   },
+   "edge_torus_distance_median_squared": {
+    "slope": 1758.3052011250538,
+    "F_low_from_zero_crossing": 0.004216455482929245,
+    "n_points": 4,
+    "loglog_exponent_vs_F_minus_HI": null,
+    "loglog_exponent_vs_F_minus_Flow": 1.016639910070409
+   }
+  },
+  "F_low_estimate_from_fold_side_fits": 0.004216375229315574,
+  "bisection_bracket_exp8": [
+   0.00421625,
+   0.0042165625
+  ],
+  "ghost": [
+   {
+    "F": 0.00421595,
+    "F_low_minus_F": 4.252293155735526e-07,
+    "transit_periods": 4957
+   },
+   {
+    "F": 0.00421525,
+    "F_low_minus_F": 1.1252293155737322e-06,
+    "transit_periods": 3171
+   },
+   {
+    "F": 0.00421325,
+    "F_low_minus_F": 3.1252293155739977e-06,
+    "transit_periods": 1968
+   },
+   {
+    "F": 0.004206250000000001,
+    "F_low_minus_F": 1.0125229315573192e-05,
+    "transit_periods": 1143
+   },
+   {
+    "F": 0.004186250000000001,
+    "F_low_minus_F": 3.0125229315573245e-05,
+    "transit_periods": 710
+   }
+  ],
+  "ghost_fit": {
+   "fit_gamma_fixed_0.5": {
+    "a": 3.144610051565024,
+    "b": 164.4510429951937,
+    "max_rel_residual": 0.03856494960982561
+   },
+   "fit_gamma_free": {
+    "a": 5.29951300129953,
+    "b": 25.109264788392455,
+    "gamma": 0.4660008398535167,
+    "gamma_std": 0.006240055525073794
+   }
+  }
+ },
+ "wall_seconds": {
+  "F0.0043165625": 39.879,
+  "F0.0042465625": 105.151,
+  "F0.0042265625": 147.173,
+  "F0.0042195625": 186.664,
+  "F0.0042175625": 235.234,
+  "F0.0042168625": 299.707,
+  "fits": 299.708,
+  "ghost": 301.746,
+  "total": 301.754
+ }
+}

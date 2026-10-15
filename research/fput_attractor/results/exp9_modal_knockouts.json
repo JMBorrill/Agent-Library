@@ -1,0 +1,500 @@
+{
+ "experiment": "exp9_modal_knockouts",
+ "environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "numba": "0.68.0",
+  "platform": "Linux-6.18.44-fc-v130-x86_64-with-glibc2.39",
+  "git_commit": "f2b07c9e7abe3a156b063a1aa58a4db9c096509b"
+ },
+ "config": {
+  "rk4_steps": 800,
+  "selection_rule_holds_for_all_nonzero_C": true,
+  "n_nonzero_triads": 23,
+  "nonzero_triads": [
+   [
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    3,
+    4
+   ],
+   [
+    1,
+    4,
+    5
+   ],
+   [
+    1,
+    5,
+    6
+   ],
+   [
+    1,
+    6,
+    7
+   ],
+   [
+    1,
+    7,
+    8
+   ],
+   [
+    2,
+    2,
+    4
+   ],
+   [
+    2,
+    3,
+    5
+   ],
+   [
+    2,
+    4,
+    6
+   ],
+   [
+    2,
+    5,
+    7
+   ],
+   [
+    2,
+    6,
+    8
+   ],
+   [
+    2,
+    8,
+    8
+   ],
+   [
+    3,
+    3,
+    6
+   ],
+   [
+    3,
+    4,
+    7
+   ],
+   [
+    3,
+    5,
+    8
+   ],
+   [
+    3,
+    7,
+    8
+   ],
+   [
+    4,
+    4,
+    8
+   ],
+   [
+    4,
+    6,
+    8
+   ],
+   [
+    4,
+    7,
+    7
+   ],
+   [
+    5,
+    5,
+    8
+   ],
+   [
+    5,
+    6,
+    7
+   ],
+   [
+    6,
+    6,
+    6
+   ]
+  ]
+ },
+ "cases": {
+  "full": {
+   "F_c": 0.004693158750984655,
+   "status": "ok",
+   "spec": {},
+   "shift_from_full_over_gap": 0.0
+  },
+  "modes1234": {
+   "F_c": 0.005084645159730467,
+   "status": "ok",
+   "spec": {
+    "modes": [
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "shift_from_full_over_gap": 1.0
+  },
+  "modes12345": {
+   "F_c": 0.0048000020265668766,
+   "status": "ok",
+   "spec": {
+    "modes": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "shift_from_full_over_gap": 0.27291694729457083
+  },
+  "full_minus_145": {
+   "F_c": 0.004791505695979315,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      1,
+      4,
+      5
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.25121420002735106
+  },
+  "full_minus_235": {
+   "F_c": 0.004955059025734006,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      2,
+      3,
+      5
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.668989443563032
+  },
+  "full_minus_156": {
+   "F_c": 0.004708240243086453,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      1,
+      5,
+      6
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.03852366714367866
+  },
+  "full_minus_257": {
+   "F_c": 0.004706936837728398,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      2,
+      5,
+      7
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.035194291387748024
+  },
+  "full_minus_358": {
+   "F_c": 0.004694504214656968,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      3,
+      5,
+      8
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.003436808129874647
+  },
+  "full_minus_558": {
+   "F_c": 0.004693254962252602,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      5,
+      5,
+      8
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.000245758896855667
+  },
+  "full_minus_567": {
+   "F_c": 0.0046933934348175835,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      5,
+      6,
+      7
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.0005994686601777449
+  },
+  "full_minus_all_mode5_triads": {
+   "F_c": 0.004980594945157014,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      1,
+      4,
+      5
+     ],
+     [
+      2,
+      3,
+      5
+     ],
+     [
+      1,
+      5,
+      6
+     ],
+     [
+      2,
+      5,
+      7
+     ],
+     [
+      3,
+      5,
+      8
+     ],
+     [
+      5,
+      5,
+      8
+     ],
+     [
+      5,
+      6,
+      7
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.7342175558359885
+  },
+  "full_minus_all_mode6_triads": {
+   "F_c": 0.004785037734657342,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      2,
+      4,
+      6
+     ],
+     [
+      3,
+      3,
+      6
+     ],
+     [
+      1,
+      5,
+      6
+     ],
+     [
+      1,
+      6,
+      7
+     ],
+     [
+      2,
+      6,
+      8
+     ],
+     [
+      4,
+      6,
+      8
+     ],
+     [
+      5,
+      6,
+      7
+     ],
+     [
+      6,
+      6,
+      6
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.2346926524653447
+  },
+  "full_minus_235_and_145": {
+   "F_c": 0.004979362294498329,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      2,
+      3,
+      5
+     ],
+     [
+      1,
+      4,
+      5
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.731068913555828
+  },
+  "full_minus_246_and_336": {
+   "F_c": 0.004784564944758137,
+   "status": "ok",
+   "spec": {
+    "knock_triads": [
+     [
+      2,
+      4,
+      6
+     ],
+     [
+      3,
+      3,
+      6
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.2334849735047408
+  },
+  "full_no_forcing_5": {
+   "F_c": 0.004698099714854865,
+   "status": "ok",
+   "spec": {
+    "knock_forcing": [
+     5
+    ]
+   },
+   "shift_from_full_over_gap": 0.012621035519571444
+  },
+  "full_no_forcing_7": {
+   "F_c": 0.004693364142822969,
+   "status": "ok",
+   "spec": {
+    "knock_forcing": [
+     7
+    ]
+   },
+   "shift_from_full_over_gap": 0.0005246461530351822
+  },
+  "full_no_forcing_5_7": {
+   "F_c": 0.00469830659989187,
+   "status": "ok",
+   "spec": {
+    "knock_forcing": [
+     5,
+     7
+    ]
+   },
+   "shift_from_full_over_gap": 0.013149495850205655
+  },
+  "modes12345_minus_235": {
+   "F_c": 0.005072708634078849,
+   "status": "ok",
+   "spec": {
+    "modes": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "knock_triads": [
+     [
+      2,
+      3,
+      5
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.9695097316663972
+  },
+  "modes12345_minus_145": {
+   "F_c": 0.0049050080823680505,
+   "status": "ok",
+   "spec": {
+    "modes": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "knock_triads": [
+     [
+      1,
+      4,
+      5
+     ]
+    ]
+   },
+   "shift_from_full_over_gap": 0.5411409608371539
+  },
+  "modes12345_no_forcing_5": {
+   "F_c": 0.004805486234605185,
+   "status": "ok",
+   "spec": {
+    "modes": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "knock_forcing": [
+     5
+    ]
+   },
+   "shift_from_full_over_gap": 0.28692562784079556
+  }
+ },
+ "verdict": {
+  "gap_F4_minus_F8": 0.0003914864087458123,
+  "mode5_shift_F4_minus_F5": 0.0002846431331635906,
+  "H9a_fraction_of_mode5_shift_removed_by_knocking_235_in_1to5": 0.9580649442726654,
+  "H9a_fraction_removed_by_knocking_145_in_1to5": 0.3689042297775182,
+  "H9b_forcing_5_7_fraction_of_gap": 0.013149495850205655,
+  "H9a_supported": true,
+  "H9b_supported": true
+ },
+ "wall_seconds": {
+  "cases": 36.712,
+  "total": 36.717
+ }
+}

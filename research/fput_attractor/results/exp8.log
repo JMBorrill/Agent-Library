@@ -1,0 +1,120 @@
+B step 0.00428 torus 12000
+B step 0.00426 torus 12000
+B step 0.00424 torus 12000
+B step 0.00422 torus 14000
+B step 0.0042 locked 4000
+B bisect 0.00421 locked 4000
+B bisect 0.004215 locked 6000
+B bisect 0.0042175 torus 14000
+B bisect 0.0042162499999999995 locked 12000
+B bisect 0.004216875 torus 14000
+B bisect 0.0042165625 torus 18000
+C ghost 0.004215249999999999 3400
+C ghost 0.004213249999999999 2200
+C ghost 0.00420625 1400
+C ghost 0.00418625 1000
+D lyap 0.0045 [-1.2000e-06 -1.2500e-03 -1.2481e-03 -1.2515e-03]
+D lyap 0.0044 [ 3.0000e-07 -1.2510e-03 -1.2515e-03 -1.2524e-03]
+D lyap 0.0043 [ 4.5000e-06 -1.2512e-03 -1.2517e-03 -1.2534e-03]
+D lyap 0.00424656 [ 5.1000e-06 -5.1660e-04 -1.2497e-03 -1.2506e-03]
+D lyap 0.00422656 [ 1.2000e-06 -2.4940e-04 -1.2509e-03 -1.2505e-03]
+D lyap 0.0042165625 [-5.7000e-06 -2.3100e-05 -1.2505e-03 -1.2520e-03]
+E edge {"F": 0.00465, "is_fixed_point": false, "abs_z_mean": 0.30974917709011607, "rotation_number_critical_plane": 0.02730787927338387, "abs_rho_naff": 0.027326960691627055, "distance_to_stable_torus_min_median": [0.6638891967214562, 0.7869212123656647], "instability_rate_per_period": 0.0014955980572890274, "error": null}
+E edge {"F": 0.0046, "is_fixed_point": false, "abs_z_mean": 0.47043675294347, "rotation_number_critical_plane": 0.02696735762797569, "abs_rho_naff": 0.026937714487349676, "distance_to_stable_torus_min_median": [0.5966444013827636, 0.716176407760376], "instability_rate_per_period": 0.0029131505943346104, "error": null}
+E edge {"F": 0.0045, "is_fixed_point": false, "abs_z_mean": 0.7440864766380721, "rotation_number_critical_plane": 0.026192062058257685, "abs_rho_naff": 0.026203210947870918, "distance_to_stable_torus_min_median": [0.4899237024161978, 0.6266313539108731], "instability_rate_per_period": 0.005214746403411201, "error": null}
+E edge {"F": 0.0044, "is_fixed_point": false, "abs_z_mean": 1.0542103949875405, "rotation_number_critical_plane": 0.02550572907003115, "abs_rho_naff": 0.02550553257829915, "distance_to_stable_torus_min_median": [0.38581807816589053, 0.5200497663866195], "instability_rate_per_period": 0.0064819353783600545, "error": null}
+E edge {"F": 0.0043, "is_fixed_point": false, "abs_z_mean": 1.5127936042468109, "rotation_number_critical_plane": 0.02476413811302866, "abs_rho_naff": 0.024821203600162496, "distance_to_stable_torus_min_median": [0.2594763943398378, 0.3669217081364563], "instability_rate_per_period": 0.006328297004173086, "error": null}
+E edge {"F": 0.0042165625, "is_fixed_point": false, "abs_z_mean": 2.434055278608343, "rotation_number_critical_plane": 0.024056969144237553, "abs_rho_naff": 0.024090494368616107, "distance_to_stable_torus_min_median": [0.008327245876343646, 0.012388200294462165], "instability_rate_per_period": 0.0005499610117638525, "error": null}
+{
+ "B_lower_edge": {
+  "log": [
+   {
+    "F": 0.00428,
+    "outcome": "torus",
+    "periods": 12000
+   },
+   {
+    "F": 0.00426,
+    "outcome": "torus",
+    "periods": 12000
+   },
+   {
+    "F": 0.00424,
+    "outcome": "torus",
+    "periods": 12000
+   },
+   {
+    "F": 0.00422,
+    "outcome": "torus",
+    "periods": 14000
+   },
+   {
+    "F": 0.0042,
+    "outcome": "locked",
+    "periods": 4000
+   },
+   {
+    "F": 0.00421,
+    "outcome": "locked",
+    "periods": 4000
+   },
+   {
+    "F": 0.004215,
+    "outcome": "locked",
+    "periods": 6000
+   },
+   {
+    "F": 0.0042175,
+    "outcome": "torus",
+    "periods": 14000
+   },
+   {
+    "F": 0.0042162499999999995,
+    "outcome": "locked",
+    "periods": 12000
+   },
+   {
+    "F": 0.004216875,
+    "outcome": "torus",
+    "periods": 14000
+   },
+   {
+    "F": 0.0042165625,
+    "outcome": "torus",
+    "periods": 18000
+   }
+  ],
+  "bracket": [
+   0.0042162499999999995,
+   0.0042165625
+  ],
+  "F_low_estimate": 0.00421640625
+ },
+ "C_ghost": {
+  "rows": [
+   {
+    "F": 0.004215249999999999,
+    "dF_below_lo": 1e-06,
+    "transit_periods": 3400
+   },
+   {
+    "F": 0.004213249999999999,
+    "dF_below_lo": 3e-06,
+    "transit_periods": 2200
+   },
+   {
+    "F": 0.00420625,
+    "dF_below_lo": 1e-05,
+    "transit_periods": 1400
+   },
+   {
+    "F": 0.00418625,
+    "dF_below_lo": 3e-05,
+    "transit_periods": 1000
+   }
+  ],
+  "loglog_slope": -0.361544797348316,
+  "fold_prediction": -0.5,
+  "note": "dF measured from the lower bracket end lo (F_low uncertainty <= hi - lo)"
+ }
+}

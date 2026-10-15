@@ -1,5 +1,10 @@
 # Independent verification of FPUT attractor dynamics — findings
 
+> **Status update (15 Oct 2026):** superseded in part by `REPORT_GATE.md` (validation gate after the adversarial
+> review). In particular, the lower edge of the loop is F_low = 0.0042164, not ≈ 0.00425. Its mechanism (a fold of
+> invariant circles), the first Lyapunov coefficient (d > 0) and the modal pathway are now computed directly. The
+> "second-order slaving" interpretation below is withdrawn.
+
 **Date:** 14 October 2026 · **System:** fixed-end α-FPUT chain, N = 8, α = 0.25, η = 0.0025, Ω = 0.347, uniform drive F cos Ωt.
 **Baseline:** `baseline/` (Stage 1 + Stage 2 package, verbatim, SHA-256 verified). **New code:** `fputv/`, `experiments/`, `tests/`.
 

@@ -148,6 +148,34 @@ def scipy_strobe(sys, y0, periods, method="DOP853", rtol=1e-11, atol=1e-13, t_ev
     return sol.y.T, int(sol.nfev)
 
 
+def scipy_strobe_segmented(sys, y0, periods, method="DOP853", rtol=1e-12, atol=1e-14, segment=500):
+    """Like scipy_strobe, but restarts the clock at t = 0 every `segment` drive periods so the drive
+    phase Omega*t is evaluated with arguments <= 2*pi*segment (exact phase at every restart).
+    Returns (Y at t = nT for n = 1..periods, total nfev)."""
+    args = sys.args
+    out = np.empty(sys.dim)
+
+    def f(t, y):
+        rhs(t, y, *args, out)
+        return out.copy()
+
+    y = np.asarray(y0, float).copy()
+    Y = np.empty((periods, sys.dim))
+    nfev = 0
+    done = 0
+    while done < periods:
+        k = min(segment, periods - done)
+        sol = solve_ivp(f, (0.0, k * sys.T), y, method=method, rtol=rtol, atol=atol,
+                        t_eval=np.arange(1, k + 1) * sys.T)
+        if not sol.success:
+            raise RuntimeError(sol.message)
+        Y[done:done + k] = sol.y.T
+        y = sol.y[:, -1].copy()
+        nfev += int(sol.nfev)
+        done += k
+    return Y, nfev
+
+
 def scipy_flow_tangent(sys, y0, t1, method="DOP853", rtol=1e-12, atol=1e-14, t0=0.0):
     """State and full monodromy-type matrix from t0 to t1 via the augmented variational ODE."""
     d = sys.dim

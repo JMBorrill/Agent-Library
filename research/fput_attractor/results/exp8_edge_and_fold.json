@@ -1,0 +1,639 @@
+{
+ "experiment": "exp8_edge_and_fold",
+ "environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "numba": "0.68.0",
+  "platform": "Linux-6.18.44-fc-v130-x86_64-with-glibc2.39",
+  "git_commit": "f2b07c9e7abe3a156b063a1aa58a4db9c096509b"
+ },
+ "config": {
+  "rk4_steps": 200,
+  "edge_tol": 1e-11,
+  "edge_delta": 1e-05,
+  "decision": "A: sup-dist to locked < 1e-3; B: within 2e-3 of the torus sample set"
+ },
+ "results": {
+  "A_torus_E1_range": {
+   "0.0045": 0.4295261041667783,
+   "0.0046": 0.4428458468631002,
+   "0.00465": 0.44838056578941143,
+   "0.0044": 0.4379803890652737,
+   "0.0043": 0.44626209779083015
+  },
+  "B_lower_edge": {
+   "log": [
+    {
+     "F": 0.00428,
+     "outcome": "torus",
+     "periods": 12000
+    },
+    {
+     "F": 0.00426,
+     "outcome": "torus",
+     "periods": 12000
+    },
+    {
+     "F": 0.00424,
+     "outcome": "torus",
+     "periods": 12000
+    },
+    {
+     "F": 0.00422,
+     "outcome": "torus",
+     "periods": 14000
+    },
+    {
+     "F": 0.0042,
+     "outcome": "locked",
+     "periods": 4000
+    },
+    {
+     "F": 0.00421,
+     "outcome": "locked",
+     "periods": 4000
+    },
+    {
+     "F": 0.004215,
+     "outcome": "locked",
+     "periods": 6000
+    },
+    {
+     "F": 0.0042175,
+     "outcome": "torus",
+     "periods": 14000
+    },
+    {
+     "F": 0.0042162499999999995,
+     "outcome": "locked",
+     "periods": 12000
+    },
+    {
+     "F": 0.004216875,
+     "outcome": "torus",
+     "periods": 14000
+    },
+    {
+     "F": 0.0042165625,
+     "outcome": "torus",
+     "periods": 18000
+    }
+   ],
+   "bracket": [
+    0.0042162499999999995,
+    0.0042165625
+   ],
+   "F_low_estimate": 0.00421640625
+  },
+  "C_ghost": {
+   "rows": [
+    {
+     "F": 0.004215249999999999,
+     "dF_below_lo": 1e-06,
+     "transit_periods": 3400
+    },
+    {
+     "F": 0.004213249999999999,
+     "dF_below_lo": 3e-06,
+     "transit_periods": 2200
+    },
+    {
+     "F": 0.00420625,
+     "dF_below_lo": 1e-05,
+     "transit_periods": 1400
+    },
+    {
+     "F": 0.00418625,
+     "dF_below_lo": 3e-05,
+     "transit_periods": 1000
+    }
+   ],
+   "loglog_slope": -0.361544797348316,
+   "fold_prediction": -0.5,
+   "note": "dF measured from the lower bracket end lo (F_low uncertainty <= hi - lo)"
+  },
+  "D_lyapunov_vs_F": [
+   {
+    "F": 0.0045,
+    "F_minus_F_low": 0.00028359375,
+    "lambda": [
+     -1.1633851873043335e-06,
+     -0.0012499802014723092,
+     -0.00124811177098873,
+     -0.0012515226857958874
+    ],
+    "third_quarter": [
+     -1.2947188541317296e-06,
+     -0.0012512860928636513,
+     -0.001249534901403392,
+     -0.0012522084425902504
+    ],
+    "fourth_quarter": [
+     -1.0320515204769373e-06,
+     -0.0012486743100809674,
+     -0.0012466886405740677,
+     -0.0012508369290015248
+    ]
+   },
+   {
+    "F": 0.0044,
+    "F_minus_F_low": 0.0001835937500000006,
+    "lambda": [
+     2.971995000175492e-07,
+     -0.0012509528141778753,
+     -0.0012515162054728575,
+     -0.0012523888817635362
+    ],
+    "third_quarter": [
+     7.471631645291497e-07,
+     -0.0012502738614108594,
+     -0.0012504013638062264,
+     -0.0012489677267792285
+    ],
+    "fourth_quarter": [
+     -1.5276416449405123e-07,
+     -0.0012516317669448913,
+     -0.0012526310471394884,
+     -0.001255810036747844
+    ]
+   },
+   {
+    "F": 0.0043,
+    "F_minus_F_low": 8.359375000000033e-05,
+    "lambda": [
+     4.520195892077392e-06,
+     -0.0012512071787614547,
+     -0.0012516519922524366,
+     -0.0012533526378507426
+    ],
+    "third_quarter": [
+     2.687171575919742e-06,
+     -0.001251226979239823,
+     -0.0012523459088151652,
+     -0.0012564217301406764
+    ],
+    "fourth_quarter": [
+     6.353220208235041e-06,
+     -0.0012511873782830865,
+     -0.0012509580756897081,
+     -0.0012502835455608086
+    ]
+   },
+   {
+    "F": 0.00424656,
+    "F_minus_F_low": 3.015375000000025e-05,
+    "lambda": [
+     5.1254019411964145e-06,
+     -0.0005165854098920388,
+     -0.0012496845389250019,
+     -0.0012506384233740943
+    ],
+    "third_quarter": [
+     6.472986124729357e-06,
+     -0.0005128264451791345,
+     -0.001248935549108688,
+     -0.0012515056392932975
+    ],
+    "fourth_quarter": [
+     3.777817757663473e-06,
+     -0.0005203443746049429,
+     -0.0012504335287413155,
+     -0.0012497712074548914
+    ]
+   },
+   {
+    "F": 0.00422656,
+    "F_minus_F_low": 1.0153750000000197e-05,
+    "lambda": [
+     1.2487463841685993e-06,
+     -0.000249360551516521,
+     -0.0012509245774420478,
+     -0.0012505211370359764
+    ],
+    "third_quarter": [
+     -7.514867764114212e-07,
+     -0.00025458745969910183,
+     -0.0012531223312076051,
+     -0.0012509996457185765
+    ],
+    "fourth_quarter": [
+     3.2489795447486196e-06,
+     -0.0002441336433339402,
+     -0.0012487268236764906,
+     -0.001250042628353376
+    ]
+   },
+   {
+    "F": 0.0042165625,
+    "F_minus_F_low": 1.5625000000015626e-07,
+    "lambda": [
+     -5.675931961824621e-06,
+     -2.312106260804173e-05,
+     -0.0012504600127466001,
+     -0.0012519685535503518
+    ],
+    "third_quarter": [
+     -5.060576130328009e-06,
+     -2.3568522456436497e-05,
+     -0.001249921332485212,
+     -0.001253152641562883
+    ],
+    "fourth_quarter": [
+     -6.291287793321233e-06,
+     -2.2673602759646965e-05,
+     -0.001250998693007988,
+     -0.0012507844655378208
+    ]
+   }
+  ],
+  "E_edge_states": [
+   {
+    "F": 0.00465,
+    "start": "critical direction",
+    "abs_mu": 0.999207019519588,
+    "theta_over_2pi": 0.027646547313096535,
+    "tracked_periods": 6000,
+    "burn_in": 2000,
+    "bisection_stats": [
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 9.502010289708096e-12
+     },
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 9.502010289708096e-12
+     }
+    ],
+    "is_fixed_point": false,
+    "median_step_between_iterates": 0.035684130131063446,
+    "abs_z_mean": 0.30974917709011607,
+    "abs_z_rel_spread": 0.6228481696045154,
+    "rotation_number_critical_plane": 0.02730787927338387,
+    "supdist_to_locked_min_max": [
+     0.13204981584863193,
+     0.2678975786371586
+    ],
+    "distance_to_stable_torus_min_median": [
+     0.6638891967214562,
+     0.7869212123656647
+    ],
+    "E1_range": 0.11205625129471863,
+    "E1_mean": 0.11723566200155017,
+    "instability_rate_per_period": 0.0014955980572890274,
+    "n_rate_segments": 1,
+    "circle_fit": {
+     "10": 0.00025699281625217094,
+     "20": 1.054962121696851e-06,
+     "40": 1.203305116545191e-08
+    },
+    "abs_rho_naff": 0.027326960691627055
+   },
+   {
+    "F": 0.0046,
+    "start": "critical direction",
+    "abs_mu": 0.9982463260695744,
+    "theta_over_2pi": 0.027606215296703495,
+    "tracked_periods": 6000,
+    "burn_in": 2000,
+    "bisection_stats": [
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 9.467981954003335e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.437261751950473e-12
+     },
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 9.467981954003335e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.437261751950473e-12
+     }
+    ],
+    "is_fixed_point": false,
+    "median_step_between_iterates": 0.05185769433344736,
+    "abs_z_mean": 0.47043675294347,
+    "abs_z_rel_spread": 0.8732578183061517,
+    "rotation_number_critical_plane": 0.02696735762797569,
+    "supdist_to_locked_min_max": [
+     0.18793584602605706,
+     0.3917129990833328
+    ],
+    "distance_to_stable_torus_min_median": [
+     0.5966444013827636,
+     0.716176407760376
+    ],
+    "E1_range": 0.16684102194379696,
+    "E1_mean": 0.1233642107473739,
+    "instability_rate_per_period": 0.0029131505943346104,
+    "n_rate_segments": 2,
+    "circle_fit": {
+     "10": 0.0006366132372316464,
+     "20": 6.4926917251165586e-06,
+     "40": 7.208456527765322e-07
+    },
+    "abs_rho_naff": 0.026937714487349676
+   },
+   {
+    "F": 0.0045,
+    "start": "critical direction",
+    "abs_mu": 0.9961506622844769,
+    "theta_over_2pi": 0.02752190726617223,
+    "tracked_periods": 6000,
+    "burn_in": 2000,
+    "bisection_stats": [
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 9.383827048736748e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.203837361023034e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.482780895960104e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.203837361023034e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.482780895960104e-12
+     }
+    ],
+    "is_fixed_point": false,
+    "median_step_between_iterates": 0.07192280765544089,
+    "abs_z_mean": 0.7440864766380721,
+    "abs_z_rel_spread": 1.1499631513918214,
+    "rotation_number_critical_plane": 0.026192062058257685,
+    "supdist_to_locked_min_max": [
+     0.26159133462272643,
+     0.5386950380679165
+    ],
+    "distance_to_stable_torus_min_median": [
+     0.4899237024161978,
+     0.6266313539108731
+    ],
+    "E1_range": 0.24854653271653068,
+    "E1_mean": 0.13648633527259352,
+    "instability_rate_per_period": 0.005214746403411201,
+    "n_rate_segments": 3,
+    "circle_fit": {
+     "10": 0.0017779272649538587,
+     "20": 4.9113655577229095e-05,
+     "40": 2.720242392215189e-07
+    },
+    "abs_rho_naff": 0.026203210947870918
+   },
+   {
+    "F": 0.0044,
+    "start": "locked->torus segment (fallback)",
+    "abs_mu": 0.9937479367706971,
+    "theta_over_2pi": 0.027432710758601875,
+    "tracked_periods": 6000,
+    "burn_in": 2000,
+    "bisection_stats": [
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 4.31044089310717e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.588557394631266e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.544342762675569e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.588557394631266e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.544342762675569e-12
+     }
+    ],
+    "is_fixed_point": false,
+    "median_step_between_iterates": 0.08627579519762535,
+    "abs_z_mean": 1.0542103949875405,
+    "abs_z_rel_spread": 1.29389567297904,
+    "rotation_number_critical_plane": 0.02550572907003115,
+    "supdist_to_locked_min_max": [
+     0.3083180156289542,
+     0.6226377864903228
+    ],
+    "distance_to_stable_torus_min_median": [
+     0.38581807816589053,
+     0.5200497663866195
+    ],
+    "E1_range": 0.3155466189340553,
+    "E1_mean": 0.15291709788297134,
+    "instability_rate_per_period": 0.0064819353783600545,
+    "n_rate_segments": 3,
+    "circle_fit": {
+     "10": 0.003830424728538146,
+     "20": 0.00022263291106595543,
+     "40": 1.5340463138055112e-06
+    },
+    "abs_rho_naff": 0.02550553257829915
+   },
+   {
+    "F": 0.0043,
+    "start": "critical direction",
+    "abs_mu": 0.9908750034537737,
+    "theta_over_2pi": 0.027338583152739643,
+    "tracked_periods": 6000,
+    "burn_in": 2000,
+    "bisection_stats": [
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 9.115708188289773e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.494271704264975e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.267342118031593e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.494271704264975e-12
+     },
+     {
+      "rounds": 9,
+      "undecided": 0,
+      "final_gap": 5.267342118031593e-12
+     }
+    ],
+    "is_fixed_point": false,
+    "median_step_between_iterates": 0.09661601474728294,
+    "abs_z_mean": 1.5127936042468109,
+    "abs_z_rel_spread": 1.359541030659417,
+    "rotation_number_critical_plane": 0.02476413811302866,
+    "supdist_to_locked_min_max": [
+     0.3365420088950072,
+     0.7073005428626941
+    ],
+    "distance_to_stable_torus_min_median": [
+     0.2594763943398378,
+     0.3669217081364563
+    ],
+    "E1_range": 0.37567847270482607,
+    "E1_mean": 0.17459492702587992,
+    "instability_rate_per_period": 0.006328297004173086,
+    "n_rate_segments": 3,
+    "circle_fit": {
+     "10": 0.007170896881692373,
+     "20": 0.0007270141452615202,
+     "40": 1.5306977332692774e-05
+    },
+    "abs_rho_naff": 0.024821203600162496
+   },
+   {
+    "F": 0.0042165625,
+    "start": "critical direction",
+    "abs_mu": 0.9878407163177344,
+    "theta_over_2pi": 0.02725623535733767,
+    "tracked_periods": 6000,
+    "burn_in": 2000,
+    "bisection_stats": [
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 7.895906151134113e-12
+     },
+     {
+      "rounds": 16,
+      "undecided": 0,
+      "final_gap": 7.895906151134113e-12
+     }
+    ],
+    "is_fixed_point": false,
+    "median_step_between_iterates": 0.10555236681518798,
+    "abs_z_mean": 2.434055278608343,
+    "abs_z_rel_spread": 1.2620581664902653,
+    "rotation_number_critical_plane": 0.024056969144237553,
+    "supdist_to_locked_min_max": [
+     0.36122715112458337,
+     0.8325769208341294
+    ],
+    "distance_to_stable_torus_min_median": [
+     0.008327245876343646,
+     0.012388200294462165
+    ],
+    "E1_range": 0.4361836511669669,
+    "E1_mean": 0.21423616028538214,
+    "instability_rate_per_period": 0.0005499610117638525,
+    "n_rate_segments": 1,
+    "circle_fit": {
+     "10": 0.013375707493662707,
+     "20": 0.0022612210910257636,
+     "40": 0.00012974811683580577
+    },
+    "abs_rho_naff": 0.024090494368616107
+   }
+  ],
+  "E_edge_uniqueness_F0.0045": {
+   "F": 0.0045,
+   "start": "locked->torus segment",
+   "abs_mu": 0.9961506622844769,
+   "theta_over_2pi": 0.02752190726617223,
+   "tracked_periods": 6000,
+   "burn_in": 2000,
+   "bisection_stats": [
+    {
+     "rounds": 16,
+     "undecided": 0,
+     "final_gap": 3.3691938128299626e-12
+    },
+    {
+     "rounds": 9,
+     "undecided": 0,
+     "final_gap": 5.135669667311049e-12
+    },
+    {
+     "rounds": 9,
+     "undecided": 0,
+     "final_gap": 5.7058802127585295e-12
+    },
+    {
+     "rounds": 9,
+     "undecided": 0,
+     "final_gap": 5.135669667311049e-12
+    },
+    {
+     "rounds": 9,
+     "undecided": 0,
+     "final_gap": 5.7058802127585295e-12
+    }
+   ],
+   "is_fixed_point": false,
+   "median_step_between_iterates": 0.07190586653865005,
+   "abs_z_mean": 0.7440023699130003,
+   "abs_z_rel_spread": 1.1500935478252747,
+   "rotation_number_critical_plane": 0.026198770632773455,
+   "supdist_to_locked_min_max": [
+    0.26100827684659944,
+    0.5386958964248603
+   ],
+   "distance_to_stable_torus_min_median": [
+    0.48992361074801966,
+    0.6264279718550486
+   ],
+   "E1_range": 0.24854594341756542,
+   "E1_mean": 0.13652117055495278,
+   "instability_rate_per_period": 0.005215275637551053,
+   "n_rate_segments": 3,
+   "circle_fit": {
+    "10": 0.0017776818973418125,
+    "20": 4.9105898651845705e-05,
+    "40": 4.139692795932688e-07
+   },
+   "abs_rho_naff": 0.026203210929363896
+  },
+  "saddle_orbit_distance_to_edge_history_F0.0045": 0.5424761995013935
+ },
+ "wall_seconds": {
+  "A_torus": 8.947,
+  "B_lower_edge": 32.48,
+  "C_ghost": 34.116,
+  "D_lyapunov": 115.673,
+  "E_edge_0.00465": 160.41,
+  "E_edge_0.0046": 241.489,
+  "E_edge_0.0045": 277.906,
+  "E_edge_0.0044": 305.297,
+  "E_edge_0.0043": 331.187,
+  "E_edge_0.0042165625": 427.028,
+  "E_edge_uniqueness": 465.572,
+  "total": 465.581
+ }
+}

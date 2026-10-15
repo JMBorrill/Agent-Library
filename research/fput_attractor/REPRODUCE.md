@@ -8,9 +8,9 @@ numba 0.68.0 and matplotlib 3.11.2 on 4 CPU cores.
 cd research/fput_attractor
 python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-python -m pytest            # 24 independent tests, ~1-2 min (first run includes numba compilation)
+python -m pytest            # 35 independent tests, ~5 min (first run includes numba compilation)
 bash run_all.sh --quick     # tests + baseline rerun + Floquet verification, ~3 min
-bash run_all.sh             # everything, ~25 min; rewrites results/*.json|npz and figures/*.png
+bash run_all.sh             # everything, ~70 min; rewrites results/*.json|npz and figures/*.png
 ```
 
 | Script | Produces | Wall time |
@@ -23,8 +23,17 @@ bash run_all.sh             # everything, ~25 min; rewrites results/*.json|npz a
 | `experiments/exp4_floquet_reduced.py` | `results/exp4_floquet_reduced.json` | 30 s |
 | `experiments/exp4b_mechanism_decomposition.py` | `results/exp4b_mechanism_decomposition.json` | 15 s |
 | `experiments/make_figures.py` | `figures/fig1..fig6*.png` from the result files only | 10 s |
+| **Validation gate** (`REPORT_GATE.md`) | | |
+| `experiments/exp5_long_time_validation.py` | `results/exp5_long_time_validation.json`, `exp5_trajectories.npz` (5 ICs × 5 methods × 30 000 periods) | 24 min |
+| `experiments/exp6_classification_convergence.py` | `results/exp6_classification_convergence.json` | 3.5 min |
+| `experiments/exp7_ns_normal_form.py` | `results/exp7_ns_normal_form.json` (needs Exp 3b) | < 1 min |
+| `experiments/exp8_edge_and_fold.py` | `results/exp8_edge_and_fold.json`, `exp8_edge_histories.npz` (needs Exp 3) | 8 min |
+| `experiments/exp8b_fold_scaling.py` | `results/exp8b_fold_scaling.json` (needs Exp 8) | 5 min |
+| `experiments/exp8c_fold_analysis.py` | `results/exp8c_fold_analysis.json` (fits only) | s |
+| `experiments/exp9_modal_knockouts.py` | `results/exp9_modal_knockouts.json` | 40 s |
+| `experiments/make_figures_gate.py` | `figures/fig7..fig11*.png` | 30 s |
 
-`results/*.log` are the console logs of the runs used in `REPORT.md`.
+`results/*.log` are the console logs of the runs used in `REPORT.md` and `REPORT_GATE.md`.
 
 **Determinism.** Fixed-step RK4 runs and all Newton/brentq results are deterministic. Random initial conditions use
 `numpy.random.default_rng(20261014)` (Exp 3/3b). Numba's `parallel=True` batch integrator gives results identical
